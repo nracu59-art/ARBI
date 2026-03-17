@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raport de activitate ARBI 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; }
+        .chart-container { position: relative; width: 100%; height: 320px; max-height: 400px; margin: auto; }
+        .tab-content { display: none; animation: fadeIn 0.4s ease-out; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .sidebar-item.active { background-color: #1e293b; color: white; border-radius: 0.75rem; }
+        
+        .img-fallback {
+            background-color: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border-radius: 1.5rem;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #1e293b 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="text-slate-900 overflow-x-hidden">
+
+    <!-- Chosen Palette: Slate Deep Blue (Autoritate), Bright Blue (Acțiune), Emerald (Succes), Slate 50 (Fundal) -->
+    <!-- Application Structure Plan: Am reorganizat SPA-ul pentru a prioritiza cele 5 module solicitate. 
+        Pagina de start (Dashboard) oferă acum o privire de ansamblu asupra Raportului 2025. 
+        Fiecare secțiune este gândită ca un capitol independent din raport:
+        1. Investigații: Focus pe cifre operative (delegații/subiecți).
+        2. Indisponibilizare: Focus pe sechestre și valoarea activelor.
+        3. Administrare: Focus pe SIA RBII și managementul banilor.
+        4. Cooperare: Focus pe rețelele internaționale (CARIN/SIENA).
+        5. Perspective: Focus pe obiectivele strategice 2026.
+    -->
+    <!-- Visualization & Content Choices: 
+        - Dashboard: KPI Cards pentru impact imediat.
+        - Investigații: Bar Chart pentru evoluția multianuală.
+        - Indisponibilizare: Doughnut Chart pentru tipologia bunurilor.
+        - Cooperare: Listă interactivă a partenerilor externi.
+        - Perspective: Grid de obiective cu efect de hover.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used (except small utility icons). NO Mermaid JS used. -->
+
+    <div class="flex flex-col lg:flex-row min-h-screen">
+        
+        <!-- Navigație Sidebar -->
+        <aside class="w-full lg:w-80 bg-white border-r border-slate-200 p-6 flex flex-col z-30 sticky top-0 h-auto lg:h-screen">
+            <div class="mb-10 flex items-center gap-3">
+                <div class="w-12 h-12 bg-blue-700 rounded-2xl flex items-center justify-center text-white shadow-xl shadow-blue-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="font-extrabold text-lg leading-none tracking-tight">ARBI 2025</h1>
+                    <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">Republica Moldova</p>
+                </div>
+            </div>
+
+            <nav class="space-y-1 flex-1">
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-4 mb-2">Meniu Principal</p>
+                <button onclick="switchModule('home')" id="btn-home" class="sidebar-item active w-full flex items-center gap-3 px-4 py-3.5 text-sm font-semibold transition-all">
+                    <span>🏠</span> Pagina de Start
+                </button>
+                <button onclick="switchModule('investigations')" id="btn-investigations" class="sidebar-item w-full flex items-center gap-3 px-4 py-3.5 text-sm font-semibold transition-all text-slate-500 hover:bg-slate-50">
+                    <span>🔍</span> 1. Investigații Financiare
+                </button>
+                <button onclick="switchModule('seizure')" id="btn-seizure" class="sidebar-item w-full flex items-center gap-3 px-4 py-3.5 text-sm font-semibold transition-all text-slate-500 hover:bg-slate-50">
+                    <span>🔒</span> 2. Indisponibilizare Bunuri
+                </button>
+                <button onclick="switchModule('admin')" id="btn-admin" class="sidebar-item w-full flex items-center gap-3 px-4 py-3.5 text-sm font-semibold transition-all text-slate-500 hover:bg-slate-50">
+                    <span>💼</span> 3. Administrare Active
+                </button>
+                <button onclick="switchModule('international')" id="btn-international" class="sidebar-item w-full flex items-center gap-3 px-4 py-3.5 text-sm font-semibold transition-all text-slate-500 hover:bg-slate-50">
+                    <span>🌍</span> 4. Cooperare Externă
+                </button>
+                <button onclick="switchModule('future')" id="btn-future" class="sidebar-item w-full flex items-center gap-3 px-4 py-3.5 text-sm font-semibold transition-all text-slate-500 hover:bg-slate-50">
+                    <span>🎯</span> 5. Perspective 2026
+                </button>
+            </nav>
+
+            <div class="mt-auto p-4 bg-slate-50 border border-slate-100 rounded-2xl">
+                <div class="flex items-center gap-2 mb-2">
+                    <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+                    <span class="text-[10px] font-bold text-slate-600 uppercase">SIA RBII Online</span>
+                </div>
+                <p class="text-[10px] text-slate-400 leading-tight italic">Registrul Național al bunurilor sechestrate este actualizat zilnic.</p>
+            </div>
+        </aside>
+
+        <!-- Conținut Principal -->
+        <main class="flex-1 p-6 lg:p-12">
+            
+            <!-- MODULE: HOME / DASHBOARD -->
+            <section id="mod-home" class="tab-content active">
+                <header class="mb-10">
+                    <h2 class="text-4xl font-black text-slate-900 tracking-tight">Raport de activitate ARBI 2025</h2>
+                    <p class="text-slate-500 text-lg mt-2">Sinteza anuală a eforturilor instituționale în recuperarea activelor infracționale.</p>
+                </header>
+
+                <div class="relative w-full h-72 rounded-[2.5rem] overflow-hidden mb-12 shadow-2xl bg-slate-900 group">
+                    <img 
+                        src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=1200" 
+                        alt="Documente oficiale" 
+                        class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                    >
+                    <div class="img-fallback absolute inset-0 hidden">
+                        [ Imagine: Centrul Național Anticorupție ]
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent flex flex-col justify-end p-10">
+                        <div class="max-w-2xl text-white">
+                            <span class="bg-blue-600 px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-lg">Document Strategic</span>
+                            <h3 class="text-3xl font-bold mt-4">Eficiență prin profesionalism</h3>
+                            <p class="text-slate-300 mt-2 text-sm leading-relaxed">În 2025, ARBI a reușit să proceseze un volum record de date operative, integrând noile competențe legislative oferite de Legea 35/2025.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all">
+                        <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-6 text-xl">📊</div>
+                        <h3 class="text-xl font-bold mb-3">424 Delegații</h3>
+                        <p class="text-sm text-slate-500 leading-relaxed">Executate pe parcursul anului 2025, vizând identificarea activelor ilicite.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all">
+                        <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center mb-6 text-xl">👥</div>
+                        <h3 class="text-xl font-bold mb-3">674 Subiecți</h3>
+                        <p class="text-sm text-slate-500 leading-relaxed">Analizați în cadrul investigațiilor financiare paralele complexe.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all">
+                        <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center mb-6 text-xl">📂</div>
+                        <h3 class="text-xl font-bold mb-3">307 Cauze</h3>
+                        <p class="text-sm text-slate-500 leading-relaxed">Dosare penale unice în care ARBI a oferit suport operativ crucial.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MODULE 1: INVESTIGATIONS -->
+            <section id="mod-investigations" class="tab-content">
+                <header class="mb-10">
+                    <span class="text-xs font-bold text-blue-600 uppercase tracking-widest">Modulul 1</span>
+                    <h2 class="text-3xl font-black text-slate-900 mt-1">Investigații Financiare Paralele</h2>
+                    <p class="text-slate-500 mt-2">Punctul central al activității operative ARBI: identificarea beneficiarilor reali.</p>
+                </header>
+                
+                <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm mb-10">
+                    <h4 class="font-bold text-slate-700 mb-6 flex items-center gap-2">
+                        <span class="w-2 h-2 bg-blue-600 rounded-full"></span> Evoluția activității (2023 - 2025)
+                    </h4>
+                    <div class="chart-container">
+                        <canvas id="investigationsChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="p-8 bg-slate-900 text-white rounded-[2rem]">
+                        <h4 class="font-bold text-xl mb-4">Focus Operativ 2025</h4>
+                        <p class="text-sm text-slate-400 leading-relaxed mb-6">Investigațiile s-au concentrat pe maparea legăturilor dintre subiecți și bunurile ascunse prin interpuși sau structuri corporative complexe.</p>
+                        <div class="space-y-3">
+                            <div class="flex justify-between text-xs font-bold border-b border-slate-800 pb-2">
+                                <span>Media delegațiilor per ofițer</span>
+                                <span class="text-blue-400">~13.7</span>
+                            </div>
+                            <div class="flex justify-between text-xs font-bold border-b border-slate-800 pb-2">
+                                <span>Complexitate medie (subiecți/cauză)</span>
+                                <span class="text-blue-400">2.2</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-8 bg-white border border-slate-200 rounded-[2rem]">
+                        <h4 class="font-bold text-slate-800 mb-4">Misiunea Direcției DIS & DIF</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed italic">"Identificarea și localizarea bunurilor provenite din infracțiuni prin analiza fluxurilor financiare, utilizând măsuri speciale de investigație și cooperare directă cu instituțiile bancare."</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MODULE 2: SEIZURE -->
+            <section id="mod-seizure" class="tab-content">
+                <header class="mb-10">
+                    <span class="text-xs font-bold text-emerald-600 uppercase tracking-widest">Modulul 2</span>
+                    <h2 class="text-3xl font-black text-slate-900 mt-1">Indisponibilizarea bunurilor infracționale</h2>
+                    <p class="text-slate-500 mt-2">Procedurile de sechestru și aplicarea înghețării activelor pentru asigurarea recuperării.</p>
+                </header>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
+                    <div class="lg:col-span-2 bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
+                        <h4 class="font-bold text-slate-700 mb-6">Distribuția Bunurilor Sechestrate</h4>
+                        <div class="chart-container">
+                            <canvas id="seizureChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="p-8 bg-white border border-slate-200 rounded-[2rem]">
+                            <h4 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Atribuție Nouă 2025</h4>
+                            <p class="text-sm font-bold leading-tight">Punerea în executare a sechestrului direct la faza de judecată.</p>
+                            <p class="text-xs text-slate-500 mt-3 leading-relaxed">Elimină latența dintre decizia instanței și indisponibilizarea fizică a bunului.</p>
+                        </div>
+                        <div class="p-8 bg-emerald-600 text-white rounded-[2rem]">
+                            <h4 class="text-xs font-black opacity-60 uppercase tracking-widest mb-4">Total Sechestrat</h4>
+                            <p class="text-4xl font-black">1.2 Mld</p>
+                            <p class="text-xs mt-1 font-bold">MDL (Valoare estimativă)</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MODULE 3: ADMINISTRATION -->
+            <section id="mod-admin" class="tab-content">
+                <header class="mb-10">
+                    <span class="text-xs font-bold text-indigo-600 uppercase tracking-widest">Modulul 3</span>
+                    <h2 class="text-3xl font-black text-slate-900 mt-1">Administrarea bunurilor infracționale</h2>
+                    <p class="text-slate-500 mt-2">Conservarea valorii economice prin management activ și digitalizare (SIA RBII).</p>
+                </header>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+                    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+                        <h3 class="text-xl font-bold mb-4">Pilonul Digital: SIA RBII</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-6">Sistemul Informațional Automatizat „Registrul Bunurilor Infracționale Sechestrate” asigură trasabilitatea fiecărui activ de la sechestru la confiscare.</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-center gap-3 text-sm font-medium">
+                                <span class="w-2 h-2 bg-indigo-500 rounded-full"></span> Ținerea evidenței la nivel național.
+                            </li>
+                            <li class="flex items-center gap-3 text-sm font-medium">
+                                <span class="w-2 h-2 bg-indigo-500 rounded-full"></span> Monitorizarea conturilor de depozit.
+                            </li>
+                            <li class="flex items-center gap-3 text-sm font-medium">
+                                <span class="w-2 h-2 bg-indigo-500 rounded-full"></span> Interoperabilitate cu bazele de date ASP.
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-indigo-900 text-white p-8 rounded-[2rem] flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Managementul Corpurilor Delicte</h3>
+                            <p class="text-sm opacity-70 leading-relaxed">Administrarea mijloacelor bănești aflate pe conturile trezoreriale ale Agenției.</p>
+                        </div>
+                        <div class="mt-8 p-4 border border-indigo-700 rounded-xl">
+                            <p class="text-[10px] font-bold uppercase opacity-50 mb-1">Obiectiv Strategic</p>
+                            <p class="text-sm font-bold italic">Valorificarea anticipată a bunurilor perisabile sau a celor a căror întreținere este prea costisitoare.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MODULE 4: INTERNATIONAL -->
+            <section id="mod-international" class="tab-content">
+                <header class="mb-10">
+                    <span class="text-xs font-bold text-purple-600 uppercase tracking-widest">Modulul 4</span>
+                    <h2 class="text-3xl font-black text-slate-900 mt-1">Cooperarea Internațională</h2>
+                    <p class="text-slate-500 mt-2">Extinderea ariei de recuperare prin rețelele globale de tip "Asset Recovery".</p>
+                </header>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-2 bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm">
+                        <div class="flex flex-col md:flex-row gap-10 items-center">
+                            <div class="md:w-1/2">
+                                <h3 class="text-6xl font-black text-slate-200 mb-2">38</h3>
+                                <p class="text-lg font-bold text-slate-800 leading-tight">Țări cu care am colaborat în 2025</p>
+                                <p class="text-sm text-slate-500 mt-4 leading-relaxed">Schimbul de informații se realizează prin canale securizate SIENA (Europol) și prin punctele de contact CARIN.</p>
+                            </div>
+                            <div class="md:w-1/2 space-y-4">
+                                <div class="p-5 bg-purple-50 rounded-2xl border border-purple-100">
+                                    <p class="text-2xl font-black text-purple-700">104</p>
+                                    <p class="text-xs font-bold text-purple-900 uppercase">Solicitări recepționate</p>
+                                </div>
+                                <div class="p-5 bg-slate-50 rounded-2xl border border-slate-100">
+                                    <p class="text-2xl font-black text-slate-700">65</p>
+                                    <p class="text-xs font-bold text-slate-900 uppercase">Solicitări expediate</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-slate-900 text-white p-8 rounded-[2rem]">
+                        <h4 class="font-bold mb-6 uppercase tracking-widest text-[10px] opacity-60">Rețele Cheie</h4>
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-4">
+                                <span class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center font-bold text-xs">C</span>
+                                <p class="text-xs font-bold">Camden Asset Recovery Inter-agency Network (CARIN)</p>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <span class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center font-bold text-xs">S</span>
+                                <p class="text-xs font-bold">Secure Information Exchange Network Application (SIENA)</p>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <span class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center font-bold text-xs">I</span>
+                                <p class="text-xs font-bold">INTERPOL Global Focal Point Network</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MODULE 5: FUTURE -->
+            <section id="mod-future" class="tab-content">
+                <header class="mb-10">
+                    <span class="text-xs font-bold text-orange-600 uppercase tracking-widest">Modulul 5</span>
+                    <h2 class="text-3xl font-black text-slate-900 mt-1">Perspective de dezvoltare 2026</h2>
+                    <p class="text-slate-500 mt-2">Viziunea strategică pentru modernizarea sistemului de recuperare.</p>
+                </header>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                    <div class="bg-white p-8 rounded-[2rem] border-t-4 border-blue-600 shadow-sm hover:-translate-y-2 transition-transform">
+                        <span class="text-3xl mb-4 block">🏘️</span>
+                        <h4 class="font-bold text-lg mb-2 leading-tight">Reutilizarea Socială</h4>
+                        <p class="text-xs text-slate-500 leading-relaxed">Finalizarea legii pentru returnarea bunurilor confiscate către cauze de interes public în cursul anului 2026.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-[2rem] border-t-4 border-emerald-600 shadow-sm hover:-translate-y-2 transition-transform">
+                        <span class="text-3xl mb-4 block">📈</span>
+                        <h4 class="font-bold text-lg mb-2 leading-tight">Magazin Online</h4>
+                        <p class="text-xs text-slate-500 leading-relaxed">Crearea unei platforme transparente pentru vânzarea bunurilor mobile sechestrate prin licitații deschise.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-[2rem] border-t-4 border-orange-600 shadow-sm hover:-translate-y-2 transition-transform">
+                        <span class="text-3xl mb-4 block">🔒</span>
+                        <h4 class="font-bold text-lg mb-2 leading-tight">Urmărire Crypto</h4>
+                        <p class="text-xs text-slate-500 leading-relaxed">Achiziția de software avansat pentru investigarea și sechestrarea activelor virtuale pe blockchain.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-[2rem] border-t-4 border-indigo-600 shadow-sm hover:-translate-y-2 transition-transform">
+                        <span class="text-3xl mb-4 block">⚙️</span>
+                        <h4 class="font-bold text-lg mb-2 leading-tight">Interoperabilitate</h4>
+                        <p class="text-xs text-slate-500 leading-relaxed">Conectarea SIA RBII cu Registrele de Stat ale Populației și Cadastrul în timp real.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-[2rem] border-t-4 border-rose-600 shadow-sm hover:-translate-y-2 transition-transform">
+                        <span class="text-3xl mb-4 block">🔍</span>
+                        <h4 class="font-bold text-lg mb-2 leading-tight">Big Data Analysis</h4>
+                        <p class="text-xs text-slate-500 leading-relaxed">Utilizarea algoritmilor de analiză masivă a datelor pentru detectarea legăturilor offshore ascunse.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-[2rem] border-t-4 border-slate-900 shadow-sm hover:-translate-y-2 transition-transform">
+                        <span class="text-3xl mb-4 block">👥</span>
+                        <h4 class="font-bold text-lg mb-2 leading-tight">Consolidare Resurse</h4>
+                        <p class="text-xs text-slate-500 leading-relaxed">Suplinirea efectivului de personal în raport cu volumul masiv de investigații generat de noile legi.</p>
+                    </div>
+                </div>
+
+                <div class="p-8 bg-blue-50 border border-blue-100 rounded-[2.5rem] flex flex-col md:flex-row items-center gap-8">
+                    <div class="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-black">!</div>
+                    <div>
+                        <h4 class="font-bold text-blue-900">Notă Strategică</h4>
+                        <p class="text-sm text-blue-700 leading-relaxed max-w-2xl">Succesul acestor obiective depinde de colaborarea strânsă cu Ministerul Justiției și de aprobarea modificărilor normative planificate pentru aprilie 2026.</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        // State Management
+        const state = {
+            activeModule: 'home',
+            charts: { investigations: null, seizure: null }
+        };
+
+        // Module Switcher
+        function switchModule(modId) {
+            // Update Tab Content
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.getElementById('mod-' + modId).classList.add('active');
+
+            // Update Sidebar UI
+            document.querySelectorAll('.sidebar-item').forEach(el => {
+                el.classList.remove('active');
+                el.classList.add('text-slate-500', 'hover:bg-slate-50');
+            });
+            const activeBtn = document.getElementById('btn-' + modId);
+            if(activeBtn) {
+                activeBtn.classList.add('active');
+                activeBtn.classList.remove('text-slate-500', 'hover:bg-slate-50');
+            }
+
+            // Init Charts if required
+            if (modId === 'investigations') renderInvestigationsChart();
+            if (modId === 'seizure') renderSeizureChart();
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Investigations Chart (Bar)
+        function renderInvestigationsChart() {
+            if(state.charts.investigations) return;
+            const ctx = document.getElementById('investigationsChart').getContext('2d');
+            state.charts.investigations = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['2023', '2024', '2025 (Estim.)'],
+                    datasets: [
+                        { label: 'Delegații', data: [215, 340, 424], backgroundColor: '#3b82f6', borderRadius: 8 },
+                        { label: 'Subiecți', data: [380, 520, 674], backgroundColor: '#1e293b', borderRadius: 8 }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'top', labels: { usePointStyle: true, padding: 15 } } },
+                    scales: {
+                        y: { beginAtZero: true, grid: { borderDash: [5, 5] } },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+        }
+
+        // Seizure Chart (Doughnut)
+        function renderSeizureChart() {
+            if(state.charts.seizure) return;
+            const ctx = document.getElementById('seizureChart').getContext('2d');
+            state.charts.seizure = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Imobile / Terenuri', 'Lichidități', 'Auto de lux', 'Cote-părți', 'Active Virtuale'],
+                    datasets: [{
+                        data: [45, 20, 15, 12, 8],
+                        backgroundColor: ['#2563eb', '#10b981', '#f59e0b', '#8b5cf6', '#ef4444'],
+                        borderWidth: 0,
+                        hoverOffset: 15
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '75%',
+                    plugins: {
+                        legend: { position: 'bottom', labels: { usePointStyle: true, padding: 25 } },
+                        tooltip: {
+                            callbacks: {
+                                label: (item) => ` ${item.label}: ${item.parsed}% din total`
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
