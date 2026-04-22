@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Graf Relații — ZAREȚCAIA LILIA</title>
+  <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f4f8;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: #1e3a5f;
+      color: #fff;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      flex-shrink: 0;
+    }
+
+    header img {
+      height: 36px;
+      filter: brightness(0) invert(1);
+    }
+
+    header h1 {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    header span {
+      font-size: 13px;
+      color: #a8c4e0;
+      margin-left: auto;
+    }
+
+    #legend {
+      background: #fff;
+      border-bottom: 1px solid #dde3ec;
+      padding: 8px 24px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      color: #444;
+    }
+
+    .legend-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid;
+    }
+
+    .legend-dot.persoana    { background: #d6eaf8; border-color: #2980b9; }
+    .legend-dot.companie    { background: #fdebd0; border-color: #e67e22; }
+    .legend-dot.intreprindere { background: #d5f5e3; border-color: #27ae60; }
+
+    .legend-line {
+      width: 28px;
+      height: 2px;
+      border-radius: 2px;
+    }
+
+    .legend-line.activ   { background: #2980b9; }
+    .legend-line.fost    { background: #aaa; border-top: 2px dashed #aaa; background: none; }
+
+    #controls {
+      background: #fff;
+      border-bottom: 1px solid #dde3ec;
+      padding: 8px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    #controls button {
+      padding: 6px 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background: #f8f9fa;
+      cursor: pointer;
+      font-size: 13px;
+      color: #333;
+      transition: background 0.15s;
+    }
+
+    #controls button:hover { background: #e2e8f0; }
+
+    #controls label {
+      font-size: 13px;
+      color: #555;
+      margin-left: auto;
+    }
+
+    #controls input[type=range] {
+      width: 120px;
+      accent-color: #1e3a5f;
+    }
+
+    #network {
+      flex: 1;
+      background: #f8fafc;
+    }
+
+    #tooltip {
+      position: fixed;
+      background: #1e3a5f;
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      pointer-events: none;
+      display: none;
+      max-width: 260px;
+      line-height: 1.6;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+      z-index: 1000;
+    }
+
+    #tooltip strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 4px;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      padding-bottom: 4px;
+    }
+
+    #tooltip .tag {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border-radius: 4px;
+      padding: 1px 7px;
+      margin: 2px 2px 0 0;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Graf de Relații Corporative — ZAREȚCAIA LILIA</h1>
+  <span>Exportat: 21.01.2026</span>
+</header>
+
+<div id="legend">
+  <div class="legend-item">
+    <div class="legend-dot persoana"></div> Persoană fizică
+  </div>
+  <div class="legend-item">
+    <div class="legend-dot companie"></div> SRL / Societate comercială
+  </div>
+  <div class="legend-item">
+    <div class="legend-dot intreprindere"></div> Întreprindere individuală
+  </div>
+  <div class="legend-item">
+    <div class="legend-line activ"></div> Relație activă
+  </div>
+  <div class="legend-item">
+    <div class="legend-line fost"></div> Relație fostă
+  </div>
+</div>
+
+<div id="controls">
+  <button onclick="network.fit()">⊞ Resetează vedere</button>
+  <button onclick="togglePhysics()">⚛ Fizică: <span id="physLabel">ON</span></button>
+  <label>Distanță noduri: <input type="range" min="100" max="600" value="280" oninput="setSpring(this.value)" /></label>
+</div>
+
+<div id="network"></div>
+<div id="tooltip"></div>
+
+<script>
+  const PERSOANE_COLOR  = { background: '#d6eaf8', border: '#2980b9', highlight: { background: '#aed6f1', border: '#1a6fa8' } };
+  const COMPANIE_COLOR  = { background: '#fdebd0', border: '#e67e22', highlight: { background: '#f9d19b', border: '#c0601a' } };
+  const II_COLOR        = { background: '#d5f5e3', border: '#27ae60', highlight: { background: '#a9dfbf', border: '#1e8449' } };
+  const CENTRAL_COLOR   = { background: '#2980b9', border: '#1a5276', highlight: { background: '#5dade2', border: '#1a5276' },
+                            font: { color: '#fff', bold: true } };
+
+  const nodesMeta = {
+    1:  { name: 'ZAREȚCAIA LILIA', type: 'Persoană fizică', roluri: ['Subiect central al rețelei'] },
+    2:  { name: 'SRL FEROGAMA', type: 'Societate cu Răspundere Limitată', roluri: ['Companie controlată 90%'] },
+    3:  { name: 'SRL DEMONT PLUS', type: 'Societate cu Răspundere Limitată', roluri: ['Companie asociată'] },
+    4:  { name: 'SC LIVIM-COM SRL', type: 'Societate Comercială', roluri: ['Companie controlată 100%'] },
+    5:  { name: 'Î.I. ZAREȚCHI', type: 'Întreprindere Individuală', roluri: ['Entitate individuală fondată'] },
+    6:  { name: 'BACIU VIORICA', type: 'Persoană fizică', roluri: ['Acționar minoritar FEROGAMA'] },
+    7:  { name: 'MALIHATCA SERGHEI', type: 'Persoană fizică', roluri: ['Fost beneficiar real DEMONT PLUS 100%'] },
+    8:  { name: 'CIUVALSCHII IURI', type: 'Persoană fizică', roluri: ['Director DEMONT PLUS'] },
+    9:  { name: 'ZARECINEV VLADIMIR', type: 'Persoană fizică', roluri: ['Director LIVIM-COM'] },
+    10: { name: 'ZARETCHI LILIA (1)', type: 'Persoană fizică', roluri: ['Director Î.I. ZAREȚCHI'] },
+    11: { name: 'ZARETCHI LILIA (2)', type: 'Persoană fizică', roluri: ['Fondator, Director (fostă relație)'] },
+  };
+
+  const nodes = new vis.DataSet([
+    { id: 1,  label: 'ZAREȚCAIA\nLILIA',        shape: 'circularImage', image: '', color: CENTRAL_COLOR,  size: 36, font: { color: '#fff', size: 13, bold: true }, borderWidth: 3 },
+    { id: 2,  label: 'SRL\nFEROGAMA',           shape: 'box', color: COMPANIE_COLOR,    font: { size: 12 }, size: 26 },
+    { id: 3,  label: 'SRL\nDEMONT PLUS',        shape: 'box', color: COMPANIE_COLOR,    font: { size: 12 }, size: 26 },
+    { id: 4,  label: 'SC LIVIM-COM\nSRL',        shape: 'box', color: COMPANIE_COLOR,    font: { size: 12 }, size: 26 },
+    { id: 5,  label: 'Î.I.\nZARETCHI',          shape: 'box', color: II_COLOR,          font: { size: 12 }, size: 26 },
+    { id: 6,  label: 'BACIU\nVIOARICA',         shape: 'ellipse', color: PERSOANE_COLOR, font: { size: 11 } },
+    { id: 7,  label: 'MALIHATCA\nSERGHEI',      shape: 'ellipse', color: PERSOANE_COLOR, font: { size: 11 } },
+    { id: 8,  label: 'CIUVALSCHII\nIURI',       shape: 'ellipse', color: PERSOANE_COLOR, font: { size: 11 } },
+    { id: 9,  label: 'ZARECINEV\nVLADIMIR',     shape: 'ellipse', color: PERSOANE_COLOR, font: { size: 11 } },
+    { id: 10, label: 'ZARETCHI\nLILIA (1)',      shape: 'ellipse', color: PERSOANE_COLOR, font: { size: 11 } },
+    { id: 11, label: 'ZARETCHI\nLILIA (2)',      shape: 'ellipse', color: PERSOANE_COLOR, font: { size: 11 } },
+  ]);
+
+  const edges = new vis.DataSet([
+    // ZAREȚCAIA → FEROGAMA
+    { from: 1, to: 2, label: 'Acționar 90%\nFondator · Director', arrows: 'to', color: { color: '#2980b9' }, font: { size: 11, align: 'middle' }, smooth: { type: 'curvedCW', roundness: 0.1 } },
+    // BACIU → FEROGAMA
+    { from: 6, to: 2, label: 'Acționar 1%\nFondator', arrows: 'to', color: { color: '#2980b9' }, font: { size: 11, align: 'middle' }, smooth: { type: 'curvedCW', roundness: 0.2 } },
+    // ZAREȚCAIA → DEMONT PLUS
+    { from: 1, to: 3, label: 'Director', arrows: 'to', color: { color: '#2980b9' }, font: { size: 11, align: 'middle' }, smooth: { type: 'curvedCW', roundness: 0.1 } },
+    // MALIHATCA → DEMONT PLUS (fostă)
+    { from: 7, to: 3, label: 'Benef. real 100%\nAcționar 100%\nFondator (fost)', arrows: 'to', dashes: true, color: { color: '#999' }, font: { size: 11, align: 'middle', color: '#888' }, smooth: { type: 'curvedCCW', roundness: 0.2 } },
+    // CIUVALSCHII → DEMONT PLUS
+    { from: 8, to: 3, label: 'Director', arrows: 'to', color: { color: '#2980b9' }, font: { size: 11, align: 'middle' }, smooth: { type: 'curvedCW', roundness: 0.2 } },
+    // ZAREȚCAIA → LIVIM-COM
+    { from: 1, to: 4, label: 'Acționar 100%\nFondator · Director', arrows: 'to', color: { color: '#2980b9' }, font: { size: 11, align: 'middle' }, smooth: { type: 'curvedCW', roundness: 0.1 } },
+    // ZARECINEV → LIVIM-COM
+    { from: 9, to: 4, label: 'Director', arrows: 'to', color: { color: '#2980b9' }, font: { size: 11, align: 'middle' }, smooth: { type: 'curvedCW', roundness: 0.2 } },
+    // ZAREȚCAIA → Î.I. ZAREȚCHI
+    { from: 1, to: 5, label: 'Fondator · Director', arrows: 'to', color: { color: '#27ae60' }, font: { size: 11, align: 'middle' }, smooth: { type: 'curvedCW', roundness: 0.1 } },
+    // ZARETCHI LILIA 1 → Î.I. ZAREȚCHI
+    { from: 10, to: 5, label: 'Director', arrows: 'to', color: { color: '#27ae60' }, font: { size: 11, align: 'middle' }, smooth: { type: 'curvedCW', roundness: 0.2 } },
+    // ZARETCHI LILIA 2 → Î.I. ZAREȚCHI (fostă)
+    { from: 11, to: 5, label: 'Fondator · Director\n(fostă relație)', arrows: 'to', dashes: true, color: { color: '#999' }, font: { size: 11, align: 'middle', color: '#888' }, smooth: { type: 'curvedCCW', roundness: 0.25 } },
+  ]);
+
+  const container = document.getElementById('network');
+  const options = {
+    nodes: {
+      borderWidth: 2,
+      shadow: { enabled: true, size: 6, x: 2, y: 2, color: 'rgba(0,0,0,0.12)' },
+    },
+    edges: {
+      width: 1.5,
+      font: { background: 'rgba(255,255,255,0.85)', strokeWidth: 0 },
+      smooth: { enabled: true },
+    },
+    physics: {
+      enabled: true,
+      solver: 'forceAtlas2Based',
+      forceAtlas2Based: {
+        gravitationalConstant: -80,
+        centralGravity: 0.01,
+        springLength: 280,
+        springConstant: 0.06,
+        damping: 0.4,
+      },
+      stabilization: { iterations: 200 },
+    },
+    interaction: {
+      hover: true,
+      tooltipDelay: 100,
+      navigationButtons: false,
+      zoomView: true,
+    },
+    layout: { improvedLayout: true },
+  };
+
+  const network = new vis.Network(container, { nodes, edges }, options);
+
+  // Tooltip on node hover
+  const tooltip = document.getElementById('tooltip');
+
+  network.on('hoverNode', params => {
+    const meta = nodesMeta[params.node];
+    if (!meta) return;
+    tooltip.innerHTML = `<strong>${meta.name}</strong><em style="font-size:11px;color:#a8c4e0">${meta.type}</em><br>${meta.roluri.map(r => `<span class="tag">${r}</span>`).join('')}`;
+    tooltip.style.display = 'block';
+  });
+
+  network.on('blurNode', () => { tooltip.style.display = 'none'; });
+
+  document.addEventListener('mousemove', e => {
+    tooltip.style.left = (e.clientX + 16) + 'px';
+    tooltip.style.top  = (e.clientY + 16) + 'px';
+  });
+
+  // Fix central node position after stabilization
+  network.on('stabilizationIterationsDone', () => {
+    network.setOptions({ physics: { enabled: false } });
+    document.getElementById('physLabel').textContent = 'OFF';
+  });
+
+  let physOn = false;
+  function togglePhysics() {
+    physOn = !physOn;
+    network.setOptions({ physics: { enabled: physOn } });
+    document.getElementById('physLabel').textContent = physOn ? 'ON' : 'OFF';
+  }
+
+  function setSpring(val) {
+    network.setOptions({
+      physics: {
+        enabled: true,
+        forceAtlas2Based: { springLength: parseInt(val) }
+      }
+    });
+    physOn = true;
+    document.getElementById('physLabel').textContent = 'ON';
+  }
+</script>
+</body>
+</html>
