@@ -193,8 +193,7 @@
   const PERSOANE_COLOR  = { background: '#d6eaf8', border: '#2980b9', highlight: { background: '#aed6f1', border: '#1a6fa8' } };
   const COMPANIE_COLOR  = { background: '#fdebd0', border: '#e67e22', highlight: { background: '#f9d19b', border: '#c0601a' } };
   const II_COLOR        = { background: '#d5f5e3', border: '#27ae60', highlight: { background: '#a9dfbf', border: '#1e8449' } };
-  const CENTRAL_COLOR   = { background: '#2980b9', border: '#1a5276', highlight: { background: '#5dade2', border: '#1a5276' },
-                            font: { color: '#fff', bold: true } };
+  const CENTRAL_COLOR   = { background: '#2980b9', border: '#1a5276', highlight: { background: '#5dade2', border: '#1a5276' } };
 
   const nodesMeta = {
     1:  { name: 'ZAREȚCAIA LILIA', type: 'Persoană fizică', roluri: ['Subiect central al rețelei'] },
@@ -211,7 +210,7 @@
   };
 
   const nodes = new vis.DataSet([
-    { id: 1,  label: 'ZAREȚCAIA\nLILIA',        shape: 'circularImage', image: '', color: CENTRAL_COLOR,  size: 36, font: { color: '#fff', size: 13, bold: true }, borderWidth: 3 },
+    { id: 1,  label: 'ZAREȚCAIA\nLILIA',        shape: 'circle', color: CENTRAL_COLOR, size: 36, font: { color: '#fff', size: 13, bold: true }, borderWidth: 3 },
     { id: 2,  label: 'SRL\nFEROGAMA',           shape: 'box', color: COMPANIE_COLOR,    font: { size: 12 }, size: 26 },
     { id: 3,  label: 'SRL\nDEMONT PLUS',        shape: 'box', color: COMPANIE_COLOR,    font: { size: 12 }, size: 26 },
     { id: 4,  label: 'SC LIVIM-COM\nSRL',        shape: 'box', color: COMPANIE_COLOR,    font: { size: 12 }, size: 26 },
