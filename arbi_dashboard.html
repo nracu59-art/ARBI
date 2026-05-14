@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html lang="ro">
+<html lang="ro" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ARBI — Dashboard Bunuri Sechestrate</title>
 <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
 <style>
-:root {
+/* ============================================================
+   CSS VARIABLES — DARK / LIGHT
+   ============================================================ */
+:root, [data-theme="dark"] {
   --bg: #0f1117;
   --bg2: #161b22;
   --bg3: #1c2130;
@@ -15,23 +19,38 @@
   --text: #e6edf3;
   --text2: #8b949e;
   --accent: #58a6ff;
+  --accent-hover: #79c0ff;
   --green: #3fb950;
   --red: #f85149;
   --orange: #d29922;
   --purple: #bc8cff;
   --teal: #39c5cf;
-  --yellow: #e3b341;
+  --chart-grid: rgba(48,54,61,0.8);
+  --chart-tick: #8b949e;
+  --chart-tooltip-bg: #1c2130;
+  --chart-legend: #8b949e;
+  --shadow: rgba(0,0,0,0.4);
+}
 
-  --sol-aplicare: #1e6da4;
-  --sol-autorizare: #1a7a4a;
-  --sol-confiscare: #8b1a1a;
-  --sol-inghetare: #1a5a8b;
-  --sol-mentinere: #5a5a1a;
-  --sol-preluare: #5a1a8b;
-  --sol-respingere: #8b3a1a;
-  --sol-ridicare: #1a6b5a;
-  --sol-scoatere: #6b3a1a;
-  --sol-valorificare: #1a8b6b;
+[data-theme="light"] {
+  --bg: #f6f8fa;
+  --bg2: #ffffff;
+  --bg3: #eaeef2;
+  --border: #d0d7de;
+  --text: #1f2328;
+  --text2: #636c76;
+  --accent: #0969da;
+  --accent-hover: #0550ae;
+  --green: #1a7f37;
+  --red: #cf222e;
+  --orange: #9a6700;
+  --purple: #6639ba;
+  --teal: #1192a8;
+  --chart-grid: rgba(208,215,222,0.8);
+  --chart-tick: #636c76;
+  --chart-tooltip-bg: #ffffff;
+  --chart-legend: #636c76;
+  --shadow: rgba(0,0,0,0.1);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -42,6 +61,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 14px;
   min-height: 100vh;
+  transition: background 0.2s, color 0.2s;
 }
 
 /* ---- UPLOAD SCREEN ---- */
@@ -52,22 +72,10 @@ body {
   justify-content: center;
   min-height: 100vh;
   padding: 2rem;
-  background: linear-gradient(135deg, #0f1117 0%, #1c2130 100%);
 }
 
-.upload-logo {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--accent);
-  margin-bottom: 0.5rem;
-  letter-spacing: 2px;
-}
-
-.upload-subtitle {
-  color: var(--text2);
-  margin-bottom: 3rem;
-  font-size: 1rem;
-}
+.upload-logo { font-size: 2.5rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; letter-spacing: 2px; }
+.upload-subtitle { color: var(--text2); margin-bottom: 3rem; font-size: 1rem; }
 
 .drop-zone {
   width: 480px;
@@ -80,324 +88,189 @@ body {
   transition: all 0.2s;
   background: var(--bg2);
 }
-
-.drop-zone:hover, .drop-zone.drag-over {
-  border-color: var(--accent);
-  background: rgba(88, 166, 255, 0.05);
-}
-
+.drop-zone:hover, .drop-zone.drag-over { border-color: var(--accent); background: rgba(88,166,255,0.05); }
 .drop-icon { font-size: 3rem; margin-bottom: 1rem; }
-
 .drop-text { color: var(--text2); margin-bottom: 1rem; }
-
 .drop-btn {
-  background: var(--accent);
-  color: #0f1117;
-  border: none;
-  border-radius: 6px;
-  padding: 0.6rem 1.5rem;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: opacity 0.2s;
+  background: var(--accent); color: var(--bg);
+  border: none; border-radius: 6px; padding: 0.6rem 1.5rem;
+  font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: opacity 0.2s;
 }
 .drop-btn:hover { opacity: 0.85; }
-
 #file-input { display: none; }
-
-.upload-progress {
-  margin-top: 1.5rem;
-  color: var(--text2);
-  font-size: 0.9rem;
-}
+.upload-progress { margin-top: 1.5rem; color: var(--text2); font-size: 0.9rem; }
 
 /* ---- APP LAYOUT ---- */
 #app { display: none; flex-direction: column; height: 100vh; }
 
 /* TOP BAR */
 .topbar {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 0.6rem 1.2rem;
-  background: var(--bg2);
-  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 0.8rem;
+  padding: 0.55rem 1.2rem;
+  background: var(--bg2); border-bottom: 1px solid var(--border);
   flex-shrink: 0;
 }
-
-.topbar-logo {
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: var(--accent);
-  letter-spacing: 1px;
-  white-space: nowrap;
-}
-
-.topbar-file {
-  color: var(--text2);
-  font-size: 0.82rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
+.topbar-logo { font-weight: 700; font-size: 1.1rem; color: var(--accent); letter-spacing: 1px; white-space: nowrap; }
+.topbar-file { color: var(--text2); font-size: 0.8rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .topbar-spacer { flex: 1; }
-
-.btn-reload {
-  background: transparent;
-  border: 1px solid var(--border);
-  border-radius: 5px;
-  color: var(--text2);
-  padding: 0.3rem 0.8rem;
-  cursor: pointer;
-  font-size: 0.82rem;
-  transition: all 0.15s;
+.btn-topbar {
+  background: transparent; border: 1px solid var(--border); border-radius: 5px;
+  color: var(--text2); padding: 0.28rem 0.7rem; cursor: pointer; font-size: 0.82rem;
+  transition: all 0.15s; white-space: nowrap;
 }
-.btn-reload:hover { border-color: var(--accent); color: var(--accent); }
+.btn-topbar:hover { border-color: var(--accent); color: var(--accent); }
+#theme-btn { font-size: 1rem; padding: 0.25rem 0.6rem; }
 
 /* NAV TABS */
 .navtabs {
-  display: flex;
-  background: var(--bg2);
-  border-bottom: 1px solid var(--border);
-  padding: 0 1.2rem;
-  flex-shrink: 0;
+  display: flex; background: var(--bg2); border-bottom: 1px solid var(--border);
+  padding: 0 1.2rem; flex-shrink: 0; overflow-x: auto;
 }
-
 .navtab {
-  padding: 0.6rem 1.2rem;
-  cursor: pointer;
-  color: var(--text2);
-  border-bottom: 2px solid transparent;
-  font-size: 0.88rem;
-  white-space: nowrap;
-  transition: all 0.15s;
+  padding: 0.55rem 1.1rem; cursor: pointer; color: var(--text2);
+  border-bottom: 2px solid transparent; font-size: 0.87rem; white-space: nowrap; transition: all 0.15s;
 }
 .navtab:hover { color: var(--text); }
 .navtab.active { color: var(--accent); border-bottom-color: var(--accent); }
 
-/* MAIN BODY = SIDEBAR + CONTENT */
-.main-body {
-  display: flex;
-  flex: 1;
-  overflow: hidden;
-}
+/* MAIN BODY */
+.main-body { display: flex; flex: 1; overflow: hidden; }
 
-/* SIDEBAR FILTERS */
+/* SIDEBAR */
 .sidebar {
-  width: 260px;
-  min-width: 260px;
-  background: var(--bg2);
-  border-right: 1px solid var(--border);
-  overflow-y: auto;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
+  width: 255px; min-width: 255px; background: var(--bg2);
+  border-right: 1px solid var(--border); overflow-y: auto;
+  padding: 0.8rem; display: flex; flex-direction: column; gap: 0.65rem;
 }
-
-.sidebar-title {
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--text2);
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  margin-bottom: 0.2rem;
-}
-
-.filter-group { display: flex; flex-direction: column; gap: 0.4rem; }
-
-.filter-label {
-  font-size: 0.78rem;
-  color: var(--text2);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
+.sidebar-title { font-size: 0.75rem; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: 0.8px; }
+.filter-label { font-size: 0.72rem; color: var(--text2); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+.filter-group { display: flex; flex-direction: column; gap: 0.3rem; }
 
 .filter-input {
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: 5px;
-  color: var(--text);
-  padding: 0.35rem 0.6rem;
-  font-size: 0.82rem;
-  width: 100%;
+  background: var(--bg3); border: 1px solid var(--border); border-radius: 5px;
+  color: var(--text); padding: 0.3rem 0.55rem; font-size: 0.82rem; width: 100%;
   transition: border-color 0.15s;
 }
 .filter-input:focus { outline: none; border-color: var(--accent); }
 
-.checkbox-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  max-height: 200px;
-  overflow-y: auto;
+/* PERIOD QUICK-SELECT */
+.period-btns { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.btn-period {
+  flex: 1; min-width: 80px; background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 4px; color: var(--text2); padding: 0.25rem 0.4rem;
+  font-size: 0.72rem; cursor: pointer; text-align: center; transition: all 0.15s;
+}
+.btn-period:hover, .btn-period.active { border-color: var(--accent); color: var(--accent); background: rgba(88,166,255,0.08); }
+
+/* MULTI-DROPDOWN */
+.multi-drop { position: relative; }
+.multi-drop-btn {
+  width: 100%; background: var(--bg3); border: 1px solid var(--border); border-radius: 5px;
+  color: var(--text); padding: 0.3rem 0.55rem; font-size: 0.82rem; text-align: left;
+  cursor: pointer; transition: border-color 0.15s; display: flex; justify-content: space-between; align-items: center;
+}
+.multi-drop-btn:hover, .multi-drop.open .multi-drop-btn { border-color: var(--accent); }
+.multi-drop-btn .mdb-arrow { font-size: 0.65rem; color: var(--text2); transition: transform 0.15s; }
+.multi-drop.open .mdb-arrow { transform: rotate(180deg); }
+.multi-drop-badge {
+  display: inline-block; background: var(--accent); color: var(--bg);
+  border-radius: 10px; font-size: 0.65rem; font-weight: 700; padding: 0 0.4rem; margin-left: 0.3rem;
 }
 
-.checkbox-item {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.82rem;
-  cursor: pointer;
-  padding: 0.15rem 0;
-  border-radius: 3px;
+.multi-drop-panel {
+  display: none; position: absolute; left: 0; right: 0; top: calc(100% + 3px);
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 6px;
+  z-index: 100; box-shadow: 0 6px 20px var(--shadow);
+  flex-direction: column; max-height: 280px;
 }
-.checkbox-item input { cursor: pointer; accent-color: var(--accent); }
+.multi-drop.open .multi-drop-panel { display: flex; }
 
-.sol-badge {
-  display: inline-block;
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  flex-shrink: 0;
+.multi-drop-search {
+  margin: 0.4rem; padding: 0.3rem 0.5rem; background: var(--bg3);
+  border: 1px solid var(--border); border-radius: 4px; color: var(--text);
+  font-size: 0.8rem; flex-shrink: 0;
 }
+.multi-drop-search:focus { outline: none; border-color: var(--accent); }
 
-.filter-counter {
-  font-size: 0.78rem;
-  color: var(--accent);
-  font-weight: 600;
-  padding: 0.3rem 0;
-  border-top: 1px solid var(--border);
+.multi-drop-list { overflow-y: auto; flex: 1; padding: 0 0.3rem 0.3rem; }
+.mdi-item {
+  display: flex; align-items: center; gap: 0.35rem; padding: 0.22rem 0.3rem;
+  border-radius: 3px; cursor: pointer; font-size: 0.81rem;
 }
+.mdi-item:hover { background: var(--bg3); }
+.mdi-item input { cursor: pointer; accent-color: var(--accent); }
+.sol-badge { display: inline-block; width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 
+.multi-drop-footer {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0.3rem 0.55rem; border-top: 1px solid var(--border);
+  font-size: 0.75rem; color: var(--text2); flex-shrink: 0;
+}
+.mdf-clear { background: none; border: none; color: var(--red); cursor: pointer; font-size: 0.75rem; padding: 0; }
+.mdf-clear:hover { text-decoration: underline; }
+
+/* FILTER COUNTER + RESET */
+.filter-counter { font-size: 0.75rem; color: var(--accent); font-weight: 700; padding: 0.25rem 0; border-top: 1px solid var(--border); }
 .btn-reset {
-  background: transparent;
-  border: 1px solid var(--border);
-  border-radius: 5px;
-  color: var(--text2);
-  padding: 0.4rem;
-  cursor: pointer;
-  font-size: 0.82rem;
-  width: 100%;
-  transition: all 0.15s;
+  background: transparent; border: 1px solid var(--border); border-radius: 5px;
+  color: var(--text2); padding: 0.35rem; cursor: pointer; font-size: 0.8rem; width: 100%; transition: all 0.15s;
 }
 .btn-reset:hover { border-color: var(--red); color: var(--red); }
 
-/* CONTENT AREA */
-.content {
-  flex: 1;
-  overflow-y: auto;
-  padding: 1.2rem;
-}
-
-/* TAB PANELS */
+/* CONTENT */
+.content { flex: 1; overflow-y: auto; padding: 1rem; }
 .tab-panel { display: none; }
 .tab-panel.active { display: block; }
 
+/* CHART MODE TOOLBAR */
+.chart-toolbar {
+  display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.8rem; flex-wrap: wrap;
+}
+.chart-toolbar-label { font-size: 0.75rem; color: var(--text2); font-weight: 700; text-transform: uppercase; }
+.btn-group { display: flex; border: 1px solid var(--border); border-radius: 5px; overflow: hidden; }
+.btn-group-btn {
+  background: transparent; border: none; color: var(--text2);
+  padding: 0.28rem 0.75rem; font-size: 0.8rem; cursor: pointer; transition: all 0.15s;
+}
+.btn-group-btn:hover { background: var(--bg3); color: var(--text); }
+.btn-group-btn.active { background: var(--accent); color: var(--bg); font-weight: 600; }
+.btn-group-btn + .btn-group-btn { border-left: 1px solid var(--border); }
+
 /* KPI CARDS */
-.kpi-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 0.8rem;
-  margin-bottom: 1.2rem;
-}
-
-.kpi-card {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 1rem;
-}
-
-.kpi-label {
-  font-size: 0.75rem;
-  color: var(--text2);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 0.4rem;
-}
-
-.kpi-value {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--text);
-  line-height: 1.1;
-}
-
-.kpi-sub {
-  font-size: 0.72rem;
-  color: var(--text2);
-  margin-top: 0.2rem;
-}
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 0.75rem; margin-bottom: 1rem; }
+.kpi-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 0.9rem; }
+.kpi-label { font-size: 0.72rem; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.35rem; }
+.kpi-value { font-size: 1.5rem; font-weight: 700; color: var(--text); line-height: 1.1; }
+.kpi-sub { font-size: 0.7rem; color: var(--text2); margin-top: 0.2rem; }
 
 /* CHARTS GRID */
-.charts-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  gap: 1rem;
-  margin-bottom: 1.2rem;
-}
-
-.chart-card {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 1rem;
-}
-
+.charts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(390px, 1fr)); gap: 0.9rem; margin-bottom: 1rem; }
+.chart-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 0.9rem; }
 .chart-title {
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--text2);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 0.8rem;
+  font-size: 0.78rem; font-weight: 700; color: var(--text2);
+  text-transform: uppercase; letter-spacing: 0.5px;
+  margin-bottom: 0.6rem; display: flex; justify-content: space-between; align-items: center;
 }
-
-.chart-wrap {
-  position: relative;
-  height: 240px;
-}
-
-.chart-wrap-tall {
-  position: relative;
-  height: 300px;
-}
+.chart-wrap { position: relative; height: 230px; }
+.chart-wrap-tall { position: relative; height: 290px; }
 
 /* TABLE */
 .table-toolbar {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  margin-bottom: 0.8rem;
-  flex-wrap: wrap;
+  display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.7rem; flex-wrap: wrap;
 }
-
 .table-search {
-  flex: 1;
-  min-width: 200px;
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 5px;
-  color: var(--text);
-  padding: 0.4rem 0.7rem;
-  font-size: 0.85rem;
+  flex: 1; min-width: 200px; background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 5px; color: var(--text); padding: 0.38rem 0.65rem; font-size: 0.84rem;
 }
 .table-search:focus { outline: none; border-color: var(--accent); }
-
 .page-size-select {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 5px;
-  color: var(--text);
-  padding: 0.35rem 0.5rem;
-  font-size: 0.82rem;
-  cursor: pointer;
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 5px;
+  color: var(--text); padding: 0.32rem 0.5rem; font-size: 0.8rem; cursor: pointer;
 }
-
-.export-btns { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-
+.export-btns { display: flex; gap: 0.4rem; flex-wrap: wrap; }
 .btn-export {
-  border: 1px solid var(--border);
-  border-radius: 5px;
-  padding: 0.35rem 0.7rem;
-  font-size: 0.78rem;
-  font-weight: 600;
-  cursor: pointer;
-  background: transparent;
-  transition: all 0.15s;
-  white-space: nowrap;
+  border: 1px solid var(--border); border-radius: 5px; padding: 0.32rem 0.65rem;
+  font-size: 0.76rem; font-weight: 700; cursor: pointer; background: transparent; transition: all 0.15s; white-space: nowrap;
 }
 .btn-csv { color: var(--green); border-color: var(--green); }
 .btn-csv:hover { background: rgba(63,185,80,0.1); }
@@ -406,92 +279,47 @@ body {
 .btn-json { color: var(--orange); border-color: var(--orange); }
 .btn-json:hover { background: rgba(210,153,34,0.1); }
 
-.table-wrap {
-  overflow-x: auto;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.8rem;
-}
-
+.table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 8px; }
+table { width: 100%; border-collapse: collapse; font-size: 0.79rem; }
 thead th {
-  background: var(--bg3);
-  padding: 0.55rem 0.7rem;
-  text-align: left;
-  color: var(--text2);
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
-  white-space: nowrap;
-  cursor: pointer;
-  user-select: none;
-  border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 0;
-  z-index: 1;
+  background: var(--bg3); padding: 0.5rem 0.65rem; text-align: left;
+  color: var(--text2); font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.4px; white-space: nowrap; cursor: pointer; user-select: none;
+  border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1;
 }
-
 thead th:hover { color: var(--accent); }
 thead th.sort-asc::after { content: ' ↑'; color: var(--accent); }
 thead th.sort-desc::after { content: ' ↓'; color: var(--accent); }
-
-tbody tr:hover { background: rgba(255,255,255,0.02); }
-
+tbody tr:hover { background: rgba(128,128,128,0.05); }
 tbody td {
-  padding: 0.45rem 0.7rem;
-  border-bottom: 1px solid rgba(48,54,61,0.5);
-  white-space: nowrap;
-  max-width: 220px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  vertical-align: middle;
+  padding: 0.4rem 0.65rem; border-bottom: 1px solid rgba(48,54,61,0.4);
+  white-space: nowrap; max-width: 210px; overflow: hidden; text-overflow: ellipsis; vertical-align: middle;
 }
+[data-theme="light"] tbody td { border-bottom-color: rgba(208,215,222,0.5); }
 
 .sol-chip {
-  display: inline-block;
-  padding: 0.15rem 0.5rem;
-  border-radius: 20px;
-  font-size: 0.7rem;
-  font-weight: 600;
-  white-space: nowrap;
+  display: inline-block; padding: 0.12rem 0.45rem; border-radius: 20px;
+  font-size: 0.68rem; font-weight: 700; white-space: nowrap;
 }
 
 .pagination {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 0.8rem;
-  justify-content: flex-end;
-  flex-wrap: wrap;
+  display: flex; align-items: center; gap: 0.4rem; margin-top: 0.7rem;
+  justify-content: flex-end; flex-wrap: wrap;
 }
-
-.page-info { color: var(--text2); font-size: 0.8rem; }
-
+.page-info { color: var(--text2); font-size: 0.78rem; }
 .btn-page {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  color: var(--text);
-  padding: 0.25rem 0.6rem;
-  cursor: pointer;
-  font-size: 0.8rem;
-  transition: all 0.15s;
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 4px;
+  color: var(--text); padding: 0.22rem 0.55rem; cursor: pointer; font-size: 0.78rem; transition: all 0.15s;
 }
 .btn-page:hover, .btn-page.active { border-color: var(--accent); color: var(--accent); }
-.btn-page:disabled { opacity: 0.4; cursor: default; }
+.btn-page:disabled { opacity: 0.35; cursor: default; }
 
 /* SCROLLBAR */
-::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #484f58; }
+::-webkit-scrollbar-thumb:hover { background: var(--text2); }
 
-/* RESPONSIVE */
 @media (max-width: 768px) {
   .sidebar { display: none; }
   .charts-grid { grid-template-columns: 1fr; }
@@ -504,7 +332,6 @@ tbody td {
 <div id="upload-screen">
   <div class="upload-logo">ARBI</div>
   <div class="upload-subtitle">Dashboard Bunuri Sechestrate / Confiscate</div>
-
   <div class="drop-zone" id="drop-zone">
     <div class="drop-icon">📂</div>
     <div class="drop-text">Trageți fișierul <strong>.xlsx</strong> aici sau</div>
@@ -520,7 +347,8 @@ tbody td {
     <span class="topbar-logo">ARBI</span>
     <span class="topbar-file" id="topbar-filename"></span>
     <span class="topbar-spacer"></span>
-    <button class="btn-reload" onclick="reloadFile()">↺ Alt fișier</button>
+    <button class="btn-topbar" id="theme-btn" onclick="toggleTheme()" title="Schimbă tema">🌙</button>
+    <button class="btn-topbar" onclick="reloadFile()">↺ Alt fișier</button>
   </div>
 
   <div class="navtabs">
@@ -539,16 +367,97 @@ tbody td {
     <div class="sidebar">
       <div class="sidebar-title">Filtre</div>
 
+      <!-- SOLUȚIA ADOPTATĂ -->
       <div class="filter-group">
         <div class="filter-label">Soluția adoptată</div>
-        <div class="checkbox-list" id="filter-solutii"></div>
+        <div class="multi-drop" id="drop-solutii">
+          <button class="multi-drop-btn" onclick="toggleDrop('drop-solutii')">
+            <span class="mdb-label">Toate</span><span class="mdb-arrow">▾</span>
+          </button>
+          <div class="multi-drop-panel">
+            <input type="text" class="multi-drop-search" placeholder="Caută soluție..." oninput="filterDropList('drop-solutii',this.value)">
+            <div class="multi-drop-list" id="list-solutii"></div>
+            <div class="multi-drop-footer">
+              <span class="mdf-count" id="cnt-solutii">0 selectate</span>
+              <button class="mdf-clear" onclick="clearDrop('drop-solutii')">Șterge tot</button>
+            </div>
+          </div>
+        </div>
       </div>
 
+      <!-- TIP BUN -->
       <div class="filter-group">
         <div class="filter-label">Tip bun</div>
-        <div class="checkbox-list" id="filter-tipbun"></div>
+        <div class="multi-drop" id="drop-tipbun">
+          <button class="multi-drop-btn" onclick="toggleDrop('drop-tipbun')">
+            <span class="mdb-label">Toate</span><span class="mdb-arrow">▾</span>
+          </button>
+          <div class="multi-drop-panel">
+            <input type="text" class="multi-drop-search" placeholder="Caută tip..." oninput="filterDropList('drop-tipbun',this.value)">
+            <div class="multi-drop-list" id="list-tipbun"></div>
+            <div class="multi-drop-footer">
+              <span class="mdf-count" id="cnt-tipbun">0 selectate</span>
+              <button class="mdf-clear" onclick="clearDrop('drop-tipbun')">Șterge tot</button>
+            </div>
+          </div>
+        </div>
       </div>
 
+      <!-- ORGAN EMITENT -->
+      <div class="filter-group">
+        <div class="filter-label">Organ emitent</div>
+        <div class="multi-drop" id="drop-organ">
+          <button class="multi-drop-btn" onclick="toggleDrop('drop-organ')">
+            <span class="mdb-label">Toate</span><span class="mdb-arrow">▾</span>
+          </button>
+          <div class="multi-drop-panel">
+            <input type="text" class="multi-drop-search" placeholder="Caută organ..." oninput="filterDropList('drop-organ',this.value)">
+            <div class="multi-drop-list" id="list-organ"></div>
+            <div class="multi-drop-footer">
+              <span class="mdf-count" id="cnt-organ">0 selectate</span>
+              <button class="mdf-clear" onclick="clearDrop('drop-organ')">Șterge tot</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MONEDĂ -->
+      <div class="filter-group">
+        <div class="filter-label">Monedă</div>
+        <div class="multi-drop" id="drop-moneda">
+          <button class="multi-drop-btn" onclick="toggleDrop('drop-moneda')">
+            <span class="mdb-label">Toate</span><span class="mdb-arrow">▾</span>
+          </button>
+          <div class="multi-drop-panel">
+            <input type="text" class="multi-drop-search" placeholder="Caută monedă..." oninput="filterDropList('drop-moneda',this.value)">
+            <div class="multi-drop-list" id="list-moneda"></div>
+            <div class="multi-drop-footer">
+              <span class="mdf-count" id="cnt-moneda">0 selectate</span>
+              <button class="mdf-clear" onclick="clearDrop('drop-moneda')">Șterge tot</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TIP POSESIE -->
+      <div class="filter-group">
+        <div class="filter-label">Tip posesie</div>
+        <div class="multi-drop" id="drop-posesie">
+          <button class="multi-drop-btn" onclick="toggleDrop('drop-posesie')">
+            <span class="mdb-label">Toate</span><span class="mdb-arrow">▾</span>
+          </button>
+          <div class="multi-drop-panel">
+            <input type="text" class="multi-drop-search" placeholder="Caută..." oninput="filterDropList('drop-posesie',this.value)">
+            <div class="multi-drop-list" id="list-posesie"></div>
+            <div class="multi-drop-footer">
+              <span class="mdf-count" id="cnt-posesie">0 selectate</span>
+              <button class="mdf-clear" onclick="clearDrop('drop-posesie')">Șterge tot</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CORP DELICT -->
       <div class="filter-group">
         <div class="filter-label">Corp delict</div>
         <select class="filter-input" id="filter-corp">
@@ -558,40 +467,46 @@ tbody td {
         </select>
       </div>
 
-      <div class="filter-group">
-        <div class="filter-label">Monedă</div>
-        <select class="filter-input" id="filter-moneda">
-          <option value="">Toate</option>
-        </select>
-      </div>
-
+      <!-- CAUZA PENALĂ -->
       <div class="filter-group">
         <div class="filter-label">Cauza penală</div>
         <input type="text" class="filter-input" id="filter-cauza" placeholder="ex: 2025670019">
       </div>
 
+      <!-- IDNP/IDNO -->
       <div class="filter-group">
         <div class="filter-label">IDNP/IDNO</div>
         <input type="text" class="filter-input" id="filter-idnp" placeholder="ex: 2011002001151">
       </div>
 
+      <!-- PROPRIETAR NUME/PRENUME -->
       <div class="filter-group">
-        <div class="filter-label">Organ emitent</div>
-        <input type="text" class="filter-input" id="filter-organ" placeholder="ex: PCCOCS">
+        <div class="filter-label">Proprietar Nume/Prenume</div>
+        <input type="text" class="filter-input" id="filter-nume" placeholder="ex: HARCEVNICOV">
       </div>
 
+      <!-- PERIOADĂ QUICK-SELECT -->
+      <div class="filter-group">
+        <div class="filter-label">Perioadă rapidă</div>
+        <div class="period-btns">
+          <button class="btn-period" onclick="setPeriod('month')">Luna curentă</button>
+          <button class="btn-period" onclick="setPeriod('year')">Anul curent</button>
+          <button class="btn-period" onclick="setPeriod('3m')">Ult. 3 luni</button>
+          <button class="btn-period active" onclick="setPeriod('all')">Tot</button>
+        </div>
+      </div>
+
+      <!-- DATA DE LA / PÂNĂ LA -->
       <div class="filter-group">
         <div class="filter-label">Data doc. de la</div>
         <input type="date" class="filter-input" id="filter-date-from">
       </div>
-
       <div class="filter-group">
         <div class="filter-label">Data doc. până la</div>
         <input type="date" class="filter-input" id="filter-date-to">
       </div>
 
       <div class="filter-counter" id="filter-counter">0 / 0 înregistrări</div>
-
       <button class="btn-reset" onclick="resetFilters()">✕ Resetează filtrele</button>
     </div>
 
@@ -601,6 +516,16 @@ tbody td {
       <!-- DASHBOARD TAB -->
       <div class="tab-panel active" id="tab-dashboard">
         <div class="kpi-grid" id="kpi-grid"></div>
+
+        <!-- CHART TOOLBAR -->
+        <div class="chart-toolbar">
+          <span class="chart-toolbar-label">Mod grafice:</span>
+          <div class="btn-group">
+            <button class="btn-group-btn active" id="mode-count" onclick="setChartMode('count')">Numeric</button>
+            <button class="btn-group-btn" id="mode-value" onclick="setChartMode('value')">Valoric (MDL)</button>
+          </div>
+        </div>
+
         <div class="charts-grid">
           <div class="chart-card">
             <div class="chart-title">Distribuție pe Tip Bun</div>
@@ -615,7 +540,13 @@ tbody td {
             <div class="chart-wrap-tall"><canvas id="chart-organe"></canvas></div>
           </div>
           <div class="chart-card">
-            <div class="chart-title">Evoluție Temporală (luna)</div>
+            <div class="chart-title">
+              <span>Evoluție Temporală</span>
+              <div class="btn-group">
+                <button class="btn-group-btn active" id="tgrp-month" onclick="setTimeGroup('month')" style="font-size:0.7rem;padding:0.15rem 0.5rem">Luni</button>
+                <button class="btn-group-btn" id="tgrp-year" onclick="setTimeGroup('year')" style="font-size:0.7rem;padding:0.15rem 0.5rem">Ani</button>
+              </div>
+            </div>
             <div class="chart-wrap"><canvas id="chart-timp"></canvas></div>
           </div>
           <div class="chart-card">
@@ -667,27 +598,26 @@ tbody td {
 
 <script>
 // ============================================================
+// REGISTER DATALABELS PLUGIN
+// ============================================================
+Chart.register(ChartDataLabels);
+
+// ============================================================
 // DATA STORE
 // ============================================================
-let ALL_DATA = [];         // unified array of all records
-let SHEET_DATA = {};       // per-sheet raw arrays
-let FILTERED_DATA = [];    // current filter result
+let ALL_DATA = [];
+let FILTERED_DATA = [];
 let currentFile = null;
 let charts = {};
+let chartMode = 'count';    // 'count' | 'value'
+let chartTimeGroup = 'month'; // 'month' | 'year'
 
-// TABLE STATE
-let tableState = {
-  sortCol: null,
-  sortDir: 'asc',
-  page: 1,
-  pageSize: 50,
-  search: ''
-};
-
-// CATEGORY PAGE STATES
+let tableState = { sortCol: null, sortDir: 'asc', page: 1, pageSize: 50, search: '' };
 let catStates = {};
 
-// SOLUTION COLORS
+// ============================================================
+// COLORS
+// ============================================================
 const SOL_COLORS = {
   'Aplicare sechestru': '#1e6da4',
   'Aplicare sechestru (etapa judecării)': '#2a85c4',
@@ -701,7 +631,6 @@ const SOL_COLORS = {
   'Scoatere sechestru': '#935116',
   'Valorificare': '#1a8b3a'
 };
-
 const TIP_BUN_COLORS = {
   'Mijloc de transport': '#58a6ff',
   'Bun imobil': '#3fb950',
@@ -712,28 +641,23 @@ const TIP_BUN_COLORS = {
   'Alte bunuri': '#8b949e',
   'Arma': '#ff7b72'
 };
-
 const CHART_COLORS = [
   '#58a6ff','#3fb950','#e3b341','#bc8cff','#39c5cf',
   '#f85149','#8b949e','#ff7b72','#ffa657','#79c0ff',
   '#56d364','#d2a8ff','#a5d6ff','#ffb800','#ff6e96'
 ];
 
-// ============================================================
-// SHEET DEFINITIONS (name → display label + tab id)
-// ============================================================
 const SHEET_DEFS = [
-  { name: 'Auto',       label: 'Auto',    tab: 'auto' },
-  { name: 'Imobile',    label: 'Imobile', tab: 'imobile' },
-  { name: 'Cash',       label: 'Cash',    tab: 'cash' },
-  { name: 'Cripto',     label: 'Cripto',  tab: 'cripto' },
-  { name: 'Conturi',    label: 'Conturi', tab: 'conturi' },
+  { name: 'Auto',       label: 'Auto',       tab: 'auto' },
+  { name: 'Imobile',    label: 'Imobile',    tab: 'imobile' },
+  { name: 'Cash',       label: 'Cash',       tab: 'cash' },
+  { name: 'Cripto',     label: 'Cripto',     tab: 'cripto' },
+  { name: 'Conturi',    label: 'Conturi',    tab: 'conturi' },
   { name: 'CPT Social', label: 'CPT Social', tab: 'altele' },
-  { name: 'Tehnica',    label: 'Tehnica', tab: 'altele' },
-  { name: 'Other',      label: 'Other',   tab: 'altele' }
+  { name: 'Tehnica',    label: 'Tehnica',    tab: 'altele' },
+  { name: 'Other',      label: 'Other',      tab: 'altele' }
 ];
 
-// Common columns to show in unified table
 const COMMON_COLS = [
   'Categorie','Tip document','Nr. doc','Data doc.','Organ emitent',
   'Solutia adoptata','Cauza penala','IDNP/IDNO','Nume/Denumire',
@@ -745,7 +669,27 @@ const COMMON_COLS = [
 ];
 
 // ============================================================
-// FILE UPLOAD / DRAG & DROP
+// THEME
+// ============================================================
+function initTheme() {
+  const saved = localStorage.getItem('arbi-theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
+  document.getElementById('theme-btn').textContent = saved === 'dark' ? '☀️' : '🌙';
+}
+
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('arbi-theme', next);
+  document.getElementById('theme-btn').textContent = next === 'dark' ? '☀️' : '🌙';
+  if (FILTERED_DATA.length) renderCharts(FILTERED_DATA);
+}
+
+initTheme();
+
+// ============================================================
+// UPLOAD
 // ============================================================
 const dropZone = document.getElementById('drop-zone');
 const fileInput = document.getElementById('file-input');
@@ -753,10 +697,8 @@ const fileInput = document.getElementById('file-input');
 dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
 dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
 dropZone.addEventListener('drop', e => {
-  e.preventDefault();
-  dropZone.classList.remove('drag-over');
-  const f = e.dataTransfer.files[0];
-  if (f) loadFile(f);
+  e.preventDefault(); dropZone.classList.remove('drag-over');
+  if (e.dataTransfer.files[0]) loadFile(e.dataTransfer.files[0]);
 });
 fileInput.addEventListener('change', e => { if (e.target.files[0]) loadFile(e.target.files[0]); });
 
@@ -769,10 +711,8 @@ function reloadFile() {
 function loadFile(file) {
   const prog = document.getElementById('upload-progress');
   prog.textContent = 'Se procesează fișierul...';
-  currentFile = file;
-
   const reader = new FileReader();
-  reader.onload = function(e) {
+  reader.onload = e => {
     try {
       const wb = XLSX.read(e.target.result, { type: 'array', cellDates: true });
       parseWorkbook(wb);
@@ -781,7 +721,7 @@ function loadFile(file) {
       document.getElementById('app').style.display = 'flex';
       prog.textContent = '';
     } catch(err) {
-      prog.textContent = 'Eroare la citirea fișierului: ' + err.message;
+      prog.textContent = 'Eroare: ' + err.message;
     }
   };
   reader.readAsArrayBuffer(file);
@@ -792,83 +732,139 @@ function loadFile(file) {
 // ============================================================
 function parseWorkbook(wb) {
   ALL_DATA = [];
-  SHEET_DATA = {};
-
   SHEET_DEFS.forEach(def => {
     const ws = wb.Sheets[def.name];
     if (!ws) return;
-
     const rows = XLSX.utils.sheet_to_json(ws, { header: 1, defval: null, raw: false });
-
-    // Find header row (row index 2, 0-based)
-    let headerRow = null;
-    let dataStartRow = 0;
+    let headerRow = null, dataStartRow = 0;
     for (let i = 0; i < Math.min(rows.length, 6); i++) {
       if (rows[i] && rows[i][0] === 'Tip document') {
-        headerRow = rows[i];
-        dataStartRow = i + 2; // skip blank row after headers
-        break;
+        headerRow = rows[i]; dataStartRow = i + 2; break;
       }
     }
     if (!headerRow) return;
-
-    const records = [];
     for (let i = dataStartRow; i < rows.length; i++) {
       const row = rows[i];
       if (!row || row.every(v => v === null || v === '')) continue;
       const rec = { Categorie: def.label };
-      headerRow.forEach((h, idx) => {
-        if (h) rec[h] = row[idx] !== undefined ? row[idx] : null;
-      });
-      records.push(rec);
+      headerRow.forEach((h, idx) => { if (h) rec[h] = row[idx] !== undefined ? row[idx] : null; });
+      ALL_DATA.push(rec);
     }
-
-    if (!SHEET_DATA[def.tab]) SHEET_DATA[def.tab] = [];
-    SHEET_DATA[def.tab].push(...records);
-    ALL_DATA.push(...records);
   });
-
-  initFilters();
+  initDropdowns();
   applyFilters();
+}
+
+// ============================================================
+// MULTI-DROPDOWN COMPONENT
+// ============================================================
+const DROP_DEFS = {
+  'drop-solutii': { listId: 'list-solutii', cntId: 'cnt-solutii', field: 'Solutia adoptata', cls: 'f-sol', colorMap: SOL_COLORS },
+  'drop-tipbun':  { listId: 'list-tipbun',  cntId: 'cnt-tipbun',  field: 'Tip bun',          cls: 'f-tip', colorMap: TIP_BUN_COLORS },
+  'drop-organ':   { listId: 'list-organ',   cntId: 'cnt-organ',   field: 'Organ emitent',    cls: 'f-org', colorMap: null },
+  'drop-moneda':  { listId: 'list-moneda',  cntId: 'cnt-moneda',  field: 'Moneda',            cls: 'f-mon', colorMap: null },
+  'drop-posesie': { listId: 'list-posesie', cntId: 'cnt-posesie', field: 'Tip posesie',       cls: 'f-pos', colorMap: null }
+};
+
+function initDropdowns() {
+  Object.entries(DROP_DEFS).forEach(([dropId, def]) => {
+    const values = [...new Set(ALL_DATA.map(r => r[def.field]).filter(v => v !== null && v !== undefined && String(v).trim() !== ''))].sort();
+    const list = document.getElementById(def.listId);
+    list.innerHTML = values.map(v => buildDropItem(v, def.cls, def.colorMap)).join('');
+    list.querySelectorAll('input').forEach(cb => cb.addEventListener('change', () => { updateDropBtn(dropId); applyFilters(); }));
+  });
+}
+
+function buildDropItem(v, cls, colorMap) {
+  const color = colorMap ? (colorMap[v] || '#777') : null;
+  const badge = color ? `<span class="sol-badge" style="background:${color}"></span>` : '';
+  return `<label class="mdi-item">
+    <input type="checkbox" class="${cls}" value="${escHtml(v)}">
+    ${badge}<span>${escHtml(v)}</span>
+  </label>`;
+}
+
+function toggleDrop(id) {
+  const el = document.getElementById(id);
+  const wasOpen = el.classList.contains('open');
+  document.querySelectorAll('.multi-drop.open').forEach(d => d.classList.remove('open'));
+  if (!wasOpen) el.classList.add('open');
+}
+
+function filterDropList(dropId, query) {
+  const def = DROP_DEFS[dropId];
+  if (!def) return;
+  const q = query.toLowerCase();
+  document.getElementById(def.listId).querySelectorAll('.mdi-item').forEach(item => {
+    item.style.display = item.querySelector('span:last-child').textContent.toLowerCase().includes(q) ? '' : 'none';
+  });
+}
+
+function clearDrop(dropId) {
+  const def = DROP_DEFS[dropId];
+  if (!def) return;
+  document.getElementById(def.listId).querySelectorAll('input').forEach(cb => cb.checked = false);
+  updateDropBtn(dropId);
+  applyFilters();
+}
+
+function updateDropBtn(dropId) {
+  const def = DROP_DEFS[dropId];
+  if (!def) return;
+  const checked = [...document.getElementById(def.listId).querySelectorAll('input:checked')];
+  const n = checked.length;
+  const btn = document.querySelector(`#${dropId} .multi-drop-btn .mdb-label`);
+  if (btn) btn.textContent = n === 0 ? 'Toate' : `${n} selectate`;
+  const cnt = document.getElementById(def.cntId);
+  if (cnt) cnt.textContent = `${n} selectate`;
+}
+
+function getDropValues(cls) {
+  return [...document.querySelectorAll(`.${cls}:checked`)].map(e => e.value);
+}
+
+// Close dropdowns on outside click
+document.addEventListener('click', e => {
+  if (!e.target.closest('.multi-drop')) {
+    document.querySelectorAll('.multi-drop.open').forEach(d => d.classList.remove('open'));
+  }
+});
+
+// ============================================================
+// PERIOD QUICK-SELECT
+// ============================================================
+function setPeriod(p) {
+  document.querySelectorAll('.btn-period').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  const now = new Date();
+  let from = '', to = '';
+  if (p === 'month') {
+    from = fmtDate(new Date(now.getFullYear(), now.getMonth(), 1));
+    to   = fmtDate(new Date(now.getFullYear(), now.getMonth() + 1, 0));
+  } else if (p === 'year') {
+    from = fmtDate(new Date(now.getFullYear(), 0, 1));
+    to   = fmtDate(new Date(now.getFullYear(), 11, 31));
+  } else if (p === '3m') {
+    from = fmtDate(new Date(now.getFullYear(), now.getMonth() - 2, 1));
+    to   = fmtDate(new Date(now.getFullYear(), now.getMonth() + 1, 0));
+  }
+  document.getElementById('filter-date-from').value = from;
+  document.getElementById('filter-date-to').value   = to;
+  applyFilters();
+}
+
+function fmtDate(d) {
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
 }
 
 // ============================================================
 // FILTERS
 // ============================================================
-function initFilters() {
-  // Solutii
-  const solutii = [...new Set(ALL_DATA.map(r => r['Solutia adoptata']).filter(Boolean))].sort();
-  const solutiiList = document.getElementById('filter-solutii');
-  solutiiList.innerHTML = solutii.map(s => `
-    <label class="checkbox-item">
-      <input type="checkbox" class="f-sol" value="${escHtml(s)}" onchange="applyFilters()">
-      <span class="sol-badge" style="background:${SOL_COLORS[s]||'#555'}"></span>
-      <span>${escHtml(s)}</span>
-    </label>`).join('');
-
-  // Tip bun
-  const tipuri = [...new Set(ALL_DATA.map(r => r['Tip bun']).filter(Boolean))].sort();
-  const tipList = document.getElementById('filter-tipbun');
-  tipList.innerHTML = tipuri.map(t => `
-    <label class="checkbox-item">
-      <input type="checkbox" class="f-tip" value="${escHtml(t)}" onchange="applyFilters()">
-      <span class="sol-badge" style="background:${TIP_BUN_COLORS[t]||'#555'}"></span>
-      <span>${escHtml(t)}</span>
-    </label>`).join('');
-
-  // Monedă
-  const monede = [...new Set(ALL_DATA.map(r => r['Moneda']).filter(Boolean))].sort();
-  const monSel = document.getElementById('filter-moneda');
-  monSel.innerHTML = '<option value="">Toate</option>' +
-    monede.map(m => `<option value="${escHtml(m)}">${escHtml(m)}</option>`).join('');
-
-  // Setup listeners
-  ['filter-corp','filter-moneda','filter-organ','filter-cauza','filter-idnp',
+function initFilterListeners() {
+  ['filter-corp','filter-cauza','filter-idnp','filter-nume',
    'filter-date-from','filter-date-to'].forEach(id => {
     document.getElementById(id).addEventListener('input', applyFilters);
   });
-
-  // Table search
   document.getElementById('table-search').addEventListener('input', e => {
     tableState.search = e.target.value.toLowerCase();
     tableState.page = 1;
@@ -877,43 +873,50 @@ function initFilters() {
 }
 
 function getActiveFilters() {
-  const solutii = [...document.querySelectorAll('.f-sol:checked')].map(e => e.value);
-  const tipuri = [...document.querySelectorAll('.f-tip:checked')].map(e => e.value);
-  const corp = document.getElementById('filter-corp').value;
-  const moneda = document.getElementById('filter-moneda').value;
-  const cauza = document.getElementById('filter-cauza').value.trim().toLowerCase();
-  const idnp = document.getElementById('filter-idnp').value.trim().toLowerCase();
-  const organ = document.getElementById('filter-organ').value.trim().toLowerCase();
-  const dateFrom = document.getElementById('filter-date-from').value;
-  const dateTo = document.getElementById('filter-date-to').value;
-  return { solutii, tipuri, corp, moneda, cauza, idnp, organ, dateFrom, dateTo };
+  return {
+    solutii:  getDropValues('f-sol'),
+    tipuri:   getDropValues('f-tip'),
+    organe:   getDropValues('f-org'),
+    monede:   getDropValues('f-mon'),
+    posesii:  getDropValues('f-pos'),
+    corp:     document.getElementById('filter-corp').value,
+    cauza:    document.getElementById('filter-cauza').value.trim().toLowerCase(),
+    idnp:     document.getElementById('filter-idnp').value.trim().toLowerCase(),
+    nume:     document.getElementById('filter-nume').value.trim().toLowerCase(),
+    dateFrom: document.getElementById('filter-date-from').value,
+    dateTo:   document.getElementById('filter-date-to').value
+  };
 }
 
 function applyFilters() {
   const f = getActiveFilters();
-
   FILTERED_DATA = ALL_DATA.filter(r => {
-    if (f.solutii.length && !f.solutii.includes(r['Solutia adoptata'])) return false;
-    if (f.tipuri.length && !f.tipuri.includes(r['Tip bun'])) return false;
-    if (f.corp === 'da' && !r['Corp delict']) return false;
-    if (f.corp === 'nu' && r['Corp delict']) return false;
-    if (f.moneda && r['Moneda'] !== f.moneda) return false;
+    if (f.solutii.length  && !f.solutii.includes(r['Solutia adoptata']))  return false;
+    if (f.tipuri.length   && !f.tipuri.includes(r['Tip bun']))             return false;
+    if (f.organe.length   && !f.organe.includes(r['Organ emitent']))       return false;
+    if (f.monede.length   && !f.monede.includes(r['Moneda']))              return false;
+    if (f.posesii.length  && !f.posesii.includes(r['Tip posesie']))        return false;
+    if (f.corp === 'da'   && !r['Corp delict'])  return false;
+    if (f.corp === 'nu'   &&  r['Corp delict'])  return false;
     if (f.cauza && !(r['Cauza penala']||'').toLowerCase().includes(f.cauza)) return false;
-    if (f.idnp && !(r['IDNP/IDNO']||'').toLowerCase().includes(f.idnp)) return false;
-    if (f.organ && !(r['Organ emitent']||'').toLowerCase().includes(f.organ)) return false;
+    if (f.idnp  && !(r['IDNP/IDNO']||'').toLowerCase().includes(f.idnp))    return false;
+    if (f.nume) {
+      const n = f.nume;
+      if (!((r['Nume proprietar']||'').toLowerCase().includes(n) ||
+            (r['Prenume proprietar']||'').toLowerCase().includes(n) ||
+            (r['Nume/Denumire']||'').toLowerCase().includes(n))) return false;
+    }
     if (f.dateFrom || f.dateTo) {
       const d = parseDate(r['Data doc.']);
       if (d) {
         if (f.dateFrom && d < new Date(f.dateFrom)) return false;
-        if (f.dateTo && d > new Date(f.dateTo + 'T23:59:59')) return false;
+        if (f.dateTo   && d > new Date(f.dateTo + 'T23:59:59')) return false;
       }
     }
     return true;
   });
-
   document.getElementById('filter-counter').textContent =
     `${FILTERED_DATA.length.toLocaleString('ro')} / ${ALL_DATA.length.toLocaleString('ro')} înregistrări`;
-
   tableState.page = 1;
   updateDashboard();
   renderTable();
@@ -921,14 +924,31 @@ function applyFilters() {
 }
 
 function resetFilters() {
-  document.querySelectorAll('.f-sol, .f-tip').forEach(cb => cb.checked = false);
-  ['filter-corp','filter-moneda','filter-cauza','filter-idnp',
-   'filter-organ','filter-date-from','filter-date-to'].forEach(id => {
-    document.getElementById(id).value = '';
-  });
+  Object.keys(DROP_DEFS).forEach(id => clearDrop(id));
+  ['filter-corp','filter-cauza','filter-idnp','filter-nume',
+   'filter-date-from','filter-date-to'].forEach(id => document.getElementById(id).value = '');
+  document.querySelectorAll('.btn-period').forEach(b => b.classList.remove('active'));
+  document.querySelector('.btn-period:last-child').classList.add('active');
   document.getElementById('table-search').value = '';
   tableState.search = '';
   applyFilters();
+}
+
+// ============================================================
+// CHART MODE + TIME GROUP
+// ============================================================
+function setChartMode(mode) {
+  chartMode = mode;
+  document.getElementById('mode-count').classList.toggle('active', mode === 'count');
+  document.getElementById('mode-value').classList.toggle('active', mode === 'value');
+  if (FILTERED_DATA.length) renderCharts(FILTERED_DATA);
+}
+
+function setTimeGroup(g) {
+  chartTimeGroup = g;
+  document.getElementById('tgrp-month').classList.toggle('active', g === 'month');
+  document.getElementById('tgrp-year').classList.toggle('active', g === 'year');
+  if (FILTERED_DATA.length) renderCharts(FILTERED_DATA);
 }
 
 // ============================================================
@@ -936,18 +956,14 @@ function resetFilters() {
 // ============================================================
 function updateDashboard() {
   const data = FILTERED_DATA;
-
-  // KPI
   const totalBunuri = data.length;
+
+  // FIX: sum directly from Suma sechestru column
   const sumaMDL = data.reduce((acc, r) => {
     const v = parseFloat(String(r['Suma sechestru']||'0').replace(',','.'));
-    const equiv = parseFloat(String(r['Echivalent in MDL']||'0').replace(',','.'));
-    const val = parseFloat(String(r['Valoarea bunului']||'0').replace(',','.'));
-    const mdl = r['Moneda'] === 'MDL' ? (isNaN(v) ? 0 : v) :
-                !isNaN(equiv) && equiv > 0 ? equiv :
-                !isNaN(v) && v > 0 ? v : 0;
-    return acc + (isNaN(mdl) ? 0 : mdl);
+    return acc + (isNaN(v) ? 0 : v);
   }, 0);
+
   const cauzeUnice = new Set(data.map(r => r['Cauza penala']).filter(Boolean)).size;
   const persoaneUnice = new Set(data.map(r => r['IDNP/IDNO']).filter(Boolean)).size;
 
@@ -957,9 +973,8 @@ function updateDashboard() {
       <div class="kpi-value">${totalBunuri.toLocaleString('ro')}</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-label">Suma Sechestru MDL</div>
+      <div class="kpi-label">Suma Sechestru (MDL)</div>
       <div class="kpi-value" style="font-size:1.2rem">${formatMDL(sumaMDL)}</div>
-      <div class="kpi-sub">echivalent MDL</div>
     </div>
     <div class="kpi-card">
       <div class="kpi-label">Cauze Penale Unice</div>
@@ -973,35 +988,92 @@ function updateDashboard() {
   renderCharts(data);
 }
 
+// ============================================================
+// CHARTS
+// ============================================================
+function getChartColors() {
+  const theme = document.documentElement.getAttribute('data-theme') || 'dark';
+  return {
+    tick:    theme === 'dark' ? '#8b949e' : '#636c76',
+    grid:    theme === 'dark' ? 'rgba(48,54,61,0.8)' : 'rgba(208,215,222,0.8)',
+    legend:  theme === 'dark' ? '#8b949e' : '#636c76',
+    tooltipBg: theme === 'dark' ? '#1c2130' : '#ffffff',
+    tooltipTitle: theme === 'dark' ? '#e6edf3' : '#1f2328',
+    tooltipBody: theme === 'dark' ? '#8b949e' : '#636c76',
+    tooltipBorder: theme === 'dark' ? '#30363d' : '#d0d7de',
+    datalabel: theme === 'dark' ? '#e6edf3' : '#1f2328'
+  };
+}
+
 function renderCharts(data) {
-  // 1. Tip Bun (Donut)
-  const tipBunCount = countBy(data, 'Tip bun');
+  const C = getChartColors();
+
+  // Helper: count or sum by field
+  function aggBy(arr, field, mode) {
+    const res = {};
+    arr.forEach(r => {
+      const k = r[field] || 'N/A';
+      if (mode === 'value') {
+        const v = parseFloat(String(r['Suma sechestru']||'0').replace(',','.'));
+        res[k] = (res[k]||0) + (isNaN(v) ? 0 : v);
+      } else {
+        res[k] = (res[k]||0) + 1;
+      }
+    });
+    return res;
+  }
+
+  const fmtLabel = v => chartMode === 'value' ? formatMDL(v) : v.toLocaleString('ro');
+
+  // ---- 1. Tip Bun (Donut) ----
+  const tipBunAgg = aggBy(data, 'Tip bun', chartMode);
   updateChart('chart-tipbun', 'doughnut', {
-    labels: Object.keys(tipBunCount),
+    labels: Object.keys(tipBunAgg),
     datasets: [{
-      data: Object.values(tipBunCount),
-      backgroundColor: Object.keys(tipBunCount).map(k => TIP_BUN_COLORS[k] || '#555'),
-      borderWidth: 1, borderColor: '#161b22'
+      data: Object.values(tipBunAgg),
+      backgroundColor: Object.keys(tipBunAgg).map(k => TIP_BUN_COLORS[k] || '#777'),
+      borderWidth: 1, borderColor: 'transparent'
     }]
   }, {
-    plugins: { legend: { position: 'right', labels: { color: '#e6edf3', boxWidth: 12, font: { size: 11 } } } }
+    plugins: {
+      legend: { position: 'right', labels: { color: C.legend, boxWidth: 11, font: { size: 10 } } },
+      datalabels: {
+        color: C.datalabel,
+        font: { size: 9, weight: 'bold' },
+        formatter: (v, ctx) => {
+          const total = ctx.dataset.data.reduce((a,b)=>a+b,0);
+          const pct = (v/total*100).toFixed(1);
+          return pct < 3 ? '' : `${pct}%`;
+        }
+      }
+    }
   });
 
-  // 2. Soluții adoptate (Bar)
-  const solCount = countBy(data, 'Solutia adoptata');
-  const solEntries = Object.entries(solCount).sort((a,b) => b[1]-a[1]);
+  // ---- 2. Soluții Adoptate (Bar H) ----
+  const solAgg = aggBy(data, 'Solutia adoptata', chartMode);
+  const solEntries = Object.entries(solAgg).sort((a,b) => b[1]-a[1]);
   updateChart('chart-solutii', 'bar', {
     labels: solEntries.map(([k]) => k.length > 28 ? k.substring(0,26)+'…' : k),
     datasets: [{
       data: solEntries.map(([,v]) => v),
-      backgroundColor: solEntries.map(([k]) => SOL_COLORS[k] || '#555'),
-      borderRadius: 4
+      backgroundColor: solEntries.map(([k]) => SOL_COLORS[k] || '#777'),
+      borderRadius: 3
     }]
-  }, { indexAxis: 'y', plugins: { legend: { display: false } } });
+  }, {
+    indexAxis: 'y',
+    plugins: {
+      legend: { display: false },
+      datalabels: {
+        anchor: 'end', align: 'end',
+        color: C.datalabel, font: { size: 9 },
+        formatter: v => fmtLabel(v)
+      }
+    }
+  }, C);
 
-  // 3. Top 15 Organe emitente (Bar H)
-  const organCount = countBy(data, 'Organ emitent');
-  const organTop = Object.entries(organCount).sort((a,b) => b[1]-a[1]).slice(0,15);
+  // ---- 3. Top 15 Organe Emitente (Bar H) ----
+  const organAgg = aggBy(data, 'Organ emitent', chartMode);
+  const organTop = Object.entries(organAgg).sort((a,b)=>b[1]-a[1]).slice(0,15);
   updateChart('chart-organe', 'bar', {
     labels: organTop.map(([k]) => k && k.length > 30 ? k.substring(0,28)+'…' : (k||'N/A')),
     datasets: [{
@@ -1009,28 +1081,61 @@ function renderCharts(data) {
       backgroundColor: CHART_COLORS.slice(0, organTop.length),
       borderRadius: 3
     }]
-  }, { indexAxis: 'y', plugins: { legend: { display: false } } });
+  }, {
+    indexAxis: 'y',
+    plugins: {
+      legend: { display: false },
+      datalabels: {
+        anchor: 'end', align: 'end',
+        color: C.datalabel, font: { size: 9 },
+        formatter: v => fmtLabel(v)
+      }
+    }
+  }, C);
 
-  // 4. Evoluție temporală (Line)
-  const byMonth = {};
+  // ---- 4. Evoluție Temporală (Line — dual axis: count + value) ----
+  const byPeriod = {}, byPeriodVal = {};
   data.forEach(r => {
     const d = parseDate(r['Data doc.']);
     if (!d) return;
-    const key = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
-    byMonth[key] = (byMonth[key]||0) + 1;
+    const key = chartTimeGroup === 'year'
+      ? `${d.getFullYear()}`
+      : `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
+    byPeriod[key]    = (byPeriod[key]||0) + 1;
+    const v = parseFloat(String(r['Suma sechestru']||'0').replace(',','.'));
+    byPeriodVal[key] = (byPeriodVal[key]||0) + (isNaN(v)?0:v);
   });
-  const months = Object.keys(byMonth).sort();
+  const periods = Object.keys(byPeriod).sort();
   updateChart('chart-timp', 'line', {
-    labels: months,
-    datasets: [{
-      data: months.map(m => byMonth[m]),
-      borderColor: '#58a6ff',
-      backgroundColor: 'rgba(88,166,255,0.1)',
-      fill: true, tension: 0.3, pointRadius: 3
-    }]
-  }, { plugins: { legend: { display: false } } });
+    labels: periods,
+    datasets: [
+      {
+        label: 'Nr. bunuri',
+        data: periods.map(p => byPeriod[p]),
+        borderColor: '#58a6ff', backgroundColor: 'rgba(88,166,255,0.1)',
+        fill: true, tension: 0.3, pointRadius: 3, yAxisID: 'y'
+      },
+      {
+        label: 'Suma sechestru MDL',
+        data: periods.map(p => byPeriodVal[p]),
+        borderColor: '#3fb950', backgroundColor: 'rgba(63,185,80,0.05)',
+        fill: false, tension: 0.3, pointRadius: 3, yAxisID: 'y2', borderDash: [4,3]
+      }
+    ]
+  }, {
+    plugins: {
+      legend: { display: true, labels: { color: C.legend, boxWidth: 11, font: { size: 10 } } },
+      datalabels: { display: false }
+    },
+    scales: {
+      y:  { position: 'left',  title: { display: true, text: 'Nr. bunuri', color: C.tick, font: { size: 9 } } },
+      y2: { position: 'right', title: { display: true, text: 'MDL', color: C.tick, font: { size: 9 } },
+            grid: { drawOnChartArea: false },
+            ticks: { callback: v => formatMDL(v) } }
+    }
+  }, C);
 
-  // 5. Suma sechestru MDL per tip bun (Bar)
+  // ---- 5. Suma Sechestru MDL pe Tip Bun (Bar — always value) ----
   const sumaPerTip = {};
   data.forEach(r => {
     const tip = r['Tip bun'] || 'N/A';
@@ -1042,160 +1147,148 @@ function renderCharts(data) {
     labels: sumaEntries.map(([k])=>k),
     datasets: [{
       data: sumaEntries.map(([,v])=>v),
-      backgroundColor: sumaEntries.map(([k]) => TIP_BUN_COLORS[k]||'#555'),
+      backgroundColor: sumaEntries.map(([k]) => TIP_BUN_COLORS[k]||'#777'),
       borderRadius: 4
     }]
   }, {
-    plugins: { legend: { display: false } },
+    plugins: {
+      legend: { display: false },
+      datalabels: {
+        anchor: 'end', align: 'top',
+        color: C.datalabel, font: { size: 9 },
+        formatter: v => formatMDL(v)
+      }
+    },
     scales: { y: { ticks: { callback: v => formatMDL(v) } } }
-  });
+  }, C);
 
-  // 6. Distribuție pe Monedă (Pie)
+  // ---- 6. Distribuție pe Monedă (Pie) ----
   const monCount = countBy(data, 'Moneda');
   updateChart('chart-moneda', 'pie', {
     labels: Object.keys(monCount),
     datasets: [{
       data: Object.values(monCount),
       backgroundColor: CHART_COLORS,
-      borderWidth: 1, borderColor: '#161b22'
+      borderWidth: 1, borderColor: 'transparent'
     }]
   }, {
-    plugins: { legend: { position: 'right', labels: { color: '#e6edf3', boxWidth: 12, font: { size: 11 } } } }
+    plugins: {
+      legend: { position: 'right', labels: { color: C.legend, boxWidth: 11, font: { size: 10 } } },
+      datalabels: {
+        color: C.datalabel, font: { size: 9, weight: 'bold' },
+        formatter: (v, ctx) => {
+          const total = ctx.dataset.data.reduce((a,b)=>a+b,0);
+          const pct = (v/total*100).toFixed(1);
+          return pct < 3 ? '' : `${pct}%\n(${v})`;
+        }
+      }
+    }
   });
 }
 
-function updateChart(id, type, data, extraOpts) {
+function updateChart(id, type, data, extraOpts, C) {
   const canvas = document.getElementById(id);
   if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  if (charts[id]) { charts[id].destroy(); }
+  if (charts[id]) { charts[id].destroy(); delete charts[id]; }
+  const colors = C || getChartColors();
+
+  const scaleDefaults = type === 'doughnut' || type === 'pie' ? {} : {
+    x: { ticks: { color: colors.tick, font: { size: 9 } }, grid: { color: colors.grid } },
+    y: { ticks: { color: colors.tick, font: { size: 9 } }, grid: { color: colors.grid } }
+  };
 
   const defaults = {
     responsive: true,
     maintainAspectRatio: false,
+    layout: { padding: { right: 50, top: 16 } },
     plugins: {
-      legend: { labels: { color: '#8b949e', font: { size: 11 } } },
-      tooltip: { backgroundColor: '#1c2130', titleColor: '#e6edf3', bodyColor: '#8b949e', borderColor: '#30363d', borderWidth: 1 }
+      legend: { labels: { color: colors.legend, font: { size: 10 } } },
+      tooltip: {
+        backgroundColor: colors.tooltipBg, titleColor: colors.tooltipTitle,
+        bodyColor: colors.tooltipBody, borderColor: colors.tooltipBorder, borderWidth: 1
+      },
+      datalabels: { display: false }
     },
-    scales: type === 'doughnut' || type === 'pie' ? {} : {
-      x: { ticks: { color: '#8b949e', font: { size: 10 } }, grid: { color: '#30363d' } },
-      y: { ticks: { color: '#8b949e', font: { size: 10 } }, grid: { color: '#30363d' } }
-    }
+    scales: scaleDefaults
   };
 
   const opts = deepMerge(defaults, extraOpts || {});
-  charts[id] = new Chart(ctx, { type, data, options: opts });
+  charts[id] = new Chart(canvas.getContext('2d'), { type, data, options: opts });
 }
 
 // ============================================================
-// TABLE RENDERING
+// TABLE
 // ============================================================
 function renderTable() {
   const search = tableState.search;
   let rows = FILTERED_DATA;
-
   if (search) {
-    rows = rows.filter(r =>
-      COMMON_COLS.some(col => String(r[col]||'').toLowerCase().includes(search))
-    );
+    rows = rows.filter(r => COMMON_COLS.some(col => String(r[col]||'').toLowerCase().includes(search)));
   }
-
   if (tableState.sortCol !== null) {
-    const col = tableState.sortCol;
-    const dir = tableState.sortDir === 'asc' ? 1 : -1;
-    rows = [...rows].sort((a,b) => {
-      const va = String(a[col]||''), vb = String(b[col]||'');
-      return va.localeCompare(vb, 'ro') * dir;
-    });
+    const col = tableState.sortCol, dir = tableState.sortDir === 'asc' ? 1 : -1;
+    rows = [...rows].sort((a,b) => String(a[col]||'').localeCompare(String(b[col]||''), 'ro') * dir);
   }
-
   const ps = tableState.pageSize === 9999 ? rows.length : tableState.pageSize;
   const totalPages = Math.max(1, Math.ceil(rows.length / ps));
   if (tableState.page > totalPages) tableState.page = totalPages;
   const start = (tableState.page - 1) * ps;
   const pageRows = rows.slice(start, start + ps);
 
-  // Headers
-  const thead = document.getElementById('main-thead');
-  thead.innerHTML = '<tr>' + COMMON_COLS.map((col, i) => {
-    let cls = '';
-    if (tableState.sortCol === col) cls = tableState.sortDir === 'asc' ? 'sort-asc' : 'sort-desc';
+  document.getElementById('main-thead').innerHTML = '<tr>' + COMMON_COLS.map(col => {
+    const cls = tableState.sortCol === col ? (tableState.sortDir === 'asc' ? 'sort-asc' : 'sort-desc') : '';
     return `<th class="${cls}" onclick="sortTable('${escHtml(col)}')">${escHtml(col)}</th>`;
   }).join('') + '</tr>';
 
-  // Body
-  const tbody = document.getElementById('main-tbody');
-  tbody.innerHTML = pageRows.map(r => '<tr>' + COMMON_COLS.map(col => {
-    const val = r[col];
-    if (col === 'Solutia adoptata' && val) {
-      const color = SOL_COLORS[val] || '#555';
-      return `<td><span class="sol-chip" style="background:${color}22;color:${color};border:1px solid ${color}44">${escHtml(val)}</span></td>`;
-    }
-    if (col === 'Corp delict') {
-      return `<td>${val ? '<span style="color:var(--orange)">✓ Corp delict</span>' : ''}</td>`;
-    }
-    return `<td title="${escHtml(String(val||''))}">${escHtml(String(val||''))}</td>`;
-  }).join('') + '</tr>').join('');
+  document.getElementById('main-tbody').innerHTML = pageRows.map(r =>
+    '<tr>' + COMMON_COLS.map(col => renderCell(col, r[col])).join('') + '</tr>'
+  ).join('');
 
   renderPagination('pagination', tableState, totalPages, rows.length, () => renderTable());
 }
 
+function renderCell(col, val) {
+  if (col === 'Solutia adoptata' && val) {
+    const color = SOL_COLORS[val] || '#777';
+    return `<td><span class="sol-chip" style="background:${color}22;color:${color};border:1px solid ${color}44">${escHtml(val)}</span></td>`;
+  }
+  if (col === 'Corp delict') return `<td>${val ? '<span style="color:var(--orange)">✓</span>' : ''}</td>`;
+  return `<td title="${escHtml(String(val||''))}">${escHtml(String(val||''))}</td>`;
+}
+
 function renderCategoryTabs() {
-  const tabMap = {
-    'auto': 'Auto', 'imobile': 'Imobile', 'cash': 'Cash',
-    'cripto': 'Cripto', 'conturi': 'Conturi', 'altele': 'Altele'
+  const CAT_MAP = {
+    'auto':    ['Auto'],
+    'imobile': ['Imobile'],
+    'cash':    ['Cash'],
+    'cripto':  ['Cripto'],
+    'conturi': ['Conturi'],
+    'altele':  ['CPT Social','Tehnica','Other']
   };
-
-  Object.entries(tabMap).forEach(([tabId, label]) => {
-    const tabData = FILTERED_DATA.filter(r => {
-      const catMap = {
-        'Auto': 'auto', 'Imobile': 'imobile', 'Cash': 'cash',
-        'Cripto': 'cripto', 'Conturi': 'conturi',
-        'CPT Social': 'altele', 'Tehnica': 'altele', 'Other': 'altele'
-      };
-      return catMap[r['Categorie']] === tabId;
-    });
-
-    if (!catStates[tabId]) {
-      catStates[tabId] = { sortCol: null, sortDir: 'asc', page: 1, pageSize: 50 };
-    }
+  Object.entries(CAT_MAP).forEach(([tabId, cats]) => {
+    const tabData = FILTERED_DATA.filter(r => cats.includes(r['Categorie']));
+    if (!catStates[tabId]) catStates[tabId] = { sortCol: null, sortDir: 'asc', page: 1, pageSize: 50 };
     const state = catStates[tabId];
-
     let rows = tabData;
     if (state.sortCol) {
       const dir = state.sortDir === 'asc' ? 1 : -1;
       rows = [...rows].sort((a,b) => String(a[state.sortCol]||'').localeCompare(String(b[state.sortCol]||''), 'ro') * dir);
     }
-
     const ps = state.pageSize;
     const totalPages = Math.max(1, Math.ceil(rows.length / ps));
     if (state.page > totalPages) state.page = totalPages;
-    const start = (state.page - 1) * ps;
-    const pageRows = rows.slice(start, start + ps);
-
-    // Get all columns from tab data
-    const allKeys = tabData.length > 0
-      ? [...new Set(tabData.flatMap(r => Object.keys(r)))]
-      : COMMON_COLS;
-
+    const pageRows = rows.slice((state.page-1)*ps, state.page*ps);
+    const keys = tabData.length > 0 ? [...new Set(tabData.flatMap(r => Object.keys(r)))] : COMMON_COLS;
     const thead = document.getElementById(`thead-${tabId}`);
     const tbody = document.getElementById(`tbody-${tabId}`);
     if (!thead || !tbody) return;
-
-    thead.innerHTML = '<tr>' + allKeys.map(col => {
-      let cls = state.sortCol === col ? (state.sortDir === 'asc' ? 'sort-asc' : 'sort-desc') : '';
+    thead.innerHTML = '<tr>' + keys.map(col => {
+      const cls = state.sortCol === col ? (state.sortDir === 'asc' ? 'sort-asc' : 'sort-desc') : '';
       return `<th class="${cls}" onclick="sortCatTable('${tabId}','${escHtml(col)}')">${escHtml(col)}</th>`;
     }).join('') + '</tr>';
-
-    tbody.innerHTML = pageRows.map(r => '<tr>' + allKeys.map(col => {
-      const val = r[col];
-      if (col === 'Solutia adoptata' && val) {
-        const color = SOL_COLORS[val] || '#555';
-        return `<td><span class="sol-chip" style="background:${color}22;color:${color};border:1px solid ${color}44">${escHtml(val)}</span></td>`;
-      }
-      return `<td title="${escHtml(String(val||''))}">${escHtml(String(val||''))}</td>`;
-    }).join('') + '</tr>').join('');
-
+    tbody.innerHTML = pageRows.map(r =>
+      '<tr>' + keys.map(col => renderCell(col, r[col])).join('') + '</tr>'
+    ).join('');
     renderPagination(`pag-${tabId}`, state, totalPages, rows.length, () => renderCategoryTabs());
   });
 }
@@ -1203,111 +1296,75 @@ function renderCategoryTabs() {
 function renderPagination(containerId, state, totalPages, total, renderFn) {
   const container = document.getElementById(containerId);
   if (!container) return;
-
-  const start = (state.page - 1) * (state.pageSize === 9999 ? total : state.pageSize) + 1;
-  const end = Math.min(state.page * (state.pageSize === 9999 ? total : state.pageSize), total);
-
+  const ps = state.pageSize === 9999 ? total : state.pageSize;
+  const start = Math.min((state.page-1)*ps + 1, total);
+  const end   = Math.min(state.page*ps, total);
   let html = `<span class="page-info">${start}–${end} din ${total.toLocaleString('ro')}</span>`;
   html += `<button class="btn-page" onclick="changePage('${containerId}',${state.page-1})" ${state.page<=1?'disabled':''}>‹</button>`;
-
-  const range = getPagRange(state.page, totalPages);
-  range.forEach(p => {
-    if (p === '…') {
-      html += `<span class="page-info">…</span>`;
-    } else {
-      html += `<button class="btn-page ${p===state.page?'active':''}" onclick="changePage('${containerId}',${p})">${p}</button>`;
-    }
+  getPagRange(state.page, totalPages).forEach(p => {
+    if (p === '…') html += `<span class="page-info">…</span>`;
+    else html += `<button class="btn-page${p===state.page?' active':''}" onclick="changePage('${containerId}',${p})">${p}</button>`;
   });
-
   html += `<button class="btn-page" onclick="changePage('${containerId}',${state.page+1})" ${state.page>=totalPages?'disabled':''}>›</button>`;
-
   container.innerHTML = html;
   container._state = state;
   container._renderFn = renderFn;
 }
 
-function changePage(containerId, page) {
-  const container = document.getElementById(containerId);
-  if (!container || !container._state) return;
-  container._state.page = page;
-  container._renderFn();
+function changePage(id, page) {
+  const c = document.getElementById(id);
+  if (!c || !c._state) return;
+  c._state.page = page;
+  c._renderFn();
 }
 
-function getPagRange(current, total) {
-  if (total <= 7) return Array.from({length: total}, (_,i) => i+1);
-  const range = [];
-  if (current <= 4) {
-    for (let i = 1; i <= 5; i++) range.push(i);
-    range.push('…'); range.push(total);
-  } else if (current >= total - 3) {
-    range.push(1); range.push('…');
-    for (let i = total-4; i <= total; i++) range.push(i);
-  } else {
-    range.push(1); range.push('…');
-    for (let i = current-1; i <= current+1; i++) range.push(i);
-    range.push('…'); range.push(total);
-  }
-  return range;
+function getPagRange(cur, total) {
+  if (total <= 7) return Array.from({length: total}, (_,i)=>i+1);
+  const r = [];
+  if (cur <= 4) { for (let i=1;i<=5;i++) r.push(i); r.push('…'); r.push(total); }
+  else if (cur >= total-3) { r.push(1); r.push('…'); for (let i=total-4;i<=total;i++) r.push(i); }
+  else { r.push(1); r.push('…'); for (let i=cur-1;i<=cur+1;i++) r.push(i); r.push('…'); r.push(total); }
+  return r;
 }
 
 function sortTable(col) {
-  if (tableState.sortCol === col) {
-    tableState.sortDir = tableState.sortDir === 'asc' ? 'desc' : 'asc';
-  } else {
-    tableState.sortCol = col;
-    tableState.sortDir = 'asc';
-  }
-  tableState.page = 1;
-  renderTable();
+  tableState.sortDir = tableState.sortCol === col && tableState.sortDir === 'asc' ? 'desc' : 'asc';
+  tableState.sortCol = col; tableState.page = 1; renderTable();
 }
 
 function sortCatTable(tabId, col) {
-  const state = catStates[tabId];
-  if (!state) return;
-  if (state.sortCol === col) {
-    state.sortDir = state.sortDir === 'asc' ? 'desc' : 'asc';
-  } else {
-    state.sortCol = col;
-    state.sortDir = 'asc';
-  }
-  state.page = 1;
-  renderCategoryTabs();
+  const s = catStates[tabId]; if (!s) return;
+  s.sortDir = s.sortCol === col && s.sortDir === 'asc' ? 'desc' : 'asc';
+  s.sortCol = col; s.page = 1; renderCategoryTabs();
 }
 
 function changePageSize() {
   tableState.pageSize = parseInt(document.getElementById('page-size').value);
-  tableState.page = 1;
-  renderTable();
+  tableState.page = 1; renderTable();
 }
 
 // ============================================================
 // EXPORT
 // ============================================================
 function getExportData() {
-  // Apply table search too
-  const search = tableState.search;
-  if (!search) return FILTERED_DATA;
-  return FILTERED_DATA.filter(r =>
-    COMMON_COLS.some(col => String(r[col]||'').toLowerCase().includes(search))
-  );
+  const s = tableState.search;
+  if (!s) return FILTERED_DATA;
+  return FILTERED_DATA.filter(r => COMMON_COLS.some(col => String(r[col]||'').toLowerCase().includes(s)));
 }
 
 function exportCSV() {
   const rows = getExportData();
-  if (!rows.length) return alert('Nu există date de exportat.');
-  const keys = COMMON_COLS;
-  const lines = [keys.map(csvEsc).join(',')];
-  rows.forEach(r => lines.push(keys.map(k => csvEsc(String(r[k]||''))).join(',')));
-  download('arbi_export.csv', lines.join('\r\n'), 'text/csv;charset=utf-8;');
+  if (!rows.length) return alert('Nu există date.');
+  const lines = [COMMON_COLS.map(csvEsc).join(',')];
+  rows.forEach(r => lines.push(COMMON_COLS.map(k => csvEsc(String(r[k]||''))).join(',')));
+  dl('arbi_export.csv', lines.join('\r\n'), 'text/csv;charset=utf-8;');
 }
 
 function exportXLSX() {
   const rows = getExportData();
-  if (!rows.length) return alert('Nu există date de exportat.');
+  if (!rows.length) return alert('Nu există date.');
   const ws = XLSX.utils.json_to_sheet(rows.map(r => {
-    const obj = {};
-    COMMON_COLS.forEach(k => obj[k] = r[k] !== null && r[k] !== undefined ? r[k] : '');
-    return obj;
+    const o = {}; COMMON_COLS.forEach(k => o[k] = r[k] ?? ''); return o;
   }));
   const wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, 'Date');
@@ -1316,16 +1373,14 @@ function exportXLSX() {
 
 function exportJSON() {
   const rows = getExportData();
-  if (!rows.length) return alert('Nu există date de exportat.');
-  const data = JSON.stringify(rows, null, 2);
-  download('arbi_export.json', data, 'application/json');
+  if (!rows.length) return alert('Nu există date.');
+  dl('arbi_export.json', JSON.stringify(rows, null, 2), 'application/json');
 }
 
-function download(filename, content, mime) {
+function dl(filename, content, mime) {
   const a = document.createElement('a');
   a.href = URL.createObjectURL(new Blob(['﻿' + content], { type: mime }));
-  a.download = filename;
-  a.click();
+  a.download = filename; a.click();
 }
 
 // ============================================================
@@ -1335,64 +1390,59 @@ function switchTab(el) {
   document.querySelectorAll('.navtab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   el.classList.add('active');
-  const tabId = el.dataset.tab;
-  document.getElementById('tab-' + tabId).classList.add('active');
+  document.getElementById('tab-' + el.dataset.tab).classList.add('active');
 }
 
 // ============================================================
 // UTILITIES
 // ============================================================
 function countBy(arr, key) {
-  const counts = {};
-  arr.forEach(r => {
-    const v = r[key] || 'N/A';
-    counts[v] = (counts[v]||0) + 1;
-  });
-  return counts;
+  const c = {};
+  arr.forEach(r => { const v = r[key]||'N/A'; c[v]=(c[v]||0)+1; });
+  return c;
 }
 
 function parseDate(v) {
   if (!v) return null;
-  if (v instanceof Date) return v;
+  if (v instanceof Date) return isNaN(v) ? null : v;
   const s = String(v).trim();
-  // DD.MM.YYYY
   const m = s.match(/^(\d{2})\.(\d{2})\.(\d{4})$/);
-  if (m) return new Date(m[3], m[2]-1, m[1]);
+  if (m) return new Date(+m[3], +m[2]-1, +m[1]);
   const d = new Date(s);
   return isNaN(d) ? null : d;
 }
 
 function formatMDL(v) {
-  if (isNaN(v) || v === 0) return '0 MDL';
-  if (v >= 1e9) return (v/1e9).toFixed(2) + ' mlrd MDL';
-  if (v >= 1e6) return (v/1e6).toFixed(2) + ' mil MDL';
-  if (v >= 1e3) return (v/1e3).toFixed(1) + ' k MDL';
-  return v.toFixed(2) + ' MDL';
+  if (isNaN(v) || v === 0) return '0';
+  if (v >= 1e9) return (v/1e9).toFixed(2) + ' mlrd';
+  if (v >= 1e6) return (v/1e6).toFixed(2) + ' mil';
+  if (v >= 1e3) return (v/1e3).toFixed(1) + 'k';
+  return v.toFixed(0);
 }
 
 function escHtml(s) {
-  if (s === null || s === undefined) return '';
+  if (s == null) return '';
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
 function csvEsc(v) {
-  if (v.includes(',') || v.includes('"') || v.includes('\n')) {
-    return '"' + v.replace(/"/g, '""') + '"';
-  }
+  if (v.includes(',') || v.includes('"') || v.includes('\n'))
+    return '"' + v.replace(/"/g,'""') + '"';
   return v;
 }
 
 function deepMerge(target, source) {
   const out = Object.assign({}, target);
-  for (const key of Object.keys(source)) {
-    if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key])) {
-      out[key] = deepMerge(target[key] || {}, source[key]);
-    } else {
-      out[key] = source[key];
-    }
+  for (const k of Object.keys(source)) {
+    if (source[k] && typeof source[k] === 'object' && !Array.isArray(source[k]))
+      out[k] = deepMerge(target[k] || {}, source[k]);
+    else out[k] = source[k];
   }
   return out;
 }
+
+// Init filter listeners after DOM ready
+initFilterListeners();
 </script>
 </body>
 </html>
