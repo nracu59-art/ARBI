@@ -240,7 +240,8 @@ body {
 .kpi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 0.75rem; margin-bottom: 1rem; }
 .kpi-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 0.9rem; }
 .kpi-label { font-size: 0.72rem; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.35rem; }
-.kpi-value { font-size: 1.5rem; font-weight: 700; color: var(--text); line-height: 1.1; }
+.kpi-value { font-size: 1.8rem; font-weight: 800; color: var(--accent); line-height: 1.1; }
+.kpi-value-full { font-size: 0.78rem; color: var(--text2); margin-top: 0.2rem; font-variant-numeric: tabular-nums; }
 .kpi-sub { font-size: 0.7rem; color: var(--text2); margin-top: 0.2rem; }
 
 /* CHARTS GRID */
@@ -998,7 +999,8 @@ function updateDashboard() {
     </div>
     <div class="kpi-card">
       <div class="kpi-label">Suma Sechestru (MDL)</div>
-      <div class="kpi-value" style="font-size:1.2rem">${formatMDL(sumaMDL)}</div>
+      <div class="kpi-value">${formatMDL(sumaMDL)}</div>
+      <div class="kpi-value-full">${sumaMDL.toLocaleString('ro',{maximumFractionDigits:2})} MDL</div>
     </div>
     <div class="kpi-card">
       <div class="kpi-label">Cauze Penale Unice</div>
@@ -1025,7 +1027,8 @@ function getChartColors() {
     tooltipTitle: theme === 'dark' ? '#e6edf3' : '#1f2328',
     tooltipBody: theme === 'dark' ? '#8b949e' : '#636c76',
     tooltipBorder: theme === 'dark' ? '#30363d' : '#d0d7de',
-    datalabel: theme === 'dark' ? '#e6edf3' : '#1f2328'
+    datalabel: theme === 'dark' ? '#e6edf3' : '#1f2328',
+    datalabelBg: theme === 'dark' ? 'rgba(22,27,34,0.82)' : 'rgba(255,255,255,0.85)'
   };
 }
 
@@ -1063,11 +1066,14 @@ function renderCharts(data) {
       legend: { position: 'right', labels: { color: C.legend, boxWidth: 11, font: { size: 10 } } },
       datalabels: {
         color: C.datalabel,
-        font: { size: 9, weight: 'bold' },
+        backgroundColor: C.datalabelBg,
+        borderRadius: 4,
+        padding: { top: 2, bottom: 2, left: 4, right: 4 },
+        font: { size: 11, weight: 'bold' },
         formatter: (v, ctx) => {
           const total = ctx.dataset.data.reduce((a,b)=>a+b,0);
           const pct = (v/total*100).toFixed(1);
-          return pct < 3 ? '' : `${pct}%`;
+          return pct < 4 ? '' : `${pct}%`;
         }
       }
     }
@@ -1089,7 +1095,11 @@ function renderCharts(data) {
       legend: { display: false },
       datalabels: {
         anchor: 'end', align: 'end',
-        color: C.datalabel, font: { size: 9 },
+        color: C.datalabel,
+        backgroundColor: C.datalabelBg,
+        borderRadius: 3,
+        padding: { top: 2, bottom: 2, left: 5, right: 5 },
+        font: { size: 11, weight: '600' },
         formatter: v => fmtLabel(v)
       }
     }
@@ -1111,7 +1121,11 @@ function renderCharts(data) {
       legend: { display: false },
       datalabels: {
         anchor: 'end', align: 'end',
-        color: C.datalabel, font: { size: 9 },
+        color: C.datalabel,
+        backgroundColor: C.datalabelBg,
+        borderRadius: 3,
+        padding: { top: 2, bottom: 2, left: 5, right: 5 },
+        font: { size: 11, weight: '600' },
         formatter: v => fmtLabel(v)
       }
     }
@@ -1179,7 +1193,11 @@ function renderCharts(data) {
       legend: { display: false },
       datalabels: {
         anchor: 'end', align: 'top',
-        color: C.datalabel, font: { size: 9 },
+        color: C.datalabel,
+        backgroundColor: C.datalabelBg,
+        borderRadius: 3,
+        padding: { top: 2, bottom: 2, left: 5, right: 5 },
+        font: { size: 11, weight: '600' },
         formatter: v => formatMDL(v)
       }
     },
@@ -1199,7 +1217,11 @@ function renderCharts(data) {
     plugins: {
       legend: { position: 'right', labels: { color: C.legend, boxWidth: 11, font: { size: 10 } } },
       datalabels: {
-        color: C.datalabel, font: { size: 9, weight: 'bold' },
+        color: C.datalabel,
+        backgroundColor: C.datalabelBg,
+        borderRadius: 4,
+        padding: { top: 2, bottom: 2, left: 4, right: 4 },
+        font: { size: 11, weight: 'bold' },
         formatter: (v, ctx) => {
           const total = ctx.dataset.data.reduce((a,b)=>a+b,0);
           const pct = (v/total*100).toFixed(1);
