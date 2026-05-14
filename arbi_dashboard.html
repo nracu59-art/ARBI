@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARBI — Dashboard Bunuri Sechestrate</title>
+<script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg: #0f1117;
+  --bg2: #161b22;
+  --bg3: #1c2130;
+  --border: #30363d;
+  --text: #e6edf3;
+  --text2: #8b949e;
+  --accent: #58a6ff;
+  --green: #3fb950;
+  --red: #f85149;
+  --orange: #d29922;
+  --purple: #bc8cff;
+  --teal: #39c5cf;
+  --yellow: #e3b341;
+
+  --sol-aplicare: #1e6da4;
+  --sol-autorizare: #1a7a4a;
+  --sol-confiscare: #8b1a1a;
+  --sol-inghetare: #1a5a8b;
+  --sol-mentinere: #5a5a1a;
+  --sol-preluare: #5a1a8b;
+  --sol-respingere: #8b3a1a;
+  --sol-ridicare: #1a6b5a;
+  --sol-scoatere: #6b3a1a;
+  --sol-valorificare: #1a8b6b;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  min-height: 100vh;
+}
+
+/* ---- UPLOAD SCREEN ---- */
+#upload-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(135deg, #0f1117 0%, #1c2130 100%);
+}
+
+.upload-logo {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  letter-spacing: 2px;
+}
+
+.upload-subtitle {
+  color: var(--text2);
+  margin-bottom: 3rem;
+  font-size: 1rem;
+}
+
+.drop-zone {
+  width: 480px;
+  max-width: 100%;
+  border: 2px dashed var(--border);
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: var(--bg2);
+}
+
+.drop-zone:hover, .drop-zone.drag-over {
+  border-color: var(--accent);
+  background: rgba(88, 166, 255, 0.05);
+}
+
+.drop-icon { font-size: 3rem; margin-bottom: 1rem; }
+
+.drop-text { color: var(--text2); margin-bottom: 1rem; }
+
+.drop-btn {
+  background: var(--accent);
+  color: #0f1117;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.drop-btn:hover { opacity: 0.85; }
+
+#file-input { display: none; }
+
+.upload-progress {
+  margin-top: 1.5rem;
+  color: var(--text2);
+  font-size: 0.9rem;
+}
+
+/* ---- APP LAYOUT ---- */
+#app { display: none; flex-direction: column; height: 100vh; }
+
+/* TOP BAR */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 1.2rem;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.topbar-logo {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--accent);
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.topbar-file {
+  color: var(--text2);
+  font-size: 0.82rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.topbar-spacer { flex: 1; }
+
+.btn-reload {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--text2);
+  padding: 0.3rem 0.8rem;
+  cursor: pointer;
+  font-size: 0.82rem;
+  transition: all 0.15s;
+}
+.btn-reload:hover { border-color: var(--accent); color: var(--accent); }
+
+/* NAV TABS */
+.navtabs {
+  display: flex;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: 0 1.2rem;
+  flex-shrink: 0;
+}
+
+.navtab {
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  color: var(--text2);
+  border-bottom: 2px solid transparent;
+  font-size: 0.88rem;
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+.navtab:hover { color: var(--text); }
+.navtab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* MAIN BODY = SIDEBAR + CONTENT */
+.main-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* SIDEBAR FILTERS */
+.sidebar {
+  width: 260px;
+  min-width: 260px;
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.sidebar-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text2);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 0.2rem;
+}
+
+.filter-group { display: flex; flex-direction: column; gap: 0.4rem; }
+
+.filter-label {
+  font-size: 0.78rem;
+  color: var(--text2);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.filter-input {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--text);
+  padding: 0.35rem 0.6rem;
+  font-size: 0.82rem;
+  width: 100%;
+  transition: border-color 0.15s;
+}
+.filter-input:focus { outline: none; border-color: var(--accent); }
+
+.checkbox-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+  padding: 0.15rem 0;
+  border-radius: 3px;
+}
+.checkbox-item input { cursor: pointer; accent-color: var(--accent); }
+
+.sol-badge {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.filter-counter {
+  font-size: 0.78rem;
+  color: var(--accent);
+  font-weight: 600;
+  padding: 0.3rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.btn-reset {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--text2);
+  padding: 0.4rem;
+  cursor: pointer;
+  font-size: 0.82rem;
+  width: 100%;
+  transition: all 0.15s;
+}
+.btn-reset:hover { border-color: var(--red); color: var(--red); }
+
+/* CONTENT AREA */
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.2rem;
+}
+
+/* TAB PANELS */
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* KPI CARDS */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.8rem;
+  margin-bottom: 1.2rem;
+}
+
+.kpi-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.kpi-label {
+  font-size: 0.75rem;
+  color: var(--text2);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.4rem;
+}
+
+.kpi-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.1;
+}
+
+.kpi-sub {
+  font-size: 0.72rem;
+  color: var(--text2);
+  margin-top: 0.2rem;
+}
+
+/* CHARTS GRID */
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.chart-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.chart-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text2);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.8rem;
+}
+
+.chart-wrap {
+  position: relative;
+  height: 240px;
+}
+
+.chart-wrap-tall {
+  position: relative;
+  height: 300px;
+}
+
+/* TABLE */
+.table-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.table-search {
+  flex: 1;
+  min-width: 200px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--text);
+  padding: 0.4rem 0.7rem;
+  font-size: 0.85rem;
+}
+.table-search:focus { outline: none; border-color: var(--accent); }
+
+.page-size-select {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--text);
+  padding: 0.35rem 0.5rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.export-btns { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+.btn-export {
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 0.35rem 0.7rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: transparent;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.btn-csv { color: var(--green); border-color: var(--green); }
+.btn-csv:hover { background: rgba(63,185,80,0.1); }
+.btn-xlsx { color: var(--accent); border-color: var(--accent); }
+.btn-xlsx:hover { background: rgba(88,166,255,0.1); }
+.btn-json { color: var(--orange); border-color: var(--orange); }
+.btn-json:hover { background: rgba(210,153,34,0.1); }
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+}
+
+thead th {
+  background: var(--bg3);
+  padding: 0.55rem 0.7rem;
+  text-align: left;
+  color: var(--text2);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+thead th:hover { color: var(--accent); }
+thead th.sort-asc::after { content: ' ↑'; color: var(--accent); }
+thead th.sort-desc::after { content: ' ↓'; color: var(--accent); }
+
+tbody tr:hover { background: rgba(255,255,255,0.02); }
+
+tbody td {
+  padding: 0.45rem 0.7rem;
+  border-bottom: 1px solid rgba(48,54,61,0.5);
+  white-space: nowrap;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+}
+
+.sol-chip {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.page-info { color: var(--text2); font-size: 0.8rem; }
+
+.btn-page {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text);
+  padding: 0.25rem 0.6rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.15s;
+}
+.btn-page:hover, .btn-page.active { border-color: var(--accent); color: var(--accent); }
+.btn-page:disabled { opacity: 0.4; cursor: default; }
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #484f58; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .charts-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- UPLOAD SCREEN -->
+<div id="upload-screen">
+  <div class="upload-logo">ARBI</div>
+  <div class="upload-subtitle">Dashboard Bunuri Sechestrate / Confiscate</div>
+
+  <div class="drop-zone" id="drop-zone">
+    <div class="drop-icon">📂</div>
+    <div class="drop-text">Trageți fișierul <strong>.xlsx</strong> aici sau</div>
+    <button class="drop-btn" onclick="document.getElementById('file-input').click()">Selectați fișierul</button>
+    <input type="file" id="file-input" accept=".xlsx,.xls">
+  </div>
+  <div class="upload-progress" id="upload-progress"></div>
+</div>
+
+<!-- MAIN APP -->
+<div id="app">
+  <div class="topbar">
+    <span class="topbar-logo">ARBI</span>
+    <span class="topbar-file" id="topbar-filename"></span>
+    <span class="topbar-spacer"></span>
+    <button class="btn-reload" onclick="reloadFile()">↺ Alt fișier</button>
+  </div>
+
+  <div class="navtabs">
+    <div class="navtab active" data-tab="dashboard" onclick="switchTab(this)">Dashboard</div>
+    <div class="navtab" data-tab="table" onclick="switchTab(this)">Tabel de date</div>
+    <div class="navtab" data-tab="auto" onclick="switchTab(this)">Auto</div>
+    <div class="navtab" data-tab="imobile" onclick="switchTab(this)">Imobile</div>
+    <div class="navtab" data-tab="cash" onclick="switchTab(this)">Cash</div>
+    <div class="navtab" data-tab="cripto" onclick="switchTab(this)">Cripto</div>
+    <div class="navtab" data-tab="conturi" onclick="switchTab(this)">Conturi</div>
+    <div class="navtab" data-tab="altele" onclick="switchTab(this)">Altele</div>
+  </div>
+
+  <div class="main-body">
+    <!-- SIDEBAR FILTERS -->
+    <div class="sidebar">
+      <div class="sidebar-title">Filtre</div>
+
+      <div class="filter-group">
+        <div class="filter-label">Soluția adoptată</div>
+        <div class="checkbox-list" id="filter-solutii"></div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">Tip bun</div>
+        <div class="checkbox-list" id="filter-tipbun"></div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">Corp delict</div>
+        <select class="filter-input" id="filter-corp">
+          <option value="">Toate</option>
+          <option value="da">Da</option>
+          <option value="nu">Nu</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">Monedă</div>
+        <select class="filter-input" id="filter-moneda">
+          <option value="">Toate</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">Cauza penală</div>
+        <input type="text" class="filter-input" id="filter-cauza" placeholder="ex: 2025670019">
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">IDNP/IDNO</div>
+        <input type="text" class="filter-input" id="filter-idnp" placeholder="ex: 2011002001151">
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">Organ emitent</div>
+        <input type="text" class="filter-input" id="filter-organ" placeholder="ex: PCCOCS">
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">Data doc. de la</div>
+        <input type="date" class="filter-input" id="filter-date-from">
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">Data doc. până la</div>
+        <input type="date" class="filter-input" id="filter-date-to">
+      </div>
+
+      <div class="filter-counter" id="filter-counter">0 / 0 înregistrări</div>
+
+      <button class="btn-reset" onclick="resetFilters()">✕ Resetează filtrele</button>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+      <!-- DASHBOARD TAB -->
+      <div class="tab-panel active" id="tab-dashboard">
+        <div class="kpi-grid" id="kpi-grid"></div>
+        <div class="charts-grid">
+          <div class="chart-card">
+            <div class="chart-title">Distribuție pe Tip Bun</div>
+            <div class="chart-wrap"><canvas id="chart-tipbun"></canvas></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title">Soluții Adoptate</div>
+            <div class="chart-wrap"><canvas id="chart-solutii"></canvas></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title">Top 15 Organe Emitente</div>
+            <div class="chart-wrap-tall"><canvas id="chart-organe"></canvas></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title">Evoluție Temporală (luna)</div>
+            <div class="chart-wrap"><canvas id="chart-timp"></canvas></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title">Suma Sechestru MDL pe Tip Bun</div>
+            <div class="chart-wrap"><canvas id="chart-suma"></canvas></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title">Distribuție pe Monedă</div>
+            <div class="chart-wrap"><canvas id="chart-moneda"></canvas></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TABLE TAB -->
+      <div class="tab-panel" id="tab-table">
+        <div class="table-toolbar">
+          <input type="text" class="table-search" id="table-search" placeholder="Caută în toate câmpurile...">
+          <select class="page-size-select" id="page-size" onchange="changePageSize()">
+            <option value="50">50 / pagină</option>
+            <option value="100">100 / pagină</option>
+            <option value="200">200 / pagină</option>
+            <option value="9999">Toate</option>
+          </select>
+          <div class="export-btns">
+            <button class="btn-export btn-csv" onclick="exportCSV()">⬇ CSV</button>
+            <button class="btn-export btn-xlsx" onclick="exportXLSX()">⬇ Excel</button>
+            <button class="btn-export btn-json" onclick="exportJSON()">⬇ JSON</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table id="main-table">
+            <thead id="main-thead"></thead>
+            <tbody id="main-tbody"></tbody>
+          </table>
+        </div>
+        <div class="pagination" id="pagination"></div>
+      </div>
+
+      <!-- CATEGORY TABS -->
+      <div class="tab-panel" id="tab-auto"><div class="table-wrap"><table><thead id="thead-auto"></thead><tbody id="tbody-auto"></tbody></table></div><div class="pagination" id="pag-auto"></div></div>
+      <div class="tab-panel" id="tab-imobile"><div class="table-wrap"><table><thead id="thead-imobile"></thead><tbody id="tbody-imobile"></tbody></table></div><div class="pagination" id="pag-imobile"></div></div>
+      <div class="tab-panel" id="tab-cash"><div class="table-wrap"><table><thead id="thead-cash"></thead><tbody id="tbody-cash"></tbody></table></div><div class="pagination" id="pag-cash"></div></div>
+      <div class="tab-panel" id="tab-cripto"><div class="table-wrap"><table><thead id="thead-cripto"></thead><tbody id="tbody-cripto"></tbody></table></div><div class="pagination" id="pag-cripto"></div></div>
+      <div class="tab-panel" id="tab-conturi"><div class="table-wrap"><table><thead id="thead-conturi"></thead><tbody id="tbody-conturi"></tbody></table></div><div class="pagination" id="pag-conturi"></div></div>
+      <div class="tab-panel" id="tab-altele"><div class="table-wrap"><table><thead id="thead-altele"></thead><tbody id="tbody-altele"></tbody></table></div><div class="pagination" id="pag-altele"></div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// DATA STORE
+// ============================================================
+let ALL_DATA = [];         // unified array of all records
+let SHEET_DATA = {};       // per-sheet raw arrays
+let FILTERED_DATA = [];    // current filter result
+let currentFile = null;
+let charts = {};
+
+// TABLE STATE
+let tableState = {
+  sortCol: null,
+  sortDir: 'asc',
+  page: 1,
+  pageSize: 50,
+  search: ''
+};
+
+// CATEGORY PAGE STATES
+let catStates = {};
+
+// SOLUTION COLORS
+const SOL_COLORS = {
+  'Aplicare sechestru': '#1e6da4',
+  'Aplicare sechestru (etapa judecării)': '#2a85c4',
+  'Autorizare de sechestru': '#1a7a4a',
+  'Confiscare': '#c0392b',
+  'Inghetare': '#1a5a8b',
+  'Mentinere': '#7d6608',
+  'Preluare in administrare': '#6c3483',
+  'Respingere sechestru': '#a93226',
+  'Ridicare sechestru': '#1a7a6a',
+  'Scoatere sechestru': '#935116',
+  'Valorificare': '#1a8b3a'
+};
+
+const TIP_BUN_COLORS = {
+  'Mijloc de transport': '#58a6ff',
+  'Bun imobil': '#3fb950',
+  'Numerar': '#e3b341',
+  'Criptovaluta': '#bc8cff',
+  'Cont bancar': '#39c5cf',
+  'Capital social': '#f85149',
+  'Alte bunuri': '#8b949e',
+  'Arma': '#ff7b72'
+};
+
+const CHART_COLORS = [
+  '#58a6ff','#3fb950','#e3b341','#bc8cff','#39c5cf',
+  '#f85149','#8b949e','#ff7b72','#ffa657','#79c0ff',
+  '#56d364','#d2a8ff','#a5d6ff','#ffb800','#ff6e96'
+];
+
+// ============================================================
+// SHEET DEFINITIONS (name → display label + tab id)
+// ============================================================
+const SHEET_DEFS = [
+  { name: 'Auto',       label: 'Auto',    tab: 'auto' },
+  { name: 'Imobile',    label: 'Imobile', tab: 'imobile' },
+  { name: 'Cash',       label: 'Cash',    tab: 'cash' },
+  { name: 'Cripto',     label: 'Cripto',  tab: 'cripto' },
+  { name: 'Conturi',    label: 'Conturi', tab: 'conturi' },
+  { name: 'CPT Social', label: 'CPT Social', tab: 'altele' },
+  { name: 'Tehnica',    label: 'Tehnica', tab: 'altele' },
+  { name: 'Other',      label: 'Other',   tab: 'altele' }
+];
+
+// Common columns to show in unified table
+const COMMON_COLS = [
+  'Categorie','Tip document','Nr. doc','Data doc.','Organ emitent',
+  'Solutia adoptata','Cauza penala','IDNP/IDNO','Nume/Denumire',
+  'ID Bun','Tip bun','Corp delict','Scopul indisponibilizarii',
+  'Valoarea bunului','Moneda','Echivalent in MDL',
+  'Cantitate','Cota parte','Suma sechestru',
+  'Tip posesie','Tara aflarii','IDNP/IDNO proprietar',
+  'Nume proprietar','Prenume proprietar'
+];
+
+// ============================================================
+// FILE UPLOAD / DRAG & DROP
+// ============================================================
+const dropZone = document.getElementById('drop-zone');
+const fileInput = document.getElementById('file-input');
+
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+dropZone.addEventListener('drop', e => {
+  e.preventDefault();
+  dropZone.classList.remove('drag-over');
+  const f = e.dataTransfer.files[0];
+  if (f) loadFile(f);
+});
+fileInput.addEventListener('change', e => { if (e.target.files[0]) loadFile(e.target.files[0]); });
+
+function reloadFile() {
+  document.getElementById('upload-screen').style.display = 'flex';
+  document.getElementById('app').style.display = 'none';
+  fileInput.value = '';
+}
+
+function loadFile(file) {
+  const prog = document.getElementById('upload-progress');
+  prog.textContent = 'Se procesează fișierul...';
+  currentFile = file;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const wb = XLSX.read(e.target.result, { type: 'array', cellDates: true });
+      parseWorkbook(wb);
+      document.getElementById('topbar-filename').textContent = file.name;
+      document.getElementById('upload-screen').style.display = 'none';
+      document.getElementById('app').style.display = 'flex';
+      prog.textContent = '';
+    } catch(err) {
+      prog.textContent = 'Eroare la citirea fișierului: ' + err.message;
+    }
+  };
+  reader.readAsArrayBuffer(file);
+}
+
+// ============================================================
+// PARSE WORKBOOK
+// ============================================================
+function parseWorkbook(wb) {
+  ALL_DATA = [];
+  SHEET_DATA = {};
+
+  SHEET_DEFS.forEach(def => {
+    const ws = wb.Sheets[def.name];
+    if (!ws) return;
+
+    const rows = XLSX.utils.sheet_to_json(ws, { header: 1, defval: null, raw: false });
+
+    // Find header row (row index 2, 0-based)
+    let headerRow = null;
+    let dataStartRow = 0;
+    for (let i = 0; i < Math.min(rows.length, 6); i++) {
+      if (rows[i] && rows[i][0] === 'Tip document') {
+        headerRow = rows[i];
+        dataStartRow = i + 2; // skip blank row after headers
+        break;
+      }
+    }
+    if (!headerRow) return;
+
+    const records = [];
+    for (let i = dataStartRow; i < rows.length; i++) {
+      const row = rows[i];
+      if (!row || row.every(v => v === null || v === '')) continue;
+      const rec = { Categorie: def.label };
+      headerRow.forEach((h, idx) => {
+        if (h) rec[h] = row[idx] !== undefined ? row[idx] : null;
+      });
+      records.push(rec);
+    }
+
+    if (!SHEET_DATA[def.tab]) SHEET_DATA[def.tab] = [];
+    SHEET_DATA[def.tab].push(...records);
+    ALL_DATA.push(...records);
+  });
+
+  initFilters();
+  applyFilters();
+}
+
+// ============================================================
+// FILTERS
+// ============================================================
+function initFilters() {
+  // Solutii
+  const solutii = [...new Set(ALL_DATA.map(r => r['Solutia adoptata']).filter(Boolean))].sort();
+  const solutiiList = document.getElementById('filter-solutii');
+  solutiiList.innerHTML = solutii.map(s => `
+    <label class="checkbox-item">
+      <input type="checkbox" class="f-sol" value="${escHtml(s)}" onchange="applyFilters()">
+      <span class="sol-badge" style="background:${SOL_COLORS[s]||'#555'}"></span>
+      <span>${escHtml(s)}</span>
+    </label>`).join('');
+
+  // Tip bun
+  const tipuri = [...new Set(ALL_DATA.map(r => r['Tip bun']).filter(Boolean))].sort();
+  const tipList = document.getElementById('filter-tipbun');
+  tipList.innerHTML = tipuri.map(t => `
+    <label class="checkbox-item">
+      <input type="checkbox" class="f-tip" value="${escHtml(t)}" onchange="applyFilters()">
+      <span class="sol-badge" style="background:${TIP_BUN_COLORS[t]||'#555'}"></span>
+      <span>${escHtml(t)}</span>
+    </label>`).join('');
+
+  // Monedă
+  const monede = [...new Set(ALL_DATA.map(r => r['Moneda']).filter(Boolean))].sort();
+  const monSel = document.getElementById('filter-moneda');
+  monSel.innerHTML = '<option value="">Toate</option>' +
+    monede.map(m => `<option value="${escHtml(m)}">${escHtml(m)}</option>`).join('');
+
+  // Setup listeners
+  ['filter-corp','filter-moneda','filter-organ','filter-cauza','filter-idnp',
+   'filter-date-from','filter-date-to'].forEach(id => {
+    document.getElementById(id).addEventListener('input', applyFilters);
+  });
+
+  // Table search
+  document.getElementById('table-search').addEventListener('input', e => {
+    tableState.search = e.target.value.toLowerCase();
+    tableState.page = 1;
+    renderTable();
+  });
+}
+
+function getActiveFilters() {
+  const solutii = [...document.querySelectorAll('.f-sol:checked')].map(e => e.value);
+  const tipuri = [...document.querySelectorAll('.f-tip:checked')].map(e => e.value);
+  const corp = document.getElementById('filter-corp').value;
+  const moneda = document.getElementById('filter-moneda').value;
+  const cauza = document.getElementById('filter-cauza').value.trim().toLowerCase();
+  const idnp = document.getElementById('filter-idnp').value.trim().toLowerCase();
+  const organ = document.getElementById('filter-organ').value.trim().toLowerCase();
+  const dateFrom = document.getElementById('filter-date-from').value;
+  const dateTo = document.getElementById('filter-date-to').value;
+  return { solutii, tipuri, corp, moneda, cauza, idnp, organ, dateFrom, dateTo };
+}
+
+function applyFilters() {
+  const f = getActiveFilters();
+
+  FILTERED_DATA = ALL_DATA.filter(r => {
+    if (f.solutii.length && !f.solutii.includes(r['Solutia adoptata'])) return false;
+    if (f.tipuri.length && !f.tipuri.includes(r['Tip bun'])) return false;
+    if (f.corp === 'da' && !r['Corp delict']) return false;
+    if (f.corp === 'nu' && r['Corp delict']) return false;
+    if (f.moneda && r['Moneda'] !== f.moneda) return false;
+    if (f.cauza && !(r['Cauza penala']||'').toLowerCase().includes(f.cauza)) return false;
+    if (f.idnp && !(r['IDNP/IDNO']||'').toLowerCase().includes(f.idnp)) return false;
+    if (f.organ && !(r['Organ emitent']||'').toLowerCase().includes(f.organ)) return false;
+    if (f.dateFrom || f.dateTo) {
+      const d = parseDate(r['Data doc.']);
+      if (d) {
+        if (f.dateFrom && d < new Date(f.dateFrom)) return false;
+        if (f.dateTo && d > new Date(f.dateTo + 'T23:59:59')) return false;
+      }
+    }
+    return true;
+  });
+
+  document.getElementById('filter-counter').textContent =
+    `${FILTERED_DATA.length.toLocaleString('ro')} / ${ALL_DATA.length.toLocaleString('ro')} înregistrări`;
+
+  tableState.page = 1;
+  updateDashboard();
+  renderTable();
+  renderCategoryTabs();
+}
+
+function resetFilters() {
+  document.querySelectorAll('.f-sol, .f-tip').forEach(cb => cb.checked = false);
+  ['filter-corp','filter-moneda','filter-cauza','filter-idnp',
+   'filter-organ','filter-date-from','filter-date-to'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  document.getElementById('table-search').value = '';
+  tableState.search = '';
+  applyFilters();
+}
+
+// ============================================================
+// DASHBOARD
+// ============================================================
+function updateDashboard() {
+  const data = FILTERED_DATA;
+
+  // KPI
+  const totalBunuri = data.length;
+  const sumaMDL = data.reduce((acc, r) => {
+    const v = parseFloat(String(r['Suma sechestru']||'0').replace(',','.'));
+    const equiv = parseFloat(String(r['Echivalent in MDL']||'0').replace(',','.'));
+    const val = parseFloat(String(r['Valoarea bunului']||'0').replace(',','.'));
+    const mdl = r['Moneda'] === 'MDL' ? (isNaN(v) ? 0 : v) :
+                !isNaN(equiv) && equiv > 0 ? equiv :
+                !isNaN(v) && v > 0 ? v : 0;
+    return acc + (isNaN(mdl) ? 0 : mdl);
+  }, 0);
+  const cauzeUnice = new Set(data.map(r => r['Cauza penala']).filter(Boolean)).size;
+  const persoaneUnice = new Set(data.map(r => r['IDNP/IDNO']).filter(Boolean)).size;
+
+  document.getElementById('kpi-grid').innerHTML = `
+    <div class="kpi-card">
+      <div class="kpi-label">Total Bunuri</div>
+      <div class="kpi-value">${totalBunuri.toLocaleString('ro')}</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Suma Sechestru MDL</div>
+      <div class="kpi-value" style="font-size:1.2rem">${formatMDL(sumaMDL)}</div>
+      <div class="kpi-sub">echivalent MDL</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Cauze Penale Unice</div>
+      <div class="kpi-value">${cauzeUnice.toLocaleString('ro')}</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Persoane / Entități</div>
+      <div class="kpi-value">${persoaneUnice.toLocaleString('ro')}</div>
+    </div>`;
+
+  renderCharts(data);
+}
+
+function renderCharts(data) {
+  // 1. Tip Bun (Donut)
+  const tipBunCount = countBy(data, 'Tip bun');
+  updateChart('chart-tipbun', 'doughnut', {
+    labels: Object.keys(tipBunCount),
+    datasets: [{
+      data: Object.values(tipBunCount),
+      backgroundColor: Object.keys(tipBunCount).map(k => TIP_BUN_COLORS[k] || '#555'),
+      borderWidth: 1, borderColor: '#161b22'
+    }]
+  }, {
+    plugins: { legend: { position: 'right', labels: { color: '#e6edf3', boxWidth: 12, font: { size: 11 } } } }
+  });
+
+  // 2. Soluții adoptate (Bar)
+  const solCount = countBy(data, 'Solutia adoptata');
+  const solEntries = Object.entries(solCount).sort((a,b) => b[1]-a[1]);
+  updateChart('chart-solutii', 'bar', {
+    labels: solEntries.map(([k]) => k.length > 28 ? k.substring(0,26)+'…' : k),
+    datasets: [{
+      data: solEntries.map(([,v]) => v),
+      backgroundColor: solEntries.map(([k]) => SOL_COLORS[k] || '#555'),
+      borderRadius: 4
+    }]
+  }, { indexAxis: 'y', plugins: { legend: { display: false } } });
+
+  // 3. Top 15 Organe emitente (Bar H)
+  const organCount = countBy(data, 'Organ emitent');
+  const organTop = Object.entries(organCount).sort((a,b) => b[1]-a[1]).slice(0,15);
+  updateChart('chart-organe', 'bar', {
+    labels: organTop.map(([k]) => k && k.length > 30 ? k.substring(0,28)+'…' : (k||'N/A')),
+    datasets: [{
+      data: organTop.map(([,v]) => v),
+      backgroundColor: CHART_COLORS.slice(0, organTop.length),
+      borderRadius: 3
+    }]
+  }, { indexAxis: 'y', plugins: { legend: { display: false } } });
+
+  // 4. Evoluție temporală (Line)
+  const byMonth = {};
+  data.forEach(r => {
+    const d = parseDate(r['Data doc.']);
+    if (!d) return;
+    const key = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
+    byMonth[key] = (byMonth[key]||0) + 1;
+  });
+  const months = Object.keys(byMonth).sort();
+  updateChart('chart-timp', 'line', {
+    labels: months,
+    datasets: [{
+      data: months.map(m => byMonth[m]),
+      borderColor: '#58a6ff',
+      backgroundColor: 'rgba(88,166,255,0.1)',
+      fill: true, tension: 0.3, pointRadius: 3
+    }]
+  }, { plugins: { legend: { display: false } } });
+
+  // 5. Suma sechestru MDL per tip bun (Bar)
+  const sumaPerTip = {};
+  data.forEach(r => {
+    const tip = r['Tip bun'] || 'N/A';
+    const v = parseFloat(String(r['Suma sechestru']||'0').replace(',','.'));
+    sumaPerTip[tip] = (sumaPerTip[tip]||0) + (isNaN(v)?0:v);
+  });
+  const sumaEntries = Object.entries(sumaPerTip).sort((a,b)=>b[1]-a[1]);
+  updateChart('chart-suma', 'bar', {
+    labels: sumaEntries.map(([k])=>k),
+    datasets: [{
+      data: sumaEntries.map(([,v])=>v),
+      backgroundColor: sumaEntries.map(([k]) => TIP_BUN_COLORS[k]||'#555'),
+      borderRadius: 4
+    }]
+  }, {
+    plugins: { legend: { display: false } },
+    scales: { y: { ticks: { callback: v => formatMDL(v) } } }
+  });
+
+  // 6. Distribuție pe Monedă (Pie)
+  const monCount = countBy(data, 'Moneda');
+  updateChart('chart-moneda', 'pie', {
+    labels: Object.keys(monCount),
+    datasets: [{
+      data: Object.values(monCount),
+      backgroundColor: CHART_COLORS,
+      borderWidth: 1, borderColor: '#161b22'
+    }]
+  }, {
+    plugins: { legend: { position: 'right', labels: { color: '#e6edf3', boxWidth: 12, font: { size: 11 } } } }
+  });
+}
+
+function updateChart(id, type, data, extraOpts) {
+  const canvas = document.getElementById(id);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  if (charts[id]) { charts[id].destroy(); }
+
+  const defaults = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { labels: { color: '#8b949e', font: { size: 11 } } },
+      tooltip: { backgroundColor: '#1c2130', titleColor: '#e6edf3', bodyColor: '#8b949e', borderColor: '#30363d', borderWidth: 1 }
+    },
+    scales: type === 'doughnut' || type === 'pie' ? {} : {
+      x: { ticks: { color: '#8b949e', font: { size: 10 } }, grid: { color: '#30363d' } },
+      y: { ticks: { color: '#8b949e', font: { size: 10 } }, grid: { color: '#30363d' } }
+    }
+  };
+
+  const opts = deepMerge(defaults, extraOpts || {});
+  charts[id] = new Chart(ctx, { type, data, options: opts });
+}
+
+// ============================================================
+// TABLE RENDERING
+// ============================================================
+function renderTable() {
+  const search = tableState.search;
+  let rows = FILTERED_DATA;
+
+  if (search) {
+    rows = rows.filter(r =>
+      COMMON_COLS.some(col => String(r[col]||'').toLowerCase().includes(search))
+    );
+  }
+
+  if (tableState.sortCol !== null) {
+    const col = tableState.sortCol;
+    const dir = tableState.sortDir === 'asc' ? 1 : -1;
+    rows = [...rows].sort((a,b) => {
+      const va = String(a[col]||''), vb = String(b[col]||'');
+      return va.localeCompare(vb, 'ro') * dir;
+    });
+  }
+
+  const ps = tableState.pageSize === 9999 ? rows.length : tableState.pageSize;
+  const totalPages = Math.max(1, Math.ceil(rows.length / ps));
+  if (tableState.page > totalPages) tableState.page = totalPages;
+  const start = (tableState.page - 1) * ps;
+  const pageRows = rows.slice(start, start + ps);
+
+  // Headers
+  const thead = document.getElementById('main-thead');
+  thead.innerHTML = '<tr>' + COMMON_COLS.map((col, i) => {
+    let cls = '';
+    if (tableState.sortCol === col) cls = tableState.sortDir === 'asc' ? 'sort-asc' : 'sort-desc';
+    return `<th class="${cls}" onclick="sortTable('${escHtml(col)}')">${escHtml(col)}</th>`;
+  }).join('') + '</tr>';
+
+  // Body
+  const tbody = document.getElementById('main-tbody');
+  tbody.innerHTML = pageRows.map(r => '<tr>' + COMMON_COLS.map(col => {
+    const val = r[col];
+    if (col === 'Solutia adoptata' && val) {
+      const color = SOL_COLORS[val] || '#555';
+      return `<td><span class="sol-chip" style="background:${color}22;color:${color};border:1px solid ${color}44">${escHtml(val)}</span></td>`;
+    }
+    if (col === 'Corp delict') {
+      return `<td>${val ? '<span style="color:var(--orange)">✓ Corp delict</span>' : ''}</td>`;
+    }
+    return `<td title="${escHtml(String(val||''))}">${escHtml(String(val||''))}</td>`;
+  }).join('') + '</tr>').join('');
+
+  renderPagination('pagination', tableState, totalPages, rows.length, () => renderTable());
+}
+
+function renderCategoryTabs() {
+  const tabMap = {
+    'auto': 'Auto', 'imobile': 'Imobile', 'cash': 'Cash',
+    'cripto': 'Cripto', 'conturi': 'Conturi', 'altele': 'Altele'
+  };
+
+  Object.entries(tabMap).forEach(([tabId, label]) => {
+    const tabData = FILTERED_DATA.filter(r => {
+      const catMap = {
+        'Auto': 'auto', 'Imobile': 'imobile', 'Cash': 'cash',
+        'Cripto': 'cripto', 'Conturi': 'conturi',
+        'CPT Social': 'altele', 'Tehnica': 'altele', 'Other': 'altele'
+      };
+      return catMap[r['Categorie']] === tabId;
+    });
+
+    if (!catStates[tabId]) {
+      catStates[tabId] = { sortCol: null, sortDir: 'asc', page: 1, pageSize: 50 };
+    }
+    const state = catStates[tabId];
+
+    let rows = tabData;
+    if (state.sortCol) {
+      const dir = state.sortDir === 'asc' ? 1 : -1;
+      rows = [...rows].sort((a,b) => String(a[state.sortCol]||'').localeCompare(String(b[state.sortCol]||''), 'ro') * dir);
+    }
+
+    const ps = state.pageSize;
+    const totalPages = Math.max(1, Math.ceil(rows.length / ps));
+    if (state.page > totalPages) state.page = totalPages;
+    const start = (state.page - 1) * ps;
+    const pageRows = rows.slice(start, start + ps);
+
+    // Get all columns from tab data
+    const allKeys = tabData.length > 0
+      ? [...new Set(tabData.flatMap(r => Object.keys(r)))]
+      : COMMON_COLS;
+
+    const thead = document.getElementById(`thead-${tabId}`);
+    const tbody = document.getElementById(`tbody-${tabId}`);
+    if (!thead || !tbody) return;
+
+    thead.innerHTML = '<tr>' + allKeys.map(col => {
+      let cls = state.sortCol === col ? (state.sortDir === 'asc' ? 'sort-asc' : 'sort-desc') : '';
+      return `<th class="${cls}" onclick="sortCatTable('${tabId}','${escHtml(col)}')">${escHtml(col)}</th>`;
+    }).join('') + '</tr>';
+
+    tbody.innerHTML = pageRows.map(r => '<tr>' + allKeys.map(col => {
+      const val = r[col];
+      if (col === 'Solutia adoptata' && val) {
+        const color = SOL_COLORS[val] || '#555';
+        return `<td><span class="sol-chip" style="background:${color}22;color:${color};border:1px solid ${color}44">${escHtml(val)}</span></td>`;
+      }
+      return `<td title="${escHtml(String(val||''))}">${escHtml(String(val||''))}</td>`;
+    }).join('') + '</tr>').join('');
+
+    renderPagination(`pag-${tabId}`, state, totalPages, rows.length, () => renderCategoryTabs());
+  });
+}
+
+function renderPagination(containerId, state, totalPages, total, renderFn) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  const start = (state.page - 1) * (state.pageSize === 9999 ? total : state.pageSize) + 1;
+  const end = Math.min(state.page * (state.pageSize === 9999 ? total : state.pageSize), total);
+
+  let html = `<span class="page-info">${start}–${end} din ${total.toLocaleString('ro')}</span>`;
+  html += `<button class="btn-page" onclick="changePage('${containerId}',${state.page-1})" ${state.page<=1?'disabled':''}>‹</button>`;
+
+  const range = getPagRange(state.page, totalPages);
+  range.forEach(p => {
+    if (p === '…') {
+      html += `<span class="page-info">…</span>`;
+    } else {
+      html += `<button class="btn-page ${p===state.page?'active':''}" onclick="changePage('${containerId}',${p})">${p}</button>`;
+    }
+  });
+
+  html += `<button class="btn-page" onclick="changePage('${containerId}',${state.page+1})" ${state.page>=totalPages?'disabled':''}>›</button>`;
+
+  container.innerHTML = html;
+  container._state = state;
+  container._renderFn = renderFn;
+}
+
+function changePage(containerId, page) {
+  const container = document.getElementById(containerId);
+  if (!container || !container._state) return;
+  container._state.page = page;
+  container._renderFn();
+}
+
+function getPagRange(current, total) {
+  if (total <= 7) return Array.from({length: total}, (_,i) => i+1);
+  const range = [];
+  if (current <= 4) {
+    for (let i = 1; i <= 5; i++) range.push(i);
+    range.push('…'); range.push(total);
+  } else if (current >= total - 3) {
+    range.push(1); range.push('…');
+    for (let i = total-4; i <= total; i++) range.push(i);
+  } else {
+    range.push(1); range.push('…');
+    for (let i = current-1; i <= current+1; i++) range.push(i);
+    range.push('…'); range.push(total);
+  }
+  return range;
+}
+
+function sortTable(col) {
+  if (tableState.sortCol === col) {
+    tableState.sortDir = tableState.sortDir === 'asc' ? 'desc' : 'asc';
+  } else {
+    tableState.sortCol = col;
+    tableState.sortDir = 'asc';
+  }
+  tableState.page = 1;
+  renderTable();
+}
+
+function sortCatTable(tabId, col) {
+  const state = catStates[tabId];
+  if (!state) return;
+  if (state.sortCol === col) {
+    state.sortDir = state.sortDir === 'asc' ? 'desc' : 'asc';
+  } else {
+    state.sortCol = col;
+    state.sortDir = 'asc';
+  }
+  state.page = 1;
+  renderCategoryTabs();
+}
+
+function changePageSize() {
+  tableState.pageSize = parseInt(document.getElementById('page-size').value);
+  tableState.page = 1;
+  renderTable();
+}
+
+// ============================================================
+// EXPORT
+// ============================================================
+function getExportData() {
+  // Apply table search too
+  const search = tableState.search;
+  if (!search) return FILTERED_DATA;
+  return FILTERED_DATA.filter(r =>
+    COMMON_COLS.some(col => String(r[col]||'').toLowerCase().includes(search))
+  );
+}
+
+function exportCSV() {
+  const rows = getExportData();
+  if (!rows.length) return alert('Nu există date de exportat.');
+  const keys = COMMON_COLS;
+  const lines = [keys.map(csvEsc).join(',')];
+  rows.forEach(r => lines.push(keys.map(k => csvEsc(String(r[k]||''))).join(',')));
+  download('arbi_export.csv', lines.join('\r\n'), 'text/csv;charset=utf-8;');
+}
+
+function exportXLSX() {
+  const rows = getExportData();
+  if (!rows.length) return alert('Nu există date de exportat.');
+  const ws = XLSX.utils.json_to_sheet(rows.map(r => {
+    const obj = {};
+    COMMON_COLS.forEach(k => obj[k] = r[k] !== null && r[k] !== undefined ? r[k] : '');
+    return obj;
+  }));
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Date');
+  XLSX.writeFile(wb, 'arbi_export.xlsx');
+}
+
+function exportJSON() {
+  const rows = getExportData();
+  if (!rows.length) return alert('Nu există date de exportat.');
+  const data = JSON.stringify(rows, null, 2);
+  download('arbi_export.json', data, 'application/json');
+}
+
+function download(filename, content, mime) {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob(['﻿' + content], { type: mime }));
+  a.download = filename;
+  a.click();
+}
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+function switchTab(el) {
+  document.querySelectorAll('.navtab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  const tabId = el.dataset.tab;
+  document.getElementById('tab-' + tabId).classList.add('active');
+}
+
+// ============================================================
+// UTILITIES
+// ============================================================
+function countBy(arr, key) {
+  const counts = {};
+  arr.forEach(r => {
+    const v = r[key] || 'N/A';
+    counts[v] = (counts[v]||0) + 1;
+  });
+  return counts;
+}
+
+function parseDate(v) {
+  if (!v) return null;
+  if (v instanceof Date) return v;
+  const s = String(v).trim();
+  // DD.MM.YYYY
+  const m = s.match(/^(\d{2})\.(\d{2})\.(\d{4})$/);
+  if (m) return new Date(m[3], m[2]-1, m[1]);
+  const d = new Date(s);
+  return isNaN(d) ? null : d;
+}
+
+function formatMDL(v) {
+  if (isNaN(v) || v === 0) return '0 MDL';
+  if (v >= 1e9) return (v/1e9).toFixed(2) + ' mlrd MDL';
+  if (v >= 1e6) return (v/1e6).toFixed(2) + ' mil MDL';
+  if (v >= 1e3) return (v/1e3).toFixed(1) + ' k MDL';
+  return v.toFixed(2) + ' MDL';
+}
+
+function escHtml(s) {
+  if (s === null || s === undefined) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function csvEsc(v) {
+  if (v.includes(',') || v.includes('"') || v.includes('\n')) {
+    return '"' + v.replace(/"/g, '""') + '"';
+  }
+  return v;
+}
+
+function deepMerge(target, source) {
+  const out = Object.assign({}, target);
+  for (const key of Object.keys(source)) {
+    if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key])) {
+      out[key] = deepMerge(target[key] || {}, source[key]);
+    } else {
+      out[key] = source[key];
+    }
+  }
+  return out;
+}
+</script>
+</body>
+</html>
