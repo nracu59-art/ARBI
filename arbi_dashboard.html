@@ -209,6 +209,47 @@ body {
 .mdf-clear { background: none; border: none; color: var(--red); cursor: pointer; font-size: 0.75rem; padding: 0; }
 .mdf-clear:hover { text-decoration: underline; }
 
+/* AUTO-MULTI-DROP */
+.amd { position: relative; }
+.amd-box {
+  display: flex; flex-wrap: wrap; gap: 0.25rem; align-items: center;
+  background: var(--bg3); border: 1px solid var(--border); border-radius: 5px;
+  padding: 0.2rem 0.4rem; min-height: 1.9rem; cursor: text; transition: border-color 0.15s;
+}
+.amd.open .amd-box, .amd-box:focus-within { border-color: var(--accent); }
+.amd-tag {
+  display: inline-flex; align-items: center; gap: 0.2rem;
+  background: var(--accent); color: var(--bg); border-radius: 10px;
+  font-size: 0.68rem; font-weight: 600; padding: 0.1rem 0.4rem; white-space: nowrap; max-width: 140px;
+}
+.amd-tag span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.amd-tag-x { background: none; border: none; color: var(--bg); cursor: pointer; font-size: 0.8rem; padding: 0 0 0 0.1rem; line-height: 1; opacity: 0.8; }
+.amd-tag-x:hover { opacity: 1; }
+.amd-input {
+  border: none; background: transparent; color: var(--text);
+  font-size: 0.82rem; outline: none; min-width: 70px; flex: 1; padding: 0.05rem 0;
+}
+.amd-input::placeholder { color: var(--text2); }
+.amd-panel {
+  display: none; position: absolute; left: 0; right: 0; top: calc(100% + 3px);
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 6px;
+  z-index: 200; box-shadow: 0 6px 20px var(--shadow);
+  flex-direction: column; max-height: 220px;
+}
+.amd.open .amd-panel { display: flex; }
+.amd-list { overflow-y: auto; flex: 1; padding: 0.3rem; }
+.amd-empty { padding: 0.5rem; font-size: 0.8rem; color: var(--text2); text-align: center; }
+.amd-footer {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0.25rem 0.55rem; border-top: 1px solid var(--border);
+  font-size: 0.73rem; color: var(--text2); flex-shrink: 0;
+}
+
+/* KPI CATEGORY BREAKDOWN */
+.kpi-cat-list { display: flex; flex-wrap: wrap; gap: 0.2rem; margin-top: 0.45rem; }
+.kpi-cat-chip { font-size: 0.68rem; color: var(--text2); background: var(--bg3); border-radius: 4px; padding: 0.1rem 0.35rem; white-space: nowrap; }
+.kpi-cat-chip b { color: var(--text); }
+
 /* FILTER COUNTER + RESET */
 .filter-counter { font-size: 0.75rem; color: var(--accent); font-weight: 700; padding: 0.25rem 0; border-top: 1px solid var(--border); }
 .btn-reset {
@@ -471,19 +512,58 @@ tbody td {
       <!-- CAUZA PENALĂ -->
       <div class="filter-group">
         <div class="filter-label">Cauza penală</div>
-        <input type="text" class="filter-input" id="filter-cauza" placeholder="ex: 2025670019">
+        <div class="amd" id="amd-cauza">
+          <div class="amd-box" onclick="amdBoxClick(event,'amd-cauza')">
+            <div class="amd-tags" id="amd-tags-cauza"></div>
+            <input type="text" class="amd-input" id="amd-inp-cauza" placeholder="Caută cauza..."
+                   autocomplete="off" oninput="amdSearch('amd-cauza',this.value)" onfocus="amdOpen('amd-cauza',this.value)">
+          </div>
+          <div class="amd-panel" id="amd-panel-cauza">
+            <div class="amd-list" id="amd-list-cauza"></div>
+            <div class="amd-footer">
+              <span id="amd-cnt-cauza">0 selectate</span>
+              <button class="mdf-clear" onclick="amdClear('amd-cauza')">Șterge tot</button>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- IDNP/IDNO -->
       <div class="filter-group">
         <div class="filter-label">IDNP/IDNO</div>
-        <input type="text" class="filter-input" id="filter-idnp" placeholder="ex: 2011002001151">
+        <div class="amd" id="amd-idnp">
+          <div class="amd-box" onclick="amdBoxClick(event,'amd-idnp')">
+            <div class="amd-tags" id="amd-tags-idnp"></div>
+            <input type="text" class="amd-input" id="amd-inp-idnp" placeholder="Caută IDNP/IDNO..."
+                   autocomplete="off" oninput="amdSearch('amd-idnp',this.value)" onfocus="amdOpen('amd-idnp',this.value)">
+          </div>
+          <div class="amd-panel" id="amd-panel-idnp">
+            <div class="amd-list" id="amd-list-idnp"></div>
+            <div class="amd-footer">
+              <span id="amd-cnt-idnp">0 selectate</span>
+              <button class="mdf-clear" onclick="amdClear('amd-idnp')">Șterge tot</button>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- PROPRIETAR NUME/PRENUME -->
       <div class="filter-group">
         <div class="filter-label">Proprietar Nume/Prenume</div>
-        <input type="text" class="filter-input" id="filter-nume" placeholder="ex: HARCEVNICOV">
+        <div class="amd" id="amd-nume">
+          <div class="amd-box" onclick="amdBoxClick(event,'amd-nume')">
+            <div class="amd-tags" id="amd-tags-nume"></div>
+            <input type="text" class="amd-input" id="amd-inp-nume" placeholder="Caută nume..."
+                   autocomplete="off" oninput="amdSearch('amd-nume',this.value)" onfocus="amdOpen('amd-nume',this.value)">
+          </div>
+          <div class="amd-panel" id="amd-panel-nume">
+            <div class="amd-list" id="amd-list-nume"></div>
+            <div class="amd-footer">
+              <span id="amd-cnt-nume">0 selectate</span>
+              <button class="mdf-clear" onclick="amdClear('amd-nume')">Șterge tot</button>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- PERIOADĂ QUICK-SELECT -->
@@ -791,6 +871,87 @@ const DROP_DEFS = {
   'drop-posesie': { listId: 'list-posesie', cntId: 'cnt-posesie', field: 'Tip posesie',       cls: 'f-pos', colorMap: null }
 };
 
+const AMD_DEFS = {
+  'amd-cauza': { fields: ['Cauza penala'], inputId: 'amd-inp-cauza', listId: 'amd-list-cauza', tagsId: 'amd-tags-cauza', cntId: 'amd-cnt-cauza', selected: new Set() },
+  'amd-idnp':  { fields: ['IDNP/IDNO'],   inputId: 'amd-inp-idnp',  listId: 'amd-list-idnp',  tagsId: 'amd-tags-idnp',  cntId: 'amd-cnt-idnp',  selected: new Set() },
+  'amd-nume':  { fields: ['Nume proprietar','Prenume proprietar','Nume/Denumire'],
+                 inputId: 'amd-inp-nume',  listId: 'amd-list-nume',  tagsId: 'amd-tags-nume',  cntId: 'amd-cnt-nume',  selected: new Set() }
+};
+
+function initAMD() {
+  Object.entries(AMD_DEFS).forEach(([id, def]) => {
+    const allVals = new Set();
+    ALL_DATA.forEach(r => def.fields.forEach(f => {
+      const v = (r[f] || '').trim();
+      if (v) allVals.add(v);
+    }));
+    def.allValues = [...allVals].sort();
+    amdRenderList(id, def.allValues);
+  });
+}
+
+function amdRenderList(id, values) {
+  const def = AMD_DEFS[id];
+  const list = document.getElementById(def.listId);
+  if (!values.length) { list.innerHTML = '<div class="amd-empty">Nicio valoare</div>'; return; }
+  list.innerHTML = values.map(v => {
+    const chk = def.selected.has(v) ? 'checked' : '';
+    return `<label class="mdi-item"><input type="checkbox" ${chk} value="${escHtml(v)}" onchange="amdToggle('${id}','${escHtml(v).replace(/'/g,"\\'")}',this.checked)"><span>${escHtml(v)}</span></label>`;
+  }).join('');
+}
+
+function amdSearch(id, query) {
+  const def = AMD_DEFS[id];
+  const q = query.trim().toLowerCase();
+  const filtered = q ? def.allValues.filter(v => v.toLowerCase().includes(q)) : def.allValues;
+  amdRenderList(id, filtered);
+  document.getElementById(id).classList.add('open');
+}
+
+function amdOpen(id, query) {
+  amdSearch(id, query);
+}
+
+function amdBoxClick(e, id) {
+  if (e.target.classList.contains('amd-tag-x')) return;
+  document.getElementById(`${AMD_DEFS[id].inputId}`).focus();
+  amdOpen(id, document.getElementById(AMD_DEFS[id].inputId).value);
+}
+
+function amdToggle(id, value, checked) {
+  const def = AMD_DEFS[id];
+  if (checked) def.selected.add(value); else def.selected.delete(value);
+  amdUpdateTags(id);
+  applyFilters();
+}
+
+function amdUpdateTags(id) {
+  const def = AMD_DEFS[id];
+  const tagsEl = document.getElementById(def.tagsId);
+  const cntEl  = document.getElementById(def.cntId);
+  const n = def.selected.size;
+  tagsEl.innerHTML = [...def.selected].map(v =>
+    `<span class="amd-tag"><span>${escHtml(v)}</span><button class="amd-tag-x" onclick="amdToggle('${id}','${escHtml(v).replace(/'/g,"\\'")}',false)">×</button></span>`
+  ).join('');
+  if (cntEl) cntEl.textContent = `${n} selectate`;
+  const inp = document.getElementById(def.inputId);
+  if (n > 0) inp.placeholder = '';
+  else inp.placeholder = inp.getAttribute('data-placeholder') || '';
+}
+
+function amdClear(id) {
+  const def = AMD_DEFS[id];
+  def.selected.clear();
+  document.getElementById(def.inputId).value = '';
+  amdUpdateTags(id);
+  amdRenderList(id, def.allValues || []);
+  applyFilters();
+}
+
+function amdClose(id) {
+  document.getElementById(id).classList.remove('open');
+}
+
 function initDropdowns() {
   Object.entries(DROP_DEFS).forEach(([dropId, def]) => {
     const values = [...new Set(ALL_DATA.map(r => r[def.field]).filter(v => v !== null && v !== undefined && String(v).trim() !== ''))].sort();
@@ -798,6 +959,7 @@ function initDropdowns() {
     list.innerHTML = values.map(v => buildDropItem(v, def.cls, def.colorMap)).join('');
     list.querySelectorAll('input').forEach(cb => cb.addEventListener('change', () => { updateDropBtn(dropId); applyFilters(); }));
   });
+  initAMD();
 }
 
 function buildDropItem(v, cls, colorMap) {
@@ -853,6 +1015,9 @@ document.addEventListener('click', e => {
   if (!e.target.closest('.multi-drop')) {
     document.querySelectorAll('.multi-drop.open').forEach(d => d.classList.remove('open'));
   }
+  if (!e.target.closest('.amd')) {
+    document.querySelectorAll('.amd.open').forEach(d => d.classList.remove('open'));
+  }
 });
 
 // ============================================================
@@ -886,9 +1051,13 @@ function fmtDate(d) {
 // FILTERS
 // ============================================================
 function initFilterListeners() {
-  ['filter-corp','filter-cauza','filter-idnp','filter-nume',
-   'filter-date-from','filter-date-to'].forEach(id => {
+  ['filter-corp','filter-date-from','filter-date-to'].forEach(id => {
     document.getElementById(id).addEventListener('input', applyFilters);
+  });
+  // Store placeholders for AMD inputs so amdUpdateTags can restore them
+  ['amd-inp-cauza','amd-inp-idnp','amd-inp-nume'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.setAttribute('data-placeholder', el.placeholder);
   });
   document.getElementById('table-search').addEventListener('input', e => {
     tableState.search = e.target.value.toLowerCase();
@@ -898,6 +1067,12 @@ function initFilterListeners() {
 }
 
 function getActiveFilters() {
+  const amdVal = id => {
+    const def = AMD_DEFS[id];
+    const sel = [...def.selected];
+    const inp = document.getElementById(def.inputId).value.trim().toLowerCase();
+    return { sel, inp };
+  };
   return {
     solutii:  getDropValues('f-sol'),
     tipuri:   getDropValues('f-tip'),
@@ -905,9 +1080,9 @@ function getActiveFilters() {
     monede:   getDropValues('f-mon'),
     posesii:  getDropValues('f-pos'),
     corp:     document.getElementById('filter-corp').value,
-    cauza:    document.getElementById('filter-cauza').value.trim().toLowerCase(),
-    idnp:     document.getElementById('filter-idnp').value.trim().toLowerCase(),
-    nume:     document.getElementById('filter-nume').value.trim().toLowerCase(),
+    cauza:    amdVal('amd-cauza'),
+    idnp:     amdVal('amd-idnp'),
+    nume:     amdVal('amd-nume'),
     dateFrom: document.getElementById('filter-date-from').value,
     dateTo:   document.getElementById('filter-date-to').value
   };
@@ -923,10 +1098,25 @@ function applyFilters() {
     if (f.posesii.length  && !f.posesii.includes(r['Tip posesie']))        return false;
     if (f.corp === 'da'   && !r['Corp delict'])  return false;
     if (f.corp === 'nu'   &&  r['Corp delict'])  return false;
-    if (f.cauza && !(r['Cauza penala']||'').toLowerCase().includes(f.cauza)) return false;
-    if (f.idnp  && !(r['IDNP/IDNO']||'').toLowerCase().includes(f.idnp))    return false;
-    if (f.nume) {
-      const n = f.nume;
+    // Cauza penală — multi-select (exact) or text search (partial)
+    if (f.cauza.sel.length) {
+      if (!f.cauza.sel.includes(r['Cauza penala'])) return false;
+    } else if (f.cauza.inp) {
+      if (!(r['Cauza penala']||'').toLowerCase().includes(f.cauza.inp)) return false;
+    }
+    // IDNP/IDNO — multi-select (exact) or text search (partial)
+    if (f.idnp.sel.length) {
+      if (!f.idnp.sel.includes(r['IDNP/IDNO'])) return false;
+    } else if (f.idnp.inp) {
+      if (!(r['IDNP/IDNO']||'').toLowerCase().includes(f.idnp.inp)) return false;
+    }
+    // Proprietar Nume/Prenume — multi-select (any selected value in any name field) or text search
+    if (f.nume.sel.length) {
+      const cols = ['Nume proprietar','Prenume proprietar','Nume/Denumire'];
+      const rVals = cols.map(c => (r[c]||'').trim());
+      if (!f.nume.sel.some(sel => rVals.includes(sel))) return false;
+    } else if (f.nume.inp) {
+      const n = f.nume.inp;
       if (!((r['Nume proprietar']||'').toLowerCase().includes(n) ||
             (r['Prenume proprietar']||'').toLowerCase().includes(n) ||
             (r['Nume/Denumire']||'').toLowerCase().includes(n))) return false;
@@ -950,8 +1140,8 @@ function applyFilters() {
 
 function resetFilters() {
   Object.keys(DROP_DEFS).forEach(id => clearDrop(id));
-  ['filter-corp','filter-cauza','filter-idnp','filter-nume',
-   'filter-date-from','filter-date-to'].forEach(id => document.getElementById(id).value = '');
+  Object.keys(AMD_DEFS).forEach(id => amdClear(id));
+  ['filter-corp','filter-date-from','filter-date-to'].forEach(id => document.getElementById(id).value = '');
   document.querySelectorAll('.btn-period').forEach(b => b.classList.remove('active'));
   document.querySelector('.btn-period:last-child').classList.add('active');
   document.getElementById('table-search').value = '';
@@ -992,10 +1182,20 @@ function updateDashboard() {
   const cauzeUnice = new Set(data.map(r => r['Cauza penala']).filter(Boolean)).size;
   const persoaneUnice = new Set(data.map(r => r['IDNP/IDNO']).filter(Boolean)).size;
 
+  // Per-category counts for breakdown
+  const catCounts = {};
+  SHEET_DEFS.forEach(def => { catCounts[def.label] = 0; });
+  data.forEach(r => { if (catCounts[r['Categorie']] !== undefined) catCounts[r['Categorie']]++; });
+  const catBreakdown = SHEET_DEFS
+    .filter(def => catCounts[def.label] > 0)
+    .map(def => `<span class="kpi-cat-chip">${def.label}: <b>${catCounts[def.label].toLocaleString('ro')}</b></span>`)
+    .join('');
+
   document.getElementById('kpi-grid').innerHTML = `
     <div class="kpi-card">
       <div class="kpi-label">Total Bunuri</div>
       <div class="kpi-value">${totalBunuri.toLocaleString('ro')}</div>
+      ${catBreakdown ? `<div class="kpi-cat-list">${catBreakdown}</div>` : ''}
     </div>
     <div class="kpi-card">
       <div class="kpi-label">Suma Sechestru (MDL)</div>
