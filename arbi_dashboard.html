@@ -984,7 +984,7 @@ function updateDashboard() {
 
   // FIX: sum directly from Suma sechestru column
   const sumaMDL = data.reduce((acc, r) => {
-    const v = parseFloat(String(r['Suma sechestru']||'0').replace(',','.'));
+    const v = parseFloat(String(r['Suma sechestru']||'0').replace(/,/g,''));
     return acc + (isNaN(v) ? 0 : v);
   }, 0);
 
@@ -1038,7 +1038,7 @@ function renderCharts(data) {
     arr.forEach(r => {
       const k = r[field] || 'N/A';
       if (mode === 'value') {
-        const v = parseFloat(String(r['Suma sechestru']||'0').replace(',','.'));
+        const v = parseFloat(String(r['Suma sechestru']||'0').replace(/,/g,''));
         res[k] = (res[k]||0) + (isNaN(v) ? 0 : v);
       } else {
         res[k] = (res[k]||0) + 1;
@@ -1126,7 +1126,7 @@ function renderCharts(data) {
       ? `${d.getFullYear()}`
       : `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
     byPeriod[key]    = (byPeriod[key]||0) + 1;
-    const v = parseFloat(String(r['Suma sechestru']||'0').replace(',','.'));
+    const v = parseFloat(String(r['Suma sechestru']||'0').replace(/,/g,''));
     byPeriodVal[key] = (byPeriodVal[key]||0) + (isNaN(v)?0:v);
   });
   const periods = Object.keys(byPeriod).sort();
@@ -1163,7 +1163,7 @@ function renderCharts(data) {
   const sumaPerTip = {};
   data.forEach(r => {
     const tip = r['Tip bun'] || 'N/A';
-    const v = parseFloat(String(r['Suma sechestru']||'0').replace(',','.'));
+    const v = parseFloat(String(r['Suma sechestru']||'0').replace(/,/g,''));
     sumaPerTip[tip] = (sumaPerTip[tip]||0) + (isNaN(v)?0:v);
   });
   const sumaEntries = Object.entries(sumaPerTip).sort((a,b)=>b[1]-a[1]);
