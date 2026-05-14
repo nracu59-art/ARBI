@@ -600,7 +600,9 @@ tbody td {
 // ============================================================
 // REGISTER DATALABELS PLUGIN
 // ============================================================
-Chart.register(ChartDataLabels);
+const HAS_CHARTS = typeof Chart !== 'undefined';
+const HAS_DATALABELS = HAS_CHARTS && typeof ChartDataLabels !== 'undefined';
+if (HAS_DATALABELS) { try { Chart.register(ChartDataLabels); } catch(e) { /* ignore */ } }
 
 // ============================================================
 // DATA STORE
@@ -710,6 +712,10 @@ function reloadFile() {
 
 function loadFile(file) {
   const prog = document.getElementById('upload-progress');
+  if (typeof XLSX === 'undefined') {
+    prog.textContent = 'Eroare: biblioteca SheetJS nu s-a încărcat. Verificați conexiunea la internet.';
+    return;
+  }
   prog.textContent = 'Se procesează fișierul...';
   const reader = new FileReader();
   reader.onload = e => {
@@ -730,6 +736,12 @@ function loadFile(file) {
 // ============================================================
 // PARSE WORKBOOK
 // ============================================================
+// Strip Excel's leading apostrophe prefix from cell string values
+function cleanCell(v) {
+  if (typeof v !== 'string') return v;
+  return v.replace(/^'+/, '').trim();
+}
+
 function parseWorkbook(wb) {
   ALL_DATA = [];
   SHEET_DEFS.forEach(def => {
@@ -737,9 +749,16 @@ function parseWorkbook(wb) {
     if (!ws) return;
     const rows = XLSX.utils.sheet_to_json(ws, { header: 1, defval: null, raw: false });
     let headerRow = null, dataStartRow = 0;
-    for (let i = 0; i < Math.min(rows.length, 6); i++) {
-      if (rows[i] && rows[i][0] === 'Tip document') {
-        headerRow = rows[i]; dataStartRow = i + 2; break;
+    for (let i = 0; i < Math.min(rows.length, 10); i++) {
+      if (!rows[i]) continue;
+      const cell0 = cleanCell(String(rows[i][0] || ''));
+      if (cell0 === 'Tip document') {
+        // find actual data start: skip blank rows after header
+        let start = i + 1;
+        while (start < rows.length && (!rows[start] || rows[start].every(v => v === null || v === ''))) start++;
+        headerRow = rows[i].map(h => h ? cleanCell(String(h)) : h);
+        dataStartRow = start;
+        break;
       }
     }
     if (!headerRow) return;
@@ -747,7 +766,12 @@ function parseWorkbook(wb) {
       const row = rows[i];
       if (!row || row.every(v => v === null || v === '')) continue;
       const rec = { Categorie: def.label };
-      headerRow.forEach((h, idx) => { if (h) rec[h] = row[idx] !== undefined ? row[idx] : null; });
+      headerRow.forEach((h, idx) => {
+        if (h) {
+          const v = row[idx];
+          rec[h] = (v === null || v === undefined) ? null : cleanCell(String(v));
+        }
+      });
       ALL_DATA.push(rec);
     }
   });
@@ -1187,6 +1211,7 @@ function renderCharts(data) {
 }
 
 function updateChart(id, type, data, extraOpts, C) {
+  if (!HAS_CHARTS) return;
   const canvas = document.getElementById(id);
   if (!canvas) return;
   if (charts[id]) { charts[id].destroy(); delete charts[id]; }
