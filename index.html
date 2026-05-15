@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Aplicații</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', 'Segoe UI', Roboto, sans-serif;
+            background-color: #080c1a;
+            background-image:
+                radial-gradient(ellipse 80% 50% at 20% -10%, rgba(59,130,246,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 40% at 80% 110%, rgba(139,92,246,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse 40% 60% at 50% 50%, rgba(16,185,129,0.04) 0%, transparent 70%);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .glass-header {
+            background: rgba(8, 12, 26, 0.75);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .app-card {
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+                        border-color 0.2s ease,
+                        box-shadow 0.2s ease;
+            cursor: pointer;
+        }
+        .app-card:hover {
+            transform: translateY(-6px) scale(1.04);
+            border-color: rgba(255, 255, 255, 0.18) !important;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.06);
+        }
+        .app-card:active {
+            transform: translateY(0) scale(0.97);
+        }
+
+        .icon-glow-wrap {
+            position: relative;
+        }
+        .icon-glow-wrap::after {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 22px;
+            opacity: 0;
+            filter: blur(16px);
+            background: var(--glow-bg, #3b82f6);
+            z-index: -1;
+            transition: opacity 0.25s ease;
+        }
+        .app-card:hover .icon-glow-wrap::after {
+            opacity: 0.5;
+        }
+
+        .app-actions {
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            pointer-events: none;
+        }
+        .app-card-wrapper:hover .app-actions {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Modal — always flex, toggled via .is-open */
+        #add-modal {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+        }
+        #add-modal.is-open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        #modal-content {
+            transform: scale(0.95) translateY(10px);
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        #add-modal.is-open #modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .color-swatch { cursor: pointer; }
+        .color-swatch input[type="radio"] { display: none; }
+        .color-dot {
+            display: block;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            transition: transform 0.15s ease;
+        }
+        .color-dot:hover { transform: scale(1.12); }
+        .color-swatch input[type="radio"]:checked + .color-dot {
+            outline: 2px solid white;
+            outline-offset: 2px;
+            transform: scale(1.15);
+        }
+
+        .icon-option {
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            font-size: 20px;
+            transition: all 0.15s ease;
+            background: transparent;
+        }
+        .icon-option:hover {
+            background: rgba(255,255,255,0.07);
+            color: white;
+        }
+        .icon-option.selected {
+            border-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.15);
+            color: white;
+        }
+
+        .search-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.4);
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+
+        #icon-selector {
+            max-height: 152px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255,255,255,0.12) transparent;
+        }
+
+        .add-btn-card {
+            transition: all 0.2s ease;
+        }
+        .add-btn-card:hover {
+            border-color: rgba(255,255,255,0.4) !important;
+            background: rgba(255,255,255,0.05);
+            transform: translateY(-5px);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ─── Header ─────────────────────────────────────────────────────────── -->
+    <header class="glass-header w-full px-5 py-3 flex items-center gap-4 z-40 sticky top-0">
+        <div class="flex items-center gap-2 shrink-0">
+            <i class="ph ph-squares-four text-blue-400 text-2xl"></i>
+            <span class="text-base font-semibold tracking-wide">Portal Control</span>
+        </div>
+
+        <div class="flex-1 flex justify-center">
+            <div class="relative w-full max-w-xs">
+                <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm pointer-events-none"></i>
+                <input id="search-input" type="search" placeholder="Caută aplicație..."
+                    class="search-input w-full bg-white/5 border border-white/10 rounded-xl pl-9 pr-4 py-2 text-sm text-white placeholder-gray-600 transition-all">
+            </div>
+        </div>
+
+        <div class="flex items-center gap-3 shrink-0">
+            <div class="text-right hidden sm:block">
+                <div id="current-time" class="text-sm font-semibold text-gray-200 tabular-nums">00:00</div>
+                <div id="current-date" class="text-xs text-gray-500">01 Ian 2026</div>
+            </div>
+            <div class="w-px h-7 bg-white/10 hidden sm:block"></div>
+            <button onclick="openModal()" class="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 active:bg-blue-700 transition px-4 py-2 rounded-xl text-sm font-medium shadow-lg shadow-blue-500/20">
+                <i class="ph ph-plus-circle text-base"></i>
+                <span class="hidden sm:inline">Adaugă App</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ─── Main grid ──────────────────────────────────────────────────────── -->
+    <main class="w-full p-6 sm:p-10">
+        <div class="max-w-6xl mx-auto">
+            <p class="text-center text-gray-600 text-xs mb-8 tracking-widest uppercase font-medium">Aplicații disponibile</p>
+            <div id="apps-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 justify-items-center">
+                <!-- Rendered by JS -->
+            </div>
+        </div>
+    </main>
+
+    <!-- ─── Modal ──────────────────────────────────────────────────────────── -->
+    <div id="add-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm">
+        <div id="modal-content" class="glass-panel bg-slate-900/90 w-full max-w-lg rounded-2xl p-6 shadow-2xl border border-slate-700/60 mx-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-5">
+                <h3 class="text-base font-semibold" id="modal-title">Adaugă Aplicație</h3>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-white transition w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/10">
+                    <i class="ph ph-x text-base"></i>
+                </button>
+            </div>
+
+            <form id="app-form" onsubmit="handleFormSubmit(event)">
+                <input type="hidden" id="edit-app-id">
+                <div class="space-y-5">
+
+                    <!-- Name -->
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-400 mb-1.5 uppercase tracking-wider">Nume Aplicație</label>
+                        <input type="text" id="app-name" required maxlength="40"
+                            class="w-full bg-slate-800/80 border border-slate-700 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/40 transition placeholder-gray-600"
+                            placeholder="ex: Calculator Salarii">
+                    </div>
+
+                    <!-- URL + Browse -->
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-400 mb-1.5 uppercase tracking-wider">Cale / Link Fișier</label>
+                        <div class="flex gap-2">
+                            <input type="text" id="app-url" required
+                                class="flex-1 bg-slate-800/80 border border-slate-700 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/40 transition placeholder-gray-600"
+                                placeholder="./aplicatia_mea.html sau https://...">
+                            <button type="button" onclick="triggerFilePicker()"
+                                class="shrink-0 bg-slate-700/80 hover:bg-slate-600 border border-slate-600 rounded-xl px-3 py-2.5 text-gray-300 hover:text-white transition flex items-center gap-1.5 text-sm">
+                                <i class="ph ph-folder-open text-base"></i>
+                                <span class="hidden sm:inline">Răsfoiește</span>
+                            </button>
+                        </div>
+                        <input type="file" id="file-picker" accept=".html,.htm" class="hidden">
+                        <p class="text-xs text-gray-600 mt-1.5 leading-relaxed">
+                            <i class="ph ph-info inline mr-0.5"></i>
+                            Plasează fișierele în același folder cu portalul pentru căi relative, sau folosește calea completă:
+                            <code class="text-gray-500 font-mono">file:///C:/cale/app.html</code>
+                        </p>
+                    </div>
+
+                    <!-- Color -->
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-400 mb-2 uppercase tracking-wider">Culoare</label>
+                        <div class="flex flex-wrap gap-2" id="color-selector"></div>
+                    </div>
+
+                    <!-- Icons -->
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-400 mb-2 uppercase tracking-wider">Iconiță</label>
+                        <div class="grid grid-cols-7 gap-1 pr-1" id="icon-selector"></div>
+                        <p id="icon-error" class="text-xs text-red-400 mt-1.5 hidden">
+                            <i class="ph ph-warning inline mr-1"></i>Selectează o iconiță.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-6 flex justify-end gap-3">
+                    <button type="button" onclick="closeModal()" class="px-4 py-2.5 rounded-xl text-sm text-gray-400 hover:text-white hover:bg-slate-700 transition">Anulează</button>
+                    <button type="submit" id="submit-btn" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 active:bg-blue-700 rounded-xl text-sm text-white font-semibold shadow-lg shadow-blue-500/20 transition">Adaugă</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ─── Script ─────────────────────────────────────────────────────────── -->
+    <script>
+
+    // ── Constants ────────────────────────────────────────────────────────────
+
+    const ALLOWED_COLORS = new Map([
+        ['bg-blue-500',    '#3b82f6'],
+        ['bg-indigo-500',  '#6366f1'],
+        ['bg-violet-500',  '#8b5cf6'],
+        ['bg-cyan-500',    '#06b6d4'],
+        ['bg-teal-500',    '#14b8a6'],
+        ['bg-emerald-500', '#10b981'],
+        ['bg-green-500',   '#22c55e'],
+        ['bg-pink-500',    '#ec4899'],
+        ['bg-rose-500',    '#f43f5e'],
+        ['bg-orange-500',  '#f97316'],
+        ['bg-amber-500',   '#f59e0b'],
+        ['bg-slate-500',   '#64748b'],
+    ]);
+
+    const ALLOWED_ICONS = [
+        { id: 'ph-chart-pie-slice',      label: 'Dashboard' },
+        { id: 'ph-chart-bar',            label: 'Statistici' },
+        { id: 'ph-chart-line-up',        label: 'Tendinte' },
+        { id: 'ph-table',                label: 'Tabel' },
+        { id: 'ph-file-text',            label: 'Document' },
+        { id: 'ph-notepad',              label: 'Notite' },
+        { id: 'ph-clipboard-text',       label: 'Sarcini' },
+        { id: 'ph-calendar',             label: 'Calendar' },
+        { id: 'ph-envelope-simple-open', label: 'Scrisori' },
+        { id: 'ph-envelope',             label: 'Email' },
+        { id: 'ph-chat-circle-text',     label: 'Mesaje' },
+        { id: 'ph-phone',                label: 'Telefon' },
+        { id: 'ph-users',                label: 'Echipa' },
+        { id: 'ph-user-circle',          label: 'Profil' },
+        { id: 'ph-address-book',         label: 'Contacte' },
+        { id: 'ph-identification-card',  label: 'HR/Acte' },
+        { id: 'ph-currency-dollar',      label: 'Finante' },
+        { id: 'ph-coins',                label: 'Buget' },
+        { id: 'ph-bank',                 label: 'Banca' },
+        { id: 'ph-scales',               label: 'Juridic' },
+        { id: 'ph-receipt',              label: 'Facturi' },
+        { id: 'ph-hand-coins',           label: 'Plati' },
+        { id: 'ph-shield-check',         label: 'Securitate' },
+        { id: 'ph-lock-simple',          label: 'Acces' },
+        { id: 'ph-key',                  label: 'Autentificare' },
+        { id: 'ph-fingerprint',          label: 'Identitate' },
+        { id: 'ph-database',             label: 'Baze de date' },
+        { id: 'ph-cloud',                label: 'Cloud' },
+        { id: 'ph-gear',                 label: 'Setari' },
+        { id: 'ph-terminal-window',      label: 'Terminal' },
+        { id: 'ph-code',                 label: 'Cod' },
+        { id: 'ph-map-pin',              label: 'Locatii' },
+        { id: 'ph-globe',                label: 'Web' },
+        { id: 'ph-truck',                label: 'Logistica' },
+        { id: 'ph-archive-box',          label: 'Arhiva' },
+    ];
+
+    const ALLOWED_ICON_IDS = new Set(ALLOWED_ICONS.map(i => i.id));
+
+    const DEFAULT_APPS = [
+        { id: 1, name: 'ARBI Dashboard',          url: './ARBI Dashboard.html',           icon: 'ph-chart-pie-slice',      color: 'bg-indigo-500' },
+        { id: 2, name: 'Scrisori Bănci',           url: './scrisori bănci_2.html',          icon: 'ph-envelope-simple-open', color: 'bg-emerald-500' },
+        { id: 3, name: 'Evidența Delegațiilor',    url: './EVIDENȚA DELEGATIILOR.html',     icon: 'ph-users',                color: 'bg-blue-500' },
+    ];
+
+    // ── State ─────────────────────────────────────────────────────────────────
+
+    const AppState = {
+        apps: [],
+
+        load() {
+            try {
+                const saved = localStorage.getItem('portal_apps_v2');
+                this.apps = saved ? JSON.parse(saved) : [...DEFAULT_APPS];
+            } catch {
+                this.apps = [...DEFAULT_APPS];
+            }
+        },
+        save() {
+            localStorage.setItem('portal_apps_v2', JSON.stringify(this.apps));
+        },
+        addApp(data) {
+            this.apps.push({ id: Date.now(), ...data });
+            this.save();
+        },
+        updateApp(id, changes) {
+            this.apps = this.apps.map(a => String(a.id) === String(id) ? { ...a, ...changes } : a);
+            this.save();
+        },
+        deleteApp(id) {
+            this.apps = this.apps.filter(a => String(a.id) !== String(id));
+            this.save();
+        },
+        getById(id) {
+            return this.apps.find(a => String(a.id) === String(id));
+        },
+    };
+
+    // ── Rendering ─────────────────────────────────────────────────────────────
+
+    function renderApps(query = '') {
+        const grid = document.getElementById('apps-grid');
+        grid.innerHTML = '';
+
+        const q = normalizeDiacritics(query);
+        const filtered = q
+            ? AppState.apps.filter(a => normalizeDiacritics(a.name).includes(q))
+            : AppState.apps;
+
+        if (AppState.apps.length === 0) {
+            grid.appendChild(createEmptyState('Nu există aplicații. Adaugă prima!'));
+        } else if (filtered.length === 0) {
+            grid.appendChild(createEmptyState('Niciun rezultat pentru „' + query + '"'));
+        } else {
+            filtered.forEach(app => grid.appendChild(createAppCard(app)));
+        }
+
+        grid.appendChild(createAddButton());
+    }
+
+    function createAppCard(app) {
+        const safeIcon  = ALLOWED_ICON_IDS.has(app.icon)  ? app.icon  : 'ph-squares-four';
+        const safeColor = ALLOWED_COLORS.has(app.color)   ? app.color : 'bg-slate-500';
+        const colorHex  = ALLOWED_COLORS.get(safeColor);
+
+        const wrapper = document.createElement('div');
+        wrapper.className = 'app-card-wrapper relative flex flex-col items-center gap-2.5 w-24';
+
+        // Edit / Delete buttons
+        const actions = document.createElement('div');
+        actions.className = 'app-actions absolute -top-2 right-0 flex gap-1 z-20';
+
+        const editBtn = document.createElement('button');
+        editBtn.className = 'w-6 h-6 bg-blue-600 hover:bg-blue-500 rounded-full flex items-center justify-center shadow-md transition';
+        editBtn.title = 'Editează';
+        editBtn.innerHTML = '<i class="ph ph-pencil-simple text-xs"></i>';
+        editBtn.onclick = e => { e.stopPropagation(); editApp(app.id); };
+
+        const delBtn = document.createElement('button');
+        delBtn.className = 'w-6 h-6 bg-red-600 hover:bg-red-500 rounded-full flex items-center justify-center shadow-md transition';
+        delBtn.title = 'Șterge';
+        delBtn.innerHTML = '<i class="ph ph-trash text-xs"></i>';
+        delBtn.onclick = e => { e.stopPropagation(); deleteApp(app.id); };
+
+        actions.appendChild(editBtn);
+        actions.appendChild(delBtn);
+        wrapper.appendChild(actions);
+
+        // Card
+        const card = document.createElement('div');
+        card.className = 'app-card glass-panel w-20 h-20 rounded-2xl flex items-center justify-center relative overflow-hidden';
+
+        const glowWrap = document.createElement('div');
+        glowWrap.className = `icon-glow-wrap ${safeColor} w-12 h-12 rounded-xl flex items-center justify-center relative z-10`;
+        glowWrap.style.setProperty('--glow-bg', colorHex);
+
+        const icon = document.createElement('i');
+        icon.className = `ph ${safeIcon} text-2xl text-white`;
+        glowWrap.appendChild(icon);
+        card.appendChild(glowWrap);
+        card.onclick = () => launchApp(app.url);
+        wrapper.appendChild(card);
+
+        // Name label
+        const name = document.createElement('span');
+        name.className = 'text-xs text-center font-medium text-gray-300 hover:text-white transition line-clamp-2 w-full leading-snug px-0.5';
+        name.title = app.name;
+        name.textContent = app.name;
+        wrapper.appendChild(name);
+
+        return wrapper;
+    }
+
+    function createEmptyState(msg) {
+        const el = document.createElement('div');
+        el.className = 'col-span-full flex flex-col items-center gap-3 py-24 text-gray-600';
+        const icon = document.createElement('i');
+        icon.className = 'ph ph-squares-four text-6xl opacity-20';
+        const text = document.createElement('p');
+        text.className = 'text-sm font-medium opacity-50';
+        text.textContent = msg;
+        el.appendChild(icon);
+        el.appendChild(text);
+        return el;
+    }
+
+    function createAddButton() {
+        const el = document.createElement('div');
+        el.className = 'flex flex-col items-center gap-2.5 w-24 cursor-pointer';
+        el.onclick = () => openModal();
+
+        const card = document.createElement('div');
+        card.className = 'add-btn-card w-20 h-20 rounded-2xl flex items-center justify-center border-2 border-dashed border-white/15 text-gray-600';
+        card.innerHTML = '<i class="ph ph-plus text-2xl"></i>';
+
+        const label = document.createElement('span');
+        label.className = 'text-xs text-center font-medium text-gray-600';
+        label.textContent = 'Adaugă';
+
+        el.appendChild(card);
+        el.appendChild(label);
+        return el;
+    }
+
+    // ── App Actions ───────────────────────────────────────────────────────────
+
+    function launchApp(url) {
+        if (!url) return;
+        if (url.startsWith('javascript:')) return;
+        const normalized = normalizeUrl(url);
+        const isLocal = !normalized.startsWith('http');
+        window.open(normalized, '_blank', isLocal ? '' : 'noopener,noreferrer');
+    }
+
+    function deleteApp(id) {
+        if (!confirm('Ești sigur că vrei să ștergi această aplicație?')) return;
+        AppState.deleteApp(id);
+        renderApps(getCurrentSearch());
+    }
+
+    function editApp(id) {
+        const app = AppState.getById(id);
+        if (app) openModal(app);
+    }
+
+    function normalizeUrl(url) {
+        // C:\path\app.html  →  file:///C:/path/app.html
+        if (/^[A-Za-z]:[\\\/]/.test(url)) {
+            return 'file:///' + url.replace(/\\/g, '/');
+        }
+        return url;
+    }
+
+    // ── Search ────────────────────────────────────────────────────────────────
+
+    function normalizeDiacritics(str) {
+        return str.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+    }
+
+    function getCurrentSearch() {
+        return document.getElementById('search-input').value.trim();
+    }
+
+    let searchTimer;
+    function initSearch() {
+        document.getElementById('search-input').addEventListener('input', function () {
+            clearTimeout(searchTimer);
+            searchTimer = setTimeout(() => renderApps(this.value.trim()), 150);
+        });
+    }
+
+    // ── Modal ─────────────────────────────────────────────────────────────────
+
+    function openModal(appToEdit = null) {
+        const modal = document.getElementById('add-modal');
+
+        document.getElementById('modal-title').textContent  = appToEdit ? 'Editează Aplicația' : 'Adaugă Aplicație Nouă';
+        document.getElementById('submit-btn').textContent   = appToEdit ? 'Salvează' : 'Adaugă';
+        document.getElementById('edit-app-id').value        = appToEdit ? appToEdit.id : '';
+        document.getElementById('app-name').value           = appToEdit ? appToEdit.name : '';
+        document.getElementById('app-url').value            = appToEdit ? appToEdit.url  : '';
+        document.getElementById('icon-error').classList.add('hidden');
+
+        renderColorSelector(appToEdit?.color  || 'bg-blue-500');
+        renderIconSelector(appToEdit?.icon    || ALLOWED_ICONS[0].id);
+
+        modal.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => document.getElementById('app-name').focus(), 60);
+    }
+
+    function closeModal() {
+        document.getElementById('add-modal').classList.remove('is-open');
+        document.body.style.overflow = '';
+        document.getElementById('app-form').reset();
+        document.getElementById('edit-app-id').value = '';
+    }
+
+    // ── Color Selector ────────────────────────────────────────────────────────
+
+    function renderColorSelector(selectedColor) {
+        const container = document.getElementById('color-selector');
+        container.innerHTML = '';
+        ALLOWED_COLORS.forEach((hex, cls) => {
+            const label = document.createElement('label');
+            label.className = 'color-swatch';
+            label.title = cls.replace('bg-', '').replace('-500', '');
+
+            const radio = document.createElement('input');
+            radio.type = 'radio';
+            radio.name = 'app-color';
+            radio.value = cls;
+            radio.checked = cls === selectedColor;
+
+            const dot = document.createElement('span');
+            dot.className = `color-dot ${cls}`;
+
+            radio.addEventListener('change', () => {
+                container.querySelectorAll('.color-dot').forEach(d => {
+                    d.style.outline = '';
+                    d.style.outlineOffset = '';
+                    d.style.transform = '';
+                });
+                dot.style.outline = '2px solid white';
+                dot.style.outlineOffset = '2px';
+                dot.style.transform = 'scale(1.15)';
+            });
+
+            label.appendChild(radio);
+            label.appendChild(dot);
+            container.appendChild(label);
+
+            if (cls === selectedColor) {
+                dot.style.outline = '2px solid white';
+                dot.style.outlineOffset = '2px';
+                dot.style.transform = 'scale(1.15)';
+            }
+        });
+    }
+
+    // ── Icon Selector ─────────────────────────────────────────────────────────
+
+    function renderIconSelector(selectedIcon) {
+        const container = document.getElementById('icon-selector');
+        container.innerHTML = '';
+        ALLOWED_ICONS.forEach(({ id, label }) => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'icon-option' + (id === selectedIcon ? ' selected' : '');
+            btn.title = label;
+            btn.dataset.iconId = id;
+            btn.innerHTML = `<i class="ph ${id}"></i>`;
+            btn.onclick = () => selectIcon(id);
+            container.appendChild(btn);
+        });
+    }
+
+    function selectIcon(id) {
+        document.querySelectorAll('.icon-option').forEach(btn => {
+            btn.classList.toggle('selected', btn.dataset.iconId === id);
+        });
+        document.getElementById('icon-error').classList.add('hidden');
+    }
+
+    function getSelectedIcon() {
+        const sel = document.querySelector('.icon-option.selected');
+        return sel ? sel.dataset.iconId : null;
+    }
+
+    function getSelectedColor() {
+        const sel = document.querySelector('input[name="app-color"]:checked');
+        return sel ? sel.value : 'bg-blue-500';
+    }
+
+    // ── Form Submit ───────────────────────────────────────────────────────────
+
+    function handleFormSubmit(e) {
+        e.preventDefault();
+
+        const icon = getSelectedIcon();
+        if (!icon) {
+            document.getElementById('icon-error').classList.remove('hidden');
+            return;
+        }
+
+        const name   = document.getElementById('app-name').value.trim();
+        const url    = document.getElementById('app-url').value.trim();
+        const color  = getSelectedColor();
+        const editId = document.getElementById('edit-app-id').value;
+
+        if (!name || !url) return;
+
+        if (editId) {
+            AppState.updateApp(editId, { name, url, icon, color });
+        } else {
+            AppState.addApp({ name, url, icon, color });
+        }
+
+        renderApps(getCurrentSearch());
+        closeModal();
+    }
+
+    // ── File Browse ───────────────────────────────────────────────────────────
+
+    function triggerFilePicker() {
+        document.getElementById('file-picker').click();
+    }
+
+    // ── Clock ─────────────────────────────────────────────────────────────────
+
+    function updateClock() {
+        const now = new Date();
+        document.getElementById('current-time').textContent =
+            now.toLocaleTimeString('ro-RO', { hour: '2-digit', minute: '2-digit' });
+        document.getElementById('current-date').textContent =
+            now.toLocaleDateString('ro-RO', { day: '2-digit', month: 'short', year: 'numeric' });
+    }
+
+    // ── Init ──────────────────────────────────────────────────────────────────
+
+    function init() {
+        AppState.load();
+        updateClock();
+        setInterval(updateClock, 1000);
+        renderApps();
+        initSearch();
+
+        document.getElementById('file-picker').addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) document.getElementById('app-url').value = './' + file.name;
+        });
+
+        document.getElementById('add-modal').addEventListener('click', function (e) {
+            if (e.target === this) closeModal();
+        });
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeModal();
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+
+    </script>
+</body>
+</html>
