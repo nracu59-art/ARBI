@@ -1265,6 +1265,7 @@ function renderCharts(data) {
     plugins: {
       legend: { position: 'right', labels: { color: C.legend, boxWidth: 11, font: { size: 10 } } },
       datalabels: {
+        display: true,
         color: C.datalabel,
         backgroundColor: C.datalabelBg,
         borderRadius: 4,
@@ -1294,6 +1295,7 @@ function renderCharts(data) {
     plugins: {
       legend: { display: false },
       datalabels: {
+        display: true,
         anchor: 'end', align: 'end',
         color: C.datalabel,
         backgroundColor: C.datalabelBg,
@@ -1320,6 +1322,7 @@ function renderCharts(data) {
     plugins: {
       legend: { display: false },
       datalabels: {
+        display: true,
         anchor: 'end', align: 'end',
         color: C.datalabel,
         backgroundColor: C.datalabelBg,
@@ -1392,6 +1395,7 @@ function renderCharts(data) {
     plugins: {
       legend: { display: false },
       datalabels: {
+        display: true,
         anchor: 'end', align: 'top',
         color: C.datalabel,
         backgroundColor: C.datalabelBg,
@@ -1417,6 +1421,7 @@ function renderCharts(data) {
     plugins: {
       legend: { position: 'right', labels: { color: C.legend, boxWidth: 11, font: { size: 10 } } },
       datalabels: {
+        display: true,
         color: C.datalabel,
         backgroundColor: C.datalabelBg,
         borderRadius: 4,
@@ -1447,7 +1452,7 @@ function updateChart(id, type, data, extraOpts, C) {
   const defaults = {
     responsive: true,
     maintainAspectRatio: false,
-    layout: { padding: { right: 50, top: 16 } },
+    layout: { padding: { right: 65, top: 22, left: 4, bottom: 4 } },
     plugins: {
       legend: { labels: { color: colors.legend, font: { size: 10 } } },
       tooltip: {
