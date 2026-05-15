@@ -356,6 +356,26 @@ tbody td {
 .btn-page:hover, .btn-page.active { border-color: var(--accent); color: var(--accent); }
 .btn-page:disabled { opacity: 0.35; cursor: default; }
 
+/* BUGET / SERVICIUL FISCAL */
+.buget-note {
+  background: rgba(88,166,255,0.08); border: 1px solid var(--accent);
+  border-radius: 8px; padding: 0.75rem 1rem; margin-bottom: 1rem;
+  font-size: 0.82rem; color: var(--text2); line-height: 1.5;
+}
+.buget-note strong { color: var(--accent); }
+.buget-filter-row { padding: 0.3rem 0.3rem 0; }
+.buget-item { color: var(--teal) !important; }
+.buget-item span:last-child { color: var(--teal); font-weight: 700; }
+.sf-badge { display: inline-block; width: 10px; height: 10px; border-radius: 2px; background: var(--teal); flex-shrink: 0; }
+.sf-note { font-size: 0.7rem; color: var(--text2); padding: 0.1rem 0.3rem 0.3rem 1.55rem; }
+.multi-drop-separator { border-top: 1px dashed var(--border); margin: 0.3rem 0.4rem 0.1rem; }
+.buget-warning {
+  background: rgba(210,153,34,0.1); border: 1px solid var(--orange);
+  border-radius: 6px; padding: 0.5rem 0.8rem; margin-bottom: 0.75rem;
+  font-size: 0.8rem; color: var(--orange); display: none;
+}
+.buget-warning.visible { display: block; }
+
 /* SCROLLBAR */
 ::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
@@ -402,6 +422,7 @@ tbody td {
     <div class="navtab" data-tab="cripto" onclick="switchTab(this)">Cripto</div>
     <div class="navtab" data-tab="conturi" onclick="switchTab(this)">Conturi</div>
     <div class="navtab" data-tab="altele" onclick="switchTab(this)">Altele</div>
+    <div class="navtab" data-tab="buget" onclick="switchTab(this)">Încasat la buget</div>
   </div>
 
   <div class="main-body">
@@ -417,6 +438,15 @@ tbody td {
             <span class="mdb-label">Toate</span><span class="mdb-arrow">▾</span>
           </button>
           <div class="multi-drop-panel">
+            <div class="buget-filter-row">
+              <label class="mdi-item buget-item">
+                <input type="checkbox" id="filter-buget-sf">
+                <span class="sf-badge"></span>
+                <span><strong>Încasat la buget</strong></span>
+              </label>
+              <div class="sf-note">Tip document = „Serviciul Fiscal"</div>
+            </div>
+            <div class="multi-drop-separator"></div>
             <input type="text" class="multi-drop-search" placeholder="Caută soluție..." oninput="filterDropList('drop-solutii',this.value)">
             <div class="multi-drop-list" id="list-solutii"></div>
             <div class="multi-drop-footer">
@@ -596,6 +626,7 @@ tbody td {
 
       <!-- DASHBOARD TAB -->
       <div class="tab-panel active" id="tab-dashboard">
+        <div class="buget-warning" id="buget-warning">⚠ Filtru „Încasat la buget" activ — sunt afișate doar bunuri cu Tip document = „Serviciul Fiscal". Aceste date pot suprapune cu statisticile generale de sechestru.</div>
         <div class="kpi-grid" id="kpi-grid"></div>
 
         <!-- CHART TOOLBAR -->
@@ -673,6 +704,13 @@ tbody td {
       <div class="tab-panel" id="tab-cripto"><div class="table-wrap"><table><thead id="thead-cripto"></thead><tbody id="tbody-cripto"></tbody></table></div><div class="pagination" id="pag-cripto"></div></div>
       <div class="tab-panel" id="tab-conturi"><div class="table-wrap"><table><thead id="thead-conturi"></thead><tbody id="tbody-conturi"></tbody></table></div><div class="pagination" id="pag-conturi"></div></div>
       <div class="tab-panel" id="tab-altele"><div class="table-wrap"><table><thead id="thead-altele"></thead><tbody id="tbody-altele"></tbody></table></div><div class="pagination" id="pag-altele"></div></div>
+
+      <!-- ÎNCASAT LA BUGET TAB (sheetul Total) -->
+      <div class="tab-panel" id="tab-buget">
+        <div class="buget-note">ⓘ Datele din acest tab provin din sheetul <strong>„Total"</strong> al fișierului Excel și reprezintă sumele efectiv încasate la bugetul de stat din decizii de confiscare. <strong>Acestea sunt independente de statisticile generale ale dashboardului.</strong></div>
+        <div class="kpi-grid" id="kpi-buget"></div>
+        <div class="table-wrap"><table><thead id="thead-buget"></thead><tbody id="tbody-buget"></tbody></table></div>
+      </div>
     </div>
   </div>
 </div>
@@ -690,6 +728,8 @@ if (HAS_DATALABELS) { try { Chart.register(ChartDataLabels); } catch(e) { /* ign
 // ============================================================
 let ALL_DATA = [];
 let FILTERED_DATA = [];
+let TOTAL_DATA = [];
+let TOTAL_HEADERS = [];
 let currentFile = null;
 let charts = {};
 let chartMode = 'count';    // 'count' | 'value'
@@ -823,6 +863,32 @@ function cleanCell(v) {
   return v.replace(/^'+/, '').trim();
 }
 
+function parseTotalSheet(wb) {
+  TOTAL_DATA = [];
+  TOTAL_HEADERS = [];
+  const ws = wb.Sheets['Total'];
+  if (!ws) return;
+  const rows = XLSX.utils.sheet_to_json(ws, { header: 1, defval: null, raw: false });
+  let headerIdx = -1;
+  for (let i = 0; i < Math.min(rows.length, 15); i++) {
+    if (rows[i] && rows[i].some(v => v !== null && String(v).trim() !== '')) {
+      headerIdx = i;
+      break;
+    }
+  }
+  if (headerIdx < 0) return;
+  TOTAL_HEADERS = rows[headerIdx].map(h => h ? cleanCell(String(h)) : '');
+  for (let i = headerIdx + 1; i < rows.length; i++) {
+    const row = rows[i];
+    if (!row || row.every(v => v === null || v === '')) continue;
+    const rec = {};
+    TOTAL_HEADERS.forEach((h, idx) => {
+      if (h) rec[h] = (row[idx] !== null && row[idx] !== undefined) ? cleanCell(String(row[idx])) : null;
+    });
+    TOTAL_DATA.push(rec);
+  }
+}
+
 function parseWorkbook(wb) {
   ALL_DATA = [];
   SHEET_DEFS.forEach(def => {
@@ -856,6 +922,7 @@ function parseWorkbook(wb) {
       ALL_DATA.push(rec);
     }
   });
+  parseTotalSheet(wb);
   initDropdowns();
   applyFilters();
 }
@@ -1054,6 +1121,7 @@ function initFilterListeners() {
   ['filter-corp','filter-date-from','filter-date-to'].forEach(id => {
     document.getElementById(id).addEventListener('input', applyFilters);
   });
+  document.getElementById('filter-buget-sf').addEventListener('change', applyFilters);
   // Store placeholders for AMD inputs so amdUpdateTags can restore them
   ['amd-inp-cauza','amd-inp-idnp','amd-inp-nume'].forEach(id => {
     const el = document.getElementById(id);
@@ -1079,6 +1147,7 @@ function getActiveFilters() {
     organe:   getDropValues('f-org'),
     monede:   getDropValues('f-mon'),
     posesii:  getDropValues('f-pos'),
+    bugetSF:  document.getElementById('filter-buget-sf').checked,
     corp:     document.getElementById('filter-corp').value,
     cauza:    amdVal('amd-cauza'),
     idnp:     amdVal('amd-idnp'),
@@ -1091,6 +1160,7 @@ function getActiveFilters() {
 function applyFilters() {
   const f = getActiveFilters();
   FILTERED_DATA = ALL_DATA.filter(r => {
+    if (f.bugetSF && (r['Tip document']||'').trim() !== 'Serviciul Fiscal') return false;
     if (f.solutii.length  && !f.solutii.includes(r['Solutia adoptata']))  return false;
     if (f.tipuri.length   && !f.tipuri.includes(r['Tip bun']))             return false;
     if (f.organe.length   && !f.organe.includes(r['Organ emitent']))       return false;
@@ -1132,6 +1202,8 @@ function applyFilters() {
   });
   document.getElementById('filter-counter').textContent =
     `${FILTERED_DATA.length.toLocaleString('ro')} / ${ALL_DATA.length.toLocaleString('ro')} înregistrări`;
+  const bwEl = document.getElementById('buget-warning');
+  if (bwEl) bwEl.classList.toggle('visible', f.bugetSF);
   tableState.page = 1;
   updateDashboard();
   renderTable();
@@ -1141,6 +1213,7 @@ function applyFilters() {
 function resetFilters() {
   Object.keys(DROP_DEFS).forEach(id => clearDrop(id));
   Object.keys(AMD_DEFS).forEach(id => amdClear(id));
+  document.getElementById('filter-buget-sf').checked = false;
   ['filter-corp','filter-date-from','filter-date-to'].forEach(id => document.getElementById(id).value = '');
   document.querySelectorAll('.btn-period').forEach(b => b.classList.remove('active'));
   document.querySelector('.btn-period:last-child').classList.add('active');
@@ -1643,6 +1716,44 @@ function switchTab(el) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   el.classList.add('active');
   document.getElementById('tab-' + el.dataset.tab).classList.add('active');
+  if (el.dataset.tab === 'buget') renderBugetTab();
+}
+
+function renderBugetTab() {
+  const kpiEl   = document.getElementById('kpi-buget');
+  const theadEl = document.getElementById('thead-buget');
+  const tbodyEl = document.getElementById('tbody-buget');
+  if (!TOTAL_DATA.length) {
+    kpiEl.innerHTML = '<p style="color:var(--text2);font-size:0.85rem;padding:0.5rem 0">Nu există date în sheetul „Total" sau sheetul nu a fost găsit în fișier.</p>';
+    theadEl.innerHTML = '';
+    tbodyEl.innerHTML = '';
+    return;
+  }
+  // Detectează toate coloanele numerice pentru KPI-uri
+  const cols = TOTAL_HEADERS.filter(Boolean);
+  const numCols = cols.filter(h => TOTAL_DATA.some(r => {
+    const v = parseFloat(String(r[h]||'').replace(/,/g,''));
+    return !isNaN(v) && v > 0;
+  }));
+  const kpiHtml = numCols.map(h => {
+    const total = TOTAL_DATA.reduce((acc, r) => {
+      const v = parseFloat(String(r[h]||'0').replace(/,/g,''));
+      return acc + (isNaN(v) ? 0 : v);
+    }, 0);
+    return `<div class="kpi-card">
+      <div class="kpi-label">${escHtml(h)}</div>
+      <div class="kpi-value">${formatMDL(total)}</div>
+      <div class="kpi-value-full">${total.toLocaleString('ro',{maximumFractionDigits:2})}</div>
+    </div>`;
+  }).join('');
+  kpiEl.innerHTML = `<div class="kpi-card">
+      <div class="kpi-label">Înregistrări</div>
+      <div class="kpi-value">${TOTAL_DATA.length.toLocaleString('ro')}</div>
+    </div>` + kpiHtml;
+  theadEl.innerHTML = '<tr>' + cols.map(c => `<th>${escHtml(c)}</th>`).join('') + '</tr>';
+  tbodyEl.innerHTML = TOTAL_DATA.map(r =>
+    '<tr>' + cols.map(c => `<td title="${escHtml(String(r[c]||''))}">${escHtml(String(r[c]||''))}</td>`).join('') + '</tr>'
+  ).join('');
 }
 
 // ============================================================
