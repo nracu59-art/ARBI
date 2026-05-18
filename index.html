@@ -1,708 +1,2284 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Aplicații</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Launcher</title>
 
-    <style>
-        * { box-sizing: border-box; }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css">
 
-        body {
-            font-family: 'Plus Jakarta Sans', 'Segoe UI', Roboto, sans-serif;
-            background-color: #080c1a;
-            background-image:
-                radial-gradient(ellipse 80% 50% at 20% -10%, rgba(59,130,246,0.15) 0%, transparent 60%),
-                radial-gradient(ellipse 60% 40% at 80% 110%, rgba(139,92,246,0.12) 0%, transparent 60%),
-                radial-gradient(ellipse 40% 60% at 50% 50%, rgba(16,185,129,0.04) 0%, transparent 70%);
-            color: white;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 
-        .glass-header {
-            background: rgba(8, 12, 26, 0.75);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-        }
+  <style>
+    /* ─── Reset / base ─────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      font-family: var(--font, 'Plus Jakarta Sans', system-ui, sans-serif);
+      color: oklch(0.22 0.01 80);
+      background: var(--bg, oklch(0.985 0.008 85));
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+    button { font-family: inherit; }
+    code, kbd { font-family: 'JetBrains Mono', ui-monospace, monospace; }
 
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
+    /* ─── Root layout ──────────────────────────────────────────────────────── */
+    .root {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: background 0.4s ease;
+      background: var(--bg);
+    }
 
-        .app-card {
-            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
-                        border-color 0.2s ease,
-                        box-shadow 0.2s ease;
-            cursor: pointer;
-        }
-        .app-card:hover {
-            transform: translateY(-6px) scale(1.04);
-            border-color: rgba(255, 255, 255, 0.18) !important;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.06);
-        }
-        .app-card:active {
-            transform: translateY(0) scale(0.97);
-        }
+    /* ─── Ambient backdrop blobs (spatial depth, very soft) ────────────────── */
+    .ambient {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.55;
+      transition: background 0.5s ease;
+    }
+    .blob-1 { top: -10%;  left: -8%;  width: 38vw; height: 38vw; }
+    .blob-2 { bottom: -12%; right: -10%; width: 42vw; height: 42vw;
+              background: oklch(0.95 0.03 30); }
+    .blob-3 { top: 30%; right: 15%; width: 22vw; height: 22vw;
+              background: oklch(0.96 0.025 180); opacity: 0.4; }
 
-        .icon-glow-wrap {
-            position: relative;
-        }
-        .icon-glow-wrap::after {
-            content: '';
-            position: absolute;
-            inset: -6px;
-            border-radius: 22px;
-            opacity: 0;
-            filter: blur(16px);
-            background: var(--glow-bg, #3b82f6);
-            z-index: -1;
-            transition: opacity 0.25s ease;
-        }
-        .app-card:hover .icon-glow-wrap::after {
-            opacity: 0.5;
-        }
+    /* ─── Topbar ───────────────────────────────────────────────────────────── */
+    .topbar {
+      position: relative; z-index: 5;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 28px;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .brand-mark {
+      width: 22px; height: 22px; border-radius: 7px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.4),
+                  0 4px 10px rgba(0,0,0,0.10);
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    .brand-name {
+      font-weight: 700; font-size: 14px; letter-spacing: -0.01em;
+      color: oklch(0.32 0.01 80);
+    }
+    .topbar-meta {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12.5px; color: oklch(0.45 0.02 80);
+      font-variant-numeric: tabular-nums;
+    }
+    .meta-time { font-weight: 600; color: oklch(0.32 0.01 80); }
+    .meta-dot { opacity: 0.4; }
+    .meta-date::first-letter { text-transform: uppercase; }
 
-        .app-actions {
-            opacity: 0;
-            transition: opacity 0.2s ease;
-            pointer-events: none;
-        }
-        .app-card-wrapper:hover .app-actions {
-            opacity: 1;
-            pointer-events: auto;
-        }
+    /* ─── Hero ─────────────────────────────────────────────────────────────── */
+    .hero {
+      position: relative; z-index: 5;
+      width: 100%;
+      max-width: 920px;
+      margin: 36px auto 12px;
+      padding: 0 28px;
+      display: flex; flex-direction: column; align-items: center; gap: 22px;
+    }
+    .hero-greeting {
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+    }
+    .greet-line {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: oklch(0.22 0.01 80);
+    }
+    .greet-sub {
+      font-size: 14px;
+      color: oklch(0.50 0.01 80);
+      letter-spacing: 0.005em;
+    }
+    .greet-sub::first-letter { text-transform: uppercase; }
 
-        /* Modal — always flex, toggled via .is-open */
-        #add-modal {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.2s ease;
-        }
-        #add-modal.is-open {
-            opacity: 1;
-            pointer-events: auto;
-        }
-        #modal-content {
-            transform: scale(0.95) translateY(10px);
-            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        #add-modal.is-open #modal-content {
-            transform: scale(1) translateY(0);
-        }
+    /* Search */
+    .search {
+      position: relative;
+      width: 100%;
+      max-width: 620px;
+    }
+    .search input {
+      width: 100%;
+      height: 58px;
+      padding: 0 64px 0 56px;
+      font-family: inherit;
+      font-size: 17px;
+      color: oklch(0.20 0.01 80);
+      background: rgba(255,255,255,0.65);
+      border: 1px solid rgba(15, 23, 42, 0.06);
+      border-radius: 18px;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.8),
+        0 1px 1px rgba(0,0,0,0.02),
+        0 12px 32px -10px rgba(15, 23, 42, 0.12),
+        0 24px 56px -20px rgba(15, 23, 42, 0.16);
+      outline: none;
+      transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+    }
+    .search input::placeholder { color: oklch(0.62 0.01 80); }
+    .search input:focus {
+      border-color: color-mix(in oklch, var(--accent-color, oklch(0.62 0.18 250)) 60%, transparent);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.8),
+        0 0 0 4px color-mix(in oklch, var(--accent-color, oklch(0.62 0.18 250)) 12%, transparent),
+        0 16px 40px -12px rgba(15, 23, 42, 0.16),
+        0 28px 60px -20px rgba(15, 23, 42, 0.20);
+    }
+    .search-ico {
+      position: absolute; left: 22px; top: 50%; transform: translateY(-50%);
+      font-size: 20px;
+      color: oklch(0.55 0.01 80);
+      pointer-events: none;
+    }
+    .search.has-query .search-ico { color: oklch(0.40 0.01 80); }
+    .kbd {
+      position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+      display: flex; gap: 4px;
+      pointer-events: none;
+    }
+    .kbd-key {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 22px; height: 22px; padding: 0 6px;
+      font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600;
+      color: oklch(0.45 0.01 80);
+      background: rgba(255,255,255,0.7);
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      border-bottom-width: 2px;
+      border-radius: 6px;
+    }
+    .search-clear {
+      position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+      width: 28px; height: 28px;
+      display: inline-flex; align-items: center; justify-content: center;
+      border: 0; border-radius: 8px; cursor: default;
+      color: oklch(0.50 0.01 80);
+      background: rgba(15, 23, 42, 0.05);
+      font-size: 14px;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .search-clear:hover { background: rgba(15, 23, 42, 0.10); color: oklch(0.22 0.01 80); }
 
-        .color-swatch { cursor: pointer; }
-        .color-swatch input[type="radio"] { display: none; }
-        .color-dot {
-            display: block;
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
-            transition: transform 0.15s ease;
-        }
-        .color-dot:hover { transform: scale(1.12); }
-        .color-swatch input[type="radio"]:checked + .color-dot {
-            outline: 2px solid white;
-            outline-offset: 2px;
-            transform: scale(1.15);
-        }
+    /* Hero row: count / layout toggle / add */
+    .hero-row {
+      width: 100%; max-width: 620px;
+      display: flex; align-items: center; gap: 12px;
+      flex-wrap: wrap;
+    }
+    .hero-count {
+      font-size: 12.5px;
+      font-weight: 500;
+      color: oklch(0.50 0.01 80);
+      letter-spacing: 0.005em;
+    }
+    .layout-toggle {
+      margin-left: auto;
+      display: inline-flex;
+      padding: 3px;
+      background: rgba(255,255,255,0.7);
+      border: 1px solid rgba(15, 23, 42, 0.07);
+      border-radius: 11px;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.6),
+        0 4px 12px -4px rgba(15, 23, 42, 0.08);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+    }
+    .lt {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 10px;
+      font-size: 12px; font-weight: 500;
+      color: oklch(0.50 0.01 80);
+      background: transparent;
+      border: 0; border-radius: 8px;
+      cursor: default;
+      transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+    }
+    .lt i { font-size: 14px; }
+    .lt:hover { color: oklch(0.22 0.01 80); }
+    .lt.is-active {
+      background: white;
+      color: oklch(0.22 0.01 80);
+      box-shadow: 0 1px 2px rgba(15,23,42,0.06), 0 2px 6px rgba(15,23,42,0.05);
+    }
+    .lt span { white-space: nowrap; }
+    .hero-add {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 8px 14px;
+      font-size: 13px; font-weight: 600;
+      color: white;
+      background: oklch(0.55 0.22 280);
+      border: 0; border-radius: 10px;
+      cursor: default;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.25),
+        0 4px 10px rgba(15, 23, 42, 0.14),
+        0 1px 0 rgba(255,255,255,0.4);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+    }
+    .hero-add i { font-size: 15px; }
+    .hero-add:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.25),
+        0 8px 18px rgba(15, 23, 42, 0.18);
+    }
+    .hero-add:active { transform: translateY(0); }
 
-        .icon-option {
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 10px;
-            border: 2px solid transparent;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #9ca3af;
-            font-size: 20px;
-            transition: all 0.15s ease;
-            background: transparent;
-        }
-        .icon-option:hover {
-            background: rgba(255,255,255,0.07);
-            color: white;
-        }
-        .icon-option.selected {
-            border-color: #3b82f6;
-            background: rgba(59, 130, 246, 0.15);
-            color: white;
-        }
+    /* ─── Apps section ─────────────────────────────────────────────────────── */
+    .apps-section {
+      position: relative; z-index: 5;
+      flex: 1;
+      width: 100%;
+      max-width: 1100px;
+      margin: 28px auto 80px;
+      padding: 0 28px;
+    }
 
-        .search-input:focus {
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.4);
-            border-color: rgba(59, 130, 246, 0.5);
-        }
+    /* Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
+      gap: var(--density, 22px);
+      justify-items: center;
+    }
 
-        #icon-selector {
-            max-height: 152px;
-            overflow-y: auto;
-            scrollbar-width: thin;
-            scrollbar-color: rgba(255,255,255,0.12) transparent;
-        }
+    /* Tile */
+    .tile-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 124px;
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      transition: opacity 0.15s ease, transform 0.18s ease;
+    }
+    .tile-wrap.is-dragging { opacity: 0.35; }
+    .tile-wrap.is-drop-target { transform: scale(1.06); }
+    .tile-wrap.is-drop-target .tile {
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.35),
+        0 0 0 3px white,
+        0 0 0 5px color-mix(in oklch, var(--accent-color, oklch(0.62 0.18 250)) 50%, transparent),
+        0 14px 32px rgba(15, 23, 42, 0.18) !important;
+    }
 
-        .add-btn-card {
-            transition: all 0.2s ease;
-        }
-        .add-btn-card:hover {
-            border-color: rgba(255,255,255,0.4) !important;
-            background: rgba(255,255,255,0.05);
-            transform: translateY(-5px);
-        }
+    .tile-actions {
+      position: absolute;
+      top: -8px; right: -4px;
+      display: flex; gap: 4px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+      transform: translateY(4px);
+      z-index: 3;
+    }
+    .tile-wrap:hover .tile-actions {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    .tile-act {
+      width: 24px; height: 24px;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: white;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      border-radius: 50%;
+      color: oklch(0.40 0.01 80);
+      font-size: 11px;
+      cursor: default;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.14);
+      transition: color 0.15s ease, transform 0.15s ease, background 0.15s ease;
+    }
+    .tile-act:hover { transform: scale(1.10); color: oklch(0.22 0.01 80); }
+    .tile-act.danger:hover { color: oklch(0.55 0.22 25); background: oklch(0.98 0.02 25); }
 
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                transition-duration: 0.01ms !important;
-                animation-duration: 0.01ms !important;
-            }
-        }
-    </style>
+    .tile {
+      position: relative;
+      width: var(--tile-size, 84px);
+      height: var(--tile-size, 84px);
+      border: 0;
+      cursor: default;
+      transition:
+        transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.28s ease,
+        filter 0.2s ease;
+      display: inline-flex; align-items: center; justify-content: center;
+      color: white;
+      overflow: hidden;
+    }
+    .tile-gloss {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 0%, rgba(255,255,255,0.55), rgba(255,255,255,0) 60%),
+        linear-gradient(180deg, rgba(255,255,255,0.18), rgba(0,0,0,0.05));
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      opacity: 0.9;
+    }
+    .tile-icon {
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 1px 0 rgba(255,255,255,0.25));
+    }
+    .tile:hover {
+      transform: translateY(-5px) scale(1.04) rotate(-1deg);
+      filter: brightness(1.04) saturate(1.05);
+    }
+    .tile:active {
+      transform: translateY(-1px) scale(0.96);
+      transition-duration: 0.08s;
+    }
+    .tile-wrap:hover .tile-gloss { opacity: 1; }
+
+    .tile-label {
+      font-size: var(--label-size, 12px);
+      font-weight: 500;
+      color: oklch(0.30 0.01 80);
+      text-align: center;
+      line-height: 1.3;
+      max-width: 100%;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      letter-spacing: 0.005em;
+    }
+
+    /* Add tile (in grid) */
+    .add-tile {
+      width: 100%;
+      max-width: 124px;
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      padding: 0;
+      background: transparent;
+      border: 0;
+      cursor: default;
+    }
+    .add-tile::before {
+      content: '';
+      width: var(--tile-size, 84px);
+      height: var(--tile-size, 84px);
+      border-radius: 20px;
+      border: 1.5px dashed oklch(0.75 0.01 80);
+      background: rgba(255, 255, 255, 0.35);
+      display: inline-flex;
+    }
+    .add-tile {
+      position: relative;
+    }
+    .add-tile > i {
+      position: absolute;
+      top: calc(var(--tile-size) / 2 - 12px);
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 24px;
+      color: oklch(0.55 0.01 80);
+      transition: color 0.15s ease, transform 0.15s ease;
+    }
+    .add-tile > span {
+      font-size: var(--label-size, 12px);
+      color: oklch(0.55 0.01 80);
+      font-weight: 500;
+    }
+    .add-tile:hover > i { color: oklch(0.30 0.01 80); transform: translateX(-50%) scale(1.1); }
+    .add-tile:hover::before {
+      border-color: oklch(0.50 0.01 80);
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    /* ─── List layout ──────────────────────────────────────────────────────── */
+    .list {
+      display: flex; flex-direction: column;
+      gap: calc(var(--density, 22px) / 3);
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .row {
+      display: flex; align-items: stretch;
+      background: rgba(255,255,255,0.65);
+      border: 1px solid rgba(15, 23, 42, 0.06);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+      box-shadow: 0 1px 2px rgba(15,23,42,0.03), 0 4px 12px rgba(15,23,42,0.04);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+    }
+    .row:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(15,23,42,0.05), 0 14px 28px rgba(15,23,42,0.10);
+      border-color: rgba(15, 23, 42, 0.10);
+    }
+    .row.is-dragging { opacity: 0.35; }
+    .row.is-drop-target {
+      border-color: color-mix(in oklch, var(--accent-color, oklch(0.62 0.18 250)) 60%, transparent);
+      box-shadow: 0 0 0 3px color-mix(in oklch, var(--accent-color, oklch(0.62 0.18 250)) 20%, transparent);
+    }
+    .row-main {
+      flex: 1;
+      display: flex; align-items: center; gap: 14px;
+      padding: 12px 14px;
+      border: 0; background: transparent;
+      cursor: default;
+      text-align: left;
+    }
+    .row-tile {
+      width: 44px; height: 44px;
+      flex-shrink: 0;
+      border-radius: 12px;
+      display: inline-flex; align-items: center; justify-content: center;
+      color: white; font-size: 20px;
+      position: relative;
+    }
+    .row-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1; }
+    .row-name {
+      font-size: 14px; font-weight: 600;
+      color: oklch(0.22 0.01 80);
+      letter-spacing: -0.005em;
+    }
+    .row-url {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      color: oklch(0.55 0.01 80);
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .row-launch {
+      width: 32px; height: 32px;
+      display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 8px;
+      color: oklch(0.55 0.01 80);
+      transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+    }
+    .row:hover .row-launch { background: rgba(15, 23, 42, 0.05); color: oklch(0.22 0.01 80); transform: translate(2px, -2px); }
+    .row-actions {
+      display: flex; align-items: center; gap: 4px;
+      padding: 0 12px;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+    .row:hover .row-actions { opacity: 1; }
+
+    /* ─── Dock layout ──────────────────────────────────────────────────────── */
+    .dock-wrap {
+      display: flex;
+      justify-content: center;
+      padding: 12px 0 0;
+    }
+    .dock {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: calc(var(--density, 22px) / 1.5);
+      padding: 16px 22px;
+      background: rgba(255,255,255,0.65);
+      border: 1px solid rgba(15, 23, 42, 0.06);
+      border-radius: 28px;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.7),
+        0 1px 2px rgba(15,23,42,0.04),
+        0 16px 40px -8px rgba(15,23,42,0.18),
+        0 30px 60px -20px rgba(15,23,42,0.16);
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
+    }
+    .dock .tile-wrap { max-width: none; width: auto; gap: 0; }
+    .dock .tile-label { display: none; }
+    .dock-add {
+      width: var(--tile-size, 84px);
+      height: var(--tile-size, 84px);
+      border-radius: 20px;
+      border: 1.5px dashed oklch(0.70 0.01 80);
+      background: rgba(255, 255, 255, 0.4);
+      color: oklch(0.55 0.01 80);
+      font-size: 22px;
+      cursor: default;
+      transition: transform 0.2s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+    .dock-add:hover { transform: translateY(-3px); color: oklch(0.30 0.01 80); border-color: oklch(0.45 0.01 80); }
+
+    /* ─── Empty state ──────────────────────────────────────────────────────── */
+    .empty {
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+      padding: 80px 20px;
+      color: oklch(0.55 0.01 80);
+    }
+    .empty i {
+      font-size: 56px;
+      opacity: 0.3;
+    }
+    .empty p { margin: 0; font-size: 14px; }
+
+    /* ─── Footer ───────────────────────────────────────────────────────────── */
+    .foot {
+      position: relative; z-index: 5;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      flex-wrap: wrap;
+      padding: 24px;
+      font-size: 12px;
+      color: oklch(0.55 0.01 80);
+    }
+    .foot kbd {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 20px; height: 20px; padding: 0 5px;
+      font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600;
+      color: oklch(0.35 0.01 80);
+      background: rgba(255,255,255,0.7);
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      border-bottom-width: 2px;
+      border-radius: 5px;
+    }
+    .foot .dotsep { opacity: 0.4; }
+
+    /* ─── Modal ────────────────────────────────────────────────────────────── */
+    .modal-back {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(15, 23, 42, 0.18);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      animation: fadeIn 0.18s ease;
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.96) translateY(8px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .modal {
+      width: 100%;
+      max-width: 540px;
+      max-height: calc(100vh - 48px);
+      background: oklch(0.99 0.005 85);
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      border-radius: 22px;
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.7) inset,
+        0 24px 50px -12px rgba(15, 23, 42, 0.25),
+        0 50px 100px -30px rgba(15, 23, 42, 0.30);
+      display: flex; flex-direction: column;
+      overflow: hidden;
+      animation: popIn 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .modal-sm { max-width: 400px; }
+    .modal-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 22px 8px;
+    }
+    .modal-head h3 {
+      margin: 0;
+      font-size: 16px; font-weight: 700;
+      letter-spacing: -0.01em;
+      color: oklch(0.20 0.01 80);
+    }
+    .modal-close {
+      width: 30px; height: 30px;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: transparent; border: 0; border-radius: 8px;
+      color: oklch(0.45 0.01 80);
+      cursor: default;
+      font-size: 14px;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .modal-close:hover { background: rgba(15, 23, 42, 0.06); color: oklch(0.22 0.01 80); }
+
+    .modal-body {
+      padding: 8px 22px 8px;
+      display: flex; flex-direction: column; gap: 18px;
+      overflow-y: auto;
+    }
+
+    .modal-foot {
+      display: flex; justify-content: flex-end; gap: 8px;
+      padding: 14px 22px 18px;
+      border-top: 1px solid rgba(15, 23, 42, 0.05);
+    }
+
+    /* Preview card in modal */
+    .modal-preview {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px;
+      background: oklch(0.97 0.008 85);
+      border: 1px solid rgba(15, 23, 42, 0.05);
+      border-radius: 14px;
+    }
+    .prev-tile {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      display: inline-flex; align-items: center; justify-content: center;
+      color: white; font-size: 24px;
+      flex-shrink: 0;
+      position: relative;
+    }
+    .prev-meta { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1; }
+    .prev-name { font-size: 14px; font-weight: 600; color: oklch(0.22 0.01 80); }
+    .prev-url {
+      font-family: 'JetBrains Mono', monospace; font-size: 11.5px;
+      color: oklch(0.55 0.01 80);
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field > label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: oklch(0.45 0.01 80);
+    }
+    .field input[type="text"],
+    .field input[type="search"],
+    .field input:not([type]) {
+      height: 40px;
+      padding: 0 14px;
+      font-family: inherit;
+      font-size: 14px;
+      color: oklch(0.20 0.01 80);
+      background: white;
+      border: 1px solid rgba(15, 23, 42, 0.10);
+      border-radius: 10px;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .field input:focus {
+      border-color: var(--accent, oklch(0.55 0.22 280));
+      box-shadow: 0 0 0 3px color-mix(in oklch, var(--accent, oklch(0.55 0.22 280)) 18%, transparent);
+    }
+    .field-row { display: flex; gap: 8px; }
+    .field-row > input { flex: 1; min-width: 0; }
+    .hint {
+      margin: 4px 0 0;
+      font-size: 11.5px;
+      color: oklch(0.55 0.01 80);
+      line-height: 1.5;
+    }
+    .hint i { color: oklch(0.50 0.10 250); margin-right: 4px; }
+    .hint code {
+      background: rgba(15, 23, 42, 0.06);
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-size: 10.5px;
+    }
+
+    /* Color picker */
+    .color-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .color-sw {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      border: 0;
+      cursor: default;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), 0 2px 4px rgba(0,0,0,0.10);
+    }
+    .color-sw:hover { transform: scale(1.10); }
+    .color-sw.is-on {
+      transform: scale(1.18);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.35),
+        0 0 0 2px white,
+        0 0 0 4px oklch(0.30 0.01 80),
+        0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    /* Icon picker */
+    .icon-search {
+      position: relative;
+      margin-bottom: 8px;
+    }
+    .icon-search i {
+      position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+      color: oklch(0.55 0.01 80); font-size: 14px;
+      pointer-events: none;
+    }
+    .icon-search input {
+      width: 100%;
+      height: 36px;
+      padding: 0 12px 0 34px;
+      font-size: 13px;
+      background: white;
+      border: 1px solid rgba(15, 23, 42, 0.10);
+      border-radius: 9px;
+      outline: none;
+      font-family: inherit;
+      color: oklch(0.20 0.01 80);
+    }
+    .icon-search input:focus {
+      border-color: var(--accent, oklch(0.55 0.22 280));
+    }
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 4px;
+      max-height: 170px;
+      overflow-y: auto;
+      padding: 4px;
+      background: white;
+      border: 1px solid rgba(15, 23, 42, 0.06);
+      border-radius: 10px;
+    }
+    .icon-pick {
+      aspect-ratio: 1;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: transparent;
+      border: 1.5px solid transparent;
+      border-radius: 8px;
+      color: oklch(0.45 0.01 80);
+      font-size: 18px;
+      cursor: default;
+      transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease, transform 0.12s ease;
+    }
+    .icon-pick:hover { background: oklch(0.96 0.008 80); color: oklch(0.20 0.01 80); }
+    .icon-pick.is-on {
+      background: color-mix(in oklch, var(--accent, oklch(0.55 0.22 280)) 12%, white);
+      border-color: var(--accent, oklch(0.55 0.22 280));
+      color: var(--accent-ring, oklch(0.30 0.18 280));
+      transform: scale(1.05);
+    }
+    .icon-empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      color: oklch(0.55 0.01 80);
+      font-size: 12.5px;
+      padding: 12px;
+      margin: 0;
+    }
+
+    /* Buttons */
+    .btn-ghost, .btn-primary, .btn-danger {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 9px 14px;
+      font-size: 13px; font-weight: 600;
+      border: 0; border-radius: 10px;
+      cursor: default;
+      transition: transform 0.15s ease, filter 0.15s ease, background 0.15s ease;
+    }
+    .btn-ghost {
+      background: rgba(15, 23, 42, 0.05);
+      color: oklch(0.30 0.01 80);
+    }
+    .btn-ghost:hover { background: rgba(15, 23, 42, 0.09); }
+    .btn-primary {
+      color: white;
+      background: oklch(0.55 0.22 280);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.25),
+        0 4px 10px rgba(15,23,42,0.14);
+    }
+    .btn-primary:hover { filter: brightness(1.06); transform: translateY(-1px); }
+    .btn-danger {
+      color: white;
+      background: oklch(0.58 0.22 25);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.25),
+        0 4px 10px rgba(0,0,0,0.14);
+    }
+    .btn-danger:hover { filter: brightness(1.06); transform: translateY(-1px); }
+
+    /* ─── Tweaks panel overrides (light-ish on light bg) ──────────────────── */
+    .twk-panel { right: 16px; bottom: 16px; }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
+
+    /* Mobile */
+    @media (max-width: 640px) {
+      .topbar { padding: 14px 18px; }
+      .hero { padding: 0 18px; margin-top: 20px; }
+      .apps-section { padding: 0 18px; margin-bottom: 60px; }
+      .hero-row { flex-direction: column; align-items: stretch; }
+      .layout-toggle { margin-left: 0; justify-content: center; }
+      .hero-add { justify-content: center; }
+    }
+  </style>
 </head>
 <body>
+  <div id="root"></div>
 
-    <!-- ─── Header ─────────────────────────────────────────────────────────── -->
-    <header class="glass-header w-full px-5 py-3 flex items-center gap-4 z-40 sticky top-0">
-        <div class="flex items-center gap-2 shrink-0">
-            <i class="ph ph-squares-four text-blue-400 text-2xl"></i>
-            <span class="text-base font-semibold tracking-wide">Portal Control</span>
-        </div>
+  <!-- Defaults block: edit-mode persistence target -->
+  <script>
+    window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+      "layout": "grid",
+      "iconSize": "md",
+      "density": "regular",
+      "accent": "indigo",
+      "background": "cream",
+      "font": "Plus Jakarta Sans"
+    }/*EDITMODE-END*/;
+  </script>
 
-        <div class="flex-1 flex justify-center">
-            <div class="relative w-full max-w-xs">
-                <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm pointer-events-none"></i>
-                <input id="search-input" type="search" placeholder="Caută aplicație..."
-                    class="search-input w-full bg-white/5 border border-white/10 rounded-xl pl-9 pr-4 py-2 text-sm text-white placeholder-gray-600 transition-all">
-            </div>
-        </div>
+  <script type="text/babel">
 
-        <div class="flex items-center gap-3 shrink-0">
-            <div class="text-right hidden sm:block">
-                <div id="current-time" class="text-sm font-semibold text-gray-200 tabular-nums">00:00</div>
-                <div id="current-date" class="text-xs text-gray-500">01 Ian 2026</div>
-            </div>
-            <div class="w-px h-7 bg-white/10 hidden sm:block"></div>
-            <button onclick="openModal()" class="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 active:bg-blue-700 transition px-4 py-2 rounded-xl text-sm font-medium shadow-lg shadow-blue-500/20">
-                <i class="ph ph-plus-circle text-base"></i>
-                <span class="hidden sm:inline">Adaugă App</span>
-            </button>
-        </div>
-    </header>
+// tweaks-panel.jsx
+// Reusable Tweaks shell + form-control helpers.
+//
+// Owns the host protocol (listens for __activate_edit_mode / __deactivate_edit_mode,
+// posts __edit_mode_available / __edit_mode_set_keys / __edit_mode_dismissed) so
+// individual prototypes don't re-roll it. Ships a consistent set of controls so you
+// don't hand-draw <input type="range">, segmented radios, steppers, etc.
+//
+// Usage (in an HTML file that loads React + Babel):
+//
+//   const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+//     "primaryColor": "#D97757",
+//     "palette": ["#D97757", "#29261b", "#f6f4ef"],
+//     "fontSize": 16,
+//     "density": "regular",
+//     "dark": false
+//   }/*EDITMODE-END*/;
+//
+//   function App() {
+//     const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+//     return (
+//       <div style={{ fontSize: t.fontSize, color: t.primaryColor }}>
+//         Hello
+//         <TweaksPanel>
+//           <TweakSection label="Typography" />
+//           <TweakSlider label="Font size" value={t.fontSize} min={10} max={32} unit="px"
+//                        onChange={(v) => setTweak('fontSize', v)} />
+//           <TweakRadio  label="Density" value={t.density}
+//                        options={['compact', 'regular', 'comfy']}
+//                        onChange={(v) => setTweak('density', v)} />
+//           <TweakSection label="Theme" />
+//           <TweakColor  label="Primary" value={t.primaryColor}
+//                        options={['#D97757', '#2A6FDB', '#1F8A5B', '#7A5AE0']}
+//                        onChange={(v) => setTweak('primaryColor', v)} />
+//           <TweakColor  label="Palette" value={t.palette}
+//                        options={[['#D97757', '#29261b', '#f6f4ef'],
+//                                  ['#475569', '#0f172a', '#f1f5f9']]}
+//                        onChange={(v) => setTweak('palette', v)} />
+//           <TweakToggle label="Dark mode" value={t.dark}
+//                        onChange={(v) => setTweak('dark', v)} />
+//         </TweaksPanel>
+//       </div>
+//     );
+//   }
+//
+// ─────────────────────────────────────────────────────────────────────────────
 
-    <!-- ─── Main grid ──────────────────────────────────────────────────────── -->
-    <main class="w-full p-6 sm:p-10">
-        <div class="max-w-6xl mx-auto">
-            <p class="text-center text-gray-600 text-xs mb-8 tracking-widest uppercase font-medium">Aplicații disponibile</p>
-            <div id="apps-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 justify-items-center">
-                <!-- Rendered by JS -->
-            </div>
-        </div>
-    </main>
+const __TWEAKS_STYLE = `
+  .twk-panel{position:fixed;right:16px;bottom:16px;z-index:2147483646;width:280px;
+    max-height:calc(100vh - 32px);display:flex;flex-direction:column;
+    transform:scale(var(--dc-inv-zoom,1));transform-origin:bottom right;
+    background:rgba(250,249,247,.78);color:#29261b;
+    -webkit-backdrop-filter:blur(24px) saturate(160%);backdrop-filter:blur(24px) saturate(160%);
+    border:.5px solid rgba(255,255,255,.6);border-radius:14px;
+    box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 12px 40px rgba(0,0,0,.18);
+    font:11.5px/1.4 ui-sans-serif,system-ui,-apple-system,sans-serif;overflow:hidden}
+  .twk-hd{display:flex;align-items:center;justify-content:space-between;
+    padding:10px 8px 10px 14px;cursor:move;user-select:none}
+  .twk-hd b{font-size:12px;font-weight:600;letter-spacing:.01em}
+  .twk-x{appearance:none;border:0;background:transparent;color:rgba(41,38,27,.55);
+    width:22px;height:22px;border-radius:6px;cursor:default;font-size:13px;line-height:1}
+  .twk-x:hover{background:rgba(0,0,0,.06);color:#29261b}
+  .twk-body{padding:2px 14px 14px;display:flex;flex-direction:column;gap:10px;
+    overflow-y:auto;overflow-x:hidden;min-height:0;
+    scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.15) transparent}
+  .twk-body::-webkit-scrollbar{width:8px}
+  .twk-body::-webkit-scrollbar-track{background:transparent;margin:2px}
+  .twk-body::-webkit-scrollbar-thumb{background:rgba(0,0,0,.15);border-radius:4px;
+    border:2px solid transparent;background-clip:content-box}
+  .twk-body::-webkit-scrollbar-thumb:hover{background:rgba(0,0,0,.25);
+    border:2px solid transparent;background-clip:content-box}
+  .twk-row{display:flex;flex-direction:column;gap:5px}
+  .twk-row-h{flex-direction:row;align-items:center;justify-content:space-between;gap:10px}
+  .twk-lbl{display:flex;justify-content:space-between;align-items:baseline;
+    color:rgba(41,38,27,.72)}
+  .twk-lbl>span:first-child{font-weight:500}
+  .twk-val{color:rgba(41,38,27,.5);font-variant-numeric:tabular-nums}
 
-    <!-- ─── Modal ──────────────────────────────────────────────────────────── -->
-    <div id="add-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm">
-        <div id="modal-content" class="glass-panel bg-slate-900/90 w-full max-w-lg rounded-2xl p-6 shadow-2xl border border-slate-700/60 mx-4 max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-between items-center mb-5">
-                <h3 class="text-base font-semibold" id="modal-title">Adaugă Aplicație</h3>
-                <button onclick="closeModal()" class="text-gray-500 hover:text-white transition w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/10">
-                    <i class="ph ph-x text-base"></i>
-                </button>
-            </div>
+  .twk-sect{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    color:rgba(41,38,27,.45);padding:10px 0 0}
+  .twk-sect:first-child{padding-top:0}
 
-            <form id="app-form" onsubmit="handleFormSubmit(event)">
-                <input type="hidden" id="edit-app-id">
-                <div class="space-y-5">
+  .twk-field{appearance:none;box-sizing:border-box;width:100%;min-width:0;height:26px;padding:0 8px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:7px;
+    background:rgba(255,255,255,.6);color:inherit;font:inherit;outline:none}
+  .twk-field:focus{border-color:rgba(0,0,0,.25);background:rgba(255,255,255,.85)}
+  select.twk-field{padding-right:22px;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='rgba(0,0,0,.5)' d='M0 0h10L5 6z'/></svg>");
+    background-repeat:no-repeat;background-position:right 8px center}
 
-                    <!-- Name -->
-                    <div>
-                        <label class="block text-xs font-semibold text-gray-400 mb-1.5 uppercase tracking-wider">Nume Aplicație</label>
-                        <input type="text" id="app-name" required maxlength="40"
-                            class="w-full bg-slate-800/80 border border-slate-700 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/40 transition placeholder-gray-600"
-                            placeholder="ex: Calculator Salarii">
-                    </div>
+  .twk-slider{appearance:none;-webkit-appearance:none;width:100%;height:4px;margin:6px 0;
+    border-radius:999px;background:rgba(0,0,0,.12);outline:none}
+  .twk-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;
+    width:14px;height:14px;border-radius:50%;background:#fff;
+    border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:default}
+  .twk-slider::-moz-range-thumb{width:14px;height:14px;border-radius:50%;
+    background:#fff;border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:default}
 
-                    <!-- URL + Browse -->
-                    <div>
-                        <label class="block text-xs font-semibold text-gray-400 mb-1.5 uppercase tracking-wider">Cale / Link Fișier</label>
-                        <div class="flex gap-2">
-                            <input type="text" id="app-url" required
-                                class="flex-1 bg-slate-800/80 border border-slate-700 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/40 transition placeholder-gray-600"
-                                placeholder="./aplicatia_mea.html sau https://...">
-                            <button type="button" onclick="triggerFilePicker()"
-                                class="shrink-0 bg-slate-700/80 hover:bg-slate-600 border border-slate-600 rounded-xl px-3 py-2.5 text-gray-300 hover:text-white transition flex items-center gap-1.5 text-sm">
-                                <i class="ph ph-folder-open text-base"></i>
-                                <span class="hidden sm:inline">Răsfoiește</span>
-                            </button>
-                        </div>
-                        <input type="file" id="file-picker" accept=".html,.htm" class="hidden">
-                        <p class="text-xs text-gray-600 mt-1.5 leading-relaxed">
-                            <i class="ph ph-info inline mr-0.5"></i>
-                            Plasează fișierele în același folder cu portalul pentru căi relative, sau folosește calea completă:
-                            <code class="text-gray-500 font-mono">file:///C:/cale/app.html</code>
-                        </p>
-                    </div>
+  .twk-seg{position:relative;display:flex;padding:2px;border-radius:8px;
+    background:rgba(0,0,0,.06);user-select:none}
+  .twk-seg-thumb{position:absolute;top:2px;bottom:2px;border-radius:6px;
+    background:rgba(255,255,255,.9);box-shadow:0 1px 2px rgba(0,0,0,.12);
+    transition:left .15s cubic-bezier(.3,.7,.4,1),width .15s}
+  .twk-seg.dragging .twk-seg-thumb{transition:none}
+  .twk-seg button{appearance:none;position:relative;z-index:1;flex:1;border:0;
+    background:transparent;color:inherit;font:inherit;font-weight:500;min-height:22px;
+    border-radius:6px;cursor:default;padding:4px 6px;line-height:1.2;
+    overflow-wrap:anywhere}
 
-                    <!-- Color -->
-                    <div>
-                        <label class="block text-xs font-semibold text-gray-400 mb-2 uppercase tracking-wider">Culoare</label>
-                        <div class="flex flex-wrap gap-2" id="color-selector"></div>
-                    </div>
+  .twk-toggle{position:relative;width:32px;height:18px;border:0;border-radius:999px;
+    background:rgba(0,0,0,.15);transition:background .15s;cursor:default;padding:0}
+  .twk-toggle[data-on="1"]{background:#34c759}
+  .twk-toggle i{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;
+    background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .15s}
+  .twk-toggle[data-on="1"] i{transform:translateX(14px)}
 
-                    <!-- Icons -->
-                    <div>
-                        <label class="block text-xs font-semibold text-gray-400 mb-2 uppercase tracking-wider">Iconiță</label>
-                        <div class="grid grid-cols-7 gap-1 pr-1" id="icon-selector"></div>
-                        <p id="icon-error" class="text-xs text-red-400 mt-1.5 hidden">
-                            <i class="ph ph-warning inline mr-1"></i>Selectează o iconiță.
-                        </p>
-                    </div>
-                </div>
+  .twk-num{display:flex;align-items:center;box-sizing:border-box;min-width:0;height:26px;padding:0 0 0 8px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:7px;background:rgba(255,255,255,.6)}
+  .twk-num-lbl{font-weight:500;color:rgba(41,38,27,.6);cursor:ew-resize;
+    user-select:none;padding-right:8px}
+  .twk-num input{flex:1;min-width:0;height:100%;border:0;background:transparent;
+    font:inherit;font-variant-numeric:tabular-nums;text-align:right;padding:0 8px 0 0;
+    outline:none;color:inherit;-moz-appearance:textfield}
+  .twk-num input::-webkit-inner-spin-button,.twk-num input::-webkit-outer-spin-button{
+    -webkit-appearance:none;margin:0}
+  .twk-num-unit{padding-right:8px;color:rgba(41,38,27,.45)}
 
-                <div class="mt-6 flex justify-end gap-3">
-                    <button type="button" onclick="closeModal()" class="px-4 py-2.5 rounded-xl text-sm text-gray-400 hover:text-white hover:bg-slate-700 transition">Anulează</button>
-                    <button type="submit" id="submit-btn" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 active:bg-blue-700 rounded-xl text-sm text-white font-semibold shadow-lg shadow-blue-500/20 transition">Adaugă</button>
-                </div>
-            </form>
-        </div>
-    </div>
+  .twk-btn{appearance:none;height:26px;padding:0 12px;border:0;border-radius:7px;
+    background:rgba(0,0,0,.78);color:#fff;font:inherit;font-weight:500;cursor:default}
+  .twk-btn:hover{background:rgba(0,0,0,.88)}
+  .twk-btn.secondary{background:rgba(0,0,0,.06);color:inherit}
+  .twk-btn.secondary:hover{background:rgba(0,0,0,.1)}
 
-    <!-- ─── Script ─────────────────────────────────────────────────────────── -->
-    <script>
+  .twk-swatch{appearance:none;-webkit-appearance:none;width:56px;height:22px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:6px;padding:0;cursor:default;
+    background:transparent;flex-shrink:0}
+  .twk-swatch::-webkit-color-swatch-wrapper{padding:0}
+  .twk-swatch::-webkit-color-swatch{border:0;border-radius:5.5px}
+  .twk-swatch::-moz-color-swatch{border:0;border-radius:5.5px}
 
-    // ── Constants ────────────────────────────────────────────────────────────
+  .twk-chips{display:flex;gap:6px}
+  .twk-chip{position:relative;appearance:none;flex:1;min-width:0;height:46px;
+    padding:0;border:0;border-radius:6px;overflow:hidden;cursor:default;
+    box-shadow:0 0 0 .5px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.06);
+    transition:transform .12s cubic-bezier(.3,.7,.4,1),box-shadow .12s}
+  .twk-chip:hover{transform:translateY(-1px);
+    box-shadow:0 0 0 .5px rgba(0,0,0,.18),0 4px 10px rgba(0,0,0,.12)}
+  .twk-chip[data-on="1"]{box-shadow:0 0 0 1.5px rgba(0,0,0,.85),
+    0 2px 6px rgba(0,0,0,.15)}
+  .twk-chip>span{position:absolute;top:0;bottom:0;right:0;width:34%;
+    display:flex;flex-direction:column;box-shadow:-1px 0 0 rgba(0,0,0,.1)}
+  .twk-chip>span>i{flex:1;box-shadow:0 -1px 0 rgba(0,0,0,.1)}
+  .twk-chip>span>i:first-child{box-shadow:none}
+  .twk-chip svg{position:absolute;top:6px;left:6px;width:13px;height:13px;
+    filter:drop-shadow(0 1px 1px rgba(0,0,0,.3))}
+`;
 
-    const ALLOWED_COLORS = new Map([
-        ['bg-blue-500',    '#3b82f6'],
-        ['bg-indigo-500',  '#6366f1'],
-        ['bg-violet-500',  '#8b5cf6'],
-        ['bg-cyan-500',    '#06b6d4'],
-        ['bg-teal-500',    '#14b8a6'],
-        ['bg-emerald-500', '#10b981'],
-        ['bg-green-500',   '#22c55e'],
-        ['bg-pink-500',    '#ec4899'],
-        ['bg-rose-500',    '#f43f5e'],
-        ['bg-orange-500',  '#f97316'],
-        ['bg-amber-500',   '#f59e0b'],
-        ['bg-slate-500',   '#64748b'],
-    ]);
+// ── useTweaks ───────────────────────────────────────────────────────────────
+// Single source of truth for tweak values. setTweak persists via the host
+// (__edit_mode_set_keys → host rewrites the EDITMODE block on disk).
+function useTweaks(defaults) {
+  const [values, setValues] = React.useState(defaults);
+  // Accepts either setTweak('key', value) or setTweak({ key: value, ... }) so a
+  // useState-style call doesn't write a "[object Object]" key into the persisted
+  // JSON block.
+  const setTweak = React.useCallback((keyOrEdits, val) => {
+    const edits = typeof keyOrEdits === 'object' && keyOrEdits !== null
+      ? keyOrEdits : { [keyOrEdits]: val };
+    setValues((prev) => ({ ...prev, ...edits }));
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits }, '*');
+    // Same-window signal so in-page listeners (deck-stage rail thumbnails)
+    // can react — the parent message only reaches the host, not peers.
+    window.dispatchEvent(new CustomEvent('tweakchange', { detail: edits }));
+  }, []);
+  return [values, setTweak];
+}
 
-    const ALLOWED_ICONS = [
-        { id: 'ph-chart-pie-slice',      label: 'Dashboard' },
-        { id: 'ph-chart-bar',            label: 'Statistici' },
-        { id: 'ph-chart-line-up',        label: 'Tendinte' },
-        { id: 'ph-table',                label: 'Tabel' },
-        { id: 'ph-file-text',            label: 'Document' },
-        { id: 'ph-notepad',              label: 'Notite' },
-        { id: 'ph-clipboard-text',       label: 'Sarcini' },
-        { id: 'ph-calendar',             label: 'Calendar' },
-        { id: 'ph-envelope-simple-open', label: 'Scrisori' },
-        { id: 'ph-envelope',             label: 'Email' },
-        { id: 'ph-chat-circle-text',     label: 'Mesaje' },
-        { id: 'ph-phone',                label: 'Telefon' },
-        { id: 'ph-users',                label: 'Echipa' },
-        { id: 'ph-user-circle',          label: 'Profil' },
-        { id: 'ph-address-book',         label: 'Contacte' },
-        { id: 'ph-identification-card',  label: 'HR/Acte' },
-        { id: 'ph-currency-dollar',      label: 'Finante' },
-        { id: 'ph-coins',                label: 'Buget' },
-        { id: 'ph-bank',                 label: 'Banca' },
-        { id: 'ph-scales',               label: 'Juridic' },
-        { id: 'ph-receipt',              label: 'Facturi' },
-        { id: 'ph-hand-coins',           label: 'Plati' },
-        { id: 'ph-shield-check',         label: 'Securitate' },
-        { id: 'ph-lock-simple',          label: 'Acces' },
-        { id: 'ph-key',                  label: 'Autentificare' },
-        { id: 'ph-fingerprint',          label: 'Identitate' },
-        { id: 'ph-database',             label: 'Baze de date' },
-        { id: 'ph-cloud',                label: 'Cloud' },
-        { id: 'ph-gear',                 label: 'Setari' },
-        { id: 'ph-terminal-window',      label: 'Terminal' },
-        { id: 'ph-code',                 label: 'Cod' },
-        { id: 'ph-map-pin',              label: 'Locatii' },
-        { id: 'ph-globe',                label: 'Web' },
-        { id: 'ph-truck',                label: 'Logistica' },
-        { id: 'ph-archive-box',          label: 'Arhiva' },
-    ];
-
-    const ALLOWED_ICON_IDS = new Set(ALLOWED_ICONS.map(i => i.id));
-
-    const DEFAULT_APPS = [
-        { id: 1, name: 'ARBI Dashboard',          url: './ARBI Dashboard.html',           icon: 'ph-chart-pie-slice',      color: 'bg-indigo-500' },
-        { id: 2, name: 'Scrisori Bănci',           url: './scrisori bănci_2.html',          icon: 'ph-envelope-simple-open', color: 'bg-emerald-500' },
-        { id: 3, name: 'Evidența Delegațiilor',    url: './EVIDENȚA DELEGATIILOR.html',     icon: 'ph-users',                color: 'bg-blue-500' },
-    ];
-
-    // ── State ─────────────────────────────────────────────────────────────────
-
-    const AppState = {
-        apps: [],
-
-        load() {
-            try {
-                const saved = localStorage.getItem('portal_apps_v2');
-                this.apps = saved ? JSON.parse(saved) : [...DEFAULT_APPS];
-            } catch {
-                this.apps = [...DEFAULT_APPS];
-            }
-        },
-        save() {
-            localStorage.setItem('portal_apps_v2', JSON.stringify(this.apps));
-        },
-        addApp(data) {
-            this.apps.push({ id: Date.now(), ...data });
-            this.save();
-        },
-        updateApp(id, changes) {
-            this.apps = this.apps.map(a => String(a.id) === String(id) ? { ...a, ...changes } : a);
-            this.save();
-        },
-        deleteApp(id) {
-            this.apps = this.apps.filter(a => String(a.id) !== String(id));
-            this.save();
-        },
-        getById(id) {
-            return this.apps.find(a => String(a.id) === String(id));
-        },
+// ── TweaksPanel ─────────────────────────────────────────────────────────────
+// Floating shell. Registers the protocol listener BEFORE announcing
+// availability — if the announce ran first, the host's activate could land
+// before our handler exists and the toolbar toggle would silently no-op.
+// The close button posts __edit_mode_dismissed so the host's toolbar toggle
+// flips off in lockstep; the host echoes __deactivate_edit_mode back which
+// is what actually hides the panel.
+function TweaksPanel({ title = 'Tweaks', noDeckControls = false, children }) {
+  const [open, setOpen] = React.useState(false);
+  const dragRef = React.useRef(null);
+  // Auto-inject a rail toggle when a <deck-stage> is on the page. The
+  // toggle drives the deck's per-viewer _railVisible via window message;
+  // state is mirrored from the same localStorage key the deck reads so
+  // the control reflects reality across reloads. The mechanism is the
+  // message — authors who want custom placement can post it directly
+  // and pass noDeckControls to suppress this one.
+  const hasDeckStage = React.useMemo(
+    () => typeof document !== 'undefined' && !!document.querySelector('deck-stage'),
+    [],
+  );
+  // deck-stage enables its rail in connectedCallback, but this panel can
+  // mount before that element has upgraded. The initial read catches the
+  // common case; the listener covers mounting first. (Older deck-stage.js
+  // copies still wait for the host's __omelette_rail_enabled postMessage —
+  // same listener handles those.)
+  const [railEnabled, setRailEnabled] = React.useState(
+    () => hasDeckStage && !!document.querySelector('deck-stage')?._railEnabled,
+  );
+  React.useEffect(() => {
+    if (!hasDeckStage || railEnabled) return undefined;
+    const onMsg = (e) => {
+      if (e.data && e.data.type === '__omelette_rail_enabled') setRailEnabled(true);
     };
+    window.addEventListener('message', onMsg);
+    return () => window.removeEventListener('message', onMsg);
+  }, [hasDeckStage, railEnabled]);
+  const [railVisible, setRailVisible] = React.useState(() => {
+    try { return localStorage.getItem('deck-stage.railVisible') !== '0'; } catch (e) { return true; }
+  });
+  const toggleRail = (on) => {
+    setRailVisible(on);
+    window.postMessage({ type: '__deck_rail_visible', on }, '*');
+  };
+  const offsetRef = React.useRef({ x: 16, y: 16 });
+  const PAD = 16;
 
-    // ── Rendering ─────────────────────────────────────────────────────────────
+  const clampToViewport = React.useCallback(() => {
+    const panel = dragRef.current;
+    if (!panel) return;
+    const w = panel.offsetWidth, h = panel.offsetHeight;
+    const maxRight = Math.max(PAD, window.innerWidth - w - PAD);
+    const maxBottom = Math.max(PAD, window.innerHeight - h - PAD);
+    offsetRef.current = {
+      x: Math.min(maxRight, Math.max(PAD, offsetRef.current.x)),
+      y: Math.min(maxBottom, Math.max(PAD, offsetRef.current.y)),
+    };
+    panel.style.right = offsetRef.current.x + 'px';
+    panel.style.bottom = offsetRef.current.y + 'px';
+  }, []);
 
-    function renderApps(query = '') {
-        const grid = document.getElementById('apps-grid');
-        grid.innerHTML = '';
-
-        const q = normalizeDiacritics(query);
-        const filtered = q
-            ? AppState.apps.filter(a => normalizeDiacritics(a.name).includes(q))
-            : AppState.apps;
-
-        if (AppState.apps.length === 0) {
-            grid.appendChild(createEmptyState('Nu există aplicații. Adaugă prima!'));
-        } else if (filtered.length === 0) {
-            grid.appendChild(createEmptyState('Niciun rezultat pentru „' + query + '"'));
-        } else {
-            filtered.forEach(app => grid.appendChild(createAppCard(app)));
-        }
-
-        grid.appendChild(createAddButton());
+  React.useEffect(() => {
+    if (!open) return;
+    clampToViewport();
+    if (typeof ResizeObserver === 'undefined') {
+      window.addEventListener('resize', clampToViewport);
+      return () => window.removeEventListener('resize', clampToViewport);
     }
+    const ro = new ResizeObserver(clampToViewport);
+    ro.observe(document.documentElement);
+    return () => ro.disconnect();
+  }, [open, clampToViewport]);
 
-    function createAppCard(app) {
-        const safeIcon  = ALLOWED_ICON_IDS.has(app.icon)  ? app.icon  : 'ph-squares-four';
-        const safeColor = ALLOWED_COLORS.has(app.color)   ? app.color : 'bg-slate-500';
-        const colorHex  = ALLOWED_COLORS.get(safeColor);
+  React.useEffect(() => {
+    const onMsg = (e) => {
+      const t = e?.data?.type;
+      if (t === '__activate_edit_mode') setOpen(true);
+      else if (t === '__deactivate_edit_mode') setOpen(false);
+    };
+    window.addEventListener('message', onMsg);
+    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+    return () => window.removeEventListener('message', onMsg);
+  }, []);
 
-        const wrapper = document.createElement('div');
-        wrapper.className = 'app-card-wrapper relative flex flex-col items-center gap-2.5 w-24';
+  const dismiss = () => {
+    setOpen(false);
+    window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*');
+  };
 
-        // Edit / Delete buttons
-        const actions = document.createElement('div');
-        actions.className = 'app-actions absolute -top-2 right-0 flex gap-1 z-20';
+  const onDragStart = (e) => {
+    const panel = dragRef.current;
+    if (!panel) return;
+    const r = panel.getBoundingClientRect();
+    const sx = e.clientX, sy = e.clientY;
+    const startRight = window.innerWidth - r.right;
+    const startBottom = window.innerHeight - r.bottom;
+    const move = (ev) => {
+      offsetRef.current = {
+        x: startRight - (ev.clientX - sx),
+        y: startBottom - (ev.clientY - sy),
+      };
+      clampToViewport();
+    };
+    const up = () => {
+      window.removeEventListener('mousemove', move);
+      window.removeEventListener('mouseup', up);
+    };
+    window.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', up);
+  };
 
-        const editBtn = document.createElement('button');
-        editBtn.className = 'w-6 h-6 bg-blue-600 hover:bg-blue-500 rounded-full flex items-center justify-center shadow-md transition';
-        editBtn.title = 'Editează';
-        editBtn.innerHTML = '<i class="ph ph-pencil-simple text-xs"></i>';
-        editBtn.onclick = e => { e.stopPropagation(); editApp(app.id); };
+  if (!open) return null;
+  return (
+    <>
+      <style>{__TWEAKS_STYLE}</style>
+      <div ref={dragRef} className="twk-panel" data-noncommentable=""
+           style={{ right: offsetRef.current.x, bottom: offsetRef.current.y }}>
+        <div className="twk-hd" onMouseDown={onDragStart}>
+          <b>{title}</b>
+          <button className="twk-x" aria-label="Close tweaks"
+                  onMouseDown={(e) => e.stopPropagation()}
+                  onClick={dismiss}>✕</button>
+        </div>
+        <div className="twk-body">
+          {children}
+          {hasDeckStage && railEnabled && !noDeckControls && (
+            <TweakSection label="Deck">
+              <TweakToggle label="Thumbnail rail" value={railVisible} onChange={toggleRail} />
+            </TweakSection>
+          )}
+        </div>
+      </div>
+    </>
+  );
+}
 
-        const delBtn = document.createElement('button');
-        delBtn.className = 'w-6 h-6 bg-red-600 hover:bg-red-500 rounded-full flex items-center justify-center shadow-md transition';
-        delBtn.title = 'Șterge';
-        delBtn.innerHTML = '<i class="ph ph-trash text-xs"></i>';
-        delBtn.onclick = e => { e.stopPropagation(); deleteApp(app.id); };
+// ── Layout helpers ──────────────────────────────────────────────────────────
 
-        actions.appendChild(editBtn);
-        actions.appendChild(delBtn);
-        wrapper.appendChild(actions);
+function TweakSection({ label, children }) {
+  return (
+    <>
+      <div className="twk-sect">{label}</div>
+      {children}
+    </>
+  );
+}
 
-        // Card
-        const card = document.createElement('div');
-        card.className = 'app-card glass-panel w-20 h-20 rounded-2xl flex items-center justify-center relative overflow-hidden';
+function TweakRow({ label, value, children, inline = false }) {
+  return (
+    <div className={inline ? 'twk-row twk-row-h' : 'twk-row'}>
+      <div className="twk-lbl">
+        <span>{label}</span>
+        {value != null && <span className="twk-val">{value}</span>}
+      </div>
+      {children}
+    </div>
+  );
+}
 
-        const glowWrap = document.createElement('div');
-        glowWrap.className = `icon-glow-wrap ${safeColor} w-12 h-12 rounded-xl flex items-center justify-center relative z-10`;
-        glowWrap.style.setProperty('--glow-bg', colorHex);
+// ── Controls ────────────────────────────────────────────────────────────────
 
-        const icon = document.createElement('i');
-        icon.className = `ph ${safeIcon} text-2xl text-white`;
-        glowWrap.appendChild(icon);
-        card.appendChild(glowWrap);
-        card.onclick = () => launchApp(app.url);
-        wrapper.appendChild(card);
+function TweakSlider({ label, value, min = 0, max = 100, step = 1, unit = '', onChange }) {
+  return (
+    <TweakRow label={label} value={`${value}${unit}`}>
+      <input type="range" className="twk-slider" min={min} max={max} step={step}
+             value={value} onChange={(e) => onChange(Number(e.target.value))} />
+    </TweakRow>
+  );
+}
 
-        // Name label
-        const name = document.createElement('span');
-        name.className = 'text-xs text-center font-medium text-gray-300 hover:text-white transition line-clamp-2 w-full leading-snug px-0.5';
-        name.title = app.name;
-        name.textContent = app.name;
-        wrapper.appendChild(name);
+function TweakToggle({ label, value, onChange }) {
+  return (
+    <div className="twk-row twk-row-h">
+      <div className="twk-lbl"><span>{label}</span></div>
+      <button type="button" className="twk-toggle" data-on={value ? '1' : '0'}
+              role="switch" aria-checked={!!value}
+              onClick={() => onChange(!value)}><i /></button>
+    </div>
+  );
+}
 
-        return wrapper;
-    }
+function TweakRadio({ label, value, options, onChange }) {
+  const trackRef = React.useRef(null);
+  const [dragging, setDragging] = React.useState(false);
+  // The active value is read by pointer-move handlers attached for the lifetime
+  // of a drag — ref it so a stale closure doesn't fire onChange for every move.
+  const valueRef = React.useRef(value);
+  valueRef.current = value;
 
-    function createEmptyState(msg) {
-        const el = document.createElement('div');
-        el.className = 'col-span-full flex flex-col items-center gap-3 py-24 text-gray-600';
-        const icon = document.createElement('i');
-        icon.className = 'ph ph-squares-four text-6xl opacity-20';
-        const text = document.createElement('p');
-        text.className = 'text-sm font-medium opacity-50';
-        text.textContent = msg;
-        el.appendChild(icon);
-        el.appendChild(text);
-        return el;
-    }
+  // Segments wrap mid-word once per-segment width runs out. The track is
+  // ~248px (280 panel − 28 body pad − 4 seg pad), each button loses 12px
+  // to its own padding, and 11.5px system-ui averages ~6.3px/char — so 2
+  // options fit ~16 chars each, 3 fit ~10. Past that (or >3 options), fall
+  // back to a dropdown rather than wrap.
+  const labelLen = (o) => String(typeof o === 'object' ? o.label : o).length;
+  const maxLen = options.reduce((m, o) => Math.max(m, labelLen(o)), 0);
+  const fitsAsSegments = maxLen <= ({ 2: 16, 3: 10 }[options.length] ?? 0);
+  if (!fitsAsSegments) {
+    // <select> emits strings — map back to the original option value so the
+    // fallback stays type-preserving (numbers, booleans) like the segment path.
+    const resolve = (s) => {
+      const m = options.find((o) => String(typeof o === 'object' ? o.value : o) === s);
+      return m === undefined ? s : typeof m === 'object' ? m.value : m;
+    };
+    return <TweakSelect label={label} value={value} options={options}
+                        onChange={(s) => onChange(resolve(s))} />;
+  }
+  const opts = options.map((o) => (typeof o === 'object' ? o : { value: o, label: o }));
+  const idx = Math.max(0, opts.findIndex((o) => o.value === value));
+  const n = opts.length;
 
-    function createAddButton() {
-        const el = document.createElement('div');
-        el.className = 'flex flex-col items-center gap-2.5 w-24 cursor-pointer';
-        el.onclick = () => openModal();
+  const segAt = (clientX) => {
+    const r = trackRef.current.getBoundingClientRect();
+    const inner = r.width - 4;
+    const i = Math.floor(((clientX - r.left - 2) / inner) * n);
+    return opts[Math.max(0, Math.min(n - 1, i))].value;
+  };
 
-        const card = document.createElement('div');
-        card.className = 'add-btn-card w-20 h-20 rounded-2xl flex items-center justify-center border-2 border-dashed border-white/15 text-gray-600';
-        card.innerHTML = '<i class="ph ph-plus text-2xl"></i>';
+  const onPointerDown = (e) => {
+    setDragging(true);
+    const v0 = segAt(e.clientX);
+    if (v0 !== valueRef.current) onChange(v0);
+    const move = (ev) => {
+      if (!trackRef.current) return;
+      const v = segAt(ev.clientX);
+      if (v !== valueRef.current) onChange(v);
+    };
+    const up = () => {
+      setDragging(false);
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
 
-        const label = document.createElement('span');
-        label.className = 'text-xs text-center font-medium text-gray-600';
-        label.textContent = 'Adaugă';
+  return (
+    <TweakRow label={label}>
+      <div ref={trackRef} role="radiogroup" onPointerDown={onPointerDown}
+           className={dragging ? 'twk-seg dragging' : 'twk-seg'}>
+        <div className="twk-seg-thumb"
+             style={{ left: `calc(2px + ${idx} * (100% - 4px) / ${n})`,
+                      width: `calc((100% - 4px) / ${n})` }} />
+        {opts.map((o) => (
+          <button key={o.value} type="button" role="radio" aria-checked={o.value === value}>
+            {o.label}
+          </button>
+        ))}
+      </div>
+    </TweakRow>
+  );
+}
 
-        el.appendChild(card);
-        el.appendChild(label);
-        return el;
-    }
+function TweakSelect({ label, value, options, onChange }) {
+  return (
+    <TweakRow label={label}>
+      <select className="twk-field" value={value} onChange={(e) => onChange(e.target.value)}>
+        {options.map((o) => {
+          const v = typeof o === 'object' ? o.value : o;
+          const l = typeof o === 'object' ? o.label : o;
+          return <option key={v} value={v}>{l}</option>;
+        })}
+      </select>
+    </TweakRow>
+  );
+}
 
-    // ── App Actions ───────────────────────────────────────────────────────────
+function TweakText({ label, value, placeholder, onChange }) {
+  return (
+    <TweakRow label={label}>
+      <input className="twk-field" type="text" value={value} placeholder={placeholder}
+             onChange={(e) => onChange(e.target.value)} />
+    </TweakRow>
+  );
+}
 
-    function launchApp(url) {
-        if (!url) return;
-        if (url.startsWith('javascript:')) return;
-        const normalized = normalizeUrl(url);
-        const isLocal = !normalized.startsWith('http');
-        window.open(normalized, '_blank', isLocal ? '' : 'noopener,noreferrer');
-    }
+function TweakNumber({ label, value, min, max, step = 1, unit = '', onChange }) {
+  const clamp = (n) => {
+    if (min != null && n < min) return min;
+    if (max != null && n > max) return max;
+    return n;
+  };
+  const startRef = React.useRef({ x: 0, val: 0 });
+  const onScrubStart = (e) => {
+    e.preventDefault();
+    startRef.current = { x: e.clientX, val: value };
+    const decimals = (String(step).split('.')[1] || '').length;
+    const move = (ev) => {
+      const dx = ev.clientX - startRef.current.x;
+      const raw = startRef.current.val + dx * step;
+      const snapped = Math.round(raw / step) * step;
+      onChange(clamp(Number(snapped.toFixed(decimals))));
+    };
+    const up = () => {
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
+  return (
+    <div className="twk-num">
+      <span className="twk-num-lbl" onPointerDown={onScrubStart}>{label}</span>
+      <input type="number" value={value} min={min} max={max} step={step}
+             onChange={(e) => onChange(clamp(Number(e.target.value)))} />
+      {unit && <span className="twk-num-unit">{unit}</span>}
+    </div>
+  );
+}
 
-    function deleteApp(id) {
-        if (!confirm('Ești sigur că vrei să ștergi această aplicație?')) return;
-        AppState.deleteApp(id);
-        renderApps(getCurrentSearch());
-    }
+// Relative-luminance contrast pick — checkmarks drawn over a swatch need to
+// read on both #111 and #fafafa without per-option configuration. Hex input
+// only (#rgb / #rrggbb); named or rgb()/hsl() colors fall through to "light".
+function __twkIsLight(hex) {
+  const h = String(hex).replace('#', '');
+  const x = h.length === 3 ? h.replace(/./g, (c) => c + c) : h.padEnd(6, '0');
+  const n = parseInt(x.slice(0, 6), 16);
+  if (Number.isNaN(n)) return true;
+  const r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
+  return r * 299 + g * 587 + b * 114 > 148000;
+}
 
-    function editApp(id) {
-        const app = AppState.getById(id);
-        if (app) openModal(app);
-    }
+const __TwkCheck = ({ light }) => (
+  <svg viewBox="0 0 14 14" aria-hidden="true">
+    <path d="M3 7.2 5.8 10 11 4.2" fill="none" strokeWidth="2.2"
+          strokeLinecap="round" strokeLinejoin="round"
+          stroke={light ? 'rgba(0,0,0,.78)' : '#fff'} />
+  </svg>
+);
 
-    function normalizeUrl(url) {
-        // C:\path\app.html  →  file:///C:/path/app.html
-        if (/^[A-Za-z]:[\\\/]/.test(url)) {
-            return 'file:///' + url.replace(/\\/g, '/');
-        }
-        return url;
-    }
+// TweakColor — curated color/palette picker. Each option is either a single
+// hex string or an array of 1-5 hex strings; the card adapts — a lone color
+// renders solid, a palette renders colors[0] as the hero (left ~2/3) with the
+// rest stacked in a sharp column on the right. onChange emits the
+// option in the shape it was passed (string stays string, array stays array).
+// Without options it falls back to the native color input for back-compat.
+function TweakColor({ label, value, options, onChange }) {
+  if (!options || !options.length) {
+    return (
+      <div className="twk-row twk-row-h">
+        <div className="twk-lbl"><span>{label}</span></div>
+        <input type="color" className="twk-swatch" value={value}
+               onChange={(e) => onChange(e.target.value)} />
+      </div>
+    );
+  }
+  // Native <input type=color> emits lowercase hex per the HTML spec, so
+  // compare case-insensitively. String() guards JSON.stringify(undefined),
+  // which returns the primitive undefined (no .toLowerCase).
+  const key = (o) => String(JSON.stringify(o)).toLowerCase();
+  const cur = key(value);
+  return (
+    <TweakRow label={label}>
+      <div className="twk-chips" role="radiogroup">
+        {options.map((o, i) => {
+          const colors = Array.isArray(o) ? o : [o];
+          const [hero, ...rest] = colors;
+          const sup = rest.slice(0, 4);
+          const on = key(o) === cur;
+          return (
+            <button key={i} type="button" className="twk-chip" role="radio"
+                    aria-checked={on} data-on={on ? '1' : '0'}
+                    aria-label={colors.join(', ')} title={colors.join(' · ')}
+                    style={{ background: hero }}
+                    onClick={() => onChange(o)}>
+              {sup.length > 0 && (
+                <span>
+                  {sup.map((c, j) => <i key={j} style={{ background: c }} />)}
+                </span>
+              )}
+              {on && <__TwkCheck light={__twkIsLight(hero)} />}
+            </button>
+          );
+        })}
+      </div>
+    </TweakRow>
+  );
+}
 
-    // ── Search ────────────────────────────────────────────────────────────────
+function TweakButton({ label, onClick, secondary = false }) {
+  return (
+    <button type="button" className={secondary ? 'twk-btn secondary' : 'twk-btn'}
+            onClick={onClick}>{label}</button>
+  );
+}
 
-    function normalizeDiacritics(str) {
-        return str.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
-    }
+Object.assign(window, {
+  useTweaks, TweaksPanel, TweakSection, TweakRow,
+  TweakSlider, TweakToggle, TweakRadio, TweakSelect,
+  TweakText, TweakNumber, TweakColor, TweakButton,
+});
 
-    function getCurrentSearch() {
-        return document.getElementById('search-input').value.trim();
-    }
+</script>
+  <script type="text/babel">
+// launcher.jsx — Modern Spotlight-style launcher
+// Light mode, subtle spatial depth, multi-color tiles, Cmd+K search, drag-reorder.
 
-    let searchTimer;
-    function initSearch() {
-        document.getElementById('search-input').addEventListener('input', function () {
-            clearTimeout(searchTimer);
-            searchTimer = setTimeout(() => renderApps(this.value.trim()), 150);
-        });
-    }
+const { useState, useEffect, useRef, useMemo, useCallback } = React;
 
-    // ── Modal ─────────────────────────────────────────────────────────────────
+// ── Palette ───────────────────────────────────────────────────────────────────
+const COLORS = {
+  blue: { tile: 'oklch(0.62 0.18 250)', soft: 'oklch(0.96 0.04 250)', ring: 'oklch(0.45 0.22 250)' },
+  indigo: { tile: 'oklch(0.55 0.22 280)', soft: 'oklch(0.95 0.04 280)', ring: 'oklch(0.40 0.24 280)' },
+  violet: { tile: 'oklch(0.58 0.22 305)', soft: 'oklch(0.96 0.04 305)', ring: 'oklch(0.42 0.24 305)' },
+  cyan: { tile: 'oklch(0.65 0.13 220)', soft: 'oklch(0.96 0.04 220)', ring: 'oklch(0.50 0.16 220)' },
+  teal: { tile: 'oklch(0.62 0.12 190)', soft: 'oklch(0.96 0.04 190)', ring: 'oklch(0.48 0.14 190)' },
+  emerald: { tile: 'oklch(0.62 0.15 160)', soft: 'oklch(0.96 0.04 160)', ring: 'oklch(0.46 0.18 160)' },
+  green: { tile: 'oklch(0.65 0.16 145)', soft: 'oklch(0.96 0.04 145)', ring: 'oklch(0.48 0.18 145)' },
+  amber: { tile: 'oklch(0.74 0.16 75)', soft: 'oklch(0.96 0.04 75)', ring: 'oklch(0.58 0.18 75)' },
+  orange: { tile: 'oklch(0.70 0.18 50)', soft: 'oklch(0.96 0.04 50)', ring: 'oklch(0.55 0.20 50)' },
+  rose: { tile: 'oklch(0.65 0.20 15)', soft: 'oklch(0.96 0.04 15)', ring: 'oklch(0.50 0.22 15)' },
+  pink: { tile: 'oklch(0.68 0.20 350)', soft: 'oklch(0.96 0.04 350)', ring: 'oklch(0.52 0.22 350)' },
+  slate: { tile: 'oklch(0.50 0.03 250)', soft: 'oklch(0.95 0.01 250)', ring: 'oklch(0.35 0.04 250)' }
+};
+const COLOR_KEYS = Object.keys(COLORS);
 
-    function openModal(appToEdit = null) {
-        const modal = document.getElementById('add-modal');
+// ── Icon set (Phosphor) ───────────────────────────────────────────────────────
+const ICONS = [
+{ id: 'ph-chart-pie-slice', label: 'Dashboard' },
+{ id: 'ph-chart-bar', label: 'Statistici' },
+{ id: 'ph-chart-line-up', label: 'Tendințe' },
+{ id: 'ph-table', label: 'Tabel' },
+{ id: 'ph-file-text', label: 'Document' },
+{ id: 'ph-notepad', label: 'Notițe' },
+{ id: 'ph-clipboard-text', label: 'Sarcini' },
+{ id: 'ph-calendar', label: 'Calendar' },
+{ id: 'ph-envelope-simple-open', label: 'Scrisori' },
+{ id: 'ph-envelope', label: 'Email' },
+{ id: 'ph-chat-circle-text', label: 'Mesaje' },
+{ id: 'ph-phone', label: 'Telefon' },
+{ id: 'ph-users', label: 'Echipă' },
+{ id: 'ph-user-circle', label: 'Profil' },
+{ id: 'ph-address-book', label: 'Contacte' },
+{ id: 'ph-identification-card', label: 'HR/Acte' },
+{ id: 'ph-currency-dollar', label: 'Finanțe' },
+{ id: 'ph-coins', label: 'Buget' },
+{ id: 'ph-bank', label: 'Bancă' },
+{ id: 'ph-scales', label: 'Juridic' },
+{ id: 'ph-receipt', label: 'Facturi' },
+{ id: 'ph-hand-coins', label: 'Plăți' },
+{ id: 'ph-shield-check', label: 'Securitate' },
+{ id: 'ph-lock-simple', label: 'Acces' },
+{ id: 'ph-key', label: 'Autentificare' },
+{ id: 'ph-fingerprint', label: 'Identitate' },
+{ id: 'ph-database', label: 'Baze de date' },
+{ id: 'ph-cloud', label: 'Cloud' },
+{ id: 'ph-gear', label: 'Setări' },
+{ id: 'ph-terminal-window', label: 'Terminal' },
+{ id: 'ph-code', label: 'Cod' },
+{ id: 'ph-map-pin', label: 'Locații' },
+{ id: 'ph-globe', label: 'Web' },
+{ id: 'ph-truck', label: 'Logistică' },
+{ id: 'ph-archive-box', label: 'Arhivă' },
+{ id: 'ph-rocket-launch', label: 'Lansare' },
+{ id: 'ph-lightbulb', label: 'Idei' },
+{ id: 'ph-bookmark-simple', label: 'Salvate' },
+{ id: 'ph-globe', label: 'Web / Internet' },
+{ id: 'ph-browsers', label: 'Browser' },
+{ id: 'ph-link', label: 'Link / URL' },
+{ id: 'ph-monitor', label: 'Monitor / Ecran' },
+{ id: 'ph-video', label: 'Video' },
+{ id: 'ph-newspaper', label: 'Știri / Articole' },
+{ id: 'ph-shopping-cart', label: 'Comerț / Shop' },
+{ id: 'ph-cloud-arrow-up', label: 'Upload / Cloud' }];
 
-        document.getElementById('modal-title').textContent  = appToEdit ? 'Editează Aplicația' : 'Adaugă Aplicație Nouă';
-        document.getElementById('submit-btn').textContent   = appToEdit ? 'Salvează' : 'Adaugă';
-        document.getElementById('edit-app-id').value        = appToEdit ? appToEdit.id : '';
-        document.getElementById('app-name').value           = appToEdit ? appToEdit.name : '';
-        document.getElementById('app-url').value            = appToEdit ? appToEdit.url  : '';
-        document.getElementById('icon-error').classList.add('hidden');
+const ICON_IDS = new Set(ICONS.map((i) => i.id));
 
-        renderColorSelector(appToEdit?.color  || 'bg-blue-500');
-        renderIconSelector(appToEdit?.icon    || ALLOWED_ICONS[0].id);
+const DEFAULT_APPS = [
+{ id: 1, name: 'ARBI Dashboard', url: './ARBI Dashboard.html', icon: 'ph-chart-pie-slice', color: 'indigo' },
+{ id: 2, name: 'Scrisori Bănci', url: './scrisori bănci_2.html', icon: 'ph-envelope-simple-open', color: 'emerald' },
+{ id: 3, name: 'Evidența Delegațiilor', url: './EVIDENȚA DELEGATIILOR.html', icon: 'ph-users', color: 'blue' },
+{ id: 4, name: 'Calculator Salarii', url: '#', icon: 'ph-currency-dollar', color: 'amber' },
+{ id: 5, name: 'Documente', url: '#', icon: 'ph-file-text', color: 'rose' },
+{ id: 6, name: 'Calendar', url: '#', icon: 'ph-calendar', color: 'violet' },
+{ id: 7, name: 'Notițe', url: '#', icon: 'ph-notepad', color: 'cyan' },
+{ id: 8, name: 'Setări', url: '#', icon: 'ph-gear', color: 'slate' }];
 
-        modal.classList.add('is-open');
-        document.body.style.overflow = 'hidden';
-        setTimeout(() => document.getElementById('app-name').focus(), 60);
-    }
 
-    function closeModal() {
-        document.getElementById('add-modal').classList.remove('is-open');
-        document.body.style.overflow = '';
-        document.getElementById('app-form').reset();
-        document.getElementById('edit-app-id').value = '';
-    }
+// ── Storage ───────────────────────────────────────────────────────────────────
+const STORAGE_KEY = 'launcher_apps_v3';
+const loadApps = () => {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : [...DEFAULT_APPS];
+  } catch {return [...DEFAULT_APPS];}
+};
+const saveApps = (apps) => {
+  try {localStorage.setItem(STORAGE_KEY, JSON.stringify(apps));} catch {}
+};
 
-    // ── Color Selector ────────────────────────────────────────────────────────
+// ── Helpers ───────────────────────────────────────────────────────────────────
+const norm = (s) => (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+const normalizeUrl = (u) => {
+  if (!u) return '';
+  if (/^[A-Za-z]:[\\/]/.test(u)) return 'file:///' + u.replace(/\\/g, '/');
+  return u;
+};
+const launchApp = (url) => {
+  if (!url || url === '#' || url.startsWith('javascript:')) return;
+  const u = normalizeUrl(url);
+  const a = document.createElement('a');
+  a.href = u;
+  a.target = '_blank';
+  if (u.startsWith('http')) a.rel = 'noopener noreferrer';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+};
 
-    function renderColorSelector(selectedColor) {
-        const container = document.getElementById('color-selector');
-        container.innerHTML = '';
-        ALLOWED_COLORS.forEach((hex, cls) => {
-            const label = document.createElement('label');
-            label.className = 'color-swatch';
-            label.title = cls.replace('bg-', '').replace('-500', '');
+const useClock = () => {
+  const [now, setNow] = useState(new Date());
+  useEffect(() => {
+    const t = setInterval(() => setNow(new Date()), 1000 * 30);
+    return () => clearInterval(t);
+  }, []);
+  return now;
+};
 
-            const radio = document.createElement('input');
-            radio.type = 'radio';
-            radio.name = 'app-color';
-            radio.value = cls;
-            radio.checked = cls === selectedColor;
+const fmtTime = (d) => d.toLocaleTimeString('ro-RO', { hour: '2-digit', minute: '2-digit' });
+const fmtDate = (d) => d.toLocaleDateString('ro-RO', { weekday: 'long', day: 'numeric', month: 'long' });
 
-            const dot = document.createElement('span');
-            dot.className = `color-dot ${cls}`;
+// ─────────────────────────────────────────────────────────────────────────────
+// TILE
+// ─────────────────────────────────────────────────────────────────────────────
+function AppTile({ app, size, onLaunch, onEdit, onDelete, dragHandlers, isDragging, isDropTarget, accent }) {
+  const safeColor = COLORS[app.color] ? app.color : 'slate';
+  const c = COLORS[safeColor];
+  const safeIcon = ICON_IDS.has(app.icon) ? app.icon : 'ph-squares-four';
 
-            radio.addEventListener('change', () => {
-                container.querySelectorAll('.color-dot').forEach(d => {
-                    d.style.outline = '';
-                    d.style.outlineOffset = '';
-                    d.style.transform = '';
-                });
-                dot.style.outline = '2px solid white';
-                dot.style.outlineOffset = '2px';
-                dot.style.transform = 'scale(1.15)';
-            });
+  const tileSize = { sm: 64, md: 84, lg: 104 }[size];
+  const radius = { sm: 16, md: 20, lg: 24 }[size];
+  const iconScale = { sm: 28, md: 36, lg: 44 }[size];
+  const labelSize = { sm: 11, md: 12, lg: 13 }[size];
 
-            label.appendChild(radio);
-            label.appendChild(dot);
-            container.appendChild(label);
+  return (
+    <div
+      className={`tile-wrap ${isDragging ? 'is-dragging' : ''} ${isDropTarget ? 'is-drop-target' : ''}`}
+      draggable="true"
+      {...dragHandlers}
+      style={{ '--tile-size': tileSize + 'px', '--label-size': labelSize + 'px' }}>
+      
+      <div className="tile-actions">
+        <button className="tile-act" onClick={(e) => {e.stopPropagation();onEdit(app);}} title="Editează" style={{ '--accent': accent }}>
+          <i className="ph ph-pencil-simple-line"></i>
+        </button>
+        <button className="tile-act danger" onClick={(e) => {e.stopPropagation();onDelete(app);}} title="Șterge">
+          <i className="ph ph-trash"></i>
+        </button>
+      </div>
 
-            if (cls === selectedColor) {
-                dot.style.outline = '2px solid white';
-                dot.style.outlineOffset = '2px';
-                dot.style.transform = 'scale(1.15)';
-            }
-        });
-    }
+      <button
+        type="button"
+        className="tile"
+        onClick={() => onLaunch(app)}
+        style={{
+          background: c.tile,
+          borderRadius: radius,
+          boxShadow: `
+            inset 0 1px 0 rgba(255,255,255,0.35),
+            inset 0 -2px 4px rgba(0,0,0,0.08),
+            0 1px 1px rgba(0,0,0,0.04),
+            0 6px 14px ${c.tile.replace('oklch(', 'oklch(').replace(')', ' / 0.28)')},
+            0 12px 28px rgba(15, 23, 42, 0.10)
+          `
+        }}>
+        
+        <span
+          className="tile-gloss"
+          style={{ borderRadius: radius - 1 }}
+          aria-hidden="true">
+        </span>
+        <i className={`ph ${safeIcon} tile-icon`} style={{ fontSize: iconScale }}></i>
+      </button>
 
-    // ── Icon Selector ─────────────────────────────────────────────────────────
+      <span className="tile-label" title={app.name}>{app.name}</span>
+    </div>);
 
-    function renderIconSelector(selectedIcon) {
-        const container = document.getElementById('icon-selector');
-        container.innerHTML = '';
-        ALLOWED_ICONS.forEach(({ id, label }) => {
-            const btn = document.createElement('button');
-            btn.type = 'button';
-            btn.className = 'icon-option' + (id === selectedIcon ? ' selected' : '');
-            btn.title = label;
-            btn.dataset.iconId = id;
-            btn.innerHTML = `<i class="ph ${id}"></i>`;
-            btn.onclick = () => selectIcon(id);
-            container.appendChild(btn);
-        });
-    }
+}
 
-    function selectIcon(id) {
-        document.querySelectorAll('.icon-option').forEach(btn => {
-            btn.classList.toggle('selected', btn.dataset.iconId === id);
-        });
-        document.getElementById('icon-error').classList.add('hidden');
-    }
+// ─────────────────────────────────────────────────────────────────────────────
+// LIST ROW
+// ─────────────────────────────────────────────────────────────────────────────
+function AppRow({ app, onLaunch, onEdit, onDelete, dragHandlers, isDragging, isDropTarget, accent }) {
+  const safeColor = COLORS[app.color] ? app.color : 'slate';
+  const c = COLORS[safeColor];
+  const safeIcon = ICON_IDS.has(app.icon) ? app.icon : 'ph-squares-four';
 
-    function getSelectedIcon() {
-        const sel = document.querySelector('.icon-option.selected');
-        return sel ? sel.dataset.iconId : null;
-    }
+  return (
+    <div
+      className={`row ${isDragging ? 'is-dragging' : ''} ${isDropTarget ? 'is-drop-target' : ''}`}
+      draggable="true"
+      {...dragHandlers}>
+      
+      <button type="button" className="row-main" onClick={() => onLaunch(app)}>
+        <span className="row-tile" style={{
+          background: c.tile,
+          boxShadow: `inset 0 1px 0 rgba(255,255,255,0.35), 0 4px 10px ${c.tile.replace(')', ' / 0.25)')}`
+        }}>
+          <i className={`ph ${safeIcon}`}></i>
+        </span>
+        <span className="row-text">
+          <span className="row-name">{app.name}</span>
+          <span className="row-url">{app.url}</span>
+        </span>
+        <span className="row-launch">
+          <i className="ph ph-arrow-up-right"></i>
+        </span>
+      </button>
+      <div className="row-actions">
+        <button className="tile-act" onClick={() => onEdit(app)} title="Editează" style={{ '--accent': accent }}>
+          <i className="ph ph-pencil-simple-line"></i>
+        </button>
+        <button className="tile-act danger" onClick={() => onDelete(app)} title="Șterge">
+          <i className="ph ph-trash"></i>
+        </button>
+      </div>
+    </div>);
 
-    function getSelectedColor() {
-        const sel = document.querySelector('input[name="app-color"]:checked');
-        return sel ? sel.value : 'bg-blue-500';
-    }
+}
 
-    // ── Form Submit ───────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// MAIN APP
+// ─────────────────────────────────────────────────────────────────────────────
+function App() {
+  const [t, setTweak] = useTweaks(window.TWEAK_DEFAULTS);
+  const [apps, setApps] = useState(loadApps);
+  const [query, setQuery] = useState('');
+  const [modal, setModal] = useState(null); // null | { mode: 'add' | 'edit', app? }
+  const [confirmDel, setConfirmDel] = useState(null); // app
+  const [activeIdx, setActiveIdx] = useState(0);
+  const [dragId, setDragId] = useState(null);
+  const [dropId, setDropId] = useState(null);
+  const searchRef = useRef(null);
+  const now = useClock();
 
-    function handleFormSubmit(e) {
+  // persist
+  useEffect(() => {saveApps(apps);}, [apps]);
+
+  // Cmd+K → focus search
+  useEffect(() => {
+    const onKey = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault();
+        searchRef.current?.focus();
+        searchRef.current?.select();
+      } else if (e.key === 'Escape') {
+        if (modal) setModal(null);else
+        if (confirmDel) setConfirmDel(null);else
+        if (document.activeElement === searchRef.current) {setQuery('');searchRef.current?.blur();}
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [modal, confirmDel]);
 
-        const icon = getSelectedIcon();
-        if (!icon) {
-            document.getElementById('icon-error').classList.remove('hidden');
-            return;
-        }
+  const filtered = useMemo(() => {
+    const q = norm(query);
+    return q ? apps.filter((a) => norm(a.name).includes(q) || norm(a.url).includes(q)) : apps;
+  }, [apps, query]);
 
-        const name   = document.getElementById('app-name').value.trim();
-        const url    = document.getElementById('app-url').value.trim();
-        const color  = getSelectedColor();
-        const editId = document.getElementById('edit-app-id').value;
+  useEffect(() => {setActiveIdx(0);}, [query]);
 
-        if (!name || !url) return;
+  // Enter from search → launch first result
+  const onSearchKey = (e) => {
+    if (e.key === 'Enter' && filtered[activeIdx]) {
+      launchApp(filtered[activeIdx].url);
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setActiveIdx((i) => Math.min(filtered.length - 1, i + 1));
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setActiveIdx((i) => Math.max(0, i - 1));
+    }
+  };
 
-        if (editId) {
-            AppState.updateApp(editId, { name, url, icon, color });
-        } else {
-            AppState.addApp({ name, url, icon, color });
-        }
+  // ── Drag & drop ────────────────────────────────────────────────────────────
+  const onDragStart = (id) => (e) => {
+    setDragId(id);
+    e.dataTransfer.effectAllowed = 'move';
+    try {e.dataTransfer.setData('text/plain', String(id));} catch {}
+  };
+  const onDragOver = (id) => (e) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    if (id !== dropId) setDropId(id);
+  };
+  const onDragLeave = () => (e) => {
 
-        renderApps(getCurrentSearch());
-        closeModal();
+
+
+
+
+    // no-op; handled by next dragover
+  };const onDrop = (id) => (e) => {e.preventDefault();if (dragId == null || dragId === id) {setDragId(null);setDropId(null);return;}setApps((prev) => {const from = prev.findIndex((a) => a.id === dragId);
+        const to = prev.findIndex((a) => a.id === id);
+        if (from === -1 || to === -1) return prev;
+        const next = [...prev];
+        const [moved] = next.splice(from, 1);
+        next.splice(to, 0, moved);
+        return next;
+      });
+    setDragId(null);setDropId(null);
+  };
+  const onDragEnd = () => {setDragId(null);setDropId(null);};
+
+  const dragHandlersFor = (id) => ({
+    onDragStart: onDragStart(id),
+    onDragOver: onDragOver(id),
+    onDragLeave: onDragLeave(),
+    onDrop: onDrop(id),
+    onDragEnd
+  });
+
+  // ── CRUD ───────────────────────────────────────────────────────────────────
+  const saveApp = (data) => {
+    setApps((prev) => {
+      if (data.id) return prev.map((a) => a.id === data.id ? { ...a, ...data } : a);
+      return [...prev, { ...data, id: Date.now() }];
+    });
+    setModal(null);
+  };
+  const deleteApp = (app) => {
+    setApps((prev) => prev.filter((a) => a.id !== app.id));
+    setConfirmDel(null);
+  };
+
+  // ── Tweak-driven CSS vars ──────────────────────────────────────────────────
+  const accent = t.accent;
+  const bgVar = {
+    cream: 'oklch(0.985 0.008 85)',
+    cool: 'oklch(0.985 0.005 240)',
+    pure: '#ffffff',
+    mint: 'oklch(0.98 0.015 160)',
+    lilac: 'oklch(0.98 0.015 290)'
+  }[t.background] || 'oklch(0.985 0.008 85)';
+
+  const density = { compact: 14, regular: 22, comfy: 32 }[t.density];
+
+  const fontStack = {
+    'Plus Jakarta Sans': "'Plus Jakarta Sans', system-ui, sans-serif",
+    'Space Grotesk': "'Space Grotesk', system-ui, sans-serif",
+    'Geist': "'Geist', system-ui, sans-serif",
+    'Manrope': "'Manrope', system-ui, sans-serif"
+  }[t.font] || "'Plus Jakarta Sans', system-ui, sans-serif";
+
+  const accentHex = COLORS[accent]?.tile || COLORS.indigo.tile;
+
+  const rootStyle = {
+    '--bg': bgVar,
+    '--accent': accent,
+    '--accent-color': accentHex,
+    '--density': density + 'px',
+    '--font': fontStack
+  };
+
+  // Map hex -> key for TweakColor (which works with hex strings)
+  const ACCENT_OPTIONS = ['blue', 'indigo', 'violet', 'emerald', 'amber', 'rose'];
+  const accentHexList = ACCENT_OPTIONS.map((k) => COLORS[k].tile);
+  const hexToKey = (hex) => ACCENT_OPTIONS.find((k) => COLORS[k].tile === hex) || 'indigo';
+
+  // ── Render apps area depending on layout ───────────────────────────────────
+  const renderApps = () => {
+    if (filtered.length === 0) {
+      return (
+        <div className="empty">
+          <i className="ph ph-magnifying-glass"></i>
+          <p>Niciun rezultat pentru „{query}"</p>
+        </div>);
+
     }
 
-    // ── File Browse ───────────────────────────────────────────────────────────
+    if (t.layout === 'list') {
+      return (
+        <div className="list">
+          {filtered.map((app) =>
+          <AppRow
+            key={app.id}
+            app={app}
+            accent={accent}
+            onLaunch={launchApp}
+            onEdit={(a) => setModal({ mode: 'edit', app: a })}
+            onDelete={(a) => setConfirmDel(a)}
+            dragHandlers={dragHandlersFor(app.id)}
+            isDragging={dragId === app.id}
+            isDropTarget={dropId === app.id && dragId !== app.id} />
 
-    function triggerFilePicker() {
-        document.getElementById('file-picker').click();
+          )}
+        </div>);
+
     }
 
-    // ── Clock ─────────────────────────────────────────────────────────────────
+    if (t.layout === 'dock') {
+      return (
+        <div className="dock-wrap">
+          <div className="dock">
+            {filtered.map((app) =>
+            <AppTile
+              key={app.id}
+              app={app}
+              size={t.iconSize}
+              accent={accent}
+              onLaunch={launchApp}
+              onEdit={(a) => setModal({ mode: 'edit', app: a })}
+              onDelete={(a) => setConfirmDel(a)}
+              dragHandlers={dragHandlersFor(app.id)}
+              isDragging={dragId === app.id}
+              isDropTarget={dropId === app.id && dragId !== app.id} />
 
-    function updateClock() {
-        const now = new Date();
-        document.getElementById('current-time').textContent =
-            now.toLocaleTimeString('ro-RO', { hour: '2-digit', minute: '2-digit' });
-        document.getElementById('current-date').textContent =
-            now.toLocaleDateString('ro-RO', { day: '2-digit', month: 'short', year: 'numeric' });
+            )}
+            <button className="dock-add" onClick={() => setModal({ mode: 'add' })} title="Adaugă">
+              <i className="ph ph-plus"></i>
+            </button>
+          </div>
+        </div>);
+
     }
 
-    // ── Init ──────────────────────────────────────────────────────────────────
+    // grid (default)
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '24px' }}>
+        <div className="grid" style={{ width: '100%' }}>
+          {filtered.map((app) =>
+          <AppTile
+            key={app.id}
+            app={app}
+            size={t.iconSize}
+            accent={accent}
+            onLaunch={launchApp}
+            onEdit={(a) => setModal({ mode: 'edit', app: a })}
+            onDelete={(a) => setConfirmDel(a)}
+            dragHandlers={dragHandlersFor(app.id)}
+            isDragging={dragId === app.id}
+            isDropTarget={dropId === app.id && dragId !== app.id} />
+          )}
+        </div>
+      </div>);
 
-    function init() {
-        AppState.load();
-        updateClock();
-        setInterval(updateClock, 1000);
-        renderApps();
-        initSearch();
+  };
 
-        document.getElementById('file-picker').addEventListener('change', function () {
-            const file = this.files[0];
-            if (file) document.getElementById('app-url').value = './' + file.name;
-        });
+  return (
+    <div className="root" style={rootStyle} data-screen-label="01 Launcher">
+      {/* Soft ambient backdrop blobs for spatial depth */}
+      <div className="ambient" aria-hidden="true">
+        <span className="blob blob-1" style={{ background: COLORS[accent]?.soft || 'oklch(0.96 0.04 250)' }}></span>
+        <span className="blob blob-2"></span>
+        <span className="blob blob-3"></span>
+      </div>
 
-        document.getElementById('add-modal').addEventListener('click', function (e) {
-            if (e.target === this) closeModal();
-        });
+      {/* Top bar */}
+      <header className="topbar">
+        <div className="brand">
+          <span className="brand-mark" style={{ background: COLORS[accent]?.tile }}></span>
+          <span className="brand-name">Launcher</span>
+        </div>
+        <div className="topbar-meta">
+          <span className="meta-time">{fmtTime(now)}</span>
+          <span className="meta-dot">·</span>
+          <span className="meta-date">{fmtDate(now)}</span>
+        </div>
+      </header>
 
-        document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') closeModal();
-        });
+      {/* Hero */}
+      <section className="hero">
+        <div className="hero-greeting">
+          <img
+            src="uploads/pasted-1779108507602-0.png"
+            alt="Stema CNA"
+            style={{
+              height: '72px',
+              width: 'auto',
+              objectFit: 'contain',
+              marginBottom: '4px',
+              filter: 'drop-shadow(0 2px 8px rgba(15,23,42,0.10))'
+            }} />
+          <span className="greet-line" style={{ fontSize: "30px", textAlign: "center" }}>Agenția de Recuperare a Bunurilor Infracționale</span>
+          <span className="greet-sub">{fmtDate(now)}, ora {fmtTime(now)}</span>
+        </div>
+
+        <div className={`search ${query ? 'has-query' : ''}`}>
+          <i className="ph ph-magnifying-glass search-ico"></i>
+          <input
+            ref={searchRef}
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={onSearchKey}
+            placeholder="Caută aplicație sau scrie pentru a filtra…"
+            spellCheck={false}
+            autoComplete="off" />
+          
+          {query ?
+          <button className="search-clear" onClick={() => {setQuery('');searchRef.current?.focus();}} title="Șterge">
+              <i className="ph ph-x"></i>
+            </button> :
+
+          <span className="kbd">
+              <span className="kbd-key">⌘</span>
+              <span className="kbd-key">K</span>
+            </span>
+          }
+        </div>
+
+        <div className="hero-row">
+          <span className="hero-count">{filtered.length} {filtered.length === 1 ? 'aplicație' : 'aplicații'}{query ? ' găsite' : ''}</span>
+          <div className="layout-toggle" role="tablist" aria-label="Layout">
+            {[
+            { id: 'grid', icon: 'ph-grid-four', label: 'Grilă' },
+            { id: 'list', icon: 'ph-list-bullets', label: 'Listă' },
+            { id: 'dock', icon: 'ph-dots-nine', label: 'Dock' }].
+            map((o) =>
+            <button
+              key={o.id}
+              className={`lt ${t.layout === o.id ? 'is-active' : ''}`}
+              onClick={() => setTweak('layout', o.id)}
+              title={o.label}
+              style={{ '--accent': accent }}>
+              
+                <i className={`ph ${o.icon}`}></i>
+                <span>{o.label}</span>
+              </button>
+            )}
+          </div>
+          <button className="hero-add" onClick={() => setModal({ mode: 'add' })} style={{ background: COLORS[accent]?.tile }}>
+            <i className="ph ph-plus"></i>
+            <span>Adaugă</span>
+          </button>
+        </div>
+      </section>
+
+      {/* Apps */}
+      <main className="apps-section">
+        {renderApps()}
+      </main>
+
+      {/* Footer hint */}
+      <footer className="foot">
+        <span><kbd>⌘</kbd> + <kbd>K</kbd> caută</span>
+        <span className="dotsep">·</span>
+        <span><kbd>Enter</kbd> deschide</span>
+        <span className="dotsep">·</span>
+        <span>trage pentru a rearanja</span>
+      </footer>
+
+      {/* Modal */}
+      {modal &&
+      <AddEditModal
+        mode={modal.mode}
+        app={modal.app}
+        accent={accent}
+        onClose={() => setModal(null)}
+        onSave={saveApp} />
+
+      }
+
+      {/* Delete confirm */}
+      {confirmDel &&
+      <ConfirmModal
+        title="Șterge aplicația?"
+        body={<p>Vrei să ștergi <b>{confirmDel.name}</b>? Acțiunea nu poate fi anulată.</p>}
+        confirmLabel="Șterge"
+        onCancel={() => setConfirmDel(null)}
+        onConfirm={() => deleteApp(confirmDel)} />
+
+      }
+
+      {/* Tweaks */}
+      <TweaksPanel>
+        <TweakSection label="Aspect" />
+        <TweakRadio
+          label="Layout"
+          value={t.layout}
+          options={['grid', 'list', 'dock']}
+          onChange={(v) => setTweak('layout', v)} />
+        
+        <TweakRadio
+          label="Dimensiune iconițe"
+          value={t.iconSize}
+          options={['sm', 'md', 'lg']}
+          onChange={(v) => setTweak('iconSize', v)} />
+        
+        <TweakRadio
+          label="Densitate"
+          value={t.density}
+          options={['compact', 'regular', 'comfy']}
+          onChange={(v) => setTweak('density', v)} />
+        
+
+        <TweakSection label="Temă" />
+        <TweakColor
+          label="Accent"
+          value={accentHex}
+          options={accentHexList}
+          onChange={(hex) => setTweak('accent', hexToKey(hex))} />
+        
+        <TweakSelect
+          label="Fundal"
+          value={t.background}
+          options={[
+          { value: 'cream', label: 'Cremă caldă' },
+          { value: 'cool', label: 'Gri rece' },
+          { value: 'pure', label: 'Alb pur' },
+          { value: 'mint', label: 'Mentă' },
+          { value: 'lilac', label: 'Lila' }]
+          }
+          onChange={(v) => setTweak('background', v)} />
+        
+        <TweakSelect
+          label="Font"
+          value={t.font}
+          options={['Plus Jakarta Sans', 'Space Grotesk', 'Geist', 'Manrope']}
+          onChange={(v) => setTweak('font', v)} />
+        
+
+        <TweakSection label="Date" />
+        <TweakButton label="Resetează la default" onClick={() => {
+          if (confirm('Resetezi lista de aplicații la cea inițială?')) {
+            setApps([...DEFAULT_APPS]);
+          }
+        }} />
+      </TweaksPanel>
+    </div>);
+
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// MODAL — Add / Edit
+// ─────────────────────────────────────────────────────────────────────────────
+function AddEditModal({ mode, app, accent, onClose, onSave }) {
+  const [name, setName] = useState(app?.name || '');
+  const [url, setUrl] = useState(app?.url || '');
+  const [color, setColor] = useState(app?.color || 'blue');
+  const [icon, setIcon] = useState(app?.icon || ICONS[0].id);
+  const [iconQuery, setIconQuery] = useState('');
+  // Track whether the user manually picked an icon (so we don't auto-override it)
+  const userPickedIconRef = useRef(!!app?.icon);
+  // urlMode: 'file' | 'web' — initialise from the existing URL
+  const [urlMode, setUrlMode] = useState(() =>
+    /^https?:\/\//i.test(app?.url || '') ? 'web' : 'file'
+  );
+  const nameRef = useRef(null);
+  const fileRef = useRef(null);
+
+  const isWeb = urlMode === 'web';
+
+  useEffect(() => {setTimeout(() => nameRef.current?.focus(), 80);}, []);
+
+  // When the user switches mode tabs
+  const switchMode = (newMode) => {
+    setUrlMode(newMode);
+    if (newMode === 'web') {
+      // Prefill https:// if there's no web URL already
+      if (!/^https?:\/\//i.test(url)) setUrl('https://');
+      // Auto-suggest globe icon if the user hasn't manually picked one
+      if (!userPickedIconRef.current) setIcon('ph-globe');
+    } else {
+      // Going back to file mode: clear if it was a web URL
+      if (/^https?:\/\//i.test(url)) setUrl('');
     }
+  };
 
-    document.addEventListener('DOMContentLoaded', init);
+  const handleUrlChange = (newUrl) => {
+    setUrl(newUrl);
+    // Auto-sync mode when user types a URL
+    if (/^https?:\/\//i.test(newUrl) && urlMode !== 'web') {
+      setUrlMode('web');
+      if (!userPickedIconRef.current) setIcon('ph-globe');
+    } else if (!/^https?:\/\//i.test(newUrl) && urlMode !== 'file') {
+      setUrlMode('file');
+    }
+  };
 
-    </script>
+  const handleIconPick = (id) => {
+    setIcon(id);
+    userPickedIconRef.current = true;
+  };
+
+  const submit = (e) => {
+    e.preventDefault();
+    if (!name.trim() || !url.trim()) return;
+    onSave({ ...(app || {}), id: app?.id, name: name.trim(), url: url.trim(), color, icon });
+  };
+
+  const filteredIcons = useMemo(() => {
+    const q = norm(iconQuery);
+    return q ? ICONS.filter((i) => norm(i.label).includes(q) || norm(i.id).includes(q)) : ICONS;
+  }, [iconQuery]);
+
+  // Styles for the mode toggle tabs
+  const modeTabBase = {
+    display: 'inline-flex', alignItems: 'center', gap: '5px',
+    padding: '5px 12px', fontSize: '12px', fontWeight: 600,
+    border: '1px solid rgba(15,23,42,0.10)', borderRadius: '8px',
+    cursor: 'default', transition: 'all 0.15s ease', background: 'transparent',
+    color: 'oklch(0.45 0.01 80)',
+  };
+  const modeTabActive = {
+    ...modeTabBase,
+    background: 'white',
+    color: 'oklch(0.22 0.01 80)',
+    boxShadow: '0 1px 3px rgba(15,23,42,0.10)',
+    borderColor: 'rgba(15,23,42,0.12)',
+  };
+
+  return (
+    <div className="modal-back" onClick={onClose}>
+      <form className="modal" onClick={(e) => e.stopPropagation()} onSubmit={submit} style={{ '--accent': COLORS[accent].tile, '--accent-ring': COLORS[accent].ring }}>
+        <header className="modal-head">
+          <h3>{mode === 'edit' ? 'Editează aplicația' : 'Adaugă aplicație nouă'}</h3>
+          <button type="button" className="modal-close" onClick={onClose}><i className="ph ph-x"></i></button>
+        </header>
+
+        <div className="modal-body">
+          {/* Preview */}
+          <div className="modal-preview">
+            <div className="prev-tile" style={{
+              background: COLORS[color].tile,
+              boxShadow: `inset 0 1px 0 rgba(255,255,255,0.35), 0 8px 22px ${COLORS[color].tile.replace(')', ' / 0.30)')}`
+            }}>
+              <i className={`ph ${icon}`}></i>
+            </div>
+            <div className="prev-meta">
+              <span className="prev-name">{name || 'Nume aplicație'}</span>
+              <span className="prev-url" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                {isWeb
+                  ? <><i className="ph ph-globe" style={{ fontSize: '11px', flexShrink: 0 }}></i>{url || 'https://…'}</>
+                  : <><i className="ph ph-file-html" style={{ fontSize: '11px', flexShrink: 0 }}></i>{url || './cale.html'}</>
+                }
+              </span>
+            </div>
+            {/* Web / Local badge */}
+            <span style={{
+              fontSize: '10px', fontWeight: 600, letterSpacing: '0.04em',
+              padding: '2px 7px', borderRadius: '999px',
+              background: isWeb ? 'oklch(0.94 0.05 250)' : 'oklch(0.94 0.03 145)',
+              color: isWeb ? 'oklch(0.40 0.18 250)' : 'oklch(0.38 0.14 145)',
+              flexShrink: 0,
+            }}>
+              {isWeb ? '🌐 Web' : '📁 Local'}
+            </span>
+          </div>
+
+          <div className="field">
+            <label>Nume</label>
+            <input ref={nameRef} value={name} onChange={(e) => setName(e.target.value)} required maxLength={40}
+            placeholder="ex: Calculator Salarii" />
+          </div>
+
+          <div className="field">
+            {/* Mode toggle */}
+            <div style={{ display: 'flex', gap: '6px', marginBottom: '8px' }}>
+              <button type="button"
+                style={!isWeb ? modeTabActive : modeTabBase}
+                onClick={() => switchMode('file')}>
+                <i className="ph ph-file-html"></i> Fișier local
+              </button>
+              <button type="button"
+                style={isWeb ? modeTabActive : modeTabBase}
+                onClick={() => switchMode('web')}>
+                <i className="ph ph-globe"></i> Pagina web
+              </button>
+            </div>
+
+            <label>{isWeb ? 'Adresa web (URL)' : 'Calea fișierului'}</label>
+            <div className="field-row" style={{ position: 'relative' }}>
+              {isWeb && (
+                <span style={{
+                  position: 'absolute', left: '12px', top: '50%',
+                  transform: 'translateY(-50%)', color: 'oklch(0.55 0.10 250)',
+                  pointerEvents: 'none', zIndex: 1, fontSize: '15px',
+                }}>
+                  <i className="ph ph-globe"></i>
+                </span>
+              )}
+              <input
+                value={url}
+                onChange={(e) => handleUrlChange(e.target.value)}
+                required
+                style={{ paddingLeft: isWeb ? '34px' : '14px' }}
+                placeholder={isWeb ? 'https://example.com' : './aplicatia.html'}
+                inputMode={isWeb ? 'url' : 'text'}
+                autoComplete={isWeb ? 'url' : 'off'}
+              />
+              {!isWeb && (
+                <button type="button" className="btn-ghost" onClick={() => fileRef.current?.click()}>
+                  <i className="ph ph-folder-open"></i> Răsfoiește
+                </button>
+              )}
+              <input ref={fileRef} type="file" accept=".html,.htm" hidden
+                onChange={(e) => {const f = e.target.files?.[0];if (f) {setUrl('./' + f.name); setUrlMode('file');}}} />
+            </div>
+
+            <p className="hint">
+              {isWeb ? (
+                <><i className="ph ph-globe"></i> Pagina web se va deschide în tab nou. Ex: <code>https://google.com</code></>
+              ) : (
+                <><i className="ph ph-info"></i> Plasează fișierele lângă portal sau calea completă: <code>file:///C:/cale/app.html</code></>
+              )}
+            </p>
+          </div>
+
+          <div className="field">
+            <label>Culoare</label>
+            <div className="color-row">
+              {COLOR_KEYS.map((k) =>
+              <button type="button" key={k} className={`color-sw ${color === k ? 'is-on' : ''}`}
+              onClick={() => setColor(k)} style={{ background: COLORS[k].tile }}
+              aria-label={k} title={k}></button>
+              )}
+            </div>
+          </div>
+
+          <div className="field">
+            <label>Iconiță</label>
+            <div className="icon-search">
+              <i className="ph ph-magnifying-glass"></i>
+              <input type="search" placeholder="Caută iconiță..." value={iconQuery}
+              onChange={(e) => setIconQuery(e.target.value)} />
+            </div>
+            <div className="icon-grid">
+              {filteredIcons.map(({ id, label }) =>
+              <button type="button" key={id} className={`icon-pick ${icon === id ? 'is-on' : ''}`}
+              onClick={() => handleIconPick(id)} title={label}>
+                  <i className={`ph ${id}`}></i>
+                </button>
+              )}
+              {filteredIcons.length === 0 &&
+              <p className="icon-empty">Niciun rezultat.</p>
+              }
+            </div>
+          </div>
+        </div>
+
+        <footer className="modal-foot">
+          <button type="button" className="btn-ghost" onClick={onClose}>Anulează</button>
+          <button type="submit" className="btn-primary" style={{ background: COLORS[accent].tile }}>
+            {mode === 'edit' ? 'Salvează' : 'Adaugă aplicația'}
+          </button>
+        </footer>
+      </form>
+    </div>);
+
+}
+
+function ConfirmModal({ title, body, confirmLabel, onCancel, onConfirm }) {
+  return (
+    <div className="modal-back" onClick={onCancel}>
+      <div className="modal modal-sm" onClick={(e) => e.stopPropagation()}>
+        <header className="modal-head">
+          <h3>{title}</h3>
+          <button type="button" className="modal-close" onClick={onCancel}><i className="ph ph-x"></i></button>
+        </header>
+        <div className="modal-body">{body}</div>
+        <footer className="modal-foot">
+          <button type="button" className="btn-ghost" onClick={onCancel}>Anulează</button>
+          <button type="button" className="btn-danger" onClick={onConfirm}>{confirmLabel}</button>
+        </footer>
+      </div>
+    </div>);
+
+}
+
+// ── Mount ─────────────────────────────────────────────────────────────────────
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+</script>
 </body>
 </html>
