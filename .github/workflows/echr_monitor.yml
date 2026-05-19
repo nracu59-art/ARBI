@@ -1,29 +1,20 @@
 name: CEDO Monitor – Confiscare
 
 on:
-  # 22:00 ora României (EEST = UTC+3 vara, EET = UTC+2 iarna)
-  # Vara (mar–oct): 19:00 UTC = 22:00 EEST
-  # Iarna (oct–mar): 20:00 UTC = 22:00 EET → ajustați cron-ul manual dacă e nevoie
   schedule:
-    - cron: '0 19 * * *'    # 22:00 Romania (vara) – verificare HUDOC
-    - cron: '30 4 * * *'    # 07:30 Romania (vara) – generare raport HTML
-  workflow_dispatch:
-    inputs:
-      step:
-        description: 'Ce pas să ruleze'
-        required: false
-        default: 'both'
-        type: choice
-        options:
-          - both
-          - fetch
-          - report
+    - cron: '0 19 * * *'   # 22:00 Romania vara (EEST = UTC+3)
+    - cron: '30 4 * * *'   # 07:30 Romania vara (EEST = UTC+3)
+  workflow_dispatch: {}     # pornire manuală fără parametri
 
 permissions:
   contents: write
 
+concurrency:
+  group: cedo-monitor
+  cancel-in-progress: false  # rulările se pun la coadă, nu se anulează
+
 # ─────────────────────────────────────────────────────────────
-# JOB 1: Verificare HUDOC (rulează la 22:00)
+# JOB 1 – Verificare HUDOC (22:00 sau manual)
 # ─────────────────────────────────────────────────────────────
 jobs:
   fetch-judgments:
@@ -31,8 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     if: >
       github.event.schedule == '0 19 * * *' ||
-      (github.event_name == 'workflow_dispatch' &&
-       (github.event.inputs.step == 'fetch' || github.event.inputs.step == 'both'))
+      github.event_name == 'workflow_dispatch'
 
     steps:
       - name: Checkout repository
@@ -65,7 +55,7 @@ jobs:
           fi
 
 # ─────────────────────────────────────────────────────────────
-# JOB 2: Generare raport HTML (rulează la 07:30)
+# JOB 2 – Raport HTML (07:30 sau după fetch la rulare manuală)
 # ─────────────────────────────────────────────────────────────
   generate-report:
     name: Generare raport HTML
@@ -74,8 +64,7 @@ jobs:
     if: >
       always() && (
         github.event.schedule == '30 4 * * *' ||
-        (github.event_name == 'workflow_dispatch' &&
-         (github.event.inputs.step == 'report' || github.event.inputs.step == 'both'))
+        github.event_name == 'workflow_dispatch'
       )
 
     steps:
@@ -100,6 +89,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
-            git commit -m "📋 Raport CEDO $(date -u '+%Y-%m-%d') – generat la 07:30"
+            git commit -m "📋 Raport CEDO $(date -u '+%Y-%m-%d')"
             git push origin HEAD
           fi
