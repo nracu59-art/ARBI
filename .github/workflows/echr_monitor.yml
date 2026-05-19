@@ -11,12 +11,12 @@ permissions:
 
 concurrency:
   group: cedo-monitor
-  cancel-in-progress: false  # rulările se pun la coadă, nu se anulează
+  cancel-in-progress: false
 
+jobs:
 # ─────────────────────────────────────────────────────────────
 # JOB 1 – Verificare HUDOC (22:00 sau manual)
 # ─────────────────────────────────────────────────────────────
-jobs:
   fetch-judgments:
     name: Verificare HUDOC
     runs-on: ubuntu-latest
@@ -28,7 +28,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -51,7 +51,8 @@ jobs:
             echo "No new results to commit."
           else
             git commit -m "📊 CEDO verificare $(date -u '+%Y-%m-%d %H:%M UTC')"
-            git push origin HEAD
+            git pull --rebase origin main
+            git push origin HEAD:main
           fi
 
 # ─────────────────────────────────────────────────────────────
@@ -71,7 +72,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -90,5 +91,6 @@ jobs:
             echo "No changes to commit."
           else
             git commit -m "📋 Raport CEDO $(date -u '+%Y-%m-%d')"
-            git push origin HEAD
+            git pull --rebase origin main
+            git push origin HEAD:main
           fi
