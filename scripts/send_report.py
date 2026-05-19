@@ -28,7 +28,6 @@ def send_message(bot_token: str, chat_id: str, text: str) -> None:
 
 
 def send_long_message(bot_token: str, chat_id: str, text: str) -> None:
-    """Split message into chunks if it exceeds Telegram's limit."""
     if len(text) <= MAX_MESSAGE_LENGTH:
         send_message(bot_token, chat_id, text)
         return
@@ -48,7 +47,6 @@ def send_long_message(bot_token: str, chat_id: str, text: str) -> None:
 
 
 def format_date_ro(date_str: str) -> str:
-    """Convert YYYY-MM-DD to Romanian format DD.MM.YYYY."""
     try:
         dt = datetime.strptime(date_str, "%Y-%m-%d")
         return dt.strftime("%d.%m.%Y")
@@ -59,41 +57,44 @@ def format_date_ro(date_str: str) -> str:
 def format_report(data: dict) -> str:
     date_label = format_date_ro(data.get("date", ""))
     checked_at = data.get("checked_at", "")[:16].replace("T", " ")
-    total = data.get("total_found", 0)
+    # suportă atât câmpul vechi cât și cel nou
+    total = data.get("total_filtered", data.get("total_found", 0))
     judgments = data.get("judgments", [])
 
     header = (
-        f"⚖️ <b>Raport CEDO - {date_label}</b>\n"
-        f"📊 Hotărâri noi despre confiscare: <b>{total}</b>\n"
+        f"⚖️ <b>Raport CEDO – Confiscare</b>\n"
+        f"📅 Data: <b>{date_label}</b>\n"
+        f"📊 Hotărâri găsite: <b>{total}</b>\n"
         f"🕙 Verificat la: {checked_at} UTC\n"
         f"{SEPARATOR}"
     )
 
-    if total == 0:
+    if not judgments:
         return (
             f"{header}\n\n"
-            "❌ Nu au fost găsite hotărâri noi despre confiscare în ultimele 24 ore.\n"
+            "ℹ️ Nu au fost găsite hotărâri noi despre confiscare în perioada analizată.\n"
+            "<i>CEDO publică hotărâri în principal marțea și joia.</i>\n"
             f"\n{SEPARATOR}\n"
             "🔍 Sursa: hudoc.echr.coe.int"
         )
 
     lines = [header, ""]
     for i, j in enumerate(judgments, 1):
-        respondent = j.get("respondent", "N/A")
+        respondent = j.get("respondent") or "N/A"
         doc_date = format_date_ro(j.get("docdate", ""))
-        conclusion = j.get("conclusion", "").strip()
-        applicability = j.get("applicability", "").strip()
+        conclusion = (j.get("conclusion") or "").strip()
+        applicability = (j.get("applicability") or "").strip()
         url = j.get("url", "")
-        docname = j.get("docname", "N/A")
+        docname = j.get("docname") or "Hotărâre CEDO"
 
         entry = [f"<b>{i}. {docname}</b>"]
         if doc_date:
-            entry.append(f"📅 Data: {doc_date} | 🏳️ Stat: {respondent}")
+            entry.append(f"📅 {doc_date}  🏳️ {respondent}")
         if applicability:
             entry.append(f"📌 Articole: {applicability[:150]}")
         if conclusion:
-            display_conclusion = conclusion[:300] + "..." if len(conclusion) > 300 else conclusion
-            entry.append(f"📋 Concluzii: {display_conclusion}")
+            display = conclusion[:300] + "..." if len(conclusion) > 300 else conclusion
+            entry.append(f"📋 {display}")
         if url:
             entry.append(f'🔗 <a href="{url}">Accesează hotărârea</a>')
         lines.extend(entry)
@@ -101,8 +102,8 @@ def format_report(data: dict) -> str:
 
     if total > len(judgments):
         lines.append(
-            f"... și alte {total - len(judgments)} hotărâri. "
-            f'<a href="https://hudoc.echr.coe.int">Accesează HUDOC</a>'
+            f"...și alte {total - len(judgments)} hotărâri pe "
+            f'<a href="https://hudoc.echr.coe.int">HUDOC</a>'
         )
         lines.append("")
 
@@ -129,7 +130,8 @@ def main() -> None:
     if not latest:
         send_long_message(
             bot_token, chat_id,
-            "⚠️ <b>ECHR Monitor</b>\n\nNu s-a găsit niciun fișier de rezultate.\n"
+            "⚠️ <b>CEDO Monitor</b>\n\n"
+            "Nu s-a găsit niciun fișier de rezultate.\n"
             "Este posibil că verificarea din seara precedentă a eșuat."
         )
         return
@@ -139,7 +141,7 @@ def main() -> None:
 
     message = format_report(data)
     send_long_message(bot_token, chat_id, message)
-    print(f"Report sent from {latest}")
+    print(f"Telegram report sent from {latest}")
 
 
 if __name__ == "__main__":
