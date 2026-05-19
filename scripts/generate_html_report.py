@@ -192,11 +192,19 @@ def find_latest_results() -> str | None:
 def main() -> None:
     latest = find_latest_results()
     if not latest:
-        print("ERROR: No result JSON found in results/. Run echr_checker.py first.")
-        raise SystemExit(1)
-
-    with open(latest, encoding="utf-8") as f:
-        data = json.load(f)
+        print("No result JSON found. Generating empty report.")
+        now_utc = datetime.now(timezone.utc)
+        data = {
+            "date": now_utc.strftime("%Y-%m-%d"),
+            "checked_at": now_utc.strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "lookback_days": 7,
+            "total_filtered": 0,
+            "judgments": [],
+        }
+    else:
+        with open(latest, encoding="utf-8") as f:
+            data = json.load(f)
+        print(f"Generating report from {latest}")
 
     now_utc = datetime.now(timezone.utc)
     date_ro = format_date_ro(data.get("date", now_utc.strftime("%Y-%m-%d")))
