@@ -8,7 +8,7 @@ from playwright.async_api import async_playwright, TimeoutError as PlaywrightTim
 
 logger = logging.getLogger(__name__)
 
-BASE_URL = "https://instante.justice.md/ro/hotarirle-instantei"
+BASE_URL = "https://instante.justice.md/ro/hotaririle-instantei"
 
 # Allow overriding the Chromium binary via env var (useful in constrained envs)
 CHROMIUM_EXECUTABLE = os.getenv(
@@ -47,7 +47,7 @@ async def scrape_decisions(target_date: date | None = None) -> list[dict]:
     if target_date is None:
         target_date = date.today() - timedelta(days=1)
 
-    date_str = target_date.strftime("%d.%m.%Y")
+    date_str = target_date.strftime("%Y-%m-%d")
     logger.info(f"Scraping penal decisions for date: {date_str}")
 
     params = {
