@@ -20,10 +20,18 @@ def format_messages(decisions: list[dict], stats: dict, target_date: date | None
     if not decisions:
         return [_no_results(target_date)]
 
-    parts: list[str] = []
-    parts.append(_build_header(target_date, stats))
-    parts.extend(_build_theme_sections(decisions))
-    return parts
+    # ── Raport 1: Statistici ──────────────────────────────────────────────────
+    report1 = _build_header(target_date, stats)
+
+    # ── Raport 2: Dosare pe tematică ─────────────────────────────────────────
+    intro = (
+        f"⚖️ <b>RAPORT 2 — DOSARE PE TEMATICĂ</b>\n"
+        f"📅 <b>{_day_ro(target_date)}</b>\n"
+        f"{SEP_THICK}"
+    )
+    report2_pages = _build_theme_sections(decisions, intro)
+
+    return [report1] + report2_pages
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -37,7 +45,7 @@ def _build_header(target_date: date, stats: dict) -> str:
     n_theme = len(stats["by_theme"])
 
     lines = [
-        f"⚖️ <b>RAPORT HOTĂRÂRI PENALE</b>",
+        f"⚖️ <b>RAPORT 1 — STATISTICI</b>",
         f"📅 <b>{day_ro}</b>",
         SEP_THICK,
         "",
@@ -70,18 +78,16 @@ def _build_header(target_date: date, stats: dict) -> str:
 # Mesaje 2+ — Secțiuni pe tematică
 # ─────────────────────────────────────────────────────────────────────────────
 
-def _build_theme_sections(decisions: list[dict]) -> list[str]:
-    # Group by tematica, păstrând ordinea (most common first)
+def _build_theme_sections(decisions: list[dict], intro: str = "") -> list[str]:
     groups: dict[str, list[dict]] = defaultdict(list)
     for d in decisions:
         theme = (d.get("tematica_dosarului") or "Nespecificată").strip()
         groups[theme].append(d)
 
-    # Sort groups by size descending
     sorted_groups = sorted(groups.items(), key=lambda x: -len(x[1]))
 
     messages: list[str] = []
-    current = ""
+    current = intro + "\n" if intro else ""
 
     for theme, cases in sorted_groups:
         section = _build_section(theme, cases)
