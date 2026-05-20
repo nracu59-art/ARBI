@@ -8,6 +8,7 @@ import httpx
 from dotenv import load_dotenv
 
 from scraper import scrape_decisions
+from analyzer import analyze
 from formatter import format_messages
 
 load_dotenv()
@@ -21,7 +22,7 @@ logger = logging.getLogger(__name__)
 TELEGRAM_API = "https://api.telegram.org/bot{token}/sendMessage"
 
 
-def _get_required_env(name: str) -> str:
+def _require(name: str) -> str:
     value = os.getenv(name)
     if not value:
         logger.error(f"Missing required environment variable: {name}")
@@ -42,24 +43,25 @@ async def send_message(token: str, chat_id: str, text: str) -> None:
         if resp.status_code != 200:
             logger.error(f"Telegram API error {resp.status_code}: {resp.text}")
             resp.raise_for_status()
-        logger.info("Message sent successfully")
 
 
 async def main() -> None:
-    token = _get_required_env("TELEGRAM_BOT_TOKEN")
-    chat_id = _get_required_env("TELEGRAM_CHAT_ID")
+    token = _require("TELEGRAM_BOT_TOKEN")
+    chat_id = _require("TELEGRAM_CHAT_ID")
 
     target_date = date.today() - timedelta(days=1)
-    logger.info(f"Fetching court decisions for {target_date.strftime('%d.%m.%Y')}")
+    logger.info(f"Target date: {target_date.strftime('%d.%m.%Y')}")
 
     decisions = await scrape_decisions(target_date)
-    messages = format_messages(decisions, target_date)
+    stats = analyze(decisions)
+    messages = format_messages(decisions, stats, target_date)
 
-    logger.info(f"Sending {len(messages)} message(s) to Telegram")
+    logger.info(f"Sending {len(messages)} message(s) — {stats['total']} decisions found")
     for i, msg in enumerate(messages, 1):
         await send_message(token, chat_id, msg)
+        logger.info(f"Sent message {i}/{len(messages)}")
         if i < len(messages):
-            await asyncio.sleep(1)  # avoid hitting Telegram rate limits
+            await asyncio.sleep(1)  # stay within Telegram rate limits
 
     logger.info("Done.")
 
