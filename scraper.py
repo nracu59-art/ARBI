@@ -77,7 +77,13 @@ async def scrape_decisions(target_date: date | None = None) -> list[dict]:
         page.set_default_timeout(30_000)
 
         try:
-            # Navigate page by page via URL (Drupal: items_per_page + page=0,1,2,...)
+            # Step 1 — load base search URL to initialize session/cookies
+            base_url = f"{BASE_URL}?{urlencode({k: v for k, v in base_params.items() if k != 'items_per_page'})}"
+            logger.info(f"Loading base search: {base_url}")
+            await page.goto(base_url, wait_until="domcontentloaded")
+            await page.wait_for_load_state("networkidle")
+
+            # Step 2 — navigate page by page with items_per_page=50
             drupal_page = 0
             while True:
                 params = {**base_params, "page": drupal_page}
