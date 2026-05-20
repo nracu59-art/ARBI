@@ -1,5 +1,6 @@
 import asyncio
 import logging
+import os
 from datetime import date, timedelta
 from urllib.parse import urlencode
 
@@ -8,6 +9,14 @@ from playwright.async_api import async_playwright, TimeoutError as PlaywrightTim
 logger = logging.getLogger(__name__)
 
 BASE_URL = "https://instante.justice.md/ro/hotarirle-instantei"
+
+# Allow overriding the Chromium binary via env var (useful in constrained envs)
+CHROMIUM_EXECUTABLE = os.getenv(
+    "PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH",
+    "/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell"
+    if os.path.exists("/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell")
+    else None
+)
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
     "AppleWebKit/537.36 (KHTML, like Gecko) "
@@ -53,11 +62,16 @@ async def scrape_decisions(target_date: date | None = None) -> list[dict]:
     decisions = []
 
     async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=True)
+        launch_opts = {"headless": True}
+        if CHROMIUM_EXECUTABLE:
+            launch_opts["executable_path"] = CHROMIUM_EXECUTABLE
+            logger.info(f"Using Chromium: {CHROMIUM_EXECUTABLE}")
+        browser = await p.chromium.launch(**launch_opts)
         context = await browser.new_context(
             user_agent=USER_AGENT,
             viewport={"width": 1440, "height": 900},
             locale="ro-RO",
+            ignore_https_errors=True,
         )
         page = await context.new_page()
         page.set_default_timeout(30_000)
