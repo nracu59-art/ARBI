@@ -111,26 +111,32 @@ async def scrape_decisions(target_date: date | None = None) -> list[dict]:
 
 async def _set_rows_per_page(page, count: int) -> None:
     try:
-        result = await page.evaluate("""
-            () => {
-                const selects = document.querySelectorAll('select');
-                for (const sel of selects) {
-                    const opts = Array.from(sel.options).filter(o => /^\\d+$/.test(o.value));
-                    if (opts.length > 0) {
-                        const max = opts.reduce((a, b) => parseInt(a.value) > parseInt(b.value) ? a : b);
-                        sel.value = max.value;
-                        sel.dispatchEvent(new Event('change', {bubbles: true}));
-                        return max.value;
-                    }
-                }
-                return null;
-            }
-        """)
-        if result:
-            await page.wait_for_load_state("networkidle")
-            logger.info(f"Set rows per page via JS: {result}")
-        else:
-            logger.warning("Could not find rows-per-page select")
+        select = await page.query_selector("select")
+        if not select:
+            logger.warning("No select element found for rows per page")
+            return
+
+        options = await select.query_selector_all("option")
+        best = None
+        best_val = 0
+        for opt in options:
+            val = await opt.get_attribute("value") or ""
+            if val.isdigit() and int(val) > best_val:
+                best = val
+                best_val = int(val)
+
+        if not best:
+            logger.warning("No numeric options found in select")
+            return
+
+        # Force element visible so Playwright can interact with it
+        await page.evaluate(
+            "(el) => el.style.cssText = 'display:block !important; visibility:visible !important; opacity:1 !important;'",
+            select,
+        )
+        await select.select_option(value=best)
+        await page.wait_for_load_state("networkidle")
+        logger.info(f"Set rows per page: {best}")
     except Exception as exc:
         logger.warning(f"Could not set rows per page: {exc}")
 
@@ -170,6 +176,18 @@ async def _extract_rows(page) -> list[dict]:
 
 
 async def _go_next_page(page) -> bool:
+    # Debug: log actual pagination HTML so we can identify the right selector
+    try:
+        pag_debug = await page.evaluate("""
+            () => {
+                const found = document.querySelectorAll('[class*="paginat"], [class*="page-"], nav ul, .pager');
+                return Array.from(found).slice(0, 2).map(el => el.className + ': ' + el.innerHTML.substring(0, 300)).join(' ||| ');
+            }
+        """)
+        logger.info(f"Pagination HTML debug: {pag_debug[:500]}")
+    except Exception:
+        pass
+
     # Try standard CSS selectors
     for selector in [
         "li.next:not(.disabled) a",
