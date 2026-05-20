@@ -116,10 +116,12 @@ async def _set_rows_per_page(page, count: int) -> None:
         if select:
             options = await select.query_selector_all("option")
             best = None
+            best_val = 0
             for opt in options:
                 val = await opt.get_attribute("value") or ""
-                if val.isdigit() and int(val) <= count:
+                if val.isdigit() and int(val) > best_val:
                     best = val
+                    best_val = int(val)
             if best:
                 await select.select_option(value=best)
                 await page.wait_for_load_state("networkidle")
@@ -169,6 +171,9 @@ async def _go_next_page(page) -> bool:
         "a[aria-label='Next']",
         ".pagination a:has-text('›')",
         ".pagination a:has-text('>')",
+        ".pagination a:has-text('>>')",
+        ".pagination a:has-text('»')",
+        "li:not(.disabled) > a[rel='next']",
     ]:
         btn = await page.query_selector(selector)
         if btn:
