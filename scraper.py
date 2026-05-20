@@ -135,8 +135,18 @@ async def _set_rows_per_page(page, count: int) -> None:
             select,
         )
         await select.select_option(value=best)
+        # Trigger change events so the site reacts
+        await page.evaluate("""
+            (el) => {
+                ['change', 'input'].forEach(evt =>
+                    el.dispatchEvent(new Event(evt, {bubbles: true}))
+                );
+            }
+        """, select)
         await page.wait_for_load_state("networkidle")
-        logger.info(f"Set rows per page: {best}")
+        # Verify how many rows are now visible
+        row_count = await page.evaluate("() => document.querySelectorAll('table tbody tr').length")
+        logger.info(f"Set rows per page: {best} (table now shows {row_count} rows)")
     except Exception as exc:
         logger.warning(f"Could not set rows per page: {exc}")
 
@@ -176,15 +186,22 @@ async def _extract_rows(page) -> list[dict]:
 
 
 async def _go_next_page(page) -> bool:
-    # Debug: log actual pagination HTML so we can identify the right selector
+    # Debug: find all numeric links (page numbers) and their container
     try:
         pag_debug = await page.evaluate("""
             () => {
-                const found = document.querySelectorAll('[class*="paginat"], [class*="page-"], nav ul, .pager');
-                return Array.from(found).slice(0, 2).map(el => el.className + ': ' + el.innerHTML.substring(0, 300)).join(' ||| ');
+                const links = Array.from(document.querySelectorAll('a')).filter(a => {
+                    const t = a.innerText.trim();
+                    return /^\\d+$/.test(t) || ['>', '>>', '›', '»', 'next', 'Next'].includes(t);
+                });
+                if (!links.length) return 'no page links found';
+                const parent = links[0].closest('ul, ol, div, nav');
+                return parent
+                    ? 'parent class=' + parent.className + ' html=' + parent.outerHTML.substring(0, 400)
+                    : 'no parent: ' + links[0].outerHTML;
             }
         """)
-        logger.info(f"Pagination HTML debug: {pag_debug[:500]}")
+        logger.info(f"Pagination debug: {pag_debug[:500]}")
     except Exception:
         pass
 
