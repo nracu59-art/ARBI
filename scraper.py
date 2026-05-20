@@ -25,8 +25,8 @@ USER_AGENT = (
 
 # Tipul_dosarului=3 = Penal (from URL params observed on site)
 TIPUL_PENAL = "3"
-# Rows per page — try to set to 100 to minimize page loads
-ROWS_PER_PAGE = 100
+# Rows per page passed as Drupal URL param (items_per_page)
+ROWS_PER_PAGE = 50
 
 # Exact column order as shown in the table (0-indexed)
 COLUMNS = [
@@ -50,15 +50,15 @@ async def scrape_decisions(target_date: date | None = None) -> list[dict]:
     date_str = target_date.strftime("%Y-%m-%d")
     logger.info(f"Scraping penal decisions for date: {date_str}")
 
-    params = {
+    base_params = {
         "Instance": "All",
         "Numarul_dosarului": "",
         "Denumirea_dosarului": "",
         "date": date_str,
         "Tematica_dosarului": "",
         "Tipul_dosarului": TIPUL_PENAL,
+        "items_per_page": ROWS_PER_PAGE,
     }
-    url = f"{BASE_URL}?{urlencode(params)}"
     decisions = []
 
     async with async_playwright() as p:
@@ -77,24 +77,23 @@ async def scrape_decisions(target_date: date | None = None) -> list[dict]:
         page.set_default_timeout(30_000)
 
         try:
-            logger.info(f"Loading: {url}")
-            await page.goto(url, wait_until="domcontentloaded")
-            await page.wait_for_load_state("networkidle")
-
-            # Increase rows per page to speed up scraping
-            await _set_rows_per_page(page, ROWS_PER_PAGE)
-
-            # Scrape all pages
-            page_num = 1
+            # Navigate page by page via URL (Drupal: items_per_page + page=0,1,2,...)
+            drupal_page = 0
             while True:
-                logger.info(f"Extracting page {page_num}")
+                params = {**base_params, "page": drupal_page}
+                url = f"{BASE_URL}?{urlencode(params)}"
+                logger.info(f"Loading page {drupal_page + 1}: {url}")
+                await page.goto(url, wait_until="domcontentloaded")
+                await page.wait_for_load_state("networkidle")
                 await page.wait_for_selector("table tbody tr", timeout=15_000)
                 rows = await _extract_rows(page)
-                decisions.extend(rows)
-                logger.info(f"  → {len(rows)} rows (total so far: {len(decisions)})")
-                if not await _go_next_page(page):
+                logger.info(f"  → {len(rows)} rows (total so far: {len(decisions) + len(rows)})")
+                if not rows:
                     break
-                page_num += 1
+                decisions.extend(rows)
+                if len(rows) < ROWS_PER_PAGE:
+                    break  # last page
+                drupal_page += 1
 
         except PlaywrightTimeout as exc:
             logger.error(f"Timeout: {exc}")
