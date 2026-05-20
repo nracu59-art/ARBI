@@ -1,0 +1,50 @@
+name: Analiză Confiscare/Sechestru
+
+on:
+  schedule:
+    - cron: '30 5 * * *'   # 08:30 EEST (UTC+3, vara Moldova) — după raportul zilnic
+  workflow_dispatch:         # rulare manuală pentru testare
+
+jobs:
+  analyze-confiscation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Install Playwright Chromium
+        run: playwright install chromium --with-deps
+
+      - name: Run PDF analyzer
+        run: python pdf_analyzer.py
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.COURT_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.COURT_CHAT_ID }}
+
+      - name: Upload Excel report as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: raport-confiscare-${{ github.run_id }}
+          path: confiscare_*.xlsx
+          if-no-files-found: ignore
+          retention-days: 30
+
+      - name: Upload debug screenshot (on failure)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-screenshot
+          path: debug_screenshot.png
+          if-no-files-found: ignore
