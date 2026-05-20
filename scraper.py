@@ -111,21 +111,26 @@ async def scrape_decisions(target_date: date | None = None) -> list[dict]:
 
 async def _set_rows_per_page(page, count: int) -> None:
     try:
-        # The "Afișări pe pagină" select
-        select = await page.query_selector("select")
-        if select:
-            options = await select.query_selector_all("option")
-            best = None
-            best_val = 0
-            for opt in options:
-                val = await opt.get_attribute("value") or ""
-                if val.isdigit() and int(val) > best_val:
-                    best = val
-                    best_val = int(val)
-            if best:
-                await select.select_option(value=best)
-                await page.wait_for_load_state("networkidle")
-                logger.info(f"Set rows per page: {best}")
+        result = await page.evaluate("""
+            () => {
+                const selects = document.querySelectorAll('select');
+                for (const sel of selects) {
+                    const opts = Array.from(sel.options).filter(o => /^\\d+$/.test(o.value));
+                    if (opts.length > 0) {
+                        const max = opts.reduce((a, b) => parseInt(a.value) > parseInt(b.value) ? a : b);
+                        sel.value = max.value;
+                        sel.dispatchEvent(new Event('change', {bubbles: true}));
+                        return max.value;
+                    }
+                }
+                return null;
+            }
+        """)
+        if result:
+            await page.wait_for_load_state("networkidle")
+            logger.info(f"Set rows per page via JS: {result}")
+        else:
+            logger.warning("Could not find rows-per-page select")
     except Exception as exc:
         logger.warning(f"Could not set rows per page: {exc}")
 
@@ -165,7 +170,7 @@ async def _extract_rows(page) -> list[dict]:
 
 
 async def _go_next_page(page) -> bool:
-    # The ">" (next) button in pagination
+    # Try standard CSS selectors
     for selector in [
         "li.next:not(.disabled) a",
         "a[aria-label='Next']",
@@ -187,7 +192,29 @@ async def _go_next_page(page) -> bool:
             await page.wait_for_load_state("networkidle")
             return True
 
-    # Fallback: look for the active page number and try clicking next number
+    # JavaScript fallback — find active page li and click the next sibling's link
+    clicked = await page.evaluate("""
+        () => {
+            const pagers = document.querySelectorAll('.pagination, [class*="pagination"], nav ul');
+            for (const pager of pagers) {
+                const active = pager.querySelector('.active, [class*="active"]');
+                if (!active) continue;
+                let next = active.nextElementSibling;
+                while (next) {
+                    if (next.classList.contains('disabled')) return false;
+                    const link = next.querySelector('a');
+                    if (link) { link.click(); return true; }
+                    next = next.nextElementSibling;
+                }
+            }
+            return false;
+        }
+    """)
+    if clicked:
+        await page.wait_for_load_state("networkidle")
+        return True
+
+    # Last resort — click the next page number directly
     try:
         active = await page.query_selector(".pagination .active a, .pagination .active span")
         if active:
