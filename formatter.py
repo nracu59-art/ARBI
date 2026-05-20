@@ -86,7 +86,10 @@ def _bar(count: int, total: int, width: int = 8) -> str:
 DIVIDER = "─" * 22
 
 def _format_decision(idx: int, d: dict) -> str:
-    lines = [f"<b>#{idx}</b>"]
+    # Header: index + person/case name as title
+    name = (d.get("denumirea_dosarului") or "").strip()
+    header = f"<b>#{idx} — {_esc(name)}</b>" if name else f"<b>#{idx}</b>"
+    lines = [header]
 
     def row(emoji: str, label: str, key: str) -> None:
         val = (d.get(key) or "").strip()
@@ -94,7 +97,6 @@ def _format_decision(idx: int, d: dict) -> str:
             lines.append(f"{emoji} <b>{label}:</b> {_esc(val)}")
 
     row("🔢", "Nr. dosar", "numarul_dosarului")
-    row("📄", "Denumire dosar", "denumirea_dosarului")
     row("🏛", "Instanța", "instanta_judecatoreasca")
     row("👨‍⚖️", "Judecător", "judecator")
     row("📅", "Data pronunțării", "data_pronuntarii")
