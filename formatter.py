@@ -86,7 +86,6 @@ def _bar(count: int, total: int, width: int = 8) -> str:
 DIVIDER = "─" * 22
 
 def _format_decision(idx: int, d: dict) -> str:
-    # Header: index + person/case name as title
     name = (d.get("denumirea_dosarului") or "").strip()
     header = f"<b>#{idx} — {_esc(name)}</b>" if name else f"<b>#{idx}</b>"
     lines = [header]
@@ -96,16 +95,11 @@ def _format_decision(idx: int, d: dict) -> str:
         if val:
             lines.append(f"{emoji} <b>{label}:</b> {_esc(val)}")
 
-    row("🔢", "Nr. dosar", "numarul_dosarului")
-    row("🏛", "Instanța", "instanta_judecatoreasca")
-    row("👨‍⚖️", "Judecător", "judecator")
-    row("📅", "Data pronunțării", "data_pronuntarii")
-    row("📆", "Data înregistrării", "data_inregistrarii")
-    row("🗓", "Data publicării", "data_publicarii")
     row("📋", "Tematica", "tematica_dosarului")
-
-    if d.get("act_judecatoresc_url"):
-        lines.append(f"🔗 <a href=\"{d['act_judecatoresc_url']}\">Act judecătoresc (PDF)</a>")
+    row("🏛", "Instanța", "instanta_judecatoreasca")
+    row("🔢", "Nr. dosar", "numarul_dosarului")
+    row("📅", "Data pronunțării", "data_pronuntarii")
+    row("🗓", "Data publicării", "data_publicarii")
 
     lines.append(DIVIDER)
     return "\n".join(lines)
