@@ -1,128 +1,181 @@
+"""
+Formatează hotărârile penale ca un raport structurat pentru Telegram.
+
+Structura raportului:
+  Mesaj 1 — Antet + Sumar executiv
+  Mesaj 2+ — Secțiuni pe tematică, cu dosarele grupate sub fiecare temă
+"""
+from collections import defaultdict
 from datetime import date, timedelta
 
 MAX_MSG_LEN = 4096
-TOP_N = 15   # max entries shown in each ranking
+SEP_THICK = "━" * 24
+SEP_THIN  = "─" * 24
 
 
 def format_messages(decisions: list[dict], stats: dict, target_date: date | None = None) -> list[str]:
     if target_date is None:
         target_date = date.today() - timedelta(days=1)
 
-    date_display = target_date.strftime("%d.%m.%Y")
-
     if not decisions:
-        return [
-            f"⚖️ <b>Hotărâri penale — {date_display}</b>\n\n"
-            "ℹ️ Nu au fost găsite hotărâri în dosare penale pentru această dată."
-        ]
+        return [_no_results(target_date)]
 
     parts: list[str] = []
-
-    # ── Mesaj 1: Sumar + analiză ──────────────────────────────────────────────
-    parts.append(_build_summary(date_display, stats))
-
-    # ── Mesaje 2+: Hotărârile individuale ─────────────────────────────────────
-    decision_blocks = [_format_decision(i + 1, d) for i, d in enumerate(decisions)]
-    parts.extend(_split_decision_blocks(decision_blocks))
-
+    parts.append(_build_header(target_date, stats))
+    parts.extend(_build_theme_sections(decisions))
     return parts
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Summary / analysis message
+# Mesaj 1 — Antet + Sumar
 # ─────────────────────────────────────────────────────────────────────────────
 
-def _build_summary(date_display: str, stats: dict) -> str:
-    total = stats["total"]
+def _build_header(target_date: date, stats: dict) -> str:
+    day_ro  = _day_ro(target_date)
+    total   = stats["total"]
+    n_inst  = len(stats["by_court"])
+    n_theme = len(stats["by_theme"])
+
     lines = [
-        f"⚖️ <b>Hotărâri penale — {date_display}</b>",
-        f"📊 <b>Total hotărâri: {total}</b>",
+        f"⚖️ <b>RAPORT HOTĂRÂRI PENALE</b>",
+        f"📅 <b>{day_ro}</b>",
+        SEP_THICK,
         "",
+        "📊 <b>SUMAR</b>",
+        f"  • Total hotărâri: <b>{total}</b>",
+        f"  • Instanțe active: <b>{n_inst}</b>",
+        f"  • Tematici distincte: <b>{n_theme}</b>",
+        "",
+        SEP_THICK,
+        "📋 <b>DISTRIBUȚIE PE TEMATICĂ</b>",
     ]
 
-    # Classification by Tematica
-    if stats["by_theme"]:
-        lines.append("📋 <b>Clasificare după tematică:</b>")
-        for theme, count in list(stats["by_theme"].items())[:TOP_N]:
-            bar = _bar(count, total)
-            lines.append(f"  {bar} {_esc(theme)} — <b>{count}</b>")
-        remaining = total - sum(list(stats["by_theme"].values())[:TOP_N])
-        if remaining > 0:
-            lines.append(f"  … și alte <b>{remaining}</b> hotărâri")
-        lines.append("")
+    for theme, count in list(stats["by_theme"].items())[:20]:
+        pct = round(count / total * 100) if total else 0
+        bar = _bar(count, total)
+        lines.append(f"  {bar} {_esc(theme)} — <b>{count}</b> ({pct}%)")
 
-    # Classification by Article
-    if stats["by_article"]:
-        lines.append("📌 <b>Articole CP frecvente:</b>")
-        for art, count in list(stats["by_article"].items())[:10]:
-            lines.append(f"  • {_esc(art)}: <b>{count}</b>")
-        lines.append("")
-
-    # Classification by Court
-    if stats["by_court"]:
-        lines.append("🏛 <b>Instanțe judecătorești:</b>")
-        for court, count in list(stats["by_court"].items())[:10]:
-            lines.append(f"  • {_esc(court)}: <b>{count}</b>")
-        lines.append("")
-
-    # Top judges (only if meaningful)
-    if stats["by_judge"] and len(stats["by_judge"]) > 1:
-        lines.append("👨‍⚖️ <b>Judecători (top 5):</b>")
-        for judge, count in list(stats["by_judge"].items())[:5]:
-            lines.append(f"  • {_esc(judge)}: <b>{count}</b>")
+    lines += [
+        "",
+        SEP_THICK,
+        "🏛 <b>INSTANȚE ACTIVE</b>",
+    ]
+    for court, count in list(stats["by_court"].items()):
+        lines.append(f"  • {_esc(court)}: <b>{count}</b>")
 
     return "\n".join(lines)
 
 
-def _bar(count: int, total: int, width: int = 8) -> str:
-    filled = round((count / total) * width) if total else 0
-    return "█" * filled + "░" * (width - filled)
-
-
 # ─────────────────────────────────────────────────────────────────────────────
-# Individual decision blocks
+# Mesaje 2+ — Secțiuni pe tematică
 # ─────────────────────────────────────────────────────────────────────────────
 
-DIVIDER = "─" * 22
+def _build_theme_sections(decisions: list[dict]) -> list[str]:
+    # Group by tematica, păstrând ordinea (most common first)
+    groups: dict[str, list[dict]] = defaultdict(list)
+    for d in decisions:
+        theme = (d.get("tematica_dosarului") or "Nespecificată").strip()
+        groups[theme].append(d)
 
-def _format_decision(idx: int, d: dict) -> str:
-    name = (d.get("denumirea_dosarului") or "").strip()
-    header = f"<b>#{idx} — {_esc(name)}</b>" if name else f"<b>#{idx}</b>"
-    lines = [header]
+    # Sort groups by size descending
+    sorted_groups = sorted(groups.items(), key=lambda x: -len(x[1]))
 
-    def row(emoji: str, label: str, key: str) -> None:
-        val = (d.get(key) or "").strip()
-        if val:
-            lines.append(f"{emoji} <b>{label}:</b> {_esc(val)}")
-
-    row("📋", "Tematica", "tematica_dosarului")
-    row("🏛", "Instanța", "instanta_judecatoreasca")
-    row("🔢", "Nr. dosar", "numarul_dosarului")
-    row("📅", "Data pronunțării", "data_pronuntarii")
-    row("🗓", "Data publicării", "data_publicarii")
-
-    lines.append(DIVIDER)
-    return "\n".join(lines)
-
-
-# ─────────────────────────────────────────────────────────────────────────────
-# Message splitting
-# ─────────────────────────────────────────────────────────────────────────────
-
-def _split_decision_blocks(blocks: list[str]) -> list[str]:
     messages: list[str] = []
     current = ""
-    for block in blocks:
-        candidate = current + block + "\n"
-        if len(candidate) > MAX_MSG_LEN:
-            if current.strip():
-                messages.append(current.rstrip())
-            current = block + "\n"
+
+    for theme, cases in sorted_groups:
+        section = _build_section(theme, cases)
+        # If section itself exceeds limit, split it internally
+        if len(section) > MAX_MSG_LEN:
+            chunks = _split_large_section(theme, cases)
+            for chunk in chunks:
+                if len(current) + len(chunk) + 1 > MAX_MSG_LEN:
+                    if current.strip():
+                        messages.append(current.rstrip())
+                    current = chunk + "\n"
+                else:
+                    current += chunk + "\n"
         else:
-            current = candidate
+            if len(current) + len(section) + 1 > MAX_MSG_LEN:
+                if current.strip():
+                    messages.append(current.rstrip())
+                current = section + "\n"
+            else:
+                current += section + "\n"
+
     if current.strip():
         messages.append(current.rstrip())
+
     return messages
+
+
+def _build_section(theme: str, cases: list[dict]) -> str:
+    lines = [
+        SEP_THICK,
+        f"📋 <b>{_esc(theme.upper())}</b>  ({len(cases)} {'hotărâre' if len(cases) == 1 else 'hotărâri'})",
+        SEP_THIN,
+    ]
+    for i, d in enumerate(cases, 1):
+        lines.append(_format_case_row(i, d))
+    return "\n".join(lines)
+
+
+def _split_large_section(theme: str, cases: list[dict]) -> list[str]:
+    """Split a section with many cases into multiple messages."""
+    chunks = []
+    header = f"{SEP_THICK}\n📋 <b>{_esc(theme.upper())}</b>  ({len(cases)} hotărâri)\n{SEP_THIN}\n"
+    current = header
+    for i, d in enumerate(cases, 1):
+        row = _format_case_row(i, d) + "\n"
+        if len(current) + len(row) > MAX_MSG_LEN:
+            chunks.append(current.rstrip())
+            current = f"📋 <b>{_esc(theme.upper())}</b> (continuare)\n{SEP_THIN}\n" + row
+        else:
+            current += row
+    if current.strip():
+        chunks.append(current.rstrip())
+    return chunks
+
+
+def _format_case_row(idx: int, d: dict) -> str:
+    name    = _esc((d.get("denumirea_dosarului") or "—").strip())
+    nr      = _esc((d.get("numarul_dosarului")   or "—").strip())
+    court   = _esc((d.get("instanta_judecatoreasca") or "—").strip())
+    d_pron  = _esc((d.get("data_pronuntarii")    or "—").strip())
+    d_pub   = _esc((d.get("data_publicarii")     or "—").strip())
+
+    return (
+        f"<b>{idx}. {name}</b>\n"
+        f"   🏛 {court}\n"
+        f"   🔢 {nr}  |  📅 {d_pron}  |  🗓 {d_pub}"
+    )
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Helpers
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _no_results(target_date: date) -> str:
+    return (
+        f"⚖️ <b>RAPORT HOTĂRÂRI PENALE</b>\n"
+        f"📅 <b>{_day_ro(target_date)}</b>\n"
+        f"{SEP_THICK}\n\n"
+        "ℹ️ Nu au fost găsite hotărâri în dosare penale pentru această dată."
+    )
+
+
+_MONTHS_RO = [
+    "", "ianuarie", "februarie", "martie", "aprilie", "mai", "iunie",
+    "iulie", "august", "septembrie", "octombrie", "noiembrie", "decembrie",
+]
+
+def _day_ro(d: date) -> str:
+    return f"{d.day} {_MONTHS_RO[d.month]} {d.year}"
+
+
+def _bar(count: int, total: int, width: int = 6) -> str:
+    filled = round((count / total) * width) if total else 0
+    return "█" * filled + "░" * (width - filled)
 
 
 def _esc(text: str) -> str:
