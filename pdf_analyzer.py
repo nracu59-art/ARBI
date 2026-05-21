@@ -41,6 +41,8 @@ KEYWORDS = [
     "se ridică sechestrul",
     "menține sechestrul",
     "menținerea sechestrului",
+    "trecut cu titlu gratuit",
+    "trecerea cu titlu gratuit",
 ]
 
 CONTEXT_CHARS = 400  # caractere extrase în jurul cuvântului cheie
