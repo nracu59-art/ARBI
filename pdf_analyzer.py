@@ -103,32 +103,52 @@ def extract_text(pdf_bytes: bytes) -> str:
 # Keyword search
 # ─────────────────────────────────────────────────────────────────────────────
 
-def find_keyword_excerpts(text: str) -> list[dict]:
-    """Return list of {keyword, excerpt} for each keyword found in text."""
+def extract_dispozitiv(text: str) -> str:
+    """Returnează doar textul din dispozitivul hotărârii (după DISPUN/DISPUNE)."""
     text_lower = text.lower()
-    results = []
+    for marker in ["dispune:", "dispune\n", "dispun:", "dispun\n", "dispune ", "dispun "]:
+        pos = text_lower.rfind(marker)  # rfind = ultima apariție (dispozitivul e la final)
+        if pos != -1:
+            return text[pos:]
+    return text  # fallback: tot textul dacă nu se găsește marcatorul
+
+
+def find_keyword_excerpts(text: str) -> list[dict]:
+    """Caută cuvintele cheie doar în dispozitiv și returnează un singur excerpt combinat."""
+    dispozitiv = extract_dispozitiv(text)
+    dispozitiv_lower = dispozitiv.lower()
+
+    found_keywords = []
+    excerpts = []
     seen_positions = set()
 
     for kw in KEYWORDS:
         kw_lower = kw.lower()
         start = 0
         while True:
-            pos = text_lower.find(kw_lower, start)
+            pos = dispozitiv_lower.find(kw_lower, start)
             if pos == -1:
                 break
-            # Deduplicate overlapping matches
             bucket = pos // (CONTEXT_CHARS // 2)
             if bucket not in seen_positions:
                 seen_positions.add(bucket)
                 excerpt_start = max(0, pos - CONTEXT_CHARS // 2)
-                excerpt_end = min(len(text), pos + len(kw) + CONTEXT_CHARS // 2)
-                excerpt = text[excerpt_start:excerpt_end].strip()
-                # Clean up whitespace
+                excerpt_end = min(len(dispozitiv), pos + len(kw) + CONTEXT_CHARS // 2)
+                excerpt = dispozitiv[excerpt_start:excerpt_end].strip()
                 excerpt = " ".join(excerpt.split())
-                results.append({"keyword": kw, "excerpt": excerpt})
+                if kw not in found_keywords:
+                    found_keywords.append(kw)
+                excerpts.append(excerpt)
             start = pos + 1
 
-    return results
+    if not found_keywords:
+        return []
+
+    # Toate mențiunile combinate într-un singur rezultat (un singur rând per cauză)
+    return [{
+        "keyword": ", ".join(found_keywords),
+        "excerpt": "\n\n".join(excerpts),
+    }]
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -168,8 +188,8 @@ async def analyze_decisions(decisions: list[dict]) -> list[dict]:
 
         excerpts = find_keyword_excerpts(text)
         if excerpts:
-            for ex in excerpts:
-                rows.append({**base, "keyword": ex["keyword"], "excerpt": ex["excerpt"], "status": STATUS_MATCH})
+            # Întotdeauna un singur rând per cauză
+            rows.append({**base, "keyword": excerpts[0]["keyword"], "excerpt": excerpts[0]["excerpt"], "status": STATUS_MATCH})
         else:
             rows.append({**base, "keyword": "", "excerpt": "", "status": STATUS_NO_MATCH})
 
