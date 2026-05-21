@@ -175,7 +175,7 @@ async def _extract_rows(page) -> list[dict]:
                 if a:
                     href = await a.get_attribute("href") or ""
                     if href:
-                        pdf_url = href if href.startswith("http") else f"https://instante.justice.md{href}"
+                        pdf_url = href if href.startswith("http") else f"https://instante.justice.md/{href.lstrip('/')}"
 
         row: dict = {}
         for i, col in enumerate(COLUMNS):
