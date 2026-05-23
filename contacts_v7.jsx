@@ -22,8 +22,11 @@ const firebaseConfig = typeof __firebase_config !== 'undefined'
   ? JSON.parse(__firebase_config)
   : {};
 const appId = typeof __app_id !== 'undefined' ? __app_id : 'arbi-contacts-v7';
-const API_KEY = typeof __gemini_api_key !== 'undefined' ? __gemini_api_key : '';
 const MODEL_NAME = 'gemini-2.5-flash-preview-09-2025';
+const getApiKey = () =>
+  (typeof __gemini_api_key !== 'undefined' && __gemini_api_key)
+    ? __gemini_api_key
+    : (localStorage.getItem('arbi_gemini_key') || '');
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -115,6 +118,8 @@ export default function App() {
   const [viewPhoto, setViewPhoto]           = useState(null);
   const [statusMessage, setStatusMessage]   = useState('');
   const [editingId, setEditingId]           = useState(null);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [apiKeyInput, setApiKeyInput]       = useState('');
   const fileInputRef = useRef(null);
 
   const initialFormState = {
@@ -163,6 +168,7 @@ export default function App() {
 
   // 3. ANALIZĂ AI GEMINI
   const extractDataWithAI = async (base64Data) => {
+    const API_KEY = getApiKey();
     if (!API_KEY) {
       setStatusMessage('Cheie API Gemini lipsă. Completați manual.');
       setTimeout(() => setStatusMessage(''), 3000);
@@ -315,6 +321,7 @@ export default function App() {
             </div>
           </div>
           <div className="flex gap-2 w-full md:w-auto">
+            <button onClick={() => { setApiKeyInput(localStorage.getItem('arbi_gemini_key') || ''); setIsSettingsOpen(true); }} className="flex-1 md:flex-none bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-xl font-bold text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 transition-all" title="Setări cheie API">⚙️</button>
             <button onClick={exportExcel} className="flex-1 md:flex-none bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-xl font-bold text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 transition-all">XLS</button>
             <button onClick={() => window.print()} className="flex-1 md:flex-none bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-xl font-bold text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 transition-all">Raport</button>
             <button
@@ -698,6 +705,59 @@ export default function App() {
             <button onClick={() => setViewPhoto(null)} className="bg-white/10 text-white p-5 rounded-2xl text-4xl leading-none hover:bg-white/20 transition-colors">&times;</button>
           </div>
           <img src={viewPhoto} className="max-w-full max-h-[85vh] rounded-[3rem] shadow-2xl border-4 border-white/10" alt="Card" />
+        </div>
+      )}
+
+      {/* Modal Setări Cheie API */}
+      {isSettingsOpen && (
+        <div className="fixed inset-0 bg-[#0f172a]/90 backdrop-blur-xl z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-[3rem] w-full max-w-md shadow-2xl p-10 modal-animate">
+            <div className="flex items-center justify-between mb-8">
+              <div>
+                <h2 className="text-xl font-black uppercase tracking-widest text-slate-800">Setări AI</h2>
+                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-1">Cheie Gemini — stocată local pe dispozitiv</p>
+              </div>
+              <button onClick={() => setIsSettingsOpen(false)} className="text-4xl font-thin text-slate-400 hover:text-slate-700 transition-colors leading-none">&times;</button>
+            </div>
+
+            <div className="bg-amber-50 border border-amber-100 rounded-2xl p-4 mb-6 text-[11px] text-amber-800 font-semibold leading-relaxed">
+              🔒 Cheia nu apare în codul sursă de pe GitHub. Se salvează exclusiv în browserul tău (<code className="bg-amber-100 px-1 rounded">localStorage</code>) și nu este partajată cu nimeni.
+            </div>
+
+            <label className="block text-[11px] font-black text-slate-500 uppercase tracking-widest mb-3">Cheie API Google Gemini</label>
+            <input
+              type="password"
+              placeholder="AIza..."
+              className="w-full p-4 bg-slate-50 rounded-2xl text-sm font-mono outline-none border border-slate-200 focus:border-amber-300 transition-colors mb-2"
+              value={apiKeyInput}
+              onChange={e => setApiKeyInput(e.target.value)}
+            />
+            <p className="text-[10px] text-slate-400 mb-8">
+              Obții cheia din <span className="font-bold text-slate-600">aistudio.google.com</span> → Get API Key
+            </p>
+
+            <div className="flex gap-3">
+              {localStorage.getItem('arbi_gemini_key') && (
+                <button
+                  type="button"
+                  onClick={() => { localStorage.removeItem('arbi_gemini_key'); setApiKeyInput(''); setIsSettingsOpen(false); }}
+                  className="flex-1 py-4 bg-rose-50 text-rose-500 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-rose-100 transition-all border border-rose-100"
+                >
+                  Șterge Cheia
+                </button>
+              )}
+              <button
+                type="button"
+                onClick={() => {
+                  if (apiKeyInput.trim()) localStorage.setItem('arbi_gemini_key', apiKeyInput.trim());
+                  setIsSettingsOpen(false);
+                }}
+                className="flex-[2] py-4 bg-amber-500 hover:bg-amber-600 text-[#0f172a] rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all shadow-lg"
+              >
+                Salvează
+              </button>
+            </div>
+          </div>
         </div>
       )}
 
