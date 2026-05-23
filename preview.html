@@ -1,394 +1,526 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ARBI — Preview Design</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    .no-scrollbar::-webkit-scrollbar{display:none}
-    .no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
-    @keyframes fadeInZoom{from{opacity:0;transform:scale(.96) translateY(8px)}to{opacity:1;transform:scale(1) translateY(0)}}
-    .modal-animate{animation:fadeInZoom .25s ease-out}
-    body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif}
-  </style>
-</head>
-<body class="bg-[#f8fafc] text-slate-900 pb-24">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ARBI — Preview Design</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;background:#f8fafc;color:#0f172a;padding-bottom:80px}
+button{cursor:pointer;border:none;font-family:inherit}
+input,select,textarea{font-family:inherit}
 
-<!-- ═══════════════════════════════════════════
-     NAVBAR
-════════════════════════════════════════════ -->
-<nav class="bg-[#0f172a] text-white px-6 py-4 shadow-xl border-b-4 border-amber-500 sticky top-0 z-50">
-  <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-    <div class="flex items-center gap-4">
-      <div class="bg-white text-[#0f172a] p-1.5 rounded font-black text-[10px] px-2 shadow-sm">ARBI</div>
+/* ── NAVBAR ── */
+.nav{background:#0f172a;color:#fff;padding:16px 24px;border-bottom:4px solid #f59e0b;position:sticky;top:0;z-index:50;box-shadow:0 4px 24px rgba(0,0,0,.4)}
+.nav-inner{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.nav-brand{display:flex;align-items:center;gap:16px}
+.nav-logo{background:#fff;color:#0f172a;padding:4px 8px;border-radius:6px;font-size:10px;font-weight:900;letter-spacing:.05em}
+.nav-title{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.1em}
+.nav-sync{display:flex;align-items:center;gap:6px;font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.15em;color:#34d399;margin-top:4px}
+.nav-dot{width:7px;height:7px;border-radius:50%;background:#34d399;display:inline-block}
+.nav-actions{display:flex;gap:8px}
+.btn{padding:8px 16px;border-radius:12px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;transition:all .15s}
+.btn-dark{background:#1e293b;color:#fff}.btn-dark:hover{background:#334155}
+.btn-primary{background:#f59e0b;color:#0f172a;padding:8px 24px;font-weight:900;box-shadow:0 4px 16px rgba(245,158,11,.4)}.btn-primary:hover{background:#d97706}
+
+/* ── MAIN ── */
+.main{max-width:1280px;margin:0 auto;padding:32px 24px}
+
+/* ── STATS ── */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
+@media(max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat-card{background:#fff;border-radius:24px;padding:20px;border:1px solid #e2e8f0;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+.stat-label{font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.2em;color:#94a3b8;margin-bottom:6px}
+.stat-value{font-size:32px;font-weight:900;color:#0f172a;line-height:1}
+.stat-value.amber{color:#f59e0b}
+
+/* ── FILTERS ── */
+.filter-block{background:#fff;border-radius:36px;padding:20px 24px;border:1px solid #e2e8f0;box-shadow:0 1px 4px rgba(0,0,0,.04);margin-bottom:12px;overflow-x:auto}
+.filter-label{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.2em;color:#94a3b8;margin-bottom:14px}
+.filter-pills{display:flex;gap:8px;white-space:nowrap}
+.pill{padding:10px 20px;border-radius:16px;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.1em;border:2px solid #e2e8f0;background:#f8fafc;color:#94a3b8;transition:all .15s;flex-shrink:0}
+.pill.active-amber{background:#f59e0b;border-color:#f59e0b;color:#0f172a;box-shadow:0 4px 12px rgba(245,158,11,.3)}
+.pill.active-dark{background:#0f172a;border-color:#0f172a;color:#fff;box-shadow:0 4px 12px rgba(15,23,42,.3)}
+.pill:hover:not(.active-amber):not(.active-dark){border-color:#cbd5e1}
+
+/* ── SEARCH ── */
+.search-wrap{position:relative;max-width:640px;margin:0 auto 32px}
+.search-icon{position:absolute;left:20px;top:50%;transform:translateY(-50%);color:#94a3b8;pointer-events:none}
+.search-input{width:100%;padding:18px 24px 18px 52px;border-radius:9999px;border:none;background:#fff;font-size:14px;box-shadow:0 2px 8px rgba(0,0,0,.06);outline:none;color:#0f172a}
+.search-input::placeholder{color:#94a3b8}
+
+/* ── CARD GRID ── */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+@media(max-width:960px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+
+.card{background:#fff;border-radius:48px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.05);transition:box-shadow .2s;display:flex;flex-direction:column;position:relative}
+.card:hover{box-shadow:0 16px 48px rgba(0,0,0,.12)}
+
+/* card photos */
+.card-photos{display:grid;height:128px;overflow:hidden;flex-shrink:0}
+.card-photos.two{grid-template-columns:1fr 1fr}
+.card-photos.one{grid-template-columns:1fr}
+.photo-slot{position:relative;overflow:hidden;cursor:pointer}
+.photo-slot img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.photo-slot:hover img{transform:scale(1.05)}
+.photo-slot+.photo-slot{border-left:2px solid rgba(255,255,255,.2)}
+.photo-badge{position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);color:#fff;font-size:8px;font-weight:900;padding:2px 8px;border-radius:999px;letter-spacing:.05em}
+.photo-placeholder{width:100%;height:128px;background:linear-gradient(135deg,#e2e8f0,#cbd5e1);display:flex;align-items:center;justify-content:center;color:#94a3b8;font-size:11px;font-weight:700;letter-spacing:.05em;flex-shrink:0}
+
+/* card actions */
+.card-actions{position:absolute;right:24px;display:flex;gap:8px;z-index:5}
+.card-actions.below-photo{top:140px}
+.card-actions.top{top:24px}
+.action-btn{width:42px;height:42px;border-radius:16px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);box-shadow:0 2px 8px rgba(0,0,0,.1);display:flex;align-items:center;justify-content:center;transition:all .15s}
+.action-btn.edit{color:#6366f1}.action-btn.edit:hover{background:#6366f1;color:#fff}
+.action-btn.del{color:#f43f5e}.action-btn.del:hover{background:#f43f5e;color:#fff}
+
+/* card body */
+.card-body{padding:32px 32px 16px}
+.card-header{display:flex;align-items:flex-start;gap:16px;margin-bottom:24px}
+.avatar{width:64px;height:64px;background:#0f172a;color:#fff;border-radius:24px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;box-shadow:0 8px 24px rgba(15,23,42,.2);flex-shrink:0}
+.contact-name{font-size:20px;font-weight:900;color:#0f172a;line-height:1.2;margin-bottom:4px}
+.contact-role{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.2em;color:#d97706}
+.org-badge{display:inline-block;margin-top:8px;padding:3px 10px;border-radius:999px;font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.1em}
+.badge-purple{background:#f3e8ff;color:#7c3aed}
+.badge-sky{background:#e0f2fe;color:#0369a1}
+.badge-red{background:#fee2e2;color:#dc2626}
+.badge-indigo{background:#e0e7ff;color:#4338ca}
+.badge-teal{background:#ccfbf1;color:#0f766e}
+.badge-amber{background:#fef3c7;color:#b45309}
+
+.org-row{display:flex;align-items:center;gap:12px;background:#f8fafc;border:1px solid #f1f5f9;border-radius:16px;padding:14px;font-size:13px;font-weight:700;color:#0f172a;margin-bottom:8px}
+.org-row span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.contact-info{font-size:11px;color:#64748b;font-weight:600;display:flex;flex-direction:column;gap:3px;margin-left:4px}
+
+/* card footer */
+.card-footer{padding:16px 32px 32px;flex-grow:1;display:flex;flex-direction:column;justify-content:space-between;border-top:1px solid #f8fafc;margin-top:16px}
+.arbi-box{background:rgba(238,242,255,.5);border:1px solid rgba(199,210,254,.5);border-radius:24px;padding:20px;margin-bottom:16px}
+.arbi-label{font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.2em;color:#818cf8;margin-bottom:4px}
+.arbi-name{font-size:12px;font-weight:700;color:#0f172a}
+.arbi-event{font-size:10px;color:#94a3b8;font-weight:900;text-transform:uppercase;margin-top:8px}
+.country-tag{font-size:9px;background:#f1f5f9;color:#64748b;padding:4px 12px;border-radius:999px;font-weight:900;text-transform:uppercase;display:inline-block}
+
+/* ── MODAL ── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(15,23,42,.95);backdrop-filter:blur(20px);z-index:100;overflow-y:auto;padding:16px;align-items:center;justify-content:center}
+.modal-overlay.open{display:flex}
+.modal{background:#fff;border-radius:56px;width:100%;max-width:900px;overflow:hidden;animation:zoomIn .2s ease-out;margin:auto}
+@keyframes zoomIn{from{opacity:0;transform:scale(.95) translateY(12px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal-header{background:#0f172a;padding:40px;color:#fff;display:flex;justify-content:space-between;align-items:center}
+.modal-title{font-size:22px;font-weight:900;text-transform:uppercase;letter-spacing:.1em}
+.modal-subtitle{font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.3em;color:#f59e0b;margin-top:8px}
+.modal-close{font-size:44px;font-weight:300;color:#fff;background:none;line-height:1;transition:color .15s;padding:0 8px}
+.modal-close:hover{color:#f59e0b}
+.modal-body{padding:48px;display:grid;grid-template-columns:1fr 1fr;gap:48px}
+@media(max-width:720px){.modal-body{grid-template-columns:1fr}}
+
+.section-label{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.2em;color:#94a3b8;border-bottom:1px solid #f1f5f9;padding-bottom:8px;margin-bottom:24px}
+.section-label.indigo{color:#6366f1;border-color:#e0e7ff}
+
+/* photo slots */
+.photo-slots{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+.photo-slot-box{display:flex;flex-direction:column;gap:10px}
+.photo-preview{aspect-ratio:1;border-radius:24px;border:3px dashed #e2e8f0;overflow:hidden;background:#f8fafc;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;transition:border-color .15s;position:relative}
+.photo-preview.has-photo{border-style:solid;border-color:#e2e8f0}
+.photo-preview img{width:100%;height:100%;object-fit:cover}
+.photo-preview-label{font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:#94a3b8}
+.photo-preview-ai{font-size:8px;font-weight:700;color:#f59e0b}
+.photo-remove{position:absolute;top:8px;right:8px;width:28px;height:28px;background:#f43f5e;color:#fff;border-radius:50%;font-size:16px;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(244,63,94,.4)}
+.slot-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center}
+.slot-icon.amber-bg{background:#fef3c7;color:#d97706}
+.slot-icon.slate-bg{background:#f1f5f9;color:#94a3b8}
+.photo-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.btn-cam{padding:10px;border-radius:14px;font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.05em;background:#0f172a;color:#fff;transition:background .15s}
+.btn-cam:hover{background:#1e293b}
+.btn-gal{padding:10px;border-radius:14px;font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.05em;background:#f1f5f9;color:#475569;transition:background .15s}
+.btn-gal:hover{background:#e2e8f0}
+
+/* form fields */
+.field{width:100%;padding:16px;border-radius:16px;border:1.5px solid #f1f5f9;background:#f8fafc;font-size:14px;color:#0f172a;outline:none;transition:border-color .15s;margin-bottom:16px}
+.field:focus{border-color:#c7d2fe}
+.field.bold{font-weight:700}
+.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field-group{background:#fef3c7;border-radius:32px;padding:28px;margin-bottom:16px}
+.field-group .group-label{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.15em;color:#92400e;margin-bottom:12px;display:block}
+.field-group .field{background:#fff;border-color:#fde68a;margin-bottom:0}
+.field-group-slate{background:#f8fafc;border-radius:24px;padding:20px;margin-bottom:16px;border:1px solid #f1f5f9}
+.field-group-slate .group-label{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.15em;color:#64748b;margin-bottom:10px;display:block}
+.field-group-slate .field{background:#fff;margin-bottom:8px}
+.field-group-slate .field:last-child{margin-bottom:0}
+.field-group-indigo{background:#eef2ff;border-radius:24px;padding:20px;margin-bottom:16px;border:1px solid #e0e7ff}
+.field-group-indigo .group-label{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.15em;color:#4338ca;margin-bottom:10px;display:block}
+.field-group-indigo .field{background:#fff;border-color:#c7d2fe;margin-bottom:0}
+select.field{cursor:pointer}
+
+/* modal actions */
+.modal-actions{display:flex;gap:12px;padding-top:16px}
+.btn-cancel{flex:1;padding:20px;background:#f1f5f9;border-radius:999px;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.15em;color:#475569;transition:background .15s}
+.btn-cancel:hover{background:#e2e8f0}
+.btn-save{flex:2;padding:20px;background:#f59e0b;color:#0f172a;border-radius:999px;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.15em;box-shadow:0 8px 24px rgba(245,158,11,.35);transition:all .15s}
+.btn-save:hover{background:#d97706}
+
+/* ── LIGHTBOX ── */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(15,23,42,.98);z-index:200;align-items:center;justify-content:center;padding:24px}
+.lightbox.open{display:flex}
+.lightbox img{max-width:100%;max-height:85vh;border-radius:40px;box-shadow:0 24px 64px rgba(0,0,0,.6);border:4px solid rgba(255,255,255,.08)}
+.lightbox-close{position:absolute;top:32px;right:32px;background:rgba(255,255,255,.1);color:#fff;width:56px;height:56px;border-radius:16px;font-size:28px;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.lightbox-close:hover{background:rgba(255,255,255,.2)}
+
+/* ── FOOTER ── */
+.footer{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-top:1px solid #e2e8f0;padding:14px 32px;z-index:50;box-shadow:0 -2px 12px rgba(0,0,0,.04)}
+.footer-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.2em;color:#94a3b8}
+.footer-left{display:flex;align-items:center;gap:24px}
+.footer-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;display:inline-block;margin-right:6px}
+
+/* svg icons inline */
+svg{display:inline-block;vertical-align:middle}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <span class="nav-logo">ARBI</span>
       <div>
-        <h1 class="text-sm font-bold uppercase tracking-wider leading-none">Cooperare Internațională</h1>
-        <span class="flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest mt-1.5 text-emerald-400">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.5 19c3.037 0 5.5-2.463 5.5-5.5 0-2.799-2.084-5.11-4.814-5.455C17.18 4.545 13.903 2 10 2 6.136 2 2.864 4.887 2.115 8.657.942 9.577 0 11.196 0 13c0 3.314 2.686 6 6 6h11.5z"/></svg>
+        <div class="nav-title">Cooperare Internațională</div>
+        <div class="nav-sync">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.5 19c3.037 0 5.5-2.463 5.5-5.5 0-2.799-2.084-5.11-4.814-5.455C17.18 4.545 13.903 2 10 2 6.136 2 2.864 4.887 2.115 8.657.942 9.577 0 11.196 0 13c0 3.314 2.686 6 6 6h11.5z"/></svg>
           Sincronizat: 14:32:07
-        </span>
+        </div>
       </div>
     </div>
-    <div class="flex gap-2 w-full md:w-auto">
-      <button class="flex-1 md:flex-none bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all">⚙️</button>
-      <button class="flex-1 md:flex-none bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all">XLS</button>
-      <button class="flex-1 md:flex-none bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all">Raport</button>
-      <button onclick="document.getElementById('modal').classList.remove('hidden')" class="flex-1 md:flex-none bg-amber-500 hover:bg-amber-600 text-[#0f172a] px-6 py-2 rounded-xl font-black text-[10px] uppercase tracking-widest shadow-xl active:scale-95 transition-all flex items-center justify-center gap-2">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    <div class="nav-actions">
+      <button class="btn btn-dark">⚙️</button>
+      <button class="btn btn-dark">XLS</button>
+      <button class="btn btn-dark">Raport</button>
+      <button class="btn btn-primary" onclick="openModal()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right:6px"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
         Adaugă
       </button>
     </div>
   </div>
 </nav>
 
-<main class="max-w-7xl mx-auto px-6 mt-8">
+<div class="main">
 
-  <!-- ═══════════════════════════════════════════
-       STATS BAR
-  ════════════════════════════════════════════ -->
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-    <div class="bg-white rounded-3xl p-5 border border-slate-100 shadow-sm">
-      <p class="text-[9px] font-black text-slate-400 uppercase tracking-widest">Total Contacte</p>
-      <p class="text-3xl font-black text-slate-800 mt-1">24</p>
-    </div>
-    <div class="bg-white rounded-3xl p-5 border border-slate-100 shadow-sm">
-      <p class="text-[9px] font-black text-slate-400 uppercase tracking-widest">Țări</p>
-      <p class="text-3xl font-black text-slate-800 mt-1">11</p>
-    </div>
-    <div class="bg-white rounded-3xl p-5 border border-slate-100 shadow-sm">
-      <p class="text-[9px] font-black text-slate-400 uppercase tracking-widest">Tip Organizații</p>
-      <p class="text-3xl font-black text-slate-800 mt-1">6</p>
-    </div>
-    <div class="bg-white rounded-3xl p-5 border border-slate-100 shadow-sm">
-      <p class="text-[9px] font-black text-slate-400 uppercase tracking-widest">Cu Fotografii</p>
-      <p class="text-3xl font-black text-amber-500 mt-1">18</p>
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat-card"><div class="stat-label">Total Contacte</div><div class="stat-value">24</div></div>
+    <div class="stat-card"><div class="stat-label">Țări</div><div class="stat-value">11</div></div>
+    <div class="stat-card"><div class="stat-label">Tip Organizații</div><div class="stat-value">6</div></div>
+    <div class="stat-card"><div class="stat-label">Cu Fotografii</div><div class="stat-value amber">18</div></div>
+  </div>
+
+  <!-- FILTRU TARI -->
+  <div class="filter-block">
+    <div class="filter-label">Filtrare după Țară</div>
+    <div class="filter-pills">
+      <button class="pill active-amber">Toate</button>
+      <button class="pill">Austria (2)</button>
+      <button class="pill">Belgia (3)</button>
+      <button class="pill">Franța (4)</button>
+      <button class="pill">Germania (2)</button>
+      <button class="pill">Olanda (3)</button>
+      <button class="pill">Polonia (2)</button>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════
-       FILTRU ȚĂRI
-  ════════════════════════════════════════════ -->
-  <div class="bg-white p-6 rounded-[2.5rem] shadow-sm mb-4 border border-slate-200 overflow-x-auto no-scrollbar">
-    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Filtrare după Țară</p>
-    <div class="flex gap-2">
-      <button class="px-5 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest border-2 shrink-0 bg-amber-500 border-amber-500 text-[#0f172a] shadow-lg">Toate</button>
-      <button class="px-5 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest border-2 shrink-0 bg-slate-50 border-slate-100 text-slate-400 hover:border-slate-300">Austria (2)</button>
-      <button class="px-5 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest border-2 shrink-0 bg-slate-50 border-slate-100 text-slate-400 hover:border-slate-300">Belgia (3)</button>
-      <button class="px-5 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest border-2 shrink-0 bg-slate-50 border-slate-100 text-slate-400 hover:border-slate-300">Franța (4)</button>
-      <button class="px-5 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest border-2 shrink-0 bg-slate-50 border-slate-100 text-slate-400 hover:border-slate-300">Germania (2)</button>
-      <button class="px-5 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest border-2 shrink-0 bg-slate-50 border-slate-100 text-slate-400 hover:border-slate-300">Olanda (3)</button>
-      <button class="px-5 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest border-2 shrink-0 bg-slate-50 border-slate-100 text-slate-400 hover:border-slate-300">Polonia (2)</button>
+  <!-- FILTRU ORG -->
+  <div class="filter-block" style="margin-bottom:32px">
+    <div class="filter-label">Filtrare după Tip Organizație</div>
+    <div class="filter-pills">
+      <button class="pill active-dark">Toate</button>
+      <button class="pill">CARIN (5)</button>
+      <button class="pill">Europol (3)</button>
+      <button class="pill">INTERPOL (4)</button>
+      <button class="pill">NATO (2)</button>
+      <button class="pill">UE (6)</button>
     </div>
   </div>
 
-  <!-- FILTRU ORGANIZAȚII -->
-  <div class="bg-white p-6 rounded-[2.5rem] shadow-sm mb-8 border border-slate-200 overflow-x-auto no-scrollbar">
-    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Filtrare după Tip Organizație</p>
-    <div class="flex gap-2">
-      <button class="px-5 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest border-2 shrink-0 bg-[#0f172a] border-[#0f172a] text-white shadow-lg">Toate</button>
-      <button class="px-5 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest border-2 shrink-0 bg-slate-50 border-slate-100 text-slate-400">CARIN (5)</button>
-      <button class="px-5 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest border-2 shrink-0 bg-slate-50 border-slate-100 text-slate-400">Europol (3)</button>
-      <button class="px-5 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest border-2 shrink-0 bg-slate-50 border-slate-100 text-slate-400">INTERPOL (4)</button>
-      <button class="px-5 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest border-2 shrink-0 bg-slate-50 border-slate-100 text-slate-400">NATO (2)</button>
-      <button class="px-5 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest border-2 shrink-0 bg-slate-50 border-slate-100 text-slate-400">UE (6)</button>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════════
-       SEARCH
-  ════════════════════════════════════════════ -->
-  <div class="relative mb-8 max-w-2xl mx-auto">
-    <div class="absolute inset-y-0 left-5 flex items-center text-slate-400 pointer-events-none">
+  <!-- SEARCH -->
+  <div class="search-wrap">
+    <div class="search-icon">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
     </div>
-    <input type="text" placeholder="Caută după nume, instituție sau funcție..." class="w-full pl-14 pr-6 py-5 rounded-[2rem] border-none shadow-sm outline-none text-sm bg-white focus:ring-4 focus:ring-amber-500/10 transition-all"/>
+    <input class="search-input" type="text" placeholder="Caută după nume, instituție sau funcție..."/>
   </div>
 
-  <!-- ═══════════════════════════════════════════
-       CARD GRID
-  ════════════════════════════════════════════ -->
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  <!-- CARDS -->
+  <div class="grid">
 
-    <!-- CARD 1: cu 2 fotografii -->
-    <div class="bg-white rounded-[3rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all relative flex flex-col">
-      <!-- Thumbnailuri 2 fotografii side-by-side -->
-      <div class="grid grid-cols-2 h-32 overflow-hidden shrink-0">
-        <div class="relative overflow-hidden cursor-pointer" onclick="openPhoto('https://images.unsplash.com/photo-1674027444485-cec3da58eef4?w=800')">
-          <img src="https://images.unsplash.com/photo-1674027444485-cec3da58eef4?w=400" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" alt="Foto 1"/>
-          <div class="absolute bottom-2 left-2"><span class="text-[8px] text-white font-black bg-black/40 backdrop-blur px-2 py-0.5 rounded-full">📷 Foto 1</span></div>
+    <!-- Card 1: 2 fotografii -->
+    <div class="card">
+      <div class="card-photos two">
+        <div class="photo-slot" onclick="openLightbox(this)">
+          <svg width="100%" height="128" viewBox="0 0 300 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#1e3a5f"/><stop offset="100%" style="stop-color:#2563eb"/></linearGradient></defs>
+            <rect width="300" height="128" fill="url(#g1)"/>
+            <text x="50%" y="42%" font-family="sans-serif" font-size="11" fill="rgba(255,255,255,.9)" text-anchor="middle" font-weight="600">GUARDIA DI FINANZA</text>
+            <text x="50%" y="58%" font-family="sans-serif" font-size="9" fill="rgba(255,255,255,.6)" text-anchor="middle">Marco Bianchi · Head of ARO Unit</text>
+            <text x="50%" y="72%" font-family="sans-serif" font-size="8" fill="rgba(255,255,255,.5)" text-anchor="middle">m.bianchi@gdf.it · +39 06 4220 1234</text>
+          </svg>
+          <div class="photo-badge">📷 Foto 1</div>
         </div>
-        <div class="relative overflow-hidden cursor-pointer border-l border-white/20" onclick="openPhoto('https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800')">
-          <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" alt="Foto 2"/>
-          <div class="absolute bottom-2 left-2"><span class="text-[8px] text-white font-black bg-black/40 backdrop-blur px-2 py-0.5 rounded-full">📷 Foto 2</span></div>
+        <div class="photo-slot" onclick="openLightbox(this)">
+          <svg width="100%" height="128" viewBox="0 0 300 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#14532d"/><stop offset="100%" style="stop-color:#16a34a"/></linearGradient></defs>
+            <rect width="300" height="128" fill="url(#g2)"/>
+            <text x="50%" y="45%" font-family="sans-serif" font-size="10" fill="rgba(255,255,255,.9)" text-anchor="middle" font-weight="600">CARIN Meeting · Lyon</text>
+            <text x="50%" y="62%" font-family="sans-serif" font-size="9" fill="rgba(255,255,255,.6)" text-anchor="middle">Noiembrie 2025</text>
+          </svg>
+          <div class="photo-badge">📷 Foto 2</div>
         </div>
       </div>
-      <!-- Butoane acțiune -->
-      <div class="absolute flex gap-2 z-10" style="top:140px;right:24px">
-        <button class="p-3 bg-white/90 backdrop-blur shadow-sm rounded-2xl text-indigo-600 hover:bg-indigo-600 hover:text-white transition-all">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-        </button>
-        <button class="p-3 bg-white/90 backdrop-blur shadow-sm rounded-2xl text-rose-500 hover:bg-rose-500 hover:text-white transition-all">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-        </button>
+      <div class="card-actions below-photo">
+        <button class="action-btn edit"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+        <button class="action-btn del"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
       </div>
-      <div class="p-8 pb-4">
-        <div class="flex items-start gap-4 mb-6">
-          <div class="w-16 h-16 bg-[#0f172a] text-white rounded-[1.5rem] flex items-center justify-center font-black text-2xl shadow-xl shadow-slate-200 shrink-0">M</div>
-          <div class="min-w-0 flex-1">
-            <h3 class="text-xl font-black text-slate-800 leading-tight truncate">Marco Bianchi</h3>
-            <p class="text-amber-600 text-[10px] font-black uppercase tracking-[0.15em] mt-1">Head of ARO Unit</p>
-            <span class="inline-block mt-2 px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest bg-purple-100 text-purple-800">CARIN</span>
+      <div class="card-body">
+        <div class="card-header">
+          <div class="avatar">M</div>
+          <div>
+            <div class="contact-name">Marco Bianchi</div>
+            <div class="contact-role">Head of ARO Unit</div>
+            <span class="org-badge badge-purple">CARIN</span>
           </div>
         </div>
-        <div class="space-y-3">
-          <div class="flex items-center gap-3 text-slate-800 text-sm font-bold bg-slate-50 p-4 rounded-2xl border border-slate-100">🏛️ <span class="truncate">Guardia di Finanza</span></div>
-          <div class="grid grid-cols-1 gap-1 text-[11px] text-slate-500 font-semibold ml-2">
-            <span>📧 m.bianchi@gdf.it</span>
-            <span>📞 +39 06 4220 1234</span>
-          </div>
+        <div class="org-row">🏛️ <span>Guardia di Finanza</span></div>
+        <div class="contact-info">
+          <span>📧 m.bianchi@gdf.it</span>
+          <span>📞 +39 06 4220 1234</span>
         </div>
       </div>
-      <div class="p-8 pt-4 flex-grow flex flex-col justify-between border-t border-slate-50 mt-4">
-        <div class="bg-indigo-50/40 p-5 rounded-[2rem] border border-indigo-100/50 mb-4">
-          <p class="text-[9px] font-black text-indigo-400 uppercase tracking-widest mb-1">Ofițer ARBI Gestionar</p>
-          <p class="text-xs font-bold text-slate-800">Ion Popescu</p>
-          <p class="text-[10px] text-slate-400 mt-2 font-black uppercase">Conferința CARIN Lyon 2025</p>
+      <div class="card-footer">
+        <div class="arbi-box">
+          <div class="arbi-label">Ofițer ARBI Gestionar</div>
+          <div class="arbi-name">Ion Popescu</div>
+          <div class="arbi-event">Conferința CARIN Lyon 2025</div>
         </div>
-        <span class="text-[9px] bg-slate-100 text-slate-500 px-3 py-1 rounded-full font-black uppercase">Italia</span>
+        <span class="country-tag">Italia</span>
       </div>
     </div>
 
-    <!-- CARD 2: cu 1 fotografie -->
-    <div class="bg-white rounded-[3rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all relative flex flex-col">
-      <div class="grid grid-cols-1 h-32 overflow-hidden shrink-0">
-        <div class="relative overflow-hidden cursor-pointer" onclick="openPhoto('https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=800')">
-          <img src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=400" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" alt="Foto 1"/>
-          <div class="absolute bottom-2 left-2"><span class="text-[8px] text-white font-black bg-black/40 backdrop-blur px-2 py-0.5 rounded-full">📷 Foto 1</span></div>
+    <!-- Card 2: 1 fotografie -->
+    <div class="card">
+      <div class="card-photos one">
+        <div class="photo-slot" onclick="openLightbox(this)">
+          <svg width="100%" height="128" viewBox="0 0 300 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#1e1b4b"/><stop offset="100%" style="stop-color:#7c3aed"/></linearGradient></defs>
+            <rect width="300" height="128" fill="url(#g3)"/>
+            <text x="50%" y="42%" font-family="sans-serif" font-size="11" fill="rgba(255,255,255,.9)" text-anchor="middle" font-weight="600">EUROPOL</text>
+            <text x="50%" y="58%" font-family="sans-serif" font-size="9" fill="rgba(255,255,255,.6)" text-anchor="middle">Sophie Müller · Senior Analyst</text>
+            <text x="50%" y="72%" font-family="sans-serif" font-size="8" fill="rgba(255,255,255,.5)" text-anchor="middle">s.muller@europol.europa.eu</text>
+          </svg>
+          <div class="photo-badge">📷 Foto 1</div>
         </div>
       </div>
-      <div class="absolute flex gap-2 z-10" style="top:140px;right:24px">
-        <button class="p-3 bg-white/90 backdrop-blur shadow-sm rounded-2xl text-indigo-600 hover:bg-indigo-600 hover:text-white transition-all">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-        </button>
-        <button class="p-3 bg-white/90 backdrop-blur shadow-sm rounded-2xl text-rose-500 hover:bg-rose-500 hover:text-white transition-all">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-        </button>
+      <div class="card-actions below-photo">
+        <button class="action-btn edit"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+        <button class="action-btn del"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
       </div>
-      <div class="p-8 pb-4">
-        <div class="flex items-start gap-4 mb-6">
-          <div class="w-16 h-16 bg-[#0f172a] text-white rounded-[1.5rem] flex items-center justify-center font-black text-2xl shadow-xl shadow-slate-200 shrink-0">S</div>
-          <div class="min-w-0 flex-1">
-            <h3 class="text-xl font-black text-slate-800 leading-tight truncate">Sophie Müller</h3>
-            <p class="text-amber-600 text-[10px] font-black uppercase tracking-[0.15em] mt-1">Senior Analyst</p>
-            <span class="inline-block mt-2 px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest bg-sky-100 text-sky-800">Europol</span>
+      <div class="card-body">
+        <div class="card-header">
+          <div class="avatar">S</div>
+          <div>
+            <div class="contact-name">Sophie Müller</div>
+            <div class="contact-role">Senior Analyst</div>
+            <span class="org-badge badge-sky">Europol</span>
           </div>
         </div>
-        <div class="space-y-3">
-          <div class="flex items-center gap-3 text-slate-800 text-sm font-bold bg-slate-50 p-4 rounded-2xl border border-slate-100">🏛️ <span class="truncate">Europol Financial Intelligence</span></div>
-          <div class="grid grid-cols-1 gap-1 text-[11px] text-slate-500 font-semibold ml-2">
-            <span>📧 s.muller@europol.europa.eu</span>
-            <span>📞 +31 70 302 5000</span>
-          </div>
+        <div class="org-row">🏛️ <span>Europol Financial Intelligence</span></div>
+        <div class="contact-info">
+          <span>📧 s.muller@europol.europa.eu</span>
+          <span>📞 +31 70 302 5000</span>
         </div>
       </div>
-      <div class="p-8 pt-4 flex-grow flex flex-col justify-between border-t border-slate-50 mt-4">
-        <div class="bg-indigo-50/40 p-5 rounded-[2rem] border border-indigo-100/50 mb-4">
-          <p class="text-[9px] font-black text-indigo-400 uppercase tracking-widest mb-1">Ofițer ARBI Gestionar</p>
-          <p class="text-xs font-bold text-slate-800">Maria Ionescu</p>
-          <p class="text-[10px] text-slate-400 mt-2 font-black uppercase">Workshop Europol Haga 2025</p>
+      <div class="card-footer">
+        <div class="arbi-box">
+          <div class="arbi-label">Ofițer ARBI Gestionar</div>
+          <div class="arbi-name">Maria Ionescu</div>
+          <div class="arbi-event">Workshop Europol Haga 2025</div>
         </div>
-        <span class="text-[9px] bg-slate-100 text-slate-500 px-3 py-1 rounded-full font-black uppercase">Olanda</span>
+        <span class="country-tag">Olanda</span>
       </div>
     </div>
 
-    <!-- CARD 3: fără fotografie -->
-    <div class="bg-white rounded-[3rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all relative flex flex-col">
-      <div class="absolute flex gap-2 z-10" style="top:24px;right:24px">
-        <button class="p-3 bg-white/90 backdrop-blur shadow-sm rounded-2xl text-indigo-600 hover:bg-indigo-600 hover:text-white transition-all">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-        </button>
-        <button class="p-3 bg-white/90 backdrop-blur shadow-sm rounded-2xl text-rose-500 hover:bg-rose-500 hover:text-white transition-all">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-        </button>
+    <!-- Card 3: fără fotografie -->
+    <div class="card">
+      <div class="card-actions top">
+        <button class="action-btn edit"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+        <button class="action-btn del"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
       </div>
-      <div class="p-8 pb-4">
-        <div class="flex items-start gap-4 mb-6">
-          <div class="w-16 h-16 bg-[#0f172a] text-white rounded-[1.5rem] flex items-center justify-center font-black text-2xl shadow-xl shadow-slate-200 shrink-0">J</div>
-          <div class="min-w-0 flex-1">
-            <h3 class="text-xl font-black text-slate-800 leading-tight truncate">Jean-Pierre Dubois</h3>
-            <p class="text-amber-600 text-[10px] font-black uppercase tracking-[0.15em] mt-1">Liaison Officer</p>
-            <span class="inline-block mt-2 px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest bg-red-100 text-red-800">INTERPOL</span>
+      <div class="card-body">
+        <div class="card-header">
+          <div class="avatar">J</div>
+          <div>
+            <div class="contact-name">Jean-Pierre Dubois</div>
+            <div class="contact-role">Liaison Officer</div>
+            <span class="org-badge badge-red">INTERPOL</span>
           </div>
         </div>
-        <div class="space-y-3">
-          <div class="flex items-center gap-3 text-slate-800 text-sm font-bold bg-slate-50 p-4 rounded-2xl border border-slate-100">🏛️ <span class="truncate">INTERPOL General Secretariat</span></div>
-          <div class="grid grid-cols-1 gap-1 text-[11px] text-slate-500 font-semibold ml-2">
-            <span>📧 jp.dubois@interpol.int</span>
-          </div>
+        <div class="org-row">🏛️ <span>INTERPOL General Secretariat</span></div>
+        <div class="contact-info">
+          <span>📧 jp.dubois@interpol.int</span>
         </div>
       </div>
-      <div class="p-8 pt-4 flex-grow flex flex-col justify-between border-t border-slate-50 mt-4">
-        <div class="bg-indigo-50/40 p-5 rounded-[2rem] border border-indigo-100/50 mb-4">
-          <p class="text-[9px] font-black text-indigo-400 uppercase tracking-widest mb-1">Ofițer ARBI Gestionar</p>
-          <p class="text-xs font-bold text-slate-800">Andrei Dumitrescu</p>
-          <p class="text-[10px] text-slate-400 mt-2 font-black uppercase">Sesiune INTERPOL Lyon</p>
+      <div class="card-footer">
+        <div class="arbi-box">
+          <div class="arbi-label">Ofițer ARBI Gestionar</div>
+          <div class="arbi-name">Andrei Dumitrescu</div>
+          <div class="arbi-event">Sesiune INTERPOL Lyon</div>
         </div>
-        <span class="text-[9px] bg-slate-100 text-slate-500 px-3 py-1 rounded-full font-black uppercase">Franța</span>
+        <span class="country-tag">Franța</span>
       </div>
     </div>
 
   </div><!-- /grid -->
-</main>
+</div><!-- /main -->
 
-<!-- ═══════════════════════════════════════════
-     MODAL ADĂUGARE
-════════════════════════════════════════════ -->
-<div id="modal" class="hidden fixed inset-0 bg-[#0f172a]/95 backdrop-blur-2xl z-50 p-4 overflow-y-auto flex items-center justify-center">
-  <div class="bg-white rounded-[3.5rem] w-full max-w-5xl shadow-2xl my-6 overflow-hidden modal-animate">
-    <div class="bg-[#0f172a] p-10 text-white flex justify-between items-center">
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div class="modal-header">
       <div>
-        <h2 class="text-2xl font-black uppercase tracking-widest">Înregistrare Cloud</h2>
-        <p class="text-amber-500 text-[10px] font-black uppercase tracking-[0.3em] mt-2 flex items-center gap-2">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.5 19c3.037 0 5.5-2.463 5.5-5.5 0-2.799-2.084-5.11-4.814-5.455C17.18 4.545 13.903 2 10 2 6.136 2 2.864 4.887 2.115 8.657.942 9.577 0 11.196 0 13c0 3.314 2.686 6 6 6h11.5z"/></svg>
+        <div class="modal-title">Înregistrare Cloud</div>
+        <div class="modal-subtitle">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:6px"><path d="M17.5 19c3.037 0 5.5-2.463 5.5-5.5 0-2.799-2.084-5.11-4.814-5.455C17.18 4.545 13.903 2 10 2 6.136 2 2.864 4.887 2.115 8.657.942 9.577 0 11.196 0 13c0 3.314 2.686 6 6 6h11.5z"/></svg>
           Sincronizare ARBI SCI Activă
-        </p>
+        </div>
       </div>
-      <button onclick="document.getElementById('modal').classList.add('hidden')" class="text-5xl font-thin hover:text-amber-500 transition-colors leading-none">&times;</button>
+      <button class="modal-close" onclick="closeModal()">&times;</button>
     </div>
-
-    <div class="p-10 lg:p-14 grid grid-cols-1 lg:grid-cols-2 gap-12">
+    <div class="modal-body">
 
       <!-- Coloana stânga -->
-      <div class="space-y-8">
-        <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest border-b pb-2">I. Fotografii & Scanare AI</div>
+      <div>
+        <div class="section-label">I. Fotografii & Scanare AI</div>
 
-        <!-- 2 sloturi foto -->
-        <div class="grid grid-cols-2 gap-4">
-
-          <!-- Slot 1 — cu fotografie + AI -->
-          <div class="flex flex-col gap-3">
-            <div class="relative w-full aspect-square rounded-[2rem] border-4 border-amber-200 overflow-hidden bg-slate-50 flex items-center justify-center">
-              <img src="https://images.unsplash.com/photo-1674027444485-cec3da58eef4?w=400" class="w-full h-full object-cover" alt="Foto 1"/>
-              <button class="absolute top-2 right-2 w-8 h-8 bg-rose-500 text-white rounded-full text-sm font-black flex items-center justify-center shadow-lg hover:bg-rose-600 transition-colors">×</button>
+        <div class="photo-slots">
+          <!-- Slot 1 cu poză -->
+          <div class="photo-slot-box">
+            <div class="photo-preview has-photo">
+              <svg width="100%" height="100%" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0">
+                <defs><linearGradient id="gm1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#1e3a5f"/><stop offset="100%" style="stop-color:#2563eb"/></linearGradient></defs>
+                <rect width="200" height="200" fill="url(#gm1)"/>
+                <text x="50%" y="40%" font-family="sans-serif" font-size="10" fill="rgba(255,255,255,.9)" text-anchor="middle" font-weight="700">GUARDIA DI FINANZA</text>
+                <text x="50%" y="55%" font-family="sans-serif" font-size="8" fill="rgba(255,255,255,.6)" text-anchor="middle">Marco Bianchi</text>
+                <text x="50%" y="68%" font-family="sans-serif" font-size="7" fill="rgba(255,255,255,.5)" text-anchor="middle">Head of ARO Unit</text>
+              </svg>
+              <button class="photo-remove">×</button>
             </div>
-            <div class="grid grid-cols-2 gap-2">
-              <button class="py-3 bg-[#0f172a] text-white rounded-2xl text-[9px] font-black uppercase tracking-widest flex items-center justify-center gap-1">📷 Cameră</button>
-              <button class="py-3 bg-slate-100 text-slate-600 rounded-2xl text-[9px] font-black uppercase tracking-widest flex items-center justify-center gap-1">🖼️ Galerie</button>
+            <div class="photo-btns">
+              <button class="btn-cam">📷 Cameră</button>
+              <button class="btn-gal">🖼️ Galerie</button>
             </div>
           </div>
-
-          <!-- Slot 2 — gol -->
-          <div class="flex flex-col gap-3">
-            <div class="relative w-full aspect-square rounded-[2rem] border-4 border-dashed border-slate-100 overflow-hidden bg-slate-50 flex items-center justify-center">
-              <div class="text-center p-4">
-                <div class="w-12 h-12 bg-slate-100 text-slate-400 rounded-[1rem] flex items-center justify-center mx-auto mb-3">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M7 15h0M2 9.5h20"/></svg>
-                </div>
-                <p class="text-[9px] font-black text-slate-500 uppercase tracking-widest">Foto 2</p>
+          <!-- Slot 2 gol -->
+          <div class="photo-slot-box">
+            <div class="photo-preview">
+              <div class="slot-icon slate-bg">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M7 15h0M2 9.5h20"/></svg>
               </div>
+              <div class="photo-preview-label">Foto 2</div>
             </div>
-            <div class="grid grid-cols-2 gap-2">
-              <button class="py-3 bg-[#0f172a] text-white rounded-2xl text-[9px] font-black uppercase tracking-widest flex items-center justify-center gap-1">📷 Cameră</button>
-              <button class="py-3 bg-slate-100 text-slate-600 rounded-2xl text-[9px] font-black uppercase tracking-widest flex items-center justify-center gap-1">🖼️ Galerie</button>
+            <div class="photo-btns">
+              <button class="btn-cam">📷 Cameră</button>
+              <button class="btn-gal">🖼️ Galerie</button>
             </div>
           </div>
-
         </div>
 
-        <!-- Ofițer ARBI -->
-        <div class="bg-amber-50 p-8 rounded-[2.5rem] border border-amber-100 shadow-inner">
-          <label class="block text-[11px] font-black text-amber-800 uppercase mb-3 ml-1 tracking-widest">Ofițer ARBI Participant *</label>
-          <input placeholder="Numele dumneavoastră..." class="w-full p-4 bg-white rounded-2xl text-sm font-black outline-none border border-amber-200 focus:border-amber-400 transition-colors" value="Ion Popescu"/>
+        <div class="field-group">
+          <span class="group-label">Ofițer ARBI Participant *</span>
+          <input class="field" value="Ion Popescu" placeholder="Numele dumneavoastră..."/>
         </div>
 
-        <!-- Eveniment -->
-        <div class="bg-slate-50 p-6 rounded-[2rem] border border-slate-100 space-y-3">
-          <label class="block text-[11px] font-black text-slate-500 uppercase tracking-widest">Context / Eveniment</label>
-          <input placeholder="Conferință, întâlnire bilaterală..." class="w-full p-4 bg-white rounded-2xl text-sm outline-none border border-slate-100" value="Conferința CARIN Lyon 2025"/>
-          <input type="date" class="w-full p-4 bg-white rounded-2xl text-sm outline-none border border-slate-100" value="2025-11-14"/>
+        <div class="field-group-slate">
+          <span class="group-label">Context / Eveniment</span>
+          <input class="field" value="Conferința CARIN Lyon 2025"/>
+          <input class="field" type="date" value="2025-11-14"/>
         </div>
       </div>
 
       <!-- Coloana dreapta -->
-      <div class="space-y-5">
-        <div class="text-[10px] font-black text-indigo-600 uppercase tracking-widest border-b border-indigo-100 pb-2 mb-2">II. Informații Complete Partener</div>
+      <div>
+        <div class="section-label indigo">II. Informații Complete Partener</div>
 
-        <input placeholder="Nume Complet *" class="w-full p-4 bg-slate-50 rounded-2xl text-sm font-bold outline-none border border-slate-100" value="Marco Bianchi"/>
-        <input placeholder="Instituție / Organizație *" class="w-full p-4 bg-slate-50 rounded-2xl text-sm font-bold outline-none border border-slate-100" value="Guardia di Finanza"/>
+        <input class="field bold" value="Marco Bianchi" placeholder="Nume Complet *"/>
+        <input class="field bold" value="Guardia di Finanza" placeholder="Instituție / Organizație *"/>
 
-        <div class="grid grid-cols-2 gap-4">
-          <input placeholder="Rol / Funcție" class="p-4 bg-slate-50 rounded-2xl text-sm outline-none border border-slate-100" value="Head of ARO Unit"/>
-          <input placeholder="Țară" class="p-4 bg-slate-50 rounded-2xl text-sm outline-none border border-slate-100" value="Italia"/>
+        <div class="field-grid" style="margin-bottom:16px">
+          <input class="field" style="margin-bottom:0" value="Head of ARO Unit" placeholder="Rol / Funcție"/>
+          <input class="field" style="margin-bottom:0" value="Italia" placeholder="Țară"/>
         </div>
 
-        <!-- Tip Organizație -->
-        <div class="bg-indigo-50 p-5 rounded-[2rem] border border-indigo-100">
-          <label class="block text-[11px] font-black text-indigo-700 uppercase mb-3 tracking-widest">Tip Organizație Internațională</label>
-          <select class="w-full p-4 bg-white rounded-2xl text-sm font-bold outline-none border border-indigo-100 text-slate-700 cursor-pointer">
+        <div class="field-group-indigo">
+          <span class="group-label">Tip Organizație Internațională</span>
+          <select class="field">
             <option>Selectați tipul...</option>
-            <option>ONU / UN</option>
-            <option>UE / EU</option>
-            <option>NATO</option>
-            <option>INTERPOL</option>
-            <option selected>CARIN</option>
-            <option>SIENA</option>
-            <option>Europol</option>
-            <option>Eurojust</option>
-            <option>Consiliul Europei</option>
-            <option>OLAF</option>
-            <option>Bilateral</option>
-            <option>Național</option>
-            <option>Alta</option>
+            <option>ONU / UN</option><option>UE / EU</option><option>NATO</option>
+            <option>INTERPOL</option><option selected>CARIN</option><option>SIENA</option>
+            <option>Europol</option><option>Eurojust</option><option>Consiliul Europei</option>
+            <option>OLAF</option><option>Bilateral</option><option>Național</option><option>Alta</option>
           </select>
         </div>
 
-        <div class="grid grid-cols-2 gap-4">
-          <input placeholder="Email" class="p-4 bg-slate-50 rounded-2xl text-sm outline-none border border-slate-100" value="m.bianchi@gdf.it"/>
-          <input placeholder="Telefon" class="p-4 bg-slate-50 rounded-2xl text-sm outline-none border border-slate-100" value="+39 06 4220 1234"/>
+        <div class="field-grid" style="margin-bottom:16px">
+          <input class="field" style="margin-bottom:0" value="m.bianchi@gdf.it" placeholder="Email"/>
+          <input class="field" style="margin-bottom:0" value="+39 06 4220 1234" placeholder="Telefon"/>
         </div>
+        <input class="field" value="www.gdf.gov.it" placeholder="Website"/>
+        <textarea class="field" rows="3" style="resize:none">Contact stabilit în cadrul sesiunii plenare. Interes comun: sechestre active internaționale.</textarea>
 
-        <input placeholder="Website" class="w-full p-4 bg-slate-50 rounded-2xl text-sm outline-none border border-slate-100"/>
-
-        <textarea placeholder="Adresă sau Note adiționale..." class="w-full p-4 bg-slate-50 rounded-2xl text-sm outline-none h-24 border border-slate-100 resize-none">Contact stabilit în cadrul sesiunii plenare. Interes comun: sechestre active.</textarea>
-
-        <div class="flex gap-4 pt-4">
-          <button onclick="document.getElementById('modal').classList.add('hidden')" class="flex-1 py-5 bg-slate-100 rounded-[2rem] font-black uppercase text-[11px] tracking-widest hover:bg-slate-200 transition-all">Anulează</button>
-          <button class="flex-[2] py-5 rounded-[2rem] font-black uppercase text-[11px] tracking-[0.2em] shadow-2xl transition-all bg-amber-500 text-[#0f172a] shadow-amber-500/30 hover:bg-amber-600">✓ Salvează în Cloud</button>
+        <div class="modal-actions">
+          <button class="btn-cancel" onclick="closeModal()">Anulează</button>
+          <button class="btn-save">✓ Salvează în Cloud</button>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════
-     LIGHTBOX
-════════════════════════════════════════════ -->
-<div id="lightbox" class="hidden fixed inset-0 bg-[#0f172a]/98 z-[100] flex flex-col items-center justify-center p-6" onclick="document.getElementById('lightbox').classList.add('hidden')">
-  <div class="absolute top-10 right-10 flex gap-4">
-    <button class="bg-white/10 text-white p-5 rounded-2xl text-4xl leading-none hover:bg-white/20 transition-colors" onclick="document.getElementById('lightbox').classList.add('hidden')">&times;</button>
-  </div>
-  <img id="lightbox-img" src="" class="max-w-full max-h-[85vh] rounded-[3rem] shadow-2xl border-4 border-white/10" alt=""/>
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <svg width="600" height="300" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" style="border-radius:40px;border:4px solid rgba(255,255,255,.08)">
+    <defs><linearGradient id="glb" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#1e3a5f"/><stop offset="100%" style="stop-color:#2563eb"/></linearGradient></defs>
+    <rect width="600" height="300" fill="url(#glb)" rx="10"/>
+    <text x="50%" y="38%" font-family="sans-serif" font-size="18" fill="rgba(255,255,255,.9)" text-anchor="middle" font-weight="700">GUARDIA DI FINANZA</text>
+    <text x="50%" y="52%" font-family="sans-serif" font-size="13" fill="rgba(255,255,255,.7)" text-anchor="middle">Marco Bianchi · Head of ARO Unit</text>
+    <text x="50%" y="63%" font-family="sans-serif" font-size="11" fill="rgba(255,255,255,.5)" text-anchor="middle">m.bianchi@gdf.it · +39 06 4220 1234</text>
+  </svg>
 </div>
 
-<!-- ═══════════════════════════════════════════
-     FOOTER
-════════════════════════════════════════════ -->
-<footer class="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-slate-200 py-3.5 px-8 z-40 shadow-lg">
-  <div class="max-w-7xl mx-auto flex items-center justify-between text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">
-    <div class="flex items-center gap-6">
-      <span class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-emerald-500"></div> Sincronizat</span>
-      <span class="opacity-50">ARBI SCI Registry v7.0</span>
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <span><span class="footer-dot"></span>Sincronizat</span>
+      <span style="opacity:.4">ARBI SCI Registry v7.0</span>
     </div>
-    <span class="hidden sm:inline">24 / 24 contacte</span>
+    <span>24 / 24 contacte</span>
   </div>
 </footer>
 
 <script>
-  function openPhoto(src) {
-    document.getElementById('lightbox-img').src = src;
-    document.getElementById('lightbox').classList.remove('hidden');
-  }
+function openModal(){document.getElementById('modal').classList.add('open')}
+function closeModal(){document.getElementById('modal').classList.remove('open')}
+function openLightbox(){document.getElementById('lightbox').classList.add('open')}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open')}
+// pill toggle
+document.querySelectorAll('.filter-pills').forEach(group=>{
+  group.querySelectorAll('.pill').forEach(pill=>{
+    pill.addEventListener('click',()=>{
+      const isAmber=group.querySelector('.pill.active-amber');
+      group.querySelectorAll('.pill').forEach(p=>p.classList.remove('active-amber','active-dark'));
+      pill.classList.add(isAmber?'active-amber':'active-dark');
+    });
+  });
+});
 </script>
 </body>
 </html>
