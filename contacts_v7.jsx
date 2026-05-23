@@ -120,13 +120,19 @@ export default function App() {
   const [editingId, setEditingId]           = useState(null);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [apiKeyInput, setApiKeyInput]       = useState('');
-  const fileInputRef = useRef(null);
+  // 4 inputs: cameră/galerie × slot 1/slot 2
+  const cam1Ref = useRef(null);
+  const gal1Ref = useRef(null);
+  const cam2Ref = useRef(null);
+  const gal2Ref = useRef(null);
 
   const initialFormState = {
     name: '', role: '', organization: '', country: '',
     email: '', phone: '', website: '', address: '',
     eventName: '', eventDate: '', eventLocation: '',
-    arbiEmployee: '', notes: '', cardPhoto: null,
+    arbiEmployee: '', notes: '',
+    photo1: null, photo2: null,   // două fotografii per contact
+    cardPhoto: null,              // păstrat pentru compatibilitate cu datele vechi
     organizationType: ''
   };
   const [newContact, setNewContact] = useState(initialFormState);
@@ -208,17 +214,17 @@ export default function App() {
     }
   };
 
-  const handleFileUpload = (e) => {
+  // slot: 1 sau 2 — slot 1 triggerează analiza AI
+  const handlePhotoUpload = (e, slot) => {
     const file = e.target.files[0];
     if (!file) return;
     const reader = new FileReader();
-    reader.onloadend = async () => {
+    reader.onloadend = () => {
       const base64 = reader.result;
-      setNewContact(prev => ({ ...prev, cardPhoto: base64 }));
-      if (file.type.startsWith('image/')) extractDataWithAI(base64);
+      setNewContact(prev => ({ ...prev, [`photo${slot}`]: base64 }));
+      if (slot === 1 && file.type.startsWith('image/')) extractDataWithAI(base64);
     };
     reader.readAsDataURL(file);
-    // Reset input so same file can be re-uploaded
     e.target.value = '';
   };
 
@@ -230,9 +236,9 @@ export default function App() {
     setStatusMessage('Sincronizare Cloud...');
     try {
       let data = { ...newContact };
-      if (data.cardPhoto && data.cardPhoto.length > 50000) {
-        data.cardPhoto = await compressImage(data.cardPhoto);
-      }
+      if (data.photo1 && data.photo1.length > 50000) data.photo1 = await compressImage(data.photo1);
+      if (data.photo2 && data.photo2.length > 50000) data.photo2 = await compressImage(data.photo2);
+      if (data.cardPhoto && data.cardPhoto.length > 50000) data.cardPhoto = await compressImage(data.cardPhoto);
       const colRef = collection(db, 'artifacts', appId, 'public', 'data', 'contacts');
       if (editingId) {
         await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'contacts', editingId), {
@@ -342,7 +348,7 @@ export default function App() {
             { label: 'Total Contacte', value: contacts.length, color: 'text-slate-800' },
             { label: 'Țări', value: countries.length - 1, color: 'text-slate-800' },
             { label: 'Tip Organizații', value: orgTypes.length - 1, color: 'text-slate-800' },
-            { label: 'Cu Carte Vizită', value: contacts.filter(c => c.cardPhoto).length, color: 'text-amber-500' },
+            { label: 'Cu Fotografii', value: contacts.filter(c => c.photo1 || c.photo2 || c.cardPhoto).length, color: 'text-amber-500' },
           ].map(s => (
             <div key={s.label} className="bg-white rounded-3xl p-5 border border-slate-100 shadow-sm">
               <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">{s.label}</p>
@@ -425,20 +431,34 @@ export default function App() {
           {filteredContacts.map(contact => (
             <div key={contact.id} className="bg-white rounded-[3rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all relative group flex flex-col print:break-inside-avoid print:shadow-none print:border print:border-slate-300">
 
-              {/* Thumbnail carte de vizită */}
-              {contact.cardPhoto && (
-                <div className="h-32 overflow-hidden cursor-pointer relative shrink-0" onClick={() => setViewPhoto(contact.cardPhoto)}>
-                  <img src={contact.cardPhoto} className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" alt="Carte de vizită" />
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 flex items-end p-4">
-                    <span className="text-[9px] text-white font-black uppercase tracking-widest bg-black/30 backdrop-blur px-3 py-1 rounded-full flex items-center gap-1">
-                      📄 Carte de vizită — apasă pentru zoom
-                    </span>
+              {/* Thumbnailuri fotografii (photo1, photo2 sau fallback cardPhoto) */}
+              {(contact.photo1 || contact.photo2 || contact.cardPhoto) && (() => {
+                const p1 = contact.photo1 || contact.cardPhoto;
+                const p2 = contact.photo2;
+                return (
+                  <div className={`grid ${p1 && p2 ? 'grid-cols-2' : 'grid-cols-1'} h-32 overflow-hidden shrink-0`}>
+                    {p1 && (
+                      <div className="relative cursor-pointer overflow-hidden" onClick={() => setViewPhoto(p1)}>
+                        <img src={p1} className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" alt="Foto 1" />
+                        <div className="absolute bottom-2 left-2">
+                          <span className="text-[8px] text-white font-black bg-black/40 backdrop-blur px-2 py-0.5 rounded-full">📷 Foto 1</span>
+                        </div>
+                      </div>
+                    )}
+                    {p2 && (
+                      <div className="relative cursor-pointer overflow-hidden border-l border-white/20" onClick={() => setViewPhoto(p2)}>
+                        <img src={p2} className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" alt="Foto 2" />
+                        <div className="absolute bottom-2 left-2">
+                          <span className="text-[8px] text-white font-black bg-black/40 backdrop-blur px-2 py-0.5 rounded-full">📷 Foto 2</span>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                </div>
-              )}
+                );
+              })()}
 
               {/* Acțiuni */}
-              <div className="absolute top-6 right-6 flex gap-2 z-10 print-hidden" style={contact.cardPhoto ? {top: '140px'} : {}}>
+              <div className="absolute top-6 right-6 flex gap-2 z-10 print-hidden" style={(contact.photo1 || contact.photo2 || contact.cardPhoto) ? {top: '140px'} : {}}>
                 <button
                   onClick={() => { setEditingId(contact.id); setNewContact(contact); setIsModalOpen(true); }}
                   className="p-3 bg-white/90 backdrop-blur shadow-sm rounded-2xl text-indigo-600 hover:bg-indigo-600 hover:text-white transition-all"
@@ -512,45 +532,63 @@ export default function App() {
 
             <form onSubmit={handleSave} className="p-10 lg:p-14 grid grid-cols-1 lg:grid-cols-2 gap-12">
 
-              {/* Coloana stânga: poză + ARBI + eveniment */}
+              {/* Coloana stânga: 2 sloturi foto + ARBI + eveniment */}
               <div className="space-y-8">
-                <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest border-b pb-2">I. Carte de Vizită & Scanare AI</div>
+                <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest border-b pb-2">I. Fotografii & Scanare AI</div>
 
-                <div
-                  onClick={() => !isScanning && fileInputRef.current.click()}
-                  className={`relative w-full aspect-video rounded-[3rem] border-4 border-dashed flex flex-col items-center justify-center cursor-pointer transition-all overflow-hidden bg-slate-50 ${isScanning ? 'border-amber-400' : 'border-slate-100 hover:border-amber-300'}`}
-                >
-                  {newContact.cardPhoto ? (
-                    <div className="w-full h-full relative">
-                      <img src={newContact.cardPhoto} className={`w-full h-full object-contain ${isScanning ? 'opacity-20 blur-sm' : ''}`} alt="Card" />
-                      {isScanning && (
-                        <div className="absolute inset-0 flex flex-col items-center justify-center font-black text-amber-600 text-[11px] uppercase tracking-widest animate-pulse">
-                          Analiză AI...
+                {/* Inputs ascunse: cameră și galerie pentru fiecare slot */}
+                <input type="file" hidden ref={cam1Ref} accept="image/*" capture="environment" onChange={e => handlePhotoUpload(e, 1)} />
+                <input type="file" hidden ref={gal1Ref} accept="image/*"                       onChange={e => handlePhotoUpload(e, 1)} />
+                <input type="file" hidden ref={cam2Ref} accept="image/*" capture="environment" onChange={e => handlePhotoUpload(e, 2)} />
+                <input type="file" hidden ref={gal2Ref} accept="image/*"                       onChange={e => handlePhotoUpload(e, 2)} />
+
+                <div className="grid grid-cols-2 gap-4">
+                  {[1, 2].map(slot => {
+                    const photo = newContact[`photo${slot}`] || (slot === 1 ? newContact.cardPhoto : null);
+                    const camRef = slot === 1 ? cam1Ref : cam2Ref;
+                    const galRef = slot === 1 ? gal1Ref : gal2Ref;
+                    const isAI   = slot === 1;
+                    return (
+                      <div key={slot} className="flex flex-col gap-3">
+                        {/* Preview */}
+                        <div className={`relative w-full aspect-square rounded-[2rem] border-4 border-dashed overflow-hidden bg-slate-50 flex items-center justify-center transition-all ${isScanning && isAI ? 'border-amber-400' : 'border-slate-100'}`}>
+                          {photo ? (
+                            <>
+                              <img src={photo} className={`w-full h-full object-cover ${isScanning && isAI ? 'opacity-20 blur-sm' : ''}`} alt={`Foto ${slot}`} />
+                              {isScanning && isAI && (
+                                <div className="absolute inset-0 flex items-center justify-center font-black text-amber-600 text-[10px] uppercase tracking-widest animate-pulse text-center px-2">
+                                  Analiză AI...
+                                </div>
+                              )}
+                              <button
+                                type="button"
+                                onClick={() => setNewContact(prev => ({ ...prev, [`photo${slot}`]: null, ...(slot === 1 ? {cardPhoto: null} : {}) }))}
+                                className="absolute top-2 right-2 w-8 h-8 bg-rose-500 text-white rounded-full text-sm font-black flex items-center justify-center shadow-lg hover:bg-rose-600 transition-colors"
+                              >×</button>
+                            </>
+                          ) : (
+                            <div className="text-center p-4">
+                              <div className={`w-12 h-12 ${isAI ? 'bg-amber-100 text-amber-600' : 'bg-slate-100 text-slate-400'} rounded-[1rem] flex items-center justify-center mx-auto mb-3`}>
+                                <IconCard />
+                              </div>
+                              <p className="text-[9px] font-black text-slate-500 uppercase tracking-widest">Foto {slot}</p>
+                              {isAI && <p className="text-[8px] text-amber-500 font-bold mt-1">✨ AI auto-complete</p>}
+                            </div>
+                          )}
                         </div>
-                      )}
-                    </div>
-                  ) : (
-                    <div className="text-center p-10">
-                      <div className="w-16 h-16 bg-amber-100 rounded-[2rem] flex items-center justify-center text-amber-600 mx-auto mb-6 shadow-sm">
-                        <IconCard />
+                        {/* Butoane cameră / galerie */}
+                        <div className="grid grid-cols-2 gap-2">
+                          <button type="button" onClick={() => camRef.current.click()} className="py-3 bg-[#0f172a] hover:bg-slate-700 text-white rounded-2xl text-[9px] font-black uppercase tracking-widest transition-all flex items-center justify-center gap-1">
+                            📷 Cameră
+                          </button>
+                          <button type="button" onClick={() => galRef.current.click()} className="py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-2xl text-[9px] font-black uppercase tracking-widest transition-all flex items-center justify-center gap-1">
+                            🖼️ Galerie
+                          </button>
+                        </div>
                       </div>
-                      <p className="text-xs font-black text-slate-700 uppercase tracking-widest">Încarcă Carte de Vizită</p>
-                      <p className="text-[10px] text-slate-400 mt-2">AI va extrage automat toate datele</p>
-                      <p className="text-[9px] text-amber-500 mt-1 font-bold">JPG, PNG acceptate</p>
-                    </div>
-                  )}
+                    );
+                  })}
                 </div>
-
-                {newContact.cardPhoto && (
-                  <button
-                    type="button"
-                    onClick={() => setNewContact(prev => ({ ...prev, cardPhoto: null }))}
-                    className="w-full py-3 bg-rose-50 text-rose-500 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-rose-100 transition-all border border-rose-100"
-                  >
-                    🗑️ Elimină Imaginea
-                  </button>
-                )}
-                <input type="file" hidden ref={fileInputRef} accept="image/*" onChange={handleFileUpload} />
 
                 <div className="bg-amber-50 p-8 rounded-[2.5rem] border border-amber-100 shadow-inner">
                   <label className="block text-[11px] font-black text-amber-800 uppercase mb-3 ml-1 tracking-widest">Ofițer ARBI Participant *</label>
