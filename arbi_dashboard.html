@@ -7,6 +7,7 @@
 <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/cytoscape@3.29.2/dist/cytoscape.min.js"></script>
 <style>
 /* ============================================================
    CSS VARIABLES — DARK / LIGHT
@@ -410,6 +411,27 @@ details[open] > .schema-summary::before { transform:rotate(90deg); }
 .schema-empty { color:var(--text2); font-size:0.82rem; padding:1rem; text-align:center; }
 .schema-warning { background:rgba(210,153,34,0.08); border:1px solid var(--orange); border-radius:6px; padding:0.45rem 0.75rem; font-size:0.78rem; color:var(--orange); margin-bottom:0.5rem; }
 
+/* CYTOSCAPE GRAPH VIEW */
+.schema-cy-wrap { position:relative; height:580px; border:1px solid var(--border); border-radius:6px; overflow:hidden; background:var(--bg2); }
+#schema-cy { width:100%; height:100%; }
+.schema-cy-controls { position:absolute; bottom:0.6rem; right:0.6rem; display:flex; flex-direction:column; gap:0.3rem; z-index:10; }
+.cy-ctrl-btn { width:28px; height:28px; background:var(--bg3); border:1px solid var(--border); border-radius:4px; color:var(--text); font-size:1rem; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+.cy-ctrl-btn:hover { background:var(--bg); }
+.schema-legend { display:flex; gap:0.8rem; flex-wrap:wrap; margin:0.5rem 0; }
+.legend-item { display:flex; align-items:center; gap:0.35rem; font-size:0.73rem; color:var(--text2); }
+.legend-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+.schema-detail-panel { background:var(--bg2); border:1px solid var(--border); border-radius:6px; padding:0.75rem 0.9rem; margin-top:0.5rem; font-size:0.81rem; min-height:60px; }
+.schema-detail-title { font-weight:700; font-size:0.88rem; color:var(--text); margin-bottom:0.45rem; display:flex; align-items:center; gap:0.5rem; }
+.schema-detail-type { font-size:0.68rem; border-radius:8px; padding:0.1rem 0.4rem; }
+.schema-detail-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(220px,1fr)); gap:0.4rem 1rem; margin-top:0.35rem; }
+.schema-detail-kv { font-size:0.76rem; }
+.schema-detail-kv .k { color:var(--text2); }
+.schema-detail-kv .v { color:var(--text); font-weight:500; }
+.schema-detail-section { margin-top:0.55rem; border-top:1px solid var(--border); padding-top:0.4rem; }
+.schema-detail-section-title { font-size:0.72rem; color:var(--text2); font-weight:700; text-transform:uppercase; letter-spacing:0.04em; margin-bottom:0.3rem; }
+.schema-detail-list { display:flex; flex-wrap:wrap; gap:0.3rem; }
+.schema-detail-chip { font-size:0.7rem; background:var(--bg3); border:1px solid var(--border); border-radius:10px; padding:0.1rem 0.45rem; color:var(--text2); }
+
 /* SCROLLBAR */
 ::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
@@ -763,15 +785,47 @@ details[open] > .schema-summary::before { transform:rotate(90deg); }
       <!-- SCHEMĂ RELAȚIONALĂ TAB -->
       <div class="tab-panel" id="tab-schema">
         <div class="schema-toolbar">
-          <span class="chart-toolbar-label">Grupare după:</span>
+          <span class="chart-toolbar-label">Vedere:</span>
           <div class="btn-group">
-            <button class="btn-group-btn active" id="schema-by-cauza" onclick="setSchemaMode('cauza')">Cauza penală</button>
-            <button class="btn-group-btn" id="schema-by-persoana" onclick="setSchemaMode('persoana')">Persoană</button>
-            <button class="btn-group-btn" id="schema-by-bun" onclick="setSchemaMode('bun')">ID Bun</button>
+            <button class="btn-group-btn active" id="schema-view-list"  onclick="setSchemaView('list')">Lista</button>
+            <button class="btn-group-btn"        id="schema-view-graph" onclick="setSchemaView('graph')">Graf</button>
           </div>
-          <input type="text" class="filter-input" id="schema-search" placeholder="Filtrează..." style="width:200px;margin-left:0.4rem" oninput="renderSchemaTab()">
+          <span class="chart-toolbar-label" id="schema-mode-label" style="margin-left:0.5rem">Grupare după:</span>
+          <div class="btn-group" id="schema-mode-btns">
+            <button class="btn-group-btn active" id="schema-by-cauza"    onclick="setSchemaMode('cauza')">Cauza penală</button>
+            <button class="btn-group-btn"        id="schema-by-persoana" onclick="setSchemaMode('persoana')">Persoană</button>
+            <button class="btn-group-btn"        id="schema-by-bun"      onclick="setSchemaMode('bun')">ID Bun</button>
+          </div>
+          <input type="text" class="filter-input" id="schema-search" placeholder="Filtrează..." style="width:190px;margin-left:0.4rem" oninput="renderSchemaTab()">
         </div>
+
+        <!-- LISTA -->
         <div id="schema-tree"></div>
+
+        <!-- GRAF CYTOSCAPE -->
+        <div class="schema-cy-wrap" id="schema-cy-wrap" style="display:none">
+          <div id="schema-cy"></div>
+          <div class="schema-cy-controls">
+            <button class="cy-ctrl-btn" title="Zoom in"  onclick="cyZoom(1.3)">+</button>
+            <button class="cy-ctrl-btn" title="Zoom out" onclick="cyZoom(0.77)">−</button>
+            <button class="cy-ctrl-btn" title="Centrare" onclick="cyFit()">⊙</button>
+            <button class="cy-ctrl-btn" title="Re-layout" onclick="cyLayout()">↺</button>
+          </div>
+        </div>
+
+        <!-- LEGENDA + DETALII (graf) -->
+        <div id="schema-graph-meta" style="display:none">
+          <div class="schema-legend">
+            <span class="legend-item"><span class="legend-dot" style="background:var(--accent)"></span>Cauza penală</span>
+            <span class="legend-item"><span class="legend-dot" style="background:var(--green)"></span>Persoană / Entitate</span>
+            <span class="legend-item"><span class="legend-dot" style="background:var(--text2)"></span>ID Bun</span>
+            <span class="legend-item"><span class="legend-dot" style="background:var(--red)"></span>Bun ⚡ sechestru→confiscare</span>
+            <span class="legend-item"><span class="legend-dot" style="background:var(--orange)"></span>Bun ⚠ anomalie ID</span>
+          </div>
+          <div class="schema-detail-panel" id="schema-detail-panel">
+            <div style="color:var(--text2);font-size:0.78rem">Click pe un nod pentru a vedea detalii.</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -800,6 +854,8 @@ let charts = {};
 let chartMode = 'count';    // 'count' | 'value'
 let chartTimeGroup = 'month'; // 'month' | 'year'
 let schemaMode = 'cauza';   // 'cauza' | 'persoana' | 'bun'
+let schemaView = 'list';    // 'list' | 'graph'
+let cytInstance = null;     // instanța Cytoscape
 
 let tableState = { sortCol: null, sortDir: 'asc', page: 1, pageSize: 50, search: '' };
 let catStates = {};
@@ -1924,6 +1980,18 @@ function renderBugetTab() {
 // ============================================================
 // SCHEMA RELAȚIONALĂ
 // ============================================================
+function setSchemaView(v) {
+  schemaView = v;
+  document.getElementById('schema-view-list').classList.toggle('active',  v === 'list');
+  document.getElementById('schema-view-graph').classList.toggle('active', v === 'graph');
+  // Modul de grupare e relevant doar pentru lista
+  const modeLabel = document.getElementById('schema-mode-label');
+  const modeBtns  = document.getElementById('schema-mode-btns');
+  if (modeLabel) modeLabel.style.display = v === 'list' ? '' : 'none';
+  if (modeBtns)  modeBtns.style.display  = v === 'list' ? '' : 'none';
+  renderSchemaTab();
+}
+
 function setSchemaMode(mode) {
   schemaMode = mode;
   ['cauza','persoana','bun'].forEach(m =>
@@ -1933,8 +2001,23 @@ function setSchemaMode(mode) {
 }
 
 function renderSchemaTab() {
-  const treeEl = document.getElementById('schema-tree');
+  const treeEl   = document.getElementById('schema-tree');
+  const cyWrap   = document.getElementById('schema-cy-wrap');
+  const graphMeta= document.getElementById('schema-graph-meta');
   if (!treeEl) return;
+
+  if (schemaView === 'graph') {
+    treeEl.style.display    = 'none';
+    cyWrap.style.display    = '';
+    graphMeta.style.display = '';
+    renderSchemaGraph();
+    return;
+  }
+  // lista view
+  treeEl.style.display    = '';
+  cyWrap.style.display    = 'none';
+  graphMeta.style.display = 'none';
+
   const q = ((document.getElementById('schema-search') || {}).value || '').toLowerCase();
   const data = FILTERED_DATA;
 
@@ -2064,6 +2147,306 @@ function renderSchemaTab() {
   });
 
   treeEl.innerHTML = html || '<div class="schema-empty">Nicio potrivire pentru filtrul aplicat.</div>';
+}
+
+// ============================================================
+// CYTOSCAPE HELPERS
+// ============================================================
+function cyZoom(factor) {
+  if (!cytInstance) return;
+  cytInstance.zoom({ level: cytInstance.zoom() * factor, renderedPosition: { x: cytInstance.width()/2, y: cytInstance.height()/2 } });
+}
+function cyFit() { if (cytInstance) cytInstance.fit(undefined, 32); }
+function cyLayout() {
+  if (!cytInstance) return;
+  cytInstance.layout({ name:'cose', animate:true, animationDuration:500, idealEdgeLength:120, nodeOverlap:20, refresh:20, fit:true, padding:32, randomize:false, componentSpacing:80, nodeRepulsion:8000, edgeElasticity:100, nestingFactor:1.2 }).run();
+}
+
+function getCyThemeColors() {
+  const s = getComputedStyle(document.documentElement);
+  return {
+    accent:  s.getPropertyValue('--accent').trim()  || '#58a6ff',
+    green:   s.getPropertyValue('--green').trim()   || '#3fb950',
+    red:     s.getPropertyValue('--red').trim()     || '#f85149',
+    orange:  s.getPropertyValue('--orange').trim()  || '#d29922',
+    text2:   s.getPropertyValue('--text2').trim()   || '#8b949e',
+    text:    s.getPropertyValue('--text').trim()    || '#e6edf3',
+    bg2:     s.getPropertyValue('--bg2').trim()     || '#161b22',
+    bg3:     s.getPropertyValue('--bg3').trim()     || '#1c2130',
+    border:  s.getPropertyValue('--border').trim()  || '#30363d',
+  };
+}
+
+function renderSchemaGraph() {
+  const q    = ((document.getElementById('schema-search') || {}).value || '').toLowerCase();
+  const data = FILTERED_DATA;
+  const detPanel = document.getElementById('schema-detail-panel');
+
+  if (!data.length) {
+    if (cytInstance) { cytInstance.destroy(); cytInstance = null; }
+    if (detPanel) detPanel.innerHTML = '<div style="color:var(--text2);font-size:0.78rem">Nu există date. Încărcați un fișier Excel.</div>';
+    return;
+  }
+
+  const c = getCyThemeColors();
+
+  // Build elements — max 300 cauze, max 600 persoane, max 600 bunuri
+  const cauzaNodes   = new Map(); // cauza → {id, label, rows[]}
+  const persoanaNodes= new Map(); // idnp+name → {id, label, rows[]}
+  const bunNodes     = new Map(); // idBun → {id, label, rows[]}
+  const edges        = [];
+
+  let cauzaCnt = 0, persCnt = 0, bunCnt = 0;
+  const MAX_CAUZE = 300, MAX_PERS = 600, MAX_BUN = 600;
+
+  const filteredRows = q
+    ? data.filter(r => (r['Cauza penala']||'').toLowerCase().includes(q) ||
+                       (r['IDNP/IDNO']||'').toLowerCase().includes(q) ||
+                       (r['Nume/Denumire']||'').toLowerCase().includes(q) ||
+                       (r['Nume proprietar']||'').toLowerCase().includes(q) ||
+                       (r['ID Bun']||'').toLowerCase().includes(q))
+    : data;
+
+  filteredRows.forEach(r => {
+    // Cauza node
+    const cKey = r['Cauza penala'] || '(necunoscut)';
+    if (!cauzaNodes.has(cKey)) {
+      if (cauzaCnt >= MAX_CAUZE) return;
+      cauzaNodes.set(cKey, { id: 'c_'+cauzaCnt, label: cKey, rows: [], cauza: cKey });
+      cauzaCnt++;
+    }
+    cauzaNodes.get(cKey).rows.push(r);
+
+    // Persoana node
+    const idnp = r['IDNP/IDNO'] || '';
+    const name = [r['Nume proprietar'], r['Prenume proprietar'], r['Nume/Denumire']].filter(Boolean).join(' ');
+    const pKey = (idnp || name || '(necunoscut)');
+    if (!persoanaNodes.has(pKey)) {
+      if (persCnt >= MAX_PERS) return;
+      persoanaNodes.set(pKey, { id: 'p_'+persCnt, label: (name || idnp || '?').slice(0,22), idnp, name, rows: [] });
+      persCnt++;
+    }
+    persoanaNodes.get(pKey).rows.push(r);
+
+    // ID Bun node
+    const bKey = r['ID Bun'] || '';
+    if (bKey && !bunNodes.has(bKey)) {
+      if (bunCnt >= MAX_BUN) return;
+      const tip = r['Tip bun'] || '';
+      bunNodes.set(bKey, { id: 'b_'+bunCnt, label: bKey + (tip ? '\n'+tip.slice(0,16) : ''), idBun: bKey, tip, rows: [] });
+      bunCnt++;
+    }
+    if (bKey && bunNodes.has(bKey)) bunNodes.get(bKey).rows.push(r);
+  });
+
+  // Build edge index to avoid duplicates
+  const edgeSet = new Set();
+  filteredRows.forEach(r => {
+    const cKey = r['Cauza penala'] || '(necunoscut)';
+    const idnp = r['IDNP/IDNO'] || '';
+    const name = [r['Nume proprietar'], r['Prenume proprietar'], r['Nume/Denumire']].filter(Boolean).join(' ');
+    const pKey = idnp || name || '(necunoscut)';
+    const bKey = r['ID Bun'] || '';
+
+    if (!cauzaNodes.has(cKey) || !persoanaNodes.has(pKey)) return;
+    const cId = cauzaNodes.get(cKey).id;
+    const pId = persoanaNodes.get(pKey).id;
+    const cpKey = cId+'→'+pId;
+    if (!edgeSet.has(cpKey)) { edgeSet.add(cpKey); edges.push({ data: { source: cId, target: pId, type: 'cp' } }); }
+
+    if (bKey && bunNodes.has(bKey)) {
+      const bId = bunNodes.get(bKey).id;
+      const pbKey = pId+'→'+bId;
+      if (!edgeSet.has(pbKey)) { edgeSet.add(pbKey); edges.push({ data: { source: pId, target: bId, type: 'pb' } }); }
+    }
+  });
+
+  // Build Cytoscape elements array
+  const elements = [];
+  cauzaNodes.forEach((v, k) => {
+    const hasAnomalie = ANOMALII_CAUZE.has(k);
+    elements.push({ data: { id: v.id, label: k.length > 20 ? k.slice(0,18)+'…' : k, fullLabel: k, type: 'cauza', nodeData: v, hasAnomalie }, classes: 'cauza-node' + (hasAnomalie ? ' anomalie-node' : '') });
+  });
+  persoanaNodes.forEach((v) => {
+    elements.push({ data: { id: v.id, label: v.label, type: 'persoana', nodeData: v }, classes: 'persoana-node' });
+  });
+  bunNodes.forEach((v, k) => {
+    const hasTraseu   = TRASEU_BUNURI.has(k);
+    const cauzeForBun = v.rows.map(r => r['Cauza penala']).filter(Boolean);
+    const hasAnomalie = cauzeForBun.some(cp => ANOMALII_CAUZE.has(cp));
+    elements.push({ data: { id: v.id, label: v.label, type: 'bun', nodeData: v, hasTraseu, hasAnomalie }, classes: 'bun-node' + (hasTraseu ? ' traseu-node' : hasAnomalie ? ' anomalie-node' : '') });
+  });
+  elements.push(...edges);
+
+  // Destroy old instance
+  if (cytInstance) { cytInstance.destroy(); cytInstance = null; }
+
+  // Warn if truncated
+  const nTotal = cauzaCnt + persCnt + bunCnt;
+  const limitMsg = (cauzaCnt >= MAX_CAUZE || persCnt >= MAX_PERS || bunCnt >= MAX_BUN)
+    ? `<div class="schema-warning" style="margin-bottom:0.4rem">⚠ Datele au fost trunchiate pentru performanță (${nTotal} noduri afișate). Folosiți filtrul de căutare pentru a restrânge setul.</div>`
+    : '';
+  document.getElementById('schema-cy-wrap').insertAdjacentHTML('beforebegin', limitMsg);
+
+  // Initialize Cytoscape
+  cytInstance = cytoscape({
+    container: document.getElementById('schema-cy'),
+    elements,
+    style: [
+      { selector: 'node', style: {
+        'label': 'data(label)',
+        'font-size': '10px',
+        'color': c.text,
+        'text-valign': 'center',
+        'text-halign': 'center',
+        'text-wrap': 'wrap',
+        'text-max-width': '90px',
+        'width': '60px',
+        'height': '60px',
+        'border-width': '2px',
+        'overlay-padding': '6px',
+      }},
+      { selector: '.cauza-node', style: {
+        'background-color': c.accent + '33',
+        'border-color': c.accent,
+        'shape': 'ellipse',
+        'width': '70px', 'height': '50px',
+        'font-weight': '700',
+        'font-size': '9px',
+      }},
+      { selector: '.persoana-node', style: {
+        'background-color': c.green + '28',
+        'border-color': c.green,
+        'shape': 'round-rectangle',
+        'width': '65px', 'height': '44px',
+        'font-size': '9px',
+      }},
+      { selector: '.bun-node', style: {
+        'background-color': c.text2 + '28',
+        'border-color': c.text2,
+        'shape': 'diamond',
+        'width': '55px', 'height': '55px',
+        'font-size': '9px',
+      }},
+      { selector: '.traseu-node', style: {
+        'background-color': c.red + '28',
+        'border-color': c.red,
+        'border-width': '2.5px',
+      }},
+      { selector: '.anomalie-node', style: {
+        'background-color': c.orange + '28',
+        'border-color': c.orange,
+        'border-style': 'dashed',
+      }},
+      { selector: 'node:selected', style: {
+        'border-width': '3px',
+        'border-color': c.accent,
+        'background-blacken': -0.1,
+      }},
+      { selector: 'edge', style: {
+        'width': 1.2,
+        'line-color': c.border,
+        'target-arrow-color': c.border,
+        'target-arrow-shape': 'triangle',
+        'arrow-scale': 0.7,
+        'curve-style': 'bezier',
+        'opacity': 0.7,
+      }},
+      { selector: 'edge.highlighted', style: { 'line-color': c.accent, 'opacity': 1, 'width': 2, 'target-arrow-color': c.accent }},
+    ],
+    layout: {
+      name: 'cose',
+      idealEdgeLength: 120,
+      nodeOverlap: 20,
+      refresh: 20,
+      fit: true,
+      padding: 32,
+      randomize: true,
+      componentSpacing: 80,
+      nodeRepulsion: 8000,
+      edgeElasticity: 100,
+      nestingFactor: 1.2,
+      animate: elements.length < 400,
+    },
+    wheelSensitivity: 0.3,
+    minZoom: 0.1,
+    maxZoom: 4,
+  });
+
+  // Click handler
+  cytInstance.on('tap', 'node', function(evt) {
+    const nd = evt.target.data('nodeData');
+    const type = evt.target.data('type');
+    cytInstance.elements().removeClass('highlighted');
+    evt.target.connectedEdges().addClass('highlighted');
+    renderCyDetail(type, nd, evt.target.data());
+  });
+  cytInstance.on('tap', function(evt) {
+    if (evt.target === cytInstance) {
+      cytInstance.elements().removeClass('highlighted');
+      if (detPanel) detPanel.innerHTML = '<div style="color:var(--text2);font-size:0.78rem">Click pe un nod pentru a vedea detalii.</div>';
+    }
+  });
+}
+
+function renderCyDetail(type, nd, nodeData) {
+  const panel = document.getElementById('schema-detail-panel');
+  if (!panel) return;
+
+  const c = getCyThemeColors();
+  const typeColors = { cauza: c.accent, persoana: c.green, bun: c.text2 };
+  const typeLabels = { cauza: 'Cauza penală', persoana: 'Persoană / Entitate', bun: 'ID Bun' };
+  const tc = typeColors[type] || c.text2;
+  const tl = typeLabels[type] || type;
+
+  let html = `<div class="schema-detail-title">
+    <span style="color:${tc}">${escHtml(nd.fullLabel || nd.label || nd.cauza || nd.idBun || nd.name || '?')}</span>
+    <span class="schema-detail-type" style="background:${tc}22;color:${tc};border:1px solid ${tc}44">${tl}</span>
+    ${nodeData.hasTraseu   ? '<span class="traseu-badge">⚡ Sechestru→Confiscare</span>' : ''}
+    ${nodeData.hasAnomalie ? '<span class="anomalie-badge">⚠ Anomalie ID</span>' : ''}
+  </div>`;
+
+  const rows = nd.rows || [];
+
+  if (type === 'cauza') {
+    const persoane   = [...new Set(rows.map(r => [r['IDNP/IDNO'], r['Nume proprietar'], r['Prenume proprietar'], r['Nume/Denumire']].filter(Boolean).join(' ')).filter(Boolean))];
+    const bunuriIDs  = [...new Set(rows.map(r => r['ID Bun']).filter(Boolean))];
+    const solutii    = [...new Set(rows.map(r => r['Solutia adoptata']).filter(Boolean))];
+    html += `<div class="schema-detail-grid">
+      <div class="schema-detail-kv"><span class="k">Documente: </span><span class="v">${rows.length}</span></div>
+      <div class="schema-detail-kv"><span class="k">Persoane: </span><span class="v">${persoane.length}</span></div>
+      <div class="schema-detail-kv"><span class="k">Bunuri ID: </span><span class="v">${bunuriIDs.length}</span></div>
+    </div>`;
+    if (persoane.length) html += `<div class="schema-detail-section"><div class="schema-detail-section-title">Persoane / Entități</div><div class="schema-detail-list">${persoane.slice(0,20).map(p => `<span class="schema-detail-chip">${escHtml(p)}</span>`).join('')}${persoane.length>20?`<span class="schema-detail-chip" style="color:var(--text2)">+${persoane.length-20}</span>`:''}</div></div>`;
+    if (solutii.length) html += `<div class="schema-detail-section"><div class="schema-detail-section-title">Soluții adoptate</div><div class="schema-detail-list">${solutii.map(s => { const col = SOL_COLORS[s]||'#777'; return `<span class="schema-detail-chip" style="background:${col}22;color:${col};border-color:${col}44">${escHtml(s)}</span>`; }).join('')}</div></div>`;
+
+  } else if (type === 'persoana') {
+    const cauze  = [...new Set(rows.map(r => r['Cauza penala']).filter(Boolean))];
+    const bunuri = [...new Set(rows.map(r => r['ID Bun']).filter(Boolean))];
+    html += `<div class="schema-detail-grid">
+      <div class="schema-detail-kv"><span class="k">IDNP/IDNO: </span><span class="v">${escHtml(nd.idnp||'—')}</span></div>
+      <div class="schema-detail-kv"><span class="k">Cauze: </span><span class="v">${cauze.length}</span></div>
+      <div class="schema-detail-kv"><span class="k">Bunuri: </span><span class="v">${bunuri.length}</span></div>
+    </div>`;
+    if (cauze.length) html += `<div class="schema-detail-section"><div class="schema-detail-section-title">Cauze penale</div><div class="schema-detail-list">${cauze.slice(0,15).map(c2 => `<span class="schema-detail-chip">${escHtml(c2)}</span>`).join('')}${cauze.length>15?`<span class="schema-detail-chip">+${cauze.length-15}</span>`:''}</div></div>`;
+    if (bunuri.length) html += `<div class="schema-detail-section"><div class="schema-detail-section-title">Bunuri</div><div class="schema-detail-list">${bunuri.slice(0,15).map(b => `<span class="schema-detail-chip">${escHtml(b)}</span>`).join('')}${bunuri.length>15?`<span class="schema-detail-chip">+${bunuri.length-15}</span>`:''}</div></div>`;
+
+  } else { // bun
+    const cauze    = [...new Set(rows.map(r => r['Cauza penala']).filter(Boolean))];
+    const solutii  = [...new Set(rows.map(r => r['Solutia adoptata']).filter(Boolean))];
+    const valMax   = rows.map(r => parseFloat((r['Suma sechestru']||'').replace(/[^\d.,]/g,'').replace(',','.'))).filter(v => !isNaN(v));
+    const tipBun   = rows[0]?.['Tip bun'] || '—';
+    html += `<div class="schema-detail-grid">
+      <div class="schema-detail-kv"><span class="k">Tip bun: </span><span class="v">${escHtml(tipBun)}</span></div>
+      <div class="schema-detail-kv"><span class="k">Cauze: </span><span class="v">${cauze.length}</span></div>
+      <div class="schema-detail-kv"><span class="k">Documente: </span><span class="v">${rows.length}</span></div>
+      ${valMax.length ? `<div class="schema-detail-kv"><span class="k">Suma max MDL: </span><span class="v">${Math.max(...valMax).toLocaleString('ro')}</span></div>` : ''}
+    </div>`;
+    if (solutii.length) html += `<div class="schema-detail-section"><div class="schema-detail-section-title">Soluții adoptate</div><div class="schema-detail-list">${solutii.map(s => { const col = SOL_COLORS[s]||'#777'; return `<span class="schema-detail-chip" style="background:${col}22;color:${col};border-color:${col}44">${escHtml(s)}</span>`; }).join('')}</div></div>`;
+    if (cauze.length) html += `<div class="schema-detail-section"><div class="schema-detail-section-title">Cauze penale</div><div class="schema-detail-list">${cauze.slice(0,12).map(c2 => `<span class="schema-detail-chip">${escHtml(c2)}</span>`).join('')}${cauze.length>12?`<span class="schema-detail-chip">+${cauze.length-12}</span>`:''}</div></div>`;
+  }
+
+  panel.innerHTML = html;
 }
 
 // ============================================================
