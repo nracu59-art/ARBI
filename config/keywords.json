@@ -1,0 +1,33 @@
+{
+  "comment": "Editează această listă pentru a modifica filtrarea și analiza PDF-urilor",
+
+  "case_filter": [
+    "confiscare", "confiscarea", "confiscate",
+    "sechestru", "sechestre", "sechestrarea", "ridicarea sechestrului",
+    "indisponibilizare", "indisponibilizat", "indisponibilizarea",
+    "bunuri imobile", "bunuri mobile",
+    "autoturism", "automobil", "vehicul",
+    "imobil", "apartament", "casă", "teren",
+    "mijloace bănești", "numerar", "conturi bancare", "cont bancar",
+    "valori mobiliare", "acțiuni"
+  ],
+
+  "asset_keywords": [
+    "confiscat", "confiscă", "confiscarea",
+    "sechestrat", "aplică sechestru", "pune sechestru",
+    "indisponibilizat",
+    "ridicat", "reținut", "predat",
+    "bunuri", "proprietate", "avere",
+    "lei", "MDL", "euro", "EUR", "dolari", "USD",
+    "autoturism", "automobil",
+    "imobil", "apartament", "casă", "teren", "lot",
+    "cont", "depozit", "transfer"
+  ],
+
+  "decision_keywords": [
+    "dispune", "hotărăște", "declară",
+    "condamnat", "achitat", "încetat",
+    "pedeapsă", "amendă", "privațiune de libertate",
+    "termen de probă", "muncă neremunerată"
+  ]
+}
