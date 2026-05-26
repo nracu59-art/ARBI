@@ -4,10 +4,12 @@ confiscare/sechestru. Generează un raport Excel și îl trimite pe Telegram.
 """
 import asyncio
 import io
+import json
 import logging
 import os
 import sys
 from datetime import date, timedelta
+from pathlib import Path
 
 import httpx
 import pdfplumber
@@ -29,21 +31,30 @@ logger = logging.getLogger(__name__)
 TELEGRAM_API_MSG = "https://api.telegram.org/bot{token}/sendMessage"
 TELEGRAM_API_DOC = "https://api.telegram.org/bot{token}/sendDocument"
 
-KEYWORDS = [
-    "confiscare",
-    "confiscării",
-    "confiscat",
-    "confiscate",
-    "în folosul statului",
-    "sechestru",
-    "sechestrat",
-    "sechestrate",
-    "se ridică sechestrul",
-    "menține sechestrul",
-    "menținerea sechestrului",
-    "trecut cu titlu gratuit",
-    "trecerea cu titlu gratuit",
-]
+_CONFIG_PATH = Path(__file__).parent / "config" / "keywords.json"
+
+
+def _load_keywords() -> list[str]:
+    """Încarcă keywords din config/keywords.json. Fallback la lista hardcodată."""
+    try:
+        with open(_CONFIG_PATH, encoding="utf-8") as f:
+            cfg = json.load(f)
+        kws = cfg.get("case_filter", [])
+        if kws:
+            logger.info(f"Keywords încărcate din {_CONFIG_PATH}: {len(kws)} cuvinte")
+            return kws
+    except Exception as exc:
+        logger.warning(f"Nu s-a putut citi config/keywords.json: {exc} — se folosesc keywords implicite")
+    return [
+        "confiscare", "confiscării", "confiscat", "confiscate",
+        "în folosul statului", "sechestru", "sechestrat", "sechestrate",
+        "se ridică sechestrul", "menține sechestrul", "menținerea sechestrului",
+        "trecut cu titlu gratuit", "trecerea cu titlu gratuit",
+    ]
+
+
+KEYWORDS = _load_keywords()
+
 
 CONTEXT_CHARS = 400  # caractere extrase în jurul cuvântului cheie
 

@@ -1,27 +1,41 @@
 {
-  "comment": "Editează această listă pentru a modifica filtrarea și analiza PDF-urilor",
+  "comment": "Editează această listă pentru a modifica filtrarea PDF-urilor. Modificările se aplică automat la următoarea rulare.",
 
   "case_filter": [
-    "confiscare", "confiscarea", "confiscate",
-    "sechestru", "sechestre", "sechestrarea", "ridicarea sechestrului",
-    "indisponibilizare", "indisponibilizat", "indisponibilizarea",
-    "bunuri imobile", "bunuri mobile",
-    "autoturism", "automobil", "vehicul",
-    "imobil", "apartament", "casă", "teren",
-    "mijloace bănești", "numerar", "conturi bancare", "cont bancar",
-    "valori mobiliare", "acțiuni"
+    "confiscare",
+    "confiscării",
+    "confiscat",
+    "confiscate",
+    "în folosul statului",
+    "sechestru",
+    "sechestrat",
+    "sechestrate",
+    "se ridică sechestrul",
+    "menține sechestrul",
+    "menținerea sechestrului",
+    "trecut cu titlu gratuit",
+    "trecerea cu titlu gratuit",
+    "indisponibilizare",
+    "indisponibilizat",
+    "bunuri imobile",
+    "bunuri mobile",
+    "autoturism",
+    "imobil",
+    "apartament",
+    "teren",
+    "mijloace bănești",
+    "numerar",
+    "conturi bancare",
+    "cont bancar",
+    "valori mobiliare"
   ],
 
   "asset_keywords": [
-    "confiscat", "confiscă", "confiscarea",
-    "sechestrat", "aplică sechestru", "pune sechestru",
-    "indisponibilizat",
-    "ridicat", "reținut", "predat",
-    "bunuri", "proprietate", "avere",
-    "lei", "MDL", "euro", "EUR", "dolari", "USD",
-    "autoturism", "automobil",
+    "autoturism", "automobil", "vehicul",
     "imobil", "apartament", "casă", "teren", "lot",
-    "cont", "depozit", "transfer"
+    "mijloace bănești", "numerar", "cont bancar", "depozit",
+    "lei", "MDL", "euro", "EUR", "dolari", "USD",
+    "valori mobiliare", "acțiuni"
   ],
 
   "decision_keywords": [
