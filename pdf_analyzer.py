@@ -1,204 +1,388 @@
 """
-Descarcă PDF-ul hotărârii, extrage textul și identifică secțiunile
-relevante despre confiscare, sechestru și bunuri.
+Analizează PDF-urile atașate hotărârilor penale zilnice și caută mențiuni de
+confiscare/sechestru. Generează un raport Excel și îl trimite pe Telegram.
 """
+import asyncio
 import io
-import json
 import logging
-import re
-from pathlib import Path
+import os
+import sys
+from datetime import date, timedelta
 
 import httpx
 import pdfplumber
+from dotenv import load_dotenv
+from openpyxl import Workbook
+from openpyxl.styles import Alignment, Font, PatternFill
+from openpyxl.utils import get_column_letter
 
+from scraper import scrape_decisions
+
+load_dotenv()
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
 logger = logging.getLogger(__name__)
 
-CONFIG_PATH = Path(__file__).parent / "config" / "keywords.json"
+TELEGRAM_API_MSG = "https://api.telegram.org/bot{token}/sendMessage"
+TELEGRAM_API_DOC = "https://api.telegram.org/bot{token}/sendDocument"
 
-HEADERS = {
-    "User-Agent": (
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/124.0.0.0 Safari/537.36"
-    )
-}
+KEYWORDS = [
+    "confiscare",
+    "confiscării",
+    "confiscat",
+    "confiscate",
+    "în folosul statului",
+    "sechestru",
+    "sechestrat",
+    "sechestrate",
+    "se ridică sechestrul",
+    "menține sechestrul",
+    "menținerea sechestrului",
+    "trecut cu titlu gratuit",
+    "trecerea cu titlu gratuit",
+]
+
+CONTEXT_CHARS = 400  # caractere extrase în jurul cuvântului cheie
+
+STATUS_MATCH = "Mențiuni găsite"
+STATUS_NO_MATCH = "Fără mențiuni confiscare"
+STATUS_UNAVAILABLE = "PDF indisponibil"
+
+_MONTHS_RO = [
+    "", "ianuarie", "februarie", "martie", "aprilie", "mai", "iunie",
+    "iulie", "august", "septembrie", "octombrie", "noiembrie", "decembrie",
+]
 
 
-def load_keywords() -> dict:
-    with open(CONFIG_PATH, encoding="utf-8") as f:
-        return json.load(f)
+def _require(name: str) -> str:
+    value = os.getenv(name)
+    if not value:
+        logger.error(f"Missing required environment variable: {name}")
+        sys.exit(1)
+    return value
 
 
-def case_matches_filter(decision: dict, filter_keywords: list[str]) -> bool:
-    """Verifică dacă dosarul conține cuvinte cheie în tematică sau denumire."""
-    text = " ".join([
-        decision.get("tematica_dosarului", ""),
-        decision.get("denumirea_dosarului", ""),
-    ]).lower()
-    return any(kw.lower() in text for kw in filter_keywords)
+def _day_ro(d: date) -> str:
+    return f"{d.day} {_MONTHS_RO[d.month]} {d.year}"
 
 
-async def analyze_case(decision: dict, keywords: dict) -> dict:
-    """
-    Descarcă PDF-ul și extrage informațiile relevante.
-    Returnează un dict cu detaliile analizei.
-    """
-    url = decision.get("act_judecatoresc_url", "")
-    result = {
-        "dosar": decision,
-        "pdf_url": url,
-        "pdf_disponibil": bool(url),
-        "text_extras": False,
-        "pagini": 0,
-        "keywords_gasite": [],
-        "sectiuni_confiscare": [],
-        "sectiuni_bunuri": [],
-        "sectiuni_decizie": [],
-        "eroare": None,
-    }
+# ─────────────────────────────────────────────────────────────────────────────
+# PDF download & text extraction
+# ─────────────────────────────────────────────────────────────────────────────
 
+async def download_pdf(url: str) -> bytes | None:
     if not url:
-        result["eroare"] = "Nu există link PDF"
-        return result
-
+        return None
     try:
-        pdf_bytes = await _download_pdf(url)
-        if not pdf_bytes:
-            result["eroare"] = "PDF indisponibil (403/404)"
-            return result
-
-        text, pages = _extract_text(pdf_bytes)
-        result["pagini"] = pages
-        result["text_extras"] = bool(text)
-
-        if not text:
-            result["eroare"] = "PDF scanat (fără text selectabil)"
-            return result
-
-        result["keywords_gasite"] = _find_keywords(text, keywords["asset_keywords"])
-        result["sectiuni_confiscare"] = _extract_sections(
-            text,
-            ["confiscat", "confiscă", "confiscarea", "sechestrat", "indisponibilizat",
-             "aplică sechestru", "pune sechestru"],
-            context_chars=500,
-        )
-        result["sectiuni_bunuri"] = _extract_sections(
-            text,
-            ["autoturism", "automobil", "imobil", "apartament", "teren", "lot",
-             "mijloace bănești", "numerar", "cont bancar", "lei", "euro"],
-            context_chars=400,
-        )
-        result["sectiuni_decizie"] = _extract_sections(
-            text,
-            ["dispune", "hotărăște", "condamnat", "achitat", "încetat",
-             "pedeapsă", "amendă", "privațiune"],
-            context_chars=600,
-        )
-
-    except Exception as exc:
-        logger.error(f"Eroare la analiza PDF {url}: {exc}")
-        result["eroare"] = str(exc)
-
-    return result
-
-
-async def _download_pdf(url: str) -> bytes | None:
-    try:
-        async with httpx.AsyncClient(
-            headers=HEADERS,
-            timeout=30,
-            follow_redirects=True,
-            verify=False,
-        ) as client:
+        async with httpx.AsyncClient(timeout=30, follow_redirects=True) as client:
             resp = await client.get(url)
             if resp.status_code == 200 and b"%PDF" in resp.content[:10]:
                 return resp.content
-            logger.warning(f"PDF status {resp.status_code}: {url}")
+            logger.warning(f"PDF fetch failed ({resp.status_code}): {url}")
             return None
     except Exception as exc:
-        logger.error(f"Download failed {url}: {exc}")
+        logger.warning(f"PDF download error: {exc} — {url}")
         return None
 
 
-def _extract_text(pdf_bytes: bytes) -> tuple[str, int]:
-    """Returnează (text_complet, numar_pagini)."""
-    pages_text = []
+def extract_text(pdf_bytes: bytes) -> str:
     try:
         with pdfplumber.open(io.BytesIO(pdf_bytes)) as pdf:
-            n_pages = len(pdf.pages)
+            parts = []
             for page in pdf.pages:
-                t = page.extract_text() or ""
-                pages_text.append(t)
-        full_text = "\n".join(pages_text)
-        return full_text, n_pages
+                text = page.extract_text() or ""
+                parts.append(text)
+            return "\n".join(parts)
     except Exception as exc:
-        logger.error(f"Text extraction failed: {exc}")
-        return "", 0
+        logger.warning(f"PDF text extraction error: {exc}")
+        return ""
 
 
-def _find_keywords(text: str, keywords: list[str]) -> list[str]:
+# ─────────────────────────────────────────────────────────────────────────────
+# Keyword search
+# ─────────────────────────────────────────────────────────────────────────────
+
+def extract_dispozitiv(text: str) -> str:
+    """Returnează doar textul din dispozitivul hotărârii (după DISPUN/DISPUNE)."""
     text_lower = text.lower()
-    return sorted({kw for kw in keywords if kw.lower() in text_lower})
+    for marker in ["dispune:", "dispune\n", "dispun:", "dispun\n", "dispune ", "dispun "]:
+        pos = text_lower.rfind(marker)  # rfind = ultima apariție (dispozitivul e la final)
+        if pos != -1:
+            return text[pos:]
+    return text  # fallback: tot textul dacă nu se găsește marcatorul
 
 
-def _extract_sections(text: str, trigger_words: list[str], context_chars: int = 400) -> list[str]:
-    """
-    Pentru fiecare trigger word găsit în text, extrage un paragraf de context.
-    Deduplicare: evită secțiuni care se suprapun.
-    """
-    sections = []
-    text_lower = text.lower()
-    used_positions: list[tuple[int, int]] = []
+def find_keyword_excerpts(text: str) -> list[dict]:
+    """Caută cuvintele cheie doar în dispozitiv și returnează un singur excerpt combinat."""
+    dispozitiv = extract_dispozitiv(text)
+    dispozitiv_lower = dispozitiv.lower()
 
-    for word in trigger_words:
-        word_lower = word.lower()
+    found_keywords = []
+    excerpts = []
+    seen_positions = set()
+
+    for kw in KEYWORDS:
+        kw_lower = kw.lower()
         start = 0
         while True:
-            pos = text_lower.find(word_lower, start)
+            pos = dispozitiv_lower.find(kw_lower, start)
             if pos == -1:
                 break
+            bucket = pos // (CONTEXT_CHARS // 2)
+            if bucket not in seen_positions:
+                seen_positions.add(bucket)
+                excerpt_start = max(0, pos - CONTEXT_CHARS // 2)
+                excerpt_end = min(len(dispozitiv), pos + len(kw) + CONTEXT_CHARS // 2)
+                excerpt = dispozitiv[excerpt_start:excerpt_end].strip()
+                excerpt = " ".join(excerpt.split())
+                if kw not in found_keywords:
+                    found_keywords.append(kw)
+                excerpts.append(excerpt)
+            start = pos + 1
 
-            # Extinde la paragraf sau la context_chars
-            begin = max(0, pos - context_chars // 2)
-            end = min(len(text), pos + context_chars // 2)
+    if not found_keywords:
+        return []
 
-            # Ajustează la granița propoziției/paragrafului
-            begin = _find_sentence_start(text, begin)
-            end = _find_sentence_end(text, end)
-
-            # Verifică suprapunere cu secțiuni deja extrase
-            overlaps = any(
-                not (end <= u_start or begin >= u_end)
-                for u_start, u_end in used_positions
-            )
-            if not overlaps:
-                snippet = text[begin:end].strip()
-                if len(snippet) > 50:
-                    sections.append(_clean_text(snippet))
-                    used_positions.append((begin, end))
-
-            start = pos + len(word_lower)
-
-    return sections[:10]  # maxim 10 secțiuni per categorie
+    # Toate mențiunile combinate într-un singur rezultat (un singur rând per cauză)
+    return [{
+        "keyword": ", ".join(found_keywords),
+        "excerpt": "\n\n".join(excerpts),
+    }]
 
 
-def _find_sentence_start(text: str, pos: int) -> int:
-    for char in ["\n\n", ".\n", ". "]:
-        idx = text.rfind(char, 0, pos)
-        if idx != -1:
-            return idx + len(char)
-    return pos
+# ─────────────────────────────────────────────────────────────────────────────
+# Main analysis
+# ─────────────────────────────────────────────────────────────────────────────
+
+async def analyze_decisions(decisions: list[dict]) -> list[dict]:
+    rows = []
+    total = len(decisions)
+    for i, d in enumerate(decisions, 1):
+        url = d.get("act_judecatoresc_url", "")
+        logger.info(f"[{i}/{total}] Analizez: {d.get('numarul_dosarului', '?')} — {url or 'fără PDF'}")
+
+        base = {
+            "instanta": d.get("instanta_judecatoreasca", ""),
+            "nr_dosar": d.get("numarul_dosarului", ""),
+            "denumire": d.get("denumirea_dosarului", ""),
+            "data_pronuntarii": d.get("data_pronuntarii", ""),
+            "judecator": d.get("judecator", ""),
+            "tematica": d.get("tematica_dosarului", ""),
+            "pdf_url": url,
+        }
+
+        if not url:
+            rows.append({**base, "keyword": "", "excerpt": "", "status": STATUS_UNAVAILABLE})
+            continue
+
+        pdf_bytes = await download_pdf(url)
+        if pdf_bytes is None:
+            rows.append({**base, "keyword": "", "excerpt": "", "status": STATUS_UNAVAILABLE})
+            continue
+
+        text = extract_text(pdf_bytes)
+        if not text:
+            rows.append({**base, "keyword": "", "excerpt": "", "status": STATUS_UNAVAILABLE})
+            continue
+
+        excerpts = find_keyword_excerpts(text)
+        if excerpts:
+            # Întotdeauna un singur rând per cauză
+            rows.append({**base, "keyword": excerpts[0]["keyword"], "excerpt": excerpts[0]["excerpt"], "status": STATUS_MATCH})
+        else:
+            rows.append({**base, "keyword": "", "excerpt": "", "status": STATUS_NO_MATCH})
+
+    return rows
 
 
-def _find_sentence_end(text: str, pos: int) -> int:
-    for char in ["\n\n", ".\n"]:
-        idx = text.find(char, pos)
-        if idx != -1:
-            return idx + len(char)
-    dot = text.find(". ", pos)
-    return dot + 2 if dot != -1 else min(pos + 50, len(text))
+# ─────────────────────────────────────────────────────────────────────────────
+# Excel generation
+# ─────────────────────────────────────────────────────────────────────────────
+
+def build_excel(rows: list[dict], target_date: date) -> bytes:
+    wb = Workbook()
+
+    # ── Sheet 1: Date ──────────────────────────────────────────────────────
+    ws = wb.active
+    ws.title = "Analiză Confiscare"
+
+    header_font = Font(bold=True, color="FFFFFF", size=11)
+    header_fill = PatternFill("solid", fgColor="1F3864")
+    match_fill = PatternFill("solid", fgColor="FFF2CC")
+    unavail_fill = PatternFill("solid", fgColor="D9D9D9")
+
+    headers = [
+        "Instanța", "Nr. dosar", "Denumire dosar",
+        "Data pronunțării", "Judecător", "Tematică",
+        "Cuvânt cheie", "Paragraf relevant", "Link PDF", "Status",
+    ]
+    col_widths = [28, 22, 40, 16, 24, 36, 22, 80, 18, 22]
+
+    for col, (h, w) in enumerate(zip(headers, col_widths), 1):
+        cell = ws.cell(row=1, column=col, value=h)
+        cell.font = header_font
+        cell.fill = header_fill
+        cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+        ws.column_dimensions[get_column_letter(col)].width = w
+
+    ws.row_dimensions[1].height = 30
+    ws.freeze_panes = "A2"
+
+    for r, row in enumerate(rows, 2):
+        values = [
+            row["instanta"], row["nr_dosar"], row["denumire"],
+            row["data_pronuntarii"], row["judecator"], row["tematica"],
+            row["keyword"], row["excerpt"], row["pdf_url"], row["status"],
+        ]
+        for col, val in enumerate(values, 1):
+            cell = ws.cell(row=r, column=col, value=val)
+            cell.alignment = Alignment(vertical="top", wrap_text=(col == 8))
+
+        # Hyperlink PDF
+        if row["pdf_url"]:
+            link_cell = ws.cell(row=r, column=9)
+            link_cell.hyperlink = row["pdf_url"]
+            link_cell.value = "PDF"
+            link_cell.font = Font(color="0563C1", underline="single")
+
+        # Color rows
+        status = row["status"]
+        if status == STATUS_MATCH:
+            fill = match_fill
+        elif status == STATUS_UNAVAILABLE:
+            fill = unavail_fill
+        else:
+            fill = None
+
+        if fill:
+            for col in range(1, len(headers) + 1):
+                ws.cell(row=r, column=col).fill = fill
+
+        ws.row_dimensions[r].height = 60 if row["excerpt"] else 18
+
+    # ── Sheet 2: Statistici ────────────────────────────────────────────────
+    ws2 = wb.create_sheet("Statistici")
+    title_font = Font(bold=True, size=12)
+    ws2.column_dimensions["A"].width = 35
+    ws2.column_dimensions["B"].width = 15
+
+    total = len(rows)
+    # Deduplicated by dosar for statistics
+    dosare = {}
+    for row in rows:
+        key = row["nr_dosar"]
+        if key not in dosare:
+            dosare[key] = row["status"]
+        elif row["status"] == STATUS_MATCH:
+            dosare[key] = STATUS_MATCH
+
+    n_match = sum(1 for s in dosare.values() if s == STATUS_MATCH)
+    n_no_match = sum(1 for s in dosare.values() if s == STATUS_NO_MATCH)
+    n_unavail = sum(1 for s in dosare.values() if s == STATUS_UNAVAILABLE)
+    n_dosare = len(dosare)
+
+    stat_rows = [
+        ("Raport analiză confiscare/sechestru", ""),
+        (f"Data analizată: {_day_ro(target_date)}", ""),
+        ("", ""),
+        ("Total dosare analizate", n_dosare),
+        ("Cu mențiuni confiscare/sechestru", n_match),
+        ("Fără mențiuni", n_no_match),
+        ("PDF indisponibil", n_unavail),
+        ("", ""),
+        ("Total rânduri raport (incl. mențiuni multiple)", total),
+    ]
+
+    for r, (label, val) in enumerate(stat_rows, 1):
+        ws2.cell(row=r, column=1, value=label)
+        if val != "":
+            ws2.cell(row=r, column=2, value=val)
+        if r <= 2 or label.startswith("Total") or label.startswith("Cu"):
+            ws2.cell(row=r, column=1).font = title_font
+
+    buf = io.BytesIO()
+    wb.save(buf)
+    return buf.getvalue()
 
 
-def _clean_text(text: str) -> str:
-    text = re.sub(r"\s+", " ", text)
-    return text.strip()
+# ─────────────────────────────────────────────────────────────────────────────
+# Telegram
+# ─────────────────────────────────────────────────────────────────────────────
+
+async def send_message(token: str, chat_id: str, text: str) -> None:
+    url = TELEGRAM_API_MSG.format(token=token)
+    async with httpx.AsyncClient(timeout=30) as client:
+        resp = await client.post(url, json={
+            "chat_id": chat_id,
+            "text": text,
+            "parse_mode": "HTML",
+            "disable_web_page_preview": True,
+        })
+        resp.raise_for_status()
+
+
+async def send_document(token: str, chat_id: str, file_bytes: bytes, filename: str, caption: str) -> None:
+    url = TELEGRAM_API_DOC.format(token=token)
+    async with httpx.AsyncClient(timeout=60) as client:
+        resp = await client.post(url, data={
+            "chat_id": chat_id,
+            "caption": caption,
+            "parse_mode": "HTML",
+        }, files={
+            "document": (filename, file_bytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"),
+        })
+        if resp.status_code != 200:
+            logger.error(f"Telegram sendDocument error {resp.status_code}: {resp.text}")
+            resp.raise_for_status()
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Entry point
+# ─────────────────────────────────────────────────────────────────────────────
+
+async def main() -> None:
+    token = _require("TELEGRAM_BOT_TOKEN")
+    chat_id = _require("TELEGRAM_CHAT_ID")
+
+    target_date = date.today() - timedelta(days=1)
+    logger.info(f"Target date: {target_date.strftime('%d.%m.%Y')}")
+
+    decisions = await scrape_decisions(target_date)
+    if not decisions:
+        logger.info("Nu s-au găsit hotărâri — raport PDF nu este generat.")
+        await send_message(token, chat_id,
+            f"⚖️ <b>Analiză confiscare/sechestru</b>\n"
+            f"📅 <b>{_day_ro(target_date)}</b>\n\n"
+            "ℹ️ Nu au fost găsite hotărâri penale pentru această dată.")
+        return
+
+    logger.info(f"Analizez PDF-uri pentru {len(decisions)} hotărâri...")
+    rows = await analyze_decisions(decisions)
+
+    n_match = len({r["nr_dosar"] for r in rows if r["status"] == STATUS_MATCH})
+    n_unavail = len({r["nr_dosar"] for r in rows if r["status"] == STATUS_UNAVAILABLE})
+    logger.info(f"Rezultate: {n_match} dosare cu mențiuni, {n_unavail} PDF indisponibil")
+
+    excel_bytes = build_excel(rows, target_date)
+
+    filename = f"confiscare_{target_date.strftime('%Y-%m-%d')}.xlsx"
+    with open(filename, "wb") as f:
+        f.write(excel_bytes)
+    logger.info(f"Excel salvat local: {filename}")
+
+    caption = (
+        f"⚖️ <b>Analiză confiscare/sechestru</b>\n"
+        f"📅 <b>{_day_ro(target_date)}</b>\n\n"
+        f"📊 Total hotărâri: <b>{len(decisions)}</b>\n"
+        f"🔴 Cu mențiuni confiscare/sechestru: <b>{n_match}</b>\n"
+        f"⚠️ PDF indisponibil: <b>{n_unavail}</b>"
+    )
+    await send_document(token, chat_id, excel_bytes, filename, caption)
+    logger.info("Excel trimis pe Telegram.")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())

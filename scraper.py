@@ -8,7 +8,7 @@ from playwright.async_api import async_playwright, TimeoutError as PlaywrightTim
 
 logger = logging.getLogger(__name__)
 
-BASE_URL = "https://instante.justice.md/ro/hotarirle-instantei"
+BASE_URL = "https://instante.justice.md/ro/hotaririle-instantei"
 
 # Allow overriding the Chromium binary via env var (useful in constrained envs)
 CHROMIUM_EXECUTABLE = os.getenv(
@@ -25,8 +25,8 @@ USER_AGENT = (
 
 # Tipul_dosarului=3 = Penal (from URL params observed on site)
 TIPUL_PENAL = "3"
-# Rows per page — try to set to 100 to minimize page loads
-ROWS_PER_PAGE = 100
+# Rows per page passed as Drupal URL param (items_per_page)
+ROWS_PER_PAGE = 50
 
 # Exact column order as shown in the table (0-indexed)
 COLUMNS = [
@@ -47,18 +47,18 @@ async def scrape_decisions(target_date: date | None = None) -> list[dict]:
     if target_date is None:
         target_date = date.today() - timedelta(days=1)
 
-    date_str = target_date.strftime("%d.%m.%Y")
+    date_str = target_date.strftime("%Y-%m-%d")
     logger.info(f"Scraping penal decisions for date: {date_str}")
 
-    params = {
+    base_params = {
         "Instance": "All",
         "Numarul_dosarului": "",
         "Denumirea_dosarului": "",
         "date": date_str,
         "Tematica_dosarului": "",
         "Tipul_dosarului": TIPUL_PENAL,
+        "items_per_page": ROWS_PER_PAGE,
     }
-    url = f"{BASE_URL}?{urlencode(params)}"
     decisions = []
 
     async with async_playwright() as p:
@@ -77,24 +77,29 @@ async def scrape_decisions(target_date: date | None = None) -> list[dict]:
         page.set_default_timeout(30_000)
 
         try:
-            logger.info(f"Loading: {url}")
-            await page.goto(url, wait_until="domcontentloaded")
+            # Step 1 — load base search URL to initialize session/cookies
+            base_url = f"{BASE_URL}?{urlencode({k: v for k, v in base_params.items() if k != 'items_per_page'})}"
+            logger.info(f"Loading base search: {base_url}")
+            await page.goto(base_url, wait_until="domcontentloaded")
             await page.wait_for_load_state("networkidle")
 
-            # Increase rows per page to speed up scraping
-            await _set_rows_per_page(page, ROWS_PER_PAGE)
-
-            # Scrape all pages
-            page_num = 1
+            # Step 2 — navigate page by page with items_per_page=50
+            drupal_page = 0
             while True:
-                logger.info(f"Extracting page {page_num}")
+                params = {**base_params, "page": drupal_page}
+                url = f"{BASE_URL}?{urlencode(params)}"
+                logger.info(f"Loading page {drupal_page + 1}: {url}")
+                await page.goto(url, wait_until="domcontentloaded")
+                await page.wait_for_load_state("networkidle")
                 await page.wait_for_selector("table tbody tr", timeout=15_000)
                 rows = await _extract_rows(page)
-                decisions.extend(rows)
-                logger.info(f"  → {len(rows)} rows (total so far: {len(decisions)})")
-                if not await _go_next_page(page):
+                logger.info(f"  → {len(rows)} rows (total so far: {len(decisions) + len(rows)})")
+                if not rows:
                     break
-                page_num += 1
+                decisions.extend(rows)
+                if len(rows) < ROWS_PER_PAGE:
+                    break  # last page
+                drupal_page += 1
 
         except PlaywrightTimeout as exc:
             logger.error(f"Timeout: {exc}")
@@ -111,19 +116,42 @@ async def scrape_decisions(target_date: date | None = None) -> list[dict]:
 
 async def _set_rows_per_page(page, count: int) -> None:
     try:
-        # The "Afișări pe pagină" select
         select = await page.query_selector("select")
-        if select:
-            options = await select.query_selector_all("option")
-            best = None
-            for opt in options:
-                val = await opt.get_attribute("value") or ""
-                if val.isdigit() and int(val) <= count:
-                    best = val
-            if best:
-                await select.select_option(value=best)
-                await page.wait_for_load_state("networkidle")
-                logger.info(f"Set rows per page: {best}")
+        if not select:
+            logger.warning("No select element found for rows per page")
+            return
+
+        options = await select.query_selector_all("option")
+        best = None
+        best_val = 0
+        for opt in options:
+            val = await opt.get_attribute("value") or ""
+            if val.isdigit() and int(val) > best_val:
+                best = val
+                best_val = int(val)
+
+        if not best:
+            logger.warning("No numeric options found in select")
+            return
+
+        # Force element visible so Playwright can interact with it
+        await page.evaluate(
+            "(el) => el.style.cssText = 'display:block !important; visibility:visible !important; opacity:1 !important;'",
+            select,
+        )
+        await select.select_option(value=best)
+        # Trigger change events so the site reacts
+        await page.evaluate("""
+            (el) => {
+                ['change', 'input'].forEach(evt =>
+                    el.dispatchEvent(new Event(evt, {bubbles: true}))
+                );
+            }
+        """, select)
+        await page.wait_for_load_state("networkidle")
+        # Verify how many rows are now visible
+        row_count = await page.evaluate("() => document.querySelectorAll('table tbody tr').length")
+        logger.info(f"Set rows per page: {best} (table now shows {row_count} rows)")
     except Exception as exc:
         logger.warning(f"Could not set rows per page: {exc}")
 
@@ -147,7 +175,7 @@ async def _extract_rows(page) -> list[dict]:
                 if a:
                     href = await a.get_attribute("href") or ""
                     if href:
-                        pdf_url = href if href.startswith("http") else f"https://instante.justice.md{href}"
+                        pdf_url = href if href.startswith("http") else f"https://instante.justice.md/{href.lstrip('/')}"
 
         row: dict = {}
         for i, col in enumerate(COLUMNS):
@@ -163,12 +191,34 @@ async def _extract_rows(page) -> list[dict]:
 
 
 async def _go_next_page(page) -> bool:
-    # The ">" (next) button in pagination
+    # Debug: find all numeric links (page numbers) and their container
+    try:
+        pag_debug = await page.evaluate("""
+            () => {
+                const links = Array.from(document.querySelectorAll('a')).filter(a => {
+                    const t = a.innerText.trim();
+                    return /^\\d+$/.test(t) || ['>', '>>', '›', '»', 'next', 'Next'].includes(t);
+                });
+                if (!links.length) return 'no page links found';
+                const parent = links[0].closest('ul, ol, div, nav');
+                return parent
+                    ? 'parent class=' + parent.className + ' html=' + parent.outerHTML.substring(0, 400)
+                    : 'no parent: ' + links[0].outerHTML;
+            }
+        """)
+        logger.info(f"Pagination debug: {pag_debug[:500]}")
+    except Exception:
+        pass
+
+    # Try standard CSS selectors
     for selector in [
         "li.next:not(.disabled) a",
         "a[aria-label='Next']",
         ".pagination a:has-text('›')",
         ".pagination a:has-text('>')",
+        ".pagination a:has-text('>>')",
+        ".pagination a:has-text('»')",
+        "li:not(.disabled) > a[rel='next']",
     ]:
         btn = await page.query_selector(selector)
         if btn:
@@ -182,7 +232,29 @@ async def _go_next_page(page) -> bool:
             await page.wait_for_load_state("networkidle")
             return True
 
-    # Fallback: look for the active page number and try clicking next number
+    # JavaScript fallback — find active page li and click the next sibling's link
+    clicked = await page.evaluate("""
+        () => {
+            const pagers = document.querySelectorAll('.pagination, [class*="pagination"], nav ul');
+            for (const pager of pagers) {
+                const active = pager.querySelector('.active, [class*="active"]');
+                if (!active) continue;
+                let next = active.nextElementSibling;
+                while (next) {
+                    if (next.classList.contains('disabled')) return false;
+                    const link = next.querySelector('a');
+                    if (link) { link.click(); return true; }
+                    next = next.nextElementSibling;
+                }
+            }
+            return false;
+        }
+    """)
+    if clicked:
+        await page.wait_for_load_state("networkidle")
+        return True
+
+    # Last resort — click the next page number directly
     try:
         active = await page.query_selector(".pagination .active a, .pagination .active span")
         if active:
