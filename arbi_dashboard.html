@@ -376,6 +376,40 @@ tbody td {
 }
 .buget-warning.visible { display: block; }
 
+/* FILE CHIPS (topbar) */
+.file-chips { display:flex; gap:0.3rem; flex-wrap:wrap; align-items:center; flex:1; overflow:hidden; min-width:0; }
+.file-chip { display:inline-flex; align-items:center; gap:0.3rem; background:var(--bg3); border:1px solid var(--border); border-radius:12px; padding:0.15rem 0.5rem; font-size:0.73rem; color:var(--text2); white-space:nowrap; max-width:180px; }
+.file-chip-name { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.file-chip-cnt { color:var(--accent); font-weight:700; flex-shrink:0; }
+.file-chip-x { background:none; border:none; color:var(--text2); cursor:pointer; font-size:0.82rem; padding:0; line-height:1; flex-shrink:0; }
+.file-chip-x:hover { color:var(--red); }
+
+/* TRASEU / ANOMALIE */
+.kpi-card-traseu   { border-color: var(--red) !important; }
+.kpi-card-traseu   .kpi-value { color: var(--red); }
+.kpi-card-anomalie { border-color: var(--orange) !important; }
+.kpi-card-anomalie .kpi-value { color: var(--orange); }
+
+/* SCHEMA RELAȚIONALĂ */
+.schema-toolbar { display:flex; align-items:center; gap:0.6rem; margin-bottom:0.8rem; flex-wrap:wrap; }
+.schema-node { border:1px solid var(--border); border-radius:6px; margin-bottom:0.3rem; }
+.schema-l1 { background:var(--bg2); }
+.schema-l2 { background:var(--bg3); margin:0.25rem 0.5rem 0.25rem 1.1rem; }
+.schema-summary { display:flex; align-items:center; gap:0.55rem; padding:0.45rem 0.7rem; cursor:pointer; list-style:none; user-select:none; }
+.schema-summary::-webkit-details-marker { display:none; }
+.schema-summary::before { content:'▶'; font-size:0.6rem; color:var(--text2); transition:transform 0.15s; flex-shrink:0; }
+details[open] > .schema-summary::before { transform:rotate(90deg); }
+.schema-key { font-weight:700; color:var(--text); font-size:0.85rem; }
+.schema-cnt { font-size:0.73rem; color:var(--text2); }
+.schema-spacer { flex:1; }
+.traseu-badge   { font-size:0.67rem; background:rgba(248,81,73,0.12);  color:var(--red);    border:1px solid rgba(248,81,73,0.3);  border-radius:10px; padding:0.1rem 0.4rem; white-space:nowrap; }
+.anomalie-badge { font-size:0.67rem; background:rgba(210,153,34,0.12); color:var(--orange); border:1px solid rgba(210,153,34,0.3); border-radius:10px; padding:0.1rem 0.4rem; white-space:nowrap; }
+.schema-children { padding:0.1rem 0.4rem 0.4rem; }
+.schema-table { width:100%; font-size:0.75rem; border-collapse:collapse; margin:0.2rem 0 0 1.2rem; }
+.schema-table td { padding:0.22rem 0.5rem; border-bottom:1px solid rgba(128,128,128,0.08); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:200px; }
+.schema-empty { color:var(--text2); font-size:0.82rem; padding:1rem; text-align:center; }
+.schema-warning { background:rgba(210,153,34,0.08); border:1px solid var(--orange); border-radius:6px; padding:0.45rem 0.75rem; font-size:0.78rem; color:var(--orange); margin-bottom:0.5rem; }
+
 /* SCROLLBAR */
 ::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
@@ -407,10 +441,10 @@ tbody td {
 <div id="app">
   <div class="topbar">
     <span class="topbar-logo">ARBI</span>
-    <span class="topbar-file" id="topbar-filename"></span>
-    <span class="topbar-spacer"></span>
+    <div class="file-chips" id="file-chips"></div>
+    <button class="btn-topbar" onclick="addAnotherFile()" id="btn-add-file" style="display:none">+ Fișier</button>
     <button class="btn-topbar" id="theme-btn" onclick="toggleTheme()" title="Schimbă tema">🌙</button>
-    <button class="btn-topbar" onclick="reloadFile()">↺ Alt fișier</button>
+    <button class="btn-topbar" onclick="reloadFile()">↺ Șterge tot</button>
   </div>
 
   <div class="navtabs">
@@ -423,6 +457,7 @@ tbody td {
     <div class="navtab" data-tab="conturi" onclick="switchTab(this)">Conturi</div>
     <div class="navtab" data-tab="altele" onclick="switchTab(this)">Altele</div>
     <div class="navtab" data-tab="buget" onclick="switchTab(this)">Încasat la buget</div>
+    <div class="navtab" data-tab="schema" onclick="switchTab(this)">Schemă relațională</div>
   </div>
 
   <div class="main-body">
@@ -537,6 +572,19 @@ tbody td {
           <option value="da">Da</option>
           <option value="nu">Nu</option>
         </select>
+      </div>
+
+      <!-- TRASEU BUN -->
+      <div class="filter-group">
+        <div class="filter-label">Traseu bun</div>
+        <label class="mdi-item">
+          <input type="checkbox" id="filter-traseu">
+          <span>⚡ Sechestru → Confiscare</span>
+        </label>
+        <label class="mdi-item">
+          <input type="checkbox" id="filter-anomalie">
+          <span style="color:var(--orange)">⚠ Anomalie ID diferit</span>
+        </label>
       </div>
 
       <!-- CAUZA PENALĂ -->
@@ -711,6 +759,20 @@ tbody td {
         <div class="kpi-grid" id="kpi-buget"></div>
         <div class="table-wrap"><table><thead id="thead-buget"></thead><tbody id="tbody-buget"></tbody></table></div>
       </div>
+
+      <!-- SCHEMĂ RELAȚIONALĂ TAB -->
+      <div class="tab-panel" id="tab-schema">
+        <div class="schema-toolbar">
+          <span class="chart-toolbar-label">Grupare după:</span>
+          <div class="btn-group">
+            <button class="btn-group-btn active" id="schema-by-cauza" onclick="setSchemaMode('cauza')">Cauza penală</button>
+            <button class="btn-group-btn" id="schema-by-persoana" onclick="setSchemaMode('persoana')">Persoană</button>
+            <button class="btn-group-btn" id="schema-by-bun" onclick="setSchemaMode('bun')">ID Bun</button>
+          </div>
+          <input type="text" class="filter-input" id="schema-search" placeholder="Filtrează..." style="width:200px;margin-left:0.4rem" oninput="renderSchemaTab()">
+        </div>
+        <div id="schema-tree"></div>
+      </div>
     </div>
   </div>
 </div>
@@ -730,10 +792,14 @@ let ALL_DATA = [];
 let FILTERED_DATA = [];
 let TOTAL_DATA = [];
 let TOTAL_HEADERS = [];
+let FILES_LOADED = [];       // [{name, count}]
+let TRASEU_BUNURI = new Set();   // ID Bun cu sechestru+confiscare (Caz A)
+let ANOMALII_CAUZE = new Set();  // Cauze penale cu ID diferit la confiscare (Caz B)
 let currentFile = null;
 let charts = {};
 let chartMode = 'count';    // 'count' | 'value'
 let chartTimeGroup = 'month'; // 'month' | 'year'
+let schemaMode = 'cauza';   // 'cauza' | 'persoana' | 'bun'
 
 let tableState = { sortCol: null, sortDir: 'asc', page: 1, pageSize: 50, search: '' };
 let catStates = {};
@@ -826,9 +892,41 @@ dropZone.addEventListener('drop', e => {
 fileInput.addEventListener('change', e => { if (e.target.files[0]) loadFile(e.target.files[0]); });
 
 function reloadFile() {
+  ALL_DATA = []; FILTERED_DATA = []; TOTAL_DATA = []; TOTAL_HEADERS = [];
+  FILES_LOADED = []; TRASEU_BUNURI = new Set(); ANOMALII_CAUZE = new Set();
+  fileInput.value = '';
   document.getElementById('upload-screen').style.display = 'flex';
   document.getElementById('app').style.display = 'none';
-  fileInput.value = '';
+  document.getElementById('btn-add-file').style.display = 'none';
+  document.getElementById('file-chips').innerHTML = '';
+  document.getElementById('upload-progress').textContent = '';
+}
+
+function addAnotherFile() {
+  fileInput.click();
+}
+
+function removeFile(name) {
+  ALL_DATA = ALL_DATA.filter(r => r['_fila'] !== name);
+  FILES_LOADED = FILES_LOADED.filter(f => f.name !== name);
+  if (!FILES_LOADED.length) { reloadFile(); return; }
+  TRASEU_BUNURI = new Set(); ANOMALII_CAUZE = new Set();
+  computeTraseeBunuri();
+  renderFileChips();
+  initDropdowns();
+  applyFilters();
+}
+
+function renderFileChips() {
+  const el = document.getElementById('file-chips');
+  el.innerHTML = FILES_LOADED.map(f =>
+    `<span class="file-chip">
+      <span class="file-chip-name" title="${escHtml(f.name)}">${escHtml(f.name)}</span>
+      <span class="file-chip-cnt">${f.count.toLocaleString('ro')}</span>
+      <button class="file-chip-x" onclick="removeFile('${escHtml(f.name).replace(/'/g,"\\'")}')">×</button>
+    </span>`
+  ).join('');
+  document.getElementById('btn-add-file').style.display = FILES_LOADED.length ? '' : 'none';
 }
 
 function loadFile(file) {
@@ -837,16 +935,25 @@ function loadFile(file) {
     prog.textContent = 'Eroare: biblioteca SheetJS nu s-a încărcat. Verificați conexiunea la internet.';
     return;
   }
-  prog.textContent = 'Se procesează fișierul...';
+  if (FILES_LOADED.some(f => f.name === file.name)) {
+    prog.textContent = `Fișierul „${file.name}" este deja încărcat.`;
+    return;
+  }
+  prog.textContent = `Se procesează „${file.name}"...`;
   const reader = new FileReader();
   reader.onload = e => {
     try {
       const wb = XLSX.read(e.target.result, { type: 'array', cellDates: true });
-      parseWorkbook(wb);
-      document.getElementById('topbar-filename').textContent = file.name;
+      const prevLen = ALL_DATA.length;
+      parseWorkbook(wb, file.name);
+      const added = ALL_DATA.length - prevLen;
+      FILES_LOADED.push({ name: file.name, count: added });
+      computeTraseeBunuri();
+      renderFileChips();
       document.getElementById('upload-screen').style.display = 'none';
       document.getElementById('app').style.display = 'flex';
       prog.textContent = '';
+      fileInput.value = '';
     } catch(err) {
       prog.textContent = 'Eroare: ' + err.message;
     }
@@ -889,8 +996,7 @@ function parseTotalSheet(wb) {
   }
 }
 
-function parseWorkbook(wb) {
-  ALL_DATA = [];
+function parseWorkbook(wb, fileName) {
   SHEET_DEFS.forEach(def => {
     const ws = wb.Sheets[def.name];
     if (!ws) return;
@@ -912,7 +1018,7 @@ function parseWorkbook(wb) {
     for (let i = dataStartRow; i < rows.length; i++) {
       const row = rows[i];
       if (!row || row.every(v => v === null || v === '')) continue;
-      const rec = { Categorie: def.label };
+      const rec = { Categorie: def.label, _fila: fileName || '' };
       headerRow.forEach((h, idx) => {
         if (h) {
           const v = row[idx];
@@ -925,6 +1031,43 @@ function parseWorkbook(wb) {
   parseTotalSheet(wb);
   initDropdowns();
   applyFilters();
+}
+
+// ============================================================
+// TRASEU BUNURI — SECHESTRU → CONFISCARE
+// ============================================================
+function isSechestru(sol) {
+  const s = (sol || '').toLowerCase();
+  return s.includes('sechestru') || s.includes('inghetar') || s.includes('autorizare');
+}
+
+function computeTraseeBunuri() {
+  // Caz A: același ID Bun apare cu sechestru ȘI confiscare
+  const byBun = {};
+  ALL_DATA.forEach(r => {
+    const id = r['ID Bun']; if (!id) return;
+    if (!byBun[id]) byBun[id] = { sechestru: false, confiscare: false };
+    if (isSechestru(r['Solutia adoptata'])) byBun[id].sechestru = true;
+    if (r['Solutia adoptata'] === 'Confiscare') byBun[id].confiscare = true;
+  });
+  TRASEU_BUNURI = new Set(
+    Object.entries(byBun).filter(([, v]) => v.sechestru && v.confiscare).map(([id]) => id)
+  );
+
+  // Caz B: aceeași Cauza penala, ID-uri diferite la sechestru vs confiscare
+  const byCauza = {};
+  ALL_DATA.forEach(r => {
+    const c = r['Cauza penala']; if (!c) return;
+    if (!byCauza[c]) byCauza[c] = { sechestreBunuri: new Set(), confiscareBunuri: new Set() };
+    if (isSechestru(r['Solutia adoptata'])) byCauza[c].sechestreBunuri.add(r['ID Bun']);
+    if (r['Solutia adoptata'] === 'Confiscare') byCauza[c].confiscareBunuri.add(r['ID Bun']);
+  });
+  ANOMALII_CAUZE = new Set();
+  Object.entries(byCauza).forEach(([cauza, sets]) => {
+    if (!sets.sechestreBunuri.size || !sets.confiscareBunuri.size) return;
+    const idComun = [...sets.sechestreBunuri].some(id => sets.confiscareBunuri.has(id));
+    if (!idComun) ANOMALII_CAUZE.add(cauza);
+  });
 }
 
 // ============================================================
@@ -1122,6 +1265,8 @@ function initFilterListeners() {
     document.getElementById(id).addEventListener('input', applyFilters);
   });
   document.getElementById('filter-buget-sf').addEventListener('change', applyFilters);
+  document.getElementById('filter-traseu').addEventListener('change', applyFilters);
+  document.getElementById('filter-anomalie').addEventListener('change', applyFilters);
   // Store placeholders for AMD inputs so amdUpdateTags can restore them
   ['amd-inp-cauza','amd-inp-idnp','amd-inp-nume'].forEach(id => {
     const el = document.getElementById(id);
@@ -1148,6 +1293,8 @@ function getActiveFilters() {
     monede:   getDropValues('f-mon'),
     posesii:  getDropValues('f-pos'),
     bugetSF:  document.getElementById('filter-buget-sf').checked,
+    traseu:   document.getElementById('filter-traseu').checked,
+    anomalie: document.getElementById('filter-anomalie').checked,
     corp:     document.getElementById('filter-corp').value,
     cauza:    amdVal('amd-cauza'),
     idnp:     amdVal('amd-idnp'),
@@ -1160,7 +1307,9 @@ function getActiveFilters() {
 function applyFilters() {
   const f = getActiveFilters();
   FILTERED_DATA = ALL_DATA.filter(r => {
-    if (f.bugetSF && (r['Tip document']||'').trim() !== 'Serviciul Fiscal') return false;
+    if (f.bugetSF   && (r['Tip document']||'').trim() !== 'Serviciul Fiscal') return false;
+    if (f.traseu    && !TRASEU_BUNURI.has(r['ID Bun']))       return false;
+    if (f.anomalie  && !ANOMALII_CAUZE.has(r['Cauza penala'])) return false;
     if (f.solutii.length  && !f.solutii.includes(r['Solutia adoptata']))  return false;
     if (f.tipuri.length   && !f.tipuri.includes(r['Tip bun']))             return false;
     if (f.organe.length   && !f.organe.includes(r['Organ emitent']))       return false;
@@ -1208,12 +1357,17 @@ function applyFilters() {
   updateDashboard();
   renderTable();
   renderCategoryTabs();
+  // Actualizează schema dacă e tab-ul activ
+  const activeTab = document.querySelector('.navtab.active');
+  if (activeTab && activeTab.dataset.tab === 'schema') renderSchemaTab();
 }
 
 function resetFilters() {
   Object.keys(DROP_DEFS).forEach(id => clearDrop(id));
   Object.keys(AMD_DEFS).forEach(id => amdClear(id));
-  document.getElementById('filter-buget-sf').checked = false;
+  document.getElementById('filter-buget-sf').checked  = false;
+  document.getElementById('filter-traseu').checked    = false;
+  document.getElementById('filter-anomalie').checked  = false;
   ['filter-corp','filter-date-from','filter-date-to'].forEach(id => document.getElementById(id).value = '');
   document.querySelectorAll('.btn-period').forEach(b => b.classList.remove('active'));
   document.querySelector('.btn-period:last-child').classList.add('active');
@@ -1282,6 +1436,16 @@ function updateDashboard() {
     <div class="kpi-card">
       <div class="kpi-label">Persoane / Entități</div>
       <div class="kpi-value">${persoaneUnice.toLocaleString('ro')}</div>
+    </div>
+    <div class="kpi-card kpi-card-traseu">
+      <div class="kpi-label">Sechestru → Confiscare</div>
+      <div class="kpi-value">${TRASEU_BUNURI.size.toLocaleString('ro')}</div>
+      <div class="kpi-sub">bunuri cu traseu (ID comun)</div>
+    </div>
+    <div class="kpi-card kpi-card-anomalie">
+      <div class="kpi-label">Anomalii ID Bun</div>
+      <div class="kpi-value">${ANOMALII_CAUZE.size.toLocaleString('ro')}</div>
+      <div class="kpi-sub">cauze cu ID diferit la confiscare</div>
     </div>`;
 
   renderCharts(data);
@@ -1716,7 +1880,8 @@ function switchTab(el) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   el.classList.add('active');
   document.getElementById('tab-' + el.dataset.tab).classList.add('active');
-  if (el.dataset.tab === 'buget') renderBugetTab();
+  if (el.dataset.tab === 'buget')   renderBugetTab();
+  if (el.dataset.tab === 'schema') renderSchemaTab();
 }
 
 function renderBugetTab() {
@@ -1754,6 +1919,151 @@ function renderBugetTab() {
   tbodyEl.innerHTML = TOTAL_DATA.map(r =>
     '<tr>' + cols.map(c => `<td title="${escHtml(String(r[c]||''))}">${escHtml(String(r[c]||''))}</td>`).join('') + '</tr>'
   ).join('');
+}
+
+// ============================================================
+// SCHEMA RELAȚIONALĂ
+// ============================================================
+function setSchemaMode(mode) {
+  schemaMode = mode;
+  ['cauza','persoana','bun'].forEach(m =>
+    document.getElementById('schema-by-'+m).classList.toggle('active', m === mode)
+  );
+  renderSchemaTab();
+}
+
+function renderSchemaTab() {
+  const treeEl = document.getElementById('schema-tree');
+  if (!treeEl) return;
+  const q = ((document.getElementById('schema-search') || {}).value || '').toLowerCase();
+  const data = FILTERED_DATA;
+
+  if (!data.length) {
+    treeEl.innerHTML = '<div class="schema-empty">Nu există date. Încărcați un fișier Excel.</div>';
+    return;
+  }
+
+  // Construiește ierarhia după mod
+  const hierarchy = {};
+
+  if (schemaMode === 'cauza') {
+    data.forEach(r => {
+      const l1 = r['Cauza penala'] || '(necunoscut)';
+      const l2 = [r['IDNP/IDNO'], r['Nume/Denumire'], r['Nume proprietar'], r['Prenume proprietar']].filter(Boolean).join(' · ') || '(persoană necunoscută)';
+      if (!hierarchy[l1]) hierarchy[l1] = {};
+      if (!hierarchy[l1][l2]) hierarchy[l1][l2] = [];
+      hierarchy[l1][l2].push(r);
+    });
+  } else if (schemaMode === 'persoana') {
+    data.forEach(r => {
+      const idnp  = r['IDNP/IDNO'] || '';
+      const numeParts = [r['Nume proprietar'], r['Prenume proprietar'], r['Nume/Denumire']].filter(Boolean);
+      const l1 = (idnp ? idnp + ' — ' : '') + (numeParts.join(' ') || '(persoană necunoscută)');
+      const l2 = r['Cauza penala'] || '(necunoscut)';
+      if (!hierarchy[l1]) hierarchy[l1] = {};
+      if (!hierarchy[l1][l2]) hierarchy[l1][l2] = [];
+      hierarchy[l1][l2].push(r);
+    });
+  } else { // bun
+    data.forEach(r => {
+      const id   = r['ID Bun'] || '(fără ID)';
+      const tip  = r['Tip bun'] ? ` [${r['Tip bun']}]` : '';
+      const l1   = id + tip;
+      const l2   = r['Cauza penala'] || '(necunoscut)';
+      if (!hierarchy[l1]) hierarchy[l1] = {};
+      if (!hierarchy[l1][l2]) hierarchy[l1][l2] = [];
+      hierarchy[l1][l2].push(r);
+    });
+  }
+
+  // Filtrare după query
+  let keys1 = Object.keys(hierarchy);
+  if (q) keys1 = keys1.filter(k => k.toLowerCase().includes(q) ||
+    Object.keys(hierarchy[k]).some(k2 => k2.toLowerCase().includes(q)));
+
+  keys1.sort();
+
+  const MAX_L1 = 300;
+  let html = '';
+  if (keys1.length > MAX_L1) {
+    html += `<div class="schema-warning">⚠ Sunt ${keys1.length.toLocaleString('ro')} noduri — se afișează primele ${MAX_L1}. Folosiți filtrele sau câmpul de căutare pentru a restrânge rezultatele.</div>`;
+    keys1 = keys1.slice(0, MAX_L1);
+  }
+
+  keys1.forEach(l1key => {
+    const l2Map = hierarchy[l1key];
+    const allRows = Object.values(l2Map).flat();
+
+    // Badge traseu / anomalie
+    const hasTraseu   = allRows.some(r => TRASEU_BUNURI.has(r['ID Bun']));
+    const hasAnomalie = allRows.some(r => ANOMALII_CAUZE.has(r['Cauza penala']));
+
+    // Statistici L1
+    const nrBunuri  = new Set(allRows.map(r => r['ID Bun']).filter(Boolean)).size;
+    const nrPers    = new Set(allRows.map(r => r['IDNP/IDNO']).filter(Boolean)).size;
+    const nrCauze   = new Set(allRows.map(r => r['Cauza penala']).filter(Boolean)).size;
+    let cntText = '';
+    if (schemaMode === 'cauza')    cntText = `${Object.keys(l2Map).length} pers. · ${nrBunuri} bunuri`;
+    if (schemaMode === 'persoana') cntText = `${nrCauze} cauze · ${nrBunuri} bunuri`;
+    if (schemaMode === 'bun')      cntText = `${nrCauze} cauze · ${nrPers} pers.`;
+
+    html += `<details class="schema-node schema-l1">
+      <summary class="schema-summary">
+        <span class="schema-key">${escHtml(l1key)}</span>
+        <span class="schema-cnt">${cntText}</span>
+        <span class="schema-spacer"></span>
+        ${hasTraseu   ? '<span class="traseu-badge">⚡ Sechestru→Confiscare</span>' : ''}
+        ${hasAnomalie ? '<span class="anomalie-badge">⚠ Anomalie ID</span>' : ''}
+      </summary>
+      <div class="schema-children">`;
+
+    Object.keys(l2Map).sort().forEach(l2key => {
+      const rows = l2Map[l2key];
+      const hasTraseuL2   = rows.some(r => TRASEU_BUNURI.has(r['ID Bun']));
+      const hasAnomalieL2 = rows.some(r => ANOMALII_CAUZE.has(r['Cauza penala']));
+
+      html += `<details class="schema-node schema-l2">
+        <summary class="schema-summary">
+          <span class="schema-key" style="font-size:0.8rem">${escHtml(l2key)}</span>
+          <span class="schema-cnt">${rows.length} doc.</span>
+          <span class="schema-spacer"></span>
+          ${hasTraseuL2   ? '<span class="traseu-badge">⚡</span>' : ''}
+          ${hasAnomalieL2 ? '<span class="anomalie-badge">⚠</span>' : ''}
+        </summary>
+        <div class="schema-children">
+          <table class="schema-table">
+            <thead><tr>
+              <th style="font-size:0.68rem;color:var(--text2);font-weight:700;padding:0.2rem 0.5rem;border-bottom:1px solid var(--border)">ID Bun</th>
+              <th style="font-size:0.68rem;color:var(--text2);font-weight:700;padding:0.2rem 0.5rem;border-bottom:1px solid var(--border)">Tip bun</th>
+              <th style="font-size:0.68rem;color:var(--text2);font-weight:700;padding:0.2rem 0.5rem;border-bottom:1px solid var(--border)">Data doc.</th>
+              <th style="font-size:0.68rem;color:var(--text2);font-weight:700;padding:0.2rem 0.5rem;border-bottom:1px solid var(--border)">Soluția adoptată</th>
+              <th style="font-size:0.68rem;color:var(--text2);font-weight:700;padding:0.2rem 0.5rem;border-bottom:1px solid var(--border)">Suma MDL</th>
+            </tr></thead>
+            <tbody>`;
+
+      rows.forEach(r => {
+        const sol   = r['Solutia adoptata'] || '';
+        const color = SOL_COLORS[sol] || '#777';
+        const idBun = r['ID Bun'] || '';
+        const mark  = TRASEU_BUNURI.has(idBun) ? ' style="background:rgba(248,81,73,0.06)"' : '';
+        html += `<tr${mark}>
+          <td>${escHtml(idBun)}</td>
+          <td>${escHtml(r['Tip bun'] || '')}</td>
+          <td>${escHtml(r['Data doc.'] || '')}</td>
+          <td><span class="sol-chip" style="font-size:0.65rem;background:${color}22;color:${color};border:1px solid ${color}44">${escHtml(sol)}</span></td>
+          <td>${escHtml(r['Suma sechestru'] || '')}</td>
+        </tr>`;
+      });
+
+      html += `</tbody></table>
+        </div>
+      </details>`;
+    });
+
+    html += `</div></details>`;
+  });
+
+  treeEl.innerHTML = html || '<div class="schema-empty">Nicio potrivire pentru filtrul aplicat.</div>';
 }
 
 // ============================================================
