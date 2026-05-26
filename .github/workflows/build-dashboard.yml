@@ -1,0 +1,50 @@
+name: Build Dashboard Operațional
+
+on:
+  schedule:
+    - cron: '0 6 * * *'   # 09:00 EEST (UTC+3, vara Moldova) — după toate rapoartele
+  workflow_dispatch: {}     # rulare manuală
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-dashboard
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Generare dashboard unificat
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Build dashboard
+        run: python workspace/build_dashboard.py
+
+      - name: Commit dashboard
+        run: |
+          git config user.name  "ARBI Dashboard Bot"
+          git config user.email "arbi-dashboard@noreply.github.com"
+          git add dashboard/
+          if git diff --cached --quiet; then
+            echo "No dashboard changes to commit."
+          else
+            git commit -m "📊 Dashboard actualizat $(date -u '+%Y-%m-%d %H:%M UTC')"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi

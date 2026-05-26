@@ -1,0 +1,69 @@
+{
+  "meta": {
+    "versiune": "1.0",
+    "agentie": "ARBI — Agenția de Recuperare a Bunurilor Infracționale",
+    "ultima_actualizare": "2026-05-26"
+  },
+  "dosare": [
+    {
+      "id": "D0001",
+      "nr_dosar": "123/2025",
+      "titlu": "Ionescu Alexandru — fraudă bancară",
+      "tip": "confiscare",
+      "stadiu": "activ",
+      "valoare_ron": 1250000.0,
+      "instanta": "Judecătoria Chișinău",
+      "judecator": "Popescu Maria",
+      "data_deschidere": "2026-05-26",
+      "termen_urm": "2026-06-15",
+      "note": "Dosar cu sechestru aplicat pe 3 imobile și 2 conturi bancare",
+      "creat_la": "2026-05-26T10:37:03"
+    },
+    {
+      "id": "D0002",
+      "nr_dosar": "87/2024",
+      "titlu": "SRL Construct-Plus — spălare bani",
+      "tip": "recuperare_creanta",
+      "stadiu": "executare",
+      "valoare_ron": 3800000.0,
+      "instanta": "Curtea de Apel Chișinău",
+      "judecator": "",
+      "data_deschidere": "2026-05-26",
+      "termen_urm": "2026-05-30",
+      "note": "",
+      "creat_la": "2026-05-26T10:37:11"
+    }
+  ],
+  "sarcini": [
+    {
+      "id": "T0001",
+      "dosar_id": "D0001",
+      "descriere": "Notificare bancă pentru blocare conturi — dosar D0001",
+      "responsabil": "Inspector Radu M.",
+      "prioritate": "inalta",
+      "termen": "2026-05-28",
+      "status": "deschis",
+      "creat_la": "2026-05-26T10:37:11"
+    },
+    {
+      "id": "T0002",
+      "dosar_id": "D0002",
+      "descriere": "Pregătire dosar executare silită D0002",
+      "responsabil": "",
+      "prioritate": "inalta",
+      "termen": "2026-05-29",
+      "status": "deschis",
+      "creat_la": "2026-05-26T10:37:11"
+    },
+    {
+      "id": "T0003",
+      "dosar_id": "",
+      "descriere": "Raport lunar activitate — transmis conducerii",
+      "responsabil": "Secretariat",
+      "prioritate": "medie",
+      "termen": "2026-05-31",
+      "status": "deschis",
+      "creat_la": "2026-05-26T10:37:11"
+    }
+  ]
+}
