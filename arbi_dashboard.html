@@ -817,10 +817,12 @@ details[open] > .schema-summary::before { transform:rotate(90deg); }
         <div id="schema-graph-meta" style="display:none">
           <div class="schema-legend">
             <span class="legend-item"><span class="legend-dot" style="background:var(--accent)"></span>Cauza penală</span>
-            <span class="legend-item"><span class="legend-dot" style="background:var(--green)"></span>Persoană / Entitate</span>
-            <span class="legend-item"><span class="legend-dot" style="background:var(--text2)"></span>ID Bun</span>
-            <span class="legend-item"><span class="legend-dot" style="background:var(--red)"></span>Bun ⚡ sechestru→confiscare</span>
-            <span class="legend-item"><span class="legend-dot" style="background:var(--orange)"></span>Bun ⚠ anomalie ID</span>
+            <span class="legend-item"><span class="legend-dot" style="background:var(--green)"></span>Persoană urmărită</span>
+            <span class="legend-item"><span class="legend-dot" style="background:var(--teal);outline:1px dashed var(--teal)"></span>Proprietar bun</span>
+            <span class="legend-item"><span class="legend-dot" style="background:#8b949e33;border:1px solid #8b949e"></span>Bun (tip → culoare)</span>
+            <span class="legend-item"><span class="legend-dot" style="background:var(--red)"></span>Bun ⚡ traseu</span>
+            <span class="legend-item"><span class="legend-dot" style="background:var(--orange)"></span>Bun ⚠ anomalie</span>
+            <span class="legend-item"><span class="legend-dot" style="background:var(--purple);clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%)"></span>Hotărâre (hexagon)</span>
           </div>
           <div class="schema-detail-panel" id="schema-detail-panel">
             <div style="color:var(--text2);font-size:0.78rem">Click pe un nod pentru a vedea detalii.</div>
@@ -875,6 +877,19 @@ const SOL_COLORS = {
   'Ridicare sechestru': '#1a7a6a',
   'Scoatere sechestru': '#935116',
   'Valorificare': '#1a8b3a'
+};
+const SOL_SHORT = {
+  'Aplicare sechestru': 'Sechestrat',
+  'Aplicare sechestru (etapa judecării)': 'Sechestrat (jud.)',
+  'Autorizare de sechestru': 'Autorizat',
+  'Confiscare': 'Confiscat',
+  'Inghetare': 'Înghețat',
+  'Mentinere': 'Menținut',
+  'Preluare in administrare': 'Preluat admin.',
+  'Respingere sechestru': 'Respins',
+  'Ridicare sechestru': 'Ridicat',
+  'Scoatere sechestru': 'Scos',
+  'Valorificare': 'Valorificat',
 };
 const TIP_BUN_COLORS = {
   'Mijloc de transport': '#58a6ff',
@@ -2178,9 +2193,12 @@ function getCyThemeColors() {
 }
 
 function renderSchemaGraph() {
-  const q    = ((document.getElementById('schema-search') || {}).value || '').toLowerCase();
-  const data = FILTERED_DATA;
+  const q        = ((document.getElementById('schema-search') || {}).value || '').toLowerCase();
+  const data     = FILTERED_DATA;
   const detPanel = document.getElementById('schema-detail-panel');
+
+  // Remove any old truncation warnings
+  document.querySelectorAll('.schema-cy-limit-warn').forEach(el => el.remove());
 
   if (!data.length) {
     if (cytInstance) { cytInstance.destroy(); cytInstance = null; }
@@ -2190,196 +2208,306 @@ function renderSchemaGraph() {
 
   const c = getCyThemeColors();
 
-  // Build elements — max 300 cauze, max 600 persoane, max 600 bunuri
-  const cauzaNodes   = new Map(); // cauza → {id, label, rows[]}
-  const persoanaNodes= new Map(); // idnp+name → {id, label, rows[]}
-  const bunNodes     = new Map(); // idBun → {id, label, rows[]}
-  const edges        = [];
+  // ── MAPS ──────────────────────────────────────────────────────
+  const cauzaMap    = new Map(); // cauza key → {id, label, rows[]}
+  const persoanaMap = new Map(); // person key → {id, label, idnp, name, isProp, rows[]}
+  const bunMap      = new Map(); // bun key → {id, label, tip, idBun, valoare, tipPosesie, rows[]}
+  const hotarareMap = new Map(); // hotarare key → {id, label, solutia, data, nr, organ, cauza, rows[]}
 
-  let cauzaCnt = 0, persCnt = 0, bunCnt = 0;
-  const MAX_CAUZE = 300, MAX_PERS = 600, MAX_BUN = 600;
+  let ci = 0, pi = 0, bi = 0, hi = 0;
+  const MAX_C = 200, MAX_P = 400, MAX_B = 400, MAX_H = 600;
 
   const filteredRows = q
-    ? data.filter(r => (r['Cauza penala']||'').toLowerCase().includes(q) ||
-                       (r['IDNP/IDNO']||'').toLowerCase().includes(q) ||
-                       (r['Nume/Denumire']||'').toLowerCase().includes(q) ||
-                       (r['Nume proprietar']||'').toLowerCase().includes(q) ||
-                       (r['ID Bun']||'').toLowerCase().includes(q))
+    ? data.filter(r =>
+        (r['Cauza penala']    || '').toLowerCase().includes(q) ||
+        (r['IDNP/IDNO']       || '').toLowerCase().includes(q) ||
+        (r['Nume/Denumire']   || '').toLowerCase().includes(q) ||
+        (r['Nume proprietar'] || '').toLowerCase().includes(q) ||
+        (r['Tip bun']         || '').toLowerCase().includes(q) ||
+        (r['Solutia adoptata']|| '').toLowerCase().includes(q) ||
+        (r['Nr. doc']         || '').toLowerCase().includes(q))
     : data;
 
   filteredRows.forEach(r => {
-    // Cauza node
+    // ── Cauza ──
     const cKey = r['Cauza penala'] || '(necunoscut)';
-    if (!cauzaNodes.has(cKey)) {
-      if (cauzaCnt >= MAX_CAUZE) return;
-      cauzaNodes.set(cKey, { id: 'c_'+cauzaCnt, label: cKey, rows: [], cauza: cKey });
-      cauzaCnt++;
+    if (!cauzaMap.has(cKey) && ci < MAX_C) {
+      cauzaMap.set(cKey, { id: 'c' + ci++, label: cKey, rows: [] });
     }
-    cauzaNodes.get(cKey).rows.push(r);
+    if (cauzaMap.has(cKey)) cauzaMap.get(cKey).rows.push(r);
 
-    // Persoana node
-    const idnp = r['IDNP/IDNO'] || '';
-    const name = [r['Nume proprietar'], r['Prenume proprietar'], r['Nume/Denumire']].filter(Boolean).join(' ');
-    const pKey = (idnp || name || '(necunoscut)');
-    if (!persoanaNodes.has(pKey)) {
-      if (persCnt >= MAX_PERS) return;
-      persoanaNodes.set(pKey, { id: 'p_'+persCnt, label: (name || idnp || '?').slice(0,22), idnp, name, rows: [] });
-      persCnt++;
+    // ── Persoana urmărită (IDNP/IDNO din cauza) ──
+    const idnp  = r['IDNP/IDNO'] || '';
+    const numeD = r['Nume/Denumire'] || '';
+    const pKey  = idnp || numeD;
+    if (pKey && !persoanaMap.has(pKey) && pi < MAX_P) {
+      persoanaMap.set(pKey, { id: 'p' + pi++, label: (numeD || idnp).slice(0, 22), idnp, name: numeD, isProp: false, rows: [] });
     }
-    persoanaNodes.get(pKey).rows.push(r);
+    if (pKey && persoanaMap.has(pKey)) persoanaMap.get(pKey).rows.push(r);
 
-    // ID Bun node
-    const bKey = r['ID Bun'] || '';
-    if (bKey && !bunNodes.has(bKey)) {
-      if (bunCnt >= MAX_BUN) return;
-      const tip = r['Tip bun'] || '';
-      bunNodes.set(bKey, { id: 'b_'+bunCnt, label: bKey + (tip ? '\n'+tip.slice(0,16) : ''), idBun: bKey, tip, rows: [] });
-      bunCnt++;
+    // ── Proprietar (poate fi persoana diferită) ──
+    const propIdnp = r['IDNP/IDNO proprietar'] || '';
+    const propNume = [r['Nume proprietar'], r['Prenume proprietar']].filter(Boolean).join(' ');
+    const propKey  = propIdnp || propNume;
+    if (propKey && propKey !== pKey && !persoanaMap.has(propKey) && pi < MAX_P) {
+      persoanaMap.set(propKey, { id: 'p' + pi++, label: (propNume || propIdnp).slice(0, 22), idnp: propIdnp, name: propNume, isProp: true, rows: [] });
     }
-    if (bKey && bunNodes.has(bKey)) bunNodes.get(bKey).rows.push(r);
+    if (propKey && propKey !== pKey && persoanaMap.has(propKey)) persoanaMap.get(propKey).rows.push(r);
+
+    // ── Bun (etichetat cu Tip bun, nu cu ID) ──
+    const idBun  = r['ID Bun'] || '';
+    const tip    = r['Tip bun'] || r['Categorie'] || 'Bun';
+    const bKey   = idBun || (cKey + '||' + tip + '||' + (r['Suma sechestru'] || ''));
+    if (!bunMap.has(bKey) && bi < MAX_B) {
+      const tipShort  = tip.length > 20 ? tip.slice(0, 18) + '…' : tip;
+      const val       = r['Echivalent in MDL'] || r['Valoarea bunului'] || r['Suma sechestru'] || '';
+      const valShort  = val ? '\n' + String(val).slice(0, 14) : '';
+      const tipColor  = TIP_BUN_COLORS[tip] || c.text2;
+      bunMap.set(bKey, { id: 'b' + bi++, label: tipShort + valShort, tip, idBun, valoare: val, tipPosesie: r['Tip posesie'] || '', tipColor, rows: [] });
+    }
+    if (bunMap.has(bKey)) bunMap.get(bKey).rows.push(r);
+
+    // ── Hotărâre (group per cauza + Nr.doc + Solutia adoptata) ──
+    const nr     = r['Nr. doc'] || '';
+    const datDoc = r['Data doc.'] || '';
+    const sol    = r['Solutia adoptata'] || '';
+    const organ  = r['Organ emitent'] || '';
+    const hKey   = cKey + '||' + (nr || datDoc) + '||' + sol;
+    if (!hotarareMap.has(hKey) && hi < MAX_H) {
+      const solShort  = sol.length > 16 ? sol.slice(0, 14) + '…' : sol;
+      const dateShort = datDoc.slice(0, 10);
+      const hLabel    = solShort + (dateShort ? '\n' + dateShort : '');
+      hotarareMap.set(hKey, { id: 'h' + hi++, label: hLabel, solutia: sol, data: datDoc, nr, organ, cauza: cKey, rows: [] });
+    }
+    if (hotarareMap.has(hKey)) hotarareMap.get(hKey).rows.push(r);
   });
 
-  // Build edge index to avoid duplicates
-  const edgeSet = new Set();
-  filteredRows.forEach(r => {
-    const cKey = r['Cauza penala'] || '(necunoscut)';
-    const idnp = r['IDNP/IDNO'] || '';
-    const name = [r['Nume proprietar'], r['Prenume proprietar'], r['Nume/Denumire']].filter(Boolean).join(' ');
-    const pKey = idnp || name || '(necunoscut)';
-    const bKey = r['ID Bun'] || '';
-
-    if (!cauzaNodes.has(cKey) || !persoanaNodes.has(pKey)) return;
-    const cId = cauzaNodes.get(cKey).id;
-    const pId = persoanaNodes.get(pKey).id;
-    const cpKey = cId+'→'+pId;
-    if (!edgeSet.has(cpKey)) { edgeSet.add(cpKey); edges.push({ data: { source: cId, target: pId, type: 'cp' } }); }
-
-    if (bKey && bunNodes.has(bKey)) {
-      const bId = bunNodes.get(bKey).id;
-      const pbKey = pId+'→'+bId;
-      if (!edgeSet.has(pbKey)) { edgeSet.add(pbKey); edges.push({ data: { source: pId, target: bId, type: 'pb' } }); }
-    }
-  });
-
-  // Build Cytoscape elements array
+  // ── BUILD ELEMENTS ────────────────────────────────────────────
   const elements = [];
-  cauzaNodes.forEach((v, k) => {
+  const edgeSet  = new Set();
+
+  const addEdge = (src, tgt, label) => {
+    const ek = src + '→' + tgt;
+    if (!edgeSet.has(ek)) {
+      edgeSet.add(ek);
+      elements.push({ data: { source: src, target: tgt, edgeLabel: label } });
+    }
+  };
+
+  cauzaMap.forEach((v, k) => {
     const hasAnomalie = ANOMALII_CAUZE.has(k);
-    elements.push({ data: { id: v.id, label: k.length > 20 ? k.slice(0,18)+'…' : k, fullLabel: k, type: 'cauza', nodeData: v, hasAnomalie }, classes: 'cauza-node' + (hasAnomalie ? ' anomalie-node' : '') });
+    const lbl = k.length > 18 ? k.slice(0, 16) + '…' : k;
+    elements.push({ data: { id: v.id, label: lbl, fullKey: k, type: 'cauza', nd: v, hasAnomalie },
+      classes: 'cauza-node' + (hasAnomalie ? ' anomalie-node' : '') });
   });
-  persoanaNodes.forEach((v) => {
-    elements.push({ data: { id: v.id, label: v.label, type: 'persoana', nodeData: v }, classes: 'persoana-node' });
+
+  persoanaMap.forEach(v => {
+    elements.push({ data: { id: v.id, label: v.label, type: 'persoana', nd: v },
+      classes: 'persoana-node' + (v.isProp ? ' prop-node' : '') });
   });
-  bunNodes.forEach((v, k) => {
-    const hasTraseu   = TRASEU_BUNURI.has(k);
+
+  bunMap.forEach((v, k) => {
+    const hasTraseu   = TRASEU_BUNURI.has(v.idBun);
     const cauzeForBun = v.rows.map(r => r['Cauza penala']).filter(Boolean);
     const hasAnomalie = cauzeForBun.some(cp => ANOMALII_CAUZE.has(cp));
-    elements.push({ data: { id: v.id, label: v.label, type: 'bun', nodeData: v, hasTraseu, hasAnomalie }, classes: 'bun-node' + (hasTraseu ? ' traseu-node' : hasAnomalie ? ' anomalie-node' : '') });
+    let cls = 'bun-node';
+    if (hasTraseu) cls += ' traseu-node';
+    else if (hasAnomalie) cls += ' anomalie-node';
+    elements.push({ data: { id: v.id, label: v.label, type: 'bun', nd: v, hasTraseu, hasAnomalie, tipColor: v.tipColor }, classes: cls });
   });
-  elements.push(...edges);
 
-  // Destroy old instance
+  hotarareMap.forEach(v => {
+    const solColor = SOL_COLORS[v.solutia] || c.purple;
+    elements.push({ data: { id: v.id, label: v.label, type: 'hotarare', nd: v, solutia: v.solutia, solColor }, classes: 'hotarare-node' });
+  });
+
+  // ── EDGES ─────────────────────────────────────────────────────
+  filteredRows.forEach(r => {
+    const cKey    = r['Cauza penala'] || '(necunoscut)';
+    const idnp    = r['IDNP/IDNO'] || '';
+    const numeD   = r['Nume/Denumire'] || '';
+    const pKey    = idnp || numeD;
+    const idBun   = r['ID Bun'] || '';
+    const tip     = r['Tip bun'] || r['Categorie'] || 'Bun';
+    const bKey    = idBun || (cKey + '||' + tip + '||' + (r['Suma sechestru'] || ''));
+    const nr      = r['Nr. doc'] || '';
+    const datDoc  = r['Data doc.'] || '';
+    const sol     = r['Solutia adoptata'] || '';
+    const hKey    = cKey + '||' + (nr || datDoc) + '||' + sol;
+
+    const cId = cauzaMap.get(cKey)?.id;
+    const pId = pKey ? persoanaMap.get(pKey)?.id : null;
+    const bId = bunMap.get(bKey)?.id;
+    const hId = hotarareMap.get(hKey)?.id;
+
+    if (!cId || !hId) return;
+
+    // Cauza → Hotărâre
+    addEdge(cId, hId, 'în dosar');
+
+    // Hotărâre → Bun  (cu soluția adoptată)
+    if (bId) addEdge(hId, bId, SOL_SHORT[sol] || sol.slice(0, 12) || '—');
+
+    // Hotărâre → Persoana urmărită
+    if (pId) addEdge(hId, pId, 'față de');
+
+    // Proprietar → Bun
+    const propIdnp = r['IDNP/IDNO proprietar'] || '';
+    const propNume = [r['Nume proprietar'], r['Prenume proprietar']].filter(Boolean).join(' ');
+    const propKey  = propIdnp || propNume;
+    if (propKey && bId) {
+      const propId = persoanaMap.get(propKey)?.id;
+      if (propId) addEdge(propId, bId, r['Tip posesie'] || 'proprietar');
+    }
+  });
+
+  // ── DESTROY OLD ───────────────────────────────────────────────
   if (cytInstance) { cytInstance.destroy(); cytInstance = null; }
 
-  // Warn if truncated
-  const nTotal = cauzaCnt + persCnt + bunCnt;
-  const limitMsg = (cauzaCnt >= MAX_CAUZE || persCnt >= MAX_PERS || bunCnt >= MAX_BUN)
-    ? `<div class="schema-warning" style="margin-bottom:0.4rem">⚠ Datele au fost trunchiate pentru performanță (${nTotal} noduri afișate). Folosiți filtrul de căutare pentru a restrânge setul.</div>`
-    : '';
-  document.getElementById('schema-cy-wrap').insertAdjacentHTML('beforebegin', limitMsg);
+  // ── TRUNCATION WARNING ────────────────────────────────────────
+  const truncated = ci >= MAX_C || pi >= MAX_P || bi >= MAX_B || hi >= MAX_H;
+  if (truncated) {
+    const total = ci + pi + bi + hi;
+    const warn = document.createElement('div');
+    warn.className = 'schema-warning schema-cy-limit-warn';
+    warn.style.marginBottom = '0.4rem';
+    warn.textContent = `⚠ Afișate ${total.toLocaleString('ro')} noduri (trunchiat). Folosiți filtrul de căutare pentru a restrânge setul.`;
+    document.getElementById('schema-cy-wrap').insertAdjacentElement('beforebegin', warn);
+  }
 
-  // Initialize Cytoscape
+  // ── CYTOSCAPE INIT ────────────────────────────────────────────
   cytInstance = cytoscape({
     container: document.getElementById('schema-cy'),
     elements,
     style: [
+      // BASE NODE
       { selector: 'node', style: {
         'label': 'data(label)',
-        'font-size': '10px',
+        'font-size': '9px',
         'color': c.text,
         'text-valign': 'center',
         'text-halign': 'center',
         'text-wrap': 'wrap',
-        'text-max-width': '90px',
-        'width': '60px',
-        'height': '60px',
+        'text-max-width': '88px',
         'border-width': '2px',
-        'overlay-padding': '6px',
+        'overlay-padding': '5px',
       }},
+      // CAUZA
       { selector: '.cauza-node', style: {
-        'background-color': c.accent + '33',
-        'border-color': c.accent,
         'shape': 'ellipse',
-        'width': '70px', 'height': '50px',
+        'background-color': c.accent + '30',
+        'border-color': c.accent,
+        'width': '72px', 'height': '50px',
         'font-weight': '700',
         'font-size': '9px',
       }},
+      // PERSOANA urmărită
       { selector: '.persoana-node', style: {
+        'shape': 'round-rectangle',
         'background-color': c.green + '28',
         'border-color': c.green,
-        'shape': 'round-rectangle',
-        'width': '65px', 'height': '44px',
-        'font-size': '9px',
+        'width': '68px', 'height': '42px',
+        'font-size': '8.5px',
       }},
+      // PERSOANA proprietar (line-dashed border)
+      { selector: '.prop-node', style: {
+        'border-style': 'dashed',
+        'border-color': c.teal,
+        'background-color': c.teal + '20',
+      }},
+      // BUN — color by Tip bun
       { selector: '.bun-node', style: {
-        'background-color': c.text2 + '28',
-        'border-color': c.text2,
-        'shape': 'diamond',
-        'width': '55px', 'height': '55px',
-        'font-size': '9px',
+        'shape': 'rectangle',
+        'background-color': ele => (ele.data('tipColor') || c.text2) + '28',
+        'border-color':     ele =>  ele.data('tipColor') || c.text2,
+        'width': '64px', 'height': '40px',
+        'font-size': '8px',
       }},
+      // BUN traseu (roșu)
       { selector: '.traseu-node', style: {
-        'background-color': c.red + '28',
         'border-color': c.red,
         'border-width': '2.5px',
+        'background-color': c.red + '28',
       }},
-      { selector: '.anomalie-node', style: {
+      // BUN anomalie (portocaliu)
+      { selector: '.anomalie-node.bun-node', style: {
+        'border-color': c.orange,
+        'border-style': 'dashed',
         'background-color': c.orange + '28',
+      }},
+      // CAUZA anomalie
+      { selector: '.anomalie-node.cauza-node', style: {
         'border-color': c.orange,
         'border-style': 'dashed',
       }},
+      // HOTĂRÂRE — hexagon, colorat după soluție
+      { selector: '.hotarare-node', style: {
+        'shape': 'hexagon',
+        'background-color': ele => (ele.data('solColor') || c.purple) + '2a',
+        'border-color':     ele =>  ele.data('solColor') || c.purple,
+        'width': '62px', 'height': '56px',
+        'font-size': '8px',
+        'font-weight': '600',
+      }},
+      // SELECTED
       { selector: 'node:selected', style: {
         'border-width': '3px',
         'border-color': c.accent,
-        'background-blacken': -0.1,
+        'overlay-color': c.accent,
+        'overlay-opacity': 0.06,
       }},
+      // EDGE
       { selector: 'edge', style: {
-        'width': 1.2,
+        'width': 1.1,
         'line-color': c.border,
         'target-arrow-color': c.border,
         'target-arrow-shape': 'triangle',
-        'arrow-scale': 0.7,
+        'arrow-scale': 0.65,
         'curve-style': 'bezier',
-        'opacity': 0.7,
+        'opacity': 0.65,
+        'label': 'data(edgeLabel)',
+        'font-size': '7.5px',
+        'color': c.text2,
+        'text-background-color': c.bg2,
+        'text-background-opacity': 0.82,
+        'text-background-padding': '2px',
+        'text-rotation': 'autorotate',
+        'text-margin-y': '-6px',
       }},
-      { selector: 'edge.highlighted', style: { 'line-color': c.accent, 'opacity': 1, 'width': 2, 'target-arrow-color': c.accent }},
+      { selector: 'edge.highlighted', style: {
+        'line-color': c.accent,
+        'target-arrow-color': c.accent,
+        'opacity': 1,
+        'width': 2,
+        'color': c.text,
+        'text-background-opacity': 1,
+      }},
     ],
     layout: {
       name: 'cose',
-      idealEdgeLength: 120,
-      nodeOverlap: 20,
+      idealEdgeLength: 130,
+      nodeOverlap: 16,
       refresh: 20,
       fit: true,
-      padding: 32,
+      padding: 36,
       randomize: true,
       componentSpacing: 80,
-      nodeRepulsion: 8000,
+      nodeRepulsion: 10000,
       edgeElasticity: 100,
       nestingFactor: 1.2,
-      animate: elements.length < 400,
+      animate: elements.length < 300,
+      animationDuration: 600,
     },
     wheelSensitivity: 0.3,
-    minZoom: 0.1,
+    minZoom: 0.08,
     maxZoom: 4,
   });
 
-  // Click handler
+  // ── CLICK HANDLERS ────────────────────────────────────────────
   cytInstance.on('tap', 'node', function(evt) {
-    const nd = evt.target.data('nodeData');
-    const type = evt.target.data('type');
     cytInstance.elements().removeClass('highlighted');
     evt.target.connectedEdges().addClass('highlighted');
-    renderCyDetail(type, nd, evt.target.data());
+    renderCyDetail(evt.target.data('type'), evt.target.data('nd'), evt.target.data());
   });
   cytInstance.on('tap', function(evt) {
     if (evt.target === cytInstance) {
@@ -2391,59 +2519,99 @@ function renderSchemaGraph() {
 
 function renderCyDetail(type, nd, nodeData) {
   const panel = document.getElementById('schema-detail-panel');
-  if (!panel) return;
+  if (!panel || !nd) return;
 
   const c = getCyThemeColors();
-  const typeColors = { cauza: c.accent, persoana: c.green, bun: c.text2 };
-  const typeLabels = { cauza: 'Cauza penală', persoana: 'Persoană / Entitate', bun: 'ID Bun' };
-  const tc = typeColors[type] || c.text2;
-  const tl = typeLabels[type] || type;
+  const TYPE_META = {
+    cauza:    { label: 'Cauza penală',        color: c.accent  },
+    persoana: { label: nd?.isProp ? 'Proprietar bun' : 'Persoană / Entitate', color: c.green },
+    bun:      { label: 'Bun',                 color: nd?.tipColor || c.text2 },
+    hotarare: { label: 'Hotărâre',            color: nodeData?.solColor || c.purple },
+  };
+  const meta = TYPE_META[type] || { label: type, color: c.text2 };
+  const tc   = meta.color;
+
+  let title = '';
+  if (type === 'cauza')    title = nd.label || '—';
+  if (type === 'persoana') title = nd.name || nd.idnp || nd.label || '—';
+  if (type === 'bun')      title = nd.tip || nd.label || '—';
+  if (type === 'hotarare') title = nd.solutia || nd.label || '—';
 
   let html = `<div class="schema-detail-title">
-    <span style="color:${tc}">${escHtml(nd.fullLabel || nd.label || nd.cauza || nd.idBun || nd.name || '?')}</span>
-    <span class="schema-detail-type" style="background:${tc}22;color:${tc};border:1px solid ${tc}44">${tl}</span>
-    ${nodeData.hasTraseu   ? '<span class="traseu-badge">⚡ Sechestru→Confiscare</span>' : ''}
-    ${nodeData.hasAnomalie ? '<span class="anomalie-badge">⚠ Anomalie ID</span>' : ''}
+    <span style="color:${tc}">${escHtml(title)}</span>
+    <span class="schema-detail-type" style="background:${tc}1a;color:${tc};border:1px solid ${tc}44">${meta.label}</span>
+    ${nodeData?.hasTraseu   ? '<span class="traseu-badge">⚡ Sechestru→Confiscare</span>' : ''}
+    ${nodeData?.hasAnomalie ? '<span class="anomalie-badge">⚠ Anomalie ID</span>' : ''}
   </div>`;
 
   const rows = nd.rows || [];
+  const kvRow = (k, v) => v ? `<div class="schema-detail-kv"><span class="k">${k}: </span><span class="v">${escHtml(String(v))}</span></div>` : '';
+  const chips = (arr, max = 18) => arr.slice(0, max).map(v => `<span class="schema-detail-chip">${escHtml(v)}</span>`).join('') + (arr.length > max ? `<span class="schema-detail-chip">+${arr.length - max}</span>` : '');
+  const solChips = arr => arr.map(s => { const col = SOL_COLORS[s] || '#777'; return `<span class="schema-detail-chip" style="background:${col}1a;color:${col};border-color:${col}44">${escHtml(s)}</span>`; }).join('');
+  const section = (title2, body) => `<div class="schema-detail-section"><div class="schema-detail-section-title">${title2}</div><div class="schema-detail-list">${body}</div></div>`;
 
   if (type === 'cauza') {
-    const persoane   = [...new Set(rows.map(r => [r['IDNP/IDNO'], r['Nume proprietar'], r['Prenume proprietar'], r['Nume/Denumire']].filter(Boolean).join(' ')).filter(Boolean))];
-    const bunuriIDs  = [...new Set(rows.map(r => r['ID Bun']).filter(Boolean))];
-    const solutii    = [...new Set(rows.map(r => r['Solutia adoptata']).filter(Boolean))];
+    const persoane  = [...new Set(rows.map(r => [r['IDNP/IDNO'], r['Nume/Denumire']].filter(Boolean).join(' ')).filter(Boolean))];
+    const bunuriT   = [...new Set(rows.map(r => r['Tip bun']).filter(Boolean))];
+    const solutii   = [...new Set(rows.map(r => r['Solutia adoptata']).filter(Boolean))];
+    const hotarari  = [...new Set(rows.map(r => r['Nr. doc']).filter(Boolean))];
     html += `<div class="schema-detail-grid">
-      <div class="schema-detail-kv"><span class="k">Documente: </span><span class="v">${rows.length}</span></div>
-      <div class="schema-detail-kv"><span class="k">Persoane: </span><span class="v">${persoane.length}</span></div>
-      <div class="schema-detail-kv"><span class="k">Bunuri ID: </span><span class="v">${bunuriIDs.length}</span></div>
+      ${kvRow('Documente', rows.length)}
+      ${kvRow('Persoane', persoane.length)}
+      ${kvRow('Tipuri bunuri', bunuriT.length)}
+      ${kvRow('Hotărâri (Nr. doc)', hotarari.length || '—')}
     </div>`;
-    if (persoane.length) html += `<div class="schema-detail-section"><div class="schema-detail-section-title">Persoane / Entități</div><div class="schema-detail-list">${persoane.slice(0,20).map(p => `<span class="schema-detail-chip">${escHtml(p)}</span>`).join('')}${persoane.length>20?`<span class="schema-detail-chip" style="color:var(--text2)">+${persoane.length-20}</span>`:''}</div></div>`;
-    if (solutii.length) html += `<div class="schema-detail-section"><div class="schema-detail-section-title">Soluții adoptate</div><div class="schema-detail-list">${solutii.map(s => { const col = SOL_COLORS[s]||'#777'; return `<span class="schema-detail-chip" style="background:${col}22;color:${col};border-color:${col}44">${escHtml(s)}</span>`; }).join('')}</div></div>`;
+    if (persoane.length) html += section('Persoane / Entități', chips(persoane));
+    if (bunuriT.length)  html += section('Tipuri bunuri', chips(bunuriT));
+    if (solutii.length)  html += section('Soluții adoptate', solChips(solutii));
 
   } else if (type === 'persoana') {
-    const cauze  = [...new Set(rows.map(r => r['Cauza penala']).filter(Boolean))];
-    const bunuri = [...new Set(rows.map(r => r['ID Bun']).filter(Boolean))];
+    const cauze   = [...new Set(rows.map(r => r['Cauza penala']).filter(Boolean))];
+    const tipBun  = [...new Set(rows.map(r => r['Tip bun']).filter(Boolean))];
+    const solutii = [...new Set(rows.map(r => r['Solutia adoptata']).filter(Boolean))];
     html += `<div class="schema-detail-grid">
-      <div class="schema-detail-kv"><span class="k">IDNP/IDNO: </span><span class="v">${escHtml(nd.idnp||'—')}</span></div>
-      <div class="schema-detail-kv"><span class="k">Cauze: </span><span class="v">${cauze.length}</span></div>
-      <div class="schema-detail-kv"><span class="k">Bunuri: </span><span class="v">${bunuri.length}</span></div>
+      ${kvRow('IDNP/IDNO', nd.idnp || '—')}
+      ${kvRow('Cauze penale', cauze.length)}
+      ${kvRow('Documente', rows.length)}
     </div>`;
-    if (cauze.length) html += `<div class="schema-detail-section"><div class="schema-detail-section-title">Cauze penale</div><div class="schema-detail-list">${cauze.slice(0,15).map(c2 => `<span class="schema-detail-chip">${escHtml(c2)}</span>`).join('')}${cauze.length>15?`<span class="schema-detail-chip">+${cauze.length-15}</span>`:''}</div></div>`;
-    if (bunuri.length) html += `<div class="schema-detail-section"><div class="schema-detail-section-title">Bunuri</div><div class="schema-detail-list">${bunuri.slice(0,15).map(b => `<span class="schema-detail-chip">${escHtml(b)}</span>`).join('')}${bunuri.length>15?`<span class="schema-detail-chip">+${bunuri.length-15}</span>`:''}</div></div>`;
+    if (cauze.length)  html += section('Cauze penale', chips(cauze));
+    if (tipBun.length) html += section('Tipuri bunuri vizate', chips(tipBun));
+    if (solutii.length)html += section('Soluții adoptate', solChips(solutii));
 
-  } else { // bun
-    const cauze    = [...new Set(rows.map(r => r['Cauza penala']).filter(Boolean))];
-    const solutii  = [...new Set(rows.map(r => r['Solutia adoptata']).filter(Boolean))];
-    const valMax   = rows.map(r => parseFloat((r['Suma sechestru']||'').replace(/[^\d.,]/g,'').replace(',','.'))).filter(v => !isNaN(v));
-    const tipBun   = rows[0]?.['Tip bun'] || '—';
+  } else if (type === 'bun') {
+    const cauze   = [...new Set(rows.map(r => r['Cauza penala']).filter(Boolean))];
+    const solutii = [...new Set(rows.map(r => r['Solutia adoptata']).filter(Boolean))];
+    const r0      = rows[0] || {};
+    const val     = r0['Echivalent in MDL'] || r0['Valoarea bunului'] || r0['Suma sechestru'] || '';
     html += `<div class="schema-detail-grid">
-      <div class="schema-detail-kv"><span class="k">Tip bun: </span><span class="v">${escHtml(tipBun)}</span></div>
-      <div class="schema-detail-kv"><span class="k">Cauze: </span><span class="v">${cauze.length}</span></div>
-      <div class="schema-detail-kv"><span class="k">Documente: </span><span class="v">${rows.length}</span></div>
-      ${valMax.length ? `<div class="schema-detail-kv"><span class="k">Suma max MDL: </span><span class="v">${Math.max(...valMax).toLocaleString('ro')}</span></div>` : ''}
+      ${kvRow('ID Bun', nd.idBun || '—')}
+      ${kvRow('Tip bun', nd.tip)}
+      ${kvRow('Valoare MDL', val || '—')}
+      ${kvRow('Tip posesie', nd.tipPosesie || '—')}
+      ${kvRow('Cauze penale', cauze.length)}
+      ${kvRow('Documente', rows.length)}
     </div>`;
-    if (solutii.length) html += `<div class="schema-detail-section"><div class="schema-detail-section-title">Soluții adoptate</div><div class="schema-detail-list">${solutii.map(s => { const col = SOL_COLORS[s]||'#777'; return `<span class="schema-detail-chip" style="background:${col}22;color:${col};border-color:${col}44">${escHtml(s)}</span>`; }).join('')}</div></div>`;
-    if (cauze.length) html += `<div class="schema-detail-section"><div class="schema-detail-section-title">Cauze penale</div><div class="schema-detail-list">${cauze.slice(0,12).map(c2 => `<span class="schema-detail-chip">${escHtml(c2)}</span>`).join('')}${cauze.length>12?`<span class="schema-detail-chip">+${cauze.length-12}</span>`:''}</div></div>`;
+    if (solutii.length) html += section('Soluții adoptate', solChips(solutii));
+    if (cauze.length)   html += section('Cauze penale', chips(cauze));
+
+  } else if (type === 'hotarare') {
+    const bunuriT = [...new Set(rows.map(r => r['Tip bun']).filter(Boolean))];
+    const pers    = [...new Set(rows.map(r => [r['IDNP/IDNO'], r['Nume/Denumire']].filter(Boolean).join(' ')).filter(Boolean))];
+    const val     = rows.reduce((s, r) => {
+      const v = parseFloat(String(r['Suma sechestru'] || '0').replace(/,/g,''));
+      return s + (isNaN(v) ? 0 : v);
+    }, 0);
+    html += `<div class="schema-detail-grid">
+      ${kvRow('Nr. document', nd.nr || '—')}
+      ${kvRow('Data', nd.data || '—')}
+      ${kvRow('Soluția adoptată', nd.solutia || '—')}
+      ${kvRow('Organ emitent', nd.organ || '—')}
+      ${kvRow('Cauza penală', nd.cauza)}
+      ${kvRow('Bunuri vizate', bunuriT.length + ' tipuri, ' + rows.length + ' doc.')}
+      ${val ? kvRow('Suma totală MDL', val.toLocaleString('ro')) : ''}
+    </div>`;
+    if (bunuriT.length) html += section('Tipuri bunuri vizate', chips(bunuriT));
+    if (pers.length)    html += section('Persoane / Entități', chips(pers));
   }
 
   panel.innerHTML = html;
