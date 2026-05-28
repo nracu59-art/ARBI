@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %}{% if sistem and sistem.id %}Editează Sistem{% else %}Adaugă Sistem{% endif %}{% endblock %}
+{% block content %}
+<h2 class="page-header">
+    <i class="bi bi-hdd-stack"></i>
+    {% if sistem and sistem['id'] %}Editează Sistem Informațional{% else %}Adaugă Sistem Informațional{% endif %}
+</h2>
+
+<div class="card" style="max-width:760px">
+    <div class="card-body">
+        <form method="post">
+            <div class="mb-3">
+                <label class="form-label fw-medium">Denumire <span class="text-danger">*</span></label>
+                <input type="text" name="denumire" class="form-control"
+                       value="{{ sistem.denumire if sistem else '' }}" required>
+            </div>
+            <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                    <label class="form-label fw-medium">Furnizor / Autoritate</label>
+                    <input type="text" name="furnizor" class="form-control"
+                           value="{{ sistem.furnizor if sistem else '' }}">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label fw-medium">Tip acces</label>
+                    <select name="tip_acces" class="form-select">
+                        <option value="">— selectați —</option>
+                        {% for tip in ['Web', 'VPN', 'API', 'Local', 'MConnect', 'Altul'] %}
+                        <option value="{{ tip }}" {% if sistem and sistem.tip_acces == tip %}selected{% endif %}>{{ tip }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-medium">Descriere</label>
+                <textarea name="descriere" class="form-control" rows="3">{{ sistem.descriere if sistem else '' }}</textarea>
+            </div>
+            <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                    <label class="form-label fw-medium">Data înregistrării</label>
+                    <input type="date" name="data_inregistrare" class="form-control"
+                           value="{{ sistem.data_inregistrare if sistem else '' }}">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label fw-medium">Statut</label>
+                    <select name="statut" class="form-select">
+                        <option value="activ" {% if not sistem or sistem.statut == 'activ' %}selected{% endif %}>Activ</option>
+                        <option value="inactiv" {% if sistem and sistem.statut == 'inactiv' %}selected{% endif %}>Inactiv</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-medium">Observații</label>
+                <textarea name="observatii" class="form-control" rows="2">{{ sistem.observatii if sistem else '' }}</textarea>
+            </div>
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-arbi">
+                    <i class="bi bi-save"></i> Salvează
+                </button>
+                <a href="{{ url_for('sisteme_list') }}" class="btn btn-outline-secondary">Anulează</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

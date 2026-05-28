@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block title %}{% if utilizator and utilizator.id %}Editează Utilizator{% else %}Adaugă Utilizator{% endif %}{% endblock %}
+{% block content %}
+<h2 class="page-header">
+    <i class="bi bi-person"></i>
+    {% if utilizator and utilizator['id'] %}Editează Utilizator{% else %}Adaugă Utilizator{% endif %}
+</h2>
+
+<div class="card" style="max-width:680px">
+    <div class="card-body">
+        <form method="post">
+            <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                    <label class="form-label fw-medium">Login <span class="text-danger">*</span></label>
+                    <input type="text" name="login" class="form-control"
+                           value="{{ utilizator.login if utilizator else '' }}" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label fw-medium">Numele deținătorului <span class="text-danger">*</span></label>
+                    <input type="text" name="nume" class="form-control"
+                           value="{{ utilizator.nume if utilizator else '' }}" required>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-medium">Sistem Informațional <span class="text-danger">*</span></label>
+                <select name="sistem_id" class="form-select" required>
+                    <option value="">— selectați sistemul —</option>
+                    {% for s in sisteme %}
+                    <option value="{{ s.id }}"
+                        {% if utilizator and utilizator.sistem_id == s.id %}selected
+                        {% elif request.args.get('sistem_id') == s.id|string %}selected
+                        {% endif %}>{{ s.denumire }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                    <label class="form-label fw-medium">Din data</label>
+                    <input type="date" name="din_data" class="form-control"
+                           value="{{ utilizator.din_data if utilizator else '' }}">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label fw-medium">Pînă la data</label>
+                    <input type="date" name="pina_la" class="form-control"
+                           value="{{ utilizator.pina_la if utilizator else '' }}">
+                    <small class="text-muted">Lăsați gol pentru acces nedeterminat.</small>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-medium">Statut</label>
+                <select name="statut" class="form-select">
+                    <option value="activ" {% if not utilizator or utilizator.statut == 'activ' %}selected{% endif %}>Activ</option>
+                    <option value="inactiv" {% if utilizator and utilizator.statut == 'inactiv' %}selected{% endif %}>Inactiv</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-medium">Observații</label>
+                <textarea name="observatii" class="form-control" rows="2">{{ utilizator.observatii if utilizator else '' }}</textarea>
+            </div>
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-arbi">
+                    <i class="bi bi-save"></i> Salvează
+                </button>
+                <a href="{{ url_for('utilizatori_list') }}" class="btn btn-outline-secondary">Anulează</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h2 class="page-header"><i class="bi bi-speedometer2"></i> Dashboard</h2>
+
+<div class="row g-3 mb-4">
+    <div class="col-sm-6 col-xl-3">
+        <div class="card stat-card p-3">
+            <div class="stat-num">{{ stats.total_sisteme }}</div>
+            <div class="text-muted">Sisteme înregistrate</div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card stat-card p-3" style="border-color:#198754">
+            <div class="stat-num" style="color:#198754">{{ stats.sisteme_active }}</div>
+            <div class="text-muted">Sisteme active</div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card stat-card p-3" style="border-color:#0d6efd">
+            <div class="stat-num" style="color:#0d6efd">{{ stats.total_utilizatori }}</div>
+            <div class="text-muted">Total utilizatori</div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card stat-card p-3" style="border-color:#fd7e14">
+            <div class="stat-num" style="color:#fd7e14">{{ stats.utilizatori_activi }}</div>
+            <div class="text-muted">Utilizatori activi</div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-8">
+        <div class="card p-3">
+            <h5 class="mb-3"><i class="bi bi-bar-chart"></i> Top 10 Sisteme după numărul de utilizatori</h5>
+            <div class="table-responsive">
+                <table class="table table-sm table-hover">
+                    <thead><tr><th>#</th><th>Sistem Informațional</th><th class="text-center">Nr. Utilizatori</th></tr></thead>
+                    <tbody>
+                    {% for s in top_sisteme %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ s.denumire }}</td>
+                        <td class="text-center">
+                            <span class="badge bg-primary rounded-pill">{{ s.nr_utilizatori }}</span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card p-3 mb-3">
+            <h5><i class="bi bi-lightning"></i> Acțiuni rapide</h5>
+            <div class="d-grid gap-2 mt-2">
+                <a href="{{ url_for('sistem_adauga') }}" class="btn btn-arbi btn-sm">
+                    <i class="bi bi-plus-circle"></i> Adaugă Sistem Informațional
+                </a>
+                <a href="{{ url_for('utilizator_adauga') }}" class="btn btn-arbi btn-sm">
+                    <i class="bi bi-person-plus"></i> Adaugă Utilizator
+                </a>
+                <a href="{{ url_for('export_utilizatori') }}" class="btn btn-outline-success btn-sm">
+                    <i class="bi bi-file-earmark-excel"></i> Export Registru Utilizatori
+                </a>
+                <a href="{{ url_for('export_sisteme') }}" class="btn btn-outline-success btn-sm">
+                    <i class="bi bi-file-earmark-excel"></i> Export Sisteme Informaționale
+                </a>
+                <a href="{{ url_for('import_excel') }}" class="btn btn-outline-secondary btn-sm">
+                    <i class="bi bi-upload"></i> Import din Excel
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

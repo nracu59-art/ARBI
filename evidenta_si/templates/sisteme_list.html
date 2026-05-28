@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% block title %}Sisteme Informaționale{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="page-header mb-0"><i class="bi bi-hdd-stack"></i> Sisteme Informaționale</h2>
+    <a href="{{ url_for('sistem_adauga') }}" class="btn btn-arbi">
+        <i class="bi bi-plus-circle"></i> Adaugă
+    </a>
+</div>
+
+<!-- Filtre -->
+<div class="card p-3 mb-3">
+    <form method="get" class="row g-2 align-items-end">
+        <div class="col-md-5">
+            <label class="form-label small mb-1">Căutare</label>
+            <input type="text" name="q" value="{{ q }}" class="form-control form-control-sm" placeholder="Denumire, furnizor...">
+        </div>
+        <div class="col-md-3">
+            <label class="form-label small mb-1">Statut</label>
+            <select name="statut" class="form-select form-select-sm">
+                <option value="">Toate</option>
+                <option value="activ" {% if statut=='activ' %}selected{% endif %}>Activ</option>
+                <option value="inactiv" {% if statut=='inactiv' %}selected{% endif %}>Inactiv</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-arbi btn-sm w-100">
+                <i class="bi bi-search"></i> Filtrează
+            </button>
+        </div>
+        <div class="col-md-2">
+            <a href="{{ url_for('sisteme_list') }}" class="btn btn-outline-secondary btn-sm w-100">
+                <i class="bi bi-x"></i> Resetează
+            </a>
+        </div>
+    </form>
+</div>
+
+<div class="card">
+    <div class="card-body p-0">
+        <div class="d-flex justify-content-between align-items-center px-3 py-2 border-bottom">
+            <small class="text-muted">{{ total }} sisteme găsite</small>
+            <a href="{{ url_for('export_sisteme') }}" class="btn btn-outline-success btn-sm">
+                <i class="bi bi-file-earmark-excel"></i> Export Excel
+            </a>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Denumire</th>
+                        <th>Furnizor</th>
+                        <th>Tip acces</th>
+                        <th class="text-center">Utilizatori</th>
+                        <th class="text-center">Statut</th>
+                        <th class="text-center">Acțiuni</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for s in sisteme %}
+                <tr>
+                    <td>{{ s.id }}</td>
+                    <td><a href="{{ url_for('sistem_detalii', sistem_id=s.id) }}" class="text-decoration-none fw-medium">{{ s.denumire }}</a></td>
+                    <td>{{ s.furnizor or '—' }}</td>
+                    <td>{{ s.tip_acces or '—' }}</td>
+                    <td class="text-center">
+                        <span class="badge bg-primary rounded-pill">{{ s.nr_utilizatori }}</span>
+                    </td>
+                    <td class="text-center">
+                        <span class="badge badge-{{ s.statut }}">{{ s.statut }}</span>
+                    </td>
+                    <td class="text-center">
+                        <a href="{{ url_for('sistem_detalii', sistem_id=s.id) }}" class="btn btn-sm btn-outline-info" title="Detalii">
+                            <i class="bi bi-eye"></i>
+                        </a>
+                        <a href="{{ url_for('sistem_editeaza', sistem_id=s.id) }}" class="btn btn-sm btn-outline-warning" title="Editează">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        <form method="post" action="{{ url_for('sistem_sterge', sistem_id=s.id) }}" class="d-inline"
+                              onsubmit="return confirm('Ștergi sistemul « {{ s.denumire }} » și toți utilizatorii asociați?')">
+                            <button type="submit" class="btn btn-sm btn-outline-danger" title="Șterge">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% else %}
+                <tr><td colspan="7" class="text-center text-muted py-4">Nu există sisteme înregistrate.</td></tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% if total_pages > 1 %}
+<nav class="mt-3">
+    <ul class="pagination pagination-sm">
+        {% for p in range(1, total_pages+1) %}
+        <li class="page-item {% if p == page %}active{% endif %}">
+            <a class="page-link" href="?page={{ p }}&q={{ q }}&statut={{ statut }}">{{ p }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</nav>
+{% endif %}
+{% endblock %}

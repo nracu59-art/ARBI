@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Import Excel{% endblock %}
+{% block content %}
+<h2 class="page-header"><i class="bi bi-upload"></i> Import din Excel</h2>
+
+<div class="card" style="max-width:600px">
+    <div class="card-body">
+        <p class="text-muted">Importați date dintr-un fișier Excel care conține foile <strong>Analiza</strong> și <strong>Registrul utilizatorilor</strong> în formatul standard ARBI.</p>
+        <div class="alert alert-info">
+            <i class="bi bi-info-circle"></i>
+            Sistemele și utilizatorii existenți nu vor fi duplicați. Datele noi vor fi adăugate.
+        </div>
+        <form method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label fw-medium">Fișier Excel (.xlsx)</label>
+                <input type="file" name="fisier" class="form-control" accept=".xlsx" required>
+            </div>
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-arbi">
+                    <i class="bi bi-upload"></i> Importă
+                </button>
+                <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">Anulează</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card mt-4" style="max-width:600px">
+    <div class="card-header bg-white fw-medium">Structura așteptată a fișierului</div>
+    <div class="card-body">
+        <p><strong>Foaia „Registrul utilizatorilor"</strong> — coloanele A–F:</p>
+        <table class="table table-sm table-bordered">
+            <thead class="table-dark"><tr><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th></tr></thead>
+            <tbody>
+                <tr><td>Login</td><td>Numele deținătorului</td><td>Din data</td><td>Pînă</td><td>Registrul</td><td>Statut</td></tr>
+            </tbody>
+        </table>
+        <p class="mb-0"><strong>Foaia „Analiza"</strong> — coloanele A–B (Registrul / Nr. utilizatori)</p>
+    </div>
+</div>
+{% endblock %}
