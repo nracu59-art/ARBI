@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARBI — Evidența Sistemelor Informaționale</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<style>
+:root{--blue:#1F4E79;--blue2:#2E75B6}
+body{background:#f4f6f9;font-size:.93rem}
+.navbar{background:var(--blue)!important}
+.navbar-brand{font-weight:700;letter-spacing:1px}
+.sidebar{min-height:calc(100vh - 56px);background:#fff;border-right:1px solid #dee2e6}
+.sidebar .nav-link{color:#495057;border-radius:6px;margin:2px 8px;padding:6px 12px}
+.sidebar .nav-link:hover,.sidebar .nav-link.active{background:var(--blue);color:#fff}
+.sidebar .nav-link i{width:20px}
+.card{border:none;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.stat-card{border-left:4px solid var(--blue)}
+.stat-num{font-size:2rem;font-weight:700;color:var(--blue)}
+.table th{background:var(--blue);color:#fff;font-weight:500;position:sticky;top:0;z-index:1}
+.badge-activ{background:#198754}
+.badge-inactiv{background:#6c757d}
+.page-header{border-bottom:2px solid var(--blue);padding-bottom:8px;margin-bottom:20px;color:var(--blue)}
+.btn-arbi{background:var(--blue);color:#fff}
+.btn-arbi:hover{background:var(--blue2);color:#fff}
+.section{display:none}
+.section.active{display:block}
+.table-responsive{max-height:520px;overflow-y:auto}
+.modal-header{background:var(--blue);color:#fff}
+.modal-header .btn-close{filter:invert(1)}
+#toast-container{position:fixed;bottom:1rem;right:1rem;z-index:9999}
+</style>
+</head>
+<body>
+<nav class="navbar navbar-dark navbar-expand-lg">
+  <div class="container-fluid">
+    <span class="navbar-brand"><i class="bi bi-database-lock"></i> ARBI — Evidența SI</span>
+    <div class="navbar-nav ms-auto">
+      <a class="nav-link text-white" href="#" onclick="exportExcelSisteme()"><i class="bi bi-download"></i> Export Sisteme</a>
+      <a class="nav-link text-white" href="#" onclick="exportExcelUtilizatori()"><i class="bi bi-download"></i> Export Utilizatori</a>
+    </div>
+  </div>
+</nav>
+<div class="container-fluid">
+<div class="row">
+  <!-- Sidebar -->
+  <nav class="col-md-2 d-none d-md-block sidebar py-3">
+    <ul class="nav flex-column">
+      <li class="nav-item"><a class="nav-link" id="nav-dashboard" href="#" onclick="showSection('dashboard')"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+      <li class="nav-item mt-2"><small class="text-muted px-3 fw-bold text-uppercase" style="font-size:.7rem">Sisteme</small></li>
+      <li class="nav-item"><a class="nav-link" id="nav-sisteme" href="#" onclick="showSection('sisteme')"><i class="bi bi-hdd-stack"></i> Sisteme Informaționale</a></li>
+      <li class="nav-item"><a class="nav-link" href="#" onclick="openSistemModal()"><i class="bi bi-plus-circle"></i> Adaugă Sistem</a></li>
+      <li class="nav-item mt-2"><small class="text-muted px-3 fw-bold text-uppercase" style="font-size:.7rem">Utilizatori</small></li>
+      <li class="nav-item"><a class="nav-link" id="nav-utilizatori" href="#" onclick="showSection('utilizatori')"><i class="bi bi-people"></i> Utilizatori</a></li>
+      <li class="nav-item"><a class="nav-link" href="#" onclick="openUtilizatorModal()"><i class="bi bi-person-plus"></i> Adaugă Utilizator</a></li>
+      <li class="nav-item mt-2"><small class="text-muted px-3 fw-bold text-uppercase" style="font-size:.7rem">Date</small></li>
+      <li class="nav-item"><a class="nav-link" href="#" onclick="document.getElementById('importFile').click()"><i class="bi bi-upload"></i> Import Excel</a></li>
+      <li class="nav-item"><a class="nav-link" href="#" onclick="exportExcelSisteme()"><i class="bi bi-file-earmark-excel"></i> Export Sisteme</a></li>
+      <li class="nav-item"><a class="nav-link" href="#" onclick="exportExcelUtilizatori()"><i class="bi bi-file-earmark-excel"></i> Export Utilizatori</a></li>
+    </ul>
+    <input type="file" id="importFile" accept=".xlsx" style="display:none" onchange="importExcel(event)">
+  </nav>
+
+  <!-- Main -->
+  <main class="col-md-10 ms-sm-auto px-4 py-4">
+    <div id="toast-container"></div>
+
+    <!-- DASHBOARD -->
+    <div id="section-dashboard" class="section active">
+      <h2 class="page-header"><i class="bi bi-speedometer2"></i> Dashboard</h2>
+      <div class="row g-3 mb-4">
+        <div class="col-sm-6 col-xl-3"><div class="card stat-card p-3"><div class="stat-num" id="st-total-sisteme">—</div><div class="text-muted">Sisteme înregistrate</div></div></div>
+        <div class="col-sm-6 col-xl-3"><div class="card stat-card p-3" style="border-color:#198754"><div class="stat-num" style="color:#198754" id="st-active-sisteme">—</div><div class="text-muted">Sisteme active</div></div></div>
+        <div class="col-sm-6 col-xl-3"><div class="card stat-card p-3" style="border-color:#0d6efd"><div class="stat-num" style="color:#0d6efd" id="st-total-util">—</div><div class="text-muted">Total utilizatori</div></div></div>
+        <div class="col-sm-6 col-xl-3"><div class="card stat-card p-3" style="border-color:#fd7e14"><div class="stat-num" style="color:#fd7e14" id="st-active-util">—</div><div class="text-muted">Utilizatori activi</div></div></div>
+      </div>
+      <div class="row g-3">
+        <div class="col-lg-8">
+          <div class="card p-3">
+            <h5 class="mb-3"><i class="bi bi-bar-chart"></i> Top 10 Sisteme după numărul de utilizatori</h5>
+            <table class="table table-sm table-hover"><thead><tr><th>#</th><th>Sistem Informațional</th><th class="text-center">Nr. Utilizatori</th></tr></thead><tbody id="top-sisteme-body"></tbody></table>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card p-3">
+            <h5><i class="bi bi-lightning"></i> Acțiuni rapide</h5>
+            <div class="d-grid gap-2 mt-2">
+              <button class="btn btn-arbi btn-sm" onclick="openSistemModal()"><i class="bi bi-plus-circle"></i> Adaugă Sistem Informațional</button>
+              <button class="btn btn-arbi btn-sm" onclick="openUtilizatorModal()"><i class="bi bi-person-plus"></i> Adaugă Utilizator</button>
+              <button class="btn btn-outline-success btn-sm" onclick="exportExcelUtilizatori()"><i class="bi bi-file-earmark-excel"></i> Export Registru Utilizatori</button>
+              <button class="btn btn-outline-success btn-sm" onclick="exportExcelSisteme()"><i class="bi bi-file-earmark-excel"></i> Export Sisteme Informaționale</button>
+              <button class="btn btn-outline-secondary btn-sm" onclick="document.getElementById('importFile').click()"><i class="bi bi-upload"></i> Import din Excel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SISTEME -->
+    <div id="section-sisteme" class="section">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="page-header mb-0"><i class="bi bi-hdd-stack"></i> Sisteme Informaționale</h2>
+        <button class="btn btn-arbi" onclick="openSistemModal()"><i class="bi bi-plus-circle"></i> Adaugă</button>
+      </div>
+      <div class="card p-3 mb-3">
+        <div class="row g-2 align-items-end">
+          <div class="col-md-5"><label class="form-label small mb-1">Căutare</label><input type="text" id="s-search" class="form-control form-control-sm" placeholder="Denumire, furnizor..." oninput="renderSisteme()"></div>
+          <div class="col-md-3"><label class="form-label small mb-1">Statut</label><select id="s-statut" class="form-select form-select-sm" onchange="renderSisteme()"><option value="">Toate</option><option value="activ">Activ</option><option value="inactiv">Inactiv</option></select></div>
+          <div class="col-md-2"><button class="btn btn-outline-secondary btn-sm w-100" onclick="document.getElementById('s-search').value='';document.getElementById('s-statut').value='';renderSisteme()"><i class="bi bi-x"></i> Reset</button></div>
+          <div class="col-md-2"><button class="btn btn-outline-success btn-sm w-100" onclick="exportExcelSisteme()"><i class="bi bi-file-earmark-excel"></i> Export</button></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="px-3 py-2 border-bottom"><small class="text-muted" id="s-count"></small></div>
+        <div class="table-responsive">
+          <table class="table table-hover mb-0">
+            <thead><tr><th>#</th><th>Denumire</th><th>Furnizor</th><th>Tip acces</th><th class="text-center">Utilizatori</th><th class="text-center">Statut</th><th class="text-center">Acțiuni</th></tr></thead>
+            <tbody id="sisteme-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- UTILIZATORI -->
+    <div id="section-utilizatori" class="section">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="page-header mb-0"><i class="bi bi-people"></i> Registrul Utilizatorilor</h2>
+        <button class="btn btn-arbi" onclick="openUtilizatorModal()"><i class="bi bi-person-plus"></i> Adaugă</button>
+      </div>
+      <div class="card p-3 mb-3">
+        <div class="row g-2 align-items-end">
+          <div class="col-md-3"><label class="form-label small mb-1">Căutare (login/nume)</label><input type="text" id="u-search" class="form-control form-control-sm" placeholder="Login sau Nume..." oninput="renderUtilizatori()"></div>
+          <div class="col-md-4"><label class="form-label small mb-1">Sistem</label><select id="u-sistem" class="form-select form-select-sm" onchange="renderUtilizatori()"><option value="">Toate sistemele</option></select></div>
+          <div class="col-md-2"><label class="form-label small mb-1">Statut</label><select id="u-statut" class="form-select form-select-sm" onchange="renderUtilizatori()"><option value="">Toate</option><option value="activ">Activ</option><option value="inactiv">Inactiv</option></select></div>
+          <div class="col-md-1"><button class="btn btn-outline-secondary btn-sm w-100" onclick="resetUtilizatoriFilters()"><i class="bi bi-x"></i></button></div>
+          <div class="col-md-2"><button class="btn btn-outline-success btn-sm w-100" onclick="exportExcelUtilizatori(true)"><i class="bi bi-file-earmark-excel"></i> Export</button></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="px-3 py-2 border-bottom"><small class="text-muted" id="u-count"></small></div>
+        <div class="table-responsive">
+          <table class="table table-hover mb-0">
+            <thead><tr><th>Login</th><th>Numele deținătorului</th><th>Sistem Informațional</th><th>Din data</th><th>Pînă</th><th class="text-center">Statut</th><th class="text-center">Acțiuni</th></tr></thead>
+            <tbody id="utilizatori-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</div>
+
+<!-- Modal Sistem -->
+<div class="modal fade" id="sistemModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="sistemModalTitle">Sistem Informațional</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="s-id">
+        <div class="mb-3"><label class="form-label fw-medium">Denumire <span class="text-danger">*</span></label><input type="text" id="s-denumire" class="form-control" required></div>
+        <div class="row g-3 mb-3">
+          <div class="col-md-6"><label class="form-label fw-medium">Furnizor / Autoritate</label><input type="text" id="s-furnizor" class="form-control"></div>
+          <div class="col-md-6"><label class="form-label fw-medium">Tip acces</label><select id="s-tip-acces" class="form-select"><option value="">— selectați —</option><option>Web</option><option>VPN</option><option>API</option><option>Local</option><option>MConnect</option><option>Altul</option></select></div>
+        </div>
+        <div class="mb-3"><label class="form-label fw-medium">Descriere</label><textarea id="s-descriere" class="form-control" rows="2"></textarea></div>
+        <div class="row g-3 mb-3">
+          <div class="col-md-6"><label class="form-label fw-medium">Data înregistrării</label><input type="date" id="s-data-inreg" class="form-control"></div>
+          <div class="col-md-6"><label class="form-label fw-medium">Statut</label><select id="s-statut-form" class="form-select"><option value="activ">Activ</option><option value="inactiv">Inactiv</option></select></div>
+        </div>
+        <div class="mb-3"><label class="form-label fw-medium">Observații</label><textarea id="s-observatii" class="form-control" rows="2"></textarea></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Anulează</button>
+        <button type="button" class="btn btn-arbi" onclick="saveSistem()"><i class="bi bi-save"></i> Salvează</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Utilizator -->
+<div class="modal fade" id="utilizatorModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="utilizatorModalTitle">Utilizator</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="u-id">
+        <div class="row g-3 mb-3">
+          <div class="col-md-6"><label class="form-label fw-medium">Login <span class="text-danger">*</span></label><input type="text" id="u-login" class="form-control" required></div>
+          <div class="col-md-6"><label class="form-label fw-medium">Numele deținătorului <span class="text-danger">*</span></label><input type="text" id="u-nume" class="form-control" required></div>
+        </div>
+        <div class="mb-3"><label class="form-label fw-medium">Sistem Informațional <span class="text-danger">*</span></label><select id="u-sistem-form" class="form-select" required><option value="">— selectați —</option></select></div>
+        <div class="row g-3 mb-3">
+          <div class="col-md-6"><label class="form-label fw-medium">Din data</label><input type="date" id="u-din-data" class="form-control"></div>
+          <div class="col-md-6"><label class="form-label fw-medium">Pînă la data</label><input type="date" id="u-pina-la" class="form-control"><small class="text-muted">Gol = acces nedeterminat</small></div>
+        </div>
+        <div class="row g-3 mb-3">
+          <div class="col-md-6"><label class="form-label fw-medium">Statut</label><select id="u-statut-form" class="form-select"><option value="activ">Activ</option><option value="inactiv">Inactiv</option></select></div>
+          <div class="col-md-6"><label class="form-label fw-medium">Observații</label><input type="text" id="u-observatii" class="form-control"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Anulează</button>
+        <button type="button" class="btn btn-arbi" onclick="saveUtilizator()"><i class="bi bi-save"></i> Salvează</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// ── Date inițiale ────────────────────────────────────────────────────────────
+const SEED_SISTEME = [{"id": 44, "denumire": "112", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 1, "denumire": "999.md", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 2, "denumire": "ACCES-Web", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 3, "denumire": "Cadastru bunurilor imobile", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 5, "denumire": "E-Grădinița", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 6, "denumire": "E-Școala", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 7, "denumire": "FISC (infoview) SIA „Intrare autorizată”", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 8, "denumire": "FISC(Cadastru fiscal)", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 9, "denumire": "FISC(Contul curent al contribuabilului)", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 11, "denumire": "INFOSAPR", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 10, "denumire": "Infocom(Sistemul informațional Infocom-Bon)", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 12, "denumire": "Lista consumatorilor SA „Moldova Gaz” (Energocom)", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 13, "denumire": "MAI(Banca centrală de date)", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 14, "denumire": "MAI(Fișierul operativ OSK(Forma 246))", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 15, "denumire": "MAI(Registru contavențiilor/Rossoft)", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 16, "denumire": "MConnect(date.gov.md)", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 21, "denumire": "Registrul Tehnicii Agricole", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 17, "denumire": "Registrul cu numele pasagerilor (PNR)", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 18, "denumire": "Registrul de Stat al actelor locale", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 19, "denumire": "Registrul de stat al navelor", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 20, "denumire": "Registrul garanțiilor reale mobiliare", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 23, "denumire": "SI Registrul Bunurilor Infracționale Imobilizate", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 24, "denumire": "SI Registrul Bunurilor Infracționale Imobilizate (IBase_intern)", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 25, "denumire": "SI Registrul Bunurilor Infracționale Indisponibilizate", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 26, "denumire": "SI Registrul Bunurilor Infracționale Indisponibilizate (IBase_intern)", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 27, "denumire": "SI Siena/Europol", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 28, "denumire": "SI Silver Notice/Interpol", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 22, "denumire": "SI „Vulnerabilitate energetică”", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 29, "denumire": "SIA ,,Arhiva Stare Civilă''", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 33, "denumire": "SIA Evidența solicitanților și beneficiarilor de subvenții (AIPA)", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 34, "denumire": "SIA Registul persoanelor reținute, arestate și condamnate", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 35, "denumire": "SIA SIVABON (istoria creditară)", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 30, "denumire": "SIA „Autotest”", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 31, "denumire": "SIA „Cadastrul fiscal 2.0”", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 32, "denumire": "SIA „Registrul de stat al armelor”", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 38, "denumire": "Sistem Informațional e-Vinieta", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 36, "denumire": "Sistem destinat consumării datelor stocate în bazele de date ale altor autorități", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 37, "denumire": "Sistem informațional ASYCUDA World", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 39, "denumire": "Sistem informațional RCA Data", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 42, "denumire": "Sistemul Informațional Integrat al Poliției de Frontieră", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 43, "denumire": "Sistemul Informațional Integrat al Serviciului Vamal (SIIV)", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 40, "denumire": "Sistemul Informațional al vânătorilor", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 41, "denumire": "Sistemul informaţional automatizat „Evidenţa şi controlul medicamentelor autorizate”", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}, {"id": 4, "denumire": "eData MAI Contravenţii", "furnizor": null, "tip_acces": null, "descriere": null, "data_inregistrare": null, "statut": "activ", "observatii": null}];
+const SEED_UTILIZATORI = [{"id": 13, "login": "-", "nume": "Alesea Scorpan", "sistem_id": 27, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 5, "login": "Alesea Scorpan", "nume": "Alesea Scorpan", "sistem_id": 16, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 9, "login": "CNA45", "nume": "Alesea Scorpan", "sistem_id": 7, "din_data": "2025-03-24", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 10, "login": "CNA45", "nume": "Alesea Scorpan", "sistem_id": 9, "din_data": "2025-03-28", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 12, "login": "CNA45", "nume": "Alesea Scorpan", "sistem_id": 8, "din_data": "2025-03-28", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 4, "login": "CNA76", "nume": "Alesea Scorpan", "sistem_id": 2, "din_data": "2025-01-09", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 3, "login": "CNAOSAO", "nume": "Alesea Scorpan", "sistem_id": 35, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 7, "login": "MPass", "nume": "Alesea Scorpan", "sistem_id": 23, "din_data": "2020-01-22", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 8, "login": "Scorpan.Alesea", "nume": "Alesea Scorpan", "sistem_id": 24, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 6, "login": "alesea.scorpan", "nume": "Alesea Scorpan", "sistem_id": 36, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 15, "login": "aleseascorpan", "nume": "Alesea Scorpan", "sistem_id": 3, "din_data": "2019-11-25", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 14, "login": "ccc_ivancova", "nume": "Alesea Scorpan", "sistem_id": 43, "din_data": "2019-12-11", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 11, "login": "cna-arbi6", "nume": "Alesea Scorpan", "sistem_id": 39, "din_data": "2025-03-26", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 2, "login": "cna39", "nume": "Alesea Scorpan", "sistem_id": 15, "din_data": "2024-06-05", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 1, "login": "cna46", "nume": "Alesea Scorpan", "sistem_id": 29, "din_data": "2024-06-04", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 16, "login": "Buga.Ana", "nume": "Buga Anna", "sistem_id": 24, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 21, "login": "CNA0098", "nume": "Buga Anna", "sistem_id": 42, "din_data": "2025-09-09", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 18, "login": "CNA83", "nume": "Buga Anna", "sistem_id": 7, "din_data": "2025-09-01", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 20, "login": "CNA90", "nume": "Buga Anna", "sistem_id": 2, "din_data": "2025-09-09", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 17, "login": "MPass", "nume": "Buga Anna", "sistem_id": 23, "din_data": "2020-01-22", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 24, "login": "bugann", "nume": "Buga Anna", "sistem_id": 3, "din_data": "2025-09-15", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 19, "login": "cna36", "nume": "Buga Anna", "sistem_id": 15, "din_data": "2025-09-10", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 23, "login": "cna_buga_a", "nume": "Buga Anna", "sistem_id": 43, "din_data": "2025-09-08", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 22, "login": "oskcna068", "nume": "Buga Anna", "sistem_id": 14, "din_data": "2025-09-05", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 37, "login": "Bulgari.Vadim", "nume": "Bulgari Vadim", "sistem_id": 24, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 38, "login": "CNA0058", "nume": "Bulgari Vadim", "sistem_id": 42, "din_data": "2025-02-11", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 32, "login": "CNA24", "nume": "Bulgari Vadim", "sistem_id": 2, "din_data": "2025-01-09", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 39, "login": "CNA37", "nume": "Bulgari Vadim", "sistem_id": 7, "din_data": "2025-03-21", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 40, "login": "CNA37", "nume": "Bulgari Vadim", "sistem_id": 9, "din_data": "2025-03-28", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 41, "login": "CNA37", "nume": "Bulgari Vadim", "sistem_id": 8, "din_data": "2025-03-28", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 31, "login": "CNAOBVO", "nume": "Bulgari Vadim", "sistem_id": 35, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 36, "login": "MPass", "nume": "Bulgari Vadim", "sistem_id": 25, "din_data": "2020-01-22", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 44, "login": "MPass", "nume": "Bulgari Vadim", "sistem_id": 32, "din_data": "2025-05-22", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 33, "login": "Vadim Bulgari", "nume": "Bulgari Vadim", "sistem_id": 16, "din_data": null, "pina_la": "2025-01-31", "statut": "activ", "observatii": null}, {"id": 43, "login": "cna.user23@gmail.com", "nume": "Bulgari Vadim", "sistem_id": 38, "din_data": "2025-05-22", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 27, "login": "cna37", "nume": "Bulgari Vadim", "sistem_id": 15, "din_data": "2024-04-08", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 30, "login": "cna37", "nume": "Bulgari Vadim", "sistem_id": 4, "din_data": "2024-04-08", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 29, "login": "cna45", "nume": "Bulgari Vadim", "sistem_id": 29, "din_data": "2024-04-08", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 28, "login": "cnam20", "nume": "Bulgari Vadim", "sistem_id": 10, "din_data": "2024-04-08", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 26, "login": "v.bulgari", "nume": "Bulgari Vadim", "sistem_id": 43, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 34, "login": "vadim.bulgari", "nume": "Bulgari Vadim", "sistem_id": 36, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 35, "login": "vadim.bulgari@cna.md", "nume": "Bulgari Vadim", "sistem_id": 21, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 42, "login": "vadim.bulgari@cna.md", "nume": "Bulgari Vadim", "sistem_id": 33, "din_data": "2025-05-12", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 25, "login": "vadimbul", "nume": "Bulgari Vadim", "sistem_id": 3, "din_data": "2020-01-27", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 60, "login": "CNA0068", "nume": "Ciocan Nicolae", "sistem_id": 42, "din_data": "2025-02-11", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 62, "login": "CNA22", "nume": "Ciocan Nicolae", "sistem_id": 7, "din_data": "2025-03-21", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 63, "login": "CNA22", "nume": "Ciocan Nicolae", "sistem_id": 9, "din_data": "2025-05-16", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 64, "login": "CNA22", "nume": "Ciocan Nicolae", "sistem_id": 8, "din_data": "2025-05-16", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 54, "login": "CNA98", "nume": "Ciocan Nicolae", "sistem_id": 2, "din_data": "2025-01-09", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 53, "login": "CNAOCNNA", "nume": "Ciocan Nicolae", "sistem_id": 35, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 59, "login": "Ciocan.Nicolae", "nume": "Ciocan Nicolae", "sistem_id": 24, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 57, "login": "MPass", "nume": "Ciocan Nicolae", "sistem_id": 25, "din_data": "2020-01-22", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 65, "login": "MPass", "nume": "Ciocan Nicolae", "sistem_id": 32, "din_data": "2025-05-22", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 55, "login": "Nicolae Ciocan", "nume": "Ciocan Nicolae", "sistem_id": 16, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 48, "login": "c0970249", "nume": "Ciocan Nicolae", "sistem_id": 13, "din_data": "2023-04-13", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 51, "login": "ccc_ciocan_n", "nume": "Ciocan Nicolae", "sistem_id": 43, "din_data": "2023-05-12", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 56, "login": "ciocan.n", "nume": "Ciocan Nicolae", "sistem_id": 39, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 52, "login": "ciocan_n", "nume": "Ciocan Nicolae", "sistem_id": 37, "din_data": "2023-05-12", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 67, "login": "cna.nicolae.ciocan", "nume": "Ciocan Nicolae", "sistem_id": 40, "din_data": "2025-08-19", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 61, "login": "cna17", "nume": "Ciocan Nicolae", "sistem_id": 16, "din_data": "2025-03-20", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 68, "login": "cna22", "nume": "Ciocan Nicolae", "sistem_id": 31, "din_data": "2025-12-16", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 45, "login": "cna27", "nume": "Ciocan Nicolae", "sistem_id": 29, "din_data": "2023-03-09", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 46, "login": "cna43", "nume": "Ciocan Nicolae", "sistem_id": 15, "din_data": "2023-03-09", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 47, "login": "cnam16", "nume": "Ciocan Nicolae", "sistem_id": 10, "din_data": "2023-03-09", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 58, "login": "magnum777", "nume": "Ciocan Nicolae", "sistem_id": 1, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 50, "login": "nciocan", "nume": "Ciocan Nicolae", "sistem_id": 30, "din_data": "2023-01-03", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 66, "login": "nicolae.ciocan@arbi.cna.md", "nume": "Ciocan Nicolae", "sistem_id": 19, "din_data": "2025-07-14", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 49, "login": "oskcna041", "nume": "Ciocan Nicolae", "sistem_id": 14, "din_data": "2023-04-13", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 72, "login": "CNA0100", "nume": "Ciocîrlan Cătălina", "sistem_id": 42, "din_data": "2025-09-01", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 69, "login": "CNA86", "nume": "Ciocîrlan Cătălina", "sistem_id": 7, "din_data": "2025-09-01", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 71, "login": "CNA92", "nume": "Ciocîrlan Cătălina", "sistem_id": 2, "din_data": "2025-09-01", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 75, "login": "ciocircat", "nume": "Ciocîrlan Cătălina", "sistem_id": 3, "din_data": "2025-09-15", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 70, "login": "cna69", "nume": "Ciocîrlan Cătălina", "sistem_id": 15, "din_data": "2025-09-10", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 74, "login": "cna_ciocirlan_c", "nume": "Ciocîrlan Cătălina", "sistem_id": 43, "din_data": "2025-09-08", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 73, "login": "oskcna073", "nume": "Ciocîrlan Cătălina", "sistem_id": 14, "din_data": "2025-09-05", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 112, "login": "-", "nume": "Constantin Sîli", "sistem_id": 20, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 111, "login": "CNA0022", "nume": "Constantin Sîli", "sistem_id": 42, "din_data": "2025-02-11", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 92, "login": "CNA0050", "nume": "Constantin Sîli", "sistem_id": 42, "din_data": "2025-02-11", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 104, "login": "CNA102", "nume": "Constantin Sîli", "sistem_id": 2, "din_data": "2025-01-09", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 122, "login": "CNA21", "nume": "Constantin Sîli", "sistem_id": 8, "din_data": "2025-11-25", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 115, "login": "CNA33", "nume": "Constantin Sîli", "sistem_id": 7, "din_data": "2025-03-21", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 116, "login": "CNA33", "nume": "Constantin Sîli", "sistem_id": 9, "din_data": "2025-03-28", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 117, "login": "CNA33", "nume": "Constantin Sîli", "sistem_id": 8, "din_data": "2025-03-28", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 93, "login": "CNA47", "nume": "Constantin Sîli", "sistem_id": 7, "din_data": "2025-04-29", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 94, "login": "CNA47", "nume": "Constantin Sîli", "sistem_id": 9, "din_data": "2025-04-29", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 95, "login": "CNA47", "nume": "Constantin Sîli", "sistem_id": 8, "din_data": "2025-04-29", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 88, "login": "CNA99", "nume": "Constantin Sîli", "sistem_id": 2, "din_data": "2025-01-13", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 85, "login": "CNAOMGNA", "nume": "Constantin Sîli", "sistem_id": 35, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 126, "login": "CNAOSCC", "nume": "Constantin Sîli", "sistem_id": 35, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 105, "login": "Constantin Sîli", "nume": "Constantin Sîli", "sistem_id": 16, "din_data": null, "pina_la": "2025-05-15", "statut": "activ", "observatii": null}, {"id": 79, "login": "Constantin-DSIA", "nume": "Constantin Sîli", "sistem_id": 1, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 90, "login": "MPass", "nume": "Constantin Sîli", "sistem_id": 23, "din_data": "2020-01-22", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 108, "login": "MPass", "nume": "Constantin Sîli", "sistem_id": 23, "din_data": "2020-01-22", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 109, "login": "MPass", "nume": "Constantin Sîli", "sistem_id": 18, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 114, "login": "MPass", "nume": "Constantin Sîli", "sistem_id": 32, "din_data": "2025-03-12", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 124, "login": "MPass", "nume": "Constantin Sîli", "sistem_id": 22, "din_data": "2026-03-09", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 91, "login": "Murasco.Galina", "nume": "Constantin Sîli", "sistem_id": 24, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 110, "login": "Sili.Constantin", "nume": "Constantin Sîli", "sistem_id": 24, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 100, "login": "Sîli Constantin", "nume": "Constantin Sîli", "sistem_id": 5, "din_data": "2021-01-15", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 101, "login": "Sîli Constantin", "nume": "Constantin Sîli", "sistem_id": 6, "din_data": "2021-01-15", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 96, "login": "arbi5", "nume": "Constantin Sîli", "sistem_id": 3, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 80, "login": "c0970245", "nume": "Constantin Sîli", "sistem_id": 13, "din_data": "2023-04-13", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 86, "login": "ccc_murasco", "nume": "Constantin Sîli", "sistem_id": 43, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 76, "login": "ccc_sili", "nume": "Constantin Sîli", "sistem_id": 43, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 78, "login": "cna-25", "nume": "Constantin Sîli", "sistem_id": 39, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 120, "login": "cna.constantin.sili", "nume": "Constantin Sîli", "sistem_id": 40, "din_data": "2025-08-19", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 119, "login": "cna.user26@gmail.com", "nume": "Constantin Sîli", "sistem_id": 38, "din_data": "2025-05-22", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 102, "login": "cna10", "nume": "Constantin Sîli", "sistem_id": 29, "din_data": "2021-02-19", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 125, "login": "cna13", "nume": "Constantin Sîli", "sistem_id": 34, "din_data": "2026-02-24", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 97, "login": "cna1@infs.md", "nume": "Constantin Sîli", "sistem_id": 11, "din_data": "2020-10-28", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 123, "login": "cna21", "nume": "Constantin Sîli", "sistem_id": 31, "din_data": "2025-11-25", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 113, "login": "cna30", "nume": "Constantin Sîli", "sistem_id": 16, "din_data": "2025-02-28", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 77, "login": "cna33", "nume": "Constantin Sîli", "sistem_id": 15, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 103, "login": "cna7", "nume": "Constantin Sîli", "sistem_id": 41, "din_data": "2023-12-20", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 127, "login": "cnam1", "nume": "Constantin Sîli", "sistem_id": 10, "din_data": "2021-03-01", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 106, "login": "constantin.sili", "nume": "Constantin Sîli", "sistem_id": 36, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 118, "login": "constantin.sili@arbi.cna.md", "nume": "Constantin Sîli", "sistem_id": 33, "din_data": "2025-05-12", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 107, "login": "constantin.sili@cna.md", "nume": "Constantin Sîli", "sistem_id": 21, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 99, "login": "csili", "nume": "Constantin Sîli", "sistem_id": 30, "din_data": "2018-10-15", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 121, "login": "doc. excel", "nume": "Constantin Sîli", "sistem_id": 12, "din_data": "2025-09-23", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 89, "login": "galina.murasco", "nume": "Constantin Sîli", "sistem_id": 36, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 82, "login": "gmurasco", "nume": "Constantin Sîli", "sistem_id": 30, "din_data": "2023-04-20", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 87, "login": "gmurasco", "nume": "Constantin Sîli", "sistem_id": 3, "din_data": "2019-11-25", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 84, "login": "murasco.g", "nume": "Constantin Sîli", "sistem_id": 39, "din_data": "2023-06-12", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 83, "login": "murasco_g", "nume": "Constantin Sîli", "sistem_id": 37, "din_data": "2023-05-12", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 81, "login": "oskcna045", "nume": "Constantin Sîli", "sistem_id": 14, "din_data": "2023-04-13", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 98, "login": "sili_c", "nume": "Constantin Sîli", "sistem_id": 37, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 146, "login": "-", "nume": "Cosovan Dumitru", "sistem_id": 20, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 144, "login": "CNA0015", "nume": "Cosovan Dumitru", "sistem_id": 42, "din_data": "2025-02-11", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 150, "login": "CNA23", "nume": "Cosovan Dumitru", "sistem_id": 7, "din_data": "2025-03-21", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 151, "login": "CNA23", "nume": "Cosovan Dumitru", "sistem_id": 9, "din_data": "2025-03-28", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 152, "login": "CNA23", "nume": "Cosovan Dumitru", "sistem_id": 8, "din_data": "2025-03-28", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 137, "login": "CNA58", "nume": "Cosovan Dumitru", "sistem_id": 2, "din_data": "2025-01-09", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 145, "login": "CNAOCDON", "nume": "Cosovan Dumitru", "sistem_id": 35, "din_data": "2025-02-14", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 131, "login": "Cosovan Dumitru", "nume": "Cosovan Dumitru", "sistem_id": 6, "din_data": "2021-01-15", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 132, "login": "Cosovan Dumitru", "nume": "Cosovan Dumitru", "sistem_id": 5, "din_data": "2021-01-15", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 143, "login": "Cosovan.Dumitru", "nume": "Cosovan Dumitru", "sistem_id": 26, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 147, "login": "DCOSOVAN", "nume": "Cosovan Dumitru", "sistem_id": 30, "din_data": "2025-02-28", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 138, "login": "Dumitru Cosovan", "nume": "Cosovan Dumitru", "sistem_id": 16, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 142, "login": "Dumitrucos", "nume": "Cosovan Dumitru", "sistem_id": 1, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 130, "login": "MPass", "nume": "Cosovan Dumitru", "sistem_id": 22, "din_data": "2026-03-09", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 141, "login": "MPass", "nume": "Cosovan Dumitru", "sistem_id": 25, "din_data": "2020-01-22", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 149, "login": "MPass", "nume": "Cosovan Dumitru", "sistem_id": 32, "din_data": "2025-03-12", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 134, "login": "ccc_cosovan", "nume": "Cosovan Dumitru", "sistem_id": 43, "din_data": "2018-09-28", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 139, "login": "cna-arbi3", "nume": "Cosovan Dumitru", "sistem_id": 39, "din_data": "2019", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 129, "login": "cna.dmitrii.cosovan", "nume": "Cosovan Dumitru", "sistem_id": 40, "din_data": "2025-08-19", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 154, "login": "cna.user24@gmail.com", "nume": "Cosovan Dumitru", "sistem_id": 38, "din_data": "2025-05-22", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 155, "login": "cna23", "nume": "Cosovan Dumitru", "sistem_id": 31, "din_data": "2025-12-16", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 148, "login": "cna26.112", "nume": "Cosovan Dumitru", "sistem_id": 44, "din_data": "2025-03-10", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 133, "login": "cna5", "nume": "Cosovan Dumitru", "sistem_id": 29, "din_data": "2021-02-19", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 135, "login": "cna72", "nume": "Cosovan Dumitru", "sistem_id": 15, "din_data": "2024-05-14", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 136, "login": "cna_cosovan_d", "nume": "Cosovan Dumitru", "sistem_id": 37, "din_data": "2024-05-14", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 156, "login": "cosovand", "nume": "Cosovan Dumitru", "sistem_id": 3, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 140, "login": "dumitru.cosovan", "nume": "Cosovan Dumitru", "sistem_id": 36, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 128, "login": "dumitru.cosovan@arbi.cna.md", "nume": "Cosovan Dumitru", "sistem_id": 19, "din_data": "2025-07-17", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 153, "login": "dumitru.cosovan@arbi.cna.md", "nume": "Cosovan Dumitru", "sistem_id": 33, "din_data": "2025-05-12", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 162, "login": "Cozlovschi.Dorina", "nume": "Cozlovschi Dorina", "sistem_id": 26, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 157, "login": "DCozlovschi", "nume": "Cozlovschi Dorina", "sistem_id": 30, "din_data": "2023-01-03", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 158, "login": "Dorina Cozlovschi", "nume": "Cozlovschi Dorina", "sistem_id": 16, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 161, "login": "Dorina001", "nume": "Cozlovschi Dorina", "sistem_id": 1, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 160, "login": "MPass", "nume": "Cozlovschi Dorina", "sistem_id": 23, "din_data": "2020-01-22", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 159, "login": "dorina.cozlovschi", "nume": "Cozlovschi Dorina", "sistem_id": 36, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 168, "login": "CNA0095", "nume": "Croitor Ina", "sistem_id": 42, "din_data": "2025-06-20", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 167, "login": "CNA19", "nume": "Croitor Ina", "sistem_id": 2, "din_data": "2025-06-19", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 164, "login": "CNA51", "nume": "Croitor Ina", "sistem_id": 9, "din_data": "2025-06-19", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 165, "login": "CNA51", "nume": "Croitor Ina", "sistem_id": 8, "din_data": "2025-06-19", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 163, "login": "CNA79", "nume": "Croitor Ina", "sistem_id": 7, "din_data": "2025-06-19", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 170, "login": "CNAOCIO", "nume": "Croitor Ina", "sistem_id": 35, "din_data": "2025-06-20", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 175, "login": "c0970270", "nume": "Croitor Ina", "sistem_id": 13, "din_data": "2025-07-30", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 171, "login": "cna19", "nume": "Croitor Ina", "sistem_id": 16, "din_data": "2025-07-29", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 166, "login": "cna4", "nume": "Croitor Ina", "sistem_id": 15, "din_data": "2025-06-19", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 173, "login": "cna48", "nume": "Croitor Ina", "sistem_id": 29, "din_data": "2025-07-03", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 169, "login": "cna_croitor_i", "nume": "Croitor Ina", "sistem_id": 43, "din_data": "2025-06-20", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 174, "login": "cnam4", "nume": "Croitor Ina", "sistem_id": 10, "din_data": "2025-07-08", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 172, "login": "icroitor", "nume": "Croitor Ina", "sistem_id": 30, "din_data": "2025-07-09", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 176, "login": "oskcna070", "nume": "Croitor Ina", "sistem_id": 14, "din_data": "2025-07-30", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 177, "login": "tomov.d", "nume": "Croitor Ina", "sistem_id": 39, "din_data": "2025-09-17", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 181, "login": "Gamurari.Iurie", "nume": "Gamurari Iurie", "sistem_id": 26, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 180, "login": "MPass", "nume": "Gamurari Iurie", "sistem_id": 23, "din_data": "2020-01-22", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 179, "login": "cna29", "nume": "Gamurari Iurie", "sistem_id": 15, "din_data": "2024-05-17", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 178, "login": "cna41", "nume": "Gamurari Iurie", "sistem_id": 29, "din_data": "2024-05-17", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 182, "login": "Gorelco.Vitalie", "nume": "Gorelco Vitalie", "sistem_id": 26, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 183, "login": "MPass", "nume": "Gorelco Vitalie", "sistem_id": 25, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 186, "login": "CNA83", "nume": "Gorodenco Eugeniu", "sistem_id": 2, "din_data": "2025-07-28", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 185, "login": "Gorodenco.Eugeniu", "nume": "Gorodenco Eugeniu", "sistem_id": 26, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 184, "login": "MPass", "nume": "Gorodenco Eugeniu", "sistem_id": 23, "din_data": "2020-01-22", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 198, "login": "CNA0046", "nume": "Morozan Roman", "sistem_id": 42, "din_data": "2025-02-11", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 193, "login": "CNA25", "nume": "Morozan Roman", "sistem_id": 2, "din_data": "2025-01-21", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 192, "login": "CNAOMRNA", "nume": "Morozan Roman", "sistem_id": 35, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 196, "login": "MPass", "nume": "Morozan Roman", "sistem_id": 23, "din_data": "2020-01-22", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 197, "login": "Morozan.Roman", "nume": "Morozan Roman", "sistem_id": 24, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 194, "login": "Roman Morozan", "nume": "Morozan Roman", "sistem_id": 16, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 188, "login": "c0970244", "nume": "Morozan Roman", "sistem_id": 13, "din_data": "2023-04-13", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 187, "login": "morozan.r", "nume": "Morozan Roman", "sistem_id": 39, "din_data": "2022-02-16", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 191, "login": "morozan_r", "nume": "Morozan Roman", "sistem_id": 37, "din_data": "2023-05-12", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 189, "login": "oskcna044", "nume": "Morozan Roman", "sistem_id": 14, "din_data": "2023-04-13", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 190, "login": "rmorozan", "nume": "Morozan Roman", "sistem_id": 30, "din_data": "2023-04-20", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 195, "login": "roman.morozan", "nume": "Morozan Roman", "sistem_id": 36, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 199, "login": "nicolae.ciocan", "nume": "Nicolae Ciocan", "sistem_id": 36, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 216, "login": "-", "nume": "Nicorici Georgian", "sistem_id": 27, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 214, "login": "C0970261", "nume": "Nicorici Georgian", "sistem_id": 13, "din_data": "2025-05-15", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 209, "login": "CNA0091", "nume": "Nicorici Georgian", "sistem_id": 42, "din_data": "2025-02-11", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 204, "login": "CNA16", "nume": "Nicorici Georgian", "sistem_id": 2, "din_data": "2025-01-09", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 211, "login": "CNA36", "nume": "Nicorici Georgian", "sistem_id": 7, "din_data": "2025-03-25", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 212, "login": "CNA36", "nume": "Nicorici Georgian", "sistem_id": 9, "din_data": "2025-03-28", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 213, "login": "CNA36", "nume": "Nicorici Georgian", "sistem_id": 8, "din_data": "2025-03-28", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 203, "login": "CNAONGO", "nume": "Nicorici Georgian", "sistem_id": 35, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 205, "login": "Georgian Nicorici", "nume": "Nicorici Georgian", "sistem_id": 16, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 207, "login": "MPass", "nume": "Nicorici Georgian", "sistem_id": 23, "din_data": "2020-01-22", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 208, "login": "Nicorici.Georgian", "nume": "Nicorici Georgian", "sistem_id": 24, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 218, "login": "VGrigorean", "nume": "Nicorici Georgian", "sistem_id": 30, "din_data": "2026-01-27", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 202, "login": "ccc_nicorici_g", "nume": "Nicorici Georgian", "sistem_id": 43, "din_data": "2024-07-03", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 210, "login": "cna42", "nume": "Nicorici Georgian", "sistem_id": 16, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 200, "login": "cna47", "nume": "Nicorici Georgian", "sistem_id": 29, "din_data": "2024-06-18", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 201, "login": "cna73", "nume": "Nicorici Georgian", "sistem_id": 15, "din_data": "2024-06-18", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 215, "login": "g.nicorici.md", "nume": "Nicorici Georgian", "sistem_id": 28, "din_data": "2025-09-03", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 206, "login": "georgian.nicorici", "nume": "Nicorici Georgian", "sistem_id": 36, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 217, "login": "godoroja_a", "nume": "Nicorici Georgian", "sistem_id": 39, "din_data": "2026-01-27", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 219, "login": "Ogari.Victoria", "nume": "Ogari Vctoria", "sistem_id": 24, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 225, "login": "CNA0099", "nume": "Ogari Victoria", "sistem_id": 42, "din_data": "2025-09-01", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 222, "login": "CNA84", "nume": "Ogari Victoria", "sistem_id": 7, "din_data": "2025-09-01", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 224, "login": "CNA91", "nume": "Ogari Victoria", "sistem_id": 2, "din_data": "2025-09-01", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 221, "login": "MPass", "nume": "Ogari Victoria", "sistem_id": 23, "din_data": "2020-01-22", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 223, "login": "cna67", "nume": "Ogari Victoria", "sistem_id": 15, "din_data": "2025-09-10", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 227, "login": "cna_ogari_v", "nume": "Ogari Victoria", "sistem_id": 43, "din_data": "2025-09-08", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 228, "login": "ogarvic", "nume": "Ogari Victoria", "sistem_id": 3, "din_data": "2025-09-15", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 226, "login": "oskcna069", "nume": "Ogari Victoria", "sistem_id": 14, "din_data": "2025-09-05", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 220, "login": "victoria.ogari", "nume": "Ogari Victoria", "sistem_id": 36, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 230, "login": "CNA57", "nume": "Oglinda Victor", "sistem_id": 2, "din_data": "2025-05-23", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 229, "login": "CNA77", "nume": "Oglinda Victor", "sistem_id": 7, "din_data": "2025-05-23", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 231, "login": "cna_oglinda_v", "nume": "Oglinda Victor", "sistem_id": 43, "din_data": "2025-06-20", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 232, "login": "cna_oglinda_v", "nume": "Oglinda Victor", "sistem_id": 37, "din_data": "2025-06-20", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 233, "login": "oglindav", "nume": "Oglinda Victor", "sistem_id": 3, "din_data": "2025-08-22", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 234, "login": "cna30", "nume": "Pascal Cristina", "sistem_id": 31, "din_data": "2025-12-18", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 245, "login": "-", "nume": "Pavel Calpajiu", "sistem_id": 20, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 239, "login": "CNA26", "nume": "Pavel Calpajiu", "sistem_id": 2, "din_data": "2025-01-09", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 237, "login": "CNAOCPV", "nume": "Pavel Calpajiu", "sistem_id": 35, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 244, "login": "Calpajiu.Pavel", "nume": "Pavel Calpajiu", "sistem_id": 24, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 243, "login": "MPass", "nume": "Pavel Calpajiu", "sistem_id": 23, "din_data": "2020-01-22", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 240, "login": "Pavel Calpajiu", "nume": "Pavel Calpajiu", "sistem_id": 16, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 236, "login": "calpajiu_p", "nume": "Pavel Calpajiu", "sistem_id": 37, "din_data": "2018-09-28", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 247, "login": "ccc_calpajiu", "nume": "Pavel Calpajiu", "sistem_id": 43, "din_data": "2018-09-28", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 241, "login": "cna-arbi7", "nume": "Pavel Calpajiu", "sistem_id": 39, "din_data": "2019", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 238, "login": "cna34", "nume": "Pavel Calpajiu", "sistem_id": 15, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 248, "login": "cna5@infs.md", "nume": "Pavel Calpajiu", "sistem_id": 11, "din_data": "2020-10-28", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 235, "login": "pavel.calpagiu@cna.md", "nume": "Pavel Calpajiu", "sistem_id": 21, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 242, "login": "pavel.calpajiu", "nume": "Pavel Calpajiu", "sistem_id": 36, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 246, "login": "pavelccc", "nume": "Pavel Calpajiu", "sistem_id": 3, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 249, "login": "pcalpajiu", "nume": "Pavel Calpajiu", "sistem_id": 30, "din_data": "2018-10-15", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 265, "login": "CNA0047", "nume": "Ruslan Grati", "sistem_id": 42, "din_data": "2025-02-11", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 258, "login": "CNA86", "nume": "Ruslan Grati", "sistem_id": 2, "din_data": "2025-01-21", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 268, "login": "CNA88", "nume": "Ruslan Grati", "sistem_id": 7, "din_data": "2026-01-15", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 257, "login": "CNAOGRNA", "nume": "Ruslan Grati", "sistem_id": 35, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 264, "login": "Grati.Ruslan", "nume": "Ruslan Grati", "sistem_id": 24, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 263, "login": "MPass", "nume": "Ruslan Grati", "sistem_id": 23, "din_data": "2020-01-22", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 266, "login": "MPass", "nume": "Ruslan Grati", "sistem_id": 32, "din_data": "2025-03-12", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 269, "login": "MPass", "nume": "Ruslan Grati", "sistem_id": 22, "din_data": "2026-03-09", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 259, "login": "Ruslan Grati", "nume": "Ruslan Grati", "sistem_id": 16, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 251, "login": "c0970247", "nume": "Ruslan Grati", "sistem_id": 13, "din_data": "2023-04-13", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 250, "login": "ccc_grati", "nume": "Ruslan Grati", "sistem_id": 43, "din_data": "2020-01-02", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 267, "login": "cna.ruslan.grati", "nume": "Ruslan Grati", "sistem_id": 40, "din_data": "2025-08-19", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 255, "login": "cna31", "nume": "Ruslan Grati", "sistem_id": 4, "din_data": "2024-02-09", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 262, "login": "cna43", "nume": "Ruslan Grati", "sistem_id": 29, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 256, "login": "cna_grati_r", "nume": "Ruslan Grati", "sistem_id": 37, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 260, "login": "cnam19", "nume": "Ruslan Grati", "sistem_id": 10, "din_data": "2024-04-02", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 254, "login": "grati.r", "nume": "Ruslan Grati", "sistem_id": 39, "din_data": "2023-05-12", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 252, "login": "oskcna047", "nume": "Ruslan Grati", "sistem_id": 14, "din_data": "2023-04-13", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 253, "login": "rgrati", "nume": "Ruslan Grati", "sistem_id": 30, "din_data": "2023-04-20", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 261, "login": "ruslan.grati", "nume": "Ruslan Grati", "sistem_id": 36, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 270, "login": "ruslangg", "nume": "Ruslan Grati", "sistem_id": 3, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 282, "login": "CNA0092", "nume": "Rusu Mariana", "sistem_id": 42, "din_data": "2025-02-19", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 277, "login": "CNA128", "nume": "Rusu Mariana", "sistem_id": 2, "din_data": "2025-01-09", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 284, "login": "CNA85", "nume": "Rusu Mariana", "sistem_id": 7, "din_data": "2025-04-04", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 276, "login": "CNAORMO", "nume": "Rusu Mariana", "sistem_id": 35, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 280, "login": "MPass", "nume": "Rusu Mariana", "sistem_id": 23, "din_data": "2020-01-22", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 281, "login": "Rusu.Mariana", "nume": "Rusu Mariana", "sistem_id": 24, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 271, "login": "c0970242", "nume": "Rusu Mariana", "sistem_id": 13, "din_data": "2023-04-13", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 274, "login": "ccc_rusu_ma", "nume": "Rusu Mariana", "sistem_id": 43, "din_data": "2023-05-12", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 283, "login": "cna18", "nume": "Rusu Mariana", "sistem_id": 16, "din_data": "2025-02-28", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 278, "login": "mariana.rusu", "nume": "Rusu Mariana", "sistem_id": 39, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 279, "login": "mariana.rusu", "nume": "Rusu Mariana", "sistem_id": 36, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 273, "login": "marusu", "nume": "Rusu Mariana", "sistem_id": 30, "din_data": "2023-04-20", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 285, "login": "neamtu.g", "nume": "Rusu Mariana", "sistem_id": 39, "din_data": "2025-12-26", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 272, "login": "oskcna042", "nume": "Rusu Mariana", "sistem_id": 14, "din_data": "2023-04-13", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 275, "login": "rusu_mari", "nume": "Rusu Mariana", "sistem_id": 37, "din_data": "2023-05-12", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 304, "login": "CNA0054", "nume": "Sandu Cojocaru", "sistem_id": 42, "din_data": "2025-02-11", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 296, "login": "CNA33", "nume": "Sandu Cojocaru", "sistem_id": 2, "din_data": "2025-01-09", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 306, "login": "CNA50", "nume": "Sandu Cojocaru", "sistem_id": 7, "din_data": "2025-03-24", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 307, "login": "CNA50", "nume": "Sandu Cojocaru", "sistem_id": 9, "din_data": "2025-03-28", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 308, "login": "CNA50", "nume": "Sandu Cojocaru", "sistem_id": 8, "din_data": "2025-03-28", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 287, "login": "CNAOCSI", "nume": "Sandu Cojocaru", "sistem_id": 35, "din_data": "2020-07-21", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 288, "login": "Cojocaru Sandu", "nume": "Sandu Cojocaru", "sistem_id": 6, "din_data": "2021-01-15", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 289, "login": "Cojocaru Sandu", "nume": "Sandu Cojocaru", "sistem_id": 5, "din_data": "2021-01-15", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 303, "login": "Cojocaru.Sandu", "nume": "Sandu Cojocaru", "sistem_id": 24, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 300, "login": "MPass", "nume": "Sandu Cojocaru", "sistem_id": 23, "din_data": "2020-01-22", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 302, "login": "MPass", "nume": "Sandu Cojocaru", "sistem_id": 18, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 305, "login": "MPass", "nume": "Sandu Cojocaru", "sistem_id": 32, "din_data": "2025-03-12", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 313, "login": "MPass", "nume": "Sandu Cojocaru", "sistem_id": 22, "din_data": "2026-03-09", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 298, "login": "Sandu Cojocaru", "nume": "Sandu Cojocaru", "sistem_id": 16, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 295, "login": "Scojocaru", "nume": "Sandu Cojocaru", "sistem_id": 30, "din_data": "2023-01-03", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 301, "login": "briusse", "nume": "Sandu Cojocaru", "sistem_id": 1, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 314, "login": "ccc_cojocaru_s", "nume": "Sandu Cojocaru", "sistem_id": 43, "din_data": "2020-08-10", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 286, "login": "ccc_ursu", "nume": "Sandu Cojocaru", "sistem_id": 43, "din_data": "2020-07-08", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 312, "login": "cna.sandu.cojocaru", "nume": "Sandu Cojocaru", "sistem_id": 40, "din_data": "2025-08-19", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 310, "login": "cna.user25@gmail.com", "nume": "Sandu Cojocaru", "sistem_id": 38, "din_data": "2025-05-22", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 297, "login": "cna10", "nume": "Sandu Cojocaru", "sistem_id": 15, "din_data": "2025-01-27", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 290, "login": "cna2", "nume": "Sandu Cojocaru", "sistem_id": 29, "din_data": "2021-02-19", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 293, "login": "cna8.112", "nume": "Sandu Cojocaru", "sistem_id": 44, "din_data": "2023-01-25", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 291, "login": "cnam6", "nume": "Sandu Cojocaru", "sistem_id": 10, "din_data": "2020-07-08", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 292, "login": "cojocaru.s", "nume": "Sandu Cojocaru", "sistem_id": 39, "din_data": "2020-07-23", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 294, "login": "oskcna018", "nume": "Sandu Cojocaru", "sistem_id": 14, "din_data": "2023-04-13", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 299, "login": "sandu.cojocaru", "nume": "Sandu Cojocaru", "sistem_id": 36, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 309, "login": "sandu.cojocaru@arbi.cna.md", "nume": "Sandu Cojocaru", "sistem_id": 33, "din_data": "2025-05-13", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 311, "login": "sandu.cojocaru@arbi.cna.md", "nume": "Sandu Cojocaru", "sistem_id": 19, "din_data": "2025-07-09", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 322, "login": "CNA0087", "nume": "Slivciuc Nicu", "sistem_id": 42, "din_data": "2025-02-11", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 317, "login": "CNA47", "nume": "Slivciuc Nicu", "sistem_id": 2, "din_data": "2025-01-09", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 323, "login": "CNAOSNO", "nume": "Slivciuc Nicu", "sistem_id": 35, "din_data": "2025-02-14", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 319, "login": "MPass", "nume": "Slivciuc Nicu", "sistem_id": 26, "din_data": "2020-01-22", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 327, "login": "MPass", "nume": "Slivciuc Nicu", "sistem_id": 32, "din_data": "2025-05-22", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 329, "login": "MPass", "nume": "Slivciuc Nicu", "sistem_id": 22, "din_data": "2026-03-09", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 324, "login": "NSLIVCIUC", "nume": "Slivciuc Nicu", "sistem_id": 30, "din_data": "2025-03-10", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 318, "login": "Nicu Slivciuc", "nume": "Slivciuc Nicu", "sistem_id": 16, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 321, "login": "Slivciuc.Nicu", "nume": "Slivciuc Nicu", "sistem_id": 26, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 328, "login": "cna1", "nume": "Slivciuc Nicu", "sistem_id": 10, "din_data": "2025-07-08", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 325, "login": "cna27.112", "nume": "Slivciuc Nicu", "sistem_id": 44, "din_data": "2025-03-10", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 315, "login": "cna44", "nume": "Slivciuc Nicu", "sistem_id": 29, "din_data": "2024-03-28", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 316, "login": "cna_slivciuc_n", "nume": "Slivciuc Nicu", "sistem_id": 37, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 326, "login": "nicu.slivciuc@arbi.cna.md", "nume": "Slivciuc Nicu", "sistem_id": 33, "din_data": "2025-05-12", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 320, "login": "utilizator55", "nume": "Slivciuc Nicu", "sistem_id": 1, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 334, "login": "-", "nume": "Toacă Daniel", "sistem_id": 17, "din_data": "2025-04-30", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 333, "login": "CNA0060", "nume": "Toacă Daniel", "sistem_id": 42, "din_data": "2025-04-02", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 330, "login": "CNA68", "nume": "Toacă Daniel", "sistem_id": 7, "din_data": "2025-04-02", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 332, "login": "CNA71", "nume": "Toacă Daniel", "sistem_id": 2, "din_data": "2025-04-03", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 341, "login": "CNAOTDO", "nume": "Toacă Daniel", "sistem_id": 35, "din_data": "2025-04-07", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 342, "login": "MPass", "nume": "Toacă Daniel", "sistem_id": 32, "din_data": "2025-05-22", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 346, "login": "MPass", "nume": "Toacă Daniel", "sistem_id": 22, "din_data": "2026-03-09", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 337, "login": "c0970266", "nume": "Toacă Daniel", "sistem_id": 13, "din_data": "2025-05-16", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 347, "login": "cna12", "nume": "Toacă Daniel", "sistem_id": 34, "din_data": "2026-02-27", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 331, "login": "cna15", "nume": "Toacă Daniel", "sistem_id": 15, "din_data": "2025-04-08", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 335, "login": "cna28.112", "nume": "Toacă Daniel", "sistem_id": 44, "din_data": "2025-05-07", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 343, "login": "cna49", "nume": "Toacă Daniel", "sistem_id": 29, "din_data": "2025-07-03", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 339, "login": "cna_toaca_d", "nume": "Toacă Daniel", "sistem_id": 43, "din_data": "2025-05-21", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 340, "login": "cna_toaca_d", "nume": "Toacă Daniel", "sistem_id": 37, "din_data": "2025-05-21", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 344, "login": "cnam2", "nume": "Toacă Daniel", "sistem_id": 10, "din_data": "2025-07-08", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 338, "login": "oskcna065", "nume": "Toacă Daniel", "sistem_id": 14, "din_data": "2025-05-16", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 336, "login": "toacad", "nume": "Toacă Daniel", "sistem_id": 3, "din_data": "2025-04-10", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 345, "login": "v.munteanu", "nume": "Toacă Daniel", "sistem_id": 39, "din_data": "2025-11-11", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 348, "login": "MPass", "nume": "Triboi Elena", "sistem_id": 23, "din_data": "2020-01-22", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 349, "login": "Triboi.Elena", "nume": "Triboi Elena", "sistem_id": 26, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 361, "login": "CNA0074", "nume": "Turcan Victor", "sistem_id": 42, "din_data": "2025-02-11", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 355, "login": "CNA23", "nume": "Turcan Victor", "sistem_id": 2, "din_data": "2025-01-09", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 363, "login": "CNA39", "nume": "Turcan Victor", "sistem_id": 7, "din_data": "2025-03-24", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 364, "login": "CNA39", "nume": "Turcan Victor", "sistem_id": 9, "din_data": "2025-03-28", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 365, "login": "CNA39", "nume": "Turcan Victor", "sistem_id": 8, "din_data": "2025-03-28", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 351, "login": "CNAOTVN", "nume": "Turcan Victor", "sistem_id": 35, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 359, "login": "MPass", "nume": "Turcan Victor", "sistem_id": 25, "din_data": "2020-01-22", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 367, "login": "MPass", "nume": "Turcan Victor", "sistem_id": 32, "din_data": "2025-05-22", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 362, "login": "TomasCruise", "nume": "Turcan Victor", "sistem_id": 1, "din_data": "2025-03-13", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 360, "login": "Turcan.Victor", "nume": "Turcan Victor", "sistem_id": 24, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 366, "login": "cna.user22@gmail.com", "nume": "Turcan Victor", "sistem_id": 38, "din_data": "2025-05-22", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 368, "login": "cna.victor.turcan", "nume": "Turcan Victor", "sistem_id": 40, "din_data": "2025-08-19", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 353, "login": "cna28", "nume": "Turcan Victor", "sistem_id": 15, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 354, "login": "cna9.112", "nume": "Turcan Victor", "sistem_id": 44, "din_data": "2023-01-25", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 369, "login": "cna_turcan", "nume": "Turcan Victor", "sistem_id": 43, "din_data": "2021-08-02", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 356, "login": "cnam15", "nume": "Turcan Victor", "sistem_id": 10, "din_data": "2021-07-15", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 352, "login": "turcan-victor", "nume": "Turcan Victor", "sistem_id": 39, "din_data": "2021-08-04", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 358, "login": "turcan-victor", "nume": "Turcan Victor", "sistem_id": 39, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 350, "login": "turcan.victor", "nume": "Turcan Victor", "sistem_id": 3, "din_data": "2021-08-01", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 357, "login": "victor.turcan", "nume": "Turcan Victor", "sistem_id": 36, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 383, "login": "CNA0051", "nume": "Vitalie Racu", "sistem_id": 42, "din_data": "2025-02-11", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 385, "login": "CNA46", "nume": "Vitalie Racu", "sistem_id": 7, "din_data": "2025-03-28", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 386, "login": "CNA46", "nume": "Vitalie Racu", "sistem_id": 9, "din_data": "2025-03-28", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 387, "login": "CNA46", "nume": "Vitalie Racu", "sistem_id": 8, "din_data": "2025-03-28", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 378, "login": "CNA77", "nume": "Vitalie Racu", "sistem_id": 2, "din_data": "2025-01-10", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 384, "login": "CNAORVNAOC", "nume": "Vitalie Racu", "sistem_id": 35, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 381, "login": "MPass", "nume": "Vitalie Racu", "sistem_id": 25, "din_data": "2020-01-22", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 382, "login": "Racu.Vitalie", "nume": "Vitalie Racu", "sistem_id": 24, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 379, "login": "Vitalie Racu", "nume": "Vitalie Racu", "sistem_id": 16, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 373, "login": "c0970214", "nume": "Vitalie Racu", "sistem_id": 13, "din_data": "2018-09-10", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 370, "login": "ccc_racu", "nume": "Vitalie Racu", "sistem_id": 43, "din_data": "2020-01-10", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 371, "login": "cna3@infs.md", "nume": "Vitalie Racu", "sistem_id": 11, "din_data": "2020-10-28", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 372, "login": "oskcna014", "nume": "Vitalie Racu", "sistem_id": 14, "din_data": "2018-09-10", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 376, "login": "racu.v", "nume": "Vitalie Racu", "sistem_id": 39, "din_data": "2023-05-12", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 375, "login": "racu_v", "nume": "Vitalie Racu", "sistem_id": 43, "din_data": "2023-05-12", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 377, "login": "racu_v", "nume": "Vitalie Racu", "sistem_id": 37, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 380, "login": "vitalie.racu", "nume": "Vitalie Racu", "sistem_id": 36, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 388, "login": "vitalier", "nume": "Vitalie Racu", "sistem_id": 3, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 374, "login": "vracu", "nume": "Vitalie Racu", "sistem_id": 30, "din_data": "2023-04-20", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 392, "login": "C0970213", "nume": "Vitalie Rufanda", "sistem_id": 13, "din_data": "2018-11-14", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 403, "login": "CNA80", "nume": "Vitalie Rufanda", "sistem_id": 7, "din_data": "2025-07-01", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 404, "login": "CNA80", "nume": "Vitalie Rufanda", "sistem_id": 7, "din_data": "2025-07-01", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 399, "login": "CNA85", "nume": "Vitalie Rufanda", "sistem_id": 2, "din_data": "2025-01-09", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 398, "login": "CNAORVONA", "nume": "Vitalie Rufanda", "sistem_id": 35, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 401, "login": "MPass", "nume": "Vitalie Rufanda", "sistem_id": 25, "din_data": "2020-01-22", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 402, "login": "Rufanda.Vitalie", "nume": "Vitalie Rufanda", "sistem_id": 24, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 400, "login": "Vitalie Rufanda", "nume": "Vitalie Rufanda", "sistem_id": 16, "din_data": null, "pina_la": "2027-04-12", "statut": "activ", "observatii": null}, {"id": 390, "login": "arbi2", "nume": "Vitalie Rufanda", "sistem_id": 3, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 389, "login": "ccc_rufanda", "nume": "Vitalie Rufanda", "sistem_id": 43, "din_data": "2020-01-02", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 396, "login": "cna30", "nume": "Vitalie Rufanda", "sistem_id": 4, "din_data": "2024-02-09", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 397, "login": "cna42", "nume": "Vitalie Rufanda", "sistem_id": 29, "din_data": "2024-02-09", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 391, "login": "oskcna013", "nume": "Vitalie Rufanda", "sistem_id": 14, "din_data": "2018-11-14", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 407, "login": "rufadav", "nume": "Vitalie Rufanda", "sistem_id": 3, "din_data": null, "pina_la": null, "statut": "activ", "observatii": null}, {"id": 405, "login": "rufanda", "nume": "Vitalie Rufanda", "sistem_id": 3, "din_data": "2025-01-16", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 406, "login": "rufanda", "nume": "Vitalie Rufanda", "sistem_id": 3, "din_data": "2026-01-16", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 395, "login": "rufanda.v", "nume": "Vitalie Rufanda", "sistem_id": 39, "din_data": "2023-05-12", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 394, "login": "rufanda_v", "nume": "Vitalie Rufanda", "sistem_id": 37, "din_data": "2023-05-12", "pina_la": null, "statut": "activ", "observatii": null}, {"id": 393, "login": "vrufanda", "nume": "Vitalie Rufanda", "sistem_id": 30, "din_data": "2023-04-20", "pina_la": null, "statut": "activ", "observatii": null}];
+
+// ── State ────────────────────────────────────────────────────────────────────
+let db = { sisteme: [], utilizatori: [], nextSId: 1000, nextUId: 10000 };
+
+function loadDB() {
+  const saved = localStorage.getItem('arbi-evidenta-si');
+  if (saved) {
+    db = JSON.parse(saved);
+  } else {
+    db.sisteme = SEED_SISTEME.map(s => ({...s}));
+    db.utilizatori = SEED_UTILIZATORI.map(u => ({...u}));
+    db.nextSId = Math.max(...db.sisteme.map(s => s.id)) + 1;
+    db.nextUId = Math.max(...db.utilizatori.map(u => u.id)) + 1;
+    saveDB();
+  }
+}
+
+function saveDB() {
+  localStorage.setItem('arbi-evidenta-si', JSON.stringify(db));
+}
+
+// ── Navigare ─────────────────────────────────────────────────────────────────
+function showSection(name) {
+  document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
+  document.getElementById('section-' + name).classList.add('active');
+  document.querySelectorAll('.sidebar .nav-link[id]').forEach(el => el.classList.remove('active'));
+  const navEl = document.getElementById('nav-' + name);
+  if (navEl) navEl.classList.add('active');
+  if (name === 'dashboard') renderDashboard();
+  if (name === 'sisteme') renderSisteme();
+  if (name === 'utilizatori') renderUtilizatori();
+}
+
+// ── Toast ─────────────────────────────────────────────────────────────────────
+function toast(msg, type='success') {
+  const c = document.getElementById('toast-container');
+  const d = document.createElement('div');
+  d.className = `alert alert-${type} shadow py-2 px-3 mb-1`;
+  d.style.minWidth = '240px';
+  d.innerHTML = msg;
+  c.appendChild(d);
+  setTimeout(() => d.remove(), 3000);
+}
+
+// ── Dashboard ─────────────────────────────────────────────────────────────────
+function renderDashboard() {
+  document.getElementById('st-total-sisteme').textContent = db.sisteme.length;
+  document.getElementById('st-active-sisteme').textContent = db.sisteme.filter(s=>s.statut==='activ').length;
+  document.getElementById('st-total-util').textContent = db.utilizatori.length;
+  document.getElementById('st-active-util').textContent = db.utilizatori.filter(u=>u.statut==='activ').length;
+
+  const counts = {};
+  db.utilizatori.forEach(u => { counts[u.sistem_id] = (counts[u.sistem_id]||0)+1; });
+  const top = [...db.sisteme].sort((a,b)=>(counts[b.id]||0)-(counts[a.id]||0)).slice(0,10);
+  document.getElementById('top-sisteme-body').innerHTML = top.map((s,i) =>
+    `<tr><td>${i+1}</td><td>${esc(s.denumire)}</td><td class="text-center"><span class="badge bg-primary rounded-pill">${counts[s.id]||0}</span></td></tr>`
+  ).join('');
+}
+
+// ── Sisteme ───────────────────────────────────────────────────────────────────
+function renderSisteme() {
+  const q = (document.getElementById('s-search').value||'').toLowerCase();
+  const statut = document.getElementById('s-statut').value;
+  const counts = {};
+  db.utilizatori.forEach(u => { counts[u.sistem_id] = (counts[u.sistem_id]||0)+1; });
+
+  let list = db.sisteme.filter(s => {
+    if (statut && s.statut !== statut) return false;
+    if (q && !((s.denumire||'').toLowerCase().includes(q) || (s.furnizor||'').toLowerCase().includes(q) || (s.descriere||'').toLowerCase().includes(q))) return false;
+    return true;
+  }).sort((a,b)=>a.denumire.localeCompare(b.denumire,'ro'));
+
+  document.getElementById('s-count').textContent = list.length + ' sisteme găsite';
+  document.getElementById('sisteme-body').innerHTML = list.map((s,i) => `
+    <tr>
+      <td>${s.id}</td>
+      <td><strong>${esc(s.denumire)}</strong></td>
+      <td>${esc(s.furnizor||'—')}</td>
+      <td>${esc(s.tip_acces||'—')}</td>
+      <td class="text-center"><span class="badge bg-primary rounded-pill">${counts[s.id]||0}</span></td>
+      <td class="text-center"><span class="badge badge-${s.statut}">${s.statut}</span></td>
+      <td class="text-center">
+        <button class="btn btn-sm btn-outline-warning" onclick="openSistemModal(${s.id})" title="Editează"><i class="bi bi-pencil"></i></button>
+        <button class="btn btn-sm btn-outline-danger" onclick="deleteSistem(${s.id})" title="Șterge"><i class="bi bi-trash"></i></button>
+      </td>
+    </tr>`).join('') || '<tr><td colspan="7" class="text-center text-muted py-4">Nu există sisteme.</td></tr>';
+}
+
+function openSistemModal(id) {
+  const s = id ? db.sisteme.find(x=>x.id===id) : null;
+  document.getElementById('sistemModalTitle').textContent = s ? 'Editează Sistem' : 'Adaugă Sistem';
+  document.getElementById('s-id').value = s ? s.id : '';
+  document.getElementById('s-denumire').value = s ? s.denumire||'' : '';
+  document.getElementById('s-furnizor').value = s ? s.furnizor||'' : '';
+  document.getElementById('s-tip-acces').value = s ? s.tip_acces||'' : '';
+  document.getElementById('s-descriere').value = s ? s.descriere||'' : '';
+  document.getElementById('s-data-inreg').value = s ? s.data_inregistrare||'' : '';
+  document.getElementById('s-statut-form').value = s ? s.statut||'activ' : 'activ';
+  document.getElementById('s-observatii').value = s ? s.observatii||'' : '';
+  new bootstrap.Modal(document.getElementById('sistemModal')).show();
+}
+
+function saveSistem() {
+  const denumire = document.getElementById('s-denumire').value.trim();
+  if (!denumire) { toast('Denumirea este obligatorie.', 'warning'); return; }
+  const id = document.getElementById('s-id').value;
+  const obj = {
+    denumire, furnizor: document.getElementById('s-furnizor').value.trim()||null,
+    tip_acces: document.getElementById('s-tip-acces').value||null,
+    descriere: document.getElementById('s-descriere').value.trim()||null,
+    data_inregistrare: document.getElementById('s-data-inreg').value||null,
+    statut: document.getElementById('s-statut-form').value,
+    observatii: document.getElementById('s-observatii').value.trim()||null,
+  };
+  if (id) {
+    const idx = db.sisteme.findIndex(s=>s.id===+id);
+    db.sisteme[idx] = {...db.sisteme[idx], ...obj};
+    toast('Sistem actualizat.');
+  } else {
+    if (db.sisteme.find(s=>s.denumire.toLowerCase()===denumire.toLowerCase())) {
+      toast('Există deja un sistem cu această denumire.', 'warning'); return;
+    }
+    obj.id = db.nextSId++;
+    db.sisteme.push(obj);
+    toast('Sistem adăugat.');
+  }
+  saveDB(); bootstrap.Modal.getInstance(document.getElementById('sistemModal')).hide();
+  renderSisteme(); renderDashboard();
+}
+
+function deleteSistem(id) {
+  const s = db.sisteme.find(x=>x.id===id);
+  const nr = db.utilizatori.filter(u=>u.sistem_id===id).length;
+  if (!confirm(`Ștergi sistemul «${s.denumire}» și cei ${nr} utilizatori asociați?`)) return;
+  db.sisteme = db.sisteme.filter(x=>x.id!==id);
+  db.utilizatori = db.utilizatori.filter(u=>u.sistem_id!==id);
+  saveDB(); renderSisteme(); renderDashboard();
+  toast('Sistem șters.');
+}
+
+// ── Utilizatori ───────────────────────────────────────────────────────────────
+function populateSistemeDropdowns() {
+  const sorted = [...db.sisteme].sort((a,b)=>a.denumire.localeCompare(b.denumire,'ro'));
+  const opts = sorted.map(s=>`<option value="${s.id}">${esc(s.denumire)}</option>`).join('');
+
+  const uSistem = document.getElementById('u-sistem');
+  const saved = uSistem.value;
+  uSistem.innerHTML = '<option value="">Toate sistemele</option>' + opts;
+  uSistem.value = saved;
+
+  document.getElementById('u-sistem-form').innerHTML = '<option value="">— selectați —</option>' + opts;
+}
+
+function renderUtilizatori() {
+  const q = (document.getElementById('u-search').value||'').toLowerCase();
+  const sistemId = document.getElementById('u-sistem').value;
+  const statut = document.getElementById('u-statut').value;
+  const sistemMap = Object.fromEntries(db.sisteme.map(s=>[s.id, s.denumire]));
+
+  let list = db.utilizatori.filter(u => {
+    if (statut && u.statut !== statut) return false;
+    if (sistemId && u.sistem_id !== +sistemId) return false;
+    if (q && !((u.login||'').toLowerCase().includes(q) || (u.nume||'').toLowerCase().includes(q))) return false;
+    return true;
+  }).sort((a,b)=>a.nume.localeCompare(b.nume,'ro'));
+
+  document.getElementById('u-count').textContent = list.length + ' utilizatori găsiți';
+  document.getElementById('utilizatori-body').innerHTML = list.map(u => `
+    <tr>
+      <td><code>${esc(u.login)}</code></td>
+      <td>${esc(u.nume)}</td>
+      <td><small>${esc(sistemMap[u.sistem_id]||'—')}</small></td>
+      <td>${u.din_data||'—'}</td>
+      <td>${u.pina_la||'—'}</td>
+      <td class="text-center"><span class="badge badge-${u.statut}">${u.statut}</span></td>
+      <td class="text-center">
+        <button class="btn btn-sm btn-outline-warning" onclick="openUtilizatorModal(${u.id})" title="Editează"><i class="bi bi-pencil"></i></button>
+        <button class="btn btn-sm btn-outline-danger" onclick="deleteUtilizator(${u.id})" title="Șterge"><i class="bi bi-trash"></i></button>
+      </td>
+    </tr>`).join('') || '<tr><td colspan="7" class="text-center text-muted py-4">Nu există utilizatori.</td></tr>';
+}
+
+function resetUtilizatoriFilters() {
+  document.getElementById('u-search').value='';
+  document.getElementById('u-sistem').value='';
+  document.getElementById('u-statut').value='';
+  renderUtilizatori();
+}
+
+function openUtilizatorModal(id, presetSistemId) {
+  populateSistemeDropdowns();
+  const u = id ? db.utilizatori.find(x=>x.id===id) : null;
+  document.getElementById('utilizatorModalTitle').textContent = u ? 'Editează Utilizator' : 'Adaugă Utilizator';
+  document.getElementById('u-id').value = u ? u.id : '';
+  document.getElementById('u-login').value = u ? u.login||'' : '';
+  document.getElementById('u-nume').value = u ? u.nume||'' : '';
+  document.getElementById('u-sistem-form').value = u ? u.sistem_id : (presetSistemId||'');
+  document.getElementById('u-din-data').value = u ? u.din_data||'' : '';
+  document.getElementById('u-pina-la').value = u ? u.pina_la||'' : '';
+  document.getElementById('u-statut-form').value = u ? u.statut||'activ' : 'activ';
+  document.getElementById('u-observatii').value = u ? u.observatii||'' : '';
+  new bootstrap.Modal(document.getElementById('utilizatorModal')).show();
+}
+
+function saveUtilizator() {
+  const login = document.getElementById('u-login').value.trim();
+  const nume = document.getElementById('u-nume').value.trim();
+  const sistemId = document.getElementById('u-sistem-form').value;
+  if (!login || !nume || !sistemId) { toast('Login, Nume și Sistemul sunt obligatorii.', 'warning'); return; }
+  const id = document.getElementById('u-id').value;
+  const obj = {
+    login, nume, sistem_id: +sistemId,
+    din_data: document.getElementById('u-din-data').value||null,
+    pina_la: document.getElementById('u-pina-la').value||null,
+    statut: document.getElementById('u-statut-form').value,
+    observatii: document.getElementById('u-observatii').value.trim()||null,
+  };
+  if (id) {
+    const idx = db.utilizatori.findIndex(u=>u.id===+id);
+    db.utilizatori[idx] = {...db.utilizatori[idx], ...obj};
+    toast('Utilizator actualizat.');
+  } else {
+    obj.id = db.nextUId++;
+    db.utilizatori.push(obj);
+    toast('Utilizator adăugat.');
+  }
+  saveDB(); bootstrap.Modal.getInstance(document.getElementById('utilizatorModal')).hide();
+  renderUtilizatori(); renderDashboard();
+}
+
+function deleteUtilizator(id) {
+  const u = db.utilizatori.find(x=>x.id===id);
+  if (!confirm(`Ștergi utilizatorul «${u.login}»?`)) return;
+  db.utilizatori = db.utilizatori.filter(x=>x.id!==id);
+  saveDB(); renderUtilizatori(); renderDashboard();
+  toast('Utilizator șters.');
+}
+
+// ── Import Excel ──────────────────────────────────────────────────────────────
+function importExcel(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const wb = XLSX.read(e.target.result, {type:'binary', cellDates:true});
+      let imported = 0;
+
+      // Sheet Analiza — import sisteme
+      if (wb.SheetNames.includes('Analiza')) {
+        const ws = wb.Sheets['Analiza'];
+        const rows = XLSX.utils.sheet_to_json(ws, {header:1});
+        rows.slice(3).forEach(r => {
+          const den = r[0];
+          if (den && typeof den==='string' && den!=='Total') {
+            const trimmed = den.trim();
+            if (!db.sisteme.find(s=>s.denumire.toLowerCase()===trimmed.toLowerCase())) {
+              db.sisteme.push({id:db.nextSId++, denumire:trimmed, furnizor:null, tip_acces:null, descriere:null, data_inregistrare:null, statut:'activ', observatii:null});
+              imported++;
+            }
+          }
+        });
+      }
+
+      // Sheet Registrul utilizatorilor
+      const wsName = wb.SheetNames.find(n=>n.toLowerCase().includes('utilizator'));
+      if (wsName) {
+        const ws = wb.Sheets[wsName];
+        const rows = XLSX.utils.sheet_to_json(ws, {header:1, cellDates:true});
+        rows.slice(1).forEach(r => {
+          const [login, nume, dinData, pinaLa, registru, statut] = r;
+          if (!login || !registru) return;
+          const reg = String(registru).trim();
+          let sistem = db.sisteme.find(s=>s.denumire.toLowerCase()===reg.toLowerCase());
+          if (!sistem) {
+            sistem = {id:db.nextSId++, denumire:reg, furnizor:null, tip_acces:null, descriere:null, data_inregistrare:null, statut:'activ', observatii:null};
+            db.sisteme.push(sistem);
+          }
+          const fmtDate = v => {
+            if (!v || v==='-') return null;
+            if (v instanceof Date) return v.toISOString().slice(0,10);
+            return String(v).trim()==='-'?null:String(v).trim();
+          };
+          db.utilizatori.push({
+            id: db.nextUId++,
+            login: String(login).trim(),
+            nume: String(nume||'').trim(),
+            sistem_id: sistem.id,
+            din_data: fmtDate(dinData),
+            pina_la: fmtDate(pinaLa),
+            statut: statut ? String(statut).trim() : 'activ',
+            observatii: null
+          });
+          imported++;
+        });
+      }
+      saveDB(); renderDashboard();
+      toast(`Import reușit: ${imported} înregistrări adăugate.`);
+    } catch(err) {
+      toast('Eroare la import: ' + err.message, 'danger');
+    }
+    event.target.value = '';
+  };
+  reader.readAsBinaryString(file);
+}
+
+// ── Export Excel ──────────────────────────────────────────────────────────────
+function exportExcelUtilizatori(filtered) {
+  const q = filtered ? (document.getElementById('u-search').value||'').toLowerCase() : '';
+  const sistemId = filtered ? document.getElementById('u-sistem').value : '';
+  const statut = filtered ? document.getElementById('u-statut').value : '';
+  const sistemMap = Object.fromEntries(db.sisteme.map(s=>[s.id, s.denumire]));
+
+  let list = db.utilizatori.filter(u => {
+    if (statut && u.statut!==statut) return false;
+    if (sistemId && u.sistem_id!==+sistemId) return false;
+    if (q && !((u.login||'').toLowerCase().includes(q)||(u.nume||'').toLowerCase().includes(q))) return false;
+    return true;
+  }).sort((a,b)=>a.nume.localeCompare(b.nume,'ro'));
+
+  const data = [['Login','Numele deținătorului','Sistemul','Din data','Pînă','Statut','Observații']];
+  list.forEach(u=>data.push([u.login,u.nume,sistemMap[u.sistem_id]||'',u.din_data||'',u.pina_la||'',u.statut,u.observatii||'']));
+  const wb = XLSX.utils.book_new();
+  const ws = XLSX.utils.aoa_to_sheet(data);
+  ws['!cols']=[{wch:15},{wch:30},{wch:55},{wch:15},{wch:15},{wch:10},{wch:30}];
+  XLSX.utils.book_append_sheet(wb, ws, 'Registrul utilizatorilor');
+  XLSX.writeFile(wb, `registrul_utilizatorilor_${today()}.xlsx`);
+}
+
+function exportExcelSisteme() {
+  const counts = {};
+  db.utilizatori.forEach(u=>{counts[u.sistem_id]=(counts[u.sistem_id]||0)+1;});
+  const data=[['Denumire','Furnizor','Tip acces','Descriere','Data înregistrării','Statut','Nr. utilizatori','Observații']];
+  [...db.sisteme].sort((a,b)=>a.denumire.localeCompare(b.denumire,'ro'))
+    .forEach(s=>data.push([s.denumire,s.furnizor||'',s.tip_acces||'',s.descriere||'',s.data_inregistrare||'',s.statut,counts[s.id]||0,s.observatii||'']));
+  const wb=XLSX.utils.book_new();
+  const ws=XLSX.utils.aoa_to_sheet(data);
+  ws['!cols']=[{wch:55},{wch:25},{wch:20},{wch:40},{wch:20},{wch:10},{wch:15},{wch:30}];
+  XLSX.utils.book_append_sheet(wb,ws,'Sisteme Informationale');
+  XLSX.writeFile(wb,`sisteme_informationale_${today()}.xlsx`);
+}
+
+// ── Utils ─────────────────────────────────────────────────────────────────────
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function today(){return new Date().toISOString().slice(0,10).replace(/-/g,'')}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+loadDB();
+populateSistemeDropdowns();
+showSection('dashboard');
+</script>
+</body>
+</html>
