@@ -54,47 +54,60 @@ def format_date_ro(date_str: str) -> str:
         return date_str
 
 
+PREVIEW_BASE = "https://htmlpreview.github.io/?https://github.com/nracu59-art/ARBI/blob/main/reports"
+
+
+def report_links(date_iso: str) -> str:
+    raport_url = f"{PREVIEW_BASE}/raport_cedo_{date_iso}.html"
+    analiza_url = f"{PREVIEW_BASE}/analiza_cedo_{date_iso}.html"
+    index_url = f"{PREVIEW_BASE}/index.html"
+    return (
+        f'📄 <a href="{raport_url}">Raport HTML</a>  '
+        f'🔍 <a href="{analiza_url}">Analiză PDF</a>  '
+        f'📂 <a href="{index_url}">Toate rapoartele</a>'
+    )
+
+
 def format_report(data: dict) -> str:
-    date_label = format_date_ro(data.get("date", ""))
+    date_iso = data.get("date", "")
+    date_label = format_date_ro(date_iso)
     checked_at = data.get("checked_at", "")[:16].replace("T", " ")
-    # suportă atât câmpul vechi cât și cel nou
     total = data.get("total_filtered", data.get("total_found", 0))
     judgments = data.get("judgments", [])
 
     header = (
-        f"⚖️ <b>Raport CEDO – Confiscare</b>\n"
-        f"📅 Data: <b>{date_label}</b>\n"
-        f"📊 Hotărâri găsite: <b>{total}</b>\n"
-        f"🕙 Verificat la: {checked_at} UTC\n"
+        f"⚖️ <b>Raport CEDO – {date_label}</b>\n"
+        f"📊 Hotărâri despre confiscare: <b>{total}</b>\n"
+        f"🕙 Verificat: {checked_at} UTC\n"
+        f"{report_links(date_iso)}\n"
         f"{SEPARATOR}"
     )
 
-    if not judgments:
+    if total == 0:
         return (
             f"{header}\n\n"
-            "ℹ️ Nu au fost găsite hotărâri noi despre confiscare în perioada analizată.\n"
-            "<i>CEDO publică hotărâri în principal marțea și joia.</i>\n"
+            "❌ Nu au fost găsite hotărâri noi despre confiscare în ultimele 24 ore.\n"
             f"\n{SEPARATOR}\n"
             "🔍 Sursa: hudoc.echr.coe.int"
         )
 
     lines = [header, ""]
     for i, j in enumerate(judgments, 1):
-        respondent = j.get("respondent") or "N/A"
+        respondent = j.get("respondent", "N/A")
         doc_date = format_date_ro(j.get("docdate", ""))
-        conclusion = (j.get("conclusion") or "").strip()
-        applicability = (j.get("applicability") or "").strip()
+        conclusion = j.get("conclusion", "").strip()
+        applicability = j.get("applicability", "").strip()
         url = j.get("url", "")
-        docname = j.get("docname") or "Hotărâre CEDO"
+        docname = j.get("docname", "N/A")
 
         entry = [f"<b>{i}. {docname}</b>"]
         if doc_date:
-            entry.append(f"📅 {doc_date}  🏳️ {respondent}")
+            entry.append(f"📅 Data: {doc_date} | 🏳️ Stat: {respondent}")
         if applicability:
             entry.append(f"📌 Articole: {applicability[:150]}")
         if conclusion:
-            display = conclusion[:300] + "..." if len(conclusion) > 300 else conclusion
-            entry.append(f"📋 {display}")
+            display_conclusion = conclusion[:300] + "..." if len(conclusion) > 300 else conclusion
+            entry.append(f"📋 Concluzii: {display_conclusion}")
         if url:
             entry.append(f'🔗 <a href="{url}">Accesează hotărârea</a>')
         lines.extend(entry)
@@ -102,8 +115,8 @@ def format_report(data: dict) -> str:
 
     if total > len(judgments):
         lines.append(
-            f"...și alte {total - len(judgments)} hotărâri pe "
-            f'<a href="https://hudoc.echr.coe.int">HUDOC</a>'
+            f"... și alte {total - len(judgments)} hotărâri. "
+            f'<a href="https://hudoc.echr.coe.int">Accesează HUDOC</a>'
         )
         lines.append("")
 
@@ -130,8 +143,7 @@ def main() -> None:
     if not latest:
         send_long_message(
             bot_token, chat_id,
-            "⚠️ <b>CEDO Monitor</b>\n\n"
-            "Nu s-a găsit niciun fișier de rezultate.\n"
+            "⚠️ <b>ECHR Monitor</b>\n\nNu s-a găsit niciun fișier de rezultate.\n"
             "Este posibil că verificarea din seara precedentă a eșuat."
         )
         return
@@ -141,7 +153,7 @@ def main() -> None:
 
     message = format_report(data)
     send_long_message(bot_token, chat_id, message)
-    print(f"Telegram report sent from {latest}")
+    print(f"Report sent from {latest}")
 
 
 if __name__ == "__main__":
