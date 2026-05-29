@@ -11,7 +11,8 @@ from datetime import datetime, timedelta, timezone
 
 import requests
 
-HUDOC_API = "https://hudoc.echr.coe.int/app/query/results"
+HUDOC_BASE = "https://hudoc.echr.coe.int"
+HUDOC_API = f"{HUDOC_BASE}/app/query/results"
 
 KEYWORDS = [
     "confiscation",
@@ -31,14 +32,11 @@ LOOKBACK_DAYS = 14
 
 
 def build_query() -> str:
-    # HUDOC query syntax: == exact match, ~ contains, space inside () = OR
-    # Values must NOT be quoted for single words; quotes only for multi-word phrases
     def _q(s: str) -> str:
         return f'"{s}"' if " " in s else s
 
     keyword_clause = " ".join(f"fulltext~{_q(kw)}" for kw in KEYWORDS)
     doc_type_clause = " ".join(f"documentcollectionid2=={dt}" for dt in DOCUMENT_TYPES)
-    # No language filter — avoids missing French-only or recently-published cases
     return (
         f"(contentsitename==ECHR) "
         f"({doc_type_clause}) "
@@ -46,7 +44,28 @@ def build_query() -> str:
     )
 
 
-def fetch_hudoc(query: str, start: int = 0, length: int = 500) -> dict:
+def make_session() -> requests.Session:
+    """Initialize a session with HUDOC cookies, mimicking a browser visit."""
+    session = requests.Session()
+    session.headers.update({
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
+        "Accept-Language": "en-US,en;q=0.9",
+    })
+    try:
+        # Visit the HUDOC homepage to obtain session cookies
+        r = session.get(
+            f"{HUDOC_BASE}/eng",
+            headers={"Accept": "text/html,application/xhtml+xml,*/*;q=0.8"},
+            timeout=20,
+            allow_redirects=True,
+        )
+        print(f"  Session init: HTTP {r.status_code}, cookies={list(session.cookies.keys())}")
+    except Exception as exc:
+        print(f"  Session init failed (continuing anyway): {exc}")
+    return session
+
+
+def fetch_hudoc(session: requests.Session, query: str, start: int = 0, length: int = 500) -> dict:
     params = {
         "query": query,
         "select": (
@@ -54,38 +73,37 @@ def fetch_hudoc(query: str, start: int = 0, length: int = 500) -> dict:
             "respondent,respondentOrderEng,applicability,"
             "conclusion,violation,nonviolation,scl,article"
         ),
-        "sort": "kpdate Descending",  # sort by HUDOC publication date
+        "sort": "kpdate Descending",
         "start": start,
         "length": length,
         "rankingModelId": "BasicRank",
     }
     headers = {
-        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
-        "Accept": "application/json",
-        "Referer": "https://hudoc.echr.coe.int/",
-        "Accept-Language": "en-US,en;q=0.9",
+        "Accept": "application/json, text/javascript, */*; q=0.01",
+        "X-Requested-With": "XMLHttpRequest",
+        "Referer": f"{HUDOC_BASE}/eng",
     }
     for attempt in range(4):
         try:
-            response = requests.get(HUDOC_API, params=params, headers=headers, timeout=30)
+            response = session.get(HUDOC_API, params=params, headers=headers, timeout=30)
             print(f"  HTTP {response.status_code} | {len(response.content)} bytes")
-            print(f"  URL: {response.url}")
-            if response.status_code != 200:
-                print(f"  Body: {response.text[:300]}")
+            if not response.content:
+                print("  Empty response body")
+                time.sleep(2 ** (attempt + 1))
+                continue
             response.raise_for_status()
             data = response.json()
-            print(f"  JSON keys: {list(data.keys())}")
-            print(f"  resultcount: {data.get('resultcount')}")
+            msg = data.get("message", "")
+            print(f"  resultcount={data.get('resultcount')} | message={msg!r}")
             return data
         except requests.RequestException as exc:
             if attempt == 3:
                 raise
             wait = 2 ** (attempt + 1)
-            print(f"Attempt {attempt + 1} failed: {exc}. Retrying in {wait}s...")
+            print(f"  Attempt {attempt + 1} failed: {exc}. Retrying in {wait}s...")
             time.sleep(wait)
         except ValueError as exc:
-            print(f"  JSON decode error: {exc}")
-            print(f"  Raw body: {response.text[:500]}")
+            print(f"  JSON decode error: {exc} | body: {response.text[:200]}")
             raise
     return {}
 
@@ -97,12 +115,10 @@ def parse_judgments(api_response: dict, cutoff: datetime) -> list[dict]:
         cols = result.get("columns", {})
         itemid = cols.get("itemid", "")
 
-        # Deduplicate — same case may appear in multiple languages
         if itemid in seen:
             continue
         seen.add(itemid)
 
-        # Use kpdate (HUDOC publication date) as primary; fall back to judgement/doc date
         kpdate_raw = cols.get("kpdate") or ""
         raw_date = kpdate_raw or cols.get("judgementdate") or cols.get("docdate") or ""
         date_str = raw_date[:10] if raw_date else ""
@@ -132,7 +148,7 @@ def parse_judgments(api_response: dict, cutoff: datetime) -> list[dict]:
                 "violation": (cols.get("violation") or "")[:300],
                 "nonviolation": (cols.get("nonviolation") or "")[:300],
                 "scl": (cols.get("scl") or "").strip()[:300],
-                "url": f"https://hudoc.echr.coe.int/eng?i={itemid}" if itemid else "",
+                "url": f"{HUDOC_BASE}/eng?i={itemid}" if itemid else "",
             }
         )
     return judgments
@@ -145,9 +161,7 @@ def cleanup_old_results(days: int = 30) -> None:
             continue
         date_str = filename.replace("echr_", "").replace(".json", "")
         try:
-            file_date = datetime.strptime(date_str, "%Y-%m-%d").replace(
-                tzinfo=timezone.utc
-            )
+            file_date = datetime.strptime(date_str, "%Y-%m-%d").replace(tzinfo=timezone.utc)
             if file_date < cutoff:
                 os.remove(os.path.join(RESULTS_DIR, filename))
                 print(f"Deleted old result file: {filename}")
@@ -163,26 +177,15 @@ def main() -> None:
     print(f"Checking HUDOC for confiscation judgments (last {LOOKBACK_DAYS} days)...")
     print(f"Keywords: {', '.join(KEYWORDS)}")
 
-    # Connectivity sanity check — bare query with no filters
-    try:
-        r = requests.get(
-            HUDOC_API,
-            params={"query": "contentsitename==ECHR", "select": "itemid", "start": 0, "length": 1, "rankingModelId": "BasicRank"},
-            headers={"User-Agent": "Mozilla/5.0", "Accept": "application/json", "Referer": "https://hudoc.echr.coe.int/"},
-            timeout=15,
-        )
-        d = r.json()
-        print(f"[CONN TEST] HTTP {r.status_code} | resultcount={d.get('resultcount')} | keys={list(d.keys())}")
-    except Exception as exc:
-        print(f"[CONN TEST] FAILED: {exc}")
-
+    session = make_session()
     query = build_query()
-    print(f"Query sent: {query}")
-    api_response = fetch_hudoc(query)
+    print(f"Query: {query}")
+
+    api_response = fetch_hudoc(session, query)
     total_api = api_response.get("resultcount", 0)
     judgments = parse_judgments(api_response, cutoff)
 
-    print(f"API returned {total_api} total matches; {len(judgments)} within last {LOOKBACK_DAYS} days")
+    print(f"API returned {total_api} total; {len(judgments)} within last {LOOKBACK_DAYS} days")
 
     output = {
         "date": date_label,
