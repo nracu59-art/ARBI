@@ -178,6 +178,29 @@ def main() -> None:
     print(f"Keywords: {', '.join(KEYWORDS)}")
 
     session = make_session()
+
+    # Diagnostic: test multiple query formats to find which one HUDOC accepts
+    test_queries = [
+        ("bare keyword",          "confiscation"),
+        ("no contentsitename",    "(documentcollectionid2==GRANDCHAMBER documentcollectionid2==CHAMBER) (fulltext~confiscation)"),
+        ("specific itemid",       "contentsitename==ECHR itemid==001-250210"),
+        ("no rankingModel flag",  "(contentsitename==ECHR)(documentcollectionid2==GRANDCHAMBER)(fulltext~confiscation)"),
+        ("colon operator",        "documentcollectionid2:GRANDCHAMBER fulltext:confiscation"),
+    ]
+    for label, tq in test_queries:
+        try:
+            r = session.get(
+                HUDOC_API,
+                params={"query": tq, "select": "itemid,docname", "start": 0, "length": 3, "rankingModelId": "BasicRank"},
+                headers={"Accept": "application/json", "X-Requested-With": "XMLHttpRequest", "Referer": f"{HUDOC_BASE}/eng"},
+                timeout=15,
+            )
+            d = r.json() if r.content else {}
+            print(f"  [{label}] HTTP {r.status_code} | {len(r.content)}b | resultcount={d.get('resultcount')}")
+        except Exception as exc:
+            print(f"  [{label}] ERROR: {exc}")
+        time.sleep(1)
+
     query = build_query()
     print(f"Query: {query}")
 
