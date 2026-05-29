@@ -56,16 +56,32 @@ def format_date_ro(date_str: str) -> str:
         return date_str
 
 
+PREVIEW_BASE = "https://htmlpreview.github.io/?https://github.com/nracu59-art/ARBI/blob/main/reports"
+
+
+def report_links(date_iso: str) -> str:
+    raport_url = f"{PREVIEW_BASE}/raport_cedo_{date_iso}.html"
+    analiza_url = f"{PREVIEW_BASE}/analiza_cedo_{date_iso}.html"
+    index_url = f"{PREVIEW_BASE}/index.html"
+    return (
+        f'📄 <a href="{raport_url}">Raport HTML</a>  '
+        f'🔍 <a href="{analiza_url}">Analiză PDF</a>  '
+        f'📂 <a href="{index_url}">Toate rapoartele</a>'
+    )
+
+
 def format_report(data: dict) -> str:
-    date_label = format_date_ro(data.get("date", ""))
+    date_iso = data.get("date", "")
+    date_label = format_date_ro(date_iso)
     checked_at = data.get("checked_at", "")[:16].replace("T", " ")
-    total = data.get("total_found", 0)
+    total = data.get("total_filtered", data.get("total_found", 0))
     judgments = data.get("judgments", [])
 
     header = (
-        f"⚖️ <b>Raport CEDO - {date_label}</b>\n"
-        f"📊 Hotărâri noi despre confiscare: <b>{total}</b>\n"
-        f"🕙 Verificat la: {checked_at} UTC\n"
+        f"⚖️ <b>Raport CEDO – {date_label}</b>\n"
+        f"📊 Hotărâri despre confiscare: <b>{total}</b>\n"
+        f"🕙 Verificat: {checked_at} UTC\n"
+        f"{report_links(date_iso)}\n"
         f"{SEPARATOR}"
     )
 
