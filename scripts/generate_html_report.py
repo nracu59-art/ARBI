@@ -229,6 +229,110 @@ def main() -> None:
         f.write(html)
     print(f"HTML report saved to {output_path}")
 
+    update_index()
+
+
+def update_index() -> None:
+    base = "https://github.com/nracu59-art/ARBI/blob/main/reports"
+    raw_base = "https://raw.githubusercontent.com/nracu59-art/ARBI/main/reports"
+    preview = "https://htmlpreview.github.io/?"
+
+    rapoarte = sorted(
+        [f for f in os.listdir(REPORTS_DIR) if f.startswith("raport_cedo_") and f.endswith(".html")],
+        reverse=True,
+    )
+    analize = sorted(
+        [f for f in os.listdir(REPORTS_DIR) if f.startswith("analiza_cedo_") and f.endswith(".html")],
+        reverse=True,
+    )
+
+    def row(fname: str, red: bool = False) -> str:
+        date_str = fname.replace("raport_cedo_", "").replace("analiza_cedo_", "").replace(".html", "")
+        try:
+            date_ro = datetime.strptime(date_str, "%Y-%m-%d").strftime("%d.%m.%Y")
+        except ValueError:
+            date_ro = date_str
+        color = "red" if red else ""
+        view_url = f"{preview}{base}/{fname}"
+        dl_url = f"{raw_base}/{fname}"
+        row_cls = "row analiza" if red else "row"
+        date_cls = "date analiza" if red else "date"
+        btn_cls = f"btn btn-view{' red' if red else ''}"
+        return (
+            f'    <div class="{row_cls}">\n'
+            f'      <span class="{date_cls}">{date_ro}</span>\n'
+            f'      <div class="btns">\n'
+            f'        <a class="{btn_cls}" href="{view_url}" target="_blank">&#128065; Vizualizeaz&#259;</a>\n'
+            f'        <a class="btn btn-dl" href="{dl_url}" download>&#8595; Descarc&#259;</a>\n'
+            f'      </div>\n'
+            f'    </div>'
+        )
+
+    rapoarte_rows = "\n".join(row(f) for f in rapoarte)
+    analize_rows = "\n".join(row(f, red=True) for f in analize)
+
+    now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M")
+    html = f"""<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Rapoarte CEDO – Confiscare</title>
+<style>
+* {{ box-sizing: border-box; margin: 0; padding: 0; }}
+body {{ font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; color: #2c3e50; }}
+.hdr {{ background: #1a3a5c; color: #fff; padding: 24px 40px; }}
+.hdr h1 {{ font-size: 1.4rem; font-weight: 700; }}
+.hdr small {{ font-size: 0.82rem; opacity: .8; }}
+.wrap {{ max-width: 900px; margin: 30px auto; padding: 0 18px 60px; }}
+.section {{ margin-bottom: 32px; }}
+.section h2 {{ font-size: .85rem; text-transform: uppercase; letter-spacing: 1px;
+               color: #1a3a5c; border-bottom: 2px solid #1a3a5c;
+               padding-bottom: 6px; margin-bottom: 14px; }}
+.row {{ background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.07);
+       padding: 14px 20px; margin-bottom: 10px;
+       display: flex; align-items: center; justify-content: space-between;
+       border-left: 4px solid #1a3a5c; gap: 12px; flex-wrap: wrap; }}
+.row.analiza {{ border-left-color: #c0392b; }}
+.date {{ font-weight: 700; font-size: .95rem; min-width: 110px; }}
+.date.analiza {{ color: #c0392b; }}
+.btns {{ display: flex; gap: 8px; flex-wrap: wrap; }}
+.btn {{ display: inline-block; padding: 5px 14px; border-radius: 5px;
+       font-size: .78rem; font-weight: 600; text-decoration: none; }}
+.btn-view {{ background: #1a3a5c; color: #fff; }}
+.btn-view:hover {{ background: #2c5282; }}
+.btn-view.red {{ background: #c0392b; }}
+.btn-view.red:hover {{ background: #e74c3c; }}
+.btn-dl {{ background: #e8edf2; color: #1a3a5c; }}
+.btn-dl:hover {{ background: #d0d8e4; }}
+footer {{ text-align: center; font-size: .72rem; color: #aaa; padding-bottom: 20px; }}
+@media (max-width: 600px) {{ .hdr {{ padding: 16px 18px; }} .row {{ flex-direction: column; align-items: flex-start; }} }}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <h1>&#9878;&#65039; Rapoarte CEDO – Confiscare &amp; Sechestru</h1>
+  <small>Monitorizare automat&#259; zilnic&#259; &nbsp;&#183;&nbsp; Actualizat: {now_utc} UTC</small>
+</div>
+<div class="wrap">
+  <div class="section">
+    <h2>&#128203; Rapoarte zilnice (hot&#259;r&#226;ri g&#259;site)</h2>
+{rapoarte_rows}
+  </div>
+  <div class="section">
+    <h2>&#128269; Analize PDF (pasaje confiscare/sechestru)</h2>
+{analize_rows if analize_rows else '    <p style="color:#999;font-size:.85rem">Nicio analiz&#259; disponibil&#259; înc&#259;.</p>'}
+  </div>
+</div>
+<footer>Actualizat automat zilnic &nbsp;&#183;&nbsp; CEDO Monitor &nbsp;&#183;&nbsp; <a href="https://hudoc.echr.coe.int">hudoc.echr.coe.int</a></footer>
+</body>
+</html>"""
+
+    index_path = os.path.join(REPORTS_DIR, "index.html")
+    with open(index_path, "w", encoding="utf-8") as f:
+        f.write(html)
+    print(f"Index updated: {index_path} ({len(rapoarte)} rapoarte, {len(analize)} analize)")
+
 
 if __name__ == "__main__":
     main()
