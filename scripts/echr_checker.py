@@ -34,7 +34,7 @@ def build_query() -> str:
     # HUDOC query syntax: == exact match, ~ contains, space inside () = OR
     # Values must NOT be quoted for single words; quotes only for multi-word phrases
     def _q(s: str) -> str:
-        return f'"{ s}"' if " " in s else s
+        return f'"{s}"' if " " in s else s
 
     keyword_clause = " ".join(f"fulltext~{_q(kw)}" for kw in KEYWORDS)
     doc_type_clause = " ".join(f"documentcollectionid2=={dt}" for dt in DOCUMENT_TYPES)
@@ -54,7 +54,7 @@ def fetch_hudoc(query: str, start: int = 0, length: int = 500) -> dict:
             "respondent,respondentOrderEng,applicability,"
             "conclusion,violation,nonviolation,scl,article"
         ),
-        "sort": "kpdate Descending",
+        "sort": "kpdate Descending",  # sort by HUDOC publication date
         "start": start,
         "length": length,
         "rankingModelId": "BasicRank",
@@ -68,14 +68,25 @@ def fetch_hudoc(query: str, start: int = 0, length: int = 500) -> dict:
     for attempt in range(4):
         try:
             response = requests.get(HUDOC_API, params=params, headers=headers, timeout=30)
+            print(f"  HTTP {response.status_code} | {len(response.content)} bytes")
+            print(f"  URL: {response.url}")
+            if response.status_code != 200:
+                print(f"  Body: {response.text[:300]}")
             response.raise_for_status()
-            return response.json()
+            data = response.json()
+            print(f"  JSON keys: {list(data.keys())}")
+            print(f"  resultcount: {data.get('resultcount')}")
+            return data
         except requests.RequestException as exc:
             if attempt == 3:
                 raise
             wait = 2 ** (attempt + 1)
             print(f"Attempt {attempt + 1} failed: {exc}. Retrying in {wait}s...")
             time.sleep(wait)
+        except ValueError as exc:
+            print(f"  JSON decode error: {exc}")
+            print(f"  Raw body: {response.text[:500]}")
+            raise
     return {}
 
 
@@ -152,8 +163,21 @@ def main() -> None:
     print(f"Checking HUDOC for confiscation judgments (last {LOOKBACK_DAYS} days)...")
     print(f"Keywords: {', '.join(KEYWORDS)}")
 
+    # Connectivity sanity check — bare query with no filters
+    try:
+        r = requests.get(
+            HUDOC_API,
+            params={"query": "contentsitename==ECHR", "select": "itemid", "start": 0, "length": 1, "rankingModelId": "BasicRank"},
+            headers={"User-Agent": "Mozilla/5.0", "Accept": "application/json", "Referer": "https://hudoc.echr.coe.int/"},
+            timeout=15,
+        )
+        d = r.json()
+        print(f"[CONN TEST] HTTP {r.status_code} | resultcount={d.get('resultcount')} | keys={list(d.keys())}")
+    except Exception as exc:
+        print(f"[CONN TEST] FAILED: {exc}")
+
     query = build_query()
-    print(f"Query: {query}")
+    print(f"Query sent: {query}")
     api_response = fetch_hudoc(query)
     total_api = api_response.get("resultcount", 0)
     judgments = parse_judgments(api_response, cutoff)
