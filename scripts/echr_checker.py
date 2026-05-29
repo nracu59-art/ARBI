@@ -6,6 +6,7 @@ Saves results to results/echr_YYYY-MM-DD.json and cleans up files older than 30 
 
 import json
 import os
+import sys
 import time
 from datetime import datetime, timedelta, timezone
 
@@ -52,17 +53,64 @@ def make_session() -> requests.Session:
         "Accept-Language": "en-US,en;q=0.9",
     })
     try:
-        # Visit the HUDOC homepage to obtain session cookies
         r = session.get(
             f"{HUDOC_BASE}/eng",
             headers={"Accept": "text/html,application/xhtml+xml,*/*;q=0.8"},
             timeout=20,
             allow_redirects=True,
         )
-        print(f"  Session init: HTTP {r.status_code}, cookies={list(session.cookies.keys())}")
+        print(f"  Session init: HTTP {r.status_code}, cookies={list(session.cookies.keys())}", flush=True)
+        # Print any cf cookies for diagnosis
+        for k, v in session.cookies.items():
+            print(f"    cookie {k}={v[:20]}...", flush=True)
     except Exception as exc:
-        print(f"  Session init failed (continuing anyway): {exc}")
+        print(f"  Session init failed: {exc}", flush=True)
     return session
+
+
+def _diag_get(session: requests.Session, label: str, query: str, extra_params: dict | None = None) -> None:
+    """Run one diagnostic query and print full response details."""
+    params = {
+        "query": query,
+        "select": "itemid,docname,docdate",
+        "start": 0,
+        "length": 5,
+        "rankingModelId": "BasicRank",
+    }
+    if extra_params:
+        params.update(extra_params)
+    headers = {
+        "Accept": "application/json, text/javascript, */*; q=0.01",
+        "X-Requested-With": "XMLHttpRequest",
+        "Referer": f"{HUDOC_BASE}/eng",
+    }
+    try:
+        r = session.get(HUDOC_API, params=params, headers=headers, timeout=15)
+        body = r.text[:400] if r.content else "(empty)"
+        print(f"  [{label}] HTTP {r.status_code} | {len(r.content)}b | body={body!r}", flush=True)
+    except Exception as exc:
+        print(f"  [{label}] ERROR: {exc}", flush=True)
+
+
+def _diag_get_no_ranking(session: requests.Session, label: str, query: str) -> None:
+    """Run diagnostic query without rankingModelId."""
+    params = {
+        "query": query,
+        "select": "itemid,docname,docdate",
+        "start": 0,
+        "length": 5,
+    }
+    headers = {
+        "Accept": "application/json, text/javascript, */*; q=0.01",
+        "X-Requested-With": "XMLHttpRequest",
+        "Referer": f"{HUDOC_BASE}/eng",
+    }
+    try:
+        r = session.get(HUDOC_API, params=params, headers=headers, timeout=15)
+        body = r.text[:400] if r.content else "(empty)"
+        print(f"  [{label}] HTTP {r.status_code} | {len(r.content)}b | body={body!r}", flush=True)
+    except Exception as exc:
+        print(f"  [{label}] ERROR: {exc}", flush=True)
 
 
 def fetch_hudoc(session: requests.Session, query: str, start: int = 0, length: int = 500) -> dict:
@@ -86,24 +134,24 @@ def fetch_hudoc(session: requests.Session, query: str, start: int = 0, length: i
     for attempt in range(4):
         try:
             response = session.get(HUDOC_API, params=params, headers=headers, timeout=30)
-            print(f"  HTTP {response.status_code} | {len(response.content)} bytes")
+            print(f"  HTTP {response.status_code} | {len(response.content)} bytes", flush=True)
             if not response.content:
-                print("  Empty response body")
+                print("  Empty response body", flush=True)
                 time.sleep(2 ** (attempt + 1))
                 continue
             response.raise_for_status()
             data = response.json()
             msg = data.get("message", "")
-            print(f"  resultcount={data.get('resultcount')} | message={msg!r}")
+            print(f"  resultcount={data.get('resultcount')} | message={msg!r}", flush=True)
             return data
         except requests.RequestException as exc:
             if attempt == 3:
                 raise
             wait = 2 ** (attempt + 1)
-            print(f"  Attempt {attempt + 1} failed: {exc}. Retrying in {wait}s...")
+            print(f"  Attempt {attempt + 1} failed: {exc}. Retrying in {wait}s...", flush=True)
             time.sleep(wait)
         except ValueError as exc:
-            print(f"  JSON decode error: {exc} | body: {response.text[:200]}")
+            print(f"  JSON decode error: {exc} | body: {response.text[:200]}", flush=True)
             raise
     return {}
 
@@ -164,7 +212,7 @@ def cleanup_old_results(days: int = 30) -> None:
             file_date = datetime.strptime(date_str, "%Y-%m-%d").replace(tzinfo=timezone.utc)
             if file_date < cutoff:
                 os.remove(os.path.join(RESULTS_DIR, filename))
-                print(f"Deleted old result file: {filename}")
+                print(f"Deleted old result file: {filename}", flush=True)
         except ValueError:
             continue
 
@@ -174,41 +222,51 @@ def main() -> None:
     cutoff = now - timedelta(days=LOOKBACK_DAYS)
     date_label = now.strftime("%Y-%m-%d")
 
-    print(f"Checking HUDOC for confiscation judgments (last {LOOKBACK_DAYS} days)...")
-    print(f"Keywords: {', '.join(KEYWORDS)}")
+    print(f"Checking HUDOC for confiscation judgments (last {LOOKBACK_DAYS} days)...", flush=True)
+    print(f"Keywords: {', '.join(KEYWORDS)}", flush=True)
 
     session = make_session()
 
-    # Diagnostic: test multiple query formats to find which one HUDOC accepts
-    test_queries = [
-        ("bare keyword",          "confiscation"),
-        ("no contentsitename",    "(documentcollectionid2==GRANDCHAMBER documentcollectionid2==CHAMBER) (fulltext~confiscation)"),
-        ("specific itemid",       "contentsitename==ECHR itemid==001-250210"),
-        ("no rankingModel flag",  "(contentsitename==ECHR)(documentcollectionid2==GRANDCHAMBER)(fulltext~confiscation)"),
-        ("colon operator",        "documentcollectionid2:GRANDCHAMBER fulltext:confiscation"),
-    ]
-    for label, tq in test_queries:
-        try:
-            r = session.get(
-                HUDOC_API,
-                params={"query": tq, "select": "itemid,docname", "start": 0, "length": 3, "rankingModelId": "BasicRank"},
-                headers={"Accept": "application/json", "X-Requested-With": "XMLHttpRequest", "Referer": f"{HUDOC_BASE}/eng"},
-                timeout=15,
-            )
-            d = r.json() if r.content else {}
-            print(f"  [{label}] HTTP {r.status_code} | {len(r.content)}b | resultcount={d.get('resultcount')}")
-        except Exception as exc:
-            print(f"  [{label}] ERROR: {exc}")
-        time.sleep(1)
+    print("--- DIAGNOSTIC QUERIES ---", flush=True)
+
+    # 1. Known itemid, double-equals syntax
+    _diag_get(session, "itemid== known case", "itemid==001-250210")
+    time.sleep(1)
+
+    # 2. Known itemid, single-equals
+    _diag_get(session, "itemid= known case", "itemid=001-250210")
+    time.sleep(1)
+
+    # 3. Bare keyword, no rankingModelId
+    _diag_get_no_ranking(session, "confiscation no-ranking", "confiscation")
+    time.sleep(1)
+
+    # 4. Bare keyword with rankingModel
+    _diag_get(session, "confiscation BasicRank", "confiscation")
+    time.sleep(1)
+
+    # 5. CHAMBER only, fulltext
+    _diag_get(session, "CHAMBER+fulltext~confiscation", "(documentcollectionid2==CHAMBER)(fulltext~confiscation)")
+    time.sleep(1)
+
+    # 6. contentsitename only
+    _diag_get(session, "contentsitename==ECHR only", "contentsitename==ECHR")
+    time.sleep(1)
+
+    # 7. Application parameter test
+    _diag_get(session, "application=echr", "confiscation", {"application": "echr"})
+    time.sleep(1)
+
+    print("--- END DIAGNOSTIC ---", flush=True)
 
     query = build_query()
-    print(f"Query: {query}")
+    print(f"Main query: {query}", flush=True)
 
     api_response = fetch_hudoc(session, query)
     total_api = api_response.get("resultcount", 0)
     judgments = parse_judgments(api_response, cutoff)
 
-    print(f"API returned {total_api} total; {len(judgments)} within last {LOOKBACK_DAYS} days")
+    print(f"API returned {total_api} total; {len(judgments)} within last {LOOKBACK_DAYS} days", flush=True)
 
     output = {
         "date": date_label,
@@ -224,7 +282,7 @@ def main() -> None:
     output_path = os.path.join(RESULTS_DIR, f"echr_{date_label}.json")
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
-    print(f"Results saved to {output_path}")
+    print(f"Results saved to {output_path}", flush=True)
 
     cleanup_old_results(30)
 
