@@ -44,12 +44,13 @@ jobs:
         run: |
           git config user.name  "CEDO Monitor Bot"
           git config user.email "cedo-monitor@noreply.github.com"
+          git fetch origin main
+          git reset --hard origin/main
           git add results/
           if git diff --cached --quiet; then
             echo "No new results to commit."
           else
             git commit -m "📊 CEDO verificare $(date -u '+%Y-%m-%d %H:%M UTC')"
-            git pull --rebase origin main
             git push origin HEAD:main
           fi
 
@@ -86,12 +87,13 @@ jobs:
         run: |
           git config user.name  "CEDO Monitor Bot"
           git config user.email "cedo-monitor@noreply.github.com"
+          git fetch origin main
+          git reset --hard origin/main
           git add reports/
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
             git commit -m "📋 Raport CEDO $(date -u '+%Y-%m-%d')"
-            git pull --rebase origin main
             git push origin HEAD:main
           fi
 
@@ -135,11 +137,12 @@ jobs:
         run: |
           git config user.name  "CEDO Monitor Bot"
           git config user.email "cedo-monitor@noreply.github.com"
+          git fetch origin main
+          git reset --hard origin/main
           git add reports/
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
             git commit -m "🔍 Analiză CEDO $(date -u '+%Y-%m-%d')"
-            git pull --rebase origin main
             git push origin HEAD:main
           fi
