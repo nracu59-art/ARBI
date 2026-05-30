@@ -6,7 +6,6 @@ Saves results to results/echr_YYYY-MM-DD.json and cleans up files older than 30 
 
 import json
 import os
-import sys
 import time
 from datetime import datetime, timedelta, timezone
 
@@ -26,27 +25,21 @@ KEYWORDS = [
     "confiscation des biens",
 ]
 
-DOCUMENT_TYPES = ["GRANDCHAMBER", "CHAMBER", "COMMITTEE"]
-
 RESULTS_DIR = os.path.join(os.path.dirname(__file__), "..", "results")
 LOOKBACK_DAYS = 14
 
 
 def build_query() -> str:
+    # HUDOC API now requires bare keywords — field operators (fulltext~, ==) no longer work.
+    # Keywords are joined with OR for broad coverage across all document fields.
     def _q(s: str) -> str:
         return f'"{s}"' if " " in s else s
 
-    keyword_clause = " ".join(f"fulltext~{_q(kw)}" for kw in KEYWORDS)
-    doc_type_clause = " ".join(f"documentcollectionid2=={dt}" for dt in DOCUMENT_TYPES)
-    return (
-        f"(contentsitename==ECHR) "
-        f"({doc_type_clause}) "
-        f"({keyword_clause})"
-    )
+    return " OR ".join(_q(kw) for kw in KEYWORDS)
 
 
 def make_session() -> requests.Session:
-    """Initialize a session with HUDOC cookies, mimicking a browser visit."""
+    """Initialize a session with HUDOC cookies."""
     session = requests.Session()
     session.headers.update({
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
@@ -60,37 +53,9 @@ def make_session() -> requests.Session:
             allow_redirects=True,
         )
         print(f"  Session init: HTTP {r.status_code}, cookies={list(session.cookies.keys())}", flush=True)
-        print(f"  Final URL after redirects: {r.url}", flush=True)
     except Exception as exc:
-        print(f"  Session init failed: {exc}", flush=True)
+        print(f"  Session init failed (continuing anyway): {exc}", flush=True)
     return session
-
-
-def _diag(session: requests.Session, label: str, query: str, extra: dict | None = None) -> None:
-    """Run a diagnostic query with sort (required for 200) and print URL + full body."""
-    params = {
-        "query": query,
-        "select": "itemid,docname,docdate,kpdate",
-        "sort": "kpdate Descending",
-        "start": 0,
-        "length": 10,
-        "rankingModelId": "BasicRank",
-    }
-    if extra:
-        params.update(extra)
-    headers = {
-        "Accept": "application/json, text/javascript, */*; q=0.01",
-        "X-Requested-With": "XMLHttpRequest",
-        "Referer": f"{HUDOC_BASE}/eng",
-    }
-    try:
-        r = session.get(HUDOC_API, params=params, headers=headers, timeout=15)
-        body = r.text[:500] if r.content else "(empty)"
-        print(f"  [{label}]", flush=True)
-        print(f"    URL: {r.request.url[:200]}", flush=True)
-        print(f"    HTTP {r.status_code} | {len(r.content)}b | body={body!r}", flush=True)
-    except Exception as exc:
-        print(f"  [{label}] ERROR: {exc}", flush=True)
 
 
 def fetch_hudoc(session: requests.Session, query: str, start: int = 0, length: int = 500) -> dict:
@@ -146,6 +111,10 @@ def parse_judgments(api_response: dict, cutoff: datetime) -> list[dict]:
         if itemid in seen:
             continue
         seen.add(itemid)
+
+        # Exclude press releases (itemid "003-...") and other non-judgment document types
+        if itemid and not itemid.startswith("001-"):
+            continue
 
         kpdate_raw = cols.get("kpdate") or ""
         raw_date = kpdate_raw or cols.get("judgementdate") or cols.get("docdate") or ""
@@ -206,37 +175,8 @@ def main() -> None:
     print(f"Keywords: {', '.join(KEYWORDS)}", flush=True)
 
     session = make_session()
-
-    print("--- DIAGNOSTIC (with sort=kpdate Descending) ---", flush=True)
-
-    # 1. Minimal: bare keyword + sort only
-    _diag(session, "bare confiscation", "confiscation")
-    time.sleep(1)
-
-    # 2. Known itemid + sort
-    _diag(session, "itemid==001-250210", "itemid==001-250210")
-    time.sleep(1)
-
-    # 3. fulltext~ + sort
-    _diag(session, "fulltext~confiscation", "fulltext~confiscation")
-    time.sleep(1)
-
-    # 4. CHAMBER + fulltext~ + sort
-    _diag(session, "CHAMBER+fulltext~", "(documentcollectionid2==CHAMBER)(fulltext~confiscation)")
-    time.sleep(1)
-
-    # 5. contentsitename + fulltext~ + sort
-    _diag(session, "ECHR+fulltext~", "(contentsitename==ECHR)(fulltext~confiscation)")
-    time.sleep(1)
-
-    # 6. Full main query but with sort already in params
-    _diag(session, "full query", build_query())
-    time.sleep(1)
-
-    print("--- END DIAGNOSTIC ---", flush=True)
-
     query = build_query()
-    print(f"Main query: {query}", flush=True)
+    print(f"Query: {query}", flush=True)
 
     api_response = fetch_hudoc(session, query)
     total_api = api_response.get("resultcount", 0)
