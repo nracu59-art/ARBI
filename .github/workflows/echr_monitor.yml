@@ -44,8 +44,10 @@ jobs:
         run: |
           git config user.name  "CEDO Monitor Bot"
           git config user.email "cedo-monitor@noreply.github.com"
+          cp results/echr_*.json /tmp/ 2>/dev/null || true
           git fetch origin main
           git reset --hard origin/main
+          cp /tmp/echr_*.json results/ 2>/dev/null || true
           git add results/
           if git diff --cached --quiet; then
             echo "No new results to commit."
@@ -87,8 +89,10 @@ jobs:
         run: |
           git config user.name  "CEDO Monitor Bot"
           git config user.email "cedo-monitor@noreply.github.com"
+          cp -r reports/ /tmp/reports-new/ 2>/dev/null || true
           git fetch origin main
           git reset --hard origin/main
+          cp /tmp/reports-new/*.html reports/ 2>/dev/null || true
           git add reports/
           if git diff --cached --quiet; then
             echo "No changes to commit."
@@ -137,8 +141,10 @@ jobs:
         run: |
           git config user.name  "CEDO Monitor Bot"
           git config user.email "cedo-monitor@noreply.github.com"
+          cp -r reports/ /tmp/reports-new/ 2>/dev/null || true
           git fetch origin main
           git reset --hard origin/main
+          cp /tmp/reports-new/*.html reports/ 2>/dev/null || true
           git add reports/
           if git diff --cached --quiet; then
             echo "No changes to commit."
