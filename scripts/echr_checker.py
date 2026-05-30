@@ -60,25 +60,24 @@ def make_session() -> requests.Session:
             allow_redirects=True,
         )
         print(f"  Session init: HTTP {r.status_code}, cookies={list(session.cookies.keys())}", flush=True)
-        # Print any cf cookies for diagnosis
-        for k, v in session.cookies.items():
-            print(f"    cookie {k}={v[:20]}...", flush=True)
+        print(f"  Final URL after redirects: {r.url}", flush=True)
     except Exception as exc:
         print(f"  Session init failed: {exc}", flush=True)
     return session
 
 
-def _diag_get(session: requests.Session, label: str, query: str, extra_params: dict | None = None) -> None:
-    """Run one diagnostic query and print full response details."""
+def _diag(session: requests.Session, label: str, query: str, extra: dict | None = None) -> None:
+    """Run a diagnostic query with sort (required for 200) and print URL + full body."""
     params = {
         "query": query,
-        "select": "itemid,docname,docdate",
+        "select": "itemid,docname,docdate,kpdate",
+        "sort": "kpdate Descending",
         "start": 0,
-        "length": 5,
+        "length": 10,
         "rankingModelId": "BasicRank",
     }
-    if extra_params:
-        params.update(extra_params)
+    if extra:
+        params.update(extra)
     headers = {
         "Accept": "application/json, text/javascript, */*; q=0.01",
         "X-Requested-With": "XMLHttpRequest",
@@ -86,29 +85,10 @@ def _diag_get(session: requests.Session, label: str, query: str, extra_params: d
     }
     try:
         r = session.get(HUDOC_API, params=params, headers=headers, timeout=15)
-        body = r.text[:400] if r.content else "(empty)"
-        print(f"  [{label}] HTTP {r.status_code} | {len(r.content)}b | body={body!r}", flush=True)
-    except Exception as exc:
-        print(f"  [{label}] ERROR: {exc}", flush=True)
-
-
-def _diag_get_no_ranking(session: requests.Session, label: str, query: str) -> None:
-    """Run diagnostic query without rankingModelId."""
-    params = {
-        "query": query,
-        "select": "itemid,docname,docdate",
-        "start": 0,
-        "length": 5,
-    }
-    headers = {
-        "Accept": "application/json, text/javascript, */*; q=0.01",
-        "X-Requested-With": "XMLHttpRequest",
-        "Referer": f"{HUDOC_BASE}/eng",
-    }
-    try:
-        r = session.get(HUDOC_API, params=params, headers=headers, timeout=15)
-        body = r.text[:400] if r.content else "(empty)"
-        print(f"  [{label}] HTTP {r.status_code} | {len(r.content)}b | body={body!r}", flush=True)
+        body = r.text[:500] if r.content else "(empty)"
+        print(f"  [{label}]", flush=True)
+        print(f"    URL: {r.request.url[:200]}", flush=True)
+        print(f"    HTTP {r.status_code} | {len(r.content)}b | body={body!r}", flush=True)
     except Exception as exc:
         print(f"  [{label}] ERROR: {exc}", flush=True)
 
@@ -227,34 +207,30 @@ def main() -> None:
 
     session = make_session()
 
-    print("--- DIAGNOSTIC QUERIES ---", flush=True)
+    print("--- DIAGNOSTIC (with sort=kpdate Descending) ---", flush=True)
 
-    # 1. Known itemid, double-equals syntax
-    _diag_get(session, "itemid== known case", "itemid==001-250210")
+    # 1. Minimal: bare keyword + sort only
+    _diag(session, "bare confiscation", "confiscation")
     time.sleep(1)
 
-    # 2. Known itemid, single-equals
-    _diag_get(session, "itemid= known case", "itemid=001-250210")
+    # 2. Known itemid + sort
+    _diag(session, "itemid==001-250210", "itemid==001-250210")
     time.sleep(1)
 
-    # 3. Bare keyword, no rankingModelId
-    _diag_get_no_ranking(session, "confiscation no-ranking", "confiscation")
+    # 3. fulltext~ + sort
+    _diag(session, "fulltext~confiscation", "fulltext~confiscation")
     time.sleep(1)
 
-    # 4. Bare keyword with rankingModel
-    _diag_get(session, "confiscation BasicRank", "confiscation")
+    # 4. CHAMBER + fulltext~ + sort
+    _diag(session, "CHAMBER+fulltext~", "(documentcollectionid2==CHAMBER)(fulltext~confiscation)")
     time.sleep(1)
 
-    # 5. CHAMBER only, fulltext
-    _diag_get(session, "CHAMBER+fulltext~confiscation", "(documentcollectionid2==CHAMBER)(fulltext~confiscation)")
+    # 5. contentsitename + fulltext~ + sort
+    _diag(session, "ECHR+fulltext~", "(contentsitename==ECHR)(fulltext~confiscation)")
     time.sleep(1)
 
-    # 6. contentsitename only
-    _diag_get(session, "contentsitename==ECHR only", "contentsitename==ECHR")
-    time.sleep(1)
-
-    # 7. Application parameter test
-    _diag_get(session, "application=echr", "confiscation", {"application": "echr"})
+    # 6. Full main query but with sort already in params
+    _diag(session, "full query", build_query())
     time.sleep(1)
 
     print("--- END DIAGNOSTIC ---", flush=True)
