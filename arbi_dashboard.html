@@ -413,16 +413,31 @@ details[open] > .schema-summary::before { transform:rotate(90deg); }
 .schema-empty { color:var(--text2); font-size:0.82rem; padding:1rem; text-align:center; }
 .schema-warning { background:rgba(210,153,34,0.08); border:1px solid var(--orange); border-radius:6px; padding:0.45rem 0.75rem; font-size:0.78rem; color:var(--orange); margin-bottom:0.5rem; }
 
+/* SPLIT LAYOUT */
+.schema-split { display:flex; gap:0.6rem; height:calc(100vh - 205px); min-height:480px; }
+.schema-list-panel { width:290px; min-width:160px; flex-shrink:0; display:flex; flex-direction:column; background:var(--bg2); border:1px solid var(--border); border-radius:6px; overflow:hidden; }
+.schema-list-items { flex:1; overflow-y:auto; }
+.schema-list-item { padding:0.5rem 0.75rem; border-bottom:1px solid var(--border); cursor:pointer; transition:background 0.12s; user-select:none; }
+.schema-list-item:last-child { border-bottom:none; }
+.schema-list-item:hover { background:var(--bg3); }
+.schema-list-item.active { background:rgba(88,166,255,0.10); border-left:3px solid var(--accent); padding-left:calc(0.75rem - 3px); }
+.schema-list-key { font-size:0.79rem; font-weight:600; color:var(--text); line-height:1.3; }
+.schema-list-sub { font-size:0.69rem; color:var(--text2); margin-top:0.05rem; }
+.schema-list-meta { font-size:0.69rem; color:var(--text2); margin-top:0.15rem; display:flex; gap:0.3rem; align-items:center; flex-wrap:wrap; }
+.schema-list-empty { padding:1rem 0.8rem; color:var(--text2); font-size:0.78rem; text-align:center; }
+.schema-list-warn { padding:0.35rem 0.7rem; background:rgba(210,153,34,0.08); border-bottom:1px solid var(--border); font-size:0.7rem; color:var(--orange); flex-shrink:0; }
+.schema-graph-panel { flex:1; min-width:0; display:flex; flex-direction:column; gap:0.4rem; }
+.schema-no-sel { flex:1; display:flex; align-items:center; justify-content:center; color:var(--text2); font-size:0.84rem; border:1px dashed var(--border); border-radius:6px; text-align:center; padding:2rem; min-height:200px; }
 /* CYTOSCAPE GRAPH VIEW */
-.schema-cy-wrap { position:relative; height:580px; border:1px solid var(--border); border-radius:6px; overflow:hidden; background:var(--bg2); }
+.schema-cy-wrap { flex:1; position:relative; min-height:300px; border:1px solid var(--border); border-radius:6px; overflow:hidden; background:var(--bg2); }
 #schema-cy { width:100%; height:100%; }
 .schema-cy-controls { position:absolute; bottom:0.6rem; right:0.6rem; display:flex; flex-direction:column; gap:0.3rem; z-index:10; }
 .cy-ctrl-btn { width:28px; height:28px; background:var(--bg3); border:1px solid var(--border); border-radius:4px; color:var(--text); font-size:1rem; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; }
 .cy-ctrl-btn:hover { background:var(--bg); }
-.schema-legend { display:flex; gap:0.8rem; flex-wrap:wrap; margin:0.5rem 0; }
+.schema-legend { display:flex; gap:0.8rem; flex-wrap:wrap; flex-shrink:0; }
 .legend-item { display:flex; align-items:center; gap:0.35rem; font-size:0.73rem; color:var(--text2); }
 .legend-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
-.schema-detail-panel { background:var(--bg2); border:1px solid var(--border); border-radius:6px; padding:0.75rem 0.9rem; margin-top:0.5rem; font-size:0.81rem; min-height:60px; }
+.schema-detail-panel { background:var(--bg2); border:1px solid var(--border); border-radius:6px; padding:0.75rem 0.9rem; flex-shrink:0; max-height:220px; overflow-y:auto; font-size:0.81rem; }
 .schema-detail-title { font-weight:700; font-size:0.88rem; color:var(--text); margin-bottom:0.45rem; display:flex; align-items:center; gap:0.5rem; }
 .schema-detail-type { font-size:0.68rem; border-radius:8px; padding:0.1rem 0.4rem; }
 .schema-detail-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(220px,1fr)); gap:0.4rem 1rem; margin-top:0.35rem; }
@@ -790,47 +805,45 @@ details[open] > .schema-summary::before { transform:rotate(90deg); }
       <!-- SCHEMĂ RELAȚIONALĂ TAB -->
       <div class="tab-panel" id="tab-schema">
         <div class="schema-toolbar">
-          <span class="chart-toolbar-label">Vedere:</span>
+          <span class="chart-toolbar-label">Vizualizare după:</span>
           <div class="btn-group">
-            <button class="btn-group-btn active" id="schema-view-list"  onclick="setSchemaView('list')">Lista</button>
-            <button class="btn-group-btn"        id="schema-view-graph" onclick="setSchemaView('graph')">Graf</button>
-          </div>
-          <span class="chart-toolbar-label" id="schema-mode-label" style="margin-left:0.5rem">Grupare după:</span>
-          <div class="btn-group" id="schema-mode-btns">
             <button class="btn-group-btn active" id="schema-by-cauza"    onclick="setSchemaMode('cauza')">Cauza penală</button>
-            <button class="btn-group-btn"        id="schema-by-persoana" onclick="setSchemaMode('persoana')">Persoană</button>
-            <button class="btn-group-btn"        id="schema-by-bun"      onclick="setSchemaMode('bun')">ID Bun</button>
+            <button class="btn-group-btn"        id="schema-by-persoana" onclick="setSchemaMode('persoana')">Subiect</button>
+            <button class="btn-group-btn"        id="schema-by-bun"      onclick="setSchemaMode('bun')">Bun</button>
           </div>
-          <input type="text" class="filter-input" id="schema-search" placeholder="Filtrează..." style="width:190px;margin-left:0.4rem" oninput="renderSchemaTab()">
+          <input type="text" class="filter-input" id="schema-search" placeholder="Filtrează lista..." style="width:200px;margin-left:0.5rem" oninput="renderSchemaTab()">
         </div>
-
-        <!-- LISTA -->
-        <div id="schema-tree"></div>
-
-        <!-- GRAF CYTOSCAPE -->
-        <div class="schema-cy-wrap" id="schema-cy-wrap" style="display:none">
-          <div id="schema-cy"></div>
-          <div class="schema-cy-controls">
-            <button class="cy-ctrl-btn" title="Zoom in"  onclick="cyZoom(1.3)">+</button>
-            <button class="cy-ctrl-btn" title="Zoom out" onclick="cyZoom(0.77)">−</button>
-            <button class="cy-ctrl-btn" title="Centrare" onclick="cyFit()">⊙</button>
-            <button class="cy-ctrl-btn" title="Re-layout" onclick="cyLayout()">↺</button>
+        <div class="schema-split">
+          <!-- Stânga: lista entităților -->
+          <div class="schema-list-panel" id="schema-list-panel">
+            <div class="schema-list-items" id="schema-list-items">
+              <div class="schema-list-empty">Încărcați un fișier Excel.</div>
+            </div>
           </div>
-        </div>
-
-        <!-- LEGENDA + DETALII (graf) -->
-        <div id="schema-graph-meta" style="display:none">
-          <div class="schema-legend">
-            <span class="legend-item"><span class="legend-dot" style="background:var(--accent)"></span>Cauza penală</span>
-            <span class="legend-item"><span class="legend-dot" style="background:var(--green)"></span>Persoană urmărită</span>
-            <span class="legend-item"><span class="legend-dot" style="background:var(--teal);outline:1px dashed var(--teal)"></span>Proprietar bun</span>
-            <span class="legend-item"><span class="legend-dot" style="background:#8b949e33;border:1px solid #8b949e"></span>Bun (tip → culoare)</span>
-            <span class="legend-item"><span class="legend-dot" style="background:var(--red)"></span>Bun ⚡ traseu</span>
-            <span class="legend-item"><span class="legend-dot" style="background:var(--orange)"></span>Bun ⚠ anomalie</span>
-            <span class="legend-item"><span class="legend-dot" style="background:var(--purple);clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%)"></span>Hotărâre (hexagon)</span>
-          </div>
-          <div class="schema-detail-panel" id="schema-detail-panel">
-            <div style="color:var(--text2);font-size:0.78rem">Click pe un nod pentru a vedea detalii.</div>
+          <!-- Dreapta: graful entității selectate -->
+          <div class="schema-graph-panel">
+            <div class="schema-no-sel" id="schema-no-sel">← Selectați un element din listă pentru a vizualiza schema relațională</div>
+            <div class="schema-cy-wrap" id="schema-cy-wrap" style="display:none">
+              <div id="schema-cy"></div>
+              <div class="schema-cy-controls">
+                <button class="cy-ctrl-btn" title="Zoom in"  onclick="cyZoom(1.3)">+</button>
+                <button class="cy-ctrl-btn" title="Zoom out" onclick="cyZoom(0.77)">−</button>
+                <button class="cy-ctrl-btn" title="Centrare" onclick="cyFit()">⊙</button>
+                <button class="cy-ctrl-btn" title="Re-layout" onclick="cyLayout()">↺</button>
+              </div>
+            </div>
+            <div class="schema-legend" id="schema-legend" style="display:none">
+              <span class="legend-item"><span class="legend-dot" style="background:var(--accent)"></span>Cauza penală</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--green)"></span>Subiect urmărit</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--teal);outline:1px dashed var(--teal)"></span>Proprietar bun</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#8b949e33;border:1px solid #8b949e"></span>Bun (culoare = tip)</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--red)"></span>Bun ⚡ Sech.→Conf.</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--orange)"></span>Bun ⚠ Anomalie</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--purple);clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%)"></span>Hotărâre</span>
+            </div>
+            <div class="schema-detail-panel" id="schema-detail-panel" style="display:none">
+              <div style="color:var(--text2);font-size:0.78rem">Click pe un nod pentru a vedea detalii.</div>
+            </div>
           </div>
         </div>
       </div>
@@ -860,9 +873,9 @@ let currentFile = null;
 let charts = {};
 let chartMode = 'count';    // 'count' | 'value'
 let chartTimeGroup = 'month'; // 'month' | 'year'
-let schemaMode = 'cauza';   // 'cauza' | 'persoana' | 'bun'
-let schemaView = 'list';    // 'list' | 'graph'
-let cytInstance = null;     // instanța Cytoscape
+let schemaMode = 'cauza';     // 'cauza' | 'persoana' | 'bun'
+let schemaSelected = null;    // cheia entității selectate în lista din stânga
+let cytInstance = null;       // instanța Cytoscape
 
 let tableState = { sortCol: null, sortDir: 'asc', page: 1, pageSize: 50, search: '' };
 let catStates = {};
@@ -2024,22 +2037,11 @@ function renderBugetTab() {
 }
 
 // ============================================================
-// SCHEMA RELAȚIONALĂ
+// SCHEMA RELAȚIONALĂ — split view (stânga: listă, dreapta: graf)
 // ============================================================
-function setSchemaView(v) {
-  schemaView = v;
-  document.getElementById('schema-view-list').classList.toggle('active',  v === 'list');
-  document.getElementById('schema-view-graph').classList.toggle('active', v === 'graph');
-  // Modul de grupare e relevant doar pentru lista
-  const modeLabel = document.getElementById('schema-mode-label');
-  const modeBtns  = document.getElementById('schema-mode-btns');
-  if (modeLabel) modeLabel.style.display = v === 'list' ? '' : 'none';
-  if (modeBtns)  modeBtns.style.display  = v === 'list' ? '' : 'none';
-  renderSchemaTab();
-}
-
 function setSchemaMode(mode) {
   schemaMode = mode;
+  schemaSelected = null;
   ['cauza','persoana','bun'].forEach(m =>
     document.getElementById('schema-by-'+m).classList.toggle('active', m === mode)
   );
@@ -2047,152 +2049,141 @@ function setSchemaMode(mode) {
 }
 
 function renderSchemaTab() {
-  const treeEl   = document.getElementById('schema-tree');
-  const cyWrap   = document.getElementById('schema-cy-wrap');
-  const graphMeta= document.getElementById('schema-graph-meta');
-  if (!treeEl) return;
+  const listItemsEl = document.getElementById('schema-list-items');
+  if (!listItemsEl) return;
 
-  if (schemaView === 'graph') {
-    treeEl.style.display    = 'none';
-    cyWrap.style.display    = '';
-    graphMeta.style.display = '';
-    renderSchemaGraph();
-    return;
-  }
-  // lista view
-  treeEl.style.display    = '';
-  cyWrap.style.display    = 'none';
-  graphMeta.style.display = 'none';
-
-  const q = ((document.getElementById('schema-search') || {}).value || '').toLowerCase();
   const data = FILTERED_DATA;
+  const q = ((document.getElementById('schema-search') || {}).value || '').toLowerCase();
 
   if (!data.length) {
-    treeEl.innerHTML = '<div class="schema-empty">Nu există date. Încărcați un fișier Excel.</div>';
+    listItemsEl.innerHTML = '<div class="schema-list-empty">Nu există date. Încărcați un fișier Excel.</div>';
+    renderSelectedGraph();
     return;
   }
 
-  // Construiește ierarhia după mod
-  const hierarchy = {};
-
-  if (schemaMode === 'cauza') {
-    data.forEach(r => {
-      const l1 = r['Cauza penala'] || '(necunoscut)';
-      const l2 = [r['IDNP/IDNO'], r['Nume/Denumire'], r['Nume proprietar'], r['Prenume proprietar']].filter(Boolean).join(' · ') || '(persoană necunoscută)';
-      if (!hierarchy[l1]) hierarchy[l1] = {};
-      if (!hierarchy[l1][l2]) hierarchy[l1][l2] = [];
-      hierarchy[l1][l2].push(r);
-    });
-  } else if (schemaMode === 'persoana') {
-    data.forEach(r => {
-      const idnp  = r['IDNP/IDNO'] || '';
-      const numeParts = [r['Nume proprietar'], r['Prenume proprietar'], r['Nume/Denumire']].filter(Boolean);
-      const l1 = (idnp ? idnp + ' — ' : '') + (numeParts.join(' ') || '(persoană necunoscută)');
-      const l2 = r['Cauza penala'] || '(necunoscut)';
-      if (!hierarchy[l1]) hierarchy[l1] = {};
-      if (!hierarchy[l1][l2]) hierarchy[l1][l2] = [];
-      hierarchy[l1][l2].push(r);
-    });
-  } else { // bun
-    data.forEach(r => {
-      const id   = r['ID Bun'] || '(fără ID)';
-      const tip  = r['Tip bun'] ? ` [${r['Tip bun']}]` : '';
-      const l1   = id + tip;
-      const l2   = r['Cauza penala'] || '(necunoscut)';
-      if (!hierarchy[l1]) hierarchy[l1] = {};
-      if (!hierarchy[l1][l2]) hierarchy[l1][l2] = [];
-      hierarchy[l1][l2].push(r);
-    });
-  }
-
-  // Filtrare după query
-  let keys1 = Object.keys(hierarchy);
-  if (q) keys1 = keys1.filter(k => k.toLowerCase().includes(q) ||
-    Object.keys(hierarchy[k]).some(k2 => k2.toLowerCase().includes(q)));
-
-  keys1.sort();
-
-  const MAX_L1 = 300;
-  let html = '';
-  if (keys1.length > MAX_L1) {
-    html += `<div class="schema-warning">⚠ Sunt ${keys1.length.toLocaleString('ro')} noduri — se afișează primele ${MAX_L1}. Folosiți filtrele sau câmpul de căutare pentru a restrânge rezultatele.</div>`;
-    keys1 = keys1.slice(0, MAX_L1);
-  }
-
-  keys1.forEach(l1key => {
-    const l2Map = hierarchy[l1key];
-    const allRows = Object.values(l2Map).flat();
-
-    // Badge traseu / anomalie
-    const hasTraseu   = allRows.some(r => TRASEU_BUNURI.has(r['ID Bun']));
-    const hasAnomalie = allRows.some(r => ANOMALII_CAUZE.has(r['Cauza penala']));
-
-    // Statistici L1
-    const nrBunuri  = new Set(allRows.map(r => r['ID Bun']).filter(Boolean)).size;
-    const nrPers    = new Set(allRows.map(r => r['IDNP/IDNO']).filter(Boolean)).size;
-    const nrCauze   = new Set(allRows.map(r => r['Cauza penala']).filter(Boolean)).size;
-    let cntText = '';
-    if (schemaMode === 'cauza')    cntText = `${Object.keys(l2Map).length} pers. · ${nrBunuri} bunuri`;
-    if (schemaMode === 'persoana') cntText = `${nrCauze} cauze · ${nrBunuri} bunuri`;
-    if (schemaMode === 'bun')      cntText = `${nrCauze} cauze · ${nrPers} pers.`;
-
-    html += `<details class="schema-node schema-l1">
-      <summary class="schema-summary">
-        <span class="schema-key">${escHtml(l1key)}</span>
-        <span class="schema-cnt">${cntText}</span>
-        <span class="schema-spacer"></span>
-        ${hasTraseu   ? '<span class="traseu-badge">⚡ Sechestru→Confiscare</span>' : ''}
-        ${hasAnomalie ? '<span class="anomalie-badge">⚠ Anomalie ID</span>' : ''}
-      </summary>
-      <div class="schema-children">`;
-
-    Object.keys(l2Map).sort().forEach(l2key => {
-      const rows = l2Map[l2key];
-      const hasTraseuL2   = rows.some(r => TRASEU_BUNURI.has(r['ID Bun']));
-      const hasAnomalieL2 = rows.some(r => ANOMALII_CAUZE.has(r['Cauza penala']));
-
-      html += `<details class="schema-node schema-l2">
-        <summary class="schema-summary">
-          <span class="schema-key" style="font-size:0.8rem">${escHtml(l2key)}</span>
-          <span class="schema-cnt">${rows.length} doc.</span>
-          <span class="schema-spacer"></span>
-          ${hasTraseuL2   ? '<span class="traseu-badge">⚡</span>' : ''}
-          ${hasAnomalieL2 ? '<span class="anomalie-badge">⚠</span>' : ''}
-        </summary>
-        <div class="schema-children">
-          <table class="schema-table">
-            <thead><tr>
-              <th style="font-size:0.68rem;color:var(--text2);font-weight:700;padding:0.2rem 0.5rem;border-bottom:1px solid var(--border)">ID Bun</th>
-              <th style="font-size:0.68rem;color:var(--text2);font-weight:700;padding:0.2rem 0.5rem;border-bottom:1px solid var(--border)">Tip bun</th>
-              <th style="font-size:0.68rem;color:var(--text2);font-weight:700;padding:0.2rem 0.5rem;border-bottom:1px solid var(--border)">Data doc.</th>
-              <th style="font-size:0.68rem;color:var(--text2);font-weight:700;padding:0.2rem 0.5rem;border-bottom:1px solid var(--border)">Soluția adoptată</th>
-              <th style="font-size:0.68rem;color:var(--text2);font-weight:700;padding:0.2rem 0.5rem;border-bottom:1px solid var(--border)">Suma MDL</th>
-            </tr></thead>
-            <tbody>`;
-
-      rows.forEach(r => {
-        const sol   = r['Solutia adoptata'] || '';
-        const color = SOL_COLORS[sol] || '#777';
-        const idBun = r['ID Bun'] || '';
-        const mark  = TRASEU_BUNURI.has(idBun) ? ' style="background:rgba(248,81,73,0.06)"' : '';
-        html += `<tr${mark}>
-          <td>${escHtml(idBun)}</td>
-          <td>${escHtml(r['Tip bun'] || '')}</td>
-          <td>${escHtml(r['Data doc.'] || '')}</td>
-          <td><span class="sol-chip" style="font-size:0.65rem;background:${color}22;color:${color};border:1px solid ${color}44">${escHtml(sol)}</span></td>
-          <td>${escHtml(r['Suma sechestru'] || '')}</td>
-        </tr>`;
-      });
-
-      html += `</tbody></table>
-        </div>
-      </details>`;
-    });
-
-    html += `</div></details>`;
+  // ── construiește indexul entităților ──────────────────────────
+  const index = new Map(); // key → { label, subLabel, rows }
+  data.forEach(r => {
+    let key, label, subLabel = '';
+    if (schemaMode === 'cauza') {
+      key   = r['Cauza penala'] || '(necunoscut)';
+      label = key;
+    } else if (schemaMode === 'persoana') {
+      const idnp = r['IDNP/IDNO'] || '';
+      const name = r['Nume/Denumire'] || '';
+      key = idnp || name;
+      if (!key) return;
+      label    = name || idnp;
+      subLabel = (idnp && name) ? idnp : '';
+    } else { // bun
+      key = r['ID Bun'] || '';
+      if (!key) return;
+      label    = key;
+      subLabel = r['Tip bun'] || '';
+    }
+    if (!index.has(key)) index.set(key, { key, label, subLabel, rows: [] });
+    index.get(key).rows.push(r);
   });
 
-  treeEl.innerHTML = html || '<div class="schema-empty">Nicio potrivire pentru filtrul aplicat.</div>';
+  // ── filtrare + sortare ────────────────────────────────────────
+  let entries = [...index.entries()];
+  if (q) entries = entries.filter(([k, v]) =>
+    k.toLowerCase().includes(q) || v.label.toLowerCase().includes(q) || v.subLabel.toLowerCase().includes(q));
+  entries.sort(([a], [b]) => String(a).localeCompare(String(b), 'ro'));
+
+  const MAX_ITEMS = 500;
+  let warnHtml = '';
+  if (entries.length > MAX_ITEMS) {
+    warnHtml = `<div class="schema-list-warn">⚠ ${entries.length.toLocaleString('ro')} rezultate — primele ${MAX_ITEMS}. Filtrați pentru a restrânge.</div>`;
+    entries = entries.slice(0, MAX_ITEMS);
+  }
+
+  // ── randare items ─────────────────────────────────────────────
+  let itemsHtml = '';
+  if (!entries.length) {
+    itemsHtml = '<div class="schema-list-empty">Nicio potrivire.</div>';
+  } else {
+    entries.forEach(([key, item]) => {
+      const rows = item.rows;
+      const nrBunuri = new Set(rows.map(r => r['ID Bun']).filter(Boolean)).size;
+      const nrPers   = new Set(rows.map(r => r['IDNP/IDNO']).filter(Boolean)).size;
+      const nrCauze  = new Set(rows.map(r => r['Cauza penala']).filter(Boolean)).size;
+      const nrDocs   = rows.length;
+      const hasTraseu   = rows.some(r => TRASEU_BUNURI.has(r['ID Bun']));
+      const hasAnomalie = rows.some(r => ANOMALII_CAUZE.has(r['Cauza penala']));
+
+      let meta = '';
+      if (schemaMode === 'cauza')    meta = `${nrPers} subiecți · ${nrBunuri} bunuri · ${nrDocs} doc.`;
+      if (schemaMode === 'persoana') meta = `${nrCauze} cauze · ${nrBunuri} bunuri · ${nrDocs} doc.`;
+      if (schemaMode === 'bun')      meta = `${nrCauze} cauze · ${nrPers} subiecți · ${nrDocs} doc.`;
+
+      const isActive  = schemaSelected === key;
+      const keyAttr   = escHtml(key).replace(/'/g, '&#39;');
+
+      itemsHtml += `<div class="schema-list-item${isActive ? ' active' : ''}" data-key="${keyAttr}" onclick="selectSchemaItem(this.dataset.key)">
+        <div class="schema-list-key">${escHtml(item.label)}</div>
+        ${item.subLabel ? `<div class="schema-list-sub">${escHtml(item.subLabel)}</div>` : ''}
+        <div class="schema-list-meta">
+          <span>${meta}</span>
+          ${hasTraseu   ? '<span class="traseu-badge">⚡</span>'  : ''}
+          ${hasAnomalie ? '<span class="anomalie-badge">⚠</span>' : ''}
+        </div>
+      </div>`;
+    });
+  }
+
+  // Dacă entitatea selectată a dispărut (filtru schimbat), resetăm
+  if (schemaSelected && !index.has(schemaSelected)) schemaSelected = null;
+
+  // Inserăm avertismentul deasupra listei, separat de scroll container
+  const panel = document.getElementById('schema-list-panel');
+  let warnEl = panel.querySelector('.schema-list-warn');
+  if (warnEl) warnEl.remove();
+  if (warnHtml) panel.insertAdjacentHTML('afterbegin', warnHtml);
+  listItemsEl.innerHTML = itemsHtml;
+
+  renderSelectedGraph();
+}
+
+function selectSchemaItem(key) {
+  schemaSelected = schemaSelected === key ? null : key; // toggle
+  document.querySelectorAll('#schema-list-items .schema-list-item').forEach(el => {
+    el.classList.toggle('active', el.dataset.key === schemaSelected);
+  });
+  renderSelectedGraph();
+}
+
+function getSchemaSelectedRows() {
+  if (!schemaSelected) return [];
+  return FILTERED_DATA.filter(r => {
+    if (schemaMode === 'cauza')    return (r['Cauza penala'] || '(necunoscut)') === schemaSelected;
+    if (schemaMode === 'persoana') return (r['IDNP/IDNO'] || r['Nume/Denumire'] || '') === schemaSelected;
+    /* bun */                      return (r['ID Bun'] || '') === schemaSelected;
+  });
+}
+
+function renderSelectedGraph() {
+  const cyWrap   = document.getElementById('schema-cy-wrap');
+  const noSel    = document.getElementById('schema-no-sel');
+  const legend   = document.getElementById('schema-legend');
+  const detPanel = document.getElementById('schema-detail-panel');
+
+  if (!schemaSelected) {
+    if (cyWrap)   cyWrap.style.display   = 'none';
+    if (noSel)    noSel.style.display    = '';
+    if (legend)   legend.style.display   = 'none';
+    if (detPanel) detPanel.style.display = 'none';
+    if (cytInstance) { cytInstance.destroy(); cytInstance = null; }
+    return;
+  }
+
+  if (noSel)    noSel.style.display    = 'none';
+  if (cyWrap)   cyWrap.style.display   = '';
+  if (legend)   legend.style.display   = '';
+  if (detPanel) { detPanel.style.display = ''; detPanel.innerHTML = '<div style="color:var(--text2);font-size:0.78rem">Click pe un nod pentru a vedea detalii.</div>'; }
+
+  const rows = getSchemaSelectedRows();
+  renderSchemaGraph(rows);
 }
 
 // ============================================================
@@ -2225,43 +2216,27 @@ function getCyThemeColors() {
   };
 }
 
-function renderSchemaGraph() {
-  const q        = ((document.getElementById('schema-search') || {}).value || '').toLowerCase();
-  const data     = FILTERED_DATA;
+function renderSchemaGraph(rows) {
+  const data     = rows || [];
   const detPanel = document.getElementById('schema-detail-panel');
-
-  // Remove any old truncation warnings
-  document.querySelectorAll('.schema-cy-limit-warn').forEach(el => el.remove());
 
   if (!data.length) {
     if (cytInstance) { cytInstance.destroy(); cytInstance = null; }
-    if (detPanel) detPanel.innerHTML = '<div style="color:var(--text2);font-size:0.78rem">Nu există date. Încărcați un fișier Excel.</div>';
     return;
   }
 
   const c = getCyThemeColors();
 
   // ── MAPS ──────────────────────────────────────────────────────
-  const cauzaMap    = new Map(); // cauza key → {id, label, rows[]}
-  const persoanaMap = new Map(); // person key → {id, label, idnp, name, isProp, rows[]}
-  const bunMap      = new Map(); // bun key → {id, label, tip, idBun, valoare, tipPosesie, rows[]}
-  const hotarareMap = new Map(); // hotarare key → {id, label, solutia, data, nr, organ, cauza, rows[]}
+  const cauzaMap    = new Map();
+  const persoanaMap = new Map();
+  const bunMap      = new Map();
+  const hotarareMap = new Map();
 
   let ci = 0, pi = 0, bi = 0, hi = 0;
-  const MAX_C = 200, MAX_P = 400, MAX_B = 400, MAX_H = 600;
+  const MAX_C = 200, MAX_P = 400, MAX_B = 600, MAX_H = 800;
 
-  const filteredRows = q
-    ? data.filter(r =>
-        (r['Cauza penala']    || '').toLowerCase().includes(q) ||
-        (r['IDNP/IDNO']       || '').toLowerCase().includes(q) ||
-        (r['Nume/Denumire']   || '').toLowerCase().includes(q) ||
-        (r['Nume proprietar'] || '').toLowerCase().includes(q) ||
-        (r['Tip bun']         || '').toLowerCase().includes(q) ||
-        (r['Solutia adoptata']|| '').toLowerCase().includes(q) ||
-        (r['Nr. doc']         || '').toLowerCase().includes(q))
-    : data;
-
-  filteredRows.forEach(r => {
+  data.forEach(r => {
     // ── Cauza ──
     const cKey = r['Cauza penala'] || '(necunoscut)';
     if (!cauzaMap.has(cKey) && ci < MAX_C) {
@@ -2396,17 +2371,6 @@ function renderSchemaGraph() {
 
   // ── DESTROY OLD ───────────────────────────────────────────────
   if (cytInstance) { cytInstance.destroy(); cytInstance = null; }
-
-  // ── TRUNCATION WARNING ────────────────────────────────────────
-  const truncated = ci >= MAX_C || pi >= MAX_P || bi >= MAX_B || hi >= MAX_H;
-  if (truncated) {
-    const total = ci + pi + bi + hi;
-    const warn = document.createElement('div');
-    warn.className = 'schema-warning schema-cy-limit-warn';
-    warn.style.marginBottom = '0.4rem';
-    warn.textContent = `⚠ Afișate ${total.toLocaleString('ro')} noduri (trunchiat). Folosiți filtrul de căutare pentru a restrânge setul.`;
-    document.getElementById('schema-cy-wrap').insertAdjacentElement('beforebegin', warn);
-  }
 
   // ── CYTOSCAPE INIT ────────────────────────────────────────────
   cytInstance = cytoscape({
