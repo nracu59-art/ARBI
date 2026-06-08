@@ -1,0 +1,145 @@
+{
+  "sites": [
+    {
+      "key": "rise_md",
+      "name": "RISE Moldova",
+      "url": "https://rise.md",
+      "rss": "https://rise.md/feed/",
+      "language": "ro",
+      "focus": ["coruptie", "politica", "afaceri", "securitate"]
+    },
+    {
+      "key": "zdg_md",
+      "name": "Ziarul de Gardă",
+      "url": "https://www.zdg.md",
+      "rss": "https://www.zdg.md/feed/",
+      "language": "ro",
+      "focus": ["coruptie", "politica", "justitie", "social"]
+    },
+    {
+      "key": "anticoruptie_md",
+      "name": "Anticorupție.md",
+      "url": "https://anticoruptie.md",
+      "rss": "https://anticoruptie.md/ro/feed",
+      "language": "ro",
+      "focus": ["coruptie", "justitie", "politica"]
+    },
+    {
+      "key": "newsmaker_md",
+      "name": "Newsmaker.md",
+      "url": "https://newsmaker.md",
+      "rss": "https://newsmaker.md/rss/articles.rss",
+      "language": "ro",
+      "focus": ["politica", "social", "afaceri"]
+    },
+    {
+      "key": "mold_street",
+      "name": "Mold-Street",
+      "url": "https://mold-street.com",
+      "rss": "https://mold-street.com/feed/",
+      "language": "ro",
+      "focus": ["afaceri", "coruptie", "politica"]
+    },
+    {
+      "key": "jurnal_md",
+      "name": "Jurnal.md",
+      "url": "https://jurnal.md",
+      "rss": "https://jurnal.md/rss/category/investigatii",
+      "language": "ro",
+      "focus": ["investigativ", "politica", "social"]
+    },
+    {
+      "key": "point_md",
+      "name": "Point.md",
+      "url": "https://point.md",
+      "rss": "https://point.md/rss",
+      "language": "ro",
+      "focus": ["politica", "social", "afaceri"]
+    },
+    {
+      "key": "agora_md",
+      "name": "Agora.md",
+      "url": "https://agora.md",
+      "rss": "https://agora.md/rss",
+      "language": "ro",
+      "focus": ["politica", "justitie", "social"]
+    }
+  ],
+  "categories": {
+    "coruptie": {
+      "label": "Corupție",
+      "emoji": "💰",
+      "keywords": [
+        "corupt", "mită", "șpagă", "abuz de serviciu", "deturnare", "fraudă",
+        "delapidare", "trafic de influență", "spălare de bani", "evaziune fiscală",
+        "conflict de interese", "incompatibilitate", "îmbogățire ilicită",
+        "dare de mită", "luare de mită", "folosire a funcției"
+      ]
+    },
+    "justitie": {
+      "label": "Justiție & Procurori",
+      "emoji": "⚖️",
+      "keywords": [
+        "dosar penal", "rechizitoriu", "condamnat", "achitat", "arest preventiv",
+        "percheziție", "urmărire penală", "procuror", "CNA", "ANI", "PA",
+        "instanță", "tribunal", "curtea supremă", "judecată", "sentință",
+        "inculpat", "reținut", "reținere", "arest"
+      ]
+    },
+    "politica": {
+      "label": "Politică & Putere",
+      "emoji": "🏛️",
+      "keywords": [
+        "partid", "deputat", "ministru", "guvern", "parlament", "alegeri",
+        "campanie electorală", "finanțare ilegală", "influență politică",
+        "oligarh", "stat", "autoritate publică", "funcționar", "premier",
+        "președinte", "vot", "fracțiune", "opoziție", "coaliție"
+      ]
+    },
+    "media": {
+      "label": "Media & Libertatea Presei",
+      "emoji": "📰",
+      "keywords": [
+        "presă", "jurnalist", "cenzură", "dezinformare", "propagandă",
+        "fake news", "manipulare", "libertatea presei", "televiziune",
+        "publicație", "editor", "redacție", "agresare jurnalist",
+        "atacuri la presă", "interferență media"
+      ]
+    },
+    "afaceri": {
+      "label": "Afaceri & Contracte Publice",
+      "emoji": "💼",
+      "keywords": [
+        "contract public", "licitație", "achiziție publică", "firmă offshore",
+        "paradis fiscal", "investiție", "proprietate", "imobil", "teren",
+        "acționar", "companie", "societate comercială", "concesiune",
+        "fond public", "subvenție", "grant", "ajutor de stat"
+      ]
+    },
+    "securitate": {
+      "label": "Securitate & Intelligence",
+      "emoji": "🔐",
+      "keywords": [
+        "SIS", "servicii secrete", "spionaj", "informator", "operațiune specială",
+        "contraspionaj", "securitate națională", "servicii de informații",
+        "agent secret", "infiltrare", "supraveghere ilegală"
+      ]
+    },
+    "social": {
+      "label": "Social & Drepturile Omului",
+      "emoji": "👥",
+      "keywords": [
+        "drepturile omului", "discriminare", "abuz", "violență",
+        "trafic de persoane", "exploatare", "minori", "victime",
+        "protecție socială", "sănătate publică", "educație", "pensii",
+        "acces la informație", "transparență"
+      ]
+    }
+  },
+  "investigative_keywords": [
+    "investigație", "investigăm", "dezvăluire", "document secret",
+    "surse", "exclusiv", "demascat", "expus", "scandalul",
+    "afacerile ascunse", "dosarul", "ancheta", "cum a ajuns",
+    "cine se află", "banii publici", "milioane", "scheme"
+  ]
+}

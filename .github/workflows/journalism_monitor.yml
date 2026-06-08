@@ -1,0 +1,103 @@
+name: Monitorizare Jurnalism Investigativ – Moldova
+
+on:
+  schedule:
+    - cron: '0 6 * * *'   # 09:00 EEST (UTC+3) în fiecare zi
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: journalism-monitor
+  cancel-in-progress: false
+
+jobs:
+# ─────────────────────────────────────────────────────────────
+# JOB 1 – Colectare articole din sursele de investigație
+# ─────────────────────────────────────────────────────────────
+  fetch-articles:
+    name: Colectare articole investigative
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4.2.2
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5.6.0
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Instalare dependențe
+        run: pip install -r scripts/requirements.txt
+
+      - name: Colectare și analiză articole
+        run: python scripts/journalism_monitor.py
+
+      - name: Commit rezultate JSON
+        run: |
+          git config user.name  "ARBI Monitor Bot"
+          git config user.email "arbi-monitor@noreply.github.com"
+          mkdir -p results/journalism
+          cp -r results/journalism/ /tmp/journalism-results/ 2>/dev/null || true
+          git fetch origin main
+          git reset --hard origin/main
+          mkdir -p results/journalism
+          cp /tmp/journalism-results/*.json results/journalism/ 2>/dev/null || true
+          git add results/journalism/
+          if git diff --cached --quiet; then
+            echo "Nu sunt rezultate noi de salvat."
+          else
+            git commit -m "📡 Articole jurnalism $(date -u '+%Y-%m-%d %H:%M UTC')"
+            git push origin HEAD:main
+          fi
+
+# ─────────────────────────────────────────────────────────────
+# JOB 2 – Generare raport HTML + trimitere Telegram
+# ─────────────────────────────────────────────────────────────
+  generate-report:
+    name: Raport HTML + Telegram
+    runs-on: ubuntu-latest
+    needs: [fetch-articles]
+    if: always()
+
+    steps:
+      - uses: actions/checkout@v4.2.2
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5.6.0
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Instalare dependențe
+        run: pip install -r scripts/requirements.txt
+
+      - name: Pull ultimele rezultate
+        run: git pull origin main
+
+      - name: Generare raport HTML
+        run: python scripts/journalism_report.py
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+
+      - name: Commit raport HTML
+        run: |
+          git config user.name  "ARBI Monitor Bot"
+          git config user.email "arbi-monitor@noreply.github.com"
+          cp -r reports/ /tmp/reports-journalism/ 2>/dev/null || true
+          git fetch origin main
+          git reset --hard origin/main
+          cp /tmp/reports-journalism/raport_jurnalism_*.html reports/ 2>/dev/null || true
+          cp /tmp/reports-journalism/index.html reports/ 2>/dev/null || true
+          git add reports/
+          if git diff --cached --quiet; then
+            echo "Nicio modificare la rapoarte."
+          else
+            git commit -m "📰 Raport jurnalism investigativ $(date -u '+%Y-%m-%d')"
+            git push origin HEAD:main
+          fi
