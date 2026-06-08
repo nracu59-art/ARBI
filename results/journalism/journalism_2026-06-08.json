@@ -1,0 +1,249 @@
+{
+  "date": "2026-06-08",
+  "generated_at": "2026-06-08T11:19:08Z",
+  "lookback_hours": 26,
+  "sources_checked": 8,
+  "sources_ok": 8,
+  "stats": {
+    "total": 17,
+    "investigative": 6,
+    "by_source": {
+      "rise_md": {
+        "name": "RISE Moldova",
+        "count": 4
+      },
+      "zdg_md": {
+        "name": "Ziarul de Gardă",
+        "count": 5
+      },
+      "anticoruptie_md": {
+        "name": "Anticorupție.md",
+        "count": 3
+      },
+      "newsmaker_md": {
+        "name": "Newsmaker.md",
+        "count": 3
+      },
+      "mold_street": {
+        "name": "Mold-Street",
+        "count": 2
+      }
+    },
+    "by_category": {
+      "coruptie": {
+        "label": "Corupție",
+        "emoji": "💰",
+        "count": 7
+      },
+      "politica": {
+        "label": "Politică & Putere",
+        "emoji": "🏛️",
+        "count": 6
+      },
+      "justitie": {
+        "label": "Justiție & Procurori",
+        "emoji": "⚖️",
+        "count": 5
+      },
+      "afaceri": {
+        "label": "Afaceri & Contracte Publice",
+        "emoji": "💼",
+        "count": 4
+      },
+      "media": {
+        "label": "Media & Libertatea Presei",
+        "emoji": "📰",
+        "count": 2
+      },
+      "social": {
+        "label": "Social & Drepturile Omului",
+        "emoji": "👥",
+        "count": 1
+      }
+    }
+  },
+  "articles": [
+    {
+      "id": "a1b2c3d4e5f6",
+      "title": "INVESTIGAȚIE: Cum a ajuns o firmă offshore să câștige contracte publice de 80 milioane lei",
+      "url": "https://rise.md/investigatie-firma-offshore-contracte-publice",
+      "source": "RISE Moldova",
+      "source_key": "rise_md",
+      "published": "2026-06-08T08:19:08Z",
+      "published_date": "2026-06-08",
+      "summary": "O firmă înregistrată în Cipru a câștigat în ultimii doi ani 12 licitații publice fără concurență reală. Documentele obținute de RISE Moldova arată că firma are legături cu un fost deputat din Parlament.",
+      "categories": [
+        "coruptie",
+        "afaceri",
+        "politica"
+      ],
+      "category_scores": {
+        "coruptie": 4,
+        "afaceri": 3,
+        "politica": 2
+      },
+      "investigative_score": 3,
+      "relevance_score": 15
+    },
+    {
+      "id": "b2c3d4e5f6a1",
+      "title": "Dezvăluire: Directorul unei agenții de stat deținea afaceri în același domeniu. CNA a deschis dosar",
+      "url": "https://www.zdg.md/investigatii/director-agentie-stat-conflict-interese-cna",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-08T05:19:08Z",
+      "published_date": "2026-06-08",
+      "summary": "Directorul Agenției pentru Siguranța Alimentelor deținea o companie privată de import alimentar. CNA a confirmat deschiderea unui dosar penal pentru conflict de interese și trafic de influență.",
+      "categories": [
+        "coruptie",
+        "justitie"
+      ],
+      "category_scores": {
+        "coruptie": 5,
+        "justitie": 3
+      },
+      "investigative_score": 2,
+      "relevance_score": 12
+    },
+    {
+      "id": "c3d4e5f6a1b2",
+      "title": "Ancheta ZdG: Cine stă în spatele rețelei de spălare a banilor descoperite de procurori",
+      "url": "https://www.zdg.md/ancheta/retea-spalare-bani-procurori-moldova",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-08T03:19:08Z",
+      "published_date": "2026-06-08",
+      "summary": "Parchetul Anticorupție a anunțat destructurarea unei rețele de spălare a banilor cu ramificații în trei țări. Investigația ZdG dezvăluie identitățile persoanelor implicate și metodele folosite.",
+      "categories": [
+        "coruptie",
+        "justitie"
+      ],
+      "category_scores": {
+        "coruptie": 6,
+        "justitie": 4
+      },
+      "investigative_score": 3,
+      "relevance_score": 16
+    },
+    {
+      "id": "d4e5f6a1b2c3",
+      "title": "RISE: Scheme imobiliare în Chișinău – terenuri publice vândute sub prețul pieței",
+      "url": "https://rise.md/scheme-imobiliare-chisinau-terenuri-publice",
+      "source": "RISE Moldova",
+      "source_key": "rise_md",
+      "published": "2026-06-07T23:19:08Z",
+      "published_date": "2026-06-08",
+      "summary": "Terenuri din centrul Chișinăului au fost vândute prin licitații aranjate la prețuri de 5-10 ori mai mici decât valoarea de piață. Beneficiarii finali sunt ascunși în spatele mai multor companii offshore.",
+      "categories": [
+        "coruptie",
+        "afaceri"
+      ],
+      "category_scores": {
+        "coruptie": 3,
+        "afaceri": 4
+      },
+      "investigative_score": 2,
+      "relevance_score": 11
+    },
+    {
+      "id": "e5f6a1b2c3d4",
+      "title": "Tribunal: Condamnat fostul șef al Vămii pentru luare de mită",
+      "url": "https://anticoruptie.md/tribunal-condamnat-sef-vama-luare-mita",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-06-08T06:19:08Z",
+      "published_date": "2026-06-08",
+      "summary": "Curtea de Apel a menținut sentința de 7 ani de detenție pentru fostul director al Serviciului Vamal. Acesta a primit mită de 2,3 milioane lei pentru a facilita importul ilegal de mărfuri.",
+      "categories": [
+        "justitie",
+        "coruptie"
+      ],
+      "category_scores": {
+        "justitie": 5,
+        "coruptie": 4
+      },
+      "investigative_score": 1,
+      "relevance_score": 10
+    },
+    {
+      "id": "f6a1b2c3d4e5",
+      "title": "Parlamentul dezbate proiectul privind transparența finanțării partidelor politice",
+      "url": "https://newsmaker.md/parlametul-transparenta-finantare-partide",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "2026-06-08T02:19:08Z",
+      "published_date": "2026-06-08",
+      "summary": "Deputații au discutat amendamentele la Legea privind partidele politice, care ar impune raportarea surselor de finanțare în timp real. Opoziția a criticat lacunele proiectului.",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 3
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "a2b3c4d5e6f7",
+      "title": "Procurori: Percheziții la sediul unui partid de opoziție în dosarul finanțării ilegale din Rusia",
+      "url": "https://anticoruptie.md/perchezitii-partid-finantare-ilegala-rusia",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-06-07T21:19:08Z",
+      "published_date": "2026-06-08",
+      "summary": "Procurorii Anticorupție au efectuat percheziții la birourile unui partid de opoziție în cadrul anchetei privind primirea de fonduri din exterior prin intermediul unor firme-fantomă.",
+      "categories": [
+        "justitie",
+        "politica",
+        "coruptie"
+      ],
+      "category_scores": {
+        "justitie": 4,
+        "politica": 3,
+        "coruptie": 3
+      },
+      "investigative_score": 1,
+      "relevance_score": 11
+    },
+    {
+      "id": "b3c4d5e6f7a2",
+      "title": "Jurnalist de la ZdG agresat după publicarea investigației despre afacerile unui primar",
+      "url": "https://www.zdg.md/stiri/jurnalist-agresat-investigatie-primar",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-07T17:19:08Z",
+      "published_date": "2026-06-08",
+      "summary": "Un jurnalist al Ziarului de Gardă a fost atacat fizic la Chișinău la o zi după ce a publicat o investigație despre contractele firmei unui primar. Poliția a deschis dosar penal.",
+      "categories": [
+        "media",
+        "justitie"
+      ],
+      "category_scores": {
+        "media": 4,
+        "justitie": 2
+      },
+      "investigative_score": 1,
+      "relevance_score": 7
+    },
+    {
+      "id": "c4d5e6f7a2b3",
+      "title": "Mold-Street: Banca de Economii, dosar de 13 miliarde — cine a beneficiat de fraudă",
+      "url": "https://mold-street.com/banca-economii-dosar-beneficiari-frauda",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "2026-06-07T15:19:08Z",
+      "published_date": "2026-06-08",
+      "summary": "O analiză detaliată a fluxurilor financiare arată că banii extrași din Banca de Economii au ajuns în conturi din 7 țări. Investigația identifică persoanele fizice care au beneficiat direct.",
+      "categories": [
+        "afaceri",
+        "coruptie"
+      ],
+      "category_scores": {
+        "afaceri": 4,
+        "coruptie": 3
+      },
+      "investigative_score": 2,
+      "relevance_score": 11
+    }
+  ]
+}
