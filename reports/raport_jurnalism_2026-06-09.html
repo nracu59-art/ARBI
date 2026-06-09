@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monitorizare Jurnalism Investigativ Moldova – 09.06.2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; color: #2c3e50; }
+  .header { background: #1b4332; color: #fff; padding: 28px 40px; }
+  .header h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: 0.5px; }
+  .header .subtitle { margin-top: 6px; font-size: 0.9rem; opacity: 0.85; }
+  .stats-bar { background: #2d6a4f; color: #fff; padding: 16px 40px;
+                display: flex; gap: 36px; flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; }
+  .stat .val { font-size: 1.8rem; font-weight: 700; }
+  .stat .lbl { font-size: 0.72rem; opacity: 0.82; text-transform: uppercase; letter-spacing: 0.8px; }
+  .cat-bar { background: #40916c; color: #fff; padding: 12px 40px;
+              display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .cat-chip { background: rgba(255,255,255,0.18); border-radius: 20px;
+               padding: 4px 14px; font-size: 0.78rem; font-weight: 600;
+               white-space: nowrap; }
+  .container { max-width: 1040px; margin: 30px auto; padding: 0 20px 40px; }
+  .section-title { font-size: 0.95rem; font-weight: 700; color: #1b4332;
+                    text-transform: uppercase; letter-spacing: 1px;
+                    margin: 28px 0 14px; border-bottom: 2px solid #1b4332;
+                    padding-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08);
+           padding: 18px 22px; margin-bottom: 14px; border-left: 5px solid #1b4332;
+           transition: box-shadow .15s; }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.13); }
+  .card.investigativ { border-left-color: #d62828; }
+  .card-title { font-size: 1rem; font-weight: 700; color: #1b4332; margin-bottom: 8px; }
+  .card-title a { color: inherit; text-decoration: none; }
+  .card-title a:hover { text-decoration: underline; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;
+           font-size: 0.8rem; color: #555; }
+  .badge { display: inline-block; font-size: 0.68rem; font-weight: 700;
+            padding: 2px 8px; border-radius: 12px; color: #fff;
+            margin-right: 4px; vertical-align: middle; }
+  .badge-inv { background: #d62828; }
+  .source-tag { background: #e8f4ec; color: #1b4332; border-radius: 4px;
+                 padding: 1px 8px; font-size: 0.75rem; font-weight: 600; }
+  .summary { font-size: 0.85rem; color: #444; line-height: 1.55; margin-top: 6px; }
+  .cat-tags { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .cat-tag { font-size: 0.72rem; padding: 2px 10px; border-radius: 10px;
+              font-weight: 600; background: #e8f4ec; color: #1b4332; }
+  .link-btn { display: inline-block; margin-top: 10px; padding: 5px 14px;
+               background: #1b4332; color: #fff; border-radius: 5px;
+               font-size: 0.78rem; text-decoration: none; font-weight: 600; }
+  .link-btn:hover { background: #2d6a4f; }
+  .empty-box { background: #fff; border-radius: 8px; padding: 30px 24px;
+                text-align: center; color: #7f8c8d; font-size: 0.95rem;
+                box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .source-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+  .source-box { background: #fff; border-radius: 8px; padding: 12px 18px;
+                 box-shadow: 0 2px 6px rgba(0,0,0,.07); min-width: 140px;
+                 border-top: 3px solid #1b4332; }
+  .source-box .sname { font-size: 0.78rem; font-weight: 700; color: #1b4332; }
+  .source-box .scount { font-size: 1.4rem; font-weight: 700; color: #2d6a4f; margin-top: 2px; }
+  .footer { text-align: center; font-size: 0.75rem; color: #999;
+             margin-top: 40px; padding-bottom: 20px; }
+  @media (max-width: 600px) {
+    .header, .stats-bar, .cat-bar { padding: 18px 16px; }
+    .stats-bar { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🔍 Monitorizare Jurnalism Investigativ – Moldova</h1>
+  <div class="subtitle">
+    Surse monitorizate: 8 &nbsp;|&nbsp;
+    Ultimele 26 ore &nbsp;|&nbsp;
+    Generat: 2026-06-09 09:48 UTC
+  </div>
+</div>
+<div class="stats-bar">
+  <div class="stat"><span class="val">32</span><span class="lbl">Articole noi</span></div>
+  <div class="stat"><span class="val">4</span><span class="lbl">Investigative</span></div>
+  <div class="stat"><span class="val">8</span><span class="lbl">Surse active</span></div>
+  <div class="stat"><span class="val">09.06.2026</span><span class="lbl">Data raportului</span></div>
+</div>
+<div class="cat-bar">
+  <span style="font-size:.8rem;opacity:.85;margin-right:4px">Categorii:</span>
+  <span class="cat-chip">⚖️ Justiție & Procurori (18)</span><span class="cat-chip">📰 Media & Libertatea Presei (7)</span><span class="cat-chip">🏛️ Politică & Putere (5)</span><span class="cat-chip">💼 Afaceri & Contracte Publice (2)</span><span class="cat-chip">👥 Social & Drepturile Omului (2)</span><span class="cat-chip">💰 Corupție (1)</span><span class="cat-chip">🔐 Securitate & Intelligence (1)</span>
+</div>
+<div class="container">
+<div class="section-title">📊 Articole pe surse</div><div class="source-grid"><div class="source-box"><div class="sname">Ziarul de Gardă</div><div class="scount">10</div></div><div class="source-box"><div class="sname">Anticorupție.md</div><div class="scount">10</div></div><div class="source-box"><div class="sname">Mold-Street</div><div class="scount">7</div></div><div class="source-box"><div class="sname">Newsmaker.md</div><div class="scount">4</div></div><div class="source-box"><div class="sname">Agora.md</div><div class="scount">1</div></div></div>
+<div class="section-title">🔍 Articole Investigative (4)</div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/rss/latest.xml?lang=ro" target="_blank">De ultimă oră</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Săptămâna trecută am fost la Comrat, în Autonomia Găgăuză, unde Centrul de Investigații Jurnalistice a organizat o ediție a Clubului Jurnaliștilor de Investigație. Tema discuțiilor: blocajul electoral din regiune și viitorul autonomiei văzute prin ochii celor de la firul ierbii.
+
+Obiectivul nostru a fost să înțelegem ce soluții se conturează[...]</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/rss/latest.xml?lang=ro" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://mold-street.com/noutate/amenda-record-in-romania-10-cele-mai-mari-banci-sanctionate-cu-peste-700-de-milioane-euro-pentru-manipularea-ratei-robor" target="_blank">Amendă record în România: 10 cele mai mari bănci, sancționate cu peste 700 de milioane euro pentru manipularea ratei ROBOR</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/amenda-record-in-romania-10-cele-mai-mari-banci-sanctionate-cu-peste-700-de-milioane-euro-pentru-manipularea-ratei-robor" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/dosare-de-coruptie/bunuri-de-milioane-sub-sechestru-bilantul-saptamanii-la-cna" target="_blank">Bunuri de milioane sub sechestru: bilanțul săptămânii la CNA</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/dosare-de-coruptie/bunuri-de-milioane-sub-sechestru-bilantul-saptamanii-la-cna" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/costurile-blocajului-din-gagauzia-comratul-pierde-investitii-de-milioane" target="_blank">Costurile blocajului din Găgăuzia: Comratul pierde investiții de milioane</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/costurile-blocajului-din-gagauzia-comratul-pierde-investitii-de-milioane" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">⚖️ Justiție & Procurori (15)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/un-barbat-care-ar-fi-fost-implicat-in-escrocherii-telefonice-prins-in-flagrant-se-prezenta-drept-curier-politist-sau-angajat-a-bnm-si-determina-victimele-sa-transfere-bani/" target="_blank">Un bărbat care ar fi fost implicat în escrocherii telefonice, prins în flagrant: se prezenta drept curier, polițist sau angajat al BNM și determina victimele să transfere bani</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 09.06.2026</span>
+    </div>
+    <div class='summary'>Oamenii legii au reținut în flagrant un bărbat bănuit că ar fi implicat într-o escrocherie financiară comisă prin apeluri pe Telegram, anunță Poliția într-un comunicat. Acesta a fost plasat în arest preventiv pentru 30 de zile. Potrivit anchetei, suspecții contactau victimele și se prezentau drept angajați ai unor companii de livrare, ai poliției sau ai...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/un-barbat-care-ar-fi-fost-implicat-in-escrocherii-telefonice-prins-in-flagrant-se-prezenta-drept-curier-politist-sau-angajat-a-bnm-si-determina-victimele-sa-transfere-bani/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-justitie/fost-carabinier-si-logodnica-lui-trimisi-in-judecata-pentru-trafic-de-copii-ar-fi-convins-doua-eleve-de-la-un-colegiu-si-o-liceana-sa-se-prostitueze-una-dintre-ele-ar-fi-fost-amenintata-cu/" target="_blank">Fost carabinier și logodnica lui, trimiși în judecată pentru trafic de copii. Ar fi convins două eleve de la un colegiu și o liceană să se prostitueze. Una dintre ele ar fi fost amenințată cu „divulgarea fotografiilor” pentru a continua</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 09.06.2026</span>
+    </div>
+    <div class='summary'>Un fost carabinier și logodnica lui au fost trimiși pe banca acuzaților într-un dosar privind exploatarea sexuală a trei adolescente în 2025, a anunțat marți, 9 iunie, Procuratura pentru Combaterea Criminalității Organizate și Cauze Speciale (PCCOCS) într-un comunicat de presă. Fostul carabinier, care a mai lucrat și paznic până ca să fie arestat la solicitarea...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-justitie/fost-carabinier-si-logodnica-lui-trimisi-in-judecata-pentru-trafic-de-copii-ar-fi-convins-doua-eleve-de-la-un-colegiu-si-o-liceana-sa-se-prostitueze-una-dintre-ele-ar-fi-fost-amenintata-cu/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/dosare-de-coruptie/dosar-penal-pentru-propaganda-de-razboi-administratorul-unui-cont-viral-de-tiktok-retinut" target="_blank">Dosar penal pentru propagandă de război: administratorul unui cont viral de TikTok, reținut</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/dosare-de-coruptie/dosar-penal-pentru-propaganda-de-razboi-administratorul-unui-cont-viral-de-tiktok-retinut" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/maia-sandu-multumita-de-prestatia-cna-in-campania-electorala" target="_blank">Maia Sandu, mulțumită de prestația CNA în campania electorală</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💰 Corupție</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/maia-sandu-multumita-de-prestatia-cna-in-campania-electorala" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-economice/fermierii-din-falesti-anunta-un-protest-cu-tehnica-agricola-principalele-revendicari-ale-agricultorilor/" target="_blank">Fermierii din Fălești anunță un protest cu tehnică agricolă. Principalele revendicări ale agricultorilor</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 09.06.2026</span>
+    </div>
+    <div class='summary'>Mai mulți fermieri din raionul Fălești vor organiza vineri, 12 iunie, un protest de sensibilizare împotriva a ceea ce ei numesc „discriminarea și decapitalizarea agricultorilor micro, mici și mijlocii”. Acțiunea va avea loc între orele 9:00 și 14:00, pe drumul național Sculeni–Fălești, la intrarea în oraș. Potrivit organizatorilor, participanții vor veni cu tehnică și utilaje...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-economice/fermierii-din-falesti-anunta-un-protest-cu-tehnica-agricola-principalele-revendicari-ale-agricultorilor/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-externe/presedintele-volodimir-zelenski-a-declarat-ca-a-avut-o-discutie-pozitiva-cu-emisarii-sua-witkoff-si-kushner-in-timpul-unei-escale-la-chisinau/" target="_blank">Președintele Volodimir Zelenski a declarat că a avut o discuție „pozitivă” cu emisarii SUA Witkoff și Kushner, în timpul unei escale la Chișinău</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 09.06.2026</span>
+    </div>
+    <div class='summary'>Președintele ucrainean Volodimir Zelenski a declarat luni, 8 iunie, că a avut o discuție „pozitivă” cu emisarii americani Steve Witkoff și Jared Kushner și a lăudat ceea ce a numit disponibilitatea acestora de a lucra la găsirea unei soluții pentru războiul din Ucraina în următoarele săptămâni. „O discuție foarte pozitivă”, a declarat Zelenski pe Telegram,...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-externe/presedintele-volodimir-zelenski-a-declarat-ca-a-avut-o-discutie-pozitiva-cu-emisarii-sua-witkoff-si-kushner-in-timpul-unei-escale-la-chisinau/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-sociale/un-barbat-a-murit-iar-tatal-sau-a-fost-ranit-dupa-explozia-unei-butelii-de-gaz-la-bacioi/" target="_blank">Un bărbat a murit, iar tatăl său a fost rănit după explozia unei butelii de gaz la Băcioi</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 09.06.2026</span>
+    </div>
+    <div class='summary'>Un bărbat de 31 de ani a decedat, iar tatăl său, în vârstă de 56 de ani, a suferit arsuri în urma unei deflagrații produse de o butelie de gaz propan-butan într-o gospodărie din comuna Băcioi, municipiul Chișinău. Incidentul s-a produs în seara zilei de 8 iunie, anunță Inspectoratul General pentru Situații de Urgență (IGSU)....</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-sociale/un-barbat-a-murit-iar-tatal-sau-a-fost-ranit-dupa-explozia-unei-butelii-de-gaz-la-bacioi/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/parteneriat/impact-days-2026-antreprenori-experti-si-organizatii-s-au-reunit-la-chisinau-pentru-a-transforma-ideile-cu-impact-in-solutii/" target="_blank">Impact Days 2026: antreprenori, experți și organizații s-au reunit la Chișinău pentru a transforma ideile cu impact în soluții</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 09.06.2026</span>
+    </div>
+    <div class='summary'>Peste 140 de antreprenori, reprezentanți ai organizațiilor societății civile, companiilor, instituțiilor publice, partenerilor de dezvoltare și inițiativelor locale au participat, în perioada 5-6 iunie, la cea de-a patra ediție a Impact Days, eveniment dedicat antreprenoriatului social, inovației, incluziunii și dezvoltării sustenabile. Organizat de HUB-ul Antreprenorilor Sociali, inițiativă a Aso…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/parteneriat/impact-days-2026-antreprenori-experti-si-organizatii-s-au-reunit-la-chisinau-pentru-a-transforma-ideile-cu-impact-in-solutii/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/live-sergiu-caraman-a-fost-reales-presedinte-al-csm-pentru-doi-ani/" target="_blank">LIVE/ Sergiu Caraman a fost reales președinte al CSM pentru doi ani</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 09.06.2026</span>
+    </div>
+    <div class='summary'>Membrii Consiliului Superior al Magistraturii (CSM) se întrunesc marți, 9 iunie, în ședință. Pe agendă se regăsesc 23 de subiecte, printre care alegerea președintelui CSM. Totodată, CSM urmează să evalueze raportul Comisiei de evaluare externă privind evaluarea judecătoarei Angela Catană și a judecătorului Corneliu Guzun. UPDATE 11:15 Membri CSM evaluează raportul Comisiei de evaluare externă...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/live-sergiu-caraman-a-fost-reales-presedinte-al-csm-pentru-doi-ani/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-sociale/proprietarul-terenului-unde-a-explodat-drona-cere-despagubiri-primaria-nu-stie-cum-sa-le-calculeze/" target="_blank">Proprietarul terenului unde a explodat drona cere despăgubiri. Primăria nu știe cum să le calculeze</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 09.06.2026</span>
+    </div>
+    <div class='summary'>Proprietarul terenului agricol din apropierea satului Lopatna, comuna Jora de Mijloc din raionul Orhei, unde pe 8 iunie a explodat o dronă, a solicitat despăgubiri pentru prejudiciile suferite. Cererea a fost depusă la primăria comunei, însă autoritățile au declarat pentru TVR Moldova că nu știu, deocamdată, cum să calculeze pagubele provocate în urma incidentului: „E...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-sociale/proprietarul-terenului-unde-a-explodat-drona-cere-despagubiri-primaria-nu-stie-cum-sa-le-calculeze/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📰 Media & Libertatea Presei (5)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-justitie/fost-carabinier-si-logodnica-lui-trimisi-in-judecata-pentru-trafic-de-copii-ar-fi-convins-doua-eleve-de-la-un-colegiu-si-o-liceana-sa-se-prostitueze-una-dintre-ele-ar-fi-fost-amenintata-cu/" target="_blank">Fost carabinier și logodnica lui, trimiși în judecată pentru trafic de copii. Ar fi convins două eleve de la un colegiu și o liceană să se prostitueze. Una dintre ele ar fi fost amenințată cu „divulgarea fotografiilor” pentru a continua</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 09.06.2026</span>
+    </div>
+    <div class='summary'>Un fost carabinier și logodnica lui au fost trimiși pe banca acuzaților într-un dosar privind exploatarea sexuală a trei adolescente în 2025, a anunțat marți, 9 iunie, Procuratura pentru Combaterea Criminalității Organizate și Cauze Speciale (PCCOCS) într-un comunicat de presă. Fostul carabinier, care a mai lucrat și paznic până ca să fie arestat la solicitarea...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-justitie/fost-carabinier-si-logodnica-lui-trimisi-in-judecata-pentru-trafic-de-copii-ar-fi-convins-doua-eleve-de-la-un-colegiu-si-o-liceana-sa-se-prostitueze-una-dintre-ele-ar-fi-fost-amenintata-cu/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/dosare-de-coruptie/dosar-penal-pentru-propaganda-de-razboi-administratorul-unui-cont-viral-de-tiktok-retinut" target="_blank">Dosar penal pentru propagandă de război: administratorul unui cont viral de TikTok, reținut</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/dosare-de-coruptie/dosar-penal-pentru-propaganda-de-razboi-administratorul-unui-cont-viral-de-tiktok-retinut" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/blog/cornelia-cozonac/club-de-presa-la-comrat-dialogul-dintre-gagauzia-si-chisinau-trebuie-reconstruit" target="_blank">Club de presă la Comrat: Dialogul dintre Găgăuzia și Chișinău trebuie reconstruit</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/blog/cornelia-cozonac/club-de-presa-la-comrat-dialogul-dintre-gagauzia-si-chisinau-trebuie-reconstruit" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/experti-dezinformarea-alimenteaza-tensiunile-si-pune-in-pericol-viitorul-autonomiei-gagauze" target="_blank">Experți: Dezinformarea alimentează tensiunile și pune în pericol viitorul autonomiei găgăuze</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/experti-dezinformarea-alimenteaza-tensiunile-si-pune-in-pericol-viitorul-autonomiei-gagauze" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🏛️ Politică & Putere (5)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-justitie/fost-carabinier-si-logodnica-lui-trimisi-in-judecata-pentru-trafic-de-copii-ar-fi-convins-doua-eleve-de-la-un-colegiu-si-o-liceana-sa-se-prostitueze-una-dintre-ele-ar-fi-fost-amenintata-cu/" target="_blank">Fost carabinier și logodnica lui, trimiși în judecată pentru trafic de copii. Ar fi convins două eleve de la un colegiu și o liceană să se prostitueze. Una dintre ele ar fi fost amenințată cu „divulgarea fotografiilor” pentru a continua</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 09.06.2026</span>
+    </div>
+    <div class='summary'>Un fost carabinier și logodnica lui au fost trimiși pe banca acuzaților într-un dosar privind exploatarea sexuală a trei adolescente în 2025, a anunțat marți, 9 iunie, Procuratura pentru Combaterea Criminalității Organizate și Cauze Speciale (PCCOCS) într-un comunicat de presă. Fostul carabinier, care a mai lucrat și paznic până ca să fie arestat la solicitarea...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-justitie/fost-carabinier-si-logodnica-lui-trimisi-in-judecata-pentru-trafic-de-copii-ar-fi-convins-doua-eleve-de-la-un-colegiu-si-o-liceana-sa-se-prostitueze-una-dintre-ele-ar-fi-fost-amenintata-cu/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-externe/presedintele-volodimir-zelenski-a-declarat-ca-a-avut-o-discutie-pozitiva-cu-emisarii-sua-witkoff-si-kushner-in-timpul-unei-escale-la-chisinau/" target="_blank">Președintele Volodimir Zelenski a declarat că a avut o discuție „pozitivă” cu emisarii SUA Witkoff și Kushner, în timpul unei escale la Chișinău</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 09.06.2026</span>
+    </div>
+    <div class='summary'>Președintele ucrainean Volodimir Zelenski a declarat luni, 8 iunie, că a avut o discuție „pozitivă” cu emisarii americani Steve Witkoff și Jared Kushner și a lăudat ceea ce a numit disponibilitatea acestora de a lucra la găsirea unei soluții pentru războiul din Ucraina în următoarele săptămâni. „O discuție foarte pozitivă”, a declarat Zelenski pe Telegram,...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-externe/presedintele-volodimir-zelenski-a-declarat-ca-a-avut-o-discutie-pozitiva-cu-emisarii-sua-witkoff-si-kushner-in-timpul-unei-escale-la-chisinau/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/live-sergiu-caraman-a-fost-reales-presedinte-al-csm-pentru-doi-ani/" target="_blank">LIVE/ Sergiu Caraman a fost reales președinte al CSM pentru doi ani</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 09.06.2026</span>
+    </div>
+    <div class='summary'>Membrii Consiliului Superior al Magistraturii (CSM) se întrunesc marți, 9 iunie, în ședință. Pe agendă se regăsesc 23 de subiecte, printre care alegerea președintelui CSM. Totodată, CSM urmează să evalueze raportul Comisiei de evaluare externă privind evaluarea judecătoarei Angela Catană și a judecătorului Corneliu Guzun. UPDATE 11:15 Membri CSM evaluează raportul Comisiei de evaluare externă...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/live-sergiu-caraman-a-fost-reales-presedinte-al-csm-pentru-doi-ani/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-externe/prim-ministrul-desemnat-al-romaniei-a-afirmat-ca-a-renuntat-la-cetatenia-ucraineana-pentru-a-obtine-cetatenia-r-moldova/" target="_blank">Prim-ministrul desemnat al României a afirmat că a renunțat la cetățenia ucraineană pentru a obține cetățenia R. Moldova</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 09.06.2026</span>
+    </div>
+    <div class='summary'>Premierul desemnat din România, Eugen Tomac, a explicat, într-un interviu la Antena 3, că este cetățean român și moldovean. A renunțat la cetățenia ucraineană pentru că își dorea foarte mult cetățenia moldovenească iar Ucraina nu acceptă dubla cetățenie, scrie G4Media. Tomac a povestit, cu lacrimi în ochi, și despre copilăria sa din satul Babele, aflat...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-externe/prim-ministrul-desemnat-al-romaniei-a-afirmat-ca-a-renuntat-la-cetatenia-ucraineana-pentru-a-obtine-cetatenia-r-moldova/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/sergiu-caraman-reales-in-functia-de-presedinte-al-csm-aliona-miron-a-criticat-posibilitatea-exercitarii-mai-multor-mandate-consecutive" target="_blank">Sergiu Caraman, reales în funcția de președinte al CSM. Aliona Miron a criticat posibilitatea exercitării mai multor mandate consecutive</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/sergiu-caraman-reales-in-functia-de-presedinte-al-csm-aliona-miron-a-criticat-posibilitatea-exercitarii-mai-multor-mandate-consecutive" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">💼 Afaceri & Contracte Publice (2)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/un-barbat-care-ar-fi-fost-implicat-in-escrocherii-telefonice-prins-in-flagrant-se-prezenta-drept-curier-politist-sau-angajat-a-bnm-si-determina-victimele-sa-transfere-bani/" target="_blank">Un bărbat care ar fi fost implicat în escrocherii telefonice, prins în flagrant: se prezenta drept curier, polițist sau angajat al BNM și determina victimele să transfere bani</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 09.06.2026</span>
+    </div>
+    <div class='summary'>Oamenii legii au reținut în flagrant un bărbat bănuit că ar fi implicat într-o escrocherie financiară comisă prin apeluri pe Telegram, anunță Poliția într-un comunicat. Acesta a fost plasat în arest preventiv pentru 30 de zile. Potrivit anchetei, suspecții contactau victimele și se prezentau drept angajați ai unor companii de livrare, ai poliției sau ai...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/un-barbat-care-ar-fi-fost-implicat-in-escrocherii-telefonice-prins-in-flagrant-se-prezenta-drept-curier-politist-sau-angajat-a-bnm-si-determina-victimele-sa-transfere-bani/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-sociale/proprietarul-terenului-unde-a-explodat-drona-cere-despagubiri-primaria-nu-stie-cum-sa-le-calculeze/" target="_blank">Proprietarul terenului unde a explodat drona cere despăgubiri. Primăria nu știe cum să le calculeze</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 09.06.2026</span>
+    </div>
+    <div class='summary'>Proprietarul terenului agricol din apropierea satului Lopatna, comuna Jora de Mijloc din raionul Orhei, unde pe 8 iunie a explodat o dronă, a solicitat despăgubiri pentru prejudiciile suferite. Cererea a fost depusă la primăria comunei, însă autoritățile au declarat pentru TVR Moldova că nu știu, deocamdată, cum să calculeze pagubele provocate în urma incidentului: „E...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-sociale/proprietarul-terenului-unde-a-explodat-drona-cere-despagubiri-primaria-nu-stie-cum-sa-le-calculeze/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">👥 Social & Drepturile Omului (2)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/un-barbat-care-ar-fi-fost-implicat-in-escrocherii-telefonice-prins-in-flagrant-se-prezenta-drept-curier-politist-sau-angajat-a-bnm-si-determina-victimele-sa-transfere-bani/" target="_blank">Un bărbat care ar fi fost implicat în escrocherii telefonice, prins în flagrant: se prezenta drept curier, polițist sau angajat al BNM și determina victimele să transfere bani</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 09.06.2026</span>
+    </div>
+    <div class='summary'>Oamenii legii au reținut în flagrant un bărbat bănuit că ar fi implicat într-o escrocherie financiară comisă prin apeluri pe Telegram, anunță Poliția într-un comunicat. Acesta a fost plasat în arest preventiv pentru 30 de zile. Potrivit anchetei, suspecții contactau victimele și se prezentau drept angajați ai unor companii de livrare, ai poliției sau ai...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/un-barbat-care-ar-fi-fost-implicat-in-escrocherii-telefonice-prins-in-flagrant-se-prezenta-drept-curier-politist-sau-angajat-a-bnm-si-determina-victimele-sa-transfere-bani/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-economice/fermierii-din-falesti-anunta-un-protest-cu-tehnica-agricola-principalele-revendicari-ale-agricultorilor/" target="_blank">Fermierii din Fălești anunță un protest cu tehnică agricolă. Principalele revendicări ale agricultorilor</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 09.06.2026</span>
+    </div>
+    <div class='summary'>Mai mulți fermieri din raionul Fălești vor organiza vineri, 12 iunie, un protest de sensibilizare împotriva a ceea ce ei numesc „discriminarea și decapitalizarea agricultorilor micro, mici și mijlocii”. Acțiunea va avea loc între orele 9:00 și 14:00, pe drumul național Sculeni–Fălești, la intrarea în oraș. Potrivit organizatorilor, participanții vor veni cu tehnică și utilaje...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-economice/fermierii-din-falesti-anunta-un-protest-cu-tehnica-agricola-principalele-revendicari-ale-agricultorilor/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">💰 Corupție (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/maia-sandu-multumita-de-prestatia-cna-in-campania-electorala" target="_blank">Maia Sandu, mulțumită de prestația CNA în campania electorală</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💰 Corupție</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/maia-sandu-multumita-de-prestatia-cna-in-campania-electorala" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🔐 Securitate & Intelligence (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/cet-nord-risca-sa-plateasca-35-milioane-lei-pentru-ca-nu-a-valorificat-avizul-de-racordare" target="_blank">CET-Nord gestionează cea mai mare parte din sistemul de termoficare din Bălţi</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/cet-nord-risca-sa-plateasca-35-milioane-lei-pentru-ca-nu-a-valorificat-avizul-de-racordare" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📌 Alte articole (9)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/sa-moldovagaz-ramane-responsabila-de-aprovizionarea-cu-gaze-naturale-a-regiunii-transnistrene-pana-la-sfarsitul-anului/" target="_blank">SA „Moldovagaz” rămâne responsabilă de aprovizionarea cu gaze naturale a regiunii transnistrene până la sfârșitul anului</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 09.06.2026</span>
+    </div>
+    <div class='summary'>Perioada de desemnare a SA „Moldovagaz” în calitate de entitate responsabilă de aprovizionarea cu gaze naturale a regiunii transnistrene a fost prelungită până la 31 decembrie 2026, anunță Agenția Națională pentru Reglementare în Energetică (ANRE) într-un comunicat. Decizia a fost aprobată de Consiliul de Administrație al instituției în cadrul ședinței ordinare din 9 iunie 2026....</div>
+    
+    <a class="link-btn" href="https://www.zdg.md/stiri/sa-moldovagaz-ramane-responsabila-de-aprovizionarea-cu-gaze-naturale-a-regiunii-transnistrene-pana-la-sfarsitul-anului/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/blog/gheorghe-alexandra/raportarea-incidentelor-cibernetice-in-moldova-a-fost-mai-dificila-decat-ar-fi-trebuit-sa-fie" target="_blank">Raportarea incidentelor cibernetice în Moldova a fost mai dificilă decât ar fi trebuit să fie</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/blog/gheorghe-alexandra/raportarea-incidentelor-cibernetice-in-moldova-a-fost-mai-dificila-decat-ar-fi-trebuit-sa-fie" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/platforma-camerei-de-comert-folosita-pentru-promovarea-unui-casino-online" target="_blank">Platforma Camerei de Comerț, folosită pentru promovarea unui casino online</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/platforma-camerei-de-comert-folosita-pentru-promovarea-unui-casino-online" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/naznachennyi-premer-ministr-rumynii-zayavil-chto-otkazalsya-ot-grajdanstva-ukrainy-radi-grajdanstva-moldovy" target="_blank">Назначенный премьер-министр Румынии заявил, что отказался от гражданства Украины ради гражданства Молдовы</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/naznachennyi-premer-ministr-rumynii-zayavil-chto-otkazalsya-ot-grajdanstva-ukrainy-radi-grajdanstva-moldovy" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/video-dodon-razdaval-gosdoljnosti-eks-sovetnik-nazval-video-s-plahotnyukom-politicheskim-shulerstvom" target="_blank">(ВИДЕО) Додон раздавал госдолжности? Экс-советник назвал видео с Плахотнюком «политическим шулерством»</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/video-dodon-razdaval-gosdoljnosti-eks-sovetnik-nazval-video-s-plahotnyukom-politicheskim-shulerstvom" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/cum-se-pregateste-agricultura-moldoveneasca-de-aderarea-la-ue" target="_blank">Cum se pregăteşte agricultura moldovenească de aderarea la UE</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/cum-se-pregateste-agricultura-moldoveneasca-de-aderarea-la-ue" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/un-nou-director-la-noul-proprietar-al-portului-giurgiulesti" target="_blank">Un nou director la noul proprietar al Portului Giurgiuleşti</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/un-nou-director-la-noul-proprietar-al-portului-giurgiulesti" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/profit-de-jumatate-de-miliard-de-lei-pentru-liderul-retailului-alimentar-din-moldova" target="_blank">Profit de jumătate de miliard de lei pentru liderul retailului alimentar din Moldova</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/profit-de-jumatate-de-miliard-de-lei-pentru-liderul-retailului-alimentar-din-moldova" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/se-pune-fundamentul-digital-al-sectorului-energetic" target="_blank">Se pune fundamentul digital al sectorului energetic</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/se-pune-fundamentul-digital-al-sectorului-energetic" target="_blank">Citește articolul →</a>
+  </div>
+</div>
+<div class="footer">
+  Raport generat automat zilnic &nbsp;·&nbsp; ARBI – Monitorizare Jurnalism Investigativ Moldova
+</div>
+</body>
+</html>
