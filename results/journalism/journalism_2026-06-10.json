@@ -1,0 +1,614 @@
+{
+  "date": "2026-06-10",
+  "generated_at": "2026-06-10T10:05:22Z",
+  "lookback_hours": 26,
+  "sources_checked": 8,
+  "sources_ok": 8,
+  "stats": {
+    "total": 32,
+    "investigative": 7,
+    "by_source": {
+      "zdg_md": {
+        "name": "Ziarul de Gardă",
+        "count": 10
+      },
+      "anticoruptie_md": {
+        "name": "Anticorupție.md",
+        "count": 10
+      },
+      "newsmaker_md": {
+        "name": "Newsmaker.md",
+        "count": 4
+      },
+      "mold_street": {
+        "name": "Mold-Street",
+        "count": 7
+      },
+      "agora_md": {
+        "name": "Agora.md",
+        "count": 1
+      }
+    },
+    "by_category": {
+      "coruptie": {
+        "label": "Corupție",
+        "emoji": "💰",
+        "count": 1
+      },
+      "justitie": {
+        "label": "Justiție & Procurori",
+        "emoji": "⚖️",
+        "count": 15
+      },
+      "politica": {
+        "label": "Politică & Putere",
+        "emoji": "🏛️",
+        "count": 6
+      },
+      "media": {
+        "label": "Media & Libertatea Presei",
+        "emoji": "📰",
+        "count": 2
+      },
+      "afaceri": {
+        "label": "Afaceri & Contracte Publice",
+        "emoji": "💼",
+        "count": 1
+      },
+      "securitate": {
+        "label": "Securitate & Intelligence",
+        "emoji": "🔐",
+        "count": 2
+      },
+      "social": {
+        "label": "Social & Drepturile Omului",
+        "emoji": "👥",
+        "count": 3
+      }
+    }
+  },
+  "articles": [
+    {
+      "id": "27065d70cdb0",
+      "title": "CNA a făcut percheziții la o firmă de construcții despre care ZdG scrie de un deceniu: lucrări nefinalizate pe bani publici",
+      "url": "https://www.zdg.md/stiri/stiri-economice/cna-a-facut-perchezitii-la-o-firma-de-constructii-despre-care-zdg-scrie-de-un-deceniu-lucrari-nefinalizate-pe-bani-publici/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-10T09:10:39Z",
+      "published_date": "2026-06-10",
+      "summary": "Centrul Național Anticorupție (CNA) a descins miercuri, 10 iunie, cu percheziții la o companie de construcții. Administratorul firmei și alți angajați, precum și și doi reprezentanți ai administrației publice locale, sunt cercetați într-o cauză penală ce vizează realizarea unui proiect de circa 40 de milioane de lei pentru construcția sistemului de canalizare și epurare a...",
+      "categories": [
+        "justitie",
+        "afaceri",
+        "securitate"
+      ],
+      "category_scores": {
+        "justitie": 3,
+        "afaceri": 1,
+        "securitate": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 7
+    },
+    {
+      "id": "b950f3e94eaa",
+      "title": "De ultimă oră",
+      "url": "https://anticoruptie.md/rss/latest.xml?lang=ro",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Săptămâna trecută am fost la Comrat, în Autonomia Găgăuză, unde Centrul de Investigații Jurnalistice a organizat o ediție a Clubului Jurnaliștilor de Investigație. Tema discuțiilor: blocajul electoral din regiune și viitorul autonomiei văzute prin ochii celor de la firul ierbii.\r\n\r\nObiectivul nostru a fost să înțelegem ce soluții se conturează[...]",
+      "categories": [
+        "justitie",
+        "media"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "media": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 4
+    },
+    {
+      "id": "6734b38ae881",
+      "title": "Cum Guvernul a cumpărat \"acțiuni de la o bancă sistemică\" în valoare de 137,5 milioane lei",
+      "url": "https://mold-street.com/noutate/cum-guvernul-a-cumparat-actiuni-de-la-o-banca-sistemica-in-valoare-de-1375-milioane-lei",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "politica",
+        "securitate"
+      ],
+      "category_scores": {
+        "politica": 1,
+        "securitate": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 4
+    },
+    {
+      "id": "3ce3e75dc864",
+      "title": "FOTO// 40 de milioane de lei, aruncați în... canalizare. Un antreprenor, bănuit de abuz în serviciu",
+      "url": "https://anticoruptie.md/ro/dosare-de-coruptie/foto-40-de-milioane-de-lei-aruncati-in-canalizare-un-antreprenor-banuit-de-abuz-in-serviciu",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Ofițerii Centrului Național Anticorupție, în comun cu procurorii Procuraturii municipiului Chișinău, desfășoară acțiuni de urmărire penală într-un dosar în care sunt vizați administratorul unei companii de construcții, responsabili tehnici, diriginți de șantier și doi reprezentan…",
+      "categories": [
+        "social"
+      ],
+      "category_scores": {
+        "social": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 3
+    },
+    {
+      "id": "b8dacadfe309",
+      "title": "Programul Prima Casă a creat o povară fiscală de sute de milioane pentru 20-30 de ani",
+      "url": "https://mold-street.com/noutate/programul-prima-casa-a-creat-o-povara-fiscala-de-sute-de-milioane-pentru-20-30-de-ani",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 3
+    },
+    {
+      "id": "5422b3ebbde7",
+      "title": "Clubul Jurnaliștilor de Investigație// Ingerințele externe, barieră pentru dezvoltarea locală",
+      "url": "https://anticoruptie.md/ro/stiri/clubul-jurnalistilor-de-investigatie-ingerintele-externe-bariera-pentru-dezvoltarea-locala",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "„Dezvoltarea locală: drumul spre reziliența democratică și presiunea ingerințelor externe. Metode de identificare a falsurilor” este genericul ședinței Clubului Jurnaliștilor de Investigație, organizat de Centrul de Investigații Jurnalistice în parteneriat cu Asociația pentru Com…",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 1,
+      "relevance_score": 2
+    },
+    {
+      "id": "367b1e91ab4a",
+      "title": "Corupţie la un proiect de canalizare de 40 milioane lei, de la Ialoveni",
+      "url": "https://mold-street.com/noutate/coruptie-la-un-proiect-de-canalizare-de-40-milioane-lei-de-la-ialoveni",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 1,
+      "relevance_score": 2
+    },
+    {
+      "id": "97c8ff68f55a",
+      "title": "A determinat un minor să săvârșească un furt și a fost prins cu substanțe stupefiante: inculpatul, condamnat la 7 ani de închisoare",
+      "url": "https://www.zdg.md/stiri/a-determinat-un-minor-sa-savarseasca-un-furt-si-a-fost-prins-cu-substante-stupefiante-inculpatul-condamnat-la-7-ani-de-inchisoare/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-10T08:25:04Z",
+      "published_date": "2026-06-10",
+      "summary": "Un bărbat în vârstă de 34 de ani a fost recunoscut vinovat de comiterea infracțiunilor de furt, atragere a minorilor în activitate criminală și deținere de droguri. Instanța i-a stabilit o pedeapsă definitivă de 7 ani de închisoare, potrivit unui comunicat al Procuraturii Generale. Potrivit probelor administrate, pe 24 aprilie 2025, inculpatul, a determinat o persoană...",
+      "categories": [
+        "justitie",
+        "social"
+      ],
+      "category_scores": {
+        "justitie": 4,
+        "social": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 5
+    },
+    {
+      "id": "95dfe2266c2e",
+      "title": "Minoră de 14 ani a fost hărțuită sexual de concubinul mamei sale. Acesta a fost condamnat la nouă ani de închisoare",
+      "url": "https://www.zdg.md/stiri/minora-de-14-ani-a-fost-hartuita-sexual-de-concubinul-mamei-sale-acesta-a-fost-condamnat-la-noua-ani-de-inchisoare/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-10T07:58:28Z",
+      "published_date": "2026-06-10",
+      "summary": "Un bărbat din nordul țării în vârstă de 53 ani, a fost condamnat la cinci ani de închisoare pentru hârțuirea sexuală a unei minore de 14 ani, anunță miercuri, 10 iunie, Procuratura Generală (PG). Totodată, prin cumul cu o sentință din 2024, pentru violență în familie, bărbatul a fost condamnat la pedeapsa definitivă de nouă ani...",
+      "categories": [
+        "justitie",
+        "social"
+      ],
+      "category_scores": {
+        "justitie": 3,
+        "social": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 4
+    },
+    {
+      "id": "a2dd8cc7f804",
+      "title": "Primarul Chișinăului a pierdut procesul în prima instanță cu ministra Afacerilor Externe al României Oana Țoiu. „Scopul celor din guvernarea de acasă, împreună cu unii prieteni din guvernarea României, a fost să-mi știrbească imaginea”",
+      "url": "https://www.zdg.md/stiri/primarul-chisinaului-a-pierdut-procesul-in-prima-instanta-cu-ministra-afacerilor-externe-al-romaniei-oana-toiu-scopul-celor-din-guvernarea-de-acasa-impreuna-cu-unii-prieteni-din-guvernarea/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-10T09:22:06Z",
+      "published_date": "2026-06-10",
+      "summary": "Primarul Chișinăului, Ion Ceban, a pierdut procesul cu ministru în exercițiu al Afacerilor Externe al României Oana Țoiu, conform portalului instanțelor din România, scrie G4Media. Totuși, decizia instanței nu este definitivă. Ion Ceban voia 1 leu daune de la Oana Țoiu pentru că șefa Externelor l-a acuzat pe primarul pro-rus al capitalei R. Moldova de...",
+      "categories": [
+        "politica",
+        "justitie"
+      ],
+      "category_scores": {
+        "politica": 2,
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "c49cc283fcba",
+      "title": "SUA adaugă Alibaba, BYD și Baidu pe lista neagră a companiilor care ar avea legături cu armata chineze",
+      "url": "https://www.zdg.md/stiri/sua-adauga-alibaba-byd-si-baidu-pe-lista-neagra-a-companiilor-care-ar-avea-legaturi-cu-armata-chineze/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-10T08:58:23Z",
+      "published_date": "2026-06-10",
+      "summary": "Pentagonul a adăugat 188 de companii chineze pe lista sa neagră a firmelor cu legături militare — cea mai mare extindere de până acum. Ea include acum companii importante, precum Alibaba, BYD și Baidu, care nu sunt de stat și care nu au fost asociate în mod tradițional cu apărarea sau securitatea, reflectând îngrijorările tot...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 2,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "6071070a1a5e",
+      "title": "O femeie din Ungheni a pierdut peste 436 de mii de lei într-o fraudă online. Doi tineri din stânga Nistrului, reținuți",
+      "url": "https://www.zdg.md/stiri/o-femeie-din-ungheni-a-pierdut-peste-436-de-mii-de-lei-intr-o-frauda-online-doi-tineri-din-stanga-nistrului-retinuti/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-10T08:36:48Z",
+      "published_date": "2026-06-10",
+      "summary": "Două persoane, de 18 și 26 de ani, originare din stânga Nistrului, au fost reținute de polițiștii din Ungheni, fiind suspectate că au avut rolul de „curieri” într-o schemă de escrocherie cu investiții online, anunță miercuri, 10 iunie, Inspectoratul General al Poliției (IGP). Potrivit anchetei, în luna mai 2026, o femeie de 55 de ani...",
+      "categories": [
+        "justitie",
+        "coruptie"
+      ],
+      "category_scores": {
+        "justitie": 2,
+        "coruptie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "de567ad32751",
+      "title": "R. Moldova va avea ambasadori noi în India și Republica Portugheză. Două candidaturi, avizate de Comisia pentru politică externă",
+      "url": "https://www.zdg.md/stiri/r-moldova-va-avea-ambasadori-noi-in-india-si-republica-portugheza-doua-candidaturi-avizate-de-comisia-pentru-politica-externa/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-10T08:46:04Z",
+      "published_date": "2026-06-10",
+      "summary": "Comisia pentru politică externă a Parlamentului a aprobat în ședința de miercuri, 10 iunie, avizele consultative pozitive pentru candidaturile a doi ambasadori ai Republicii Moldova. Astfel, conform unui comunicat al Ministerului Afacerilor Externe (MAE), Inga Ionesii urmează să fie desemnată în calitate de ambasadoare extraordinară și plenipotențiară a R. Moldova în Republica India, iar Sergiu...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "43fa8d8d5e28",
+      "title": "2026: Cancerul de piele poate fi prevenit! Fii în siguranță la soare! Testează-te gratuit!",
+      "url": "https://www.zdg.md/advertoriale/2026-cancerul-de-piele-poate-fi-prevenit-fii-in-siguranta-la-soare-testeaza-te-gratuit/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-10T07:56:17Z",
+      "published_date": "2026-06-10",
+      "summary": "Farmacia Familiei dă startul campaniei „Cancerul de piele poate fi prevenit! Fii în siguranță la soare! Testează-te gratuit!” ediția 2026! Farmacia Familiei, pe toată perioada sezonului estival, oferă consultații dermatologice gratuite de verificare a alunițelor, pentru depistarea timpurie a cancerului de piele de tip melanom. Campania „Fii în siguranță la soare!” a ajuns la a 5-a ediție. În...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "5a31822bf7fc",
+      "title": "Demisia președintelui interimar al Adunării Populare a UTAG: legală, dar paralizantă",
+      "url": "https://anticoruptie.md/ro/stiri/demisia-presedintelui-interimar-al-adunarii-populare-a-utag-legala-dar-paralizanta",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Plecarea din funcție a președintelui interimar al Adunării Populare a Găgăuziei (AP), Nicolai Ormanji, deși legală, duce la blocarea activității instituției, blocarea organizării alegerilor, dar la blocarea soluționării multor probleme social-economice în autonomie, consideră Igo…",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "8da30c07ea3b",
+      "title": "DOC// Instanța a dat verdictul în disputa dintre foștii camarazi de partid, Năstase și Plîngău",
+      "url": "https://anticoruptie.md/ro/dosare-de-coruptie/doc-instanta-a-dat-verdictul-in-disputa-dintre-fostii-camarazi-de-partid-nastase-si-plingau",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Judecătoria Chișinău, sediul Centru, a respins cererea fostului lider al Platformei DA, Andrei Năstase, împotriva ex-colegului său de partid, DInu Plîngău, de la care cere dezmințirea unor informații făcute în spațiul public. ”Războiul” declarațiilor între cei doi politicieni s-a…",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "375cd29e4913",
+      "title": "Comunicăm. Producem. Plasăm.Crești împreună cu AGORA",
+      "url": "https://agora.md/media-kit",
+      "source": "Agora.md",
+      "source_key": "agora_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.",
+      "categories": [
+        "justitie",
+        "media"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "media": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "c0c082a20b6a",
+      "title": "LIVE TEXT/ O altă rută către Crimeea a fost blocată. Ocupanții din regiunea Herson raportează un atac cu rachete asupra podului care duce spre Arabatka. Război în Ucraina, ziua 1568",
+      "url": "https://www.zdg.md/stiri/live-text-o-alta-ruta-catre-crimeea-a-fost-blocata-ocupantii-din-regiunea-herson-raporteaza-un-atac-cu-rachete-asupra-podului-care-duce-spre-arabatka-razboi-in-ucraina-ziua-1568/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-10T08:10:13Z",
+      "published_date": "2026-06-10",
+      "summary": "UPDATE 11:10 Încă un drum care duce spre Crimeea a fost întretăiat. Ocupanții din regiunea Herson anunță că podul spre Arabatka (limba de pământ Arabat, cunoscută și ca Săgeata Arabatului, este o fâșie lungă și îngustă de nisip și scoici care separă Marea Azov de lagunele extrem de sărate cunoscute sub numele de Sivaș) a...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "246653201146",
+      "title": "Comisia Europeană propune al 21-lea pachet de sancțiuni împotriva Rusiei: sunt vizate flota fantomă, băncile, criptomonedele și militarii ruși",
+      "url": "https://anticoruptie.md/ro/stiri/comisia-europeana-propune-al-21-lea-pachet-de-sanctiuni-impotriva-rusiei-sunt-vizate-flota-fantoma-bancile-criptomonedele-si-militarii-rusi",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Comisia Europeană a prezentat marți, 9 iunie 2026, propunerea privind cel de-al 21-lea pachet de sancțiuni împotriva Federației Ruse. Noile măsuri vizează sectoare considerate esențiale pentru finanțarea războiului dus de Rusia împotriva Ucrainei: energia, serviciile financiare, …",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "a6e75c8a1c08",
+      "title": "Începe sezonul ambroziei. Ministerul Sănătății prezintă măsuri de protecție și recomandă cetățenilor să sesizeze prezența plantei autorităților",
+      "url": "https://www.zdg.md/stiri/incepe-sezonul-ambroziei-ministerul-sanatatii-prezinta-masuri-de-protectie-si-recomanda-cetatenilor-sa-sesizeze-prezenta-plantei-autoritatilor/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-10T09:25:00Z",
+      "published_date": "2026-06-10",
+      "summary": "Ministerul Sănătății (MS) avertizează populația despre riscurile majore asociate cu polenul de ambrozie, una dintre cele mai invazive și alergene plante care afectează tot mai mult sănătatea publică în perioada iulie – septembrie. Cetățenii sunt îndemnați să sesizeze prezența ambroziei la primăriile din localități, Inspectoratul pentru Protecția Mediului, Agenția Națională pentru Siguranța Alimentelor (ANSA) și...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "419ee7009248",
+      "title": "Ion Ceban pierde litigiul împotriva ministrei de Externe a României, Oana Țoiu. Prima declarație a edilului",
+      "url": "https://anticoruptie.md/ro/dosare-de-coruptie/ion-ceban-pierde-litigiul-impotriva-ministrei-de-externe-a-romaniei-oana-toiu-prima-declaratie-a-edilului",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Edilul de Chișinău, Ion Ceban, spune că a luat act de decizia primei instanțe din România în procesul contra ministrei de Externe din România, dar o va contesta în instanța ierarhic superioară. Anunțul edilului vine duoă ce Judecătoria Sectorului 1 București a respins în primă in…",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "fe6784682760",
+      "title": "Criza din Găgăuzia, aprofundată de o decizie recentă a Comitetului Executiv",
+      "url": "https://anticoruptie.md/ro/stiri/criza-din-gagauzia-aprofundata-de-o-decizie-recenta-a-comitetului-executiv",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Comitetul Executiv al Găgăuziei a respins proiectul de hotărâre al Adunării Populare (APG) privind organizarea alegerilor în autonomie.Conform juristului Vitalie Derevenco, care a prezentat poziția autorității, proiectul APG nu ar prezenta soluții reale care ar elimina definitiv …",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "80d0d880ab45",
+      "title": "Republica Moldova, mai aproape de UE: în zilele următoare va fi deschis primul cluster de negocieri",
+      "url": "https://anticoruptie.md/ro/stiri/republica-moldova-mai-aproape-de-ue-in-zilele-urmatoare-va-fi-deschis-primul-cluster-de-negocieri",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Uniunea Europeană urmează să deschidă, în zilele următoare, primul cluster de negocieri de aderare cu Republica Moldova și Ucraina. Anunțul a fost făcut marți, 9 iunie 2026, de președinta Comisiei Europene, Ursula von der Leyen, în cadrul unei conferințe de presă la Bruxelles, du…",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "377394db88fa",
+      "title": "Igor Ianac, membru al Platformei Dialog pentru Găgăuzia, despre cine sunt „ucigașii tăcuți” ai Autonomiei și interferențele externe",
+      "url": "https://anticoruptie.md/ro/stiri/igor-ianac-membrul-al-platformei-dialog-pentru-gagauzia-despre-cine-sunt-ucigasii-tacuti-ai-autonomiei-si-interferentele-externe",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Igor Ianac, membru al Platformei de Dialog Civic din Găgăuzia, consideră că unii membri ai Adunării Populare nu înțeleg că Găgăuzia este parte integrantă și inseparabilă a Republicii Moldova, cu un cadru legislativ unic. „Cel mai important este că nu toată lumea conștientizează c…",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "45c92bb7fbcb",
+      "title": "Ленин будет жить? Что будет с Партией коммунистов без Воронина во главе",
+      "url": "https://newsmaker.md/ru/lenin-budet-jit-chto-budet-s-partiei-kommunistov-bez-voronina-vo-glave",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "DUOMO. Когда качество — не просто слово, это обязательство",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "7cacf18cf824",
+      "title": "Пять стран ЕС предлагают временно ограничить право голоса новых членов союза",
+      "url": "https://newsmaker.md/ru/pyat-stran-es-predlagayut-vremenno-ogranichit-pravo-golosa-novyh-chlenov-soyuza",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "db06b40360d5",
+      "title": "(ВИДЕО) Додон подвергался опасности? Показания экс-главы госохраны об аварии, слежке и эвакуации семьи",
+      "url": "https://newsmaker.md/ru/video-dodon-podvergalsya-opasnosti-pokazaniya-eks-glavy-gosohrany-ob-avarii-slejke-i-evakuaczii-semi",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "1ecedf0ed3d4",
+      "title": "В Молдове за пять лет погибли 19 военнослужащих. Отчет министерства обороны",
+      "url": "https://newsmaker.md/ru/v-moldove-za-pyat-let-pogibli-19-voennoslujashih-otchet-ministerstva-oborony",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "7bb2a0084f4e",
+      "title": "simbol",
+      "url": "https://mold-street.com/noutate/razboi-intre-moldovatransgaz-si-vestmoldtransgaz-pentru-milioane-de-metri-cubi-de-gaze",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "8ede026799bd",
+      "title": "Cheltuielile pentru arme nucleare ating un nivel istoric",
+      "url": "https://mold-street.com/noutate/cheltuielile-pentru-arme-nucleare-ating-un-nivel-istoric",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "d7d2203f44ba",
+      "title": "Preţul energiei la Bursa de la Chişinău este de trei ori mai mic decât al energiei de import",
+      "url": "https://mold-street.com/noutate/pretul-energiei-de-la-bursa-de-la-chisinau-este-de-trei-ori-mai-mic-decat-al-energiei-de-import",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "85ad67da6700",
+      "title": "Cum se pregăteşte agricultura moldovenească de aderarea la UE",
+      "url": "https://mold-street.com/noutate/cum-se-pregateste-agricultura-moldoveneasca-de-aderarea-la-ue",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    }
+  ]
+}
