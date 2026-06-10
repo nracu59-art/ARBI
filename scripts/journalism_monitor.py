@@ -215,6 +215,100 @@ def parse_rss_items(root: ET.Element) -> list[dict]:
     return items
 
 
+# ─── Article Summary Fetching ────────────────────────────────────────────────
+
+ARTICLE_CONTENT_SELECTORS = [
+    "article .entry-content",
+    "article .post-content",
+    "article .article-body",
+    "article .article-content",
+    ".entry-content",
+    ".post-content",
+    ".article-body",
+    ".article-content",
+    ".article-text",
+    ".story-body",
+    ".content-body",
+    "article",
+    "[itemprop='articleBody']",
+]
+
+BROWSER_HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/124.0.0.0 Safari/537.36"
+    ),
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "ro-MD,ro;q=0.9,en-US;q=0.8",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Connection": "keep-alive",
+    "Upgrade-Insecure-Requests": "1",
+}
+
+
+def fetch_article_summary(url: str, timeout: int = 12) -> str:
+    """Fetch article page and extract first meaningful paragraph as summary."""
+    try:
+        resp = requests.get(url, headers=BROWSER_HEADERS, timeout=timeout, allow_redirects=True)
+        resp.raise_for_status()
+        soup = BeautifulSoup(resp.content, "html.parser")
+
+        # Remove noise elements
+        for tag in soup.find_all(["script", "style", "nav", "header", "footer",
+                                   "aside", "figure", "figcaption", ".ad", ".ads"]):
+            tag.decompose()
+
+        # Try known content selectors
+        content_el = None
+        for selector in ARTICLE_CONTENT_SELECTORS:
+            content_el = soup.select_one(selector)
+            if content_el:
+                break
+
+        # Fall back to <main> or <body>
+        if not content_el:
+            content_el = soup.find("main") or soup.find("body")
+
+        if not content_el:
+            return ""
+
+        # Find first substantial paragraph (min 60 chars, not nav/caption text)
+        for p in content_el.find_all("p"):
+            text = p.get_text(separator=" ", strip=True)
+            text = re.sub(r"\s+", " ", text)
+            if len(text) >= 60 and not text.startswith(("©", "Foto:", "Sursa:", "Tags:")):
+                # Return first 2 sentences, max 280 chars
+                sentences = re.split(r"(?<=[.!?])\s+", text)
+                summary = " ".join(sentences[:2])
+                return summary[:280] + ("…" if len(summary) > 280 else "")
+
+        return ""
+    except Exception as e:
+        logger.debug("Could not fetch summary for %s: %s", url, e)
+        return ""
+
+
+def enrich_summaries(articles: list[dict], max_enriched: int = 30) -> None:
+    """Fetch summaries for articles that have short/empty summaries from RSS."""
+    enriched = 0
+    for article in articles:
+        if enriched >= max_enriched:
+            break
+        if len(article.get("summary", "")) >= 80:
+            continue  # already has a good summary
+        url = article.get("url", "")
+        if not url:
+            continue
+        logger.info("Fetching summary for: %s", article["title"][:60])
+        fetched = fetch_article_summary(url)
+        if fetched:
+            article["summary"] = fetched
+            enriched += 1
+        time.sleep(0.5)
+    logger.info("Enriched %d article summaries", enriched)
+
+
 # ─── HTML Fallback Scraping ───────────────────────────────────────────────────
 
 def scrape_html_articles(site: dict, timeout: int = 20) -> list[dict]:
@@ -354,6 +448,10 @@ def main() -> dict:
 
     # Sort: investigative first, then by relevance
     all_articles.sort(key=lambda a: (-(a.get("investigative_score", 0)), -a.get("relevance_score", 0)))
+
+    # Enrich summaries for articles that have short/empty descriptions from RSS
+    if all_articles:
+        enrich_summaries(all_articles)
 
     now_utc = datetime.now(timezone.utc)
     stats = compute_stats(all_articles, sites, categories_cfg)
