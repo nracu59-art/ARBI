@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monitorizare Jurnalism Investigativ Moldova – 10.06.2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; color: #2c3e50; }
+  .header { background: #1b4332; color: #fff; padding: 28px 40px; }
+  .header h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: 0.5px; }
+  .header .subtitle { margin-top: 6px; font-size: 0.9rem; opacity: 0.85; }
+  .stats-bar { background: #2d6a4f; color: #fff; padding: 16px 40px;
+                display: flex; gap: 36px; flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; }
+  .stat .val { font-size: 1.8rem; font-weight: 700; }
+  .stat .lbl { font-size: 0.72rem; opacity: 0.82; text-transform: uppercase; letter-spacing: 0.8px; }
+  .cat-bar { background: #40916c; color: #fff; padding: 12px 40px;
+              display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .cat-chip { background: rgba(255,255,255,0.18); border-radius: 20px;
+               padding: 4px 14px; font-size: 0.78rem; font-weight: 600;
+               white-space: nowrap; }
+  .container { max-width: 1040px; margin: 30px auto; padding: 0 20px 40px; }
+  .section-title { font-size: 0.95rem; font-weight: 700; color: #1b4332;
+                    text-transform: uppercase; letter-spacing: 1px;
+                    margin: 28px 0 14px; border-bottom: 2px solid #1b4332;
+                    padding-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08);
+           padding: 18px 22px; margin-bottom: 14px; border-left: 5px solid #1b4332;
+           transition: box-shadow .15s; }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.13); }
+  .card.investigativ { border-left-color: #d62828; }
+  .card-title { font-size: 1rem; font-weight: 700; color: #1b4332; margin-bottom: 8px; }
+  .card-title a { color: inherit; text-decoration: none; }
+  .card-title a:hover { text-decoration: underline; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;
+           font-size: 0.8rem; color: #555; }
+  .badge { display: inline-block; font-size: 0.68rem; font-weight: 700;
+            padding: 2px 8px; border-radius: 12px; color: #fff;
+            margin-right: 4px; vertical-align: middle; }
+  .badge-inv { background: #d62828; }
+  .source-tag { background: #e8f4ec; color: #1b4332; border-radius: 4px;
+                 padding: 1px 8px; font-size: 0.75rem; font-weight: 600; }
+  .summary { font-size: 0.85rem; color: #444; line-height: 1.55; margin-top: 6px; }
+  .cat-tags { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .cat-tag { font-size: 0.72rem; padding: 2px 10px; border-radius: 10px;
+              font-weight: 600; background: #e8f4ec; color: #1b4332; }
+  .link-btn { display: inline-block; margin-top: 10px; padding: 5px 14px;
+               background: #1b4332; color: #fff; border-radius: 5px;
+               font-size: 0.78rem; text-decoration: none; font-weight: 600; }
+  .link-btn:hover { background: #2d6a4f; }
+  .empty-box { background: #fff; border-radius: 8px; padding: 30px 24px;
+                text-align: center; color: #7f8c8d; font-size: 0.95rem;
+                box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .source-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+  .source-box { background: #fff; border-radius: 8px; padding: 12px 18px;
+                 box-shadow: 0 2px 6px rgba(0,0,0,.07); min-width: 140px;
+                 border-top: 3px solid #1b4332; }
+  .source-box .sname { font-size: 0.78rem; font-weight: 700; color: #1b4332; }
+  .source-box .scount { font-size: 1.4rem; font-weight: 700; color: #2d6a4f; margin-top: 2px; }
+  .footer { text-align: center; font-size: 0.75rem; color: #999;
+             margin-top: 40px; padding-bottom: 20px; }
+  @media (max-width: 600px) {
+    .header, .stats-bar, .cat-bar { padding: 18px 16px; }
+    .stats-bar { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🔍 Monitorizare Jurnalism Investigativ – Moldova</h1>
+  <div class="subtitle">
+    Surse monitorizate: 8 &nbsp;|&nbsp;
+    Ultimele 26 ore &nbsp;|&nbsp;
+    Generat: 2026-06-10 10:05 UTC
+  </div>
+</div>
+<div class="stats-bar">
+  <div class="stat"><span class="val">32</span><span class="lbl">Articole noi</span></div>
+  <div class="stat"><span class="val">7</span><span class="lbl">Investigative</span></div>
+  <div class="stat"><span class="val">8</span><span class="lbl">Surse active</span></div>
+  <div class="stat"><span class="val">10.06.2026</span><span class="lbl">Data raportului</span></div>
+</div>
+<div class="cat-bar">
+  <span style="font-size:.8rem;opacity:.85;margin-right:4px">Categorii:</span>
+  <span class="cat-chip">⚖️ Justiție & Procurori (15)</span><span class="cat-chip">🏛️ Politică & Putere (6)</span><span class="cat-chip">👥 Social & Drepturile Omului (3)</span><span class="cat-chip">📰 Media & Libertatea Presei (2)</span><span class="cat-chip">🔐 Securitate & Intelligence (2)</span><span class="cat-chip">💰 Corupție (1)</span><span class="cat-chip">💼 Afaceri & Contracte Publice (1)</span>
+</div>
+<div class="container">
+<div class="section-title">📊 Articole pe surse</div><div class="source-grid"><div class="source-box"><div class="sname">Ziarul de Gardă</div><div class="scount">10</div></div><div class="source-box"><div class="sname">Anticorupție.md</div><div class="scount">10</div></div><div class="source-box"><div class="sname">Mold-Street</div><div class="scount">7</div></div><div class="source-box"><div class="sname">Newsmaker.md</div><div class="scount">4</div></div><div class="source-box"><div class="sname">Agora.md</div><div class="scount">1</div></div></div>
+<div class="section-title">🔍 Articole Investigative (7)</div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-economice/cna-a-facut-perchezitii-la-o-firma-de-constructii-despre-care-zdg-scrie-de-un-deceniu-lucrari-nefinalizate-pe-bani-publici/" target="_blank">CNA a făcut percheziții la o firmă de construcții despre care ZdG scrie de un deceniu: lucrări nefinalizate pe bani publici</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 10.06.2026</span>
+    </div>
+    <div class='summary'>Centrul Național Anticorupție (CNA) a descins miercuri, 10 iunie, cu percheziții la o companie de construcții. Administratorul firmei și alți angajați, precum și și doi reprezentanți ai administrației publice locale, sunt cercetați într-o cauză penală ce vizează realizarea unui proiect de circa 40 de milioane de lei pentru construcția sistemului de canalizare și epurare a...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-economice/cna-a-facut-perchezitii-la-o-firma-de-constructii-despre-care-zdg-scrie-de-un-deceniu-lucrari-nefinalizate-pe-bani-publici/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/rss/latest.xml?lang=ro" target="_blank">De ultimă oră</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Săptămâna trecută am fost la Comrat, în Autonomia Găgăuză, unde Centrul de Investigații Jurnalistice a organizat o ediție a Clubului Jurnaliștilor de Investigație. Tema discuțiilor: blocajul electoral din regiune și viitorul autonomiei văzute prin ochii celor de la firul ierbii.
+
+Obiectivul nostru a fost să înțelegem ce soluții se conturează[...]</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/rss/latest.xml?lang=ro" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://mold-street.com/noutate/cum-guvernul-a-cumparat-actiuni-de-la-o-banca-sistemica-in-valoare-de-1375-milioane-lei" target="_blank">Cum Guvernul a cumpărat "acțiuni de la o bancă sistemică" în valoare de 137,5 milioane lei</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/cum-guvernul-a-cumparat-actiuni-de-la-o-banca-sistemica-in-valoare-de-1375-milioane-lei" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/dosare-de-coruptie/foto-40-de-milioane-de-lei-aruncati-in-canalizare-un-antreprenor-banuit-de-abuz-in-serviciu" target="_blank">FOTO// 40 de milioane de lei, aruncați în... canalizare. Un antreprenor, bănuit de abuz în serviciu</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Ofițerii Centrului Național Anticorupție, în comun cu procurorii Procuraturii municipiului Chișinău, desfășoară acțiuni de urmărire penală într-un dosar în care sunt vizați administratorul unei companii de construcții, responsabili tehnici, diriginți de șantier și doi reprezentan…</div>
+    <div class='cat-tags'><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/dosare-de-coruptie/foto-40-de-milioane-de-lei-aruncati-in-canalizare-un-antreprenor-banuit-de-abuz-in-serviciu" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://mold-street.com/noutate/programul-prima-casa-a-creat-o-povara-fiscala-de-sute-de-milioane-pentru-20-30-de-ani" target="_blank">Programul Prima Casă a creat o povară fiscală de sute de milioane pentru 20-30 de ani</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/programul-prima-casa-a-creat-o-povara-fiscala-de-sute-de-milioane-pentru-20-30-de-ani" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/clubul-jurnalistilor-de-investigatie-ingerintele-externe-bariera-pentru-dezvoltarea-locala" target="_blank">Clubul Jurnaliștilor de Investigație// Ingerințele externe, barieră pentru dezvoltarea locală</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>„Dezvoltarea locală: drumul spre reziliența democratică și presiunea ingerințelor externe. Metode de identificare a falsurilor” este genericul ședinței Clubului Jurnaliștilor de Investigație, organizat de Centrul de Investigații Jurnalistice în parteneriat cu Asociația pentru Com…</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/clubul-jurnalistilor-de-investigatie-ingerintele-externe-bariera-pentru-dezvoltarea-locala" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://mold-street.com/noutate/coruptie-la-un-proiect-de-canalizare-de-40-milioane-lei-de-la-ialoveni" target="_blank">Corupţie la un proiect de canalizare de 40 milioane lei, de la Ialoveni</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/coruptie-la-un-proiect-de-canalizare-de-40-milioane-lei-de-la-ialoveni" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">⚖️ Justiție & Procurori (12)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/a-determinat-un-minor-sa-savarseasca-un-furt-si-a-fost-prins-cu-substante-stupefiante-inculpatul-condamnat-la-7-ani-de-inchisoare/" target="_blank">A determinat un minor să săvârșească un furt și a fost prins cu substanțe stupefiante: inculpatul, condamnat la 7 ani de închisoare</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 10.06.2026</span>
+    </div>
+    <div class='summary'>Un bărbat în vârstă de 34 de ani a fost recunoscut vinovat de comiterea infracțiunilor de furt, atragere a minorilor în activitate criminală și deținere de droguri. Instanța i-a stabilit o pedeapsă definitivă de 7 ani de închisoare, potrivit unui comunicat al Procuraturii Generale. Potrivit probelor administrate, pe 24 aprilie 2025, inculpatul, a determinat o persoană...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/a-determinat-un-minor-sa-savarseasca-un-furt-si-a-fost-prins-cu-substante-stupefiante-inculpatul-condamnat-la-7-ani-de-inchisoare/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/minora-de-14-ani-a-fost-hartuita-sexual-de-concubinul-mamei-sale-acesta-a-fost-condamnat-la-noua-ani-de-inchisoare/" target="_blank">Minoră de 14 ani a fost hărțuită sexual de concubinul mamei sale. Acesta a fost condamnat la nouă ani de închisoare</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 10.06.2026</span>
+    </div>
+    <div class='summary'>Un bărbat din nordul țării în vârstă de 53 ani, a fost condamnat la cinci ani de închisoare pentru hârțuirea sexuală a unei minore de 14 ani, anunță miercuri, 10 iunie, Procuratura Generală (PG). Totodată, prin cumul cu o sentință din 2024, pentru violență în familie, bărbatul a fost condamnat la pedeapsa definitivă de nouă ani...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/minora-de-14-ani-a-fost-hartuita-sexual-de-concubinul-mamei-sale-acesta-a-fost-condamnat-la-noua-ani-de-inchisoare/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/primarul-chisinaului-a-pierdut-procesul-in-prima-instanta-cu-ministra-afacerilor-externe-al-romaniei-oana-toiu-scopul-celor-din-guvernarea-de-acasa-impreuna-cu-unii-prieteni-din-guvernarea/" target="_blank">Primarul Chișinăului a pierdut procesul în prima instanță cu ministra Afacerilor Externe al României Oana Țoiu. „Scopul celor din guvernarea de acasă, împreună cu unii prieteni din guvernarea României, a fost să-mi știrbească imaginea”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 10.06.2026</span>
+    </div>
+    <div class='summary'>Primarul Chișinăului, Ion Ceban, a pierdut procesul cu ministru în exercițiu al Afacerilor Externe al României Oana Țoiu, conform portalului instanțelor din România, scrie G4Media. Totuși, decizia instanței nu este definitivă. Ion Ceban voia 1 leu daune de la Oana Țoiu pentru că șefa Externelor l-a acuzat pe primarul pro-rus al capitalei R. Moldova de...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/primarul-chisinaului-a-pierdut-procesul-in-prima-instanta-cu-ministra-afacerilor-externe-al-romaniei-oana-toiu-scopul-celor-din-guvernarea-de-acasa-impreuna-cu-unii-prieteni-din-guvernarea/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/sua-adauga-alibaba-byd-si-baidu-pe-lista-neagra-a-companiilor-care-ar-avea-legaturi-cu-armata-chineze/" target="_blank">SUA adaugă Alibaba, BYD și Baidu pe lista neagră a companiilor care ar avea legături cu armata chineze</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 10.06.2026</span>
+    </div>
+    <div class='summary'>Pentagonul a adăugat 188 de companii chineze pe lista sa neagră a firmelor cu legături militare — cea mai mare extindere de până acum. Ea include acum companii importante, precum Alibaba, BYD și Baidu, care nu sunt de stat și care nu au fost asociate în mod tradițional cu apărarea sau securitatea, reflectând îngrijorările tot...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/sua-adauga-alibaba-byd-si-baidu-pe-lista-neagra-a-companiilor-care-ar-avea-legaturi-cu-armata-chineze/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/o-femeie-din-ungheni-a-pierdut-peste-436-de-mii-de-lei-intr-o-frauda-online-doi-tineri-din-stanga-nistrului-retinuti/" target="_blank">O femeie din Ungheni a pierdut peste 436 de mii de lei într-o fraudă online. Doi tineri din stânga Nistrului, reținuți</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 10.06.2026</span>
+    </div>
+    <div class='summary'>Două persoane, de 18 și 26 de ani, originare din stânga Nistrului, au fost reținute de polițiștii din Ungheni, fiind suspectate că au avut rolul de „curieri” într-o schemă de escrocherie cu investiții online, anunță miercuri, 10 iunie, Inspectoratul General al Poliției (IGP). Potrivit anchetei, în luna mai 2026, o femeie de 55 de ani...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💰 Corupție</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/o-femeie-din-ungheni-a-pierdut-peste-436-de-mii-de-lei-intr-o-frauda-online-doi-tineri-din-stanga-nistrului-retinuti/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/r-moldova-va-avea-ambasadori-noi-in-india-si-republica-portugheza-doua-candidaturi-avizate-de-comisia-pentru-politica-externa/" target="_blank">R. Moldova va avea ambasadori noi în India și Republica Portugheză. Două candidaturi, avizate de Comisia pentru politică externă</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 10.06.2026</span>
+    </div>
+    <div class='summary'>Comisia pentru politică externă a Parlamentului a aprobat în ședința de miercuri, 10 iunie, avizele consultative pozitive pentru candidaturile a doi ambasadori ai Republicii Moldova. Astfel, conform unui comunicat al Ministerului Afacerilor Externe (MAE), Inga Ionesii urmează să fie desemnată în calitate de ambasadoare extraordinară și plenipotențiară a R. Moldova în Republica India, iar Sergiu...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/r-moldova-va-avea-ambasadori-noi-in-india-si-republica-portugheza-doua-candidaturi-avizate-de-comisia-pentru-politica-externa/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/advertoriale/2026-cancerul-de-piele-poate-fi-prevenit-fii-in-siguranta-la-soare-testeaza-te-gratuit/" target="_blank">2026: Cancerul de piele poate fi prevenit! Fii în siguranță la soare! Testează-te gratuit!</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 10.06.2026</span>
+    </div>
+    <div class='summary'>Farmacia Familiei dă startul campaniei „Cancerul de piele poate fi prevenit! Fii în siguranță la soare! Testează-te gratuit!” ediția 2026! Farmacia Familiei, pe toată perioada sezonului estival, oferă consultații dermatologice gratuite de verificare a alunițelor, pentru depistarea timpurie a cancerului de piele de tip melanom. Campania „Fii în siguranță la soare!” a ajuns la a 5-a ediție. În...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/advertoriale/2026-cancerul-de-piele-poate-fi-prevenit-fii-in-siguranta-la-soare-testeaza-te-gratuit/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/demisia-presedintelui-interimar-al-adunarii-populare-a-utag-legala-dar-paralizanta" target="_blank">Demisia președintelui interimar al Adunării Populare a UTAG: legală, dar paralizantă</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Plecarea din funcție a președintelui interimar al Adunării Populare a Găgăuziei (AP), Nicolai Ormanji, deși legală, duce la blocarea activității instituției, blocarea organizării alegerilor, dar la blocarea soluționării multor probleme social-economice în autonomie, consideră Igo…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/demisia-presedintelui-interimar-al-adunarii-populare-a-utag-legala-dar-paralizanta" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/dosare-de-coruptie/doc-instanta-a-dat-verdictul-in-disputa-dintre-fostii-camarazi-de-partid-nastase-si-plingau" target="_blank">DOC// Instanța a dat verdictul în disputa dintre foștii camarazi de partid, Năstase și Plîngău</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Judecătoria Chișinău, sediul Centru, a respins cererea fostului lider al Platformei DA, Andrei Năstase, împotriva ex-colegului său de partid, DInu Plîngău, de la care cere dezmințirea unor informații făcute în spațiul public. ”Războiul” declarațiilor între cei doi politicieni s-a…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/dosare-de-coruptie/doc-instanta-a-dat-verdictul-in-disputa-dintre-fostii-camarazi-de-partid-nastase-si-plingau" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🏛️ Politică & Putere (5)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/primarul-chisinaului-a-pierdut-procesul-in-prima-instanta-cu-ministra-afacerilor-externe-al-romaniei-oana-toiu-scopul-celor-din-guvernarea-de-acasa-impreuna-cu-unii-prieteni-din-guvernarea/" target="_blank">Primarul Chișinăului a pierdut procesul în prima instanță cu ministra Afacerilor Externe al României Oana Țoiu. „Scopul celor din guvernarea de acasă, împreună cu unii prieteni din guvernarea României, a fost să-mi știrbească imaginea”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 10.06.2026</span>
+    </div>
+    <div class='summary'>Primarul Chișinăului, Ion Ceban, a pierdut procesul cu ministru în exercițiu al Afacerilor Externe al României Oana Țoiu, conform portalului instanțelor din România, scrie G4Media. Totuși, decizia instanței nu este definitivă. Ion Ceban voia 1 leu daune de la Oana Țoiu pentru că șefa Externelor l-a acuzat pe primarul pro-rus al capitalei R. Moldova de...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/primarul-chisinaului-a-pierdut-procesul-in-prima-instanta-cu-ministra-afacerilor-externe-al-romaniei-oana-toiu-scopul-celor-din-guvernarea-de-acasa-impreuna-cu-unii-prieteni-din-guvernarea/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/sua-adauga-alibaba-byd-si-baidu-pe-lista-neagra-a-companiilor-care-ar-avea-legaturi-cu-armata-chineze/" target="_blank">SUA adaugă Alibaba, BYD și Baidu pe lista neagră a companiilor care ar avea legături cu armata chineze</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 10.06.2026</span>
+    </div>
+    <div class='summary'>Pentagonul a adăugat 188 de companii chineze pe lista sa neagră a firmelor cu legături militare — cea mai mare extindere de până acum. Ea include acum companii importante, precum Alibaba, BYD și Baidu, care nu sunt de stat și care nu au fost asociate în mod tradițional cu apărarea sau securitatea, reflectând îngrijorările tot...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/sua-adauga-alibaba-byd-si-baidu-pe-lista-neagra-a-companiilor-care-ar-avea-legaturi-cu-armata-chineze/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/r-moldova-va-avea-ambasadori-noi-in-india-si-republica-portugheza-doua-candidaturi-avizate-de-comisia-pentru-politica-externa/" target="_blank">R. Moldova va avea ambasadori noi în India și Republica Portugheză. Două candidaturi, avizate de Comisia pentru politică externă</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 10.06.2026</span>
+    </div>
+    <div class='summary'>Comisia pentru politică externă a Parlamentului a aprobat în ședința de miercuri, 10 iunie, avizele consultative pozitive pentru candidaturile a doi ambasadori ai Republicii Moldova. Astfel, conform unui comunicat al Ministerului Afacerilor Externe (MAE), Inga Ionesii urmează să fie desemnată în calitate de ambasadoare extraordinară și plenipotențiară a R. Moldova în Republica India, iar Sergiu...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/r-moldova-va-avea-ambasadori-noi-in-india-si-republica-portugheza-doua-candidaturi-avizate-de-comisia-pentru-politica-externa/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/demisia-presedintelui-interimar-al-adunarii-populare-a-utag-legala-dar-paralizanta" target="_blank">Demisia președintelui interimar al Adunării Populare a UTAG: legală, dar paralizantă</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Plecarea din funcție a președintelui interimar al Adunării Populare a Găgăuziei (AP), Nicolai Ormanji, deși legală, duce la blocarea activității instituției, blocarea organizării alegerilor, dar la blocarea soluționării multor probleme social-economice în autonomie, consideră Igo…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/demisia-presedintelui-interimar-al-adunarii-populare-a-utag-legala-dar-paralizanta" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/dosare-de-coruptie/doc-instanta-a-dat-verdictul-in-disputa-dintre-fostii-camarazi-de-partid-nastase-si-plingau" target="_blank">DOC// Instanța a dat verdictul în disputa dintre foștii camarazi de partid, Năstase și Plîngău</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Judecătoria Chișinău, sediul Centru, a respins cererea fostului lider al Platformei DA, Andrei Năstase, împotriva ex-colegului său de partid, DInu Plîngău, de la care cere dezmințirea unor informații făcute în spațiul public. ”Războiul” declarațiilor între cei doi politicieni s-a…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/dosare-de-coruptie/doc-instanta-a-dat-verdictul-in-disputa-dintre-fostii-camarazi-de-partid-nastase-si-plingau" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">👥 Social & Drepturile Omului (2)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/a-determinat-un-minor-sa-savarseasca-un-furt-si-a-fost-prins-cu-substante-stupefiante-inculpatul-condamnat-la-7-ani-de-inchisoare/" target="_blank">A determinat un minor să săvârșească un furt și a fost prins cu substanțe stupefiante: inculpatul, condamnat la 7 ani de închisoare</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 10.06.2026</span>
+    </div>
+    <div class='summary'>Un bărbat în vârstă de 34 de ani a fost recunoscut vinovat de comiterea infracțiunilor de furt, atragere a minorilor în activitate criminală și deținere de droguri. Instanța i-a stabilit o pedeapsă definitivă de 7 ani de închisoare, potrivit unui comunicat al Procuraturii Generale. Potrivit probelor administrate, pe 24 aprilie 2025, inculpatul, a determinat o persoană...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/a-determinat-un-minor-sa-savarseasca-un-furt-si-a-fost-prins-cu-substante-stupefiante-inculpatul-condamnat-la-7-ani-de-inchisoare/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/minora-de-14-ani-a-fost-hartuita-sexual-de-concubinul-mamei-sale-acesta-a-fost-condamnat-la-noua-ani-de-inchisoare/" target="_blank">Minoră de 14 ani a fost hărțuită sexual de concubinul mamei sale. Acesta a fost condamnat la nouă ani de închisoare</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 10.06.2026</span>
+    </div>
+    <div class='summary'>Un bărbat din nordul țării în vârstă de 53 ani, a fost condamnat la cinci ani de închisoare pentru hârțuirea sexuală a unei minore de 14 ani, anunță miercuri, 10 iunie, Procuratura Generală (PG). Totodată, prin cumul cu o sentință din 2024, pentru violență în familie, bărbatul a fost condamnat la pedeapsa definitivă de nouă ani...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/minora-de-14-ani-a-fost-hartuita-sexual-de-concubinul-mamei-sale-acesta-a-fost-condamnat-la-noua-ani-de-inchisoare/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📰 Media & Libertatea Presei (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">💰 Corupție (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/o-femeie-din-ungheni-a-pierdut-peste-436-de-mii-de-lei-intr-o-frauda-online-doi-tineri-din-stanga-nistrului-retinuti/" target="_blank">O femeie din Ungheni a pierdut peste 436 de mii de lei într-o fraudă online. Doi tineri din stânga Nistrului, reținuți</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 10.06.2026</span>
+    </div>
+    <div class='summary'>Două persoane, de 18 și 26 de ani, originare din stânga Nistrului, au fost reținute de polițiștii din Ungheni, fiind suspectate că au avut rolul de „curieri” într-o schemă de escrocherie cu investiții online, anunță miercuri, 10 iunie, Inspectoratul General al Poliției (IGP). Potrivit anchetei, în luna mai 2026, o femeie de 55 de ani...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💰 Corupție</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/o-femeie-din-ungheni-a-pierdut-peste-436-de-mii-de-lei-intr-o-frauda-online-doi-tineri-din-stanga-nistrului-retinuti/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📌 Alte articole (13)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/incepe-sezonul-ambroziei-ministerul-sanatatii-prezinta-masuri-de-protectie-si-recomanda-cetatenilor-sa-sesizeze-prezenta-plantei-autoritatilor/" target="_blank">Începe sezonul ambroziei. Ministerul Sănătății prezintă măsuri de protecție și recomandă cetățenilor să sesizeze prezența plantei autorităților</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 10.06.2026</span>
+    </div>
+    <div class='summary'>Ministerul Sănătății (MS) avertizează populația despre riscurile majore asociate cu polenul de ambrozie, una dintre cele mai invazive și alergene plante care afectează tot mai mult sănătatea publică în perioada iulie – septembrie. Cetățenii sunt îndemnați să sesizeze prezența ambroziei la primăriile din localități, Inspectoratul pentru Protecția Mediului, Agenția Națională pentru Siguranța Aliment…</div>
+    
+    <a class="link-btn" href="https://www.zdg.md/stiri/incepe-sezonul-ambroziei-ministerul-sanatatii-prezinta-masuri-de-protectie-si-recomanda-cetatenilor-sa-sesizeze-prezenta-plantei-autoritatilor/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/dosare-de-coruptie/ion-ceban-pierde-litigiul-impotriva-ministrei-de-externe-a-romaniei-oana-toiu-prima-declaratie-a-edilului" target="_blank">Ion Ceban pierde litigiul împotriva ministrei de Externe a României, Oana Țoiu. Prima declarație a edilului</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Edilul de Chișinău, Ion Ceban, spune că a luat act de decizia primei instanțe din România în procesul contra ministrei de Externe din România, dar o va contesta în instanța ierarhic superioară. Anunțul edilului vine duoă ce Judecătoria Sectorului 1 București a respins în primă in…</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/dosare-de-coruptie/ion-ceban-pierde-litigiul-impotriva-ministrei-de-externe-a-romaniei-oana-toiu-prima-declaratie-a-edilului" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/criza-din-gagauzia-aprofundata-de-o-decizie-recenta-a-comitetului-executiv" target="_blank">Criza din Găgăuzia, aprofundată de o decizie recentă a Comitetului Executiv</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Comitetul Executiv al Găgăuziei a respins proiectul de hotărâre al Adunării Populare (APG) privind organizarea alegerilor în autonomie.Conform juristului Vitalie Derevenco, care a prezentat poziția autorității, proiectul APG nu ar prezenta soluții reale care ar elimina definitiv …</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/criza-din-gagauzia-aprofundata-de-o-decizie-recenta-a-comitetului-executiv" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/republica-moldova-mai-aproape-de-ue-in-zilele-urmatoare-va-fi-deschis-primul-cluster-de-negocieri" target="_blank">Republica Moldova, mai aproape de UE: în zilele următoare va fi deschis primul cluster de negocieri</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Uniunea Europeană urmează să deschidă, în zilele următoare, primul cluster de negocieri de aderare cu Republica Moldova și Ucraina. Anunțul a fost făcut marți, 9 iunie 2026, de președinta Comisiei Europene, Ursula von der Leyen, în cadrul unei conferințe de presă la Bruxelles, du…</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/republica-moldova-mai-aproape-de-ue-in-zilele-urmatoare-va-fi-deschis-primul-cluster-de-negocieri" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/igor-ianac-membrul-al-platformei-dialog-pentru-gagauzia-despre-cine-sunt-ucigasii-tacuti-ai-autonomiei-si-interferentele-externe" target="_blank">Igor Ianac, membru al Platformei Dialog pentru Găgăuzia, despre cine sunt „ucigașii tăcuți” ai Autonomiei și interferențele externe</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Igor Ianac, membru al Platformei de Dialog Civic din Găgăuzia, consideră că unii membri ai Adunării Populare nu înțeleg că Găgăuzia este parte integrantă și inseparabilă a Republicii Moldova, cu un cadru legislativ unic. „Cel mai important este că nu toată lumea conștientizează c…</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/igor-ianac-membrul-al-platformei-dialog-pentru-gagauzia-despre-cine-sunt-ucigasii-tacuti-ai-autonomiei-si-interferentele-externe" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/lenin-budet-jit-chto-budet-s-partiei-kommunistov-bez-voronina-vo-glave" target="_blank">Ленин будет жить? Что будет с Партией коммунистов без Воронина во главе</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>DUOMO. Когда качество — не просто слово, это обязательство</div>
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/lenin-budet-jit-chto-budet-s-partiei-kommunistov-bez-voronina-vo-glave" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/pyat-stran-es-predlagayut-vremenno-ogranichit-pravo-golosa-novyh-chlenov-soyuza" target="_blank">Пять стран ЕС предлагают временно ограничить право голоса новых членов союза</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/pyat-stran-es-predlagayut-vremenno-ogranichit-pravo-golosa-novyh-chlenov-soyuza" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/video-dodon-podvergalsya-opasnosti-pokazaniya-eks-glavy-gosohrany-ob-avarii-slejke-i-evakuaczii-semi" target="_blank">(ВИДЕО) Додон подвергался опасности? Показания экс-главы госохраны об аварии, слежке и эвакуации семьи</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/video-dodon-podvergalsya-opasnosti-pokazaniya-eks-glavy-gosohrany-ob-avarii-slejke-i-evakuaczii-semi" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/v-moldove-za-pyat-let-pogibli-19-voennoslujashih-otchet-ministerstva-oborony" target="_blank">В Молдове за пять лет погибли 19 военнослужащих. Отчет министерства обороны</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/v-moldove-za-pyat-let-pogibli-19-voennoslujashih-otchet-ministerstva-oborony" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/razboi-intre-moldovatransgaz-si-vestmoldtransgaz-pentru-milioane-de-metri-cubi-de-gaze" target="_blank">simbol</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/razboi-intre-moldovatransgaz-si-vestmoldtransgaz-pentru-milioane-de-metri-cubi-de-gaze" target="_blank">Citește articolul →</a>
+  </div>
+</div>
+<div class="footer">
+  Raport generat automat zilnic &nbsp;·&nbsp; ARBI – Monitorizare Jurnalism Investigativ Moldova
+</div>
+</body>
+</html>
