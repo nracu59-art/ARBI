@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monitorizare Jurnalism Investigativ Moldova – 11.06.2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; color: #2c3e50; }
+  .header { background: #1b4332; color: #fff; padding: 28px 40px; }
+  .header h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: 0.5px; }
+  .header .subtitle { margin-top: 6px; font-size: 0.9rem; opacity: 0.85; }
+  .stats-bar { background: #2d6a4f; color: #fff; padding: 16px 40px;
+                display: flex; gap: 36px; flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; }
+  .stat .val { font-size: 1.8rem; font-weight: 700; }
+  .stat .lbl { font-size: 0.72rem; opacity: 0.82; text-transform: uppercase; letter-spacing: 0.8px; }
+  .cat-bar { background: #40916c; color: #fff; padding: 12px 40px;
+              display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .cat-chip { background: rgba(255,255,255,0.18); border-radius: 20px;
+               padding: 4px 14px; font-size: 0.78rem; font-weight: 600;
+               white-space: nowrap; }
+  .container { max-width: 1040px; margin: 30px auto; padding: 0 20px 40px; }
+  .section-title { font-size: 0.95rem; font-weight: 700; color: #1b4332;
+                    text-transform: uppercase; letter-spacing: 1px;
+                    margin: 28px 0 14px; border-bottom: 2px solid #1b4332;
+                    padding-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08);
+           padding: 18px 22px; margin-bottom: 14px; border-left: 5px solid #1b4332;
+           transition: box-shadow .15s; }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.13); }
+  .card.investigativ { border-left-color: #d62828; }
+  .card-title { font-size: 1rem; font-weight: 700; color: #1b4332; margin-bottom: 8px; }
+  .card-title a { color: inherit; text-decoration: none; }
+  .card-title a:hover { text-decoration: underline; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;
+           font-size: 0.8rem; color: #555; }
+  .badge { display: inline-block; font-size: 0.68rem; font-weight: 700;
+            padding: 2px 8px; border-radius: 12px; color: #fff;
+            margin-right: 4px; vertical-align: middle; }
+  .badge-inv { background: #d62828; }
+  .source-tag { background: #e8f4ec; color: #1b4332; border-radius: 4px;
+                 padding: 1px 8px; font-size: 0.75rem; font-weight: 600; }
+  .summary { font-size: 0.85rem; color: #444; line-height: 1.55; margin-top: 6px; }
+  .cat-tags { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .cat-tag { font-size: 0.72rem; padding: 2px 10px; border-radius: 10px;
+              font-weight: 600; background: #e8f4ec; color: #1b4332; }
+  .link-btn { display: inline-block; margin-top: 10px; padding: 5px 14px;
+               background: #1b4332; color: #fff; border-radius: 5px;
+               font-size: 0.78rem; text-decoration: none; font-weight: 600; }
+  .link-btn:hover { background: #2d6a4f; }
+  .empty-box { background: #fff; border-radius: 8px; padding: 30px 24px;
+                text-align: center; color: #7f8c8d; font-size: 0.95rem;
+                box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .source-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+  .source-box { background: #fff; border-radius: 8px; padding: 12px 18px;
+                 box-shadow: 0 2px 6px rgba(0,0,0,.07); min-width: 140px;
+                 border-top: 3px solid #1b4332; }
+  .source-box .sname { font-size: 0.78rem; font-weight: 700; color: #1b4332; }
+  .source-box .scount { font-size: 1.4rem; font-weight: 700; color: #2d6a4f; margin-top: 2px; }
+  .footer { text-align: center; font-size: 0.75rem; color: #999;
+             margin-top: 40px; padding-bottom: 20px; }
+  @media (max-width: 600px) {
+    .header, .stats-bar, .cat-bar { padding: 18px 16px; }
+    .stats-bar { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🔍 Monitorizare Jurnalism Investigativ – Moldova</h1>
+  <div class="subtitle">
+    Surse monitorizate: 8 &nbsp;|&nbsp;
+    Ultimele 26 ore &nbsp;|&nbsp;
+    Generat: 2026-06-11 10:41 UTC
+  </div>
+</div>
+<div class="stats-bar">
+  <div class="stat"><span class="val">32</span><span class="lbl">Articole noi</span></div>
+  <div class="stat"><span class="val">5</span><span class="lbl">Investigative</span></div>
+  <div class="stat"><span class="val">8</span><span class="lbl">Surse active</span></div>
+  <div class="stat"><span class="val">11.06.2026</span><span class="lbl">Data raportului</span></div>
+</div>
+<div class="cat-bar">
+  <span style="font-size:.8rem;opacity:.85;margin-right:4px">Categorii:</span>
+  <span class="cat-chip">⚖️ Justiție & Procurori (15)</span><span class="cat-chip">🏛️ Politică & Putere (8)</span><span class="cat-chip">📰 Media & Libertatea Presei (4)</span><span class="cat-chip">🔐 Securitate & Intelligence (3)</span><span class="cat-chip">💰 Corupție (1)</span><span class="cat-chip">💼 Afaceri & Contracte Publice (1)</span><span class="cat-chip">👥 Social & Drepturile Omului (1)</span>
+</div>
+<div class="container">
+<div class="section-title">📊 Articole pe surse</div><div class="source-grid"><div class="source-box"><div class="sname">Ziarul de Gardă</div><div class="scount">10</div></div><div class="source-box"><div class="sname">Anticorupție.md</div><div class="scount">10</div></div><div class="source-box"><div class="sname">Mold-Street</div><div class="scount">7</div></div><div class="source-box"><div class="sname">Newsmaker.md</div><div class="scount">4</div></div><div class="source-box"><div class="sname">Agora.md</div><div class="scount">1</div></div></div>
+<div class="section-title">🔍 Articole Investigative (5)</div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/rss/latest.xml?lang=ro" target="_blank">De ultimă oră</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Săptămâna trecută am fost la Comrat, în Autonomia Găgăuză, unde Centrul de Investigații Jurnalistice a organizat o ediție a Clubului Jurnaliștilor de Investigație. Tema discuțiilor: blocajul electoral din regiune și viitorul autonomiei văzute prin ochii celor de la firul ierbii.
+
+Obiectivul nostru a fost să înțelegem ce soluții se conturează[...]</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/rss/latest.xml?lang=ro" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://mold-street.com/noutate/cum-guvernul-a-cumparat-actiuni-de-la-o-banca-sistemica-in-valoare-de-1375-milioane-lei" target="_blank">Cum Guvernul a cumpărat "acțiuni de la o bancă sistemică" în valoare de 137,5 milioane lei</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/cum-guvernul-a-cumparat-actiuni-de-la-o-banca-sistemica-in-valoare-de-1375-milioane-lei" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/dosare-de-coruptie/foto-40-de-milioane-de-lei-aruncati-in-canalizare-un-antreprenor-banuit-de-abuz-in-serviciu" target="_blank">FOTO// 40 de milioane de lei, aruncați în... canalizare. Un antreprenor, bănuit de abuz în serviciu</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Ofițerii Centrului Național Anticorupție, în comun cu procurorii Procuraturii municipiului Chișinău, desfășoară acțiuni de urmărire penală într-un dosar în care sunt vizați administratorul unei companii de construcții, responsabili tehnici, diriginți de șantier și doi reprezentan…</div>
+    <div class='cat-tags'><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/dosare-de-coruptie/foto-40-de-milioane-de-lei-aruncati-in-canalizare-un-antreprenor-banuit-de-abuz-in-serviciu" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/clubul-jurnalistilor-de-investigatie-ingerintele-externe-bariera-pentru-dezvoltarea-locala" target="_blank">Clubul Jurnaliștilor de Investigație// Ingerințele externe, barieră pentru dezvoltarea locală</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>„Dezvoltarea locală: drumul spre reziliența democratică și presiunea ingerințelor externe. Metode de identificare a falsurilor” este genericul ședinței Clubului Jurnaliștilor de Investigație, organizat de Centrul de Investigații Jurnalistice în parteneriat cu Asociația pentru Com…</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/clubul-jurnalistilor-de-investigatie-ingerintele-externe-bariera-pentru-dezvoltarea-locala" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://mold-street.com/noutate/coruptie-la-un-proiect-de-canalizare-de-40-milioane-lei-de-la-ialoveni" target="_blank">Corupţie la un proiect de canalizare de 40 milioane lei, de la Ialoveni</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/coruptie-la-un-proiect-de-canalizare-de-40-milioane-lei-de-la-ialoveni" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">⚖️ Justiție & Procurori (14)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/o-gradinita-privata-din-capitala-functioneaza-desi-mai-multe-institutii-ale-statului-au-constatat-incalcari-si-au-cerut-suspendarea-activitatii-incalcarile-depistate-si-reactia-reprezentantilor-gradin/" target="_blank">O grădiniță privată din capitală funcționează, deși mai multe instituții ale statului au constatat încălcări și au cerut suspendarea activității. Încălcările depistate și reacția reprezentanților grădiniței</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 11.06.2026</span>
+    </div>
+    <div class='summary'>O grădiniță privată de pe strada Studenților din municipiul Chișinău continuă să fie frecventată de copii la aproape nouă luni de la retragerea autorizației sanitare de către Agenția Națională pentru Sănătate Publică. În august 2025, și Inspectoratul Național pentru Supraveghere Tehnică dispunea sistarea activității grădiniței până la înlăturarea neconformităților. În instanță există mai multe lit…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💰 Corupție</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/o-gradinita-privata-din-capitala-functioneaza-desi-mai-multe-institutii-ale-statului-au-constatat-incalcari-si-au-cerut-suspendarea-activitatii-incalcarile-depistate-si-reactia-reprezentantilor-gradin/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-sociale/un-barbat-din-capitala-condamnat-la-jumatate-de-an-de-inchisoare-pentru-sustragerea-unui-document-oficial-dintr-o-institutie-publica/" target="_blank">Un bărbat din capitală, condamnat la jumătate de an de închisoare pentru sustragerea unui document oficial dintr-o instituție publică</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 11.06.2026</span>
+    </div>
+    <div class='summary'>Un bărbat în vârstă de 44 de ani a fost recunoscut vinovat, de către prima instanță, de sustragerea unui document oficial din cadrul Direcției pentru Protecția Drepturilor Copilului din municipiul Chișinău, conform unui comunicatul emis de Procuratura Generală. Instanța de judecată i-a stabilit inculpatului o pedeapsă de 6 luni de închisoare, cu executare în penitenciar de tip...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-sociale/un-barbat-din-capitala-condamnat-la-jumatate-de-an-de-inchisoare-pentru-sustragerea-unui-document-oficial-dintr-o-institutie-publica/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-externe/live-text-atac-asupra-unui-depou-feroviar-din-regiunea-sumi-o-angajata-a-murit-iar-alti-patru-lucratori-au-fost-raniti-razboi-in-ucraina-ziua-1569/" target="_blank">LIVE TEXT/ Atac asupra unui depou feroviar din regiunea Sumî: o angajată a murit, iar alți patru lucrători au fost răniți. Război în Ucraina, ziua 1569</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 11.06.2026</span>
+    </div>
+    <div class='summary'>UPDATE 13:05 Trupele ruse continuă, din cursul nopții, atacurile asupra orașului Konotop din regiunea Sumî, lovind infrastructura localității și un depou feroviar. Informația a fost comunicată de primarul orașului Konotop și de președintele Consiliului de Administrație al companiei feroviare ucrainene „Ukrzaliznyția”, Oleksandr Perțovskîi, citați de Hromadske. În urma atacurilor lansate în această…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-externe/live-text-atac-asupra-unui-depou-feroviar-din-regiunea-sumi-o-angajata-a-murit-iar-alti-patru-lucratori-au-fost-raniti-razboi-in-ucraina-ziua-1569/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-justitie/ultima-ora-desi-a-picat-filtrul-comisiei-de-evaluare-externa-a-procurorilor-de-2-ori-fostul-sef-adjunct-al-pa-vasile-plevan-este-mentinut-in-sistem-de-csp/" target="_blank">ULTIMA ORĂ/ Deși a picat filtrul Comisiei de evaluare externă a procurorilor de 2 ori, fostul șef adjunct al PA, Vasile Plevan, este menținut în sistem de CSP</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 11.06.2026</span>
+    </div>
+    <div class='summary'>Membrii Consiliului Superior al Procurorilor (CSP) au respins și cel de-al doilea raport al Comisiei de evaluare a procurorilor privind fostul adjunct al Procuraturii Anticorupție, Vasile Plevan, joi, 11 iunie. Cu 6 voturi împotriva acceptării raportului de nepromovare a evaluării externe de către procuror, emis de Comisia de evaluare a procurorilor, și aplicarea interdicției de...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-justitie/ultima-ora-desi-a-picat-filtrul-comisiei-de-evaluare-externa-a-procurorilor-de-2-ori-fostul-sef-adjunct-al-pa-vasile-plevan-este-mentinut-in-sistem-de-csp/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/importante/gherasimov-pacalita-de-vloggeri-rusi-am-mers-la-un-risc-politic-foarte-mare-la-ultimele-alegeri-declaratiile-despre-aderarea-la-ue-si-ingrijorarile-maiei-sandu/" target="_blank">Gherasimov, păcălită de vloggeri ruși: „Am mers la un risc politic foarte mare la ultimele alegeri”. Declarațiile despre aderarea la UE și îngrijorările Maiei Sandu</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 11.06.2026</span>
+    </div>
+    <div class='summary'>Viceprim-ministra pentru Integrare Europeană, Cristina Gherasimov, a fost ținta unei farse telefonice. Doi vloggeri ruși au contactat-o pretinzând că sunt ministrul Afacerilor Externe al Albaniei. În conversația publicată de aceștia, Gherasimov vorbește despre dificultățile procesului de aderare al R. Moldova la Uniunea Europeană, afirmă că președinta Maia Sandu este „îngrijorată” de ritmul lent a…</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/importante/gherasimov-pacalita-de-vloggeri-rusi-am-mers-la-un-risc-politic-foarte-mare-la-ultimele-alegeri-declaratiile-despre-aderarea-la-ue-si-ingrijorarile-maiei-sandu/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/statele-unite-si-iran-continua-schimbul-de-focuri-pentru-a-doua-zi-consecutiv-trump-promite-noi-atacuri-daca-teheranul-nu-accepta-un-acord-de-pace/" target="_blank">Statele Unite și Iran continuă schimbul de focuri, pentru a doua zi consecutiv. Trump promite noi atacuri dacă Teheranul nu acceptă un acord de pace</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 11.06.2026</span>
+    </div>
+    <div class='summary'>Statele Unite și Iranul au continuat schimbul de atacuri aeriene pentru a doua zi consecutiv joi, 11 iunie. Președintele american Donald Trump a promis noi atacuri dacă Teheranul nu acceptă imediat un acord de pace, scrie Reuters. Escaladarea ostilităților a început săptămâna aceasta odată cu doborârea luni, 8 iunie, a unui elicopter american Apache în...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/statele-unite-si-iran-continua-schimbul-de-focuri-pentru-a-doua-zi-consecutiv-trump-promite-noi-atacuri-daca-teheranul-nu-accepta-un-acord-de-pace/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/o-femeie-din-balti-a-pierdut-peste-424-de-mii-de-lei-intr-o-schema-de-inselaciune-un-suspect-a-fost-retinut/" target="_blank">O femeie din Bălți a pierdut peste 424 de mii de lei într-o schemă de înșelăciune. Un suspect a fost reținut</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 11.06.2026</span>
+    </div>
+    <div class='summary'>Un bărbat de 37 de ani din satul Corlăteni, raionul Rîșcani, bănuit de implicare într-o schemă de escrocherie a fost reținut în seara zilei de 10 iulie. Acesta a fost prins după ce a ridicat o nouă tranșă de 100 de mii de lei de la o victimă, anunță Inspectoratul General al Poliției (IGP). Potrivit...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/o-femeie-din-balti-a-pierdut-peste-424-de-mii-de-lei-intr-o-schema-de-inselaciune-un-suspect-a-fost-retinut/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/escrocherie-complexa-la-chisinau-un-barbat-de-77-de-ani-a-fost-pagubit-de-400-de-mii-de-lei-trei-tineri-au-fost-retinuti/" target="_blank">Escrocherie complexă la Chișinău: un bărbat de 77 de ani a fost păgubit de 400 de mii de lei. Trei tineri au fost reținuți</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 11.06.2026</span>
+    </div>
+    <div class='summary'>Un bărbat de 77 de ani, originar din Chișinău, ar fi rămas fără economiile sale după ce a devenit victima unei escrocherii. Potrivit Procuraturii pentru Combaterea Criminalității Organizate și Cauze Speciale (PCCOCS), grupul infracțional a recurs la o schemă complexă, cu identități false și tehnici de manipulare psihologică. Potrivit unui comunicat, bărbatul a fost sunat...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/escrocherie-complexa-la-chisinau-un-barbat-de-77-de-ani-a-fost-pagubit-de-400-de-mii-de-lei-trei-tineri-au-fost-retinuti/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/demisia-presedintelui-interimar-al-adunarii-populare-a-utag-legala-dar-paralizanta" target="_blank">Demisia președintelui interimar al Adunării Populare a UTAG: legală, dar paralizantă</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Plecarea din funcție a președintelui interimar al Adunării Populare a Găgăuziei (AP), Nicolai Ormanji, deși legală, duce la blocarea activității instituției, blocarea organizării alegerilor, dar la blocarea soluționării multor probleme social-economice în autonomie, consideră Igo…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/demisia-presedintelui-interimar-al-adunarii-populare-a-utag-legala-dar-paralizanta" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/dosare-de-coruptie/doc-instanta-a-dat-verdictul-in-disputa-dintre-fostii-camarazi-de-partid-nastase-si-plingau" target="_blank">DOC// Instanța a dat verdictul în disputa dintre foștii camarazi de partid, Năstase și Plîngău</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Judecătoria Chișinău, sediul Centru, a respins cererea fostului lider al Platformei DA, Andrei Năstase, împotriva ex-colegului său de partid, DInu Plîngău, de la care cere dezmințirea unor informații făcute în spațiul public. ”Războiul” declarațiilor între cei doi politicieni s-a…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/dosare-de-coruptie/doc-instanta-a-dat-verdictul-in-disputa-dintre-fostii-camarazi-de-partid-nastase-si-plingau" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🏛️ Politică & Putere (7)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/o-gradinita-privata-din-capitala-functioneaza-desi-mai-multe-institutii-ale-statului-au-constatat-incalcari-si-au-cerut-suspendarea-activitatii-incalcarile-depistate-si-reactia-reprezentantilor-gradin/" target="_blank">O grădiniță privată din capitală funcționează, deși mai multe instituții ale statului au constatat încălcări și au cerut suspendarea activității. Încălcările depistate și reacția reprezentanților grădiniței</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 11.06.2026</span>
+    </div>
+    <div class='summary'>O grădiniță privată de pe strada Studenților din municipiul Chișinău continuă să fie frecventată de copii la aproape nouă luni de la retragerea autorizației sanitare de către Agenția Națională pentru Sănătate Publică. În august 2025, și Inspectoratul Național pentru Supraveghere Tehnică dispunea sistarea activității grădiniței până la înlăturarea neconformităților. În instanță există mai multe lit…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💰 Corupție</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/o-gradinita-privata-din-capitala-functioneaza-desi-mai-multe-institutii-ale-statului-au-constatat-incalcari-si-au-cerut-suspendarea-activitatii-incalcarile-depistate-si-reactia-reprezentantilor-gradin/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-externe/live-text-atac-asupra-unui-depou-feroviar-din-regiunea-sumi-o-angajata-a-murit-iar-alti-patru-lucratori-au-fost-raniti-razboi-in-ucraina-ziua-1569/" target="_blank">LIVE TEXT/ Atac asupra unui depou feroviar din regiunea Sumî: o angajată a murit, iar alți patru lucrători au fost răniți. Război în Ucraina, ziua 1569</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 11.06.2026</span>
+    </div>
+    <div class='summary'>UPDATE 13:05 Trupele ruse continuă, din cursul nopții, atacurile asupra orașului Konotop din regiunea Sumî, lovind infrastructura localității și un depou feroviar. Informația a fost comunicată de primarul orașului Konotop și de președintele Consiliului de Administrație al companiei feroviare ucrainene „Ukrzaliznyția”, Oleksandr Perțovskîi, citați de Hromadske. În urma atacurilor lansate în această…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-externe/live-text-atac-asupra-unui-depou-feroviar-din-regiunea-sumi-o-angajata-a-murit-iar-alti-patru-lucratori-au-fost-raniti-razboi-in-ucraina-ziua-1569/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-justitie/ultima-ora-desi-a-picat-filtrul-comisiei-de-evaluare-externa-a-procurorilor-de-2-ori-fostul-sef-adjunct-al-pa-vasile-plevan-este-mentinut-in-sistem-de-csp/" target="_blank">ULTIMA ORĂ/ Deși a picat filtrul Comisiei de evaluare externă a procurorilor de 2 ori, fostul șef adjunct al PA, Vasile Plevan, este menținut în sistem de CSP</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 11.06.2026</span>
+    </div>
+    <div class='summary'>Membrii Consiliului Superior al Procurorilor (CSP) au respins și cel de-al doilea raport al Comisiei de evaluare a procurorilor privind fostul adjunct al Procuraturii Anticorupție, Vasile Plevan, joi, 11 iunie. Cu 6 voturi împotriva acceptării raportului de nepromovare a evaluării externe de către procuror, emis de Comisia de evaluare a procurorilor, și aplicarea interdicției de...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-justitie/ultima-ora-desi-a-picat-filtrul-comisiei-de-evaluare-externa-a-procurorilor-de-2-ori-fostul-sef-adjunct-al-pa-vasile-plevan-este-mentinut-in-sistem-de-csp/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/importante/gherasimov-pacalita-de-vloggeri-rusi-am-mers-la-un-risc-politic-foarte-mare-la-ultimele-alegeri-declaratiile-despre-aderarea-la-ue-si-ingrijorarile-maiei-sandu/" target="_blank">Gherasimov, păcălită de vloggeri ruși: „Am mers la un risc politic foarte mare la ultimele alegeri”. Declarațiile despre aderarea la UE și îngrijorările Maiei Sandu</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 11.06.2026</span>
+    </div>
+    <div class='summary'>Viceprim-ministra pentru Integrare Europeană, Cristina Gherasimov, a fost ținta unei farse telefonice. Doi vloggeri ruși au contactat-o pretinzând că sunt ministrul Afacerilor Externe al Albaniei. În conversația publicată de aceștia, Gherasimov vorbește despre dificultățile procesului de aderare al R. Moldova la Uniunea Europeană, afirmă că președinta Maia Sandu este „îngrijorată” de ritmul lent a…</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/importante/gherasimov-pacalita-de-vloggeri-rusi-am-mers-la-un-risc-politic-foarte-mare-la-ultimele-alegeri-declaratiile-despre-aderarea-la-ue-si-ingrijorarile-maiei-sandu/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/statele-unite-si-iran-continua-schimbul-de-focuri-pentru-a-doua-zi-consecutiv-trump-promite-noi-atacuri-daca-teheranul-nu-accepta-un-acord-de-pace/" target="_blank">Statele Unite și Iran continuă schimbul de focuri, pentru a doua zi consecutiv. Trump promite noi atacuri dacă Teheranul nu acceptă un acord de pace</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 11.06.2026</span>
+    </div>
+    <div class='summary'>Statele Unite și Iranul au continuat schimbul de atacuri aeriene pentru a doua zi consecutiv joi, 11 iunie. Președintele american Donald Trump a promis noi atacuri dacă Teheranul nu acceptă imediat un acord de pace, scrie Reuters. Escaladarea ostilităților a început săptămâna aceasta odată cu doborârea luni, 8 iunie, a unui elicopter american Apache în...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/statele-unite-si-iran-continua-schimbul-de-focuri-pentru-a-doua-zi-consecutiv-trump-promite-noi-atacuri-daca-teheranul-nu-accepta-un-acord-de-pace/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/demisia-presedintelui-interimar-al-adunarii-populare-a-utag-legala-dar-paralizanta" target="_blank">Demisia președintelui interimar al Adunării Populare a UTAG: legală, dar paralizantă</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Plecarea din funcție a președintelui interimar al Adunării Populare a Găgăuziei (AP), Nicolai Ormanji, deși legală, duce la blocarea activității instituției, blocarea organizării alegerilor, dar la blocarea soluționării multor probleme social-economice în autonomie, consideră Igo…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/demisia-presedintelui-interimar-al-adunarii-populare-a-utag-legala-dar-paralizanta" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/dosare-de-coruptie/doc-instanta-a-dat-verdictul-in-disputa-dintre-fostii-camarazi-de-partid-nastase-si-plingau" target="_blank">DOC// Instanța a dat verdictul în disputa dintre foștii camarazi de partid, Năstase și Plîngău</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Judecătoria Chișinău, sediul Centru, a respins cererea fostului lider al Platformei DA, Andrei Năstase, împotriva ex-colegului său de partid, DInu Plîngău, de la care cere dezmințirea unor informații făcute în spațiul public. ”Războiul” declarațiilor între cei doi politicieni s-a…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/dosare-de-coruptie/doc-instanta-a-dat-verdictul-in-disputa-dintre-fostii-camarazi-de-partid-nastase-si-plingau" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📰 Media & Libertatea Presei (3)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/escrocherie-complexa-la-chisinau-un-barbat-de-77-de-ani-a-fost-pagubit-de-400-de-mii-de-lei-trei-tineri-au-fost-retinuti/" target="_blank">Escrocherie complexă la Chișinău: un bărbat de 77 de ani a fost păgubit de 400 de mii de lei. Trei tineri au fost reținuți</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 11.06.2026</span>
+    </div>
+    <div class='summary'>Un bărbat de 77 de ani, originar din Chișinău, ar fi rămas fără economiile sale după ce a devenit victima unei escrocherii. Potrivit Procuraturii pentru Combaterea Criminalității Organizate și Cauze Speciale (PCCOCS), grupul infracțional a recurs la o schemă complexă, cu identități false și tehnici de manipulare psihologică. Potrivit unui comunicat, bărbatul a fost sunat...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/escrocherie-complexa-la-chisinau-un-barbat-de-77-de-ani-a-fost-pagubit-de-400-de-mii-de-lei-trei-tineri-au-fost-retinuti/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-sociale/cateva-butelii-de-oxigen-si-gaz-dintr-un-depozit-cu-materiale-de-constructii-din-capitala-au-explodat/" target="_blank">Câteva butelii de oxigen și gaz, dintr-un depozit cu materiale de construcții din capitală, au explodat</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 11.06.2026</span>
+    </div>
+    <div class='summary'>În dimineața zilei de joi, 11 iunie, pompierii din capitală au fost solicitați să intervină conform nivelului sporit de intervenție pentru lichidarea unui incendiu izbucnit pe strada Industrială nr. 59 din municipiul Chișinău. Potrivit unui comunicat de presă, apelul la Serviciul 112 a fost recepționat la ora 10:30. Potrivit primelor informații, flăcările au cuprins un...</div>
+    <div class='cat-tags'><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-sociale/cateva-butelii-de-oxigen-si-gaz-dintr-un-depozit-cu-materiale-de-constructii-din-capitala-au-explodat/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🔐 Securitate & Intelligence (2)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-justitie/ultima-ora-desi-a-picat-filtrul-comisiei-de-evaluare-externa-a-procurorilor-de-2-ori-fostul-sef-adjunct-al-pa-vasile-plevan-este-mentinut-in-sistem-de-csp/" target="_blank">ULTIMA ORĂ/ Deși a picat filtrul Comisiei de evaluare externă a procurorilor de 2 ori, fostul șef adjunct al PA, Vasile Plevan, este menținut în sistem de CSP</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 11.06.2026</span>
+    </div>
+    <div class='summary'>Membrii Consiliului Superior al Procurorilor (CSP) au respins și cel de-al doilea raport al Comisiei de evaluare a procurorilor privind fostul adjunct al Procuraturii Anticorupție, Vasile Plevan, joi, 11 iunie. Cu 6 voturi împotriva acceptării raportului de nepromovare a evaluării externe de către procuror, emis de Comisia de evaluare a procurorilor, și aplicarea interdicției de...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-justitie/ultima-ora-desi-a-picat-filtrul-comisiei-de-evaluare-externa-a-procurorilor-de-2-ori-fostul-sef-adjunct-al-pa-vasile-plevan-este-mentinut-in-sistem-de-csp/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/iute-isi-dezvolta-ecosistemul-digital-oferind-clientilor-acces-la-expertiza-medicala-internationala" target="_blank">Iute își dezvoltă ecosistemul digital, oferind clienților acces la expertiză medicală internațională</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/iute-isi-dezvolta-ecosistemul-digital-oferind-clientilor-acces-la-expertiza-medicala-internationala" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">💰 Corupție (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/o-gradinita-privata-din-capitala-functioneaza-desi-mai-multe-institutii-ale-statului-au-constatat-incalcari-si-au-cerut-suspendarea-activitatii-incalcarile-depistate-si-reactia-reprezentantilor-gradin/" target="_blank">O grădiniță privată din capitală funcționează, deși mai multe instituții ale statului au constatat încălcări și au cerut suspendarea activității. Încălcările depistate și reacția reprezentanților grădiniței</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 11.06.2026</span>
+    </div>
+    <div class='summary'>O grădiniță privată de pe strada Studenților din municipiul Chișinău continuă să fie frecventată de copii la aproape nouă luni de la retragerea autorizației sanitare de către Agenția Națională pentru Sănătate Publică. În august 2025, și Inspectoratul Național pentru Supraveghere Tehnică dispunea sistarea activității grădiniței până la înlăturarea neconformităților. În instanță există mai multe lit…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💰 Corupție</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/o-gradinita-privata-din-capitala-functioneaza-desi-mai-multe-institutii-ale-statului-au-constatat-incalcari-si-au-cerut-suspendarea-activitatii-incalcarile-depistate-si-reactia-reprezentantilor-gradin/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">💼 Afaceri & Contracte Publice (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-externe/live-text-atac-asupra-unui-depou-feroviar-din-regiunea-sumi-o-angajata-a-murit-iar-alti-patru-lucratori-au-fost-raniti-razboi-in-ucraina-ziua-1569/" target="_blank">LIVE TEXT/ Atac asupra unui depou feroviar din regiunea Sumî: o angajată a murit, iar alți patru lucrători au fost răniți. Război în Ucraina, ziua 1569</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 11.06.2026</span>
+    </div>
+    <div class='summary'>UPDATE 13:05 Trupele ruse continuă, din cursul nopții, atacurile asupra orașului Konotop din regiunea Sumî, lovind infrastructura localității și un depou feroviar. Informația a fost comunicată de primarul orașului Konotop și de președintele Consiliului de Administrație al companiei feroviare ucrainene „Ukrzaliznyția”, Oleksandr Perțovskîi, citați de Hromadske. În urma atacurilor lansate în această…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-externe/live-text-atac-asupra-unui-depou-feroviar-din-regiunea-sumi-o-angajata-a-murit-iar-alti-patru-lucratori-au-fost-raniti-razboi-in-ucraina-ziua-1569/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📌 Alte articole (11)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/video-audit-la-ministerul-culturii-curtea-de-conturi-a-emis-o-opinie-contrara" target="_blank">VIDEO// Audit la Ministerul Culturii: Curtea de Conturi a emis o opinie contrară</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Curtea de Conturi a Republicii Moldova (CCRM) a publicat Raportul de audit asupra rapoartelor financiare consolidate ale Ministerului Culturii încheiate la 31 decembrie 2025 .În urma auditului, Curtea de Conturi a emis o opinie contrară, determinată de „denaturări semnificative i…</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/video-audit-la-ministerul-culturii-curtea-de-conturi-a-emis-o-opinie-contrara" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/dosare-de-coruptie/ion-ceban-pierde-litigiul-impotriva-ministrei-de-externe-a-romaniei-oana-toiu-prima-declaratie-a-edilului" target="_blank">Ion Ceban pierde litigiul împotriva ministrei de Externe a României, Oana Țoiu. Prima declarație a edilului</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Edilul de Chișinău, Ion Ceban, spune că a luat act de decizia primei instanțe din România în procesul contra ministrei de Externe din România, dar o va contesta în instanța ierarhic superioară. Anunțul edilului vine duoă ce Judecătoria Sectorului 1 București a respins în primă in…</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/dosare-de-coruptie/ion-ceban-pierde-litigiul-impotriva-ministrei-de-externe-a-romaniei-oana-toiu-prima-declaratie-a-edilului" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/criza-din-gagauzia-aprofundata-de-o-decizie-recenta-a-comitetului-executiv" target="_blank">Criza din Găgăuzia, aprofundată de o decizie recentă a Comitetului Executiv</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Comitetul Executiv al Găgăuziei a respins proiectul de hotărâre al Adunării Populare (APG) privind organizarea alegerilor în autonomie.Conform juristului Vitalie Derevenco, care a prezentat poziția autorității, proiectul APG nu ar prezenta soluții reale care ar elimina definitiv …</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/criza-din-gagauzia-aprofundata-de-o-decizie-recenta-a-comitetului-executiv" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/republica-moldova-mai-aproape-de-ue-in-zilele-urmatoare-va-fi-deschis-primul-cluster-de-negocieri" target="_blank">Republica Moldova, mai aproape de UE: în zilele următoare va fi deschis primul cluster de negocieri</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Uniunea Europeană urmează să deschidă, în zilele următoare, primul cluster de negocieri de aderare cu Republica Moldova și Ucraina. Anunțul a fost făcut marți, 9 iunie 2026, de președinta Comisiei Europene, Ursula von der Leyen, în cadrul unei conferințe de presă la Bruxelles, du…</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/republica-moldova-mai-aproape-de-ue-in-zilele-urmatoare-va-fi-deschis-primul-cluster-de-negocieri" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/bulling-v-shkolah-moldovy-kak-travlya-uhodit-v-onlain-i-pochemu-deti-molchat" target="_blank">Буллинг в школах Молдовы. Как травля уходит в онлайн, и почему дети молчат</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>DUOMO. Когда качество — не просто слово, это обязательство</div>
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/bulling-v-shkolah-moldovy-kak-travlya-uhodit-v-onlain-i-pochemu-deti-molchat" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/dodon-posle-kritiki-za-vystuplenie-v-peterburge-rano-ili-pozdno-i-grosu-skajet-chto-nam-nujno-vesti-dialog-s-rossiei" target="_blank">Додон после критики за выступление в Петербурге: «Рано или поздно и Гросу скажет, что нужно вести диалог с Россией»</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/dodon-posle-kritiki-za-vystuplenie-v-peterburge-rano-ili-pozdno-i-grosu-skajet-chto-nam-nujno-vesti-dialog-s-rossiei" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/video-vedmy-sol-i-stihi-eminesku-eks-glava-apparata-dodona-rasskazal-ob-ugrozah" target="_blank">(ВИДЕО) «Ведьмы», соль и стихи Эминеску: экс-глава аппарата Додона рассказал об угрозах</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/video-vedmy-sol-i-stihi-eminesku-eks-glava-apparata-dodona-rasskazal-ob-ugrozah" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/video-gagauziya-deputaty-nsg-ne-prinyali-otstavku-spikera-zaharova-ob-orientirah-gagauzii-i-pridnestrovya" target="_blank">ВИДЕО Гагаузия: Депутаты НСГ не приняли отставку спикера/ Захарова – об ориентирах Гагаузии и Приднестровья</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/video-gagauziya-deputaty-nsg-ne-prinyali-otstavku-spikera-zaharova-ob-orientirah-gagauzii-i-pridnestrovya" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/razboi-intre-moldovatransgaz-si-vestmoldtransgaz-pentru-milioane-de-metri-cubi-de-gaze" target="_blank">simbol</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/razboi-intre-moldovatransgaz-si-vestmoldtransgaz-pentru-milioane-de-metri-cubi-de-gaze" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/de-ce-moldova-are-nevoie-de-firme-de-investitii" target="_blank">De ce Moldova are nevoie de firme de investiţii</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/de-ce-moldova-are-nevoie-de-firme-de-investitii" target="_blank">Citește articolul →</a>
+  </div>
+</div>
+<div class="footer">
+  Raport generat automat zilnic &nbsp;·&nbsp; ARBI – Monitorizare Jurnalism Investigativ Moldova
+</div>
+</body>
+</html>
