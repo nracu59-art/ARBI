@@ -1,0 +1,623 @@
+{
+  "date": "2026-06-12",
+  "generated_at": "2026-06-12T10:17:06Z",
+  "lookback_hours": 26,
+  "sources_checked": 8,
+  "sources_ok": 8,
+  "stats": {
+    "total": 32,
+    "investigative": 7,
+    "by_source": {
+      "rise_md": {
+        "name": "RISE Moldova",
+        "count": 1
+      },
+      "zdg_md": {
+        "name": "Ziarul de Gardă",
+        "count": 10
+      },
+      "anticoruptie_md": {
+        "name": "Anticorupție.md",
+        "count": 10
+      },
+      "newsmaker_md": {
+        "name": "Newsmaker.md",
+        "count": 4
+      },
+      "mold_street": {
+        "name": "Mold-Street",
+        "count": 6
+      },
+      "agora_md": {
+        "name": "Agora.md",
+        "count": 1
+      }
+    },
+    "by_category": {
+      "coruptie": {
+        "label": "Corupție",
+        "emoji": "💰",
+        "count": 1
+      },
+      "justitie": {
+        "label": "Justiție & Procurori",
+        "emoji": "⚖️",
+        "count": 16
+      },
+      "politica": {
+        "label": "Politică & Putere",
+        "emoji": "🏛️",
+        "count": 7
+      },
+      "media": {
+        "label": "Media & Libertatea Presei",
+        "emoji": "📰",
+        "count": 3
+      },
+      "securitate": {
+        "label": "Securitate & Intelligence",
+        "emoji": "🔐",
+        "count": 1
+      },
+      "social": {
+        "label": "Social & Drepturile Omului",
+        "emoji": "👥",
+        "count": 3
+      }
+    }
+  },
+  "articles": [
+    {
+      "id": "3dffa91fa9ab",
+      "title": "Un bărbat a fost condamnat la un an de închisoare după ce a lovit o polițistă aflată în timpul unei acțiuni de serviciu",
+      "url": "https://www.zdg.md/stiri/un-barbat-a-fost-condamnat-la-un-an-de-inchisoare-dupa-ce-a-lovit-o-politista-aflata-in-timpul-unei-actiuni-de-serviciu/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-12T07:49:08Z",
+      "published_date": "2026-06-12",
+      "summary": "Un bărbat de 40 de ani a fost condamnat pentru „aplicarea violenței nepericuloase pentru viață sau sănătate asupra unei angajate a poliției”, aflate în exercitarea atribuțiilor de serviciu, anunță vineri, 12 iunie, Procuratura Generală (PG). Inculpatului o pedeapsă de 1 an de închisoare, cu executarea acesteia în penitenciar de tip semiînchis. Potrivit materialelor dosarului, pe 5 august...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 4
+      },
+      "investigative_score": 1,
+      "relevance_score": 6
+    },
+    {
+      "id": "ae559ccc8fa7",
+      "title": "În ultimele 24 de ore au fost înregistrate 22 de cazuri de fraudă telefonică: prejudicii de peste 3 milioane de lei",
+      "url": "https://www.zdg.md/stiri/in-ultimele-24-de-ore-au-fost-inregistrate-22-de-cazuri-de-frauda-telefonica-prejudicii-de-peste-3-milioane-de-lei/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-12T09:03:08Z",
+      "published_date": "2026-06-12",
+      "summary": "În ultimele 24 de ore, oamenii legii au înregistrat 22 de cazuri de fraudă telefonică, cu un prejudiciu total de peste 3 milioane de lei. Dintre acestea, un caz s-a produs ieri, iar celelalte au avut loc în zilele precedente, fiind raportate ulterior de victime, a precizat vineri, 12 iunie, Inspectoratul General al Poliției (IGP)....",
+      "categories": [
+        "coruptie",
+        "social"
+      ],
+      "category_scores": {
+        "coruptie": 1,
+        "social": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 4
+    },
+    {
+      "id": "b1fea24e557d",
+      "title": "Găgăuzia, fără alegeri și fără bașcan: cum a ajuns autonomia într-un blocaj instituțional total și ce soluții există",
+      "url": "https://www.zdg.md/stiri/gagauzia-fara-alegeri-si-fara-bascan-cum-a-ajuns-autonomia-intr-un-blocaj-institutional-total-si-ce-solutii-exista/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-12T07:30:00Z",
+      "published_date": "2026-06-12",
+      "summary": "Autonomia Găgăuză se află într-o criză instituțională de peste jumătate de an: Adunarea Populară are mandatul expirat, datele stabilite pentru alegerea legislativului local au fost anulate de mai multe ori de instanțele judecătorești, organul electoral al regiunii nu este funcțional, iar după condamnarea definitivă a Evgheniei Guțul trebuie organizate și alegeri pentru funcția de bașcan....",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 4
+    },
+    {
+      "id": "b950f3e94eaa",
+      "title": "De ultimă oră",
+      "url": "https://anticoruptie.md/rss/latest.xml?lang=ro",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Săptămâna trecută am fost la Comrat, în Autonomia Găgăuză, unde Centrul de Investigații Jurnalistice a organizat o ediție a Clubului Jurnaliștilor de Investigație. Tema discuțiilor: blocajul electoral din regiune și viitorul autonomiei văzute prin ochii celor de la firul ierbii.\r\n\r\nObiectivul nostru a fost să înțelegem ce soluții se conturează[...]",
+      "categories": [
+        "justitie",
+        "media"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "media": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 4
+    },
+    {
+      "id": "3b6d08153915",
+      "title": "Cum anchetatorii „au luat cu asalt” sediul lui Plahotniuc",
+      "url": "https://www.rise.md/cum-anchetatorii-au-luat-cu-asalt-sediul-lui-plahotniuc/",
+      "source": "RISE Moldova",
+      "source_key": "rise_md",
+      "published": "2026-06-12T07:27:52Z",
+      "published_date": "2026-06-12",
+      "summary": "La 14 iunie 2026 se împlinesc șapte ani de la fuga lui Vladimir Plahotniuc din Moldova. Studiind segmente […] The post Cum anchetatorii „au luat cu asalt” sediul lui Plahotniuc appeared first on Rise Moldova .",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 3
+    },
+    {
+      "id": "b00f326dae45",
+      "title": "85 de ani de la primul val de deportări din Basarabia. Cu și despre deportați – colecția ZdG de articole, interviuri și materiale video",
+      "url": "https://www.zdg.md/stiri/stiri-sociale/85-de-ani-de-la-primul-val-de-deportari-din-basarabia-cu-si-despre-deportati-colectia-zdg-de-articole-interviuri-si-materiale-video/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-12T07:59:00Z",
+      "published_date": "2026-06-12",
+      "summary": "Astăzi, 12 iunie 2026, se împlinesc 85 de ani de la primul val de deportări din Basarabia. În noaptea de 12 spre 13 iunie 1941, conform unor surse, peste 26 de mii de persoane au fost urcate în vagoane și trimise în Siberia. De-a lungul anilor, Ziarul de Gardă a realizat zeci de articole, interviuri și...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 3
+    },
+    {
+      "id": "3ce3e75dc864",
+      "title": "FOTO// 40 de milioane de lei, aruncați în... canalizare. Un antreprenor, bănuit de abuz în serviciu",
+      "url": "https://anticoruptie.md/ro/dosare-de-coruptie/foto-40-de-milioane-de-lei-aruncati-in-canalizare-un-antreprenor-banuit-de-abuz-in-serviciu",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Ofițerii Centrului Național Anticorupție, în comun cu procurorii Procuraturii municipiului Chișinău, desfășoară acțiuni de urmărire penală într-un dosar în care sunt vizați administratorul unei companii de construcții, responsabili tehnici, diriginți de șantier și doi reprezentan…",
+      "categories": [
+        "social"
+      ],
+      "category_scores": {
+        "social": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 3
+    },
+    {
+      "id": "dfd2e103aa18",
+      "title": "Președinții comisiilor pentru afaceri europene din patru state ale UE vor efectua o vizită la Chișinău, înainte de deschiderea primului cluster de negocieri cu Ucraina și Moldova",
+      "url": "https://www.zdg.md/stiri/presedintii-comisiilor-pentru-afaceri-europene-din-patru-state-ale-ue-vor-efectua-o-vizita-la-chisinau-inainte-de-deschiderea-primului-cluster-de-negocieri-cu-ucraina-si-moldova/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-12T09:25:19Z",
+      "published_date": "2026-06-12",
+      "summary": "Președinții comisiilor pentru afaceri europene din parlamentele Republicii Italiene, Republicii Elene, Regatului Spaniei și Republicii Portugheze vor efectua o vizită comună în Republica Moldova în perioada 13–16 iunie anunță reprezentanții Parlamentului printr-un comunicat. În cadrul vizitei, oficialii europeni vor avea o întrevedere cu președintele Parlamentului, Igor Grosu. Agenda vizitei include o ședință comună a Comisiei...",
+      "categories": [
+        "politica",
+        "justitie"
+      ],
+      "category_scores": {
+        "politica": 3,
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 5
+    },
+    {
+      "id": "4d31a0696cab",
+      "title": "R. Moldova a obținut dreptul de a exporta ouă pentru incubare în Ucraina",
+      "url": "https://www.zdg.md/stiri/stiri-economice/r-moldova-a-obtinut-dreptul-de-a-exporta-oua-pentru-incubare-in-ucraina/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-12T09:17:02Z",
+      "published_date": "2026-06-12",
+      "summary": "R. Moldova a obținut dreptul de a exporta ouă pentru incubare în Ucraina. Decizia a fost luată în urma unei misiuni de audit, realizate de Serviciul de Stat al Ucrainei pentru Siguranța Alimentelor și Protecția Consumatorilor, privind măsurile sanitar-veterinare aplicate de Agenția Națională pentru Siguranța Alimentelor (ANSA) în sectorul avicol. În baza rezultatelor auditului și...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "09d4cb36675d",
+      "title": "De ce mor soldații în Armata Națională pe timp de pace: „Armata nu este făcută din călugări și din sfinți. Este o oglindă a societății”",
+      "url": "https://www.zdg.md/reporter-special/reportaje/de-ce-mor-soldatii-in-armata-nationala-pe-timp-de-pace-armata-nu-este-facuta-din-calugari-si-din-sfinti-este-o-oglinda-a-societatii/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-12T06:30:00Z",
+      "published_date": "2026-06-12",
+      "summary": "În ultimii 30 de ani, fără a fi implicați în operațiuni de luptă, 113 militari ai Armatei Naționale au decedat în timpul exercitării serviciului. Practic în fiecare an, un militar și-a pus capăt zilelor, în timp ce alții au decedat din cauza unor boli, accidente sau altor circumstanțe tragice. Un caz de suicid analizat de...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "99a8cedaac02",
+      "title": "Farsă cu urme rusești. Viceprim-ministra pentru Integrare Europeană: „Tentative de manipulare!”",
+      "url": "https://anticoruptie.md/ro/stiri/farsa-cu-urme-rusesti-viceprim-ministra-pentru-integrare-europeana-tentative-de-manipulare",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Cu cât Republica Moldova avansează în parcursul său european, cu atât se intensifică și tentativele de manipulare ale Federației Ruse menite să compromită acest proces. Este reacția viceprim-ministrei pentru Integrare Europeană, Cristina Gherasimov, la discuția cu farsorii ruşi, …",
+      "categories": [
+        "justitie",
+        "media"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "media": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "5a31822bf7fc",
+      "title": "Demisia președintelui interimar al Adunării Populare a UTAG: legală, dar paralizantă",
+      "url": "https://anticoruptie.md/ro/stiri/demisia-presedintelui-interimar-al-adunarii-populare-a-utag-legala-dar-paralizanta",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Plecarea din funcție a președintelui interimar al Adunării Populare a Găgăuziei (AP), Nicolai Ormanji, deși legală, duce la blocarea activității instituției, blocarea organizării alegerilor, dar la blocarea soluționării multor probleme social-economice în autonomie, consideră Igo…",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "8da30c07ea3b",
+      "title": "DOC// Instanța a dat verdictul în disputa dintre foștii camarazi de partid, Năstase și Plîngău",
+      "url": "https://anticoruptie.md/ro/dosare-de-coruptie/doc-instanta-a-dat-verdictul-in-disputa-dintre-fostii-camarazi-de-partid-nastase-si-plingau",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Judecătoria Chișinău, sediul Centru, a respins cererea fostului lider al Platformei DA, Andrei Năstase, împotriva ex-colegului său de partid, DInu Plîngău, de la care cere dezmințirea unor informații făcute în spațiul public. ”Războiul” declarațiilor între cei doi politicieni s-a…",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "b240d0dd1219",
+      "title": "Premieră în sectorul energetic. Moldelectrica a activat servicii de echilibrare a sistemului furnizate de centrale fotovoltaice cu sisteme de stocare",
+      "url": "https://mold-street.com/noutate/premiera-in-sectorul-energetic-moldelectrica-a-activat-servicii-de-echilibrare-a-sistemului-furnizate-de-centrale-fotovoltaice-cu-sisteme-de-stocare",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "politica",
+        "securitate"
+      ],
+      "category_scores": {
+        "politica": 1,
+        "securitate": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "375cd29e4913",
+      "title": "Comunicăm. Producem. Plasăm.Crești împreună cu AGORA",
+      "url": "https://agora.md/media-kit",
+      "source": "Agora.md",
+      "source_key": "agora_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.",
+      "categories": [
+        "justitie",
+        "media"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "media": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "e821dd06e549",
+      "title": "Subsoluri inundate și mijloace de transport blocate din cauza ploilor torențiale: pompierii efectuează peste 10 misiuni de pompare a apei din gospodării",
+      "url": "https://www.zdg.md/stiri/subsoluri-inundate-si-mijloace-de-transport-blocate-din-cauza-ploilor-torentiale-pompierii-efectueaza-peste-10-misiuni-de-pompare-a-apei-din-gospodarii/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-12T10:15:00Z",
+      "published_date": "2026-06-12",
+      "summary": "În contextul ploilor torențiale înregistrate în mai multe localități din țară, pompierii efectuează în prezent 13 misiuni de pompare a apei din gospodării și subsoluri ale blocurilor locative, dar și intervenții de tractare a mijloacelor de transport, anunță vineri, 12 iunie, Inspectoratul General pentru Situații de Urgență (IGSU). În raionul Telenești, conform unui comunicat al...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "57e15cb21c19",
+      "title": "Un microbuz din R. Moldova, implicat într-un accident în Ungaria: opt persoane au decedat",
+      "url": "https://www.zdg.md/stiri/stiri-sociale/un-microbuz-din-r-moldova-implicat-intr-un-accident-in-ungaria-opt-persoane-au-decedat/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-12T09:50:15Z",
+      "published_date": "2026-06-12",
+      "summary": "Opt persoane care călătoreau cu un microbuz înmatriculat în R. Moldova au decedat într-un accident în Ungaria. Identitatea și cetățenia victimelor nu au fost confirmate deocamdată, a comunicat Ministerul Afacerilor Externe (MAE) de la Chișinău. Ministerul a confirmat că, în dimineața zilei de vineri, 12 iunie, pe teritoriul Ungariei, a avut loc un accident rutier...",
+      "categories": [
+        "social"
+      ],
+      "category_scores": {
+        "social": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "bc86b2f5a0d1",
+      "title": "„Factura” poliției din aprilie 2009// Ex-deputata Valentina Cușnir, despăgubiri de aproape 10 mii de euro",
+      "url": "https://anticoruptie.md/ro/stiri/factura-politiei-din-aprilie-2009-ex-deputata-valentina-cusnir-despagubiri-de-aproape-10-mii-de-euro",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Ex-deputata Valentina Cușnir obține câștig de cauză la C(t)EDO, la peste 17 ani de la evenimentele din aprilie 2009. Conform deciziei, statul urmează să-i achite 9.500 de euro, pe motiv că reclamanta „nu a fost implicată în mod corespunzător în procedurile judiciare, iar o serie …",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "175db2c47a77",
+      "title": "Liberalii atenționează asupra capcanelor rusești din sânul bisericii: „Mitropolia Moldovei să rupă relațiile cu Patriarhia Rusă”",
+      "url": "https://anticoruptie.md/ro/stiri/liberalii-atentioneaza-asupra-capcanelor-rusesti-din-sanul-bisericii-mitropolia-moldovei-sa-rupa-relatiile-cu-patriarhia-rusa",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Partidul Liberal cere Parlamentului Republicii Moldova să oblige Mitropolia Moldovei să rupă definitiv legăturile cu Patriarhia Rusă. În caz contrar, aceasta să fie scoasă în afara legii, propun liberalii.",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "084da4dc14d6",
+      "title": "Cupa Mondială 2026 în cifre: de la cea mai scumpă, la cea mai poluantă",
+      "url": "https://mold-street.com/noutate/cupa-mondiala-2026-in-cifre-de-la-cea-mai-scumpa-la-cea-mai-poluanta",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "380b51bae2c6",
+      "title": "Congresul SUA va examina un proiect de lege bipartizan pentru consolidarea securității energetice a Republicii Moldova",
+      "url": "https://mold-street.com/noutate/congresul-sua-va-examina-un-proiect-de-lege-bipartizan-pentru-consolidarea-securitatii-energetice-a-republicii-moldova",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "5dfc4c53bbca",
+      "title": "Cod galben de instabilitate atmosferică, în vigoare vineri pe întreg teritoriul țării",
+      "url": "https://www.zdg.md/stiri/stiri-sociale/cod-galben-de-instabilitate-atmosferica-in-vigoare-vineri-pe-intreg-teritoriul-tarii/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-12T06:59:45Z",
+      "published_date": "2026-06-12",
+      "summary": "Autoritatea de Meteorologie și Monitoring de Mediu a anunțat cod galben de instabilitate atmosferică pentru vineri, 12 iunie, între orele 09:00 și 21:00. Sunt prognozate ploi, însoțite de descărcări electrice și grindină. Meteorologii anunță că, pe arii extinse, se prevăd ploi de scurtă durată însoțite de descărcări electrice, izolat averse puternice (15–49 l/m²) cu grindină...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "0058e3a78d24",
+      "title": "VIDEO// Audit la Ministerul Culturii: Curtea de Conturi a emis o opinie contrară",
+      "url": "https://anticoruptie.md/ro/stiri/video-audit-la-ministerul-culturii-curtea-de-conturi-a-emis-o-opinie-contrara",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Curtea de Conturi a Republicii Moldova (CCRM) a publicat Raportul de audit asupra rapoartelor financiare consolidate ale Ministerului Culturii încheiate la 31 decembrie 2025 .În urma auditului, Curtea de Conturi a emis o opinie contrară, determinată de „denaturări semnificative i…",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "419ee7009248",
+      "title": "Ion Ceban pierde litigiul împotriva ministrei de Externe a României, Oana Țoiu. Prima declarație a edilului",
+      "url": "https://anticoruptie.md/ro/dosare-de-coruptie/ion-ceban-pierde-litigiul-impotriva-ministrei-de-externe-a-romaniei-oana-toiu-prima-declaratie-a-edilului",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Edilul de Chișinău, Ion Ceban, spune că a luat act de decizia primei instanțe din România în procesul contra ministrei de Externe din România, dar o va contesta în instanța ierarhic superioară. Anunțul edilului vine duoă ce Judecătoria Sectorului 1 București a respins în primă in…",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "fe6784682760",
+      "title": "Criza din Găgăuzia, aprofundată de o decizie recentă a Comitetului Executiv",
+      "url": "https://anticoruptie.md/ro/stiri/criza-din-gagauzia-aprofundata-de-o-decizie-recenta-a-comitetului-executiv",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Comitetul Executiv al Găgăuziei a respins proiectul de hotărâre al Adunării Populare (APG) privind organizarea alegerilor în autonomie.Conform juristului Vitalie Derevenco, care a prezentat poziția autorității, proiectul APG nu ar prezenta soluții reale care ar elimina definitiv …",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "d6cd4cd2edb7",
+      "title": "Налог на коммуналку, акциз на газировку и +500 леев к зарплате. Как власти Молдовы предлагают изменить налоговую систему",
+      "url": "https://newsmaker.md/ru/nds-na-kommunalku-akcziz-na-gazirovku-i-500-leev-k-zarplate-kak-vlasti-moldovy-predlagayut-izmenit-nalogovuyu-sistemu",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "DUOMO. Когда качество — не просто слово, это обязательство",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "a842bfa388e9",
+      "title": "В Венгрии микроавтобус с молдавскими номерами попал в ДТП: погибли восемь человек",
+      "url": "https://newsmaker.md/ru/v-vengrii-mikroavtobus-s-moldavskimi-nomerami-popal-v-dtp-pogibli-vosem-chelovek",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "e709d7b3dad6",
+      "title": "Парламент принял закон о перераспределении полномочий Антикоррупционной прокуратуры, НЦБК и PCCOCS. Центр юридических ресурсов просил отложить голосование",
+      "url": "https://newsmaker.md/ru/parlament-prinyal-zakon-o-pereraspredelenii-polnomochii-antikorrupczionnoi-prokuratury-nczbk-i-pccocs-czentr-yuridicheskih-resursov-prosil-otlojit-golosovanie",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "55e0f3fcbac0",
+      "title": "В Молдове фермеры собираются на протесты: сельхозтехника на въезде в Фалешты",
+      "url": "https://newsmaker.md/ru/v-moldove-fermery-sobirayutsya-na-protesty-selhoztehnika-na-vezde-v-faleshty",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "fc0e5181234b",
+      "title": "Doar 20% din profiturile Transoil sunt obţinute în Republica Moldova. România și Serbia sunt acum pilonii grupului",
+      "url": "https://mold-street.com/noutate/grupul-trans-oil-isi-restrange-prezenta-in-republica-moldova-pe-fundalul-extinderii-operatiunilor-din-romania-si-serbia",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "9fe43c7a6657",
+      "title": "Au început mai târziu, dar au terminat mai repede. Lucrările de construcție la Stația Electrică Vulcănești au fost finalizate",
+      "url": "https://mold-street.com/noutate/au-inceput-mai-tarziu-dar-au-terminat-mai-repede-lucrarile-de-constructie-la-statia-electrica-vulcanesti-au-fost-finalizate",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "c9c31fca9954",
+      "title": "Reforma fiscală: Stimularea investițiilor, reducerea poverii fiscale asupra muncii și simplificarea activității economice",
+      "url": "https://mold-street.com/noutate/reforma-fiscala-stimularea-investitiilor-reducerea-poverii-fiscale-asupra-muncii-si-simplificarea-activitatii-economice",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    }
+  ]
+}
