@@ -1,0 +1,654 @@
+{
+  "date": "2026-06-13",
+  "generated_at": "2026-06-13T09:19:47Z",
+  "lookback_hours": 26,
+  "sources_checked": 8,
+  "sources_ok": 8,
+  "stats": {
+    "total": 33,
+    "investigative": 3,
+    "by_source": {
+      "rise_md": {
+        "name": "RISE Moldova",
+        "count": 1
+      },
+      "zdg_md": {
+        "name": "Ziarul de Gardă",
+        "count": 10
+      },
+      "anticoruptie_md": {
+        "name": "Anticorupție.md",
+        "count": 10
+      },
+      "newsmaker_md": {
+        "name": "Newsmaker.md",
+        "count": 4
+      },
+      "mold_street": {
+        "name": "Mold-Street",
+        "count": 7
+      },
+      "agora_md": {
+        "name": "Agora.md",
+        "count": 1
+      }
+    },
+    "by_category": {
+      "coruptie": {
+        "label": "Corupție",
+        "emoji": "💰",
+        "count": 1
+      },
+      "justitie": {
+        "label": "Justiție & Procurori",
+        "emoji": "⚖️",
+        "count": 19
+      },
+      "politica": {
+        "label": "Politică & Putere",
+        "emoji": "🏛️",
+        "count": 12
+      },
+      "media": {
+        "label": "Media & Libertatea Presei",
+        "emoji": "📰",
+        "count": 5
+      },
+      "securitate": {
+        "label": "Securitate & Intelligence",
+        "emoji": "🔐",
+        "count": 1
+      }
+    }
+  },
+  "articles": [
+    {
+      "id": "9ead7f5bb2b3",
+      "title": "VIDEO/ Zelenski: „Rusia a pierdut R. Moldova” | Ion Ceban, înfrângere în România | Tiktoker reținut pentru propagandă de război | Percheziții într-un dosar de abuz de serviciu | Noutăți despre procesul de aderare a R. Moldova la UE | SĂPTĂMÂNA DE GARDĂ",
+      "url": "https://www.zdg.md/stiri/video-zelenski-rusia-a-pierdut-r-moldova-ion-ceban-infrangere-in-romania-tiktoker-retinut-pentru-propaganda-de-razboi-perchezitii-intr-un-dosar-de-abuz-de-serviciu-noutat/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-13T06:00:00Z",
+      "published_date": "2026-06-13",
+      "summary": "Rusia a pierdut R. Moldova. Cui aparține declarația, vă spunem în această ediție a Săptămânii de Gardă.Vorbim și despre procesul de judecată pierdut de Ion Ceban în litigiul cu ministra de Externe a României, dar și despre milioanele pe care fugarul penal Ilan Șor riscă să le piardă în favoarea statului. Săptămâna de Gardă poate...",
+      "categories": [
+        "justitie",
+        "coruptie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 3,
+        "coruptie": 1,
+        "politica": 1,
+        "media": 1,
+        "social": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 9
+    },
+    {
+      "id": "b950f3e94eaa",
+      "title": "De ultimă oră",
+      "url": "https://anticoruptie.md/rss/latest.xml?lang=ro",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Săptămâna trecută am fost la Comrat, în Autonomia Găgăuză, unde Centrul de Investigații Jurnalistice a organizat o ediție a Clubului Jurnaliștilor de Investigație. Tema discuțiilor: blocajul electoral din regiune și viitorul autonomiei văzute prin ochii celor de la firul ierbii.\r\n\r\nObiectivul nostru a fost să înțelegem ce soluții se conturează[...]",
+      "categories": [
+        "justitie",
+        "media"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "media": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 4
+    },
+    {
+      "id": "3b6d08153915",
+      "title": "Cum anchetatorii „au luat cu asalt” sediul lui Plahotniuc",
+      "url": "https://www.rise.md/cum-anchetatorii-au-luat-cu-asalt-sediul-lui-plahotniuc/",
+      "source": "RISE Moldova",
+      "source_key": "rise_md",
+      "published": "2026-06-12T07:27:52Z",
+      "published_date": "2026-06-12",
+      "summary": "La 14 iunie 2026 se împlinesc șapte ani de la fuga lui Vladimir Plahotniuc din Moldova. Studiind segmente […] The post Cum anchetatorii „au luat cu asalt” sediul lui Plahotniuc appeared first on Rise Moldova .",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 3
+    },
+    {
+      "id": "3a2936e60781",
+      "title": "VIDEO/ Inculpatul Dodon, între Parlament și instanță: dosare penale pe rol și acuzații care nu au ajuns în judecată",
+      "url": "https://www.zdg.md/stiri/video-inculpatul-dodon-intre-parlament-si-instanta-dosare-penale-pe-rol-si-acuzatii-care-nu-au-ajuns-in-judecata/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-13T07:57:41Z",
+      "published_date": "2026-06-13",
+      "summary": "Igor Dodon este singurul șef de stat din istoria țării judecat pentru fapte penale din mandatul său de președinte al R. Moldova. Statutul de inculpat în trei cauze penale, două dintre care sunt examinate în aceeași procedură, nu-l împiedică să fie deputat în Parlamentul R. Moldova și un promotor, în continuare, al intereselor Rusiei. Igor...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 4,
+        "politica": 4
+      },
+      "investigative_score": 0,
+      "relevance_score": 8
+    },
+    {
+      "id": "85236cf3a38f",
+      "title": "Volodmir Zelenski a revocat limbii ruse statutul de limbă protejată în Ucraina",
+      "url": "https://www.zdg.md/stiri/volodmir-zelenski-a-revocat-limbii-ruse-statutul-de-limba-protejata-in-ucraina/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-13T08:40:18Z",
+      "published_date": "2026-06-13",
+      "summary": "Președintele ucrainean Volodimir Zelenski a promulgat vineri, 12 iunie, o lege care revocă limbii ruse statutul de limbă protejată în Ucraina, unde aceasta rămâne vorbită de o parte a populației, în ciuda unui declin de la invazia declanșată de Moscova, relatează AFP, citată de Agerpres. Această lege elimină protecțiile acordate limbii ruse de Carta Europeană...",
+      "categories": [
+        "politica",
+        "justitie"
+      ],
+      "category_scores": {
+        "politica": 2,
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "ca8219c328a1",
+      "title": "Escrocii folosesc numele instituțiilor statului pentru a fura date bancare. Recomandări pentru cetățeni",
+      "url": "https://www.zdg.md/stiri/escrocii-folosesc-numele-institutiilor-statului-pentru-a-fura-date-bancare-recomandari-pentru-cetateni/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-13T09:15:00Z",
+      "published_date": "2026-06-13",
+      "summary": "Un mesaj primit pe adresa redacției Ziarului de Gardă a scos la iveală o nouă schemă de phishing, care exploatează imaginea Poștei Moldovei pentru a obține datele bancare ale cetățenilor. După ce a publicat un anunț pe 999.md, un bărbat a fost telefonat pe WhatsApp și apoi direcționat către un site fals cu însemnele Poștei...",
+      "categories": [
+        "politica",
+        "media"
+      ],
+      "category_scores": {
+        "politica": 1,
+        "media": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "2b869d518efb",
+      "title": "Cititorul de gardă/ „M-am săturat să alerg de la o ușă la alta.” La 86 de ani, așteaptă de șapte ani un bilet de tratament la care are dreptul",
+      "url": "https://www.zdg.md/blog/cititorul/cititorul-de-garda-m-am-saturat-sa-alerg-de-la-o-usa-la-alta-la-86-de-ani-asteapta-de-sapte-ani-un-bilet-de-tratament-la-care-are-dreptul/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-13T07:35:52Z",
+      "published_date": "2026-06-13",
+      "summary": "Dumitru Negru din Vadul lui Vodă, municipiul Chișinău, este unul dintre cei circa 670 de mii de pensionari din R. Moldova care au muncit o viață întreagă cu speranța că la bătrânețe statul îi va răsplăti pentru eforturile depuse în anii tinereții. „Am avut o muncă foarte grea. Am lucrat în construcții, în speranța că...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "95f72a01b726",
+      "title": "Accesului publicului în anumite locuri publice din capitală va fi limitat în perioada 13-14 iunie",
+      "url": "https://www.zdg.md/stiri/accesului-publicului-in-anumite-locuri-publice-din-capitala-va-fi-limitat-in-perioada-13-14-iunie/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-13T07:12:54Z",
+      "published_date": "2026-06-13",
+      "summary": "În perioada 13 iunie, ora 12:00 – 14 iunie, ora 21:00, va fi limitat temporar accesul persoanelor în anumite locuri publice din capitală, informează Primăria Municipiului Chișinău. Potrivit municipalității, măsura ar fi luată de poliție în contextul unei vizite a premierului român Ilie Bolojan. Astfel, pentru buna desfășurare a vizitei oficiale, va fi limitat temporar accesul persoanelor...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "6102d4724f96",
+      "title": "Transparența și dialogul între autorități și cetățeni – dezarmează dezinformarea",
+      "url": "https://anticoruptie.md/ro/stiri/transparenta-si-dialogul-intre-autoritati-si-cetateni-dezarmeaza-dezinformarea",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Dialogul continuu între autorități și cetățeni, împreună cu verificarea informațiilor din surse credibile sunt instrumente simple care pot stopa distribuirea și multiplicarea dezinformării în comunități, consideră participanții la Clubul Jurnaliștilor de Investigație cu tema „Dez…",
+      "categories": [
+        "justitie",
+        "media"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "media": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "99a8cedaac02",
+      "title": "Farsă cu urme rusești. Viceprim-ministra pentru Integrare Europeană: „Tentative de manipulare!”",
+      "url": "https://anticoruptie.md/ro/stiri/farsa-cu-urme-rusesti-viceprim-ministra-pentru-integrare-europeana-tentative-de-manipulare",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Cu cât Republica Moldova avansează în parcursul său european, cu atât se intensifică și tentativele de manipulare ale Federației Ruse menite să compromită acest proces. Este reacția viceprim-ministrei pentru Integrare Europeană, Cristina Gherasimov, la discuția cu farsorii ruşi, …",
+      "categories": [
+        "justitie",
+        "media"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "media": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "5a31822bf7fc",
+      "title": "Demisia președintelui interimar al Adunării Populare a UTAG: legală, dar paralizantă",
+      "url": "https://anticoruptie.md/ro/stiri/demisia-presedintelui-interimar-al-adunarii-populare-a-utag-legala-dar-paralizanta",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Plecarea din funcție a președintelui interimar al Adunării Populare a Găgăuziei (AP), Nicolai Ormanji, deși legală, duce la blocarea activității instituției, blocarea organizării alegerilor, dar la blocarea soluționării multor probleme social-economice în autonomie, consideră Igo…",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "8da30c07ea3b",
+      "title": "DOC// Instanța a dat verdictul în disputa dintre foștii camarazi de partid, Năstase și Plîngău",
+      "url": "https://anticoruptie.md/ro/dosare-de-coruptie/doc-instanta-a-dat-verdictul-in-disputa-dintre-fostii-camarazi-de-partid-nastase-si-plingau",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Judecătoria Chișinău, sediul Centru, a respins cererea fostului lider al Platformei DA, Andrei Năstase, împotriva ex-colegului său de partid, DInu Plîngău, de la care cere dezmințirea unor informații făcute în spațiul public. ”Războiul” declarațiilor între cei doi politicieni s-a…",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "b240d0dd1219",
+      "title": "Premieră în sectorul energetic. Moldelectrica a activat servicii de echilibrare a sistemului furnizate de centrale fotovoltaice cu sisteme de stocare",
+      "url": "https://mold-street.com/noutate/premiera-in-sectorul-energetic-moldelectrica-a-activat-servicii-de-echilibrare-a-sistemului-furnizate-de-centrale-fotovoltaice-cu-sisteme-de-stocare",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "politica",
+        "securitate"
+      ],
+      "category_scores": {
+        "politica": 1,
+        "securitate": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "375cd29e4913",
+      "title": "Comunicăm. Producem. Plasăm.Crești împreună cu AGORA",
+      "url": "https://agora.md/media-kit",
+      "source": "Agora.md",
+      "source_key": "agora_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.",
+      "categories": [
+        "justitie",
+        "media"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "media": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "dae0c8dc967b",
+      "title": "LIVE TEXT/ Un terminal maritim a luat foc în regiunea Krasnodar din Rusia, în urma unui atac cu drone. Război în Ucraina, ziua 1571",
+      "url": "https://www.zdg.md/stiri/live-text-un-terminal-maritim-a-luat-foc-in-regiunea-krasnodar-din-rusia-in-urma-unui-atac-cu-drone-razboi-in-ucraina-ziua-1571/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-13T07:50:51Z",
+      "published_date": "2026-06-13",
+      "summary": "UPDATE 10:50 În regiunea Krasnodar din Rusia, dronele au atacat un terminal maritim peste noapte, incendiindu-l. Potrivit Ukrinform, canalul Telegram ASTRA a relatat acest lucru, citând autoritățile locale. Potrivit guvernatorului regiunii, Veniamin Kondratiev, dronele au atacat districtul Temryuk din regiunea Krasnodar. Conform datelor preliminare, o persoană a fost ucisă și trei au fost rănite în...",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "db34e313c51b",
+      "title": "Motorina devine mai scumpă, în timp ce prețul benzinei nu suferă modificări. Cât vor costa combustibilii în perioada 13 – 15 iunie?",
+      "url": "https://www.zdg.md/stiri/motorina-devine-mai-scumpa-in-timp-ce-pretul-benzinei-nu-sufera-modificari-cat-vor-costa-combustibilii-in-perioada-13-15-iunie/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-13T05:45:00Z",
+      "published_date": "2026-06-13",
+      "summary": "Începând cu 13 iunie, prețul motorinei va crește, în timp ce prețul pentru un litru de benzină nu suferă modificări. Prețurile pentru weekendul 13-15 iunie au fost afișate de Agenția Națională pentru Reglementare în Energetică (ANRE) vineri, 12 iunie. Pentru perioada 13.06.2026 – 15.06.2026, Agenția a stabilit următoarele prețuri maximale de comercializare cu amănuntul pentru principale produse petroliere de tip...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "e7a98a39bebe",
+      "title": "LIVE TEXT/ Atacurile rusești asupra regiunii Dnipropetrovsk au ucis o persoană și au rănit trei. Război în Ucraina, ziua 1570",
+      "url": "https://www.zdg.md/stiri/live-text-atacurile-rusesti-asupra-regiunii-dnipropetrovsk-au-ucis-o-persoana-si-au-ranit-trei-razboi-in-ucraina-ziua-1570/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-12T19:02:26Z",
+      "published_date": "2026-06-12",
+      "summary": "UPDATE 22:00 Forțele ruse au lansat peste 50 de atacuri asupra districtelor Nikopol și Krîvîi Rih din regiunea Dnipropetrovsk pe parcursul zilei, ucigând o persoană și rănind alte trei. Potrivit Ukrinform, Oleksandr Hanzha, șeful Administrației Militare Regionale Dnipropetrovsk, a relatat acest lucru pe Telegram. El a spus că armata rusă a folosit drone și artilerie...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "1210194c1dd3",
+      "title": "Diana Chiriac: Modelul de reformă APL propus de Guvern",
+      "url": "https://anticoruptie.md/ro/interviuri/diana-chiriac-modelul-de-reforma-apl-propus-de-guvern",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Inverviu acordat pentru Buletinul de politică externă al FES/APE",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "bc86b2f5a0d1",
+      "title": "„Factura” poliției din aprilie 2009// Ex-deputata Valentina Cușnir, despăgubiri de aproape 10 mii de euro",
+      "url": "https://anticoruptie.md/ro/stiri/factura-politiei-din-aprilie-2009-ex-deputata-valentina-cusnir-despagubiri-de-aproape-10-mii-de-euro",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Ex-deputata Valentina Cușnir obține câștig de cauză la C(t)EDO, la peste 17 ani de la evenimentele din aprilie 2009. Conform deciziei, statul urmează să-i achite 9.500 de euro, pe motiv că reclamanta „nu a fost implicată în mod corespunzător în procedurile judiciare, iar o serie …",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "175db2c47a77",
+      "title": "Liberalii atenționează asupra capcanelor rusești din sânul bisericii: „Mitropolia Moldovei să rupă relațiile cu Patriarhia Rusă”",
+      "url": "https://anticoruptie.md/ro/stiri/liberalii-atentioneaza-asupra-capcanelor-rusesti-din-sanul-bisericii-mitropolia-moldovei-sa-rupa-relatiile-cu-patriarhia-rusa",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Partidul Liberal cere Parlamentului Republicii Moldova să oblige Mitropolia Moldovei să rupă definitiv legăturile cu Patriarhia Rusă. În caz contrar, aceasta să fie scoasă în afara legii, propun liberalii.",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "cc3b208f4944",
+      "title": "Власти Молдовы хотят усилить контроль над СМИ? Что не так с разработанным PAS законом о медиа",
+      "url": "https://newsmaker.md/ru/vlasti-moldovy-hotyat-usilit-kontrol-nad-smi-chto-ne-tak-s-razrabotannym-pas-zakonom-o-media",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "DUOMO. Когда качество — не просто слово, это обязательство",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "da56e59f75d9",
+      "title": "(ВИДЕО) Шинель Воронина, налог на кока-колу, церковный прайд и новый лидер PAS / «Разборка»",
+      "url": "https://newsmaker.md/ru/video-shinel-voronina-nalog-na-koka-kolu-czerkovnyi-praid-i-novyi-lider-pas-razborka",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "8edf4c1ae492",
+      "title": "Listarea la bursă a SpaceX ia făcut pe sute de oameni milionari, iar pe Musk - trilionar",
+      "url": "https://mold-street.com/noutate/listarea-la-bursa-a-spacex-ia-facut-pe-sute-de-oameni-milionari-iar-pe-musk-trilionar",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "084da4dc14d6",
+      "title": "Cupa Mondială 2026 în cifre: de la cea mai scumpă, la cea mai poluantă",
+      "url": "https://mold-street.com/noutate/cupa-mondiala-2026-in-cifre-de-la-cea-mai-scumpa-la-cea-mai-poluanta",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "39c283b779bf",
+      "title": "Weekendul începe cu ploi slabe și de scurtă durată. Cum va fi vremea pe 13 iunie",
+      "url": "https://www.zdg.md/stiri/weekendul-incepe-cu-ploi-slabe-si-de-scurta-durata-cum-va-fi-vremea-pe-13-iunie/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-13T06:20:00Z",
+      "published_date": "2026-06-13",
+      "summary": "Ploi însoțite de descărcări electrice sunt prognozate în anumite zone ale țării pentru sâmbătă, 13 iunie, anunță Autoritatea de Meteorologie și Monitoring de Mediu (AMM). Temperaturile maxime diurne vor varia între +20 și +25°C. „Pe 13 iunie, noaptea izolat vor cădea ploi slabe de scurtă durată cu descărcări electrice, iar ziua vremea va fi îndeosebi...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "0058e3a78d24",
+      "title": "VIDEO// Audit la Ministerul Culturii: Curtea de Conturi a emis o opinie contrară",
+      "url": "https://anticoruptie.md/ro/stiri/video-audit-la-ministerul-culturii-curtea-de-conturi-a-emis-o-opinie-contrara",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Curtea de Conturi a Republicii Moldova (CCRM) a publicat Raportul de audit asupra rapoartelor financiare consolidate ale Ministerului Culturii încheiate la 31 decembrie 2025 .În urma auditului, Curtea de Conturi a emis o opinie contrară, determinată de „denaturări semnificative i…",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "419ee7009248",
+      "title": "Ion Ceban pierde litigiul împotriva ministrei de Externe a României, Oana Țoiu. Prima declarație a edilului",
+      "url": "https://anticoruptie.md/ro/dosare-de-coruptie/ion-ceban-pierde-litigiul-impotriva-ministrei-de-externe-a-romaniei-oana-toiu-prima-declaratie-a-edilului",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Edilul de Chișinău, Ion Ceban, spune că a luat act de decizia primei instanțe din România în procesul contra ministrei de Externe din România, dar o va contesta în instanța ierarhic superioară. Anunțul edilului vine duoă ce Judecătoria Sectorului 1 București a respins în primă in…",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "028c149ba409",
+      "title": "В Кишиневе 13 июня проходят соревнования по дуатлону. Как будет ездить общественный транспорт?",
+      "url": "https://newsmaker.md/ru/v-kishineve-13-iyunya-prohodyat-sorevnovaniya-po-duatlonu-kak-budet-ezdit-obshestvennyi-transport",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "c03440b466d5",
+      "title": "«Молдова готова открыть все кластеры переговоров о вступлении в ЕС». Санду провела телефонный разговор с Антониу Коштой",
+      "url": "https://newsmaker.md/ru/moldova-gotova-otkryt-vse-klastery-peregovorov-o-vstuplenii-v-es-sandu-provela-telefonnyi-razgovor-s-antoniu-koshtoi",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "cbb58ae087bb",
+      "title": "simbol",
+      "url": "https://mold-street.com/noutate/prima-intreprindere-de-stat-scoasa-la-privatizare-dupa-o-pauza-de-cinci-ani",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "5c3483ab213c",
+      "title": "Revoluţie fiscală pentru angajaţi. Impozitul pe venit va scădea la 7%, iar pragul poate creşte la un milion de lei",
+      "url": "https://mold-street.com/noutate/revolutie-fiscala-pentru-angajati-impozitul-pe-venit-va-scadea-la-7-iar-pragul-poate-creste-la-un-milion-de-lei",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "fc0e5181234b",
+      "title": "Doar 20% din profiturile Transoil sunt obţinute în Republica Moldova. România și Serbia sunt acum pilonii grupului",
+      "url": "https://mold-street.com/noutate/grupul-trans-oil-isi-restrange-prezenta-in-republica-moldova-pe-fundalul-extinderii-operatiunilor-din-romania-si-serbia",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "9fe43c7a6657",
+      "title": "Au început mai târziu, dar au terminat mai repede. Lucrările de construcție la Stația Electrică Vulcănești au fost finalizate",
+      "url": "https://mold-street.com/noutate/au-inceput-mai-tarziu-dar-au-terminat-mai-repede-lucrarile-de-constructie-la-statia-electrica-vulcanesti-au-fost-finalizate",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    }
+  ]
+}
