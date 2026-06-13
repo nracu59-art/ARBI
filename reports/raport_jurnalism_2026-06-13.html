@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monitorizare Jurnalism Investigativ Moldova – 13.06.2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; color: #2c3e50; }
+  .header { background: #1b4332; color: #fff; padding: 28px 40px; }
+  .header h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: 0.5px; }
+  .header .subtitle { margin-top: 6px; font-size: 0.9rem; opacity: 0.85; }
+  .stats-bar { background: #2d6a4f; color: #fff; padding: 16px 40px;
+                display: flex; gap: 36px; flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; }
+  .stat .val { font-size: 1.8rem; font-weight: 700; }
+  .stat .lbl { font-size: 0.72rem; opacity: 0.82; text-transform: uppercase; letter-spacing: 0.8px; }
+  .cat-bar { background: #40916c; color: #fff; padding: 12px 40px;
+              display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .cat-chip { background: rgba(255,255,255,0.18); border-radius: 20px;
+               padding: 4px 14px; font-size: 0.78rem; font-weight: 600;
+               white-space: nowrap; }
+  .container { max-width: 1040px; margin: 30px auto; padding: 0 20px 40px; }
+  .section-title { font-size: 0.95rem; font-weight: 700; color: #1b4332;
+                    text-transform: uppercase; letter-spacing: 1px;
+                    margin: 28px 0 14px; border-bottom: 2px solid #1b4332;
+                    padding-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08);
+           padding: 18px 22px; margin-bottom: 14px; border-left: 5px solid #1b4332;
+           transition: box-shadow .15s; }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.13); }
+  .card.investigativ { border-left-color: #d62828; }
+  .card-title { font-size: 1rem; font-weight: 700; color: #1b4332; margin-bottom: 8px; }
+  .card-title a { color: inherit; text-decoration: none; }
+  .card-title a:hover { text-decoration: underline; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;
+           font-size: 0.8rem; color: #555; }
+  .badge { display: inline-block; font-size: 0.68rem; font-weight: 700;
+            padding: 2px 8px; border-radius: 12px; color: #fff;
+            margin-right: 4px; vertical-align: middle; }
+  .badge-inv { background: #d62828; }
+  .source-tag { background: #e8f4ec; color: #1b4332; border-radius: 4px;
+                 padding: 1px 8px; font-size: 0.75rem; font-weight: 600; }
+  .summary { font-size: 0.85rem; color: #444; line-height: 1.55; margin-top: 6px; }
+  .cat-tags { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .cat-tag { font-size: 0.72rem; padding: 2px 10px; border-radius: 10px;
+              font-weight: 600; background: #e8f4ec; color: #1b4332; }
+  .link-btn { display: inline-block; margin-top: 10px; padding: 5px 14px;
+               background: #1b4332; color: #fff; border-radius: 5px;
+               font-size: 0.78rem; text-decoration: none; font-weight: 600; }
+  .link-btn:hover { background: #2d6a4f; }
+  .empty-box { background: #fff; border-radius: 8px; padding: 30px 24px;
+                text-align: center; color: #7f8c8d; font-size: 0.95rem;
+                box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .source-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+  .source-box { background: #fff; border-radius: 8px; padding: 12px 18px;
+                 box-shadow: 0 2px 6px rgba(0,0,0,.07); min-width: 140px;
+                 border-top: 3px solid #1b4332; }
+  .source-box .sname { font-size: 0.78rem; font-weight: 700; color: #1b4332; }
+  .source-box .scount { font-size: 1.4rem; font-weight: 700; color: #2d6a4f; margin-top: 2px; }
+  .footer { text-align: center; font-size: 0.75rem; color: #999;
+             margin-top: 40px; padding-bottom: 20px; }
+  @media (max-width: 600px) {
+    .header, .stats-bar, .cat-bar { padding: 18px 16px; }
+    .stats-bar { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🔍 Monitorizare Jurnalism Investigativ – Moldova</h1>
+  <div class="subtitle">
+    Surse monitorizate: 8 &nbsp;|&nbsp;
+    Ultimele 26 ore &nbsp;|&nbsp;
+    Generat: 2026-06-13 09:20 UTC
+  </div>
+</div>
+<div class="stats-bar">
+  <div class="stat"><span class="val">33</span><span class="lbl">Articole noi</span></div>
+  <div class="stat"><span class="val">3</span><span class="lbl">Investigative</span></div>
+  <div class="stat"><span class="val">8</span><span class="lbl">Surse active</span></div>
+  <div class="stat"><span class="val">13.06.2026</span><span class="lbl">Data raportului</span></div>
+</div>
+<div class="cat-bar">
+  <span style="font-size:.8rem;opacity:.85;margin-right:4px">Categorii:</span>
+  <span class="cat-chip">⚖️ Justiție & Procurori (19)</span><span class="cat-chip">🏛️ Politică & Putere (12)</span><span class="cat-chip">📰 Media & Libertatea Presei (5)</span><span class="cat-chip">💰 Corupție (1)</span><span class="cat-chip">🔐 Securitate & Intelligence (1)</span>
+</div>
+<div class="container">
+<div class="section-title">📊 Articole pe surse</div><div class="source-grid"><div class="source-box"><div class="sname">Ziarul de Gardă</div><div class="scount">10</div></div><div class="source-box"><div class="sname">Anticorupție.md</div><div class="scount">10</div></div><div class="source-box"><div class="sname">Mold-Street</div><div class="scount">7</div></div><div class="source-box"><div class="sname">Newsmaker.md</div><div class="scount">4</div></div><div class="source-box"><div class="sname">RISE Moldova</div><div class="scount">1</div></div><div class="source-box"><div class="sname">Agora.md</div><div class="scount">1</div></div></div>
+<div class="section-title">🔍 Articole Investigative (3)</div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/video-zelenski-rusia-a-pierdut-r-moldova-ion-ceban-infrangere-in-romania-tiktoker-retinut-pentru-propaganda-de-razboi-perchezitii-intr-un-dosar-de-abuz-de-serviciu-noutat/" target="_blank">VIDEO/ Zelenski: „Rusia a pierdut R. Moldova” | Ion Ceban, înfrângere în România | Tiktoker reținut pentru propagandă de război | Percheziții într-un dosar de abuz de serviciu | Noutăți despre procesul de aderare a R. Moldova la UE | SĂPTĂMÂNA DE GARDĂ</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 13.06.2026</span>
+    </div>
+    <div class='summary'>Rusia a pierdut R. Moldova. Cui aparține declarația, vă spunem în această ediție a Săptămânii de Gardă.Vorbim și despre procesul de judecată pierdut de Ion Ceban în litigiul cu ministra de Externe a României, dar și despre milioanele pe care fugarul penal Ilan Șor riscă să le piardă în favoarea statului. Săptămâna de Gardă poate...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💰 Corupție</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/video-zelenski-rusia-a-pierdut-r-moldova-ion-ceban-infrangere-in-romania-tiktoker-retinut-pentru-propaganda-de-razboi-perchezitii-intr-un-dosar-de-abuz-de-serviciu-noutat/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/rss/latest.xml?lang=ro" target="_blank">De ultimă oră</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Săptămâna trecută am fost la Comrat, în Autonomia Găgăuză, unde Centrul de Investigații Jurnalistice a organizat o ediție a Clubului Jurnaliștilor de Investigație. Tema discuțiilor: blocajul electoral din regiune și viitorul autonomiei văzute prin ochii celor de la firul ierbii.
+
+Obiectivul nostru a fost să înțelegem ce soluții se conturează[...]</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/rss/latest.xml?lang=ro" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://www.rise.md/cum-anchetatorii-au-luat-cu-asalt-sediul-lui-plahotniuc/" target="_blank">Cum anchetatorii „au luat cu asalt” sediul lui Plahotniuc</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 RISE Moldova</span>
+      <span>📅 12.06.2026</span>
+    </div>
+    <div class='summary'>La 14 iunie 2026 se împlinesc șapte ani de la fuga lui Vladimir Plahotniuc din Moldova. Studiind segmente […] The post Cum anchetatorii „au luat cu asalt” sediul lui Plahotniuc appeared first on Rise Moldova .</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.rise.md/cum-anchetatorii-au-luat-cu-asalt-sediul-lui-plahotniuc/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">⚖️ Justiție & Procurori (16)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/video-inculpatul-dodon-intre-parlament-si-instanta-dosare-penale-pe-rol-si-acuzatii-care-nu-au-ajuns-in-judecata/" target="_blank">VIDEO/ Inculpatul Dodon, între Parlament și instanță: dosare penale pe rol și acuzații care nu au ajuns în judecată</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 13.06.2026</span>
+    </div>
+    <div class='summary'>Igor Dodon este singurul șef de stat din istoria țării judecat pentru fapte penale din mandatul său de președinte al R. Moldova. Statutul de inculpat în trei cauze penale, două dintre care sunt examinate în aceeași procedură, nu-l împiedică să fie deputat în Parlamentul R. Moldova și un promotor, în continuare, al intereselor Rusiei. Igor...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/video-inculpatul-dodon-intre-parlament-si-instanta-dosare-penale-pe-rol-si-acuzatii-care-nu-au-ajuns-in-judecata/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/volodmir-zelenski-a-revocat-limbii-ruse-statutul-de-limba-protejata-in-ucraina/" target="_blank">Volodmir Zelenski a revocat limbii ruse statutul de limbă protejată în Ucraina</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 13.06.2026</span>
+    </div>
+    <div class='summary'>Președintele ucrainean Volodimir Zelenski a promulgat vineri, 12 iunie, o lege care revocă limbii ruse statutul de limbă protejată în Ucraina, unde aceasta rămâne vorbită de o parte a populației, în ciuda unui declin de la invazia declanșată de Moscova, relatează AFP, citată de Agerpres. Această lege elimină protecțiile acordate limbii ruse de Carta Europeană...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/volodmir-zelenski-a-revocat-limbii-ruse-statutul-de-limba-protejata-in-ucraina/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/blog/cititorul/cititorul-de-garda-m-am-saturat-sa-alerg-de-la-o-usa-la-alta-la-86-de-ani-asteapta-de-sapte-ani-un-bilet-de-tratament-la-care-are-dreptul/" target="_blank">Cititorul de gardă/ „M-am săturat să alerg de la o ușă la alta.” La 86 de ani, așteaptă de șapte ani un bilet de tratament la care are dreptul</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 13.06.2026</span>
+    </div>
+    <div class='summary'>Dumitru Negru din Vadul lui Vodă, municipiul Chișinău, este unul dintre cei circa 670 de mii de pensionari din R. Moldova care au muncit o viață întreagă cu speranța că la bătrânețe statul îi va răsplăti pentru eforturile depuse în anii tinereții. „Am avut o muncă foarte grea. Am lucrat în construcții, în speranța că...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/blog/cititorul/cititorul-de-garda-m-am-saturat-sa-alerg-de-la-o-usa-la-alta-la-86-de-ani-asteapta-de-sapte-ani-un-bilet-de-tratament-la-care-are-dreptul/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/accesului-publicului-in-anumite-locuri-publice-din-capitala-va-fi-limitat-in-perioada-13-14-iunie/" target="_blank">Accesului publicului în anumite locuri publice din capitală va fi limitat în perioada 13-14 iunie</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 13.06.2026</span>
+    </div>
+    <div class='summary'>În perioada 13 iunie, ora 12:00 – 14 iunie, ora 21:00, va fi limitat temporar accesul persoanelor în anumite locuri publice din capitală, informează Primăria Municipiului Chișinău. Potrivit municipalității, măsura ar fi luată de poliție în contextul unei vizite a premierului român Ilie Bolojan. Astfel, pentru buna desfășurare a vizitei oficiale, va fi limitat temporar accesul persoanelor...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/accesului-publicului-in-anumite-locuri-publice-din-capitala-va-fi-limitat-in-perioada-13-14-iunie/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/transparenta-si-dialogul-intre-autoritati-si-cetateni-dezarmeaza-dezinformarea" target="_blank">Transparența și dialogul între autorități și cetățeni – dezarmează dezinformarea</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dialogul continuu între autorități și cetățeni, împreună cu verificarea informațiilor din surse credibile sunt instrumente simple care pot stopa distribuirea și multiplicarea dezinformării în comunități, consideră participanții la Clubul Jurnaliștilor de Investigație cu tema „Dez…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/transparenta-si-dialogul-intre-autoritati-si-cetateni-dezarmeaza-dezinformarea" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/farsa-cu-urme-rusesti-viceprim-ministra-pentru-integrare-europeana-tentative-de-manipulare" target="_blank">Farsă cu urme rusești. Viceprim-ministra pentru Integrare Europeană: „Tentative de manipulare!”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Cu cât Republica Moldova avansează în parcursul său european, cu atât se intensifică și tentativele de manipulare ale Federației Ruse menite să compromită acest proces. Este reacția viceprim-ministrei pentru Integrare Europeană, Cristina Gherasimov, la discuția cu farsorii ruşi, …</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/farsa-cu-urme-rusesti-viceprim-ministra-pentru-integrare-europeana-tentative-de-manipulare" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/demisia-presedintelui-interimar-al-adunarii-populare-a-utag-legala-dar-paralizanta" target="_blank">Demisia președintelui interimar al Adunării Populare a UTAG: legală, dar paralizantă</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Plecarea din funcție a președintelui interimar al Adunării Populare a Găgăuziei (AP), Nicolai Ormanji, deși legală, duce la blocarea activității instituției, blocarea organizării alegerilor, dar la blocarea soluționării multor probleme social-economice în autonomie, consideră Igo…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/demisia-presedintelui-interimar-al-adunarii-populare-a-utag-legala-dar-paralizanta" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/dosare-de-coruptie/doc-instanta-a-dat-verdictul-in-disputa-dintre-fostii-camarazi-de-partid-nastase-si-plingau" target="_blank">DOC// Instanța a dat verdictul în disputa dintre foștii camarazi de partid, Năstase și Plîngău</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Judecătoria Chișinău, sediul Centru, a respins cererea fostului lider al Platformei DA, Andrei Năstase, împotriva ex-colegului său de partid, DInu Plîngău, de la care cere dezmințirea unor informații făcute în spațiul public. ”Războiul” declarațiilor între cei doi politicieni s-a…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/dosare-de-coruptie/doc-instanta-a-dat-verdictul-in-disputa-dintre-fostii-camarazi-de-partid-nastase-si-plingau" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/motorina-devine-mai-scumpa-in-timp-ce-pretul-benzinei-nu-sufera-modificari-cat-vor-costa-combustibilii-in-perioada-13-15-iunie/" target="_blank">Motorina devine mai scumpă, în timp ce prețul benzinei nu suferă modificări. Cât vor costa combustibilii în perioada 13 – 15 iunie?</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 13.06.2026</span>
+    </div>
+    <div class='summary'>Începând cu 13 iunie, prețul motorinei va crește, în timp ce prețul pentru un litru de benzină nu suferă modificări. Prețurile pentru weekendul 13-15 iunie au fost afișate de Agenția Națională pentru Reglementare în Energetică (ANRE) vineri, 12 iunie. Pentru perioada 13.06.2026 – 15.06.2026, Agenția a stabilit următoarele prețuri maximale de comercializare cu amănuntul pentru principale produse pe…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/motorina-devine-mai-scumpa-in-timp-ce-pretul-benzinei-nu-sufera-modificari-cat-vor-costa-combustibilii-in-perioada-13-15-iunie/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🏛️ Politică & Putere (11)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/video-inculpatul-dodon-intre-parlament-si-instanta-dosare-penale-pe-rol-si-acuzatii-care-nu-au-ajuns-in-judecata/" target="_blank">VIDEO/ Inculpatul Dodon, între Parlament și instanță: dosare penale pe rol și acuzații care nu au ajuns în judecată</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 13.06.2026</span>
+    </div>
+    <div class='summary'>Igor Dodon este singurul șef de stat din istoria țării judecat pentru fapte penale din mandatul său de președinte al R. Moldova. Statutul de inculpat în trei cauze penale, două dintre care sunt examinate în aceeași procedură, nu-l împiedică să fie deputat în Parlamentul R. Moldova și un promotor, în continuare, al intereselor Rusiei. Igor...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/video-inculpatul-dodon-intre-parlament-si-instanta-dosare-penale-pe-rol-si-acuzatii-care-nu-au-ajuns-in-judecata/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/volodmir-zelenski-a-revocat-limbii-ruse-statutul-de-limba-protejata-in-ucraina/" target="_blank">Volodmir Zelenski a revocat limbii ruse statutul de limbă protejată în Ucraina</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 13.06.2026</span>
+    </div>
+    <div class='summary'>Președintele ucrainean Volodimir Zelenski a promulgat vineri, 12 iunie, o lege care revocă limbii ruse statutul de limbă protejată în Ucraina, unde aceasta rămâne vorbită de o parte a populației, în ciuda unui declin de la invazia declanșată de Moscova, relatează AFP, citată de Agerpres. Această lege elimină protecțiile acordate limbii ruse de Carta Europeană...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/volodmir-zelenski-a-revocat-limbii-ruse-statutul-de-limba-protejata-in-ucraina/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/escrocii-folosesc-numele-institutiilor-statului-pentru-a-fura-date-bancare-recomandari-pentru-cetateni/" target="_blank">Escrocii folosesc numele instituțiilor statului pentru a fura date bancare. Recomandări pentru cetățeni</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 13.06.2026</span>
+    </div>
+    <div class='summary'>Un mesaj primit pe adresa redacției Ziarului de Gardă a scos la iveală o nouă schemă de phishing, care exploatează imaginea Poștei Moldovei pentru a obține datele bancare ale cetățenilor. După ce a publicat un anunț pe 999.md, un bărbat a fost telefonat pe WhatsApp și apoi direcționat către un site fals cu însemnele Poștei...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/escrocii-folosesc-numele-institutiilor-statului-pentru-a-fura-date-bancare-recomandari-pentru-cetateni/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/blog/cititorul/cititorul-de-garda-m-am-saturat-sa-alerg-de-la-o-usa-la-alta-la-86-de-ani-asteapta-de-sapte-ani-un-bilet-de-tratament-la-care-are-dreptul/" target="_blank">Cititorul de gardă/ „M-am săturat să alerg de la o ușă la alta.” La 86 de ani, așteaptă de șapte ani un bilet de tratament la care are dreptul</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 13.06.2026</span>
+    </div>
+    <div class='summary'>Dumitru Negru din Vadul lui Vodă, municipiul Chișinău, este unul dintre cei circa 670 de mii de pensionari din R. Moldova care au muncit o viață întreagă cu speranța că la bătrânețe statul îi va răsplăti pentru eforturile depuse în anii tinereții. „Am avut o muncă foarte grea. Am lucrat în construcții, în speranța că...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/blog/cititorul/cititorul-de-garda-m-am-saturat-sa-alerg-de-la-o-usa-la-alta-la-86-de-ani-asteapta-de-sapte-ani-un-bilet-de-tratament-la-care-are-dreptul/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/accesului-publicului-in-anumite-locuri-publice-din-capitala-va-fi-limitat-in-perioada-13-14-iunie/" target="_blank">Accesului publicului în anumite locuri publice din capitală va fi limitat în perioada 13-14 iunie</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 13.06.2026</span>
+    </div>
+    <div class='summary'>În perioada 13 iunie, ora 12:00 – 14 iunie, ora 21:00, va fi limitat temporar accesul persoanelor în anumite locuri publice din capitală, informează Primăria Municipiului Chișinău. Potrivit municipalității, măsura ar fi luată de poliție în contextul unei vizite a premierului român Ilie Bolojan. Astfel, pentru buna desfășurare a vizitei oficiale, va fi limitat temporar accesul persoanelor...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/accesului-publicului-in-anumite-locuri-publice-din-capitala-va-fi-limitat-in-perioada-13-14-iunie/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/demisia-presedintelui-interimar-al-adunarii-populare-a-utag-legala-dar-paralizanta" target="_blank">Demisia președintelui interimar al Adunării Populare a UTAG: legală, dar paralizantă</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Plecarea din funcție a președintelui interimar al Adunării Populare a Găgăuziei (AP), Nicolai Ormanji, deși legală, duce la blocarea activității instituției, blocarea organizării alegerilor, dar la blocarea soluționării multor probleme social-economice în autonomie, consideră Igo…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/demisia-presedintelui-interimar-al-adunarii-populare-a-utag-legala-dar-paralizanta" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/dosare-de-coruptie/doc-instanta-a-dat-verdictul-in-disputa-dintre-fostii-camarazi-de-partid-nastase-si-plingau" target="_blank">DOC// Instanța a dat verdictul în disputa dintre foștii camarazi de partid, Năstase și Plîngău</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Judecătoria Chișinău, sediul Centru, a respins cererea fostului lider al Platformei DA, Andrei Năstase, împotriva ex-colegului său de partid, DInu Plîngău, de la care cere dezmințirea unor informații făcute în spațiul public. ”Războiul” declarațiilor între cei doi politicieni s-a…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/dosare-de-coruptie/doc-instanta-a-dat-verdictul-in-disputa-dintre-fostii-camarazi-de-partid-nastase-si-plingau" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/premiera-in-sectorul-energetic-moldelectrica-a-activat-servicii-de-echilibrare-a-sistemului-furnizate-de-centrale-fotovoltaice-cu-sisteme-de-stocare" target="_blank">Premieră în sectorul energetic. Moldelectrica a activat servicii de echilibrare a sistemului furnizate de centrale fotovoltaice cu sisteme de stocare</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/premiera-in-sectorul-energetic-moldelectrica-a-activat-servicii-de-echilibrare-a-sistemului-furnizate-de-centrale-fotovoltaice-cu-sisteme-de-stocare" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/live-text-un-terminal-maritim-a-luat-foc-in-regiunea-krasnodar-din-rusia-in-urma-unui-atac-cu-drone-razboi-in-ucraina-ziua-1571/" target="_blank">LIVE TEXT/ Un terminal maritim a luat foc în regiunea Krasnodar din Rusia, în urma unui atac cu drone. Război în Ucraina, ziua 1571</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 13.06.2026</span>
+    </div>
+    <div class='summary'>UPDATE 10:50 În regiunea Krasnodar din Rusia, dronele au atacat un terminal maritim peste noapte, incendiindu-l. Potrivit Ukrinform, canalul Telegram ASTRA a relatat acest lucru, citând autoritățile locale. Potrivit guvernatorului regiunii, Veniamin Kondratiev, dronele au atacat districtul Temryuk din regiunea Krasnodar. Conform datelor preliminare, o persoană a fost ucisă și trei au fost rănite î…</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/live-text-un-terminal-maritim-a-luat-foc-in-regiunea-krasnodar-din-rusia-in-urma-unui-atac-cu-drone-razboi-in-ucraina-ziua-1571/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/interviuri/diana-chiriac-modelul-de-reforma-apl-propus-de-guvern" target="_blank">Diana Chiriac: Modelul de reformă APL propus de Guvern</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Inverviu acordat pentru Buletinul de politică externă al FES/APE</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/interviuri/diana-chiriac-modelul-de-reforma-apl-propus-de-guvern" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📰 Media & Libertatea Presei (4)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/escrocii-folosesc-numele-institutiilor-statului-pentru-a-fura-date-bancare-recomandari-pentru-cetateni/" target="_blank">Escrocii folosesc numele instituțiilor statului pentru a fura date bancare. Recomandări pentru cetățeni</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 13.06.2026</span>
+    </div>
+    <div class='summary'>Un mesaj primit pe adresa redacției Ziarului de Gardă a scos la iveală o nouă schemă de phishing, care exploatează imaginea Poștei Moldovei pentru a obține datele bancare ale cetățenilor. După ce a publicat un anunț pe 999.md, un bărbat a fost telefonat pe WhatsApp și apoi direcționat către un site fals cu însemnele Poștei...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/escrocii-folosesc-numele-institutiilor-statului-pentru-a-fura-date-bancare-recomandari-pentru-cetateni/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/transparenta-si-dialogul-intre-autoritati-si-cetateni-dezarmeaza-dezinformarea" target="_blank">Transparența și dialogul între autorități și cetățeni – dezarmează dezinformarea</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dialogul continuu între autorități și cetățeni, împreună cu verificarea informațiilor din surse credibile sunt instrumente simple care pot stopa distribuirea și multiplicarea dezinformării în comunități, consideră participanții la Clubul Jurnaliștilor de Investigație cu tema „Dez…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/transparenta-si-dialogul-intre-autoritati-si-cetateni-dezarmeaza-dezinformarea" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/farsa-cu-urme-rusesti-viceprim-ministra-pentru-integrare-europeana-tentative-de-manipulare" target="_blank">Farsă cu urme rusești. Viceprim-ministra pentru Integrare Europeană: „Tentative de manipulare!”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Cu cât Republica Moldova avansează în parcursul său european, cu atât se intensifică și tentativele de manipulare ale Federației Ruse menite să compromită acest proces. Este reacția viceprim-ministrei pentru Integrare Europeană, Cristina Gherasimov, la discuția cu farsorii ruşi, …</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/farsa-cu-urme-rusesti-viceprim-ministra-pentru-integrare-europeana-tentative-de-manipulare" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🔐 Securitate & Intelligence (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/premiera-in-sectorul-energetic-moldelectrica-a-activat-servicii-de-echilibrare-a-sistemului-furnizate-de-centrale-fotovoltaice-cu-sisteme-de-stocare" target="_blank">Premieră în sectorul energetic. Moldelectrica a activat servicii de echilibrare a sistemului furnizate de centrale fotovoltaice cu sisteme de stocare</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/premiera-in-sectorul-energetic-moldelectrica-a-activat-servicii-de-echilibrare-a-sistemului-furnizate-de-centrale-fotovoltaice-cu-sisteme-de-stocare" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📌 Alte articole (9)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/weekendul-incepe-cu-ploi-slabe-si-de-scurta-durata-cum-va-fi-vremea-pe-13-iunie/" target="_blank">Weekendul începe cu ploi slabe și de scurtă durată. Cum va fi vremea pe 13 iunie</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 13.06.2026</span>
+    </div>
+    <div class='summary'>Ploi însoțite de descărcări electrice sunt prognozate în anumite zone ale țării pentru sâmbătă, 13 iunie, anunță Autoritatea de Meteorologie și Monitoring de Mediu (AMM). Temperaturile maxime diurne vor varia între +20 și +25°C. „Pe 13 iunie, noaptea izolat vor cădea ploi slabe de scurtă durată cu descărcări electrice, iar ziua vremea va fi îndeosebi...</div>
+    
+    <a class="link-btn" href="https://www.zdg.md/stiri/weekendul-incepe-cu-ploi-slabe-si-de-scurta-durata-cum-va-fi-vremea-pe-13-iunie/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/video-audit-la-ministerul-culturii-curtea-de-conturi-a-emis-o-opinie-contrara" target="_blank">VIDEO// Audit la Ministerul Culturii: Curtea de Conturi a emis o opinie contrară</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Curtea de Conturi a Republicii Moldova (CCRM) a publicat Raportul de audit asupra rapoartelor financiare consolidate ale Ministerului Culturii încheiate la 31 decembrie 2025 .În urma auditului, Curtea de Conturi a emis o opinie contrară, determinată de „denaturări semnificative i…</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/video-audit-la-ministerul-culturii-curtea-de-conturi-a-emis-o-opinie-contrara" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/dosare-de-coruptie/ion-ceban-pierde-litigiul-impotriva-ministrei-de-externe-a-romaniei-oana-toiu-prima-declaratie-a-edilului" target="_blank">Ion Ceban pierde litigiul împotriva ministrei de Externe a României, Oana Țoiu. Prima declarație a edilului</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Edilul de Chișinău, Ion Ceban, spune că a luat act de decizia primei instanțe din România în procesul contra ministrei de Externe din România, dar o va contesta în instanța ierarhic superioară. Anunțul edilului vine duoă ce Judecătoria Sectorului 1 București a respins în primă in…</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/dosare-de-coruptie/ion-ceban-pierde-litigiul-impotriva-ministrei-de-externe-a-romaniei-oana-toiu-prima-declaratie-a-edilului" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/v-kishineve-13-iyunya-prohodyat-sorevnovaniya-po-duatlonu-kak-budet-ezdit-obshestvennyi-transport" target="_blank">В Кишиневе 13 июня проходят соревнования по дуатлону. Как будет ездить общественный транспорт?</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/v-kishineve-13-iyunya-prohodyat-sorevnovaniya-po-duatlonu-kak-budet-ezdit-obshestvennyi-transport" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/moldova-gotova-otkryt-vse-klastery-peregovorov-o-vstuplenii-v-es-sandu-provela-telefonnyi-razgovor-s-antoniu-koshtoi" target="_blank">«Молдова готова открыть все кластеры переговоров о вступлении в ЕС». Санду провела телефонный разговор с Антониу Коштой</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/moldova-gotova-otkryt-vse-klastery-peregovorov-o-vstuplenii-v-es-sandu-provela-telefonnyi-razgovor-s-antoniu-koshtoi" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/prima-intreprindere-de-stat-scoasa-la-privatizare-dupa-o-pauza-de-cinci-ani" target="_blank">simbol</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/prima-intreprindere-de-stat-scoasa-la-privatizare-dupa-o-pauza-de-cinci-ani" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/revolutie-fiscala-pentru-angajati-impozitul-pe-venit-va-scadea-la-7-iar-pragul-poate-creste-la-un-milion-de-lei" target="_blank">Revoluţie fiscală pentru angajaţi. Impozitul pe venit va scădea la 7%, iar pragul poate creşte la un milion de lei</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/revolutie-fiscala-pentru-angajati-impozitul-pe-venit-va-scadea-la-7-iar-pragul-poate-creste-la-un-milion-de-lei" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/grupul-trans-oil-isi-restrange-prezenta-in-republica-moldova-pe-fundalul-extinderii-operatiunilor-din-romania-si-serbia" target="_blank">Doar 20% din profiturile Transoil sunt obţinute în Republica Moldova. România și Serbia sunt acum pilonii grupului</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/grupul-trans-oil-isi-restrange-prezenta-in-republica-moldova-pe-fundalul-extinderii-operatiunilor-din-romania-si-serbia" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/au-inceput-mai-tarziu-dar-au-terminat-mai-repede-lucrarile-de-constructie-la-statia-electrica-vulcanesti-au-fost-finalizate" target="_blank">Au început mai târziu, dar au terminat mai repede. Lucrările de construcție la Stația Electrică Vulcănești au fost finalizate</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/au-inceput-mai-tarziu-dar-au-terminat-mai-repede-lucrarile-de-constructie-la-statia-electrica-vulcanesti-au-fost-finalizate" target="_blank">Citește articolul →</a>
+  </div>
+</div>
+<div class="footer">
+  Raport generat automat zilnic &nbsp;·&nbsp; ARBI – Monitorizare Jurnalism Investigativ Moldova
+</div>
+</body>
+</html>
