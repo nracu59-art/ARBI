@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monitorizare Jurnalism Investigativ Moldova – 14.06.2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; color: #2c3e50; }
+  .header { background: #1b4332; color: #fff; padding: 28px 40px; }
+  .header h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: 0.5px; }
+  .header .subtitle { margin-top: 6px; font-size: 0.9rem; opacity: 0.85; }
+  .stats-bar { background: #2d6a4f; color: #fff; padding: 16px 40px;
+                display: flex; gap: 36px; flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; }
+  .stat .val { font-size: 1.8rem; font-weight: 700; }
+  .stat .lbl { font-size: 0.72rem; opacity: 0.82; text-transform: uppercase; letter-spacing: 0.8px; }
+  .cat-bar { background: #40916c; color: #fff; padding: 12px 40px;
+              display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .cat-chip { background: rgba(255,255,255,0.18); border-radius: 20px;
+               padding: 4px 14px; font-size: 0.78rem; font-weight: 600;
+               white-space: nowrap; }
+  .container { max-width: 1040px; margin: 30px auto; padding: 0 20px 40px; }
+  .section-title { font-size: 0.95rem; font-weight: 700; color: #1b4332;
+                    text-transform: uppercase; letter-spacing: 1px;
+                    margin: 28px 0 14px; border-bottom: 2px solid #1b4332;
+                    padding-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08);
+           padding: 18px 22px; margin-bottom: 14px; border-left: 5px solid #1b4332;
+           transition: box-shadow .15s; }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.13); }
+  .card.investigativ { border-left-color: #d62828; }
+  .card-title { font-size: 1rem; font-weight: 700; color: #1b4332; margin-bottom: 8px; }
+  .card-title a { color: inherit; text-decoration: none; }
+  .card-title a:hover { text-decoration: underline; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;
+           font-size: 0.8rem; color: #555; }
+  .badge { display: inline-block; font-size: 0.68rem; font-weight: 700;
+            padding: 2px 8px; border-radius: 12px; color: #fff;
+            margin-right: 4px; vertical-align: middle; }
+  .badge-inv { background: #d62828; }
+  .source-tag { background: #e8f4ec; color: #1b4332; border-radius: 4px;
+                 padding: 1px 8px; font-size: 0.75rem; font-weight: 600; }
+  .summary { font-size: 0.85rem; color: #444; line-height: 1.55; margin-top: 6px; }
+  .cat-tags { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .cat-tag { font-size: 0.72rem; padding: 2px 10px; border-radius: 10px;
+              font-weight: 600; background: #e8f4ec; color: #1b4332; }
+  .link-btn { display: inline-block; margin-top: 10px; padding: 5px 14px;
+               background: #1b4332; color: #fff; border-radius: 5px;
+               font-size: 0.78rem; text-decoration: none; font-weight: 600; }
+  .link-btn:hover { background: #2d6a4f; }
+  .empty-box { background: #fff; border-radius: 8px; padding: 30px 24px;
+                text-align: center; color: #7f8c8d; font-size: 0.95rem;
+                box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .source-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+  .source-box { background: #fff; border-radius: 8px; padding: 12px 18px;
+                 box-shadow: 0 2px 6px rgba(0,0,0,.07); min-width: 140px;
+                 border-top: 3px solid #1b4332; }
+  .source-box .sname { font-size: 0.78rem; font-weight: 700; color: #1b4332; }
+  .source-box .scount { font-size: 1.4rem; font-weight: 700; color: #2d6a4f; margin-top: 2px; }
+  .footer { text-align: center; font-size: 0.75rem; color: #999;
+             margin-top: 40px; padding-bottom: 20px; }
+  @media (max-width: 600px) {
+    .header, .stats-bar, .cat-bar { padding: 18px 16px; }
+    .stats-bar { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🔍 Monitorizare Jurnalism Investigativ – Moldova</h1>
+  <div class="subtitle">
+    Surse monitorizate: 8 &nbsp;|&nbsp;
+    Ultimele 26 ore &nbsp;|&nbsp;
+    Generat: 2026-06-14 09:38 UTC
+  </div>
+</div>
+<div class="stats-bar">
+  <div class="stat"><span class="val">32</span><span class="lbl">Articole noi</span></div>
+  <div class="stat"><span class="val">1</span><span class="lbl">Investigative</span></div>
+  <div class="stat"><span class="val">8</span><span class="lbl">Surse active</span></div>
+  <div class="stat"><span class="val">14.06.2026</span><span class="lbl">Data raportului</span></div>
+</div>
+<div class="cat-bar">
+  <span style="font-size:.8rem;opacity:.85;margin-right:4px">Categorii:</span>
+  <span class="cat-chip">⚖️ Justiție & Procurori (13)</span><span class="cat-chip">🏛️ Politică & Putere (10)</span><span class="cat-chip">📰 Media & Libertatea Presei (7)</span><span class="cat-chip">💼 Afaceri & Contracte Publice (2)</span><span class="cat-chip">🔐 Securitate & Intelligence (1)</span>
+</div>
+<div class="container">
+<div class="section-title">📊 Articole pe surse</div><div class="source-grid"><div class="source-box"><div class="sname">Ziarul de Gardă</div><div class="scount">10</div></div><div class="source-box"><div class="sname">Anticorupție.md</div><div class="scount">10</div></div><div class="source-box"><div class="sname">Mold-Street</div><div class="scount">7</div></div><div class="source-box"><div class="sname">Newsmaker.md</div><div class="scount">4</div></div><div class="source-box"><div class="sname">Agora.md</div><div class="scount">1</div></div></div>
+<div class="section-title">🔍 Articole Investigative (1)</div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/rss/latest.xml?lang=ro" target="_blank">De ultimă oră</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Săptămâna trecută am fost la Comrat, în Autonomia Găgăuză, unde Centrul de Investigații Jurnalistice a organizat o ediție a Clubului Jurnaliștilor de Investigație. Tema discuțiilor: blocajul electoral din regiune și viitorul autonomiei văzute prin ochii celor de la firul ierbii.
+
+Obiectivul nostru a fost să înțelegem ce soluții se conturează[...]</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/rss/latest.xml?lang=ro" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">⚖️ Justiție & Procurori (12)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-externe/nicusor-dan-acuzat-de-ilie-bolojan-ca-incearca-sa-divizeze-pnl-prin-desemnarea-noului-premier-un-act-ostil/" target="_blank">Nicușor Dan, acuzat de Ilie Bolojan că încearcă să divizeze PNL prin desemnarea noului premier: „Un act ostil”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.06.2026</span>
+    </div>
+    <div class='summary'>Fostul premier Ilie Bolojan, demis din funcție prin moțiunea de cenzură AUR-PSD, a declarat că nici el, nici conducerea PNL nu au fost informați de președinte despre intenția de a desemna un prim-ministru din partea PNL. Potrivit acestuia, decizia reprezintă un „act ostil, o evidentă încercare de rupere a PNL, intenție intuită încă de la...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-externe/nicusor-dan-acuzat-de-ilie-bolojan-ca-incearca-sa-divizeze-pnl-prin-desemnarea-noului-premier-un-act-ostil/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/ciprian-cucu-primarul-bucurestiului-se-alatura-criticilor-la-adresa-lui-nicusor-dan-au-stiut-inca-de-saptamana-acesta-nu-au-spus-nimic-au-conspirat/" target="_blank">Ciprian Cucu, primarul Bucureștiului, se alătură criticilor la adresa lui Nicușor Dan: „Au știut încă de săptămâna acesta, nu au spus nimic, au conspirat”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.06.2026</span>
+    </div>
+    <div class='summary'>Ciprian Cucu, primarul Bucureștiului, ales în decembrie 2025, și-a exprimat, la rândul său, nemulțumirea față de candidatul desemnat de președintele României, Nicușor Dan, pentru funcția de prim-ministru. „Complot. Trădare. Ingerință”, a scris edilul într-o postare publicată pe rețelele sociale. Astăzi, 14 iunie, Nicușor Dan a anunțat că europarlamentarul Eugen Tomac și-a depus mandatul în această…</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/ciprian-cucu-primarul-bucurestiului-se-alatura-criticilor-la-adresa-lui-nicusor-dan-au-stiut-inca-de-saptamana-acesta-nu-au-spus-nimic-au-conspirat/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/politic/neutralitate-si-aparare-are-sau-nu-nevoie-r-moldova-de-drone-interceptoare/" target="_blank">Neutralitate și apărare: are sau nu nevoie R. Moldova de drone interceptoare?</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.06.2026</span>
+    </div>
+    <div class='summary'>În contextul războiului declanșat de Rusia împotriva Ucrainei, R. Moldova s-a confruntat în ultimii ani cu riscuri și amenințări fără precedent. Până în prezent, circa 50 de drone străine au survolat sau au căzut pe teritoriul țării, unele dintre acestea fiind echipate cu încărcături explozive. Deși Guvernul a aprobat un proiect de lege care permite...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/politic/neutralitate-si-aparare-are-sau-nu-nevoie-r-moldova-de-drone-interceptoare/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/update-iranul-si-sua-vor-incheia-un-acord-de-pace-insa-teheranul-declara-ca-nu-va-semna-nicio-intelegere-in-urmatoarele-24-de-ore/" target="_blank">UPDATE/ Iranul și SUA vor încheia un acord de pace, însă Teheranul declară că nu va semna nicio înțelegere în următoarele 24 de ore</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 13.06.2026</span>
+    </div>
+    <div class='summary'>Statele Unite și Iranul au convenit asupra unui cadru pentru un acord de pace după mai bine de trei luni de război și se așteaptă să semneze acordul inițial în următoarele 24 de ore, a declarat sâmbătă, 13 iunie, prim-ministrul pakistanez Shehbaz Sharif, potrivit Reuters. UPDATE 18:00 Iranul a declarat sâmbătă că ar putea semna...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/update-iranul-si-sua-vor-incheia-un-acord-de-pace-insa-teheranul-declara-ca-nu-va-semna-nicio-intelegere-in-urmatoarele-24-de-ore/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/special/editorial-miza-reala-a-reformei-locale-patru-concepte-o-singura-concluzie" target="_blank">Editorial// Miza reală a reformei locale: patru concepte, o singură concluzie</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Editorial de Mădălin Necșuțu, jurnalist TVR Moldova, pentru Buletinul de politică externă al FES/APE</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/special/editorial-miza-reala-a-reformei-locale-patru-concepte-o-singura-concluzie" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/transparenta-si-dialogul-intre-autoritati-si-cetateni-dezarmeaza-dezinformarea" target="_blank">Transparența și dialogul între autorități și cetățeni – dezarmează dezinformarea</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dialogul continuu între autorități și cetățeni, împreună cu verificarea informațiilor din surse credibile sunt instrumente simple care pot stopa distribuirea și multiplicarea dezinformării în comunități, consideră participanții la Clubul Jurnaliștilor de Investigație cu tema „Dez…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/transparenta-si-dialogul-intre-autoritati-si-cetateni-dezarmeaza-dezinformarea" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/farsa-cu-urme-rusesti-viceprim-ministra-pentru-integrare-europeana-tentative-de-manipulare" target="_blank">Farsă cu urme rusești. Viceprim-ministra pentru Integrare Europeană: „Tentative de manipulare!”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Cu cât Republica Moldova avansează în parcursul său european, cu atât se intensifică și tentativele de manipulare ale Federației Ruse menite să compromită acest proces. Este reacția viceprim-ministrei pentru Integrare Europeană, Cristina Gherasimov, la discuția cu farsorii ruşi, …</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/farsa-cu-urme-rusesti-viceprim-ministra-pentru-integrare-europeana-tentative-de-manipulare" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/demisia-presedintelui-interimar-al-adunarii-populare-a-utag-legala-dar-paralizanta" target="_blank">Demisia președintelui interimar al Adunării Populare a UTAG: legală, dar paralizantă</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Plecarea din funcție a președintelui interimar al Adunării Populare a Găgăuziei (AP), Nicolai Ormanji, deși legală, duce la blocarea activității instituției, blocarea organizării alegerilor, dar la blocarea soluționării multor probleme social-economice în autonomie, consideră Igo…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/demisia-presedintelui-interimar-al-adunarii-populare-a-utag-legala-dar-paralizanta" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/liberalii-atentioneaza-asupra-capcanelor-rusesti-din-sanul-bisericii-mitropolia-moldovei-sa-rupa-relatiile-cu-patriarhia-rusa" target="_blank">Liberalii atenționează asupra capcanelor rusești din sânul bisericii: „Mitropolia Moldovei să rupă relațiile cu Patriarhia Rusă”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Partidul Liberal cere Parlamentului Republicii Moldova să oblige Mitropolia Moldovei să rupă definitiv legăturile cu Patriarhia Rusă. În caz contrar, aceasta să fie scoasă în afara legii, propun liberalii.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/liberalii-atentioneaza-asupra-capcanelor-rusesti-din-sanul-bisericii-mitropolia-moldovei-sa-rupa-relatiile-cu-patriarhia-rusa" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🏛️ Politică & Putere (10)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-externe/nicusor-dan-acuzat-de-ilie-bolojan-ca-incearca-sa-divizeze-pnl-prin-desemnarea-noului-premier-un-act-ostil/" target="_blank">Nicușor Dan, acuzat de Ilie Bolojan că încearcă să divizeze PNL prin desemnarea noului premier: „Un act ostil”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.06.2026</span>
+    </div>
+    <div class='summary'>Fostul premier Ilie Bolojan, demis din funcție prin moțiunea de cenzură AUR-PSD, a declarat că nici el, nici conducerea PNL nu au fost informați de președinte despre intenția de a desemna un prim-ministru din partea PNL. Potrivit acestuia, decizia reprezintă un „act ostil, o evidentă încercare de rupere a PNL, intenție intuită încă de la...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-externe/nicusor-dan-acuzat-de-ilie-bolojan-ca-incearca-sa-divizeze-pnl-prin-desemnarea-noului-premier-un-act-ostil/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/ciprian-cucu-primarul-bucurestiului-se-alatura-criticilor-la-adresa-lui-nicusor-dan-au-stiut-inca-de-saptamana-acesta-nu-au-spus-nimic-au-conspirat/" target="_blank">Ciprian Cucu, primarul Bucureștiului, se alătură criticilor la adresa lui Nicușor Dan: „Au știut încă de săptămâna acesta, nu au spus nimic, au conspirat”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.06.2026</span>
+    </div>
+    <div class='summary'>Ciprian Cucu, primarul Bucureștiului, ales în decembrie 2025, și-a exprimat, la rândul său, nemulțumirea față de candidatul desemnat de președintele României, Nicușor Dan, pentru funcția de prim-ministru. „Complot. Trădare. Ingerință”, a scris edilul într-o postare publicată pe rețelele sociale. Astăzi, 14 iunie, Nicușor Dan a anunțat că europarlamentarul Eugen Tomac și-a depus mandatul în această…</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/ciprian-cucu-primarul-bucurestiului-se-alatura-criticilor-la-adresa-lui-nicusor-dan-au-stiut-inca-de-saptamana-acesta-nu-au-spus-nimic-au-conspirat/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-externe/update-eugen-tomac-si-a-depus-mandatul-cine-este-noul-candidat-pentru-functia-de-premier-desemnat-de-nicusor-dan/" target="_blank">UPDATE/ Eugen Tomac și-a depus mandatul. Cine este noul candidat pentru funcția de premier, desemnat de Nicușor Dan?</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.06.2026</span>
+    </div>
+    <div class='summary'>UPDATE 10:09 Fostul premier Ilie Bolojan, demis din funcție prin moțiunea de cenzură AUR-PSD, a afirmat că „conducerea PNL și nici eu, personal, nu am fost informați anterior de președinte în privința acestei decizii”. Potrivit lui, este un „act ostil, o evidentă încercare de rupere a PNL, intenție intuită încă de la doborârea guvernului în...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-externe/update-eugen-tomac-si-a-depus-mandatul-cine-este-noul-candidat-pentru-functia-de-premier-desemnat-de-nicusor-dan/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/politic/neutralitate-si-aparare-are-sau-nu-nevoie-r-moldova-de-drone-interceptoare/" target="_blank">Neutralitate și apărare: are sau nu nevoie R. Moldova de drone interceptoare?</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.06.2026</span>
+    </div>
+    <div class='summary'>În contextul războiului declanșat de Rusia împotriva Ucrainei, R. Moldova s-a confruntat în ultimii ani cu riscuri și amenințări fără precedent. Până în prezent, circa 50 de drone străine au survolat sau au căzut pe teritoriul țării, unele dintre acestea fiind echipate cu încărcături explozive. Deși Guvernul a aprobat un proiect de lege care permite...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/politic/neutralitate-si-aparare-are-sau-nu-nevoie-r-moldova-de-drone-interceptoare/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/update-iranul-si-sua-vor-incheia-un-acord-de-pace-insa-teheranul-declara-ca-nu-va-semna-nicio-intelegere-in-urmatoarele-24-de-ore/" target="_blank">UPDATE/ Iranul și SUA vor încheia un acord de pace, însă Teheranul declară că nu va semna nicio înțelegere în următoarele 24 de ore</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 13.06.2026</span>
+    </div>
+    <div class='summary'>Statele Unite și Iranul au convenit asupra unui cadru pentru un acord de pace după mai bine de trei luni de război și se așteaptă să semneze acordul inițial în următoarele 24 de ore, a declarat sâmbătă, 13 iunie, prim-ministrul pakistanez Shehbaz Sharif, potrivit Reuters. UPDATE 18:00 Iranul a declarat sâmbătă că ar putea semna...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/update-iranul-si-sua-vor-incheia-un-acord-de-pace-insa-teheranul-declara-ca-nu-va-semna-nicio-intelegere-in-urmatoarele-24-de-ore/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-externe/trump-acordul-dintre-sua-si-iran-va-fi-semnat-astazi-iar-stramtoarea-ormuz-va-fi-deschisa-tuturor-teheranul-exprima-insa-rezerve-privind-termenul/" target="_blank">Trump: acordul dintre SUA și Iran va fi semnat astăzi, iar Strâmtoarea Ormuz va fi „deschisă tuturor”. Teheranul exprimă însă rezerve privind termenul</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.06.2026</span>
+    </div>
+    <div class='summary'>Președintele Statelor Unite ale Americii (SUA), Donald Trump, a declarat că un acord pentru încetarea confruntărilor dintre Statele Unite și Iran urmează să fie semnat duminică, 14 iunie. Teheranul, însă, a pus sub semnul întrebării calendarul anunțat. Într-o postare pe rețelele de socializare, Trump a afirmat că Strâmtoarea Ormuz, una dintre cele mai importante rute...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-externe/trump-acordul-dintre-sua-si-iran-va-fi-semnat-astazi-iar-stramtoarea-ormuz-va-fi-deschisa-tuturor-teheranul-exprima-insa-rezerve-privind-termenul/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/demisia-presedintelui-interimar-al-adunarii-populare-a-utag-legala-dar-paralizanta" target="_blank">Demisia președintelui interimar al Adunării Populare a UTAG: legală, dar paralizantă</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Plecarea din funcție a președintelui interimar al Adunării Populare a Găgăuziei (AP), Nicolai Ormanji, deși legală, duce la blocarea activității instituției, blocarea organizării alegerilor, dar la blocarea soluționării multor probleme social-economice în autonomie, consideră Igo…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/demisia-presedintelui-interimar-al-adunarii-populare-a-utag-legala-dar-paralizanta" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/premiera-in-sectorul-energetic-moldelectrica-a-activat-servicii-de-echilibrare-a-sistemului-furnizate-de-centrale-fotovoltaice-cu-sisteme-de-stocare" target="_blank">Premieră în sectorul energetic. Moldelectrica a activat servicii de echilibrare a sistemului furnizate de centrale fotovoltaice cu sisteme de stocare</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/premiera-in-sectorul-energetic-moldelectrica-a-activat-servicii-de-echilibrare-a-sistemului-furnizate-de-centrale-fotovoltaice-cu-sisteme-de-stocare" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/interviuri/diana-chiriac-modelul-de-reforma-apl-propus-de-guvern" target="_blank">Diana Chiriac: Modelul de reformă APL propus de Guvern</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Inverviu acordat pentru Buletinul de politică externă al FES/APE</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/interviuri/diana-chiriac-modelul-de-reforma-apl-propus-de-guvern" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/factura-politiei-din-aprilie-2009-ex-deputata-valentina-cusnir-despagubiri-de-aproape-10-mii-de-euro" target="_blank">„Factura” poliției din aprilie 2009// Ex-deputata Valentina Cușnir, despăgubiri de aproape 10 mii de euro</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Ex-deputata Valentina Cușnir obține câștig de cauză la C(t)EDO, la peste 17 ani de la evenimentele din aprilie 2009. Conform deciziei, statul urmează să-i achite 9.500 de euro, pe motiv că reclamanta „nu a fost implicată în mod corespunzător în procedurile judiciare, iar o serie …</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/factura-politiei-din-aprilie-2009-ex-deputata-valentina-cusnir-despagubiri-de-aproape-10-mii-de-euro" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📰 Media & Libertatea Presei (6)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-externe/nicusor-dan-acuzat-de-ilie-bolojan-ca-incearca-sa-divizeze-pnl-prin-desemnarea-noului-premier-un-act-ostil/" target="_blank">Nicușor Dan, acuzat de Ilie Bolojan că încearcă să divizeze PNL prin desemnarea noului premier: „Un act ostil”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.06.2026</span>
+    </div>
+    <div class='summary'>Fostul premier Ilie Bolojan, demis din funcție prin moțiunea de cenzură AUR-PSD, a declarat că nici el, nici conducerea PNL nu au fost informați de președinte despre intenția de a desemna un prim-ministru din partea PNL. Potrivit acestuia, decizia reprezintă un „act ostil, o evidentă încercare de rupere a PNL, intenție intuită încă de la...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-externe/nicusor-dan-acuzat-de-ilie-bolojan-ca-incearca-sa-divizeze-pnl-prin-desemnarea-noului-premier-un-act-ostil/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-externe/update-eugen-tomac-si-a-depus-mandatul-cine-este-noul-candidat-pentru-functia-de-premier-desemnat-de-nicusor-dan/" target="_blank">UPDATE/ Eugen Tomac și-a depus mandatul. Cine este noul candidat pentru funcția de premier, desemnat de Nicușor Dan?</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.06.2026</span>
+    </div>
+    <div class='summary'>UPDATE 10:09 Fostul premier Ilie Bolojan, demis din funcție prin moțiunea de cenzură AUR-PSD, a afirmat că „conducerea PNL și nici eu, personal, nu am fost informați anterior de președinte în privința acestei decizii”. Potrivit lui, este un „act ostil, o evidentă încercare de rupere a PNL, intenție intuită încă de la doborârea guvernului în...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-externe/update-eugen-tomac-si-a-depus-mandatul-cine-este-noul-candidat-pentru-functia-de-premier-desemnat-de-nicusor-dan/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/special/editorial-miza-reala-a-reformei-locale-patru-concepte-o-singura-concluzie" target="_blank">Editorial// Miza reală a reformei locale: patru concepte, o singură concluzie</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Editorial de Mădălin Necșuțu, jurnalist TVR Moldova, pentru Buletinul de politică externă al FES/APE</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/special/editorial-miza-reala-a-reformei-locale-patru-concepte-o-singura-concluzie" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/transparenta-si-dialogul-intre-autoritati-si-cetateni-dezarmeaza-dezinformarea" target="_blank">Transparența și dialogul între autorități și cetățeni – dezarmează dezinformarea</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dialogul continuu între autorități și cetățeni, împreună cu verificarea informațiilor din surse credibile sunt instrumente simple care pot stopa distribuirea și multiplicarea dezinformării în comunități, consideră participanții la Clubul Jurnaliștilor de Investigație cu tema „Dez…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/transparenta-si-dialogul-intre-autoritati-si-cetateni-dezarmeaza-dezinformarea" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/farsa-cu-urme-rusesti-viceprim-ministra-pentru-integrare-europeana-tentative-de-manipulare" target="_blank">Farsă cu urme rusești. Viceprim-ministra pentru Integrare Europeană: „Tentative de manipulare!”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Cu cât Republica Moldova avansează în parcursul său european, cu atât se intensifică și tentativele de manipulare ale Federației Ruse menite să compromită acest proces. Este reacția viceprim-ministrei pentru Integrare Europeană, Cristina Gherasimov, la discuția cu farsorii ruşi, …</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/farsa-cu-urme-rusesti-viceprim-ministra-pentru-integrare-europeana-tentative-de-manipulare" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">💼 Afaceri & Contracte Publice (2)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-economice/uniunea-agentiilor-imobiliare-avertizeaza-noile-modificari-fiscale-propuse-pentru-2027-pot-scumpi-locuintele-si-bloca-tranzactiile/" target="_blank">Uniunea Agențiilor Imobiliare avertizează: noile modificări fiscale propuse pentru 2027 pot „scumpi locuințele și bloca tranzacțiile”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.06.2026</span>
+    </div>
+    <div class='summary'>Uniunea Agențiilor Imobiliare și-a exprimat îngrijorarea față de unele modificări propuse în proiectul politicii fiscale pentru anul 2027. Potrivit Uniunii, aceste modificări „pot afecta direct oamenii care vând, cumpără sau închiriază o locuință”. „Într-o perioadă în care accesul la locuințe este deja tot mai dificil, aceste schimbări pot crea presiune suplimentară asupra cetățenilor și pot...</div>
+    <div class='cat-tags'><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-economice/uniunea-agentiilor-imobiliare-avertizeaza-noile-modificari-fiscale-propuse-pentru-2027-pot-scumpi-locuintele-si-bloca-tranzactiile/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/agentii-imobiliari-se-arata-ingrijorati-de-unele-prevederi-din-proiectul-de-politica-fiscala-pentru-2027" target="_blank">Agenţii imobiliari se arată îngrijoraţi de unele prevederi din proiectul de politică fiscală pentru 2027</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/agentii-imobiliari-se-arata-ingrijorati-de-unele-prevederi-din-proiectul-de-politica-fiscala-pentru-2027" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🔐 Securitate & Intelligence (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/premiera-in-sectorul-energetic-moldelectrica-a-activat-servicii-de-echilibrare-a-sistemului-furnizate-de-centrale-fotovoltaice-cu-sisteme-de-stocare" target="_blank">Premieră în sectorul energetic. Moldelectrica a activat servicii de echilibrare a sistemului furnizate de centrale fotovoltaice cu sisteme de stocare</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/premiera-in-sectorul-energetic-moldelectrica-a-activat-servicii-de-echilibrare-a-sistemului-furnizate-de-centrale-fotovoltaice-cu-sisteme-de-stocare" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📌 Alte articole (12)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/reporter-special/oameni/oameni-cu-stefan-andronic-corurile-de-copii-invatau-sa-cante-ceea-ce-era-interzis-sa-se-vorbeasca/" target="_blank">Oameni/ Cu Ștefan Andronic, corurile de copii învățau să cânte ceea ce era interzis să se vorbească</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.06.2026</span>
+    </div>
+    <div class='summary'>Vine din regiunea Cernăuți, dintr-o familie în care limba română era apărată chiar și cu riscul represiunilor. A făcut muzică adevărată și atunci când repertoriul românesc trebuia ascuns de ochii lumii. A lucrat cu sute de copii, a creat coruri și clase corale. Astăzi spune că fără dragoste pentru copii educația nu poate fi adevărată....</div>
+    
+    <a class="link-btn" href="https://www.zdg.md/reporter-special/oameni/oameni-cu-stefan-andronic-corurile-de-copii-invatau-sa-cante-ceea-ce-era-interzis-sa-se-vorbeasca/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-externe/live-text-ucraina-a-lovit-o-uzina-chimica-si-un-depozit-petrolier-din-rusia-in-atacuri-nocturne-razboi-in-ucraina-ziua-1572/" target="_blank">LIVE TEXT/ Ucraina a lovit o uzină chimică și un depozit petrolier din Rusia în atacuri nocturne. Război în Ucraina, ziua 1572</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.06.2026</span>
+    </div>
+    <div class='summary'>UPDATE 10:05 Ucraina a lovit în noaptea de 14 iunie o uzină chimică din regiunea rusă Tula, un depozit petrolier din regiunea Iaroslavl și alte ținte, transmite The Kyiv Independent. Uzina chimică Azot din orașul Novomoskovsk, regiunea Tula, a fost cuprinsă de flăcări în urma atacurilor. Novomoskovsk se află la aproximativ 395 de kilometri de...</div>
+    
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-externe/live-text-ucraina-a-lovit-o-uzina-chimica-si-un-depozit-petrolier-din-rusia-in-atacuri-nocturne-razboi-in-ucraina-ziua-1572/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/vreme-calda-duminica-temperatura-maxima-va-fi-de-27-de-grade-celsius/" target="_blank">Vreme caldă duminică: Temperatura maximă va fi de +27 de grade Celsius</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.06.2026</span>
+    </div>
+    <div class='summary'>Vremea continuă cu valori pozitive. Pentru ziua de duminică, 13 iunie, meteorologii prognozează maxime de până la 27 de grade Celsius, iar în sudul țării este prognozat cer noros. Potrivit datelor publicate de Autoritatea de Meteorologie și Monitoring de Mediu (AMM), în centrul R. Moldova temperaturile vor urca până la 25 de grade Celsius, cerul...</div>
+    
+    <a class="link-btn" href="https://www.zdg.md/stiri/vreme-calda-duminica-temperatura-maxima-va-fi-de-27-de-grade-celsius/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/video-audit-la-ministerul-culturii-curtea-de-conturi-a-emis-o-opinie-contrara" target="_blank">VIDEO// Audit la Ministerul Culturii: Curtea de Conturi a emis o opinie contrară</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Curtea de Conturi a Republicii Moldova (CCRM) a publicat Raportul de audit asupra rapoartelor financiare consolidate ale Ministerului Culturii încheiate la 31 decembrie 2025 .În urma auditului, Curtea de Conturi a emis o opinie contrară, determinată de „denaturări semnificative i…</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/video-audit-la-ministerul-culturii-curtea-de-conturi-a-emis-o-opinie-contrara" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/dosare-de-coruptie/ion-ceban-pierde-litigiul-impotriva-ministrei-de-externe-a-romaniei-oana-toiu-prima-declaratie-a-edilului" target="_blank">Ion Ceban pierde litigiul împotriva ministrei de Externe a României, Oana Țoiu. Prima declarație a edilului</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Edilul de Chișinău, Ion Ceban, spune că a luat act de decizia primei instanțe din România în procesul contra ministrei de Externe din România, dar o va contesta în instanța ierarhic superioară. Anunțul edilului vine duoă ce Judecătoria Sectorului 1 București a respins în primă in…</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/dosare-de-coruptie/ion-ceban-pierde-litigiul-impotriva-ministrei-de-externe-a-romaniei-oana-toiu-prima-declaratie-a-edilului" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/nikushor-dan-eugen-tomak-slojil-mandat-adrian-veshtya-novyi-naznachennyi-premer-ministr" target="_blank">Никушор Дан: Еуджен Томак сложил мандат, Адриан Вештя — новый назначенный премьер-министр</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/nikushor-dan-eugen-tomak-slojil-mandat-adrian-veshtya-novyi-naznachennyi-premer-ministr" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/dojdi-i-do-27c-prognoz-pogody-v-moldove-na-voskresene" target="_blank">Дожди и до +27°C: Прогноз погоды в Молдове на воскресенье</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/dojdi-i-do-27c-prognoz-pogody-v-moldove-na-voskresene" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/zadaniya-byli-ochen-vysokoi-slojnosti-v-moldove-zapustili-peticziyu-i-trebuyut-annulirovat-ekzamen-po-matematike-reakcziya-minobrazovaniya" target="_blank">«Задания были очень высокой сложности». В Молдове запустили петицию и требуют аннулировать экзамен по математике. Реакция минобразования</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/zadaniya-byli-ochen-vysokoi-slojnosti-v-moldove-zapustili-peticziyu-i-trebuyut-annulirovat-ekzamen-po-matematike-reakcziya-minobrazovaniya" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/prima-intreprindere-de-stat-scoasa-la-privatizare-dupa-o-pauza-de-cinci-ani" target="_blank">simbol</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/prima-intreprindere-de-stat-scoasa-la-privatizare-dupa-o-pauza-de-cinci-ani" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/tranzactie-pe-piata-sucurilor-din-republica-moldova" target="_blank">Tranzacție pe piața sucurilor din Republica Moldova</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/tranzactie-pe-piata-sucurilor-din-republica-moldova" target="_blank">Citește articolul →</a>
+  </div>
+</div>
+<div class="footer">
+  Raport generat automat zilnic &nbsp;·&nbsp; ARBI – Monitorizare Jurnalism Investigativ Moldova
+</div>
+</body>
+</html>
