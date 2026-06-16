@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monitorizare Jurnalism Investigativ Moldova – 16.06.2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; color: #2c3e50; }
+  .header { background: #1b4332; color: #fff; padding: 28px 40px; }
+  .header h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: 0.5px; }
+  .header .subtitle { margin-top: 6px; font-size: 0.9rem; opacity: 0.85; }
+  .stats-bar { background: #2d6a4f; color: #fff; padding: 16px 40px;
+                display: flex; gap: 36px; flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; }
+  .stat .val { font-size: 1.8rem; font-weight: 700; }
+  .stat .lbl { font-size: 0.72rem; opacity: 0.82; text-transform: uppercase; letter-spacing: 0.8px; }
+  .cat-bar { background: #40916c; color: #fff; padding: 12px 40px;
+              display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .cat-chip { background: rgba(255,255,255,0.18); border-radius: 20px;
+               padding: 4px 14px; font-size: 0.78rem; font-weight: 600;
+               white-space: nowrap; }
+  .container { max-width: 1040px; margin: 30px auto; padding: 0 20px 40px; }
+  .section-title { font-size: 0.95rem; font-weight: 700; color: #1b4332;
+                    text-transform: uppercase; letter-spacing: 1px;
+                    margin: 28px 0 14px; border-bottom: 2px solid #1b4332;
+                    padding-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08);
+           padding: 18px 22px; margin-bottom: 14px; border-left: 5px solid #1b4332;
+           transition: box-shadow .15s; }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.13); }
+  .card.investigativ { border-left-color: #d62828; }
+  .card-title { font-size: 1rem; font-weight: 700; color: #1b4332; margin-bottom: 8px; }
+  .card-title a { color: inherit; text-decoration: none; }
+  .card-title a:hover { text-decoration: underline; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;
+           font-size: 0.8rem; color: #555; }
+  .badge { display: inline-block; font-size: 0.68rem; font-weight: 700;
+            padding: 2px 8px; border-radius: 12px; color: #fff;
+            margin-right: 4px; vertical-align: middle; }
+  .badge-inv { background: #d62828; }
+  .source-tag { background: #e8f4ec; color: #1b4332; border-radius: 4px;
+                 padding: 1px 8px; font-size: 0.75rem; font-weight: 600; }
+  .summary { font-size: 0.85rem; color: #444; line-height: 1.55; margin-top: 6px; }
+  .cat-tags { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .cat-tag { font-size: 0.72rem; padding: 2px 10px; border-radius: 10px;
+              font-weight: 600; background: #e8f4ec; color: #1b4332; }
+  .link-btn { display: inline-block; margin-top: 10px; padding: 5px 14px;
+               background: #1b4332; color: #fff; border-radius: 5px;
+               font-size: 0.78rem; text-decoration: none; font-weight: 600; }
+  .link-btn:hover { background: #2d6a4f; }
+  .empty-box { background: #fff; border-radius: 8px; padding: 30px 24px;
+                text-align: center; color: #7f8c8d; font-size: 0.95rem;
+                box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .source-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+  .source-box { background: #fff; border-radius: 8px; padding: 12px 18px;
+                 box-shadow: 0 2px 6px rgba(0,0,0,.07); min-width: 140px;
+                 border-top: 3px solid #1b4332; }
+  .source-box .sname { font-size: 0.78rem; font-weight: 700; color: #1b4332; }
+  .source-box .scount { font-size: 1.4rem; font-weight: 700; color: #2d6a4f; margin-top: 2px; }
+  .footer { text-align: center; font-size: 0.75rem; color: #999;
+             margin-top: 40px; padding-bottom: 20px; }
+  @media (max-width: 600px) {
+    .header, .stats-bar, .cat-bar { padding: 18px 16px; }
+    .stats-bar { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🔍 Monitorizare Jurnalism Investigativ – Moldova</h1>
+  <div class="subtitle">
+    Surse monitorizate: 8 &nbsp;|&nbsp;
+    Ultimele 26 ore &nbsp;|&nbsp;
+    Generat: 2026-06-16 11:14 UTC
+  </div>
+</div>
+<div class="stats-bar">
+  <div class="stat"><span class="val">33</span><span class="lbl">Articole noi</span></div>
+  <div class="stat"><span class="val">2</span><span class="lbl">Investigative</span></div>
+  <div class="stat"><span class="val">8</span><span class="lbl">Surse active</span></div>
+  <div class="stat"><span class="val">16.06.2026</span><span class="lbl">Data raportului</span></div>
+</div>
+<div class="cat-bar">
+  <span style="font-size:.8rem;opacity:.85;margin-right:4px">Categorii:</span>
+  <span class="cat-chip">⚖️ Justiție & Procurori (14)</span><span class="cat-chip">🏛️ Politică & Putere (8)</span><span class="cat-chip">📰 Media & Libertatea Presei (3)</span><span class="cat-chip">👥 Social & Drepturile Omului (2)</span><span class="cat-chip">💰 Corupție (1)</span><span class="cat-chip">💼 Afaceri & Contracte Publice (1)</span>
+</div>
+<div class="container">
+<div class="section-title">📊 Articole pe surse</div><div class="source-grid"><div class="source-box"><div class="sname">Ziarul de Gardă</div><div class="scount">10</div></div><div class="source-box"><div class="sname">Anticorupție.md</div><div class="scount">10</div></div><div class="source-box"><div class="sname">Mold-Street</div><div class="scount">7</div></div><div class="source-box"><div class="sname">Newsmaker.md</div><div class="scount">4</div></div><div class="source-box"><div class="sname">RISE Moldova</div><div class="scount">1</div></div><div class="source-box"><div class="sname">Agora.md</div><div class="scount">1</div></div></div>
+<div class="section-title">🔍 Articole Investigative (2)</div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/rss/latest.xml?lang=ro" target="_blank">De ultimă oră</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Săptămâna trecută am fost la Comrat, în Autonomia Găgăuză, unde Centrul de Investigații Jurnalistice a organizat o ediție a Clubului Jurnaliștilor de Investigație. Tema discuțiilor: blocajul electoral din regiune și viitorul autonomiei văzute prin ochii celor de la firul ierbii.
+
+Obiectivul nostru a fost să înțelegem ce soluții se conturează[...]</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/rss/latest.xml?lang=ro" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/o-femeie-din-ribnita-victima-escrocilor-in-urma-unei-scheme-investitionale-prejudiciul-depaseste-500-de-mii-de-lei/" target="_blank">O femeie din Rîbnița, victima escrocilor în urma unei scheme investiționale: Prejudiciul depășește 500 de mii de lei</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 16.06.2026</span>
+    </div>
+    <div class='summary'>În ultimele 24 de ore, Poliția a înregistrat 22 de sesizări privind fraude telefonice. Dintre acestea, 13 cazuri s-au soldat cu pierderi materiale, prejudiciul total depășind 1 milion de lei. Două dintre fraude au fost comise în cursul zilei de ieri, iar celelalte au avut loc anterior, fiind raportate ulterior de victime, informează Inspectoratul General...</div>
+    <div class='cat-tags'><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/o-femeie-din-ribnita-victima-escrocilor-in-urma-unei-scheme-investitionale-prejudiciul-depaseste-500-de-mii-de-lei/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">⚖️ Justiție & Procurori (13)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/cosnita-curata-cere-stoparea-carierei-cosnita-ii-exploatarea-a-inceput-inaintea-referendumului-si-in-plin-litigiu-judiciar-administratorul-companiei-care-gestione/" target="_blank">„Coșnița curată” cere stoparea carierei „Coșnița II”: exploatarea a început înaintea referendumului și în plin litigiu judiciar. Administratorul companiei care gestionează cariera acuză manipulare și hărțuire</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 16.06.2026</span>
+    </div>
+    <div class='summary'>Deși activitatea carierei de nisip și pietriș „Coșnița II” este contestată în instanța de judecată, iar duminică, 21 iunie, la Coșnița urmează să se desfășoare un referendum, inițiat de comunitatea locală, privind legalitatea actelor ce permit exploatarea unei noi cariere la o distanță mică de casele oamenilor, acum câteva zile, compania „Bond-Cons” SRL a început...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/cosnita-curata-cere-stoparea-carierei-cosnita-ii-exploatarea-a-inceput-inaintea-referendumului-si-in-plin-litigiu-judiciar-administratorul-companiei-care-gestione/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/un-expert-in-inspectia-tehnica-auto-din-vulcanesti-banuit-de-prejudicierea-statului-cu-peste-600-de-mii-de-lei-a-fost-retinut-de-cna-pentru-72-de-ore/" target="_blank">Un expert în inspecția tehnică auto din Vulcănești, bănuit de prejudicierea statului cu peste 600 de mii de lei, a fost reținut de CNA pentru 72 de ore</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 16.06.2026</span>
+    </div>
+    <div class='summary'>Un expert în inspecția tehnică periodică a autovehiculelor a fost reținut de Centrul Național Anticorupție (CNA) și procurorii municipiului Cahul, marți, 16 iunie. Acesta este suspectat că și-ar fi însușit ilegal sume achitate de proprietarii mașinilor pentru taxa de folosire a drumurilor, prejudiciul estimat depășind 600 de mii de lei, potrivit unui comunicat al CNA....</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/un-expert-in-inspectia-tehnica-auto-din-vulcanesti-banuit-de-prejudicierea-statului-cu-peste-600-de-mii-de-lei-a-fost-retinut-de-cna-pentru-72-de-ore/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/16-ani-de-inchisoare-pentru-tanarul-de-23-de-ani-care-si-a-ucis-mama-in-urma-unui-conflict/" target="_blank">16 ani de închisoare pentru tânărul de 23 de ani care și-a ucis mama în urma unui conflict</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 16.06.2026</span>
+    </div>
+    <div class='summary'>Tânărul de 23 de ani, care și-a omorât intenționat mama a fost condamnat la 16 ani de închisoare într-un penitenciar de tip închis, anunță marți, 16 iunie, Procuratura Generală (PG). Victima, mama inculpatului, era profesoară la clasele primare. Potrivit informațiilor, faptă a fost comisă în noaptea de 17 iulie 2025, la domiciliul acestorai. „Între inculpat și victimă...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/16-ani-de-inchisoare-pentru-tanarul-de-23-de-ani-care-si-a-ucis-mama-in-urma-unui-conflict/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/va-dura-saptamani-pana-se-va-relua-tranzitul-prin-stramtoarea-ormuz-declara-cel-mai-mare-operator-de-petroliere-pentru-ft/" target="_blank">Va dura „săptămâni” până se va relua tranzitul prin Strâmtoarea Ormuz, declară cel mai mare operator de petroliere pentru FT</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 16.06.2026</span>
+    </div>
+    <div class='summary'>Armatorii de nave nu vor relua tranzitul prin Strâmtoarea Ormuz timp de câteva săptămâni, până când nu vor fi încrezători că acordul SUA-Iran este „semnificativ”, a declarat directorul executiv al companiei japoneze Mitsui O.S.K. Lines, într-un interviu publicat marți, 16 iunie, pentru Financial Times, citat de Reuters. Războiul din Iran, care a început pe 28...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/va-dura-saptamani-pana-se-va-relua-tranzitul-prin-stramtoarea-ormuz-declara-cel-mai-mare-operator-de-petroliere-pentru-ft/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/politic/deschiderea-oficiala-a-negocierilor-de-aderare-la-ue-care-sunt-cele-mai-dificile-capitole-si-ce-urmeaza/" target="_blank">Deschiderea oficială a negocierilor de aderare la UE: care sunt cele mai dificile capitole și ce urmează?</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 16.06.2026</span>
+    </div>
+    <div class='summary'>La aproape patru ani după ce R. Moldova a obținut statutul de țară candidată la UE în iunie 2022, luni, 15 iunie, a fost deschis oficial primul cluster de negocieri – „Valori fundamentale”, după ce toate cele 27 de state membre au adoptat în unanimitate poziția comună de negociere. Deschiderea Clusterului 1 marchează o nouă...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/politic/deschiderea-oficiala-a-negocierilor-de-aderare-la-ue-care-sunt-cele-mai-dificile-capitole-si-ce-urmeaza/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/interviuri/modelul-de-reforma-apl-propus-de-presedintele-partidului-congresul-civic-mark-tkaciuk" target="_blank">Modelul de reforma APL propus de președintele Partidului Congresul Civic, Mark Tkaciuk</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Interviu acordat pentru Buletinul de politică externă al FES/APE</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/interviuri/modelul-de-reforma-apl-propus-de-presedintele-partidului-congresul-civic-mark-tkaciuk" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/live-text-zelenski-si-trump-s-au-intalnit-in-culisele-summitului-g7-in-timp-ce-ucraina-promoveaza-negocierile-de-pace-razboi-in-ucraina-ziua-1574/" target="_blank">LIVE TEXT/ Zelenski și Trump s-au întâlnit în culisele summitului G7, în timp ce Ucraina promovează negocierile de pace. Război în Ucraina, ziua 1574</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 16.06.2026</span>
+    </div>
+    <div class='summary'>UPDATE 13:50 Președintele Ucrainei, Volodimir Zelenski s-a întâlnit cu președintele american Donald Trump și cu președintele francez Emmanuel Macron în marja summitului G7 din Franța, pe 16 iunie, potrivit Kyiv Independent. Momentul a marcat prima întâlnire dintre Zelenski și Trump în aproape patru luni și a durat aproximativ 30 de minute, în timp ce Kievul...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/live-text-zelenski-si-trump-s-au-intalnit-in-culisele-summitului-g7-in-timp-ce-ucraina-promoveaza-negocierile-de-pace-razboi-in-ucraina-ziua-1574/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/un-mare-depozit-de-carburanti-din-sudul-rusiei-este-in-flacari-autoritatile-au-inchis-drumul-care-il-lega-de-crimeea/" target="_blank">Un mare depozit de carburanți din sudul Rusiei este în flăcări. Autoritățile au închis drumul care îl lega de Crimeea</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 16.06.2026</span>
+    </div>
+    <div class='summary'>În dimineața zilei de 16 iunie, drone ucrainene au lansat un atac masiv asupra Moscovei. Ținta dronelor a fost rafinăria de petrol din Moscova, a declarat primarul capitalei, Serghei Sobianin, scrie Reuters. Potrivit acestuia, una dintre drone a avariat o „instalație” de pe teritoriul rafinăriei. Nu s-au înregistrat victime. Volodimir Zelenski a transmis un mesaj...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/un-mare-depozit-de-carburanti-din-sudul-rusiei-este-in-flacari-autoritatile-au-inchis-drumul-care-il-lega-de-crimeea/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/advertoriale/remote-hibrid-sau-oficiu-ce-format-de-munca-prefera-candidatii-experiment-rabota-md/" target="_blank">Remote, hibrid sau oficiu: ce format de muncă preferă candidații? Experiment Rabota.md</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 16.06.2026</span>
+    </div>
+    <div class='summary'>În timpul pandemiei, piața muncii a trecut printr-o creștere rapidă a muncii la distanță, urmată de popularizarea formatului hibrid, care combină prezența la biroul și lucrul de acasă. Însă în ultimii ani tendința globală s-a inversat: companiile cer tot mai des de la angajații remote să se prezinte la oficiu câteva zile pe săptămână, iar...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/advertoriale/remote-hibrid-sau-oficiu-ce-format-de-munca-prefera-candidatii-experiment-rabota-md/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🏛️ Politică & Putere (8)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/cosnita-curata-cere-stoparea-carierei-cosnita-ii-exploatarea-a-inceput-inaintea-referendumului-si-in-plin-litigiu-judiciar-administratorul-companiei-care-gestione/" target="_blank">„Coșnița curată” cere stoparea carierei „Coșnița II”: exploatarea a început înaintea referendumului și în plin litigiu judiciar. Administratorul companiei care gestionează cariera acuză manipulare și hărțuire</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 16.06.2026</span>
+    </div>
+    <div class='summary'>Deși activitatea carierei de nisip și pietriș „Coșnița II” este contestată în instanța de judecată, iar duminică, 21 iunie, la Coșnița urmează să se desfășoare un referendum, inițiat de comunitatea locală, privind legalitatea actelor ce permit exploatarea unei noi cariere la o distanță mică de casele oamenilor, acum câteva zile, compania „Bond-Cons” SRL a început...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/cosnita-curata-cere-stoparea-carierei-cosnita-ii-exploatarea-a-inceput-inaintea-referendumului-si-in-plin-litigiu-judiciar-administratorul-companiei-care-gestione/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/un-expert-in-inspectia-tehnica-auto-din-vulcanesti-banuit-de-prejudicierea-statului-cu-peste-600-de-mii-de-lei-a-fost-retinut-de-cna-pentru-72-de-ore/" target="_blank">Un expert în inspecția tehnică auto din Vulcănești, bănuit de prejudicierea statului cu peste 600 de mii de lei, a fost reținut de CNA pentru 72 de ore</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 16.06.2026</span>
+    </div>
+    <div class='summary'>Un expert în inspecția tehnică periodică a autovehiculelor a fost reținut de Centrul Național Anticorupție (CNA) și procurorii municipiului Cahul, marți, 16 iunie. Acesta este suspectat că și-ar fi însușit ilegal sume achitate de proprietarii mașinilor pentru taxa de folosire a drumurilor, prejudiciul estimat depășind 600 de mii de lei, potrivit unui comunicat al CNA....</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/un-expert-in-inspectia-tehnica-auto-din-vulcanesti-banuit-de-prejudicierea-statului-cu-peste-600-de-mii-de-lei-a-fost-retinut-de-cna-pentru-72-de-ore/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/politic/deschiderea-oficiala-a-negocierilor-de-aderare-la-ue-care-sunt-cele-mai-dificile-capitole-si-ce-urmeaza/" target="_blank">Deschiderea oficială a negocierilor de aderare la UE: care sunt cele mai dificile capitole și ce urmează?</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 16.06.2026</span>
+    </div>
+    <div class='summary'>La aproape patru ani după ce R. Moldova a obținut statutul de țară candidată la UE în iunie 2022, luni, 15 iunie, a fost deschis oficial primul cluster de negocieri – „Valori fundamentale”, după ce toate cele 27 de state membre au adoptat în unanimitate poziția comună de negociere. Deschiderea Clusterului 1 marchează o nouă...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/politic/deschiderea-oficiala-a-negocierilor-de-aderare-la-ue-care-sunt-cele-mai-dificile-capitole-si-ce-urmeaza/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/interviuri/modelul-de-reforma-apl-propus-de-presedintele-partidului-congresul-civic-mark-tkaciuk" target="_blank">Modelul de reforma APL propus de președintele Partidului Congresul Civic, Mark Tkaciuk</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Interviu acordat pentru Buletinul de politică externă al FES/APE</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/interviuri/modelul-de-reforma-apl-propus-de-presedintele-partidului-congresul-civic-mark-tkaciuk" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/live-text-zelenski-si-trump-s-au-intalnit-in-culisele-summitului-g7-in-timp-ce-ucraina-promoveaza-negocierile-de-pace-razboi-in-ucraina-ziua-1574/" target="_blank">LIVE TEXT/ Zelenski și Trump s-au întâlnit în culisele summitului G7, în timp ce Ucraina promovează negocierile de pace. Război în Ucraina, ziua 1574</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 16.06.2026</span>
+    </div>
+    <div class='summary'>UPDATE 13:50 Președintele Ucrainei, Volodimir Zelenski s-a întâlnit cu președintele american Donald Trump și cu președintele francez Emmanuel Macron în marja summitului G7 din Franța, pe 16 iunie, potrivit Kyiv Independent. Momentul a marcat prima întâlnire dintre Zelenski și Trump în aproape patru luni și a durat aproximativ 30 de minute, în timp ce Kievul...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/live-text-zelenski-si-trump-s-au-intalnit-in-culisele-summitului-g7-in-timp-ce-ucraina-promoveaza-negocierile-de-pace-razboi-in-ucraina-ziua-1574/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.rise.md/articol/bisericile-moldovei-sponsorul-discret-i/" target="_blank">Bisericile Moldovei: Sponsorul discret (I)</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 RISE Moldova</span>
+      <span>📅 16.06.2026</span>
+    </div>
+    <div class='summary'>„Statul Republica Moldova, de la întemeierea sa, nu a donat Bisericii niciun bănuț.” Respectiv, „de unde statul Republica […] The post Bisericile Moldovei: Sponsorul discret (I) appeared first on Rise Moldova .</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.rise.md/articol/bisericile-moldovei-sponsorul-discret-i/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/moldova-incepe-negocierile-de-aderare-la-uniunea-europeana-cu-cel-mai-important-cluster" target="_blank">Comisara UE Marta Kos, premierul  Alexandru Munteanu viceministra de Externe a Ciprului Marilena Raouna şi  Comisara Kaja Kallas</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/moldova-incepe-negocierile-de-aderare-la-uniunea-europeana-cu-cel-mai-important-cluster" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/top-10-state-cu-care-moldova-are-excedent-comercial" target="_blank">Top 10 state cu care Republica Moldova are excedent comercial</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/top-10-state-cu-care-moldova-are-excedent-comercial" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📰 Media & Libertatea Presei (2)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/cosnita-curata-cere-stoparea-carierei-cosnita-ii-exploatarea-a-inceput-inaintea-referendumului-si-in-plin-litigiu-judiciar-administratorul-companiei-care-gestione/" target="_blank">„Coșnița curată” cere stoparea carierei „Coșnița II”: exploatarea a început înaintea referendumului și în plin litigiu judiciar. Administratorul companiei care gestionează cariera acuză manipulare și hărțuire</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 16.06.2026</span>
+    </div>
+    <div class='summary'>Deși activitatea carierei de nisip și pietriș „Coșnița II” este contestată în instanța de judecată, iar duminică, 21 iunie, la Coșnița urmează să se desfășoare un referendum, inițiat de comunitatea locală, privind legalitatea actelor ce permit exploatarea unei noi cariere la o distanță mică de casele oamenilor, acum câteva zile, compania „Bond-Cons” SRL a început...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/cosnita-curata-cere-stoparea-carierei-cosnita-ii-exploatarea-a-inceput-inaintea-referendumului-si-in-plin-litigiu-judiciar-administratorul-companiei-care-gestione/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">👥 Social & Drepturile Omului (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/un-mare-depozit-de-carburanti-din-sudul-rusiei-este-in-flacari-autoritatile-au-inchis-drumul-care-il-lega-de-crimeea/" target="_blank">Un mare depozit de carburanți din sudul Rusiei este în flăcări. Autoritățile au închis drumul care îl lega de Crimeea</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 16.06.2026</span>
+    </div>
+    <div class='summary'>În dimineața zilei de 16 iunie, drone ucrainene au lansat un atac masiv asupra Moscovei. Ținta dronelor a fost rafinăria de petrol din Moscova, a declarat primarul capitalei, Serghei Sobianin, scrie Reuters. Potrivit acestuia, una dintre drone a avariat o „instalație” de pe teritoriul rafinăriei. Nu s-au înregistrat victime. Volodimir Zelenski a transmis un mesaj...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/un-mare-depozit-de-carburanti-din-sudul-rusiei-este-in-flacari-autoritatile-au-inchis-drumul-care-il-lega-de-crimeea/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">💰 Corupție (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/antreprenorii-din-domeniul-ecologic-pot-aplica-la-sprijin-financiar-de-la-ue-si-pnud-cand-e-data-limita-de-aplicare" target="_blank">Antreprenorii din domeniul ecologic pot aplica la sprijin financiar de la UE și PNUD // Când e data limită de aplicare</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Programul Națiunilor Unite pentru Dezvoltare (PNUD Moldova), în cadrul proiectului finanțat de UE „Facilitarea unei tranziții ecologice incluzive în Republica Moldova”, a lansat o cerere de propuneri pentru selectarea a 30 de întreprinderi și start-up-uri care își propun să devin…</div>
+    <div class='cat-tags'><span class="cat-tag">💰 Corupție</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/antreprenorii-din-domeniul-ecologic-pot-aplica-la-sprijin-financiar-de-la-ue-si-pnud-cand-e-data-limita-de-aplicare" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">💼 Afaceri & Contracte Publice (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/va-dura-saptamani-pana-se-va-relua-tranzitul-prin-stramtoarea-ormuz-declara-cel-mai-mare-operator-de-petroliere-pentru-ft/" target="_blank">Va dura „săptămâni” până se va relua tranzitul prin Strâmtoarea Ormuz, declară cel mai mare operator de petroliere pentru FT</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 16.06.2026</span>
+    </div>
+    <div class='summary'>Armatorii de nave nu vor relua tranzitul prin Strâmtoarea Ormuz timp de câteva săptămâni, până când nu vor fi încrezători că acordul SUA-Iran este „semnificativ”, a declarat directorul executiv al companiei japoneze Mitsui O.S.K. Lines, într-un interviu publicat marți, 16 iunie, pentru Financial Times, citat de Reuters. Războiul din Iran, care a început pe 28...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/va-dura-saptamani-pana-se-va-relua-tranzitul-prin-stramtoarea-ormuz-declara-cel-mai-mare-operator-de-petroliere-pentru-ft/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📌 Alte articole (14)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/investigatii/social/iazul-otravit-din-edinet" target="_blank">IAZUL „OTRĂVIT” DIN EDINEȚ</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>De ani de zile, iazul din orașul Edineț se află în centrul unei probleme de mediu pe care autoritățile nu au reușit să o rezolve. Ape uzate provenite din gospodării neconectate la canalizare, avarii repetate ale sistemului public și deversări recunoscute chiar de operatorul munic…</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/investigatii/social/iazul-otravit-din-edinet" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/irina-vlah-printre-persoanele-sanctionate-de-ue-pentru-destabilizarea-republicii-moldova" target="_blank">Irina Vlah, printre persoanele sancționate de UE pentru destabilizarea Republicii Moldova</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Șase persoane, printre care și ex-bașcana și președinta Partidului Inima Moldovei, Irina Vlah, au fost incluse, luni, în lista sancțiunilor Consiliului Uniunii Europene (UE), fiind recunoscute „responsabile pentru acțiuni care vizează destabilizarea, subminarea sau amenințarea su…</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/irina-vlah-printre-persoanele-sanctionate-de-ue-pentru-destabilizarea-republicii-moldova" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/interviuri/viorel-furdui-modelul-de-reforma-apl-propus-de-congresul-autoritatilor-locale-din-moldova-calm" target="_blank">Viorel Furdui: Modelul de reformă APL propus de Congresul Autorităților Locale din Moldova</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Interviu acordat pentru Buletinul de politică externă al FES/APE</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/interviuri/viorel-furdui-modelul-de-reforma-apl-propus-de-congresul-autoritatilor-locale-din-moldova-calm" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/primul-cluster-de-negocieri-privind-aderare-moldovei-la-ue-deschis-la-luxemburg" target="_blank">Primul cluster de negocieri privind aderarea Moldovei la UE, deschis la Luxemburg</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Negocierile de aderare pe Clusterul 1 – „Valori fundamentale” vor fi deschise, luni, Luxemburg, unde va avea loc cea de-a doua Conferință interguvernamentală Republica Moldova – Uniunea Europeană. Delegația Republicii Moldova la eveniment este condusă de Prim-ministrul Republicii…</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/primul-cluster-de-negocieri-privind-aderare-moldovei-la-ue-deschis-la-luxemburg" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/noi-sanctiuni-contra-rusiei-pe-agenda-ministrilor-de-externe-europeni" target="_blank">Noi sancțiuni contra Rusiei, pe agenda miniștrilor de externe europeni</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Miniştrii de externe din ţările membre ale Uniunii Europene (UE) vor discuta, luni, războiul de agresiune al Federației Ruse împotriva Ucrainei, urmând a fi anunțate noi sancţiuni contra Kremlinului și suport suplimentar ce urmează a fi acordat Kievului. Agenda Consiliului Afacer…</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/noi-sanctiuni-contra-rusiei-pe-agenda-ministrilor-de-externe-europeni" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/presedinta-maia-sandu-regimul-ucigas-de-la-kremlin-nu-are-nimic-sfant" target="_blank">Președinta Maia Sandu: Regimul ucigaș de la Kremlin nu are nimic sfânt</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Președinta Republicii Moldova, Maia Sandu, a condamnat atacul masiv al Federației Ruse din noaptea de 15 iunie asupra Ucrainei, care a afectat și Lavra Pecerska din Kyiv. Potrivit autorităților ucrainene, în rezultatul atacului au decedat 5 persoane, iar 34 au fost rănite, fiind …</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/presedinta-maia-sandu-regimul-ucigas-de-la-kremlin-nu-are-nimic-sfant" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/video-na-putina-net-nadejdy-pridnestrove-svoi-ili-chujie-golosa" target="_blank">(ВИДЕО) «На Путина нет надежды». Приднестровье – свои или чужие? / ГОЛОСА</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>DUOMO. Когда качество — не просто слово, это обязательство</div>
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/video-na-putina-net-nadejdy-pridnestrove-svoi-ili-chujie-golosa" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/video-ot-motokluba-do-ministra-energetiki-sotni-chelovek-pojertvovali-krov-v-den-donora" target="_blank">(ВИДЕО) От членов мотоклуба до министра энергетики: сотни человек пожертвовали кровь в День донора</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/video-ot-motokluba-do-ministra-energetiki-sotni-chelovek-pojertvovali-krov-v-den-donora" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/na-severe-moldovy-i-v-kagule-podorojaet-voda-nare-odobrilo-novye-tarify" target="_blank">На севере Молдовы и в Кагуле подорожает вода? НАРЭ одобрило новые тарифы</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/na-severe-moldovy-i-v-kagule-podorojaet-voda-nare-odobrilo-novye-tarify" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/agricultura-ramane-lidera-la-munca-informala" target="_blank">Agricultura rămâne lideră la muncă informală</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/agricultura-ramane-lidera-la-munca-informala" target="_blank">Citește articolul →</a>
+  </div>
+</div>
+<div class="footer">
+  Raport generat automat zilnic &nbsp;·&nbsp; ARBI – Monitorizare Jurnalism Investigativ Moldova
+</div>
+</body>
+</html>
