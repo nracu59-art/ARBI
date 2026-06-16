@@ -1,0 +1,631 @@
+{
+  "date": "2026-06-16",
+  "generated_at": "2026-06-16T11:14:28Z",
+  "lookback_hours": 26,
+  "sources_checked": 8,
+  "sources_ok": 8,
+  "stats": {
+    "total": 33,
+    "investigative": 2,
+    "by_source": {
+      "rise_md": {
+        "name": "RISE Moldova",
+        "count": 1
+      },
+      "zdg_md": {
+        "name": "Ziarul de Gardă",
+        "count": 10
+      },
+      "anticoruptie_md": {
+        "name": "Anticorupție.md",
+        "count": 10
+      },
+      "newsmaker_md": {
+        "name": "Newsmaker.md",
+        "count": 4
+      },
+      "mold_street": {
+        "name": "Mold-Street",
+        "count": 7
+      },
+      "agora_md": {
+        "name": "Agora.md",
+        "count": 1
+      }
+    },
+    "by_category": {
+      "coruptie": {
+        "label": "Corupție",
+        "emoji": "💰",
+        "count": 1
+      },
+      "justitie": {
+        "label": "Justiție & Procurori",
+        "emoji": "⚖️",
+        "count": 14
+      },
+      "politica": {
+        "label": "Politică & Putere",
+        "emoji": "🏛️",
+        "count": 8
+      },
+      "media": {
+        "label": "Media & Libertatea Presei",
+        "emoji": "📰",
+        "count": 3
+      },
+      "afaceri": {
+        "label": "Afaceri & Contracte Publice",
+        "emoji": "💼",
+        "count": 1
+      },
+      "social": {
+        "label": "Social & Drepturile Omului",
+        "emoji": "👥",
+        "count": 2
+      }
+    }
+  },
+  "articles": [
+    {
+      "id": "b950f3e94eaa",
+      "title": "De ultimă oră",
+      "url": "https://anticoruptie.md/rss/latest.xml?lang=ro",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Săptămâna trecută am fost la Comrat, în Autonomia Găgăuză, unde Centrul de Investigații Jurnalistice a organizat o ediție a Clubului Jurnaliștilor de Investigație. Tema discuțiilor: blocajul electoral din regiune și viitorul autonomiei văzute prin ochii celor de la firul ierbii.\r\n\r\nObiectivul nostru a fost să înțelegem ce soluții se conturează[...]",
+      "categories": [
+        "justitie",
+        "media"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "media": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 4
+    },
+    {
+      "id": "561e69a47d92",
+      "title": "O femeie din Rîbnița, victima escrocilor în urma unei scheme investiționale: Prejudiciul depășește 500 de mii de lei",
+      "url": "https://www.zdg.md/stiri/o-femeie-din-ribnita-victima-escrocilor-in-urma-unei-scheme-investitionale-prejudiciul-depaseste-500-de-mii-de-lei/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-16T10:31:06Z",
+      "published_date": "2026-06-16",
+      "summary": "În ultimele 24 de ore, Poliția a înregistrat 22 de sesizări privind fraude telefonice. Dintre acestea, 13 cazuri s-au soldat cu pierderi materiale, prejudiciul total depășind 1 milion de lei. Două dintre fraude au fost comise în cursul zilei de ieri, iar celelalte au avut loc anterior, fiind raportate ulterior de victime, informează Inspectoratul General...",
+      "categories": [
+        "social"
+      ],
+      "category_scores": {
+        "social": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 3
+    },
+    {
+      "id": "6d87cf9c95d2",
+      "title": "„Coșnița curată” cere stoparea carierei „Coșnița II”: exploatarea a început înaintea referendumului și în plin litigiu judiciar. Administratorul companiei care gestionează cariera acuză manipulare și hărțuire",
+      "url": "https://www.zdg.md/stiri/cosnita-curata-cere-stoparea-carierei-cosnita-ii-exploatarea-a-inceput-inaintea-referendumului-si-in-plin-litigiu-judiciar-administratorul-companiei-care-gestione/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-16T08:55:00Z",
+      "published_date": "2026-06-16",
+      "summary": "Deși activitatea carierei de nisip și pietriș „Coșnița II” este contestată în instanța de judecată, iar duminică, 21 iunie, la Coșnița urmează să se desfășoare un referendum, inițiat de comunitatea locală, privind legalitatea actelor ce permit exploatarea unei noi cariere la o distanță mică de casele oamenilor, acum câteva zile, compania „Bond-Cons” SRL a început...",
+      "categories": [
+        "justitie",
+        "politica",
+        "media"
+      ],
+      "category_scores": {
+        "justitie": 3,
+        "politica": 1,
+        "media": 1,
+        "afaceri": 1,
+        "social": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 7
+    },
+    {
+      "id": "0990cca6ba39",
+      "title": "Un expert în inspecția tehnică auto din Vulcănești, bănuit de prejudicierea statului cu peste 600 de mii de lei, a fost reținut de CNA pentru 72 de ore",
+      "url": "https://www.zdg.md/stiri/un-expert-in-inspectia-tehnica-auto-din-vulcanesti-banuit-de-prejudicierea-statului-cu-peste-600-de-mii-de-lei-a-fost-retinut-de-cna-pentru-72-de-ore/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-16T07:48:27Z",
+      "published_date": "2026-06-16",
+      "summary": "Un expert în inspecția tehnică periodică a autovehiculelor a fost reținut de Centrul Național Anticorupție (CNA) și procurorii municipiului Cahul, marți, 16 iunie. Acesta este suspectat că și-ar fi însușit ilegal sume achitate de proprietarii mașinilor pentru taxa de folosire a drumurilor, prejudiciul estimat depășind 600 de mii de lei, potrivit unui comunicat al CNA....",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 4,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 5
+    },
+    {
+      "id": "b57f31ee7f97",
+      "title": "16 ani de închisoare pentru tânărul de 23 de ani care și-a ucis mama în urma unui conflict",
+      "url": "https://www.zdg.md/stiri/16-ani-de-inchisoare-pentru-tanarul-de-23-de-ani-care-si-a-ucis-mama-in-urma-unui-conflict/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-16T07:30:27Z",
+      "published_date": "2026-06-16",
+      "summary": "Tânărul de 23 de ani, care și-a omorât intenționat mama a fost condamnat la 16 ani de închisoare într-un penitenciar de tip închis, anunță marți, 16 iunie, Procuratura Generală (PG). Victima, mama inculpatului, era profesoară la clasele primare. Potrivit informațiilor, faptă a fost comisă în noaptea de 17 iulie 2025, la domiciliul acestorai. „Între inculpat și victimă...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 4
+      },
+      "investigative_score": 0,
+      "relevance_score": 4
+    },
+    {
+      "id": "71d0479265f2",
+      "title": "Va dura „săptămâni” până se va relua tranzitul prin Strâmtoarea Ormuz, declară cel mai mare operator de petroliere pentru FT",
+      "url": "https://www.zdg.md/stiri/va-dura-saptamani-pana-se-va-relua-tranzitul-prin-stramtoarea-ormuz-declara-cel-mai-mare-operator-de-petroliere-pentru-ft/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-16T09:45:13Z",
+      "published_date": "2026-06-16",
+      "summary": "Armatorii de nave nu vor relua tranzitul prin Strâmtoarea Ormuz timp de câteva săptămâni, până când nu vor fi încrezători că acordul SUA-Iran este „semnificativ”, a declarat directorul executiv al companiei japoneze Mitsui O.S.K. Lines, într-un interviu publicat marți, 16 iunie, pentru Financial Times, citat de Reuters. Războiul din Iran, care a început pe 28...",
+      "categories": [
+        "justitie",
+        "afaceri"
+      ],
+      "category_scores": {
+        "justitie": 2,
+        "afaceri": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "d909dae2bd64",
+      "title": "Deschiderea oficială a negocierilor de aderare la UE: care sunt cele mai dificile capitole și ce urmează?",
+      "url": "https://www.zdg.md/stiri/politic/deschiderea-oficiala-a-negocierilor-de-aderare-la-ue-care-sunt-cele-mai-dificile-capitole-si-ce-urmeaza/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-16T06:45:00Z",
+      "published_date": "2026-06-16",
+      "summary": "La aproape patru ani după ce R. Moldova a obținut statutul de țară candidată la UE în iunie 2022, luni, 15 iunie, a fost deschis oficial primul cluster de negocieri – „Valori fundamentale”, după ce toate cele 27 de state membre au adoptat în unanimitate poziția comună de negociere. Deschiderea Clusterului 1 marchează o nouă...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 2,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "ddbe31fc5819",
+      "title": "Modelul de reforma APL propus de președintele Partidului Congresul Civic, Mark Tkaciuk",
+      "url": "https://anticoruptie.md/ro/interviuri/modelul-de-reforma-apl-propus-de-presedintele-partidului-congresul-civic-mark-tkaciuk",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Interviu acordat pentru Buletinul de politică externă al FES/APE",
+      "categories": [
+        "politica",
+        "justitie"
+      ],
+      "category_scores": {
+        "politica": 2,
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "c22bbf475137",
+      "title": "LIVE TEXT/ Zelenski și Trump s-au întâlnit în culisele summitului G7, în timp ce Ucraina promovează negocierile de pace. Război în Ucraina, ziua 1574",
+      "url": "https://www.zdg.md/stiri/live-text-zelenski-si-trump-s-au-intalnit-in-culisele-summitului-g7-in-timp-ce-ucraina-promoveaza-negocierile-de-pace-razboi-in-ucraina-ziua-1574/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-16T10:50:10Z",
+      "published_date": "2026-06-16",
+      "summary": "UPDATE 13:50 Președintele Ucrainei, Volodimir Zelenski s-a întâlnit cu președintele american Donald Trump și cu președintele francez Emmanuel Macron în marja summitului G7 din Franța, pe 16 iunie, potrivit Kyiv Independent. Momentul a marcat prima întâlnire dintre Zelenski și Trump în aproape patru luni și a durat aproximativ 30 de minute, în timp ce Kievul...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "cfdbd03431fd",
+      "title": "Un mare depozit de carburanți din sudul Rusiei este în flăcări. Autoritățile au închis drumul care îl lega de Crimeea",
+      "url": "https://www.zdg.md/stiri/un-mare-depozit-de-carburanti-din-sudul-rusiei-este-in-flacari-autoritatile-au-inchis-drumul-care-il-lega-de-crimeea/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-16T10:00:00Z",
+      "published_date": "2026-06-16",
+      "summary": "În dimineața zilei de 16 iunie, drone ucrainene au lansat un atac masiv asupra Moscovei. Ținta dronelor a fost rafinăria de petrol din Moscova, a declarat primarul capitalei, Serghei Sobianin, scrie Reuters. Potrivit acestuia, una dintre drone a avariat o „instalație” de pe teritoriul rafinăriei. Nu s-au înregistrat victime. Volodimir Zelenski a transmis un mesaj...",
+      "categories": [
+        "justitie",
+        "social"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "social": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "6aa6b0d0a86d",
+      "title": "Remote, hibrid sau oficiu: ce format de muncă preferă candidații? Experiment Rabota.md",
+      "url": "https://www.zdg.md/advertoriale/remote-hibrid-sau-oficiu-ce-format-de-munca-prefera-candidatii-experiment-rabota-md/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-16T08:54:14Z",
+      "published_date": "2026-06-16",
+      "summary": "În timpul pandemiei, piața muncii a trecut printr-o creștere rapidă a muncii la distanță, urmată de popularizarea formatului hibrid, care combină prezența la biroul și lucrul de acasă. Însă în ultimii ani tendința globală s-a inversat: companiile cer tot mai des de la angajații remote să se prezinte la oficiu câteva zile pe săptămână, iar...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "375cd29e4913",
+      "title": "Comunicăm. Producem. Plasăm.Crești împreună cu AGORA",
+      "url": "https://agora.md/media-kit",
+      "source": "Agora.md",
+      "source_key": "agora_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.",
+      "categories": [
+        "justitie",
+        "media"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "media": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "f8eb8c5d8a2d",
+      "title": "Bisericile Moldovei: Sponsorul discret (I)",
+      "url": "https://www.rise.md/articol/bisericile-moldovei-sponsorul-discret-i/",
+      "source": "RISE Moldova",
+      "source_key": "rise_md",
+      "published": "2026-06-16T05:29:01Z",
+      "published_date": "2026-06-16",
+      "summary": "„Statul Republica Moldova, de la întemeierea sa, nu a donat Bisericii niciun bănuț.” Respectiv, „de unde statul Republica […] The post Bisericile Moldovei: Sponsorul discret (I) appeared first on Rise Moldova .",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "5c70e553f125",
+      "title": "Două magistrate au fost propuse pentru funcția de judecător la CSJ. Una dintre ele a pronunțat sentințe în dosare de rezonanță",
+      "url": "https://www.zdg.md/stiri/1doua-magistrate-au-fost-propuse-pentru-functia-de-judecator-la-csj-una-dintre-ele-a-pronuntat-sentinte-in-dosare-de-rezonanta/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-16T07:00:51Z",
+      "published_date": "2026-06-16",
+      "summary": "Două magistrate au fost numite judecătoare la Curtea Supremă de Justiție (CSJ), în urma concursului derulat de Consiliul Superior al Magistraturii (CSM), luni, 15 iunie. Astfel, în urma evaluării candidaților, CSM a decis înaintarea propunerilor de numire în funcția de judecător la CSJ a magistratei Ana Cucerescu și Elena Croitor. „Concursul s-a desfășurat în conformitate...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "1a158bde6481",
+      "title": "Cum poți înlocui electrocasnicele vechi cu echipamente moderne și eficiente // Programului EcoVoucher pentru Electrocasnice",
+      "url": "https://anticoruptie.md/ro/stiri/cum-poti-inlocui-electrocasnicele-vechi-cu-echipamente-moderne-si-eficiente-programului-ecovoucher-pentru-electrocasnice",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Peste 300 de tone de frigidere și mașini de spălat uzate au fost colectate în cadrul Programului EcoVoucher pentru Electrocasnice, implementat Centrul Național pentru Energie Durabilă (CNED). Datele au fost prezentate în cadrul vizitei ministrului Energiei, Dorin Junghietu, la de…",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "8babec05cffd",
+      "title": "Antreprenorii din domeniul ecologic pot aplica la sprijin financiar de la UE și PNUD // Când e data limită de aplicare",
+      "url": "https://anticoruptie.md/ro/stiri/antreprenorii-din-domeniul-ecologic-pot-aplica-la-sprijin-financiar-de-la-ue-si-pnud-cand-e-data-limita-de-aplicare",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Programul Națiunilor Unite pentru Dezvoltare (PNUD Moldova), în cadrul proiectului finanțat de UE „Facilitarea unei tranziții ecologice incluzive în Republica Moldova”, a lansat o cerere de propuneri pentru selectarea a 30 de întreprinderi și start-up-uri care își propun să devin…",
+      "categories": [
+        "coruptie"
+      ],
+      "category_scores": {
+        "coruptie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "030db4cdc786",
+      "title": "(ВИДЕО) Костюк после того, как Оборок на съезде PAS назвал его «бараном»: «Настоящее лицо власти»",
+      "url": "https://newsmaker.md/ru/video-kostyuk-posle-togo-kak-oborok-na-sezde-pas-nazval-ego-baranom-nastoyashee-liczo-vlasti",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "1782a30c9bd8",
+      "title": "Comisara UE Marta Kos, premierul  Alexandru Munteanu viceministra de Externe a Ciprului Marilena Raouna şi  Comisara Kaja Kallas",
+      "url": "https://mold-street.com/noutate/moldova-incepe-negocierile-de-aderare-la-uniunea-europeana-cu-cel-mai-important-cluster",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "ecd15e550522",
+      "title": "Top 10 state cu care Republica Moldova are excedent comercial",
+      "url": "https://mold-street.com/noutate/top-10-state-cu-care-moldova-are-excedent-comercial",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "08a0d92f4e63",
+      "title": "IAZUL „OTRĂVIT” DIN EDINEȚ",
+      "url": "https://anticoruptie.md/ro/investigatii/social/iazul-otravit-din-edinet",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "De ani de zile, iazul din orașul Edineț se află în centrul unei probleme de mediu pe care autoritățile nu au reușit să o rezolve. Ape uzate provenite din gospodării neconectate la canalizare, avarii repetate ale sistemului public și deversări recunoscute chiar de operatorul munic…",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "9ec338f04a12",
+      "title": "Irina Vlah, printre persoanele sancționate de UE pentru destabilizarea Republicii Moldova",
+      "url": "https://anticoruptie.md/ro/stiri/irina-vlah-printre-persoanele-sanctionate-de-ue-pentru-destabilizarea-republicii-moldova",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Șase persoane, printre care și ex-bașcana și președinta Partidului Inima Moldovei, Irina Vlah, au fost incluse, luni, în lista sancțiunilor Consiliului Uniunii Europene (UE), fiind recunoscute „responsabile pentru acțiuni care vizează destabilizarea, subminarea sau amenințarea su…",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "d29005c9ea32",
+      "title": "Viorel Furdui: Modelul de reformă APL propus de Congresul Autorităților Locale din Moldova",
+      "url": "https://anticoruptie.md/ro/interviuri/viorel-furdui-modelul-de-reforma-apl-propus-de-congresul-autoritatilor-locale-din-moldova-calm",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Interviu acordat pentru Buletinul de politică externă al FES/APE",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "43a78f301099",
+      "title": "Primul cluster de negocieri privind aderarea Moldovei la UE, deschis la Luxemburg",
+      "url": "https://anticoruptie.md/ro/stiri/primul-cluster-de-negocieri-privind-aderare-moldovei-la-ue-deschis-la-luxemburg",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Negocierile de aderare pe Clusterul 1 – „Valori fundamentale” vor fi deschise, luni, Luxemburg, unde va avea loc cea de-a doua Conferință interguvernamentală Republica Moldova – Uniunea Europeană. Delegația Republicii Moldova la eveniment este condusă de Prim-ministrul Republicii…",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "b3d69ea8549f",
+      "title": "Noi sancțiuni contra Rusiei, pe agenda miniștrilor de externe europeni",
+      "url": "https://anticoruptie.md/ro/stiri/noi-sanctiuni-contra-rusiei-pe-agenda-ministrilor-de-externe-europeni",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Miniştrii de externe din ţările membre ale Uniunii Europene (UE) vor discuta, luni, războiul de agresiune al Federației Ruse împotriva Ucrainei, urmând a fi anunțate noi sancţiuni contra Kremlinului și suport suplimentar ce urmează a fi acordat Kievului. Agenda Consiliului Afacer…",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "abf8b00f5b63",
+      "title": "Președinta Maia Sandu: Regimul ucigaș de la Kremlin nu are nimic sfânt",
+      "url": "https://anticoruptie.md/ro/stiri/presedinta-maia-sandu-regimul-ucigas-de-la-kremlin-nu-are-nimic-sfant",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Președinta Republicii Moldova, Maia Sandu, a condamnat atacul masiv al Federației Ruse din noaptea de 15 iunie asupra Ucrainei, care a afectat și Lavra Pecerska din Kyiv. Potrivit autorităților ucrainene, în rezultatul atacului au decedat 5 persoane, iar 34 au fost rănite, fiind …",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "64cebe125eba",
+      "title": "(ВИДЕО) «На Путина нет надежды». Приднестровье – свои или чужие? / ГОЛОСА",
+      "url": "https://newsmaker.md/ru/video-na-putina-net-nadejdy-pridnestrove-svoi-ili-chujie-golosa",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "DUOMO. Когда качество — не просто слово, это обязательство",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "3627a6085bca",
+      "title": "(ВИДЕО) От членов мотоклуба до министра энергетики: сотни человек пожертвовали кровь в День донора",
+      "url": "https://newsmaker.md/ru/video-ot-motokluba-do-ministra-energetiki-sotni-chelovek-pojertvovali-krov-v-den-donora",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "f4cc6358ac79",
+      "title": "На севере Молдовы и в Кагуле подорожает вода? НАРЭ одобрило новые тарифы",
+      "url": "https://newsmaker.md/ru/na-severe-moldovy-i-v-kagule-podorojaet-voda-nare-odobrilo-novye-tarify",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "1592b5565f49",
+      "title": "Agricultura rămâne lideră la muncă informală",
+      "url": "https://mold-street.com/noutate/agricultura-ramane-lidera-la-munca-informala",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "4f464027faca",
+      "title": "Consorțiul CELIN–Energobit a finalizat în termen extinderea Stației 400 kV Vulcănești: 15 luni de muncă intensă",
+      "url": "https://mold-street.com/noutate/consortiul-celin-energobit-a-finalizat-in-termen-extinderea-statiei-400-kv-vulcanesti-15-luni-de-munca-intensa",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "3eedf9327368",
+      "title": "Moldova a majorat de cinci ori \"exporturile\" de benzină în Ucraina",
+      "url": "https://mold-street.com/noutate/moldova-a-majorat-de-cinci-ori-exporturile-de-benzina-in-ucraina",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "f412318cab68",
+      "title": "Credit7 și Credit365 consolidează protecția clienților împotriva fraudelor în procesul de creditare online",
+      "url": "https://mold-street.com/noutate/credit7-si-credit365-consolideaza-protectia-clientilor-impotriva-fraudelor-in-procesul-de-creditare-online",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "ac0c82fe8157",
+      "title": "Produsul Intern Brut al Republicii Moldova a înregistrat o creștere cu doar 0,4%",
+      "url": "https://mold-street.com/noutate/produsul-intern-brut-al-republicii-moldova-a-inregistrat-o-crestere-cu-doar-04",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    }
+  ]
+}
