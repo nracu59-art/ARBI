@@ -1,0 +1,622 @@
+{
+  "date": "2026-06-17",
+  "generated_at": "2026-06-17T11:01:18Z",
+  "lookback_hours": 26,
+  "sources_checked": 8,
+  "sources_ok": 8,
+  "stats": {
+    "total": 33,
+    "investigative": 5,
+    "by_source": {
+      "rise_md": {
+        "name": "RISE Moldova",
+        "count": 1
+      },
+      "zdg_md": {
+        "name": "Ziarul de Gardă",
+        "count": 10
+      },
+      "anticoruptie_md": {
+        "name": "Anticorupție.md",
+        "count": 10
+      },
+      "newsmaker_md": {
+        "name": "Newsmaker.md",
+        "count": 4
+      },
+      "mold_street": {
+        "name": "Mold-Street",
+        "count": 7
+      },
+      "agora_md": {
+        "name": "Agora.md",
+        "count": 1
+      }
+    },
+    "by_category": {
+      "coruptie": {
+        "label": "Corupție",
+        "emoji": "💰",
+        "count": 3
+      },
+      "justitie": {
+        "label": "Justiție & Procurori",
+        "emoji": "⚖️",
+        "count": 8
+      },
+      "politica": {
+        "label": "Politică & Putere",
+        "emoji": "🏛️",
+        "count": 9
+      },
+      "media": {
+        "label": "Media & Libertatea Presei",
+        "emoji": "📰",
+        "count": 2
+      },
+      "afaceri": {
+        "label": "Afaceri & Contracte Publice",
+        "emoji": "💼",
+        "count": 1
+      },
+      "securitate": {
+        "label": "Securitate & Intelligence",
+        "emoji": "🔐",
+        "count": 1
+      },
+      "social": {
+        "label": "Social & Drepturile Omului",
+        "emoji": "👥",
+        "count": 2
+      }
+    }
+  },
+  "articles": [
+    {
+      "id": "02d0f8734c08",
+      "title": "Punct final la Curtea de Apel în dosarul Ciochină: Condamnatul urmează să-și execute pedeapsa într-un penitenciar de tip deschis",
+      "url": "https://www.zdg.md/stiri/punct-final-la-curtea-de-apel-in-dosarul-ciochina-condamnatul-urmeaza-sa-si-execute-pedeapsa-intr-un-penitenciar-de-tip-deschis/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-17T09:26:25Z",
+      "published_date": "2026-06-17",
+      "summary": "Judecătorii Curții de Apel Centru au menținut „fără modificări” sentința primei instanțe în dosarul fostului primar de Boldurești, Nicanor Ciochină. Judecătorii au menținut pedeapsa aplicată, de 7 ani de închisoare în penitenciar de tip deschis pentru Ciochină și de 6 luni în penitenciar de tip semi-închis pentru complicele său, Ion Andronache. „Credea că se va...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 2
+      },
+      "investigative_score": 1,
+      "relevance_score": 4
+    },
+    {
+      "id": "0baee3bf055f",
+      "title": "1,8 milioane de lei, alocați de Guvern pentru compensarea valorii bunurilor confiscate în timpul represiunilor politice",
+      "url": "https://www.zdg.md/stiri/18-milioane-de-lei-alocati-de-guvern-pentru-compensarea-valorii-bunurilor-confiscate-in-timpul-represiunilor-politice/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-17T08:35:58Z",
+      "published_date": "2026-06-17",
+      "summary": "Guvernul a aprobat alocarea peste 1,8 milioane de lei pentru compensarea valorii bunurilor confiscate în timpul represiunilor politice. Un proiect în acest sens a fost aprobat în ședința Cabinetului de miniștri de miercuri, 17 iunie. Mijloacele financiare vor fi repartizate în baza deciziilor comisiilor speciale și a solicitărilor autorităților publice locale, pentru achitarea compensațiilor către șase...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 4
+    },
+    {
+      "id": "7c9d2ce576f9",
+      "title": "Guvernul deschide haznaua. Aproape 2 milioane de lei, pentru șase victime ale represiunilor politice",
+      "url": "https://anticoruptie.md/ro/stiri/guvernul-deschide-haznaua-aproape-2-milioane-de-lei-pentru-sase-victime-ale-represiunilor-politice",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Guvernul a aprobat alocarea peste 1,8 milioane de lei pentru compensarea valorii bunurilor confiscate în timpul represiunilor politice . De aceste plăți vor beneficia șase persoane, care provin din familii supuse represiunilor și care și-au pierdut averea.",
+      "categories": [
+        "politica",
+        "social"
+      ],
+      "category_scores": {
+        "politica": 1,
+        "social": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 4
+    },
+    {
+      "id": "13800137555b",
+      "title": "Începe marea inventariere a pădurilor. Cât va cheltui statul pentru verificarea resurselor forestiere",
+      "url": "https://anticoruptie.md/ro/stiri/incepe-marea-inventariere-a-padurilor-cat-va-cheltui-statul-pentru-verificarea-resurselor-forestiere",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Guvernul a aprobat organizarea și desfășurarea Ciclului I al Inventarului Forestier Național . Statul vrea să știe ce resurse forestiere are, dar și să determine starea reală a acestora.",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 3
+    },
+    {
+      "id": "31d1fe2beab6",
+      "title": "Bursa Internaţională de abia a depus dosarul",
+      "url": "https://mold-street.com/noutate/bursa-internationala-de-abia-a-depus-dosarul",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 1,
+      "relevance_score": 2
+    },
+    {
+      "id": "20e4d486cd7a",
+      "title": "Mită pentru obținerea unor certificate care te scutesc de BAC? CNA face percheziții. Este vizat și un profesor",
+      "url": "https://www.zdg.md/stiri/mita-pentru-obtinerea-unor-certificate-care-te-scutesc-de-bac-cna-face-perchezitii-este-vizat-si-un-profesor/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-17T08:24:06Z",
+      "published_date": "2026-06-17",
+      "summary": "Mai multe acțiuni de urmărire penală sunt efectuate într-o cauză penală în care sunt investigate presupuse acțiuni ilegale ale unor persoane implicate, printre care și un profesor, în procesul de organizare și desfășurare a examenelor internaționale Certiport, anunță miercuri, 17 iunie, Centrul Național Anticorupție (CNA). Potrivit CNA, există o bănuială rezonabilă că, în perioada martie...",
+      "categories": [
+        "justitie",
+        "coruptie"
+      ],
+      "category_scores": {
+        "justitie": 3,
+        "coruptie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 4
+    },
+    {
+      "id": "94afa0f3fd78",
+      "title": "Cartelele SIM și eSIM vor putea fi activate doar prin confirmarea identității în baza unui act de identitate: „Anonimatul este folosit în activități ilegale și îngreunează identificarea autorilor”",
+      "url": "https://www.zdg.md/stiri/cartelele-sim-si-esim-vor-putea-fi-activate-doar-prin-confirmarea-identitatii-in-baza-unui-act-de-identitate-anonimatul-este-folosit-in-activitati-ilegale-si-ingreuneaza-identificarea-autori/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-17T09:45:00Z",
+      "published_date": "2026-06-17",
+      "summary": "Cartelele SIM și eSIM preplătite vor putea fi activate doar prin confirmarea identității în baza unui act de identitate. Decizia a fost aprobată de Guvern, pe 17 iunie, în scopul prevenirii fraudelor, escrocheriilor și altor abuzuri comise prin utilizarea anonimă a numerelor de telefon. „În ultimii ani, infracțiunile care afectează cetățenii au migrat tot mai mult în...",
+      "categories": [
+        "justitie",
+        "politica",
+        "social"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1,
+        "social": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "2b470a659d55",
+      "title": "Guvernul a votat desemnarea a doi ambasadori și numirea unui consul general. Detalii din cariera diplomaților",
+      "url": "https://www.zdg.md/stiri/guvernul-a-votat-desemnarea-a-doi-ambasadori-si-numirea-unui-consul-general-detalii-din-cariera-diplomatilor/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-17T07:57:07Z",
+      "published_date": "2026-06-17",
+      "summary": "Guvernul R. Moldova a aprobat desemnarea a doi ambasadori și numirea unui consul general. Astfel, Inga Ionesii a fost numită Ambasador Extraordinar și Plenipotențiar al R. Moldova în India, Victor Lăpușneanu – Ambasador al R. Moldova, Reprezentant Permanent pe lângă Consiliul Europei, iar Alexei Țurcan – Consul General al R. Moldova la Odesa, Ucraina. Potrivit...",
+      "categories": [
+        "politica",
+        "coruptie"
+      ],
+      "category_scores": {
+        "politica": 2,
+        "coruptie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "7eb09ac5690e",
+      "title": "Un necunoscut s-a dat drept jurnalist RISE Moldova și a încercat să obțină informații de la reprezentanți ai opoziției din Belarus",
+      "url": "https://www.rise.md/un-necunoscut-s-a-dat-drept-jurnalist-rise-moldova-si-a-incercat-sa-obtina-informatii-de-la-reprezentanti-ai-opozitiei-din-belarus/",
+      "source": "RISE Moldova",
+      "source_key": "rise_md",
+      "published": "2026-06-17T03:35:13Z",
+      "published_date": "2026-06-17",
+      "summary": "Această tentativă întreprinsă cu scop de provocare a durat mai bine de două luni. Un provocator anonim a […] The post Un necunoscut s-a dat drept jurnalist RISE Moldova și a încercat să obțină informații de la reprezentanți ai opoziției din Belarus appeared first on Rise Moldova .",
+      "categories": [
+        "politica",
+        "media"
+      ],
+      "category_scores": {
+        "politica": 1,
+        "media": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "bdd1b29f103a",
+      "title": "„Eu chiar mă bucur că suntem aici și nu în Moldova.” Mărturiile unei mame stabilite în Franța, a cărei fiică face parte din comunitatea LGBTQ+",
+      "url": "https://www.zdg.md/interviuri/eu-chiar-ma-bucur-ca-suntem-aici-si-nu-in-moldova-marturiile-unei-mame-stabilite-in-franta-a-carei-fiica-face-parte-din-comunitatea-lgbtq/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-17T10:15:00Z",
+      "published_date": "2026-06-17",
+      "summary": "Elena (nume schimbat, n.r.) era deja stabilită în Franța atunci când una dintre fiicele ei, în vârstă de aproximativ 16 ani, i s-a destăinuit că îi plac fetele. Femeia spune că a „acceptat foarte repede și foarte ușor situația”. De atunci au trecut 10 ani, fiica Elenei este într-o relație fericită, fiind căsătorită de 7...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "d2277216e423",
+      "title": "Președinta Maia Sandu va participa la Summitul R. Moldova – Uniunea Europeană de la Bruxelles, alături de președintele Consiliului European și de președinta Comisiei Europene",
+      "url": "https://www.zdg.md/stiri/presedinta-maia-sandu-va-participa-la-summitul-r-moldova-uniunea-europeana-de-la-bruxelles-alaturi-de-presedintele-consiliului-european-si-de-presedinta-comisiei-europene/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-17T08:59:45Z",
+      "published_date": "2026-06-17",
+      "summary": "Președinta Maia Sandu va participa pe 22 iunie la Summitul R. Moldova – Uniunea Europeană, care va avea loc la Bruxelles, a anunțat miecuri, 17 iunie, Președinția. UE va fi reprezentată de președintele Consiliului European, António Costa, și de președinta Comisiei Europene, Ursula von der Leyen. Summitul R. Moldova – Uniunea Europeană este un format...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "b950f3e94eaa",
+      "title": "De ultimă oră",
+      "url": "https://anticoruptie.md/rss/latest.xml?lang=ro",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Cel mai recent episod de farsă telefonică în care a fost implicată Cristina Gherasimov, Viceprim-ministru pentru Integrare Europeană, ar trebui interpretat ca fiind mai mult decât un simplu teatru politic. Este tentant să ne limităm la eticheta geopolitică. Această reacție este de înțeles, dar, din perspectiva securității, este și[...]",
+      "categories": [
+        "coruptie",
+        "politica"
+      ],
+      "category_scores": {
+        "coruptie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "375cd29e4913",
+      "title": "Comunicăm. Producem. Plasăm.Crești împreună cu AGORA",
+      "url": "https://agora.md/media-kit",
+      "source": "Agora.md",
+      "source_key": "agora_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.",
+      "categories": [
+        "justitie",
+        "media"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "media": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "a685b2ee6841",
+      "title": "BBC/ Acordul SUA cu Iranul ar putea deveni un coșmar politic pentru Benjamin Netanyahu.",
+      "url": "https://www.zdg.md/stiri/bbc-acordul-sua-cu-iranul-ar-putea-deveni-un-cosmar-politic-pentru-benjamin-netanyahu/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-17T10:40:00Z",
+      "published_date": "2026-06-17",
+      "summary": "Acordul de încetare a focului dintre SUA și Iran s-a transformat pentru prim-ministrul Israelului, Benjamin Netanyahu, într-un adevărat coșmar politic. Acesta a pus sub semnul întrebării trei dintre pilonii esențiali ai carierei sale politice de lungă durată și l-a împins pe liderul israelian într-o nouă capcană strategică, scrie BBC. Cum s-a ajuns ca politicianul care...",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "2db716c03231",
+      "title": "LIVE TEXT/ Patru persoane rănite, inclusiv un copil, în urma unui atac rusesc cu drone asupra regiunii Sumî. Război în Ucraina, ziua 1575",
+      "url": "https://www.zdg.md/stiri/live-text-patru-persoane-ranite-inclusiv-un-copil-in-urma-unui-atac-rusesc-cu-drone-asupra-regiunii-sumi-razboi-in-ucraina-ziua-1575/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-17T09:20:00Z",
+      "published_date": "2026-06-17",
+      "summary": "UPDATE 12:15 În regiunea Sumî, 4 persoane au fost rănite în urma atacurilor rusești, dintre care un copil, care a suferit o reacție acută la stres, a anunțat Serviciul pentru Situații de Urgență În noaptea de 16 spre 17 iunie, dronele au lovit obiective de infrastructură civilă în comunitățile Șostka și Trostianeț. Unda de șoc...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "d15c4db07716",
+      "title": "„Listele lui Șor”, un nou element al războiului hibrid. SIS: „Serviciile speciale ruse colectează masiv date personale”",
+      "url": "https://anticoruptie.md/ro/stiri/listele-lui-sor-un-nou-element-al-razboiului-hibrid-sis-serviciile-speciale-ruse-colecteaza-masiv-date-personale",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Serviciul de Informații și Securitate avertizează despre faptul că datele personale ale moldovenilor sunt colectate masiv de către serviciile speciale ale Federației Ruse. Informațiile sunt ulterior transmise în adresa grupurilor criminal organizate, cu acoperire transfrontalieră…",
+      "categories": [
+        "securitate"
+      ],
+      "category_scores": {
+        "securitate": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "d36ed7fe1d3f",
+      "title": "Modernizează-ți locuința cu creditul GEFF Moldova Rezidențial de la maib și poți beneficia de grant de până la 22,5%",
+      "url": "https://mold-street.com/noutate/modernizeaza-ti-locuinta-cu-creditul-geff-moldova-rezidential-de-la-maib-si-poti-beneficia-de-grant-de-pana-la-225",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "afaceri"
+      ],
+      "category_scores": {
+        "afaceri": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "d4e87b6a434d",
+      "title": "În regiunea transnistreană, starea de urgență economică a fost prelungită până pe 17 iulie",
+      "url": "https://www.zdg.md/stiri/in-regiunea-transnistreana-starea-de-urgenta-economica-a-fost-prelungita-pana-pe-17-iulie/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-17T08:09:39Z",
+      "published_date": "2026-06-17",
+      "summary": "Așa-numitul Soviet Suprem al regiunii transnistrene a aprobat decretul lui Vadim Krasnoselski privind prelungirea stării de urgență în economie. Aceasta va fi valabilă până pe 17 iulie, transmite Zona de Securitate. Regimul actual al stării de urgență în economie este în vigoare în regiune din decembrie 2025 și este prelungit periodic, câte 30 de zile....",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "1f474e71628f",
+      "title": "Adrian Ermurachi: Reforma administrației publice locale: dincolo de modele este important modul de luare a deciziei",
+      "url": "https://anticoruptie.md/ro/interviuri/adrian-ermurachi-reforma-administratiei-publice-locale-dincolo-de-modele-este-important-modul-de-luare-a-deciziei",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Interviu acordat pentru Buletinul de politică externă al FES/APE",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "d79bb71cbb91",
+      "title": "Farsele telefonice din Moldova: o problemă de securitate la nivel executiv.",
+      "url": "https://anticoruptie.md/ro/blog/gheorghe-alexandra/farsele-telefonice-din-moldova-o-problema-de-securitate-la-nivel-executiv",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Cel mai recent episod de farsă telefonică în care a fost implicată Cristina Gherasimov, Viceprim-ministru pentru Integrare Europeană, ar trebui interpretat ca fiind mai mult decât un simplu teatru politic. Este tentant să ne limităm la eticheta geopolitică.",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "d1fe7cb85f2e",
+      "title": "Fără anonimi la telefon. Cartelele SIM vor putea fi procurate doar cu buletinul",
+      "url": "https://anticoruptie.md/ro/stiri/fara-anonimi-la-telefon-cartelele-sim-vor-putea-fi-procurate-doar-cu-buletinul",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Cartelele SIM și eSIM preplătite vor putea fi activate doar prin confirmarea identității în baza unui act de identitate. În același timp, măsura nu limitează accesul cetățenilor la servicii de telefonie mobilă - vânzarea cartelelor va rămâne în continuare liberă.",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "86512e10c510",
+      "title": "DOC// Irina Vlah obține acces la unul dintre conturile sale. Ce cheltuieli va putea face",
+      "url": "https://anticoruptie.md/ro/dosare-de-coruptie/doc-irina-vlah-obtine-acces-la-unul-dintre-conturile-sale-ce-cheltuieli-va-putea-face",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Judecătoria Chișinău, sediul Rîșcani, a admis parțial cererea fostei bașcane Irina Vlah privnd accesul la conturile sale. Instanța a obligat Serviciul Fiscal să asigure anumite operațiuni de pe contul deschis la o bancă comercială, astfel încât lidera partidului Inima Moldovei, s…",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "77e5e56c8caf",
+      "title": "Sindicatele cer discuții cu proiectul reformei salarizării pe masă",
+      "url": "https://anticoruptie.md/ro/stiri/sindicatele-cer-discutii-cu-proiectul-reformei-salarizarii-pe-masa",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Confederația Națională a Sindicatelor din Moldova (CNSM) solicită autorităților urgentarea consultărilor publice privind reforma salarizării în sectorul bugetar. Organizația a adresat demersuri președintei Republicii Moldova, Maia Sandu, și prim-ministrului Republicii Moldova, Al…",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "96846e4715a8",
+      "title": "Autoritățile din stânga Nistrului aleg canale digitale de comunicare rusești",
+      "url": "https://anticoruptie.md/ro/stiri/tiraspolul-alege-canale-digitale-de-comunicare-rusesti",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Autoritățile de la Tiraspol copiază legislația aplicată în Federația Rusă în privința funcționării instituțiilor publice pe rețelele de socializare și promovează platformele de comunicare rusești. „Paginile oficiale” ale instituțiilor din stânga Nistrului vor fi deschise pe anumi…",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "20743de593d2",
+      "title": "Налог на жилье в Молдове резко вырастет? По кому это ударит, что планируют власти, и что говорят эксперты",
+      "url": "https://newsmaker.md/ru/nalog-na-jile-v-moldove-rezko-vyrastet-po-komu-eto-udarit-chto-planiruyut-vlasti-i-chto-govoryat-eksperty",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "DUOMO. Когда качество — не просто слово, это обязательство",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "956e8256821a",
+      "title": "Министр обороны о ранении солдата в Бельцах: «Инцидент произошел из-за неправильного обращения с оружием»",
+      "url": "https://newsmaker.md/ru/ministr-oborony-o-ranenii-soldata-v-belczah",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "1ccb5843e1b2",
+      "title": "Власти планируют пересмотреть подход к Prima Casa: «Не должно быть 0% первого взноса»",
+      "url": "https://newsmaker.md/ru/vlasti-planiruyut-peresmotret-podhod-k-prima-casa-eto-silno-portit-rynok",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "86468dae0466",
+      "title": "В правительстве защищают налоговую реформу: Большинство граждан она не затронет",
+      "url": "https://newsmaker.md/ru/v-pravitelstve-zashishayut-nalogovuyu-reformu-bolshinstvo-grajdan-ona-ne-zatronet",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "68f3bc0b16e0",
+      "title": "Persoana pe o movilă de monede euro",
+      "url": "https://mold-street.com/noutate/plafonul-de-garantare-a-depozitelor-bancare-va-fi-majorat-treptat-la-nivelul-din-ue-100000-de-euro",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "d1e364d2e209",
+      "title": "Fiecare leu alocat pentru eficiența energetică în sectorul rezidențial generează beneficii de peste 4 lei",
+      "url": "https://mold-street.com/noutate/fiecare-leu-alocat-pentru-eficienta-energetica-in-sectorul-rezidential-genereaza-beneficii-de-peste-4-lei",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "a898e67b1296",
+      "title": "Aplicația mobilă pentru afaceri: când merită investiția și cât costă",
+      "url": "https://mold-street.com/noutate/aplicatia-mobila-pentru-afaceri-cand-merita-investitia-si-cat-costa",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "08e85a262c19",
+      "title": "Mai puţine venituri la buget din importul de automobile şi gaze lichefiate",
+      "url": "https://mold-street.com/noutate/mai-putine-venituri-la-buget-din-importul-de-automobile-si-gaze-lichefiate",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "4b8355701dc1",
+      "title": "Mobile Apps for Business: When They Make Sense and How Much They Cost",
+      "url": "https://mold-street.com/noutate/mobile-apps-for-business-when-they-make-sense-and-how-much-they-cost",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    }
+  ]
+}
