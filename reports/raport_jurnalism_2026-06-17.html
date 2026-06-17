@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monitorizare Jurnalism Investigativ Moldova – 17.06.2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; color: #2c3e50; }
+  .header { background: #1b4332; color: #fff; padding: 28px 40px; }
+  .header h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: 0.5px; }
+  .header .subtitle { margin-top: 6px; font-size: 0.9rem; opacity: 0.85; }
+  .stats-bar { background: #2d6a4f; color: #fff; padding: 16px 40px;
+                display: flex; gap: 36px; flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; }
+  .stat .val { font-size: 1.8rem; font-weight: 700; }
+  .stat .lbl { font-size: 0.72rem; opacity: 0.82; text-transform: uppercase; letter-spacing: 0.8px; }
+  .cat-bar { background: #40916c; color: #fff; padding: 12px 40px;
+              display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .cat-chip { background: rgba(255,255,255,0.18); border-radius: 20px;
+               padding: 4px 14px; font-size: 0.78rem; font-weight: 600;
+               white-space: nowrap; }
+  .container { max-width: 1040px; margin: 30px auto; padding: 0 20px 40px; }
+  .section-title { font-size: 0.95rem; font-weight: 700; color: #1b4332;
+                    text-transform: uppercase; letter-spacing: 1px;
+                    margin: 28px 0 14px; border-bottom: 2px solid #1b4332;
+                    padding-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08);
+           padding: 18px 22px; margin-bottom: 14px; border-left: 5px solid #1b4332;
+           transition: box-shadow .15s; }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.13); }
+  .card.investigativ { border-left-color: #d62828; }
+  .card-title { font-size: 1rem; font-weight: 700; color: #1b4332; margin-bottom: 8px; }
+  .card-title a { color: inherit; text-decoration: none; }
+  .card-title a:hover { text-decoration: underline; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;
+           font-size: 0.8rem; color: #555; }
+  .badge { display: inline-block; font-size: 0.68rem; font-weight: 700;
+            padding: 2px 8px; border-radius: 12px; color: #fff;
+            margin-right: 4px; vertical-align: middle; }
+  .badge-inv { background: #d62828; }
+  .source-tag { background: #e8f4ec; color: #1b4332; border-radius: 4px;
+                 padding: 1px 8px; font-size: 0.75rem; font-weight: 600; }
+  .summary { font-size: 0.85rem; color: #444; line-height: 1.55; margin-top: 6px; }
+  .cat-tags { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .cat-tag { font-size: 0.72rem; padding: 2px 10px; border-radius: 10px;
+              font-weight: 600; background: #e8f4ec; color: #1b4332; }
+  .link-btn { display: inline-block; margin-top: 10px; padding: 5px 14px;
+               background: #1b4332; color: #fff; border-radius: 5px;
+               font-size: 0.78rem; text-decoration: none; font-weight: 600; }
+  .link-btn:hover { background: #2d6a4f; }
+  .empty-box { background: #fff; border-radius: 8px; padding: 30px 24px;
+                text-align: center; color: #7f8c8d; font-size: 0.95rem;
+                box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .source-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+  .source-box { background: #fff; border-radius: 8px; padding: 12px 18px;
+                 box-shadow: 0 2px 6px rgba(0,0,0,.07); min-width: 140px;
+                 border-top: 3px solid #1b4332; }
+  .source-box .sname { font-size: 0.78rem; font-weight: 700; color: #1b4332; }
+  .source-box .scount { font-size: 1.4rem; font-weight: 700; color: #2d6a4f; margin-top: 2px; }
+  .footer { text-align: center; font-size: 0.75rem; color: #999;
+             margin-top: 40px; padding-bottom: 20px; }
+  @media (max-width: 600px) {
+    .header, .stats-bar, .cat-bar { padding: 18px 16px; }
+    .stats-bar { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🔍 Monitorizare Jurnalism Investigativ – Moldova</h1>
+  <div class="subtitle">
+    Surse monitorizate: 8 &nbsp;|&nbsp;
+    Ultimele 26 ore &nbsp;|&nbsp;
+    Generat: 2026-06-17 11:01 UTC
+  </div>
+</div>
+<div class="stats-bar">
+  <div class="stat"><span class="val">33</span><span class="lbl">Articole noi</span></div>
+  <div class="stat"><span class="val">5</span><span class="lbl">Investigative</span></div>
+  <div class="stat"><span class="val">8</span><span class="lbl">Surse active</span></div>
+  <div class="stat"><span class="val">17.06.2026</span><span class="lbl">Data raportului</span></div>
+</div>
+<div class="cat-bar">
+  <span style="font-size:.8rem;opacity:.85;margin-right:4px">Categorii:</span>
+  <span class="cat-chip">🏛️ Politică & Putere (9)</span><span class="cat-chip">⚖️ Justiție & Procurori (8)</span><span class="cat-chip">💰 Corupție (3)</span><span class="cat-chip">📰 Media & Libertatea Presei (2)</span><span class="cat-chip">👥 Social & Drepturile Omului (2)</span><span class="cat-chip">💼 Afaceri & Contracte Publice (1)</span><span class="cat-chip">🔐 Securitate & Intelligence (1)</span>
+</div>
+<div class="container">
+<div class="section-title">📊 Articole pe surse</div><div class="source-grid"><div class="source-box"><div class="sname">Ziarul de Gardă</div><div class="scount">10</div></div><div class="source-box"><div class="sname">Anticorupție.md</div><div class="scount">10</div></div><div class="source-box"><div class="sname">Mold-Street</div><div class="scount">7</div></div><div class="source-box"><div class="sname">Newsmaker.md</div><div class="scount">4</div></div><div class="source-box"><div class="sname">RISE Moldova</div><div class="scount">1</div></div><div class="source-box"><div class="sname">Agora.md</div><div class="scount">1</div></div></div>
+<div class="section-title">🔍 Articole Investigative (5)</div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/punct-final-la-curtea-de-apel-in-dosarul-ciochina-condamnatul-urmeaza-sa-si-execute-pedeapsa-intr-un-penitenciar-de-tip-deschis/" target="_blank">Punct final la Curtea de Apel în dosarul Ciochină: Condamnatul urmează să-și execute pedeapsa într-un penitenciar de tip deschis</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 17.06.2026</span>
+    </div>
+    <div class='summary'>Judecătorii Curții de Apel Centru au menținut „fără modificări” sentința primei instanțe în dosarul fostului primar de Boldurești, Nicanor Ciochină. Judecătorii au menținut pedeapsa aplicată, de 7 ani de închisoare în penitenciar de tip deschis pentru Ciochină și de 6 luni în penitenciar de tip semi-închis pentru complicele său, Ion Andronache. „Credea că se va...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/punct-final-la-curtea-de-apel-in-dosarul-ciochina-condamnatul-urmeaza-sa-si-execute-pedeapsa-intr-un-penitenciar-de-tip-deschis/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/18-milioane-de-lei-alocati-de-guvern-pentru-compensarea-valorii-bunurilor-confiscate-in-timpul-represiunilor-politice/" target="_blank">1,8 milioane de lei, alocați de Guvern pentru compensarea valorii bunurilor confiscate în timpul represiunilor politice</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 17.06.2026</span>
+    </div>
+    <div class='summary'>Guvernul a aprobat alocarea peste 1,8 milioane de lei pentru compensarea valorii bunurilor confiscate în timpul represiunilor politice. Un proiect în acest sens a fost aprobat în ședința Cabinetului de miniștri de miercuri, 17 iunie. Mijloacele financiare vor fi repartizate în baza deciziilor comisiilor speciale și a solicitărilor autorităților publice locale, pentru achitarea compensațiilor către…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/18-milioane-de-lei-alocati-de-guvern-pentru-compensarea-valorii-bunurilor-confiscate-in-timpul-represiunilor-politice/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/guvernul-deschide-haznaua-aproape-2-milioane-de-lei-pentru-sase-victime-ale-represiunilor-politice" target="_blank">Guvernul deschide haznaua. Aproape 2 milioane de lei, pentru șase victime ale represiunilor politice</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Guvernul a aprobat alocarea peste 1,8 milioane de lei pentru compensarea valorii bunurilor confiscate în timpul represiunilor politice . De aceste plăți vor beneficia șase persoane, care provin din familii supuse represiunilor și care și-au pierdut averea.</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/guvernul-deschide-haznaua-aproape-2-milioane-de-lei-pentru-sase-victime-ale-represiunilor-politice" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/incepe-marea-inventariere-a-padurilor-cat-va-cheltui-statul-pentru-verificarea-resurselor-forestiere" target="_blank">Începe marea inventariere a pădurilor. Cât va cheltui statul pentru verificarea resurselor forestiere</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Guvernul a aprobat organizarea și desfășurarea Ciclului I al Inventarului Forestier Național . Statul vrea să știe ce resurse forestiere are, dar și să determine starea reală a acestora.</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/incepe-marea-inventariere-a-padurilor-cat-va-cheltui-statul-pentru-verificarea-resurselor-forestiere" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://mold-street.com/noutate/bursa-internationala-de-abia-a-depus-dosarul" target="_blank">Bursa Internaţională de abia a depus dosarul</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/bursa-internationala-de-abia-a-depus-dosarul" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🏛️ Politică & Putere (6)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/cartelele-sim-si-esim-vor-putea-fi-activate-doar-prin-confirmarea-identitatii-in-baza-unui-act-de-identitate-anonimatul-este-folosit-in-activitati-ilegale-si-ingreuneaza-identificarea-autori/" target="_blank">Cartelele SIM și eSIM vor putea fi activate doar prin confirmarea identității în baza unui act de identitate: „Anonimatul este folosit în activități ilegale și îngreunează identificarea autorilor”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 17.06.2026</span>
+    </div>
+    <div class='summary'>Cartelele SIM și eSIM preplătite vor putea fi activate doar prin confirmarea identității în baza unui act de identitate. Decizia a fost aprobată de Guvern, pe 17 iunie, în scopul prevenirii fraudelor, escrocheriilor și altor abuzuri comise prin utilizarea anonimă a numerelor de telefon. „În ultimii ani, infracțiunile care afectează cetățenii au migrat tot mai mult în...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/cartelele-sim-si-esim-vor-putea-fi-activate-doar-prin-confirmarea-identitatii-in-baza-unui-act-de-identitate-anonimatul-este-folosit-in-activitati-ilegale-si-ingreuneaza-identificarea-autori/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/guvernul-a-votat-desemnarea-a-doi-ambasadori-si-numirea-unui-consul-general-detalii-din-cariera-diplomatilor/" target="_blank">Guvernul a votat desemnarea a doi ambasadori și numirea unui consul general. Detalii din cariera diplomaților</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 17.06.2026</span>
+    </div>
+    <div class='summary'>Guvernul R. Moldova a aprobat desemnarea a doi ambasadori și numirea unui consul general. Astfel, Inga Ionesii a fost numită Ambasador Extraordinar și Plenipotențiar al R. Moldova în India, Victor Lăpușneanu – Ambasador al R. Moldova, Reprezentant Permanent pe lângă Consiliul Europei, iar Alexei Țurcan – Consul General al R. Moldova la Odesa, Ucraina. Potrivit...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">💰 Corupție</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/guvernul-a-votat-desemnarea-a-doi-ambasadori-si-numirea-unui-consul-general-detalii-din-cariera-diplomatilor/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.rise.md/un-necunoscut-s-a-dat-drept-jurnalist-rise-moldova-si-a-incercat-sa-obtina-informatii-de-la-reprezentanti-ai-opozitiei-din-belarus/" target="_blank">Un necunoscut s-a dat drept jurnalist RISE Moldova și a încercat să obțină informații de la reprezentanți ai opoziției din Belarus</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 RISE Moldova</span>
+      <span>📅 17.06.2026</span>
+    </div>
+    <div class='summary'>Această tentativă întreprinsă cu scop de provocare a durat mai bine de două luni. Un provocator anonim a […] The post Un necunoscut s-a dat drept jurnalist RISE Moldova și a încercat să obțină informații de la reprezentanți ai opoziției din Belarus appeared first on Rise Moldova .</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://www.rise.md/un-necunoscut-s-a-dat-drept-jurnalist-rise-moldova-si-a-incercat-sa-obtina-informatii-de-la-reprezentanti-ai-opozitiei-din-belarus/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/presedinta-maia-sandu-va-participa-la-summitul-r-moldova-uniunea-europeana-de-la-bruxelles-alaturi-de-presedintele-consiliului-european-si-de-presedinta-comisiei-europene/" target="_blank">Președinta Maia Sandu va participa la Summitul R. Moldova – Uniunea Europeană de la Bruxelles, alături de președintele Consiliului European și de președinta Comisiei Europene</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 17.06.2026</span>
+    </div>
+    <div class='summary'>Președinta Maia Sandu va participa pe 22 iunie la Summitul R. Moldova – Uniunea Europeană, care va avea loc la Bruxelles, a anunțat miecuri, 17 iunie, Președinția. UE va fi reprezentată de președintele Consiliului European, António Costa, și de președinta Comisiei Europene, Ursula von der Leyen. Summitul R. Moldova – Uniunea Europeană este un format...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/presedinta-maia-sandu-va-participa-la-summitul-r-moldova-uniunea-europeana-de-la-bruxelles-alaturi-de-presedintele-consiliului-european-si-de-presedinta-comisiei-europene/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/rss/latest.xml?lang=ro" target="_blank">De ultimă oră</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Cel mai recent episod de farsă telefonică în care a fost implicată Cristina Gherasimov, Viceprim-ministru pentru Integrare Europeană, ar trebui interpretat ca fiind mai mult decât un simplu teatru politic. Este tentant să ne limităm la eticheta geopolitică. Această reacție este de înțeles, dar, din perspectiva securității, este și[...]</div>
+    <div class='cat-tags'><span class="cat-tag">💰 Corupție</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/rss/latest.xml?lang=ro" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/bbc-acordul-sua-cu-iranul-ar-putea-deveni-un-cosmar-politic-pentru-benjamin-netanyahu/" target="_blank">BBC/ Acordul SUA cu Iranul ar putea deveni un coșmar politic pentru Benjamin Netanyahu.</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 17.06.2026</span>
+    </div>
+    <div class='summary'>Acordul de încetare a focului dintre SUA și Iran s-a transformat pentru prim-ministrul Israelului, Benjamin Netanyahu, într-un adevărat coșmar politic. Acesta a pus sub semnul întrebării trei dintre pilonii esențiali ai carierei sale politice de lungă durată și l-a împins pe liderul israelian într-o nouă capcană strategică, scrie BBC. Cum s-a ajuns ca politicianul care...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/bbc-acordul-sua-cu-iranul-ar-putea-deveni-un-cosmar-politic-pentru-benjamin-netanyahu/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">⚖️ Justiție & Procurori (6)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/mita-pentru-obtinerea-unor-certificate-care-te-scutesc-de-bac-cna-face-perchezitii-este-vizat-si-un-profesor/" target="_blank">Mită pentru obținerea unor certificate care te scutesc de BAC? CNA face percheziții. Este vizat și un profesor</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 17.06.2026</span>
+    </div>
+    <div class='summary'>Mai multe acțiuni de urmărire penală sunt efectuate într-o cauză penală în care sunt investigate presupuse acțiuni ilegale ale unor persoane implicate, printre care și un profesor, în procesul de organizare și desfășurare a examenelor internaționale Certiport, anunță miercuri, 17 iunie, Centrul Național Anticorupție (CNA). Potrivit CNA, există o bănuială rezonabilă că, în perioada martie...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💰 Corupție</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/mita-pentru-obtinerea-unor-certificate-care-te-scutesc-de-bac-cna-face-perchezitii-este-vizat-si-un-profesor/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/cartelele-sim-si-esim-vor-putea-fi-activate-doar-prin-confirmarea-identitatii-in-baza-unui-act-de-identitate-anonimatul-este-folosit-in-activitati-ilegale-si-ingreuneaza-identificarea-autori/" target="_blank">Cartelele SIM și eSIM vor putea fi activate doar prin confirmarea identității în baza unui act de identitate: „Anonimatul este folosit în activități ilegale și îngreunează identificarea autorilor”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 17.06.2026</span>
+    </div>
+    <div class='summary'>Cartelele SIM și eSIM preplătite vor putea fi activate doar prin confirmarea identității în baza unui act de identitate. Decizia a fost aprobată de Guvern, pe 17 iunie, în scopul prevenirii fraudelor, escrocheriilor și altor abuzuri comise prin utilizarea anonimă a numerelor de telefon. „În ultimii ani, infracțiunile care afectează cetățenii au migrat tot mai mult în...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/cartelele-sim-si-esim-vor-putea-fi-activate-doar-prin-confirmarea-identitatii-in-baza-unui-act-de-identitate-anonimatul-este-folosit-in-activitati-ilegale-si-ingreuneaza-identificarea-autori/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/interviuri/eu-chiar-ma-bucur-ca-suntem-aici-si-nu-in-moldova-marturiile-unei-mame-stabilite-in-franta-a-carei-fiica-face-parte-din-comunitatea-lgbtq/" target="_blank">„Eu chiar mă bucur că suntem aici și nu în Moldova.” Mărturiile unei mame stabilite în Franța, a cărei fiică face parte din comunitatea LGBTQ+</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 17.06.2026</span>
+    </div>
+    <div class='summary'>Elena (nume schimbat, n.r.) era deja stabilită în Franța atunci când una dintre fiicele ei, în vârstă de aproximativ 16 ani, i s-a destăinuit că îi plac fetele. Femeia spune că a „acceptat foarte repede și foarte ușor situația”. De atunci au trecut 10 ani, fiica Elenei este într-o relație fericită, fiind căsătorită de 7...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/interviuri/eu-chiar-ma-bucur-ca-suntem-aici-si-nu-in-moldova-marturiile-unei-mame-stabilite-in-franta-a-carei-fiica-face-parte-din-comunitatea-lgbtq/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/presedinta-maia-sandu-va-participa-la-summitul-r-moldova-uniunea-europeana-de-la-bruxelles-alaturi-de-presedintele-consiliului-european-si-de-presedinta-comisiei-europene/" target="_blank">Președinta Maia Sandu va participa la Summitul R. Moldova – Uniunea Europeană de la Bruxelles, alături de președintele Consiliului European și de președinta Comisiei Europene</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 17.06.2026</span>
+    </div>
+    <div class='summary'>Președinta Maia Sandu va participa pe 22 iunie la Summitul R. Moldova – Uniunea Europeană, care va avea loc la Bruxelles, a anunțat miecuri, 17 iunie, Președinția. UE va fi reprezentată de președintele Consiliului European, António Costa, și de președinta Comisiei Europene, Ursula von der Leyen. Summitul R. Moldova – Uniunea Europeană este un format...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/presedinta-maia-sandu-va-participa-la-summitul-r-moldova-uniunea-europeana-de-la-bruxelles-alaturi-de-presedintele-consiliului-european-si-de-presedinta-comisiei-europene/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/live-text-patru-persoane-ranite-inclusiv-un-copil-in-urma-unui-atac-rusesc-cu-drone-asupra-regiunii-sumi-razboi-in-ucraina-ziua-1575/" target="_blank">LIVE TEXT/ Patru persoane rănite, inclusiv un copil, în urma unui atac rusesc cu drone asupra regiunii Sumî. Război în Ucraina, ziua 1575</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 17.06.2026</span>
+    </div>
+    <div class='summary'>UPDATE 12:15 În regiunea Sumî, 4 persoane au fost rănite în urma atacurilor rusești, dintre care un copil, care a suferit o reacție acută la stres, a anunțat Serviciul pentru Situații de Urgență În noaptea de 16 spre 17 iunie, dronele au lovit obiective de infrastructură civilă în comunitățile Șostka și Trostianeț. Unda de șoc...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/live-text-patru-persoane-ranite-inclusiv-un-copil-in-urma-unui-atac-rusesc-cu-drone-asupra-regiunii-sumi-razboi-in-ucraina-ziua-1575/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">💰 Corupție (3)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/mita-pentru-obtinerea-unor-certificate-care-te-scutesc-de-bac-cna-face-perchezitii-este-vizat-si-un-profesor/" target="_blank">Mită pentru obținerea unor certificate care te scutesc de BAC? CNA face percheziții. Este vizat și un profesor</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 17.06.2026</span>
+    </div>
+    <div class='summary'>Mai multe acțiuni de urmărire penală sunt efectuate într-o cauză penală în care sunt investigate presupuse acțiuni ilegale ale unor persoane implicate, printre care și un profesor, în procesul de organizare și desfășurare a examenelor internaționale Certiport, anunță miercuri, 17 iunie, Centrul Național Anticorupție (CNA). Potrivit CNA, există o bănuială rezonabilă că, în perioada martie...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💰 Corupție</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/mita-pentru-obtinerea-unor-certificate-care-te-scutesc-de-bac-cna-face-perchezitii-este-vizat-si-un-profesor/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/guvernul-a-votat-desemnarea-a-doi-ambasadori-si-numirea-unui-consul-general-detalii-din-cariera-diplomatilor/" target="_blank">Guvernul a votat desemnarea a doi ambasadori și numirea unui consul general. Detalii din cariera diplomaților</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 17.06.2026</span>
+    </div>
+    <div class='summary'>Guvernul R. Moldova a aprobat desemnarea a doi ambasadori și numirea unui consul general. Astfel, Inga Ionesii a fost numită Ambasador Extraordinar și Plenipotențiar al R. Moldova în India, Victor Lăpușneanu – Ambasador al R. Moldova, Reprezentant Permanent pe lângă Consiliul Europei, iar Alexei Țurcan – Consul General al R. Moldova la Odesa, Ucraina. Potrivit...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">💰 Corupție</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/guvernul-a-votat-desemnarea-a-doi-ambasadori-si-numirea-unui-consul-general-detalii-din-cariera-diplomatilor/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/rss/latest.xml?lang=ro" target="_blank">De ultimă oră</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Cel mai recent episod de farsă telefonică în care a fost implicată Cristina Gherasimov, Viceprim-ministru pentru Integrare Europeană, ar trebui interpretat ca fiind mai mult decât un simplu teatru politic. Este tentant să ne limităm la eticheta geopolitică. Această reacție este de înțeles, dar, din perspectiva securității, este și[...]</div>
+    <div class='cat-tags'><span class="cat-tag">💰 Corupție</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/rss/latest.xml?lang=ro" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📰 Media & Libertatea Presei (2)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.rise.md/un-necunoscut-s-a-dat-drept-jurnalist-rise-moldova-si-a-incercat-sa-obtina-informatii-de-la-reprezentanti-ai-opozitiei-din-belarus/" target="_blank">Un necunoscut s-a dat drept jurnalist RISE Moldova și a încercat să obțină informații de la reprezentanți ai opoziției din Belarus</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 RISE Moldova</span>
+      <span>📅 17.06.2026</span>
+    </div>
+    <div class='summary'>Această tentativă întreprinsă cu scop de provocare a durat mai bine de două luni. Un provocator anonim a […] The post Un necunoscut s-a dat drept jurnalist RISE Moldova și a încercat să obțină informații de la reprezentanți ai opoziției din Belarus appeared first on Rise Moldova .</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://www.rise.md/un-necunoscut-s-a-dat-drept-jurnalist-rise-moldova-si-a-incercat-sa-obtina-informatii-de-la-reprezentanti-ai-opozitiei-din-belarus/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">👥 Social & Drepturile Omului (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/cartelele-sim-si-esim-vor-putea-fi-activate-doar-prin-confirmarea-identitatii-in-baza-unui-act-de-identitate-anonimatul-este-folosit-in-activitati-ilegale-si-ingreuneaza-identificarea-autori/" target="_blank">Cartelele SIM și eSIM vor putea fi activate doar prin confirmarea identității în baza unui act de identitate: „Anonimatul este folosit în activități ilegale și îngreunează identificarea autorilor”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 17.06.2026</span>
+    </div>
+    <div class='summary'>Cartelele SIM și eSIM preplătite vor putea fi activate doar prin confirmarea identității în baza unui act de identitate. Decizia a fost aprobată de Guvern, pe 17 iunie, în scopul prevenirii fraudelor, escrocheriilor și altor abuzuri comise prin utilizarea anonimă a numerelor de telefon. „În ultimii ani, infracțiunile care afectează cetățenii au migrat tot mai mult în...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/cartelele-sim-si-esim-vor-putea-fi-activate-doar-prin-confirmarea-identitatii-in-baza-unui-act-de-identitate-anonimatul-este-folosit-in-activitati-ilegale-si-ingreuneaza-identificarea-autori/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">💼 Afaceri & Contracte Publice (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/modernizeaza-ti-locuinta-cu-creditul-geff-moldova-rezidential-de-la-maib-si-poti-beneficia-de-grant-de-pana-la-225" target="_blank">Modernizează-ți locuința cu creditul GEFF Moldova Rezidențial de la maib și poți beneficia de grant de până la 22,5%</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/modernizeaza-ti-locuinta-cu-creditul-geff-moldova-rezidential-de-la-maib-si-poti-beneficia-de-grant-de-pana-la-225" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🔐 Securitate & Intelligence (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/listele-lui-sor-un-nou-element-al-razboiului-hibrid-sis-serviciile-speciale-ruse-colecteaza-masiv-date-personale" target="_blank">„Listele lui Șor”, un nou element al războiului hibrid. SIS: „Serviciile speciale ruse colectează masiv date personale”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Serviciul de Informații și Securitate avertizează despre faptul că datele personale ale moldovenilor sunt colectate masiv de către serviciile speciale ale Federației Ruse. Informațiile sunt ulterior transmise în adresa grupurilor criminal organizate, cu acoperire transfrontalieră…</div>
+    <div class='cat-tags'><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/listele-lui-sor-un-nou-element-al-razboiului-hibrid-sis-serviciile-speciale-ruse-colecteaza-masiv-date-personale" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📌 Alte articole (16)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/in-regiunea-transnistreana-starea-de-urgenta-economica-a-fost-prelungita-pana-pe-17-iulie/" target="_blank">În regiunea transnistreană, starea de urgență economică a fost prelungită până pe 17 iulie</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 17.06.2026</span>
+    </div>
+    <div class='summary'>Așa-numitul Soviet Suprem al regiunii transnistrene a aprobat decretul lui Vadim Krasnoselski privind prelungirea stării de urgență în economie. Aceasta va fi valabilă până pe 17 iulie, transmite Zona de Securitate. Regimul actual al stării de urgență în economie este în vigoare în regiune din decembrie 2025 și este prelungit periodic, câte 30 de zile....</div>
+    
+    <a class="link-btn" href="https://www.zdg.md/stiri/in-regiunea-transnistreana-starea-de-urgenta-economica-a-fost-prelungita-pana-pe-17-iulie/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/interviuri/adrian-ermurachi-reforma-administratiei-publice-locale-dincolo-de-modele-este-important-modul-de-luare-a-deciziei" target="_blank">Adrian Ermurachi: Reforma administrației publice locale: dincolo de modele este important modul de luare a deciziei</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Interviu acordat pentru Buletinul de politică externă al FES/APE</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/interviuri/adrian-ermurachi-reforma-administratiei-publice-locale-dincolo-de-modele-este-important-modul-de-luare-a-deciziei" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/blog/gheorghe-alexandra/farsele-telefonice-din-moldova-o-problema-de-securitate-la-nivel-executiv" target="_blank">Farsele telefonice din Moldova: o problemă de securitate la nivel executiv.</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Cel mai recent episod de farsă telefonică în care a fost implicată Cristina Gherasimov, Viceprim-ministru pentru Integrare Europeană, ar trebui interpretat ca fiind mai mult decât un simplu teatru politic. Este tentant să ne limităm la eticheta geopolitică.</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/blog/gheorghe-alexandra/farsele-telefonice-din-moldova-o-problema-de-securitate-la-nivel-executiv" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/fara-anonimi-la-telefon-cartelele-sim-vor-putea-fi-procurate-doar-cu-buletinul" target="_blank">Fără anonimi la telefon. Cartelele SIM vor putea fi procurate doar cu buletinul</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Cartelele SIM și eSIM preplătite vor putea fi activate doar prin confirmarea identității în baza unui act de identitate. În același timp, măsura nu limitează accesul cetățenilor la servicii de telefonie mobilă - vânzarea cartelelor va rămâne în continuare liberă.</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/fara-anonimi-la-telefon-cartelele-sim-vor-putea-fi-procurate-doar-cu-buletinul" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/dosare-de-coruptie/doc-irina-vlah-obtine-acces-la-unul-dintre-conturile-sale-ce-cheltuieli-va-putea-face" target="_blank">DOC// Irina Vlah obține acces la unul dintre conturile sale. Ce cheltuieli va putea face</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Judecătoria Chișinău, sediul Rîșcani, a admis parțial cererea fostei bașcane Irina Vlah privnd accesul la conturile sale. Instanța a obligat Serviciul Fiscal să asigure anumite operațiuni de pe contul deschis la o bancă comercială, astfel încât lidera partidului Inima Moldovei, s…</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/dosare-de-coruptie/doc-irina-vlah-obtine-acces-la-unul-dintre-conturile-sale-ce-cheltuieli-va-putea-face" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/sindicatele-cer-discutii-cu-proiectul-reformei-salarizarii-pe-masa" target="_blank">Sindicatele cer discuții cu proiectul reformei salarizării pe masă</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Confederația Națională a Sindicatelor din Moldova (CNSM) solicită autorităților urgentarea consultărilor publice privind reforma salarizării în sectorul bugetar. Organizația a adresat demersuri președintei Republicii Moldova, Maia Sandu, și prim-ministrului Republicii Moldova, Al…</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/sindicatele-cer-discutii-cu-proiectul-reformei-salarizarii-pe-masa" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/tiraspolul-alege-canale-digitale-de-comunicare-rusesti" target="_blank">Autoritățile din stânga Nistrului aleg canale digitale de comunicare rusești</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Autoritățile de la Tiraspol copiază legislația aplicată în Federația Rusă în privința funcționării instituțiilor publice pe rețelele de socializare și promovează platformele de comunicare rusești. „Paginile oficiale” ale instituțiilor din stânga Nistrului vor fi deschise pe anumi…</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/tiraspolul-alege-canale-digitale-de-comunicare-rusesti" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/nalog-na-jile-v-moldove-rezko-vyrastet-po-komu-eto-udarit-chto-planiruyut-vlasti-i-chto-govoryat-eksperty" target="_blank">Налог на жилье в Молдове резко вырастет? По кому это ударит, что планируют власти, и что говорят эксперты</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>DUOMO. Когда качество — не просто слово, это обязательство</div>
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/nalog-na-jile-v-moldove-rezko-vyrastet-po-komu-eto-udarit-chto-planiruyut-vlasti-i-chto-govoryat-eksperty" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/ministr-oborony-o-ranenii-soldata-v-belczah" target="_blank">Министр обороны о ранении солдата в Бельцах: «Инцидент произошел из-за неправильного обращения с оружием»</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/ministr-oborony-o-ranenii-soldata-v-belczah" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/vlasti-planiruyut-peresmotret-podhod-k-prima-casa-eto-silno-portit-rynok" target="_blank">Власти планируют пересмотреть подход к Prima Casa: «Не должно быть 0% первого взноса»</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/vlasti-planiruyut-peresmotret-podhod-k-prima-casa-eto-silno-portit-rynok" target="_blank">Citește articolul →</a>
+  </div>
+</div>
+<div class="footer">
+  Raport generat automat zilnic &nbsp;·&nbsp; ARBI – Monitorizare Jurnalism Investigativ Moldova
+</div>
+</body>
+</html>
