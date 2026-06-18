@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monitorizare Jurnalism Investigativ Moldova – 18.06.2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; color: #2c3e50; }
+  .header { background: #1b4332; color: #fff; padding: 28px 40px; }
+  .header h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: 0.5px; }
+  .header .subtitle { margin-top: 6px; font-size: 0.9rem; opacity: 0.85; }
+  .stats-bar { background: #2d6a4f; color: #fff; padding: 16px 40px;
+                display: flex; gap: 36px; flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; }
+  .stat .val { font-size: 1.8rem; font-weight: 700; }
+  .stat .lbl { font-size: 0.72rem; opacity: 0.82; text-transform: uppercase; letter-spacing: 0.8px; }
+  .cat-bar { background: #40916c; color: #fff; padding: 12px 40px;
+              display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .cat-chip { background: rgba(255,255,255,0.18); border-radius: 20px;
+               padding: 4px 14px; font-size: 0.78rem; font-weight: 600;
+               white-space: nowrap; }
+  .container { max-width: 1040px; margin: 30px auto; padding: 0 20px 40px; }
+  .section-title { font-size: 0.95rem; font-weight: 700; color: #1b4332;
+                    text-transform: uppercase; letter-spacing: 1px;
+                    margin: 28px 0 14px; border-bottom: 2px solid #1b4332;
+                    padding-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08);
+           padding: 18px 22px; margin-bottom: 14px; border-left: 5px solid #1b4332;
+           transition: box-shadow .15s; }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.13); }
+  .card.investigativ { border-left-color: #d62828; }
+  .card-title { font-size: 1rem; font-weight: 700; color: #1b4332; margin-bottom: 8px; }
+  .card-title a { color: inherit; text-decoration: none; }
+  .card-title a:hover { text-decoration: underline; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;
+           font-size: 0.8rem; color: #555; }
+  .badge { display: inline-block; font-size: 0.68rem; font-weight: 700;
+            padding: 2px 8px; border-radius: 12px; color: #fff;
+            margin-right: 4px; vertical-align: middle; }
+  .badge-inv { background: #d62828; }
+  .source-tag { background: #e8f4ec; color: #1b4332; border-radius: 4px;
+                 padding: 1px 8px; font-size: 0.75rem; font-weight: 600; }
+  .summary { font-size: 0.85rem; color: #444; line-height: 1.55; margin-top: 6px; }
+  .cat-tags { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .cat-tag { font-size: 0.72rem; padding: 2px 10px; border-radius: 10px;
+              font-weight: 600; background: #e8f4ec; color: #1b4332; }
+  .link-btn { display: inline-block; margin-top: 10px; padding: 5px 14px;
+               background: #1b4332; color: #fff; border-radius: 5px;
+               font-size: 0.78rem; text-decoration: none; font-weight: 600; }
+  .link-btn:hover { background: #2d6a4f; }
+  .empty-box { background: #fff; border-radius: 8px; padding: 30px 24px;
+                text-align: center; color: #7f8c8d; font-size: 0.95rem;
+                box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .source-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+  .source-box { background: #fff; border-radius: 8px; padding: 12px 18px;
+                 box-shadow: 0 2px 6px rgba(0,0,0,.07); min-width: 140px;
+                 border-top: 3px solid #1b4332; }
+  .source-box .sname { font-size: 0.78rem; font-weight: 700; color: #1b4332; }
+  .source-box .scount { font-size: 1.4rem; font-weight: 700; color: #2d6a4f; margin-top: 2px; }
+  .footer { text-align: center; font-size: 0.75rem; color: #999;
+             margin-top: 40px; padding-bottom: 20px; }
+  @media (max-width: 600px) {
+    .header, .stats-bar, .cat-bar { padding: 18px 16px; }
+    .stats-bar { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🔍 Monitorizare Jurnalism Investigativ – Moldova</h1>
+  <div class="subtitle">
+    Surse monitorizate: 8 &nbsp;|&nbsp;
+    Ultimele 26 ore &nbsp;|&nbsp;
+    Generat: 2026-06-18 10:27 UTC
+  </div>
+</div>
+<div class="stats-bar">
+  <div class="stat"><span class="val">33</span><span class="lbl">Articole noi</span></div>
+  <div class="stat"><span class="val">4</span><span class="lbl">Investigative</span></div>
+  <div class="stat"><span class="val">8</span><span class="lbl">Surse active</span></div>
+  <div class="stat"><span class="val">18.06.2026</span><span class="lbl">Data raportului</span></div>
+</div>
+<div class="cat-bar">
+  <span style="font-size:.8rem;opacity:.85;margin-right:4px">Categorii:</span>
+  <span class="cat-chip">⚖️ Justiție & Procurori (16)</span><span class="cat-chip">🏛️ Politică & Putere (10)</span><span class="cat-chip">💰 Corupție (2)</span><span class="cat-chip">📰 Media & Libertatea Presei (2)</span><span class="cat-chip">💼 Afaceri & Contracte Publice (2)</span><span class="cat-chip">👥 Social & Drepturile Omului (1)</span>
+</div>
+<div class="container">
+<div class="section-title">📊 Articole pe surse</div><div class="source-grid"><div class="source-box"><div class="sname">Ziarul de Gardă</div><div class="scount">10</div></div><div class="source-box"><div class="sname">Anticorupție.md</div><div class="scount">10</div></div><div class="source-box"><div class="sname">Mold-Street</div><div class="scount">7</div></div><div class="source-box"><div class="sname">Newsmaker.md</div><div class="scount">4</div></div><div class="source-box"><div class="sname">RISE Moldova</div><div class="scount">1</div></div><div class="source-box"><div class="sname">Agora.md</div><div class="scount">1</div></div></div>
+<div class="section-title">🔍 Articole Investigative (4)</div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/arest-preventiv-in-lipsa-pentru-ilan-sor-in-dosarul-privind-delapidarea-a-100-de-milioane-de-dolari-de-la-banca-de-economii/" target="_blank">Arest preventiv în lipsă pentru Ilan Șor în dosarul privind delapidarea a 100 de milioane de dolari de la Banca de Economii</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 18.06.2026</span>
+    </div>
+    <div class='summary'>În privința lui Ilan Șor a fost aplicată miercuri, 17 iunie, în lipsa lui măsura preventivă a arestului pentru un termen de 30 de zile, în cauza penală privind delapidarea sumei de 100 de milioane de dolari de la SA „Banca de Economii” (BEM), anunță joi, 18 iunie, Procuratura Anticorupție (PA). Ilan Șor este învinuit...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💰 Corupție</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/arest-preventiv-in-lipsa-pentru-ilan-sor-in-dosarul-privind-delapidarea-a-100-de-milioane-de-dolari-de-la-banca-de-economii/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/guvernul-deschide-haznaua-aproape-2-milioane-de-lei-pentru-sase-victime-ale-represiunilor-politice" target="_blank">Guvernul deschide haznaua. Aproape 2 milioane de lei, pentru șase victime ale represiunilor politice</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Guvernul a aprobat alocarea peste 1,8 milioane de lei pentru compensarea valorii bunurilor confiscate în timpul represiunilor politice . De aceste plăți vor beneficia șase persoane, care provin din familii supuse represiunilor și care și-au pierdut averea.</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/guvernul-deschide-haznaua-aproape-2-milioane-de-lei-pentru-sase-victime-ale-represiunilor-politice" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/incepe-marea-inventariere-a-padurilor-cat-va-cheltui-statul-pentru-verificarea-resurselor-forestiere" target="_blank">Începe marea inventariere a pădurilor. Cât va cheltui statul pentru verificarea resurselor forestiere</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Guvernul a aprobat organizarea și desfășurarea Ciclului I al Inventarului Forestier Național . Statul vrea să știe ce resurse forestiere are, dar și să determine starea reală a acestora.</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/incepe-marea-inventariere-a-padurilor-cat-va-cheltui-statul-pentru-verificarea-resurselor-forestiere" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://mold-street.com/noutate/bursa-internationala-de-abia-a-depus-dosarul" target="_blank">Bursa Internaţională a depus dosarul pentru obținerea licenței de operator de piață</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/bursa-internationala-de-abia-a-depus-dosarul" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">⚖️ Justiție & Procurori (15)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-sociale/de-la-patrimoniu-public-la-locuinte-pentru-muncitori-straini-utm-raspunde-acuzatiilor-lansate-de-batrancea-sunt-cazati-328-de-muncitori-straini/" target="_blank">De la patrimoniu public la locuințe pentru muncitori străini? UTM răspunde acuzațiilor lansate de Bătrâncea: „Sunt cazați 328 de muncitori străini”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 18.06.2026</span>
+    </div>
+    <div class='summary'>Vlad Bătrâncea, vicepreședintele Parlamentului și membru „Partidului Socialiștilor din Republica Moldova” (PSRM), a declarat astăzi, 18 iunie, în plenul Legislativului că „în căminele Universității Agrare de pe strada Petricani nu locuiesc nici cadre didactice, nici studenți din Republica Moldova, ci peste 400 de migranți din Asia”. Universitatea Tehnică a Moldovei (UTM), care a absorbit Universit…</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-sociale/de-la-patrimoniu-public-la-locuinte-pentru-muncitori-straini-utm-raspunde-acuzatiilor-lansate-de-batrancea-sunt-cazati-328-de-muncitori-straini/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/aprobat-in-parlament-50-din-salariul-mediu-lunar-valoare-de-referinta-pentru-evaluarea-adecvarii-salariului-minim/" target="_blank">Aprobat în Parlament: 50% din salariul mediu lunar – valoare de referință pentru evaluarea adecvării salariului minim</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 18.06.2026</span>
+    </div>
+    <div class='summary'>Astăzi, 18 iunie, a fost votat în lectura a doua un proiect de lege prin care modul de calcul al salariului minim în R. Moldova va fi mai clar, iar necesitatea ajustării acestuia va fi evaluată de Guvern, împreună cu patronatele, cel puțin o dată pe an, se arată în comunicatul de presă emis de...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/aprobat-in-parlament-50-din-salariul-mediu-lunar-valoare-de-referinta-pentru-evaluarea-adecvarii-salariului-minim/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/live-text-sedinta-parlamentului-gheorghe-ghidora-a-fost-numit-in-functia-de-vicepresedinte-al-autoritatii-nationale-pentru-solutionarea-contestatiilor/" target="_blank">LIVE TEXT/ Ședința Parlamentului: Gheorghe Ghidora a fost numit în funcția de vicepreședinte al Autorității Naționale pentru Soluționarea Contestațiilor</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 18.06.2026</span>
+    </div>
+    <div class='summary'>Astăzi, 18 iunie, are loc ședința Parlamentului. Conform agendei aprobate de Biroul permanent al Legislativului, deputații vor examina 16 proiecte de acte normative. UPDATE 12:36 La ședința plenară au apărut deficiențe tehnice în cadrul procedurii înregistrării votului. UPDATE 12:14 Ședința continuă cu proiectul de lege pentru modificarea unor acte normative (Codul urbanismului și construcțiilor ș…</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/live-text-sedinta-parlamentului-gheorghe-ghidora-a-fost-numit-in-functia-de-vicepresedinte-al-autoritatii-nationale-pentru-solutionarea-contestatiilor/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/barbatul-de-la-beriozchi-a-fost-condamnat-de-prima-instanta-la-20-de-ani-de-inchisoare-pentru-omorul-unei-persoane-in-2011-aceasta-a-fost-acuzat-doar-pentru-unul-din-episoadele-infractionale/" target="_blank">Bărbatul de la Beriozchi a fost condamnat, de prima instanță, la 20 de ani de închisoare pentru omorul unei persoane în 2011. Aceasta a fost acuzat doar pentru unul din episoadele infracționale</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 18.06.2026</span>
+    </div>
+    <div class='summary'>Stepan Găină a fost condamnat joi, 18 iunie, de prima instanță la 20 de ani de închisoare, fiind acuzat de omorul unui bărbat, comis în anul 2011, în satul Beriozchi, raionul Anenii Noi, anunță Procuratura Generală (PG). Potrivit unui comunicat de la PG, în perioada 24 – 26 decembrie 2011, un bărbat în vârstă de...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/barbatul-de-la-beriozchi-a-fost-condamnat-de-prima-instanta-la-20-de-ani-de-inchisoare-pentru-omorul-unei-persoane-in-2011-aceasta-a-fost-acuzat-doar-pentru-unul-din-episoadele-infractionale/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/bnm-a-majorat-rata-de-baza-la-principalele-operatiuni-de-politica-monetara-decizia-urmareste-temperarea-ritmului-de-crestere-a-preturilor-de-consum/" target="_blank">BNM a majorat rata de bază la principalele operațiuni de politică monetară: „Decizia urmărește temperarea ritmului de creștere a prețurilor de consum”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 18.06.2026</span>
+    </div>
+    <div class='summary'>Banca Națională a Moldovei (BNM) a majorat rata de bază la 7% anual, față de 6,5 – cât era anterior. Decizia a fost aprobată prin vot unanim de Comitetul executiv al BNM în cadrul ședinței de joi, 18 iunie, potrivit unui comunicat emis de instituție. „Se stabilește rata de bază aplicată la principalele operațiuni de...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/bnm-a-majorat-rata-de-baza-la-principalele-operatiuni-de-politica-monetara-decizia-urmareste-temperarea-ritmului-de-crestere-a-preturilor-de-consum/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/doi-tineri-prinsi-in-flagrant-dupa-ce-au-incercat-sa-obtina-peste-390-000-de-lei-printr-o-schema-de-escrocherie-acestia-au-fost-retinuti-pentru-72-de-ore/" target="_blank">Doi tineri, prinși în flagrant după ce au încercat să obțină peste 390.000 de lei printr-o schemă de escrocherie. Aceștia au fost reținuți pentru 72 de ore</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 18.06.2026</span>
+    </div>
+    <div class='summary'>Doi tineri de 18 ani din Chișinău au fost reținuți în flagrant, bănuiți că făceau parte dintr-un grup infracțional specializat în escrocherii, anunță joi, 18 iunie, Inspectoratul General al Poliției (IGP). Potrivit anchetei, victima, o tânără de 24 de ani, a fost contactată telefonic de persoane care s-au prezentat drept angajați ai unei companii de...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/doi-tineri-prinsi-in-flagrant-dupa-ce-au-incercat-sa-obtina-peste-390-000-de-lei-printr-o-schema-de-escrocherie-acestia-au-fost-retinuti-pentru-72-de-ore/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/politic/air-canada-despre-informatiile-din-cv-ul-directorului-moldatsa-nu-avem-nicio-inregistrare-a-faptului-ca-aceasta-persoana-ar-fi-lucrat-ca-pilot-va-rugam-sa-retineti-ca-nici-air-canada-nici/" target="_blank">AIR Canada, despre informațiile din CV-ul directorului Moldatsa: „Nu avem nicio înregistrare a faptului că această persoană ar fi lucrat ca pilot. Vă rugăm să rețineți că nici Air Canada, nici afiliații săi nu operează aeronavele enumerate”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 18.06.2026</span>
+    </div>
+    <div class='summary'>Dumitru Vangheli, directorul Moldstsa, a indicat în CV-ul său că ar fi lucrat între 2012 și 2014, imediat după ce ar fi absolvit o școală de aviație, la Air Canada, una din cele mai mari companii avia din lume, în calitate de copilot, pe aeronave ATR-72 și Boeing 737 Next Generation, adică pe curse comerciale. ...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/politic/air-canada-despre-informatiile-din-cv-ul-directorului-moldatsa-nu-avem-nicio-inregistrare-a-faptului-ca-aceasta-persoana-ar-fi-lucrat-ca-pilot-va-rugam-sa-retineti-ca-nici-air-canada-nici/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/advertoriale/rezultatele-campaniei-recicleaza-azi-pentru-spitalele-de-maine-cum-arata-noua-sectie-renovata-capital-de-la-institutul-mamei-si-copilului/" target="_blank">Rezultatele campaniei „Reciclează azi pentru spitalele de mâine”. Cum arată noua secție renovată capital de la Institutul Mamei și Copilului</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 18.06.2026</span>
+    </div>
+    <div class='summary'>Secția Chirurgie Urgentă din cadrul IMPS Institutul Mamei și Copilului a fost inaugurată pe 16 iunie, după un proces de reabilitare capitală. Proiectul amplu de modernizare a fost implementat de către Asociația MAD-Aid cu suportul partenerilor privați. Kaufland Moldova s-a alăturat inițiativei prin intermediul campaniei „Reciclează azi pentru spitalele de mâine”, unde compania a donat...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/advertoriale/rezultatele-campaniei-recicleaza-azi-pentru-spitalele-de-maine-cum-arata-noua-sectie-renovata-capital-de-la-institutul-mamei-si-copilului/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/dosare-de-coruptie/doi-decani-ai-universitatii-de-stat-din-comrat-retinuti-pentru-coruptie-rectorul-cercetat-in-stare-de-libertate" target="_blank">Doi decani ai Universității de Stat din Comrat, reținuți pentru corupție. Rectorul, cercetat în stare de libertate</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Ar fi pretins bani de la studenți. Ofițerii CNA și procurorii au desfășurat percheziții într-o cauză penală pornită pe fapte de corupere pasivă comise de persoane cu funcții de conducere din cadrul Universității de Stat din Comrat.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/dosare-de-coruptie/doi-decani-ai-universitatii-de-stat-din-comrat-retinuti-pentru-coruptie-rectorul-cercetat-in-stare-de-libertate" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🏛️ Politică & Putere (8)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-sociale/de-la-patrimoniu-public-la-locuinte-pentru-muncitori-straini-utm-raspunde-acuzatiilor-lansate-de-batrancea-sunt-cazati-328-de-muncitori-straini/" target="_blank">De la patrimoniu public la locuințe pentru muncitori străini? UTM răspunde acuzațiilor lansate de Bătrâncea: „Sunt cazați 328 de muncitori străini”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 18.06.2026</span>
+    </div>
+    <div class='summary'>Vlad Bătrâncea, vicepreședintele Parlamentului și membru „Partidului Socialiștilor din Republica Moldova” (PSRM), a declarat astăzi, 18 iunie, în plenul Legislativului că „în căminele Universității Agrare de pe strada Petricani nu locuiesc nici cadre didactice, nici studenți din Republica Moldova, ci peste 400 de migranți din Asia”. Universitatea Tehnică a Moldovei (UTM), care a absorbit Universit…</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-sociale/de-la-patrimoniu-public-la-locuinte-pentru-muncitori-straini-utm-raspunde-acuzatiilor-lansate-de-batrancea-sunt-cazati-328-de-muncitori-straini/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/aprobat-in-parlament-50-din-salariul-mediu-lunar-valoare-de-referinta-pentru-evaluarea-adecvarii-salariului-minim/" target="_blank">Aprobat în Parlament: 50% din salariul mediu lunar – valoare de referință pentru evaluarea adecvării salariului minim</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 18.06.2026</span>
+    </div>
+    <div class='summary'>Astăzi, 18 iunie, a fost votat în lectura a doua un proiect de lege prin care modul de calcul al salariului minim în R. Moldova va fi mai clar, iar necesitatea ajustării acestuia va fi evaluată de Guvern, împreună cu patronatele, cel puțin o dată pe an, se arată în comunicatul de presă emis de...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/aprobat-in-parlament-50-din-salariul-mediu-lunar-valoare-de-referinta-pentru-evaluarea-adecvarii-salariului-minim/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/live-text-sedinta-parlamentului-gheorghe-ghidora-a-fost-numit-in-functia-de-vicepresedinte-al-autoritatii-nationale-pentru-solutionarea-contestatiilor/" target="_blank">LIVE TEXT/ Ședința Parlamentului: Gheorghe Ghidora a fost numit în funcția de vicepreședinte al Autorității Naționale pentru Soluționarea Contestațiilor</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 18.06.2026</span>
+    </div>
+    <div class='summary'>Astăzi, 18 iunie, are loc ședința Parlamentului. Conform agendei aprobate de Biroul permanent al Legislativului, deputații vor examina 16 proiecte de acte normative. UPDATE 12:36 La ședința plenară au apărut deficiențe tehnice în cadrul procedurii înregistrării votului. UPDATE 12:14 Ședința continuă cu proiectul de lege pentru modificarea unor acte normative (Codul urbanismului și construcțiilor ș…</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/live-text-sedinta-parlamentului-gheorghe-ghidora-a-fost-numit-in-functia-de-vicepresedinte-al-autoritatii-nationale-pentru-solutionarea-contestatiilor/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/bnm-a-majorat-rata-de-baza-la-principalele-operatiuni-de-politica-monetara-decizia-urmareste-temperarea-ritmului-de-crestere-a-preturilor-de-consum/" target="_blank">BNM a majorat rata de bază la principalele operațiuni de politică monetară: „Decizia urmărește temperarea ritmului de creștere a prețurilor de consum”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 18.06.2026</span>
+    </div>
+    <div class='summary'>Banca Națională a Moldovei (BNM) a majorat rata de bază la 7% anual, față de 6,5 – cât era anterior. Decizia a fost aprobată prin vot unanim de Comitetul executiv al BNM în cadrul ședinței de joi, 18 iunie, potrivit unui comunicat emis de instituție. „Se stabilește rata de bază aplicată la principalele operațiuni de...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/bnm-a-majorat-rata-de-baza-la-principalele-operatiuni-de-politica-monetara-decizia-urmareste-temperarea-ritmului-de-crestere-a-preturilor-de-consum/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/rss/latest.xml?lang=ro" target="_blank">De ultimă oră</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Cel mai recent episod de farsă telefonică în care a fost implicată Cristina Gherasimov, Viceprim-ministru pentru Integrare Europeană, ar trebui interpretat ca fiind mai mult decât un simplu teatru politic. Este tentant să ne limităm la eticheta geopolitică. Această reacție este de înțeles, dar, din perspectiva securității, este și[...]</div>
+    <div class='cat-tags'><span class="cat-tag">💰 Corupție</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/rss/latest.xml?lang=ro" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/dosare-de-coruptie/doi-decani-ai-universitatii-de-stat-din-comrat-retinuti-pentru-coruptie-rectorul-cercetat-in-stare-de-libertate" target="_blank">Doi decani ai Universității de Stat din Comrat, reținuți pentru corupție. Rectorul, cercetat în stare de libertate</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Ar fi pretins bani de la studenți. Ofițerii CNA și procurorii au desfășurat percheziții într-o cauză penală pornită pe fapte de corupere pasivă comise de persoane cu funcții de conducere din cadrul Universității de Stat din Comrat.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/dosare-de-coruptie/doi-decani-ai-universitatii-de-stat-din-comrat-retinuti-pentru-coruptie-rectorul-cercetat-in-stare-de-libertate" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.rise.md/articol/bisericile-moldovei-schema-mitropoliei-ii/" target="_blank">Bisericile Moldovei: Schema Mitropoliei (II)</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 RISE Moldova</span>
+      <span>📅 18.06.2026</span>
+    </div>
+    <div class='summary'>„Statul Republica Moldova, de la întemeierea sa, nu a donat Bisericii niciun bănuț.” Respectiv, „de unde statul Republica […] The post Bisericile Moldovei: Schema Mitropoliei (II) appeared first on Rise Moldova .</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.rise.md/articol/bisericile-moldovei-schema-mitropoliei-ii/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/dosare-de-coruptie/doc-fostul-vicepresedinte-al-curtii-supreme-oleg-sternioala-pierde-irevocabil-litigiul-cu-consiliul-superior-al-magistraturii" target="_blank">DOC// Fostul vicepreședinte al Curții Supreme, Oleg Sternioală, pierde irevocabil litigiul cu Consiliul Superior al Magistraturii</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Curtea Supremă de Justiție (CSJ) a respins recursul fostului vicepreședinte al instanței, Oleg Sternioală, împotriva Consiliului Superior al Magistraturii (CSM). Sternioală s-a judecat timp de șase ani cu CSM, după ce membrii acestuia au încuviințat efectuarea unor acțiuni de urm…</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/dosare-de-coruptie/doc-fostul-vicepresedinte-al-curtii-supreme-oleg-sternioala-pierde-irevocabil-litigiul-cu-consiliul-superior-al-magistraturii" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">💰 Corupție (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/rss/latest.xml?lang=ro" target="_blank">De ultimă oră</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Cel mai recent episod de farsă telefonică în care a fost implicată Cristina Gherasimov, Viceprim-ministru pentru Integrare Europeană, ar trebui interpretat ca fiind mai mult decât un simplu teatru politic. Este tentant să ne limităm la eticheta geopolitică. Această reacție este de înțeles, dar, din perspectiva securității, este și[...]</div>
+    <div class='cat-tags'><span class="cat-tag">💰 Corupție</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/rss/latest.xml?lang=ro" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📰 Media & Libertatea Presei (2)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/aprobat-in-parlament-50-din-salariul-mediu-lunar-valoare-de-referinta-pentru-evaluarea-adecvarii-salariului-minim/" target="_blank">Aprobat în Parlament: 50% din salariul mediu lunar – valoare de referință pentru evaluarea adecvării salariului minim</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 18.06.2026</span>
+    </div>
+    <div class='summary'>Astăzi, 18 iunie, a fost votat în lectura a doua un proiect de lege prin care modul de calcul al salariului minim în R. Moldova va fi mai clar, iar necesitatea ajustării acestuia va fi evaluată de Guvern, împreună cu patronatele, cel puțin o dată pe an, se arată în comunicatul de presă emis de...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/aprobat-in-parlament-50-din-salariul-mediu-lunar-valoare-de-referinta-pentru-evaluarea-adecvarii-salariului-minim/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">💼 Afaceri & Contracte Publice (2)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/doi-tineri-prinsi-in-flagrant-dupa-ce-au-incercat-sa-obtina-peste-390-000-de-lei-printr-o-schema-de-escrocherie-acestia-au-fost-retinuti-pentru-72-de-ore/" target="_blank">Doi tineri, prinși în flagrant după ce au încercat să obțină peste 390.000 de lei printr-o schemă de escrocherie. Aceștia au fost reținuți pentru 72 de ore</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 18.06.2026</span>
+    </div>
+    <div class='summary'>Doi tineri de 18 ani din Chișinău au fost reținuți în flagrant, bănuiți că făceau parte dintr-un grup infracțional specializat în escrocherii, anunță joi, 18 iunie, Inspectoratul General al Poliției (IGP). Potrivit anchetei, victima, o tânără de 24 de ani, a fost contactată telefonic de persoane care s-au prezentat drept angajați ai unei companii de...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/doi-tineri-prinsi-in-flagrant-dupa-ce-au-incercat-sa-obtina-peste-390-000-de-lei-printr-o-schema-de-escrocherie-acestia-au-fost-retinuti-pentru-72-de-ore/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/modernizeaza-ti-locuinta-cu-creditul-geff-moldova-rezidential-de-la-maib-si-poti-beneficia-de-grant-de-pana-la-225" target="_blank">Modernizează-ți locuința cu creditul GEFF Moldova Rezidențial de la maib și poți beneficia de grant de până la 22,5%</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/modernizeaza-ti-locuinta-cu-creditul-geff-moldova-rezidential-de-la-maib-si-poti-beneficia-de-grant-de-pana-la-225" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📌 Alte articole (10)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/live-text-peste-90-de-atacuri-ale-fortelor-ruse-au-vizat-regiunea-sumi-in-ultima-zi-trei-persoane-au-murit-razboi-in-ucraina-ziua-1576/" target="_blank">LIVE TEXT/ Peste 90 de atacuri ale forțelor ruse au vizat regiunea Sumî în ultima zi. Trei persoane au murit. Război în Ucraina, ziua 1576</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 18.06.2026</span>
+    </div>
+    <div class='summary'>UPDATE 11:44 Forțele ruse au efectuat peste 90 de atacuri asupra a 22 de așezări din 15 comunități din regiunea Sumî din Ucraina, între dimineața zilei de 17 iunie și dimineața zilei de 18 iunie, ucigând trei civili și rănind alți câțiva. Potrivit Ukrinform, Administrația Militară Regională Sumî a relatat acest lucru pe Facebook. „Un...</div>
+    
+    <a class="link-btn" href="https://www.zdg.md/stiri/live-text-peste-90-de-atacuri-ale-fortelor-ruse-au-vizat-regiunea-sumi-in-ultima-zi-trei-persoane-au-murit-razboi-in-ucraina-ziua-1576/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/reguli-noi-la-calcularea-salariului-minim-in-2027" target="_blank">Reguli noi la calcularea salariului minim în 2027</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Ajustarea salariului minim în Republica Moldova va fi evaluată de Guvern, împreună cu patronatele, cel puțin o dată pe an. Totodată, la evaluarea adecvării salariului minim se va lua ca drept valoare de referință suma echivalentă cu 50% din salariul mediu lunar.</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/reguli-noi-la-calcularea-salariului-minim-in-2027" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/interviuri/adrian-ermurachi-reforma-administratiei-publice-locale-dincolo-de-modele-este-important-modul-de-luare-a-deciziei" target="_blank">Adrian Ermurachi: Reforma administrației publice locale: dincolo de modele este important modul de luare a deciziei</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Interviu acordat pentru Buletinul de politică externă al FES/APE</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/interviuri/adrian-ermurachi-reforma-administratiei-publice-locale-dincolo-de-modele-este-important-modul-de-luare-a-deciziei" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/blog/gheorghe-alexandra/farsele-telefonice-din-moldova-o-problema-de-securitate-la-nivel-executiv" target="_blank">Farsele telefonice din Moldova: o problemă de securitate la nivel executiv</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Cel mai recent episod de farsă telefonică în care a fost implicată Cristina Gherasimov, Viceprim-ministru pentru Integrare Europeană, ar trebui interpretat ca fiind mai mult decât un simplu teatru politic. Este tentant să ne limităm la eticheta geopolitică.</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/blog/gheorghe-alexandra/farsele-telefonice-din-moldova-o-problema-de-securitate-la-nivel-executiv" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/fara-anonimi-la-telefon-cartelele-sim-vor-putea-fi-procurate-doar-cu-buletinul" target="_blank">Fără anonimi la telefon. Cartelele SIM vor putea fi procurate doar cu buletinul</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Cartelele SIM și eSIM preplătite vor putea fi activate doar prin confirmarea identității în baza unui act de identitate. În același timp, măsura nu limitează accesul cetățenilor la servicii de telefonie mobilă - vânzarea cartelelor va rămâne în continuare liberă.</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/fara-anonimi-la-telefon-cartelele-sim-vor-putea-fi-procurate-doar-cu-buletinul" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/vstuplenie-v-es-ne-gonka-a-put-osnovannyi-na-zaslugah-glava-evroparlamenta-roberta-metsola-o-svyazke-moldovy-s-ukrainoi-pridnestrove-i-obedinenii-s-rumyniei-inte" target="_blank">«Вступление в ЕС – не гонка, а путь, основанный на заслугах». Глава Европарламента Роберта Метсола о «связке» Молдовы с Украиной, Приднестровье и объединении с Румынией. Интервью NM</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>DUOMO. Когда качество — не просто слово, это обязательство</div>
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/vstuplenie-v-es-ne-gonka-a-put-osnovannyi-na-zaslugah-glava-evroparlamenta-roberta-metsola-o-svyazke-moldovy-s-ukrainoi-pridnestrove-i-obedinenii-s-rumyniei-inte" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/video-uchitsya-v-sorbonne-stajiruetsya-v-kishinyove-istoriya-devushki-iz-moldovy-kotoraya-ne-zabyla-korni" target="_blank">(ВИДЕО) Учится в Сорбонне, стажируется в Кишинёве. История девушки из Молдовы, которая не забыла корни</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/video-uchitsya-v-sorbonne-stajiruetsya-v-kishinyove-istoriya-devushki-iz-moldovy-kotoraya-ne-zabyla-korni" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/shoru-vydali-novyi-order-na-zaochnyi-arest-ego-obvinyayut-v-hishenii-100-mln-iz-banca-de-economii" target="_blank">Новый ордер на арест Шора. Его обвиняют в хищении $100 млн из Banca de Economii</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/shoru-vydali-novyi-order-na-zaochnyi-arest-ego-obvinyayut-v-hishenii-100-mln-iz-banca-de-economii" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/nu-mai-avem-ce-exporta-circa-90-din-exporturile-pe-cale-navala-sunt-materii-prime" target="_blank">Nu mai avem ce exporta?! Circa 90% din exporturile pe cale navală sunt materii prime</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/nu-mai-avem-ce-exporta-circa-90-din-exporturile-pe-cale-navala-sunt-materii-prime" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/fiecare-leu-alocat-pentru-eficienta-energetica-in-sectorul-rezidential-genereaza-beneficii-de-peste-4-lei" target="_blank">Fiecare leu alocat pentru eficiența energetică în sectorul rezidențial generează beneficii de peste 4 lei</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/fiecare-leu-alocat-pentru-eficienta-energetica-in-sectorul-rezidential-genereaza-beneficii-de-peste-4-lei" target="_blank">Citește articolul →</a>
+  </div>
+</div>
+<div class="footer">
+  Raport generat automat zilnic &nbsp;·&nbsp; ARBI – Monitorizare Jurnalism Investigativ Moldova
+</div>
+</body>
+</html>
