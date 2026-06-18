@@ -1,0 +1,643 @@
+{
+  "date": "2026-06-18",
+  "generated_at": "2026-06-18T10:26:50Z",
+  "lookback_hours": 26,
+  "sources_checked": 8,
+  "sources_ok": 8,
+  "stats": {
+    "total": 33,
+    "investigative": 4,
+    "by_source": {
+      "rise_md": {
+        "name": "RISE Moldova",
+        "count": 1
+      },
+      "zdg_md": {
+        "name": "Ziarul de Gardă",
+        "count": 10
+      },
+      "anticoruptie_md": {
+        "name": "Anticorupție.md",
+        "count": 10
+      },
+      "newsmaker_md": {
+        "name": "Newsmaker.md",
+        "count": 4
+      },
+      "mold_street": {
+        "name": "Mold-Street",
+        "count": 7
+      },
+      "agora_md": {
+        "name": "Agora.md",
+        "count": 1
+      }
+    },
+    "by_category": {
+      "coruptie": {
+        "label": "Corupție",
+        "emoji": "💰",
+        "count": 2
+      },
+      "justitie": {
+        "label": "Justiție & Procurori",
+        "emoji": "⚖️",
+        "count": 16
+      },
+      "politica": {
+        "label": "Politică & Putere",
+        "emoji": "🏛️",
+        "count": 10
+      },
+      "media": {
+        "label": "Media & Libertatea Presei",
+        "emoji": "📰",
+        "count": 2
+      },
+      "afaceri": {
+        "label": "Afaceri & Contracte Publice",
+        "emoji": "💼",
+        "count": 2
+      },
+      "social": {
+        "label": "Social & Drepturile Omului",
+        "emoji": "👥",
+        "count": 1
+      }
+    }
+  },
+  "articles": [
+    {
+      "id": "52e43b12f788",
+      "title": "Arest preventiv în lipsă pentru Ilan Șor în dosarul privind delapidarea a 100 de milioane de dolari de la Banca de Economii",
+      "url": "https://www.zdg.md/stiri/arest-preventiv-in-lipsa-pentru-ilan-sor-in-dosarul-privind-delapidarea-a-100-de-milioane-de-dolari-de-la-banca-de-economii/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-18T09:06:52Z",
+      "published_date": "2026-06-18",
+      "summary": "În privința lui Ilan Șor a fost aplicată miercuri, 17 iunie, în lipsa lui măsura preventivă a arestului pentru un termen de 30 de zile, în cauza penală privind delapidarea sumei de 100 de milioane de dolari de la SA „Banca de Economii” (BEM), anunță joi, 18 iunie, Procuratura Anticorupție (PA). Ilan Șor este învinuit...",
+      "categories": [
+        "justitie",
+        "coruptie"
+      ],
+      "category_scores": {
+        "justitie": 3,
+        "coruptie": 1
+      },
+      "investigative_score": 2,
+      "relevance_score": 8
+    },
+    {
+      "id": "7c9d2ce576f9",
+      "title": "Guvernul deschide haznaua. Aproape 2 milioane de lei, pentru șase victime ale represiunilor politice",
+      "url": "https://anticoruptie.md/ro/stiri/guvernul-deschide-haznaua-aproape-2-milioane-de-lei-pentru-sase-victime-ale-represiunilor-politice",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Guvernul a aprobat alocarea peste 1,8 milioane de lei pentru compensarea valorii bunurilor confiscate în timpul represiunilor politice . De aceste plăți vor beneficia șase persoane, care provin din familii supuse represiunilor și care și-au pierdut averea.",
+      "categories": [
+        "politica",
+        "social"
+      ],
+      "category_scores": {
+        "politica": 1,
+        "social": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 4
+    },
+    {
+      "id": "13800137555b",
+      "title": "Începe marea inventariere a pădurilor. Cât va cheltui statul pentru verificarea resurselor forestiere",
+      "url": "https://anticoruptie.md/ro/stiri/incepe-marea-inventariere-a-padurilor-cat-va-cheltui-statul-pentru-verificarea-resurselor-forestiere",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Guvernul a aprobat organizarea și desfășurarea Ciclului I al Inventarului Forestier Național . Statul vrea să știe ce resurse forestiere are, dar și să determine starea reală a acestora.",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 3
+    },
+    {
+      "id": "31d1fe2beab6",
+      "title": "Bursa Internaţională a depus dosarul pentru obținerea licenței de operator de piață",
+      "url": "https://mold-street.com/noutate/bursa-internationala-de-abia-a-depus-dosarul",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 1,
+      "relevance_score": 2
+    },
+    {
+      "id": "866ada9ab490",
+      "title": "De la patrimoniu public la locuințe pentru muncitori străini? UTM răspunde acuzațiilor lansate de Bătrâncea: „Sunt cazați 328 de muncitori străini”",
+      "url": "https://www.zdg.md/stiri/stiri-sociale/de-la-patrimoniu-public-la-locuinte-pentru-muncitori-straini-utm-raspunde-acuzatiilor-lansate-de-batrancea-sunt-cazati-328-de-muncitori-straini/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-18T10:00:00Z",
+      "published_date": "2026-06-18",
+      "summary": "Vlad Bătrâncea, vicepreședintele Parlamentului și membru „Partidului Socialiștilor din Republica Moldova” (PSRM), a declarat astăzi, 18 iunie, în plenul Legislativului că „în căminele Universității Agrare de pe strada Petricani nu locuiesc nici cadre didactice, nici studenți din Republica Moldova, ci peste 400 de migranți din Asia”. Universitatea Tehnică a Moldovei (UTM), care a absorbit Universitatea...",
+      "categories": [
+        "politica",
+        "justitie"
+      ],
+      "category_scores": {
+        "politica": 3,
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 5
+    },
+    {
+      "id": "78f3cc88416f",
+      "title": "Aprobat în Parlament: 50% din salariul mediu lunar – valoare de referință pentru evaluarea adecvării salariului minim",
+      "url": "https://www.zdg.md/stiri/aprobat-in-parlament-50-din-salariul-mediu-lunar-valoare-de-referinta-pentru-evaluarea-adecvarii-salariului-minim/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-18T08:34:10Z",
+      "published_date": "2026-06-18",
+      "summary": "Astăzi, 18 iunie, a fost votat în lectura a doua un proiect de lege prin care modul de calcul al salariului minim în R. Moldova va fi mai clar, iar necesitatea ajustării acestuia va fi evaluată de Guvern, împreună cu patronatele, cel puțin o dată pe an, se arată în comunicatul de presă emis de...",
+      "categories": [
+        "politica",
+        "justitie",
+        "media"
+      ],
+      "category_scores": {
+        "politica": 3,
+        "justitie": 1,
+        "media": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 5
+    },
+    {
+      "id": "2cbd2ed7743c",
+      "title": "LIVE TEXT/ Ședința Parlamentului: Gheorghe Ghidora a fost numit în funcția de vicepreședinte al Autorității Naționale pentru Soluționarea Contestațiilor",
+      "url": "https://www.zdg.md/stiri/live-text-sedinta-parlamentului-gheorghe-ghidora-a-fost-numit-in-functia-de-vicepresedinte-al-autoritatii-nationale-pentru-solutionarea-contestatiilor/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-18T08:02:52Z",
+      "published_date": "2026-06-18",
+      "summary": "Astăzi, 18 iunie, are loc ședința Parlamentului. Conform agendei aprobate de Biroul permanent al Legislativului, deputații vor examina 16 proiecte de acte normative. UPDATE 12:36 La ședința plenară au apărut deficiențe tehnice în cadrul procedurii înregistrării votului. UPDATE 12:14 Ședința continuă cu proiectul de lege pentru modificarea unor acte normative (Codul urbanismului și construcțiilor și...",
+      "categories": [
+        "politica",
+        "justitie"
+      ],
+      "category_scores": {
+        "politica": 3,
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 5
+    },
+    {
+      "id": "f81440e00990",
+      "title": "Bărbatul de la Beriozchi a fost condamnat, de prima instanță, la 20 de ani de închisoare pentru omorul unei persoane în 2011. Aceasta a fost acuzat doar pentru unul din episoadele infracționale",
+      "url": "https://www.zdg.md/stiri/barbatul-de-la-beriozchi-a-fost-condamnat-de-prima-instanta-la-20-de-ani-de-inchisoare-pentru-omorul-unei-persoane-in-2011-aceasta-a-fost-acuzat-doar-pentru-unul-din-episoadele-infractionale/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-18T09:14:32Z",
+      "published_date": "2026-06-18",
+      "summary": "Stepan Găină a fost condamnat joi, 18 iunie, de prima instanță la 20 de ani de închisoare, fiind acuzat de omorul unui bărbat, comis în anul 2011, în satul Beriozchi, raionul Anenii Noi, anunță Procuratura Generală (PG). Potrivit unui comunicat de la PG, în perioada 24 – 26 decembrie 2011, un bărbat în vârstă de...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 4
+      },
+      "investigative_score": 0,
+      "relevance_score": 4
+    },
+    {
+      "id": "827bf379966d",
+      "title": "BNM a majorat rata de bază la principalele operațiuni de politică monetară: „Decizia urmărește temperarea ritmului de creștere a prețurilor de consum”",
+      "url": "https://www.zdg.md/stiri/bnm-a-majorat-rata-de-baza-la-principalele-operatiuni-de-politica-monetara-decizia-urmareste-temperarea-ritmului-de-crestere-a-preturilor-de-consum/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-18T09:35:35Z",
+      "published_date": "2026-06-18",
+      "summary": "Banca Națională a Moldovei (BNM) a majorat rata de bază la 7% anual, față de 6,5 – cât era anterior. Decizia a fost aprobată prin vot unanim de Comitetul executiv al BNM în cadrul ședinței de joi, 18 iunie, potrivit unui comunicat emis de instituție. „Se stabilește rata de bază aplicată la principalele operațiuni de...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 2,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "f43f1cdcecce",
+      "title": "Doi tineri, prinși în flagrant după ce au încercat să obțină peste 390.000 de lei printr-o schemă de escrocherie. Aceștia au fost reținuți pentru 72 de ore",
+      "url": "https://www.zdg.md/stiri/doi-tineri-prinsi-in-flagrant-dupa-ce-au-incercat-sa-obtina-peste-390-000-de-lei-printr-o-schema-de-escrocherie-acestia-au-fost-retinuti-pentru-72-de-ore/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-18T08:22:16Z",
+      "published_date": "2026-06-18",
+      "summary": "Doi tineri de 18 ani din Chișinău au fost reținuți în flagrant, bănuiți că făceau parte dintr-un grup infracțional specializat în escrocherii, anunță joi, 18 iunie, Inspectoratul General al Poliției (IGP). Potrivit anchetei, victima, o tânără de 24 de ani, a fost contactată telefonic de persoane care s-au prezentat drept angajați ai unei companii de...",
+      "categories": [
+        "justitie",
+        "afaceri"
+      ],
+      "category_scores": {
+        "justitie": 2,
+        "afaceri": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "a4713cc65d6f",
+      "title": "AIR Canada, despre informațiile din CV-ul directorului Moldatsa: „Nu avem nicio înregistrare a faptului că această persoană ar fi lucrat ca pilot. Vă rugăm să rețineți că nici Air Canada, nici afiliații săi nu operează aeronavele enumerate”",
+      "url": "https://www.zdg.md/stiri/politic/air-canada-despre-informatiile-din-cv-ul-directorului-moldatsa-nu-avem-nicio-inregistrare-a-faptului-ca-aceasta-persoana-ar-fi-lucrat-ca-pilot-va-rugam-sa-retineti-ca-nici-air-canada-nici/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-18T09:46:39Z",
+      "published_date": "2026-06-18",
+      "summary": "Dumitru Vangheli, directorul Moldstsa, a indicat în CV-ul său că ar fi lucrat între 2012 și 2014, imediat după ce ar fi absolvit o școală de aviație, la Air Canada, una din cele mai mari companii avia din lume, în calitate de copilot, pe aeronave ATR-72 și Boeing 737 Next Generation, adică pe curse comerciale. ...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "f6ae2ef816d3",
+      "title": "Rezultatele campaniei „Reciclează azi pentru spitalele de mâine”. Cum arată noua secție renovată capital de la Institutul Mamei și Copilului",
+      "url": "https://www.zdg.md/advertoriale/rezultatele-campaniei-recicleaza-azi-pentru-spitalele-de-maine-cum-arata-noua-sectie-renovata-capital-de-la-institutul-mamei-si-copilului/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-18T08:19:33Z",
+      "published_date": "2026-06-18",
+      "summary": "Secția Chirurgie Urgentă din cadrul IMPS Institutul Mamei și Copilului a fost inaugurată pe 16 iunie, după un proces de reabilitare capitală. Proiectul amplu de modernizare a fost implementat de către Asociația MAD-Aid cu suportul partenerilor privați. Kaufland Moldova s-a alăturat inițiativei prin intermediul campaniei „Reciclează azi pentru spitalele de mâine”, unde compania a donat...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "b950f3e94eaa",
+      "title": "De ultimă oră",
+      "url": "https://anticoruptie.md/rss/latest.xml?lang=ro",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Cel mai recent episod de farsă telefonică în care a fost implicată Cristina Gherasimov, Viceprim-ministru pentru Integrare Europeană, ar trebui interpretat ca fiind mai mult decât un simplu teatru politic. Este tentant să ne limităm la eticheta geopolitică. Această reacție este de înțeles, dar, din perspectiva securității, este și[...]",
+      "categories": [
+        "coruptie",
+        "politica"
+      ],
+      "category_scores": {
+        "coruptie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "88770e91c6bb",
+      "title": "Doi decani ai Universității de Stat din Comrat, reținuți pentru corupție. Rectorul, cercetat în stare de libertate",
+      "url": "https://anticoruptie.md/ro/dosare-de-coruptie/doi-decani-ai-universitatii-de-stat-din-comrat-retinuti-pentru-coruptie-rectorul-cercetat-in-stare-de-libertate",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Ar fi pretins bani de la studenți. Ofițerii CNA și procurorii au desfășurat percheziții într-o cauză penală pornită pe fapte de corupere pasivă comise de persoane cu funcții de conducere din cadrul Universității de Stat din Comrat.",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "375cd29e4913",
+      "title": "Comunicăm. Producem. Plasăm.Crești împreună cu AGORA",
+      "url": "https://agora.md/media-kit",
+      "source": "Agora.md",
+      "source_key": "agora_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.",
+      "categories": [
+        "justitie",
+        "media"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "media": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "d4dd1ea850bd",
+      "title": "Bisericile Moldovei: Schema Mitropoliei (II)",
+      "url": "https://www.rise.md/articol/bisericile-moldovei-schema-mitropoliei-ii/",
+      "source": "RISE Moldova",
+      "source_key": "rise_md",
+      "published": "2026-06-18T05:52:39Z",
+      "published_date": "2026-06-18",
+      "summary": "„Statul Republica Moldova, de la întemeierea sa, nu a donat Bisericii niciun bănuț.” Respectiv, „de unde statul Republica […] The post Bisericile Moldovei: Schema Mitropoliei (II) appeared first on Rise Moldova .",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "57ea907abbe2",
+      "title": "DOC// Fostul vicepreședinte al Curții Supreme, Oleg Sternioală, pierde irevocabil litigiul cu Consiliul Superior al Magistraturii",
+      "url": "https://anticoruptie.md/ro/dosare-de-coruptie/doc-fostul-vicepresedinte-al-curtii-supreme-oleg-sternioala-pierde-irevocabil-litigiul-cu-consiliul-superior-al-magistraturii",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Curtea Supremă de Justiție (CSJ) a respins recursul fostului vicepreședinte al instanței, Oleg Sternioală, împotriva Consiliului Superior al Magistraturii (CSM). Sternioală s-a judecat timp de șase ani cu CSM, după ce membrii acestuia au încuviințat efectuarea unor acțiuni de urm…",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "83d01be554be",
+      "title": "DOC// „Notificare roșie” din instanță pentru Vitalie Pîrlog. Fosta șefă a Procuraturii Anticorupție câștigă procesul",
+      "url": "https://anticoruptie.md/ro/dosare-de-coruptie/doc-notificare-rosie-din-instanta-pentru-vitalie-pirlog-fosta-sefa-a-procuraturii-anticoruptie-castiga-procesul",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Judecătoria Chișinău, sediul Centru, a respins ca fiind nefondată cererea fostului ministru al Justiției și ex-șefului Serviciului de Informații și Securitate (SIS), Vitalie Pîrlog, împotriva fostei șefe a Procuraturii Anticorupțe, Veronica Dragalin. Pîrlog s-a plâns instanței că…",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "f57c1269596a",
+      "title": "Кандидат от PAS на пост мэра Кишинева: «Я не верю в возможность строительства метро»",
+      "url": "https://newsmaker.md/ru/kandidat-ot-pas-na-post-mera-kishineva-ya-ne-veryu-v-vozmojnost-stroitelstva-metro",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "cb0bd0551a4b",
+      "title": "În Moldova sunt 10 bănci comerciale şi circa o sută de organizaţii de creditare nebancară",
+      "url": "https://mold-street.com/noutate/control-la-toate-bancile-din-moldova-si-la-8-prestatori-de-servicii-de-plata-nebancari-ce-au-depistat-autoritatile",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "428f5ac74285",
+      "title": "Raport KPMG: Consumul ilicit de țigări din Europa atinge cel mai înalt nivel din ultimul deceniu",
+      "url": "https://mold-street.com/noutate/raport-kpmg-consumul-ilicit-de-tigari-din-europa-atinge-cel-mai-inalt-nivel-din-ultimul-deceniu",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "8d97bb889669",
+      "title": "Reforma a ajuns şi la prevenirea și combaterea spălării banilor și finanțării terorismului",
+      "url": "https://mold-street.com/noutate/reforma-a-ajuns-si-la-prevenirea-si-combaterea-spalarii-banilor-si-finantarii-terorismului",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "d36ed7fe1d3f",
+      "title": "Modernizează-ți locuința cu creditul GEFF Moldova Rezidențial de la maib și poți beneficia de grant de până la 22,5%",
+      "url": "https://mold-street.com/noutate/modernizeaza-ti-locuinta-cu-creditul-geff-moldova-rezidential-de-la-maib-si-poti-beneficia-de-grant-de-pana-la-225",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "afaceri"
+      ],
+      "category_scores": {
+        "afaceri": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "e642433f3dbe",
+      "title": "LIVE TEXT/ Peste 90 de atacuri ale forțelor ruse au vizat regiunea Sumî în ultima zi. Trei persoane au murit. Război în Ucraina, ziua 1576",
+      "url": "https://www.zdg.md/stiri/live-text-peste-90-de-atacuri-ale-fortelor-ruse-au-vizat-regiunea-sumi-in-ultima-zi-trei-persoane-au-murit-razboi-in-ucraina-ziua-1576/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-18T08:44:15Z",
+      "published_date": "2026-06-18",
+      "summary": "UPDATE 11:44 Forțele ruse au efectuat peste 90 de atacuri asupra a 22 de așezări din 15 comunități din regiunea Sumî din Ucraina, între dimineața zilei de 17 iunie și dimineața zilei de 18 iunie, ucigând trei civili și rănind alți câțiva. Potrivit Ukrinform, Administrația Militară Regională Sumî a relatat acest lucru pe Facebook. „Un...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "6a3eb87dff5d",
+      "title": "Reguli noi la calcularea salariului minim în 2027",
+      "url": "https://anticoruptie.md/ro/stiri/reguli-noi-la-calcularea-salariului-minim-in-2027",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Ajustarea salariului minim în Republica Moldova va fi evaluată de Guvern, împreună cu patronatele, cel puțin o dată pe an. Totodată, la evaluarea adecvării salariului minim se va lua ca drept valoare de referință suma echivalentă cu 50% din salariul mediu lunar.",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "1f474e71628f",
+      "title": "Adrian Ermurachi: Reforma administrației publice locale: dincolo de modele este important modul de luare a deciziei",
+      "url": "https://anticoruptie.md/ro/interviuri/adrian-ermurachi-reforma-administratiei-publice-locale-dincolo-de-modele-este-important-modul-de-luare-a-deciziei",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Interviu acordat pentru Buletinul de politică externă al FES/APE",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "d79bb71cbb91",
+      "title": "Farsele telefonice din Moldova: o problemă de securitate la nivel executiv",
+      "url": "https://anticoruptie.md/ro/blog/gheorghe-alexandra/farsele-telefonice-din-moldova-o-problema-de-securitate-la-nivel-executiv",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Cel mai recent episod de farsă telefonică în care a fost implicată Cristina Gherasimov, Viceprim-ministru pentru Integrare Europeană, ar trebui interpretat ca fiind mai mult decât un simplu teatru politic. Este tentant să ne limităm la eticheta geopolitică.",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "d1fe7cb85f2e",
+      "title": "Fără anonimi la telefon. Cartelele SIM vor putea fi procurate doar cu buletinul",
+      "url": "https://anticoruptie.md/ro/stiri/fara-anonimi-la-telefon-cartelele-sim-vor-putea-fi-procurate-doar-cu-buletinul",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Cartelele SIM și eSIM preplătite vor putea fi activate doar prin confirmarea identității în baza unui act de identitate. În același timp, măsura nu limitează accesul cetățenilor la servicii de telefonie mobilă - vânzarea cartelelor va rămâne în continuare liberă.",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "63e0c55ffed3",
+      "title": "«Вступление в ЕС – не гонка, а путь, основанный на заслугах». Глава Европарламента Роберта Метсола о «связке» Молдовы с Украиной, Приднестровье и объединении с Румынией. Интервью NM",
+      "url": "https://newsmaker.md/ru/vstuplenie-v-es-ne-gonka-a-put-osnovannyi-na-zaslugah-glava-evroparlamenta-roberta-metsola-o-svyazke-moldovy-s-ukrainoi-pridnestrove-i-obedinenii-s-rumyniei-inte",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "DUOMO. Когда качество — не просто слово, это обязательство",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "970a943ccafa",
+      "title": "(ВИДЕО) Учится в Сорбонне, стажируется в Кишинёве. История девушки из Молдовы, которая не забыла корни",
+      "url": "https://newsmaker.md/ru/video-uchitsya-v-sorbonne-stajiruetsya-v-kishinyove-istoriya-devushki-iz-moldovy-kotoraya-ne-zabyla-korni",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "6c4be88eed9e",
+      "title": "Новый ордер на арест Шора. Его обвиняют в хищении $100 млн из Banca de Economii",
+      "url": "https://newsmaker.md/ru/shoru-vydali-novyi-order-na-zaochnyi-arest-ego-obvinyayut-v-hishenii-100-mln-iz-banca-de-economii",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "f5d9e5f13d1b",
+      "title": "Nu mai avem ce exporta?! Circa 90% din exporturile pe cale navală sunt materii prime",
+      "url": "https://mold-street.com/noutate/nu-mai-avem-ce-exporta-circa-90-din-exporturile-pe-cale-navala-sunt-materii-prime",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "d1e364d2e209",
+      "title": "Fiecare leu alocat pentru eficiența energetică în sectorul rezidențial generează beneficii de peste 4 lei",
+      "url": "https://mold-street.com/noutate/fiecare-leu-alocat-pentru-eficienta-energetica-in-sectorul-rezidential-genereaza-beneficii-de-peste-4-lei",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    }
+  ]
+}
