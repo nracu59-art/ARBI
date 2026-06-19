@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monitorizare Jurnalism Investigativ Moldova – 19.06.2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; color: #2c3e50; }
+  .header { background: #1b4332; color: #fff; padding: 28px 40px; }
+  .header h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: 0.5px; }
+  .header .subtitle { margin-top: 6px; font-size: 0.9rem; opacity: 0.85; }
+  .stats-bar { background: #2d6a4f; color: #fff; padding: 16px 40px;
+                display: flex; gap: 36px; flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; }
+  .stat .val { font-size: 1.8rem; font-weight: 700; }
+  .stat .lbl { font-size: 0.72rem; opacity: 0.82; text-transform: uppercase; letter-spacing: 0.8px; }
+  .cat-bar { background: #40916c; color: #fff; padding: 12px 40px;
+              display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .cat-chip { background: rgba(255,255,255,0.18); border-radius: 20px;
+               padding: 4px 14px; font-size: 0.78rem; font-weight: 600;
+               white-space: nowrap; }
+  .container { max-width: 1040px; margin: 30px auto; padding: 0 20px 40px; }
+  .section-title { font-size: 0.95rem; font-weight: 700; color: #1b4332;
+                    text-transform: uppercase; letter-spacing: 1px;
+                    margin: 28px 0 14px; border-bottom: 2px solid #1b4332;
+                    padding-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08);
+           padding: 18px 22px; margin-bottom: 14px; border-left: 5px solid #1b4332;
+           transition: box-shadow .15s; }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.13); }
+  .card.investigativ { border-left-color: #d62828; }
+  .card-title { font-size: 1rem; font-weight: 700; color: #1b4332; margin-bottom: 8px; }
+  .card-title a { color: inherit; text-decoration: none; }
+  .card-title a:hover { text-decoration: underline; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;
+           font-size: 0.8rem; color: #555; }
+  .badge { display: inline-block; font-size: 0.68rem; font-weight: 700;
+            padding: 2px 8px; border-radius: 12px; color: #fff;
+            margin-right: 4px; vertical-align: middle; }
+  .badge-inv { background: #d62828; }
+  .source-tag { background: #e8f4ec; color: #1b4332; border-radius: 4px;
+                 padding: 1px 8px; font-size: 0.75rem; font-weight: 600; }
+  .summary { font-size: 0.85rem; color: #444; line-height: 1.55; margin-top: 6px; }
+  .cat-tags { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .cat-tag { font-size: 0.72rem; padding: 2px 10px; border-radius: 10px;
+              font-weight: 600; background: #e8f4ec; color: #1b4332; }
+  .link-btn { display: inline-block; margin-top: 10px; padding: 5px 14px;
+               background: #1b4332; color: #fff; border-radius: 5px;
+               font-size: 0.78rem; text-decoration: none; font-weight: 600; }
+  .link-btn:hover { background: #2d6a4f; }
+  .empty-box { background: #fff; border-radius: 8px; padding: 30px 24px;
+                text-align: center; color: #7f8c8d; font-size: 0.95rem;
+                box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .source-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+  .source-box { background: #fff; border-radius: 8px; padding: 12px 18px;
+                 box-shadow: 0 2px 6px rgba(0,0,0,.07); min-width: 140px;
+                 border-top: 3px solid #1b4332; }
+  .source-box .sname { font-size: 0.78rem; font-weight: 700; color: #1b4332; }
+  .source-box .scount { font-size: 1.4rem; font-weight: 700; color: #2d6a4f; margin-top: 2px; }
+  .footer { text-align: center; font-size: 0.75rem; color: #999;
+             margin-top: 40px; padding-bottom: 20px; }
+  @media (max-width: 600px) {
+    .header, .stats-bar, .cat-bar { padding: 18px 16px; }
+    .stats-bar { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🔍 Monitorizare Jurnalism Investigativ – Moldova</h1>
+  <div class="subtitle">
+    Surse monitorizate: 8 &nbsp;|&nbsp;
+    Ultimele 26 ore &nbsp;|&nbsp;
+    Generat: 2026-06-19 10:41 UTC
+  </div>
+</div>
+<div class="stats-bar">
+  <div class="stat"><span class="val">33</span><span class="lbl">Articole noi</span></div>
+  <div class="stat"><span class="val">1</span><span class="lbl">Investigative</span></div>
+  <div class="stat"><span class="val">8</span><span class="lbl">Surse active</span></div>
+  <div class="stat"><span class="val">19.06.2026</span><span class="lbl">Data raportului</span></div>
+</div>
+<div class="cat-bar">
+  <span style="font-size:.8rem;opacity:.85;margin-right:4px">Categorii:</span>
+  <span class="cat-chip">⚖️ Justiție & Procurori (18)</span><span class="cat-chip">🏛️ Politică & Putere (9)</span><span class="cat-chip">📰 Media & Libertatea Presei (2)</span><span class="cat-chip">💼 Afaceri & Contracte Publice (2)</span><span class="cat-chip">👥 Social & Drepturile Omului (2)</span><span class="cat-chip">💰 Corupție (1)</span><span class="cat-chip">🔐 Securitate & Intelligence (1)</span>
+</div>
+<div class="container">
+<div class="section-title">📊 Articole pe surse</div><div class="source-grid"><div class="source-box"><div class="sname">Ziarul de Gardă</div><div class="scount">10</div></div><div class="source-box"><div class="sname">Anticorupție.md</div><div class="scount">10</div></div><div class="source-box"><div class="sname">Mold-Street</div><div class="scount">7</div></div><div class="source-box"><div class="sname">Newsmaker.md</div><div class="scount">4</div></div><div class="source-box"><div class="sname">RISE Moldova</div><div class="scount">1</div></div><div class="source-box"><div class="sname">Agora.md</div><div class="scount">1</div></div></div>
+<div class="section-title">🔍 Articole Investigative (1)</div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/locuitorii-din-cosnita-chemati-la-referendum-privind-exploatarea-resurselor-minerale-peste-5100-de-buletine-de-vot-pregatite-de-cec/" target="_blank">Locuitorii din Coșnița, chemați la referendum privind exploatarea resurselor minerale: peste 5100 de buletine de vot, pregătite de CEC</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 19.06.2026</span>
+    </div>
+    <div class='summary'>Pentru referendumul local din comuna Coșnița, raionul Dubăsari, Comisia Electorală Centrală (CEC) va tipări 5158 buletine de vot. Din tirajul total, 4708 buletine de vot vor fi tipărite în limba română și 450 în limba rusă, anunță vineri, 19 iunie, CEC. Buletinele de vot vor avea culoarea albastru pastel rece. Lățimea unui buletin de vot...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/locuitorii-din-cosnita-chemati-la-referendum-privind-exploatarea-resurselor-minerale-peste-5100-de-buletine-de-vot-pregatite-de-cec/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">⚖️ Justiție & Procurori (17)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/comisia-de-licitatie-a-deschis-ofertele-tehnice-pentru-constructia-a-170-mw-de-centrale-eoliene-cu-obligatia-instalarii-capacitatilor-de-stocare-a-energiei/" target="_blank">Comisia de licitație a deschis ofertele tehnice pentru construcția unor centrale eoliene cu o capacicate de 170 MW, cu obligația instalării capacităților de stocare a energiei</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 19.06.2026</span>
+    </div>
+    <div class='summary'>Comisia de licitație a deschis ofertele tehnice depuse în cadrul celei de-a doua licitații pentru construirea centralelor electrice eoliene cu o capacitate totală de 170 MW și a sistemelor de stocare a energiei în baterii cu o capacitate minimă de 44 MWh. Potrivit unui comunicat al Ministerului Energiei, până la termenul limita, au fost depuse...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/comisia-de-licitatie-a-deschis-ofertele-tehnice-pentru-constructia-a-170-mw-de-centrale-eoliene-cu-obligatia-instalarii-capacitatilor-de-stocare-a-energiei/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/doi-barbati-condamnati-la-inchisoare-pentru-talharie-au-atacat-victima-cu-un-cutit-provocandu-i-leziuni-in-regiunea-fetei/" target="_blank">Doi bărbați, condamnați la închisoare pentru tâlhărie: au atacat victima cu un cuțit, provocându-i leziuni în regiunea feței</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 19.06.2026</span>
+    </div>
+    <div class='summary'>Un tânăr de 22 de ani și un bărbat de 44 de ani au fost găsiți vinovați de tâlhărie, informează Procuratura Generală într-un comunicat. Instanța de judecată le-a stabilit inculpaților pedepse de 9 ani și, respectiv, 8 ani de închisoare, cu executare în penitenciar de tip semiînchis. Potrivit materialelor cauzei, la data de 6 iunie 2025, la miezul nopții,...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/doi-barbati-condamnati-la-inchisoare-pentru-talharie-au-atacat-victima-cu-un-cutit-provocandu-i-leziuni-in-regiunea-fetei/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/au-iesit-la-plimbare-dar-nu-s-au-mai-intors-acasa-patru-copii-gasiti-nevatamati-de-politie-dupa-o-noapte-de-cautari/" target="_blank">„Au ieșit la plimbare”, dar „nu s-au mai întors acasă”: Patru copii, găsiți nevătămați de Poliție după o noapte de căutări</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 19.06.2026</span>
+    </div>
+    <div class='summary'>Patru copii, cu vârstele de 10 și 13 ani, au ieșit la plimbare în seara zilei de 18 iunie, în parcul din satul Șaptebani, raionul Rîșcani, și au dispărut. În dimineața de 19 iunie aceștia au fost totuși găsiți nevătămați, anunță Poliția. După ce au ieșit la plimbare, minorii nu s-au mai întors acasă, iar...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/au-iesit-la-plimbare-dar-nu-s-au-mai-intors-acasa-patru-copii-gasiti-nevatamati-de-politie-dupa-o-noapte-de-cautari/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/dosare-de-coruptie/doc-ex-presedintele-raionului-floresti-stefan-panis-ramane-fara-o-parte-din-avere-confiscarea-dispusa-la-cererea-ani" target="_blank">DOC// Ex-președintele raionului Florești, Ștefan Paniș, rămâne fără o parte din avere. Confiscarea, dispusă la cererea ANI</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Prima instanță a admis cererea Autorității Naționale de Integritate (ANI) și a dispus confiscarea averii nejustificate, de aproape 270 mii lei, în cazul ex-președintelui raionului Florești, Ștefan Paniș. Totodată, fostul funcționar a fost obligat să achite și o taxă de stat, de p…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/dosare-de-coruptie/doc-ex-presedintele-raionului-floresti-stefan-panis-ramane-fara-o-parte-din-avere-confiscarea-dispusa-la-cererea-ani" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/cum-se-ajunge-la-sefia-unei-companii-strategice-a-statului" target="_blank">Cum se ajunge la şefia unei companii strategice a statului</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/cum-se-ajunge-la-sefia-unei-companii-strategice-a-statului" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/jurista-din-chisinau-pagubita-cu-peste-jumatate-de-milion-de-lei-curiera-gruparii-a-fost-retinuta-inainte-de-a-incasa-a-doua-transa-de-la-victima-de-450-000-de-lei/" target="_blank">Juristă din Chișinău, păgubită cu peste jumătate de milion de lei. Curiera grupării a fost reținută înainte de a încasa a doua tranșă de la victimă</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 19.06.2026</span>
+    </div>
+    <div class='summary'>O curieră din Ucraina, implicată în escrocherii pe teritoriul R. Moldova, a fost reținută de oamenii legii. Aceasta urma să ia de la victimă a doua tranșă de bani, în valoare de 450 000 de lei, anunță vineri, 19 iunie, Procuratura pentru Combaterea Criminalității Organizate și Cauze Speciale (PCCOCS). Înșelătoria a avut loc această săptămână, executată...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/jurista-din-chisinau-pagubita-cu-peste-jumatate-de-milion-de-lei-curiera-gruparii-a-fost-retinuta-inainte-de-a-incasa-a-doua-transa-de-la-victima-de-450-000-de-lei/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/blog/editoriale/editorial-festival-artificii-si-o-intrebare-simpla-cine-apara-linistea-copiilor/" target="_blank">Editorial/ Festival, artificii și o întrebare simplă: cine apără liniștea copiilor?</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 19.06.2026</span>
+    </div>
+    <div class='summary'>R. Moldova a mai făcut un pas înainte în materie de „inovație politică”. După ce am reușit să politizăm justiția, procuratura, educația, pandemia, transportul public și chiar vremea de afară, a venit momentul să politizăm și liniștea copiilor bolnavi. Nu este o exagerare. Este concluzia logică a modului în care s-a desfășurat dezbaterea privind festivalul...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://www.zdg.md/blog/editoriale/editorial-festival-artificii-si-o-intrebare-simpla-cine-apara-linistea-copiilor/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/interviuri/investitii-straine-sua-si-aderarea-la-ue-interviu-zdg-cu-ambasadorul-canadei-in-r-moldova-sunt-companii-care-vad-oportunitati-de-colaborare-aici/" target="_blank">Investiții străine, SUA și aderarea la UE. Interviu ZdG cu ambasadorul Canadei în R. Moldova: „Sunt companii care văd oportunități de colaborare aici”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 19.06.2026</span>
+    </div>
+    <div class='summary'>„Aderarea la Uniunea Europeană va fi o realizare care va aduce beneficii nu doar generației actuale, ci și copiilor și nepoților voștri”, a afirmat ambasadorul Canadei în R. Moldova într-un interviu acordat ZdG la finalul mandatului său. Diplomatul canadian consideră că parcursul european al R. Moldova, reformele din ultimii ani și rezistența în fața amenințărilor...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/interviuri/investitii-straine-sua-si-aderarea-la-ue-interviu-zdg-cu-ambasadorul-canadei-in-r-moldova-sunt-companii-care-vad-oportunitati-de-colaborare-aici/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/tiraspolul-obligat-prin-lege-sa-asigure-stocuri-de-gaze-parlamentul-impune-reguli-stricte" target="_blank">Tiraspolul, obligat prin lege să asigure stocuri de gaze. Parlamentul impune reguli stricte</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Entitatea responsabilă de aprovizionarea cu gaze naturale a regiunii transnistrene va fi obligată să creeze gradual și să mențină stocuri de gaze. Un proiect de lege care prevede acest lucru a fost votat în prima lectură de Parlament.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/tiraspolul-obligat-prin-lege-sa-asigure-stocuri-de-gaze-parlamentul-impune-reguli-stricte" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/dosare-de-coruptie/doi-decani-ai-universitatii-de-stat-din-comrat-retinuti-pentru-coruptie-rectorul-cercetat-in-stare-de-libertate" target="_blank">Doi decani ai Universității de Stat din Comrat, reținuți pentru corupție. Rectorul, cercetat în stare de libertate</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Ar fi pretins bani de la studenți. Ofițerii CNA și procurorii au desfășurat percheziții într-o cauză penală pornită pe fapte de corupere pasivă comise de persoane cu funcții de conducere din cadrul Universității de Stat din Comrat.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/dosare-de-coruptie/doi-decani-ai-universitatii-de-stat-din-comrat-retinuti-pentru-coruptie-rectorul-cercetat-in-stare-de-libertate" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🏛️ Politică & Putere (8)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/dosare-de-coruptie/doc-ex-presedintele-raionului-floresti-stefan-panis-ramane-fara-o-parte-din-avere-confiscarea-dispusa-la-cererea-ani" target="_blank">DOC// Ex-președintele raionului Florești, Ștefan Paniș, rămâne fără o parte din avere. Confiscarea, dispusă la cererea ANI</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Prima instanță a admis cererea Autorității Naționale de Integritate (ANI) și a dispus confiscarea averii nejustificate, de aproape 270 mii lei, în cazul ex-președintelui raionului Florești, Ștefan Paniș. Totodată, fostul funcționar a fost obligat să achite și o taxă de stat, de p…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/dosare-de-coruptie/doc-ex-presedintele-raionului-floresti-stefan-panis-ramane-fara-o-parte-din-avere-confiscarea-dispusa-la-cererea-ani" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/cum-se-ajunge-la-sefia-unei-companii-strategice-a-statului" target="_blank">Cum se ajunge la şefia unei companii strategice a statului</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/cum-se-ajunge-la-sefia-unei-companii-strategice-a-statului" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/rss/latest.xml?lang=ro" target="_blank">De ultimă oră</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Cel mai recent episod de farsă telefonică în care a fost implicată Cristina Gherasimov, Viceprim-ministru pentru Integrare Europeană, ar trebui interpretat ca fiind mai mult decât un simplu teatru politic. Este tentant să ne limităm la eticheta geopolitică. Această reacție este de înțeles, dar, din perspectiva securității, este și[...]</div>
+    <div class='cat-tags'><span class="cat-tag">💰 Corupție</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/rss/latest.xml?lang=ro" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/tiraspolul-obligat-prin-lege-sa-asigure-stocuri-de-gaze-parlamentul-impune-reguli-stricte" target="_blank">Tiraspolul, obligat prin lege să asigure stocuri de gaze. Parlamentul impune reguli stricte</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Entitatea responsabilă de aprovizionarea cu gaze naturale a regiunii transnistrene va fi obligată să creeze gradual și să mențină stocuri de gaze. Un proiect de lege care prevede acest lucru a fost votat în prima lectură de Parlament.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/tiraspolul-obligat-prin-lege-sa-asigure-stocuri-de-gaze-parlamentul-impune-reguli-stricte" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/dosare-de-coruptie/doi-decani-ai-universitatii-de-stat-din-comrat-retinuti-pentru-coruptie-rectorul-cercetat-in-stare-de-libertate" target="_blank">Doi decani ai Universității de Stat din Comrat, reținuți pentru corupție. Rectorul, cercetat în stare de libertate</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Ar fi pretins bani de la studenți. Ofițerii CNA și procurorii au desfășurat percheziții într-o cauză penală pornită pe fapte de corupere pasivă comise de persoane cu funcții de conducere din cadrul Universității de Stat din Comrat.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/dosare-de-coruptie/doi-decani-ai-universitatii-de-stat-din-comrat-retinuti-pentru-coruptie-rectorul-cercetat-in-stare-de-libertate" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.rise.md/kerosen-pentru-aeroportul-chisinau-licitatii-anulate-si-negocieri-directe/" target="_blank">Kerosen pentru Aeroportul Chișinău: licitații anulate și negocieri directe</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 RISE Moldova</span>
+      <span>📅 19.06.2026</span>
+    </div>
+    <div class='summary'>Întreprinderea de stat Aeroportul Internațional Chișinău „Eugen Doga” a ajuns să fie unul dintre cei mai mari contractori […] The post Kerosen pentru Aeroportul Chișinău: licitații anulate și negocieri directe appeared first on Rise Moldova .</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.rise.md/kerosen-pentru-aeroportul-chisinau-licitatii-anulate-si-negocieri-directe/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/dosare-de-coruptie/doc-fostul-vicepresedinte-al-curtii-supreme-oleg-sternioala-pierde-irevocabil-litigiul-cu-consiliul-superior-al-magistraturii" target="_blank">DOC// Fostul vicepreședinte al Curții Supreme, Oleg Sternioală, pierde irevocabil litigiul cu Consiliul Superior al Magistraturii</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Curtea Supremă de Justiție (CSJ) a respins recursul fostului vicepreședinte al instanței, Oleg Sternioală, împotriva Consiliului Superior al Magistraturii (CSM). Sternioală s-a judecat timp de șase ani cu CSM, după ce membrii acestuia au încuviințat efectuarea unor acțiuni de urm…</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/dosare-de-coruptie/doc-fostul-vicepresedinte-al-curtii-supreme-oleg-sternioala-pierde-irevocabil-litigiul-cu-consiliul-superior-al-magistraturii" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/un-miliard-pe-an-de-la-bugetul-statului-pentru-rambursarea-miliardului-cum-arata-graficul-platilor" target="_blank">Un miliard pe an de la bugetul statului pentru rambursarea "miliardului". Cum arată graficul plăţilor</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/un-miliard-pe-an-de-la-bugetul-statului-pentru-rambursarea-miliardului-cum-arata-graficul-platilor" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📰 Media & Libertatea Presei (2)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/blog/editoriale/editorial-festival-artificii-si-o-intrebare-simpla-cine-apara-linistea-copiilor/" target="_blank">Editorial/ Festival, artificii și o întrebare simplă: cine apără liniștea copiilor?</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 19.06.2026</span>
+    </div>
+    <div class='summary'>R. Moldova a mai făcut un pas înainte în materie de „inovație politică”. După ce am reușit să politizăm justiția, procuratura, educația, pandemia, transportul public și chiar vremea de afară, a venit momentul să politizăm și liniștea copiilor bolnavi. Nu este o exagerare. Este concluzia logică a modului în care s-a desfășurat dezbaterea privind festivalul...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://www.zdg.md/blog/editoriale/editorial-festival-artificii-si-o-intrebare-simpla-cine-apara-linistea-copiilor/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">💼 Afaceri & Contracte Publice (2)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/comisia-de-licitatie-a-deschis-ofertele-tehnice-pentru-constructia-a-170-mw-de-centrale-eoliene-cu-obligatia-instalarii-capacitatilor-de-stocare-a-energiei/" target="_blank">Comisia de licitație a deschis ofertele tehnice pentru construcția unor centrale eoliene cu o capacicate de 170 MW, cu obligația instalării capacităților de stocare a energiei</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 19.06.2026</span>
+    </div>
+    <div class='summary'>Comisia de licitație a deschis ofertele tehnice depuse în cadrul celei de-a doua licitații pentru construirea centralelor electrice eoliene cu o capacitate totală de 170 MW și a sistemelor de stocare a energiei în baterii cu o capacitate minimă de 44 MWh. Potrivit unui comunicat al Ministerului Energiei, până la termenul limita, au fost depuse...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/comisia-de-licitatie-a-deschis-ofertele-tehnice-pentru-constructia-a-170-mw-de-centrale-eoliene-cu-obligatia-instalarii-capacitatilor-de-stocare-a-energiei/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/cine-si-cum-a-castigat-cea-mai-mare-licitatie-de-la-aeroport" target="_blank">Cine şi cum a câștigat cea mai mare licitație de la Aeroport</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/cine-si-cum-a-castigat-cea-mai-mare-licitatie-de-la-aeroport" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">👥 Social & Drepturile Omului (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/au-iesit-la-plimbare-dar-nu-s-au-mai-intors-acasa-patru-copii-gasiti-nevatamati-de-politie-dupa-o-noapte-de-cautari/" target="_blank">„Au ieșit la plimbare”, dar „nu s-au mai întors acasă”: Patru copii, găsiți nevătămați de Poliție după o noapte de căutări</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 19.06.2026</span>
+    </div>
+    <div class='summary'>Patru copii, cu vârstele de 10 și 13 ani, au ieșit la plimbare în seara zilei de 18 iunie, în parcul din satul Șaptebani, raionul Rîșcani, și au dispărut. În dimineața de 19 iunie aceștia au fost totuși găsiți nevătămați, anunță Poliția. După ce au ieșit la plimbare, minorii nu s-au mai întors acasă, iar...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/au-iesit-la-plimbare-dar-nu-s-au-mai-intors-acasa-patru-copii-gasiti-nevatamati-de-politie-dupa-o-noapte-de-cautari/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">💰 Corupție (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/rss/latest.xml?lang=ro" target="_blank">De ultimă oră</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Cel mai recent episod de farsă telefonică în care a fost implicată Cristina Gherasimov, Viceprim-ministru pentru Integrare Europeană, ar trebui interpretat ca fiind mai mult decât un simplu teatru politic. Este tentant să ne limităm la eticheta geopolitică. Această reacție este de înțeles, dar, din perspectiva securității, este și[...]</div>
+    <div class='cat-tags'><span class="cat-tag">💰 Corupție</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/rss/latest.xml?lang=ro" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🔐 Securitate & Intelligence (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/comisia-de-licitatie-a-deschis-ofertele-tehnice-pentru-constructia-a-170-mw-de-centrale-eoliene-cu-obligatia-instalarii-capacitatilor-de-stocare-a-energiei/" target="_blank">Comisia de licitație a deschis ofertele tehnice pentru construcția unor centrale eoliene cu o capacicate de 170 MW, cu obligația instalării capacităților de stocare a energiei</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 19.06.2026</span>
+    </div>
+    <div class='summary'>Comisia de licitație a deschis ofertele tehnice depuse în cadrul celei de-a doua licitații pentru construirea centralelor electrice eoliene cu o capacitate totală de 170 MW și a sistemelor de stocare a energiei în baterii cu o capacitate minimă de 44 MWh. Potrivit unui comunicat al Ministerului Energiei, până la termenul limita, au fost depuse...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/comisia-de-licitatie-a-deschis-ofertele-tehnice-pentru-constructia-a-170-mw-de-centrale-eoliene-cu-obligatia-instalarii-capacitatilor-de-stocare-a-energiei/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📌 Alte articole (10)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/live-text-regiunea-harkiv-10-persoane-ranite-in-urma-atacului-aerian-rusesc-inclusiv-4-copii-razboi-in-ucraina-ziua-1577/" target="_blank">LIVE TEXT/ Regiunea Harkiv: 10 persoane rănite în urma atacului aerian rusesc, inclusiv 4 copii. Război în Ucraina, ziua 1577</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 19.06.2026</span>
+    </div>
+    <div class='summary'>UPDATE 12:10 În noaptea trecută, Rusia a lansat lovituri cu bombe aeriene ghidate asupra orașului Harkiv, precum și asupra comunităților Dergași, Zolochiv și Mala Danylivka din regiune. Unul dintre atacuri a lovit o clădire de depozit din sectorul Holenohirski (Harkiv), provocând distrugeri și un incendiu de proporții. Intervenția pentru lichidarea consecințelor este în desfășurare. În...</div>
+    
+    <a class="link-btn" href="https://www.zdg.md/stiri/live-text-regiunea-harkiv-10-persoane-ranite-in-urma-atacului-aerian-rusesc-inclusiv-4-copii-razboi-in-ucraina-ziua-1577/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/pe-urmele-investigatiilor-cijm-comisia-nationala-a-pietei-financiare-cu-verificari-la-zece-banci" target="_blank">Pe urmele investigațiilor CIJM// Comisia Națională a Pieței Financiare, cu verificări la zece bănci</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Comisia Națională a Pieței Financiare (CNPF) a finalzat controlului tematic în sectorul bancar și de plăți, desfășurat la 10 bănci și 8 prestatori de servicii de plată (PSP) nebancari din Republica Moldova. Controlul s-a desfășurat în perioada decembrie 2025 – iunie 2026 și a des…</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/pe-urmele-investigatiilor-cijm-comisia-nationala-a-pietei-financiare-cu-verificari-la-zece-banci" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/reguli-noi-la-calcularea-salariului-minim-in-2027" target="_blank">Reguli noi la calcularea salariului minim în 2027</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Ajustarea salariului minim în Republica Moldova va fi evaluată de Guvern, împreună cu patronatele, cel puțin o dată pe an. Totodată, la evaluarea adecvării salariului minim se va lua ca drept valoare de referință suma echivalentă cu 50% din salariul mediu lunar.</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/reguli-noi-la-calcularea-salariului-minim-in-2027" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/vstuplenie-v-es-ne-gonka-a-put-osnovannyi-na-zaslugah-glava-evroparlamenta-roberta-metsola-o-svyazke-moldovy-s-ukrainoi-pridnestrove-i-obedinenii-s-rumyniei-inte" target="_blank">«Вступление в ЕС – не гонка, а путь, основанный на заслугах». Глава Европарламента Роберта Метсола о «связке» Молдовы с Украиной, Приднестровье и объединении с Румынией. Интервью NM</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>DUOMO. Когда качество — не просто слово, это обязательство</div>
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/vstuplenie-v-es-ne-gonka-a-put-osnovannyi-na-zaslugah-glava-evroparlamenta-roberta-metsola-o-svyazke-moldovy-s-ukrainoi-pridnestrove-i-obedinenii-s-rumyniei-inte" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/nalogi-na-dengi-so-svadeb-i-krestin-ministr-finansov-obychnye-grajdane-ne-postradayut" target="_blank">Подаренные на свадьбу или крестины деньги обложат налогом? Министр финансов: «Обычные граждане не пострадают»</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/nalogi-na-dengi-so-svadeb-i-krestin-ministr-finansov-obychnye-grajdane-ne-postradayut" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/22-rabochih-dnya-vmesto-28-kalendarnyh-v-moldove-predlagayut-izmenit-sistemu-predostavleniya-ejegodnyh-otpuskov" target="_blank">22 рабочих дня вместо 28 календарных. В Молдове предлагают изменить систему предоставления ежегодных отпусков</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/22-rabochih-dnya-vmesto-28-kalendarnyh-v-moldove-predlagayut-izmenit-sistemu-predostavleniya-ejegodnyh-otpuskov" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/video-gagauziya-oppozicziya-obratilas-v-veneczianskuyu-komissiyu-v-komrate-zaderjali-dekanov" target="_blank">(ВИДЕО) Гагаузия: Оппозиция обратилась в Венецианскую комиссию/ В Комрате задержали деканов</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/video-gagauziya-oppozicziya-obratilas-v-veneczianskuyu-komissiyu-v-komrate-zaderjali-dekanov" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/discrepante-enorme-la-stat-unii-angajati-primesc-doar-2500-lei-iar-altii-65000-lei-pe-luna" target="_blank">simbol</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/discrepante-enorme-la-stat-unii-angajati-primesc-doar-2500-lei-iar-altii-65000-lei-pe-luna" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/au-fost-depuse-16-oferte-de-la-investitori-pentru-eoliene-si-baterii" target="_blank">Au fost depuse 16 oferte de la investitori pentru eoliene şi baterii</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/au-fost-depuse-16-oferte-de-la-investitori-pentru-eoliene-si-baterii" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/un-alt-proiect-energetic-strategic-prinde-contur" target="_blank">Un alt proiect energetic strategic prinde contur</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/un-alt-proiect-energetic-strategic-prinde-contur" target="_blank">Citește articolul →</a>
+  </div>
+</div>
+<div class="footer">
+  Raport generat automat zilnic &nbsp;·&nbsp; ARBI – Monitorizare Jurnalism Investigativ Moldova
+</div>
+</body>
+</html>
