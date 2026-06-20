@@ -1,0 +1,620 @@
+{
+  "date": "2026-06-20",
+  "generated_at": "2026-06-20T09:18:54Z",
+  "lookback_hours": 26,
+  "sources_checked": 8,
+  "sources_ok": 8,
+  "stats": {
+    "total": 32,
+    "investigative": 3,
+    "by_source": {
+      "zdg_md": {
+        "name": "Ziarul de Gardă",
+        "count": 10
+      },
+      "anticoruptie_md": {
+        "name": "Anticorupție.md",
+        "count": 10
+      },
+      "newsmaker_md": {
+        "name": "Newsmaker.md",
+        "count": 4
+      },
+      "mold_street": {
+        "name": "Mold-Street",
+        "count": 7
+      },
+      "agora_md": {
+        "name": "Agora.md",
+        "count": 1
+      }
+    },
+    "by_category": {
+      "coruptie": {
+        "label": "Corupție",
+        "emoji": "💰",
+        "count": 1
+      },
+      "justitie": {
+        "label": "Justiție & Procurori",
+        "emoji": "⚖️",
+        "count": 15
+      },
+      "politica": {
+        "label": "Politică & Putere",
+        "emoji": "🏛️",
+        "count": 9
+      },
+      "media": {
+        "label": "Media & Libertatea Presei",
+        "emoji": "📰",
+        "count": 1
+      },
+      "afaceri": {
+        "label": "Afaceri & Contracte Publice",
+        "emoji": "💼",
+        "count": 1
+      },
+      "securitate": {
+        "label": "Securitate & Intelligence",
+        "emoji": "🔐",
+        "count": 2
+      },
+      "social": {
+        "label": "Social & Drepturile Omului",
+        "emoji": "👥",
+        "count": 1
+      }
+    }
+  },
+  "articles": [
+    {
+      "id": "481e1155b9ee",
+      "title": "VIDEO/ Șeful Moldatsa, suspendat din funcție după o investigație ZdG | Proprietarul unei ferme din Beriozchi, condamnat la 20 de ani de închisoare | Deschiderea negocierilor de aderare cu R. Moldova și Ucraina | Un nou mandat de arestare pe numele lui Ilan Șor | SĂPTĂMÂNA DE GARDĂ",
+      "url": "https://www.zdg.md/stiri/video-seful-moldatsa-suspendat-din-functie-dupa-o-investigatie-zdg-proprietarul-unei-ferme-din-beriozchi-condamnat-la-20-de-ani-de-inchisoare-deschiderea-negocierilor-de-aderare-cu-r-moldova-s/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-20T06:00:00Z",
+      "published_date": "2026-06-20",
+      "summary": "Șeful Întreprinderii de Stat „Moldatsa” a fost suspendat din funcție în urma unei investigații publicate de Ziarul de Gardă. Ce am descoperit în CV-ul său și cum și-a angajat iubita la întreprindere, aflați în această ediție a Săptămânii de Gardă. Vorbim și despre avertismentul Serviciului de Informații și Securitate (SIS) pentru cetățenii R. Moldova și...",
+      "categories": [
+        "justitie",
+        "politica",
+        "securitate"
+      ],
+      "category_scores": {
+        "justitie": 3,
+        "politica": 1,
+        "securitate": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 7
+    },
+    {
+      "id": "5c2761f6e9aa",
+      "title": "Dosarul de corupție de la IP Botanica. Trei polițiști din schemă, reținuți pentru abuz în serviciu",
+      "url": "https://anticoruptie.md/ro/dosare-de-coruptie/dosarul-de-coruptie-de-la-ip-botanica-trei-politisti-din-schema-retinuti-pentru-abuz-in-serviciu",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Trei polițiști de la Inspectoratul de Poliție Botanica, reținuți anterior într-un dosar de corupție , au fost plasați din nou în izolator, într-o cauză de abuz de serviciu. Aceștia sunt bănuiți de comiterea infracțiunii de abuz de serviciu în circumstanțe agravante.",
+      "categories": [
+        "justitie",
+        "social"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "social": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 4
+    },
+    {
+      "id": "d6c6763c80fa",
+      "title": "Școala de vară CIJM// Cum documentăm și investigăm corupția electorală",
+      "url": "https://anticoruptie.md/ro/stiri/scoala-de-vara-cijm-cum-documentam-si-investigam-coruptia-electorala",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Centrul de Investigații Jurnalistice din Moldova invită jurnaliștii de investigație să se înscrie pentru participare la Școala de vară „Jurnalismul de investigație. Fortificarea abilităților de a investiga subiecte pe corupție electorală”, destinată jurnaliștilor de investigație …",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 1,
+      "relevance_score": 2
+    },
+    {
+      "id": "280f9bd25990",
+      "title": "DOC// Ex-președintele raionului Florești, Ștefan Paniș, rămâne fără o parte din avere. Confiscarea, dispusă la cererea ANI",
+      "url": "https://anticoruptie.md/ro/dosare-de-coruptie/doc-ex-presedintele-raionului-floresti-stefan-panis-ramane-fara-o-parte-din-avere-confiscarea-dispusa-la-cererea-ani",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Prima instanță a admis cererea Autorității Naționale de Integritate (ANI) și a dispus confiscarea averii nejustificate, de aproape 270 mii lei, în cazul ex-președintelui raionului Florești, Ștefan Paniș. Totodată, fostul funcționar a fost obligat să achite și o taxă de stat, de p…",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 2,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "1677a22f0c27",
+      "title": "Diana Covalciuc, directoarea Centrului „Tony Hawks”: „Copiii noștri nu sunt mai fragili, ci mai vulnerabili sistemic”",
+      "url": "https://www.zdg.md/reporter-special/oameni/oameni-diana-covalciuc-directoarea-centrului-tony-hawks-copiii-nostri-nu-sunt-mai-fragili-ci-mai-vulnerabili-sistemic/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-20T07:51:00Z",
+      "published_date": "2026-06-20",
+      "summary": "După 40 de ani de activitate în domeniul reabilitării pediatrice și după un sfert de secol în care menține și gestionează activitatea Centrului „Tony Hawks”, unul dintre cele mai importante centre de reabilitare pediatrică din R. Moldova destinat reabilitării copiilor cu dizabilități, Diana Covalciuc, directoarea acestei instituții, recunoaște: „Nu am ales altceva, am ales mai...",
+      "categories": [
+        "justitie",
+        "securitate"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "securitate": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "ff0f8ad51c3b",
+      "title": "„O săptămână va fi suficientă” – Zelenski îi transmite un ultimatum lui Lukașenko cu privire la echipamentul de ghidare cu drone",
+      "url": "https://www.zdg.md/stiri/o-saptamana-va-fi-suficienta-zelenski-ii-transmite-un-ultimatum-lui-lukasenko-cu-privire-la-echipamentul-de-ghidare-cu-drone/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-19T18:36:01Z",
+      "published_date": "2026-06-19",
+      "summary": "Președintele Volodimir Zelenski a acuzat pe 19 iunie Belarusul că facilitează atacurile rusești cu drone asupra Ucrainei și a avertizat că Minskul are la dispoziție o săptămână pentru a elimina echipamentele de comunicații care ar fi ajutat la ghidarea atacurilor de pe teritoriul belarus, altfel Ucraina va lua măsuri singură, potrivit Kyiv Independent. Vorbind la...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "ce06919f656e",
+      "title": "Deputatul Radu Marian, precizări privind reforma fiscală: „Încurajăm publicul să se expună în continuare”",
+      "url": "https://www.zdg.md/stiri/deputatul-radu-marian-precizari-privind-reforma-fiscala-incurajam-publicul-sa-se-expuna-in-continuare/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-19T17:50:32Z",
+      "published_date": "2026-06-19",
+      "summary": "După lansarea consultărilor publice a proiectului politicii fiscale pentru anul 2027 de către Ministerul Finanțelor, în spațiul public au apărut un val de critici asupra proiectului. În acest context, deputatul Radu Marian a venit cu o serie de precizări pentru a clarifica prevederile care au generat discuții în spațiul public. „Reformă fiscală propusă de Ministerul...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "b950f3e94eaa",
+      "title": "De ultimă oră",
+      "url": "https://anticoruptie.md/rss/latest.xml?lang=ro",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Cel mai recent episod de farsă telefonică în care a fost implicată Cristina Gherasimov, Viceprim-ministru pentru Integrare Europeană, ar trebui interpretat ca fiind mai mult decât un simplu teatru politic. Este tentant să ne limităm la eticheta geopolitică. Această reacție este de înțeles, dar, din perspectiva securității, este și[...]",
+      "categories": [
+        "coruptie",
+        "politica"
+      ],
+      "category_scores": {
+        "coruptie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "549d36f19dac",
+      "title": "Tiraspolul, obligat prin lege să asigure stocuri de gaze. Parlamentul impune reguli stricte",
+      "url": "https://anticoruptie.md/ro/stiri/tiraspolul-obligat-prin-lege-sa-asigure-stocuri-de-gaze-parlamentul-impune-reguli-stricte",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Entitatea responsabilă de aprovizionarea cu gaze naturale a regiunii transnistrene va fi obligată să creeze gradual și să mențină stocuri de gaze. Un proiect de lege care prevede acest lucru a fost votat în prima lectură de Parlament.",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "375cd29e4913",
+      "title": "Comunicăm. Producem. Plasăm.Crești împreună cu AGORA",
+      "url": "https://agora.md/media-kit",
+      "source": "Agora.md",
+      "source_key": "agora_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.",
+      "categories": [
+        "justitie",
+        "media"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "media": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "1b7fc0394d65",
+      "title": "Verișoara Maiei Sandu, angajată fără concurs la „Moldatsa”: „Eu îmi caut joburi așa cum fiecare din noi o face”",
+      "url": "https://www.zdg.md/stiri/verisoara-maiei-sandu-angajata-fara-concurs-la-moldatsa-eu-imi-caut-joburi-asa-cum-fiecare-din-noi-o-face/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-20T09:05:39Z",
+      "published_date": "2026-06-20",
+      "summary": "Anastasia Taburceanu, fosta purtătoare de cuvântul a Nataliei Gavrilița, și verișoara șefei statului, este angajată la Întreprinderea de Stat „Moldatsa”, în calitate de comunicatoare. Ea a confirmat pentru ZdG că îndeplinește această funcție de un an și are un salariu de 25 700 de lei, la care se adaugă suplimente pentru stagiu și volum de...",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "24bb356bf0bb",
+      "title": "Maximele din termometre vor înregistra pâna la +32°C sâmbătă",
+      "url": "https://www.zdg.md/stiri/maximele-din-termometre-vor-inregistra-pana-la-32c-sambata/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-20T06:45:00Z",
+      "published_date": "2026-06-20",
+      "summary": "În următoarele zile, vremea va fi frumoasă și caldă, anunță Autoritatea de Meteorologie și Monitoring de Mediu (AMM). Sâmbătă, 20 iunie, cerul va fi în mare parte senin, temporar cu unele înnorări. În anumite zone ale țării, temperatura maximă va depăși +32 de grade Celsius. „În cea mai mare parte a intervalului nu se prevăd...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "5c1c4ca26f3a",
+      "title": "Prețul pentru un litru de motorină și benzină, în scădere. Cât vor costa carburanții în weekend",
+      "url": "https://www.zdg.md/stiri/pretul-pentru-un-litru-de-motorina-si-benzina-in-scadere-cat-vor-costa-carburantii-in-weekend/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-20T06:28:00Z",
+      "published_date": "2026-06-20",
+      "summary": "În weekendul 20-22 iunie, prețul pentru un litru de motorină și benzină scade. Prețurile au fost afișate de Agenția Națională pentru Reglementare în Energetică (ANRE) vineri, 19 iunie. Instituția a stabilit prețurile maximale de comercializare cu amănuntul pentru principale produse petroliere de tip standard, pentru perioada 20 iunie 2026 – 22 iunie 2026. Mai exact, prețurile pentru perioada menționată...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "83e35f52d950",
+      "title": "LIVE TEXT/ La Harkiv, cinci persoane au fost rănite în urma unui atac cu bombe aeriene ghidate. Alte patru sunt prinse sub dărâmături, printre care și un copil. Război în Ucraina, ziua 1578",
+      "url": "https://www.zdg.md/stiri/live-text-la-harkiv-cinci-persoane-au-fost-ranite-in-urma-unui-atac-cu-bombe-aeriene-ghidate-alte-patru-sunt-prinse-sub-daramaturi-printre-care-si-un-copil-razboi-in-ucraina-ziua-1578/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-20T06:09:06Z",
+      "published_date": "2026-06-20",
+      "summary": "09:00 În urma unui atac cu bombe aeriene ghidate lansat de ruși asupra unui cartier din Harkiv, 5 persoane au fost rănite; alte patru ar putea fi prinse sub dărâmăturile unei clădiri, printre care și un copil.Despre aceasta a anunțat primarul Ihor Terekhov. „Bombe aeriene ghidate au lovit cartierul Kholodnohirskyi al orașului”, se arată în...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "dc5d62d7e40b",
+      "title": "LIVE TEXT/ Forțele de Apărare Ucrainene au distrus un punct de concentrare a trupelor rusești din Pokrovsk. Război în Ucraina, ziua 1577",
+      "url": "https://www.zdg.md/stiri/live-text-fortele-de-aparare-ucrainene-au-distrus-un-punct-de-concentrare-a-trupelor-rusesti-din-pokrovsk-razboi-in-ucraina-ziua-1577/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-19T19:05:08Z",
+      "published_date": "2026-06-19",
+      "summary": "UPDATE 22:05 Forțele Armate ale Ucrainei au efectuat un atac aerian asupra unui punct de concentrare a personalului unei unități a Armatei a 2-a Combinate a Rusiei, care era staționată într-un bloc de apartamente din Pokrovsk, regiunea Donețk.Acest lucru a fost declarat de Corpul 7 de Reacție Rapidă al Forțelor de Asalt Aerian ale Forțelor...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "5b9873140634",
+      "title": "VIDEO//  Cum a nimerit în plasa escrocilor o juristă din Chișinău. Procurorii dezvăluie schema",
+      "url": "https://anticoruptie.md/ro/dosare-de-coruptie/video-cum-a-nimerit-in-plasa-escrocilor-o-jurista-din-chisinau-procurorii-dezvaluie-schema",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "O juristă din Chișinău a fost convinsă de un grup de escroci să scoată din bancă 544.000 de lei și să-i transmită unui fals curier, care pretindea că este angajat al Băncii Naționale. Atunci când i s-a cerut a doua tranșă, de 450 mii lei, femeia a realizat că este victima unei în…",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "c48387c89116",
+      "title": "Pe urmele investigațiilor CIJM// Arest pentru părinții care nu achită pensia alimentară",
+      "url": "https://anticoruptie.md/ro/stiri/pe-urmele-investigatiilor-cijm-arest-pentru-parintii-care-nu-achita-pensia-alimentara",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Părinții care se eschivează sau refuză să plătească pensia de întreținere a copiilor riscă până la 15 zile de arest contravențional. Un proiect de lege care prevede acest lucru a fost votat adoptat de Parlament.",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "57ea907abbe2",
+      "title": "DOC// Fostul vicepreședinte al Curții Supreme, Oleg Sternioală, pierde irevocabil litigiul cu Consiliul Superior al Magistraturii",
+      "url": "https://anticoruptie.md/ro/dosare-de-coruptie/doc-fostul-vicepresedinte-al-curtii-supreme-oleg-sternioala-pierde-irevocabil-litigiul-cu-consiliul-superior-al-magistraturii",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Curtea Supremă de Justiție (CSJ) a respins recursul fostului vicepreședinte al instanței, Oleg Sternioală, împotriva Consiliului Superior al Magistraturii (CSM). Sternioală s-a judecat timp de șase ani cu CSM, după ce membrii acestuia au încuviințat efectuarea unor acțiuni de urm…",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "11d5d07d727c",
+      "title": "(ВИДЕО) Налоговый удар, ненависть на съезде PAS, незаменимый Шор / «Разборка» с Екатериной Дубасовой",
+      "url": "https://newsmaker.md/ru/video-nalogovyi-udar-nenavist-na-sezde-pas-nezamenimyi-shor-razborka-s-ekaterinoi-dubasovoi",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "550a42eb4adc",
+      "title": "Guvernul mai scoate la privatizare trei întreprinderi",
+      "url": "https://mold-street.com/noutate/guvernul-mai-scoate-la-privatizare-trei-intreprinderi",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "d63e282f1fa7",
+      "title": "Cine şi cum a câștigat cea mai mare licitație de la Aeroport",
+      "url": "https://mold-street.com/noutate/cine-si-cum-a-castigat-cea-mai-mare-licitatie-de-la-aeroport",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "afaceri"
+      ],
+      "category_scores": {
+        "afaceri": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "2dfee9ee061f",
+      "title": "Atenție, călători: Trafic intens la vama Leușeni, pe sensul de ieșire din R. Moldova. Rute alternative",
+      "url": "https://www.zdg.md/stiri/atentie-calatori-trafic-intens-la-ptf-leuseni-pe-sensul-de-iesire-din-r-moldova-rute-alternative/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-20T07:12:57Z",
+      "published_date": "2026-06-20",
+      "summary": "Sâmbătă, 20 iunie, în punctul de trecere a frontierei Leușeni se înregistrează trafic majorat de călători și mijloace de transport, fiind aglomerată direcția de ieșire din R. Moldova, anunță reprezentanții Poliției de Frontieră. Călătorii sunt îndemnați să opteze pentru rute alternative. Pentru fluidizarea traficului transfrontalier, autoritățile de control aplică măsuri suplimentare, se mai arată în...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "264591c8fd8c",
+      "title": "Pe urmele investigațiilor CIJM// Comisia Națională a Pieței Financiare, cu verificări la zece bănci",
+      "url": "https://anticoruptie.md/ro/stiri/pe-urmele-investigatiilor-cijm-comisia-nationala-a-pietei-financiare-cu-verificari-la-zece-banci",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Comisia Națională a Pieței Financiare (CNPF) a finalzat controlului tematic în sectorul bancar și de plăți, desfășurat la 10 bănci și 8 prestatori de servicii de plată (PSP) nebancari din Republica Moldova. Controlul s-a desfășurat în perioada decembrie 2025 – iunie 2026 și a des…",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "6a3eb87dff5d",
+      "title": "Reguli noi la calcularea salariului minim în 2027",
+      "url": "https://anticoruptie.md/ro/stiri/reguli-noi-la-calcularea-salariului-minim-in-2027",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Ajustarea salariului minim în Republica Moldova va fi evaluată de Guvern, împreună cu patronatele, cel puțin o dată pe an. Totodată, la evaluarea adecvării salariului minim se va lua ca drept valoare de referință suma echivalentă cu 50% din salariul mediu lunar.",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "63e0c55ffed3",
+      "title": "«Вступление в ЕС – не гонка, а путь, основанный на заслугах». Глава Европарламента Роберта Метсола о «связке» Молдовы с Украиной, Приднестровье и объединении с Румынией. Интервью NM",
+      "url": "https://newsmaker.md/ru/vstuplenie-v-es-ne-gonka-a-put-osnovannyi-na-zaslugah-glava-evroparlamenta-roberta-metsola-o-svyazke-moldovy-s-ukrainoi-pridnestrove-i-obedinenii-s-rumyniei-inte",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "DUOMO. Когда качество — не просто слово, это обязательство",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "e4a2bcf3ece3",
+      "title": "Отстраненный директор MoldATSA ответил на обвинения. Он рассказал о зарплате, премиях и «обобщениях» в своем резюме",
+      "url": "https://newsmaker.md/ru/otstranennyi-direktor-moldatsa-otvetil-na-obvineniya-on-rasskazal-o-zarplate-premiyah-i-obobsheniyah-v-svoem-rezyume",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "b864953443d2",
+      "title": "LIVE В Кишиневе проходит «Марш семьи» социалистов",
+      "url": "https://newsmaker.md/ru/v-kishineve-prohodit-marsh-semi-soczialistov",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "336586cf0992",
+      "title": "simbol",
+      "url": "https://mold-street.com/noutate/discrepante-enorme-la-stat-unii-angajati-primesc-doar-2500-lei-iar-altii-65000-lei-pe-luna",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "ce241d57493d",
+      "title": "România a redus de ouă ori şi ceva decalajul veniturilor faţă de restul UE",
+      "url": "https://mold-street.com/noutate/romania-a-redus-de-oua-ori-si-ceva-decalajul-veniturilor-fata-de-restul-ue",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "dc98c694b8ba",
+      "title": "În timp ce populaţia Republicii Moldova scade în ritm accelerat, numărul angajaţilor din sectorul bugetar este în creştere",
+      "url": "https://mold-street.com/noutate/in-timp-ce-populatia-republicii-moldova-scade-in-ritm-accelerat-numarul-angajatilor-din-sectorul-bugetar-este-in-crestere",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "c39c20fda741",
+      "title": "Al doilea summit UE-Republica Moldova, la Bruxelles, pe 22 iunie. Ce subiecte sunt pe agendă",
+      "url": "https://mold-street.com/noutate/al-doilea-summit-ue-republica-moldova-la-bruxelles-pe-22-iunie-ce-subiecte-sunt-pe-agenda",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "5bbd867136bc",
+      "title": "Au fost depuse 16 oferte de la investitori pentru eoliene şi baterii",
+      "url": "https://mold-street.com/noutate/au-fost-depuse-16-oferte-de-la-investitori-pentru-eoliene-si-baterii",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    }
+  ]
+}
