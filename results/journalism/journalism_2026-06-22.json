@@ -1,0 +1,598 @@
+{
+  "date": "2026-06-22",
+  "generated_at": "2026-06-22T11:59:10Z",
+  "lookback_hours": 26,
+  "sources_checked": 8,
+  "sources_ok": 8,
+  "stats": {
+    "total": 31,
+    "investigative": 6,
+    "by_source": {
+      "zdg_md": {
+        "name": "Ziarul de Gardă",
+        "count": 10
+      },
+      "anticoruptie_md": {
+        "name": "Anticorupție.md",
+        "count": 10
+      },
+      "newsmaker_md": {
+        "name": "Newsmaker.md",
+        "count": 4
+      },
+      "mold_street": {
+        "name": "Mold-Street",
+        "count": 6
+      },
+      "agora_md": {
+        "name": "Agora.md",
+        "count": 1
+      }
+    },
+    "by_category": {
+      "coruptie": {
+        "label": "Corupție",
+        "emoji": "💰",
+        "count": 1
+      },
+      "justitie": {
+        "label": "Justiție & Procurori",
+        "emoji": "⚖️",
+        "count": 16
+      },
+      "politica": {
+        "label": "Politică & Putere",
+        "emoji": "🏛️",
+        "count": 6
+      },
+      "media": {
+        "label": "Media & Libertatea Presei",
+        "emoji": "📰",
+        "count": 1
+      },
+      "securitate": {
+        "label": "Securitate & Intelligence",
+        "emoji": "🔐",
+        "count": 1
+      },
+      "social": {
+        "label": "Social & Drepturile Omului",
+        "emoji": "👥",
+        "count": 4
+      }
+    }
+  },
+  "articles": [
+    {
+      "id": "bf332ba02855",
+      "title": "Dosarul expulzării profesorilor turci, restituit la Procuratură. Promo-LEX cere anchetarea tuturor persoanelor implicate",
+      "url": "https://anticoruptie.md/ro/dosare-de-coruptie/dosarul-expulzarii-profesorilor-turci-restituit-la-procuratura-promo-lex-cere-anchetarea-tuturor-persoanelor-implicate",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Judecătoria Chișinău, sediul Buiucani, a admis în parte, la 15 iunie 2026, demersul procurorului în dosarul fostului director al Serviciului de Informații și Securitate, Vasile Botnari, condamnat anterior pentru transferul extralegal al celor cinci profesori de la Liceul Orizont …",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 2,
+      "relevance_score": 4
+    },
+    {
+      "id": "5631439a3633",
+      "title": "Percheziții la Taraclia: președintele raionului, șeful Comisiei construcții și un specialist în achiziții publice, vizați într-un dosar de trucare a licitațiilor și abuz de serviciu. Prejudiciul estimativ cauzat se ridică la 3 milioane de lei",
+      "url": "https://www.zdg.md/stiri/perchezitii-la-taraclia-presedintele-raionului-seful-comisiei-constructii-si-un-specialist-in-achizitii-publice-vizati-intr-un-dosar-de-trucare-a-licitatiilor-si-abuz-de-serviciu-prejudiciul-estim/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-22T08:15:56Z",
+      "published_date": "2026-06-22",
+      "summary": "Luni, 22 iunie, ofițerii CNA și procurorii Procuraturii municipiului Cahul au desfășurat percheziții într-o cauză penală pornită pe faptul unor presupuse acțiuni abuzive comise de președintele raionului Taraclia, Lazari Dermenji, în complicitate cu președintele Comisiei construcții, Ivan Peev, și un specialist în domeniul achizițiilor publice, comunică Centrul Național Anticorupție. Potrivit materialelor acumulate, persoanele vizate sunt...",
+      "categories": [
+        "justitie",
+        "coruptie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 2,
+        "coruptie": 1,
+        "politica": 1,
+        "social": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 7
+    },
+    {
+      "id": "d924aac7806c",
+      "title": "Dosarul fostului șef al SIS, restituit procurorului pentru reluarea urmăririi penale",
+      "url": "https://www.zdg.md/stiri/dosarul-fostului-sef-al-sis-restituit-procurorului-pentru-reluarea-urmaririi-penale/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-22T08:43:57Z",
+      "published_date": "2026-06-22",
+      "summary": "Judecătoria Chișinău, sediul Buiucani, a decis restituirea cauzei penale al fostului șef al Serviciului de Informații și Securitate (SIS), Vasile Botnari, către Procuratura municipiului Chișinău, pentru reluarea urmăririi penale. Decizia a fost luată la 15 iunie 2026. Dosarul ține de transferul extralegal, din septembrie 2018, a cinci profesori de la Liceul Orizont către Turcia. Pentru...",
+      "categories": [
+        "justitie",
+        "securitate"
+      ],
+      "category_scores": {
+        "justitie": 2,
+        "securitate": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 5
+    },
+    {
+      "id": "51e110dd5aea",
+      "title": "Sinteza CNA: polițiști trimiși în arest, percheziții la Universitatea din Comrat și sechestre de milioane",
+      "url": "https://anticoruptie.md/ro/dosare-de-coruptie/sinteza-cna-politisti-trimisi-in-arest-perchezitii-la-universitatea-din-comrat-si-sechestre-de-milioane",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Percheziții în dosare de corupție în educație, inclusiv la Universitatea de Stat din Comrat, sechestre de circa 10 milioane de lei și trei polițiști ai IP Botanica transferați din arest la domiciliu în Penitenciarul nr. 13.",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 2
+      },
+      "investigative_score": 1,
+      "relevance_score": 4
+    },
+    {
+      "id": "5c2761f6e9aa",
+      "title": "Dosarul de corupție de la IP Botanica. Trei polițiști din schemă, reținuți pentru abuz în serviciu",
+      "url": "https://anticoruptie.md/ro/dosare-de-coruptie/dosarul-de-coruptie-de-la-ip-botanica-trei-politisti-din-schema-retinuti-pentru-abuz-in-serviciu",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Trei polițiști de la Inspectoratul de Poliție Botanica, reținuți anterior într-un dosar de corupție , au fost plasați din nou în izolator, într-o cauză de abuz de serviciu. Aceștia sunt bănuiți de comiterea infracțiunii de abuz de serviciu în circumstanțe agravante.",
+      "categories": [
+        "justitie",
+        "social"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "social": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 4
+    },
+    {
+      "id": "d6c6763c80fa",
+      "title": "Școala de vară CIJM// Cum documentăm și investigăm corupția electorală",
+      "url": "https://anticoruptie.md/ro/stiri/scoala-de-vara-cijm-cum-documentam-si-investigam-coruptia-electorala",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Centrul de Investigații Jurnalistice din Moldova invită jurnaliștii de investigație să se înscrie pentru participare la Școala de vară „Jurnalismul de investigație. Fortificarea abilităților de a investiga subiecte pe corupție electorală”, destinată jurnaliștilor de investigație …",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 1,
+      "relevance_score": 2
+    },
+    {
+      "id": "d95c976b45dc",
+      "title": "Prim-ministrul britanic Keir Starmer și-a dat demisia",
+      "url": "https://www.zdg.md/stiri/prim-ministrul-britanic-keir-starmer-si-a-dat-demisia/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-22T09:01:11Z",
+      "published_date": "2026-06-22",
+      "summary": "Prim-ministrul Regatului Unit, Keir Starmer, a anunțat că își dă demisia. Acum, guvernul țării ar putea fi condus de Andy Burnham — fostul primar al zonei metropolitane Manchester, care săptămâna trecută a obținut o victorie convingătoare la alegerile parțiale pentru un loc în Parlament din circumscripția Makerfield, din nord-vestul Angliei, scrie BBC. În cadrul Partidului...",
+      "categories": [
+        "politica",
+        "justitie"
+      ],
+      "category_scores": {
+        "politica": 5,
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 7
+    },
+    {
+      "id": "b677161cc730",
+      "title": "VIDEO/ Peste 168 de mii de euro, ascunși într-o ladă frigorifică modificată. Bănuiții se află în arest preventiv pentru 30 de zile",
+      "url": "https://www.zdg.md/stiri/video-peste-168-de-mii-de-euro-ascunsi-intr-o-lada-frigorifica-modificata-banuitii-se-afla-in-arest-preventiv-pentru-30-de-zile/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-22T09:21:51Z",
+      "published_date": "2026-06-22",
+      "summary": "Procurorii pentru Combaterea Criminalității Organizate și Cauze Speciale (PCCOCS), de comun cu ofițerii Serviciului Vamal, au deconspirat o încercare de contrabandă cu aproximativ 169 de mii de euro, într-un microbuz care transporta colete din Irlanda. Banii erau ascunși într-o ladă frigorifică, comunică Procuratura. Potrivit unui comunicat PCCOCS, în microbuzul cu pricina, oamenii legii au depistați...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 4
+      },
+      "investigative_score": 0,
+      "relevance_score": 4
+    },
+    {
+      "id": "53272b171cf6",
+      "title": "MEC anunță măsuri speciale de admitere în instituțiile de învățământ pentru tinerii de etnie romă, începând cu anul de studii 2026–2027",
+      "url": "https://www.zdg.md/stiri/mec-anunta-masuri-speciale-de-admitere-in-institutiile-de-invatamant-pentru-tinerii-de-etnie-roma-incepand-cu-anul-de-studii-2026-2027/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-22T08:00:31Z",
+      "published_date": "2026-06-22",
+      "summary": "Începând cu anul de studii 2026–2027, elevii și tinerii de etnie romă vor beneficia de măsuri speciale de admitere în școli, colegii, centre de excelență și universități. Anunțul a fost făcut de Ministerul Educației și Cercetării (MEC), în cadrul unei ședințe la care au participat reprezentanți ai autorităților din domeniul educației, organizațiilor rome, mediatori comunitari...",
+      "categories": [
+        "justitie",
+        "social"
+      ],
+      "category_scores": {
+        "justitie": 2,
+        "social": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "280f9bd25990",
+      "title": "DOC// Ex-președintele raionului Florești, Ștefan Paniș, rămâne fără o parte din avere. Confiscarea, dispusă la cererea ANI",
+      "url": "https://anticoruptie.md/ro/dosare-de-coruptie/doc-ex-presedintele-raionului-floresti-stefan-panis-ramane-fara-o-parte-din-avere-confiscarea-dispusa-la-cererea-ani",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Prima instanță a admis cererea Autorității Naționale de Integritate (ANI) și a dispus confiscarea averii nejustificate, de aproape 270 mii lei, în cazul ex-președintelui raionului Florești, Ștefan Paniș. Totodată, fostul funcționar a fost obligat să achite și o taxă de stat, de p…",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 2,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "7e6e35dfe0b4",
+      "title": "LIVE TEXT/ Armata ucraineană a atacat o fabrică de echipamente de apărare din Voronej. Război în Ucraina, ziua 1580",
+      "url": "https://www.zdg.md/stiri/live-text-armata-ucraineana-a-atacat-o-fabrica-de-echipamente-de-aparare-din-voronej-razboi-in-ucraina-ziua-1580/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-22T10:39:57Z",
+      "published_date": "2026-06-22",
+      "summary": "UPDATE 13:40 Armata ucraineană a atacat o fabrică de echipamente de apărare din Voronej. În urma atacului, „au fost avariate instalațiile de producție ale uneia dintre întreprinderi”, a scris pe canalul său de Telegram guvernatorul regiunii Voronej, Alexander Gusev, potrivit BBC. După cum a scris Gusev, trei persoane au fost rănite, una dintre ele fiind...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "e883acd113bc",
+      "title": "Guvernul lansează un parteneriat strategic cu un gigant global pentru accelerarea transformării digitale",
+      "url": "https://mold-street.com/noutate/guvernul-lanseaza-un-parteneriat-strategic-cu-un-gigant-global-pentru-accelerarea-transformarii-digitale",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "375cd29e4913",
+      "title": "Comunicăm. Producem. Plasăm.Crești împreună cu AGORA",
+      "url": "https://agora.md/media-kit",
+      "source": "Agora.md",
+      "source_key": "agora_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.",
+      "categories": [
+        "justitie",
+        "media"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "media": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "c92883c55014",
+      "title": "Armata Națională va desfășura exerciții de pregătire a rezervei Forțelor Armate, începând cu luna iulie, în diferite centre de instruire de pe teritoriul țării",
+      "url": "https://www.zdg.md/stiri/armata-nationala-va-desfasura-exercitii-de-pregatire-a-rezervei-fortelor-armate-incepand-cu-luna-iulie-in-diferite-centre-de-instruire-de-pe-teritoriul-tarii/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-22T11:52:07Z",
+      "published_date": "2026-06-22",
+      "summary": "Rezerviștii Forțelor Armate vor participa la antrenamente de instruire în lunile iulie, septembrie și octombrie, anunță Ministerul Apărării. Antrenamentele au drept scop verificarea aptitudinilor rezerviștilor, precum și familiarizarea acestora cu tehnica, echipamentul și armamentul nou din dotarea Armatei Naționale. Activitățile, cu durata de cinci zile, vor avea loc la diferite centre de instruire de pe întreg teritoriul țării. Rezerviștii selectați pentru participare vor fi invitați la Centre",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "3003b432f44d",
+      "title": "Incendiu la o mansardă dintr-un bloc de locuit din capitală. Au intervenit 37 de angajați cu 10 autospeciale",
+      "url": "https://www.zdg.md/stiri/incendiu-la-o-mansarda-dintr-un-bloc-de-locuit-din-capitala-au-intervenit-37-de-angajati-cu-10-autospeciale/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-22T11:20:32Z",
+      "published_date": "2026-06-22",
+      "summary": "Pompierii au intervenit luni, 22 iunie, la lichidarea unui incendiu într-un bloc de locuit din capitală, anunță Inspectoratul General pentru Situații de Urgență (IGSU). Pentru evitarea intoxicației cu produsele de ardere, salvatorii evacuează locatarii. Până acum, nu au fost raportate victime. „În după-amiaza zilei de astăzi, pompierii au fost solicitați să intervină conform nivelului sporit...",
+      "categories": [
+        "social"
+      ],
+      "category_scores": {
+        "social": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "a8f45af48efe",
+      "title": "Șapte sesizări privind fraudele telefonice au fost înregistrate în weekend. Poliția îndeamnă cetățenii să închidă imediat orice apel suspect",
+      "url": "https://www.zdg.md/stiri/sapte-sesizari-privind-fraudele-telefonice-au-fost-inregistrate-in-weekend-politia-indeamna-cetatenii-sa-inchida-imediat-orice-apel-suspect/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-22T10:11:09Z",
+      "published_date": "2026-06-22",
+      "summary": "În perioada 19–21 iunie, autoritățile au înregistrat șapte sesizări privind fraude telefonice, cu prejudiciul de aproximativ 900 de mii de lei, informează Inspectoratul General al Poliției (IGP). Dintre acestea, trei fraude au fost comise în perioada menționată, iar celelalte cazuri s-au produs anterior, fiind raportate acum de victime. În același timp, vigilența cetățenilor a contribuit...",
+      "categories": [
+        "social"
+      ],
+      "category_scores": {
+        "social": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "7badace65322",
+      "title": "Peste 11 mii de persoane au fost angajate în câmpul muncii în primele luni ale anului, cu ajutorul Agenției pentru Ocuparea Forței de Muncă",
+      "url": "https://www.zdg.md/stiri/peste-11-mii-de-persoane-au-fost-angajate-in-campul-muncii-in-primele-luni-ale-anului-cu-ajutorul-agentiei-pentru-ocuparea-fortei-de-munca/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-22T09:45:53Z",
+      "published_date": "2026-06-22",
+      "summary": "Agenția Națională pentru Ocuparea Forței de Muncă (ANOFM) anunță că, de la începutul anului 2026, peste 11 mii de persoane aflate în căutarea unui loc de muncă au fost ajutate să-și găsească un loc de muncă. Dintre acestea, 3417 sunt șomeri (31,1%) și 227 șomeri-zilieri sau șomeri angajați pe perioadă determinată până la 3 luni,...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "dd3d199b15ae",
+      "title": "Sinteza ANI: Soții directoarelor, angajați la grădiniță, și bunuri nedeclarate de o primară",
+      "url": "https://anticoruptie.md/ro/dosare-de-coruptie/sinteza-ani-sotii-directoarelor-angajati-la-gradinita-si-bunuri-nedeclarate-de-o-primara",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Autoritatea Națională de Integritate (ANI) a emis, în perioada 15-19 iunie 2026, trei acte de constatare. Două dintre acestea vizează conflicte de interese la grădinițe din raionul Șoldănești, iar al treilea se referă la încălcarea regimului juridic al declarării averii și intere…",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "b2037ea574ad",
+      "title": "Achiziții publice trucate la Taraclia. Președintele raionului printre cei bănuiți",
+      "url": "https://anticoruptie.md/ro/dosare-de-coruptie/achizitii-publice-trucate-la-taraclia-presedintele-raionului-printre-cei-banuiti",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Președintele raionului Taraclia, împreună cu președintele Comisiei construcții și un specialist în domeniul achizițiilor publice sunt cercetați de oamenii legii pentru presupuse fapte de abuz comise în organizarea achizițiilor publice. Centrul Național Anticorupție (CNA) și procu…",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "5b9873140634",
+      "title": "VIDEO//  Cum a nimerit în plasa escrocilor o juristă din Chișinău. Procurorii dezvăluie schema",
+      "url": "https://anticoruptie.md/ro/dosare-de-coruptie/video-cum-a-nimerit-in-plasa-escrocilor-o-jurista-din-chisinau-procurorii-dezvaluie-schema",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "O juristă din Chișinău a fost convinsă de un grup de escroci să scoată din bancă 544.000 de lei și să-i transmită unui fals curier, care pretindea că este angajat al Băncii Naționale. Atunci când i s-a cerut a doua tranșă, de 450 mii lei, femeia a realizat că este victima unei în…",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "aea00eccd8d7",
+      "title": "Care este impactul aerului condiționat asupra mediului?",
+      "url": "https://mold-street.com/noutate/care-este-impactul-aerului-conditionat-asupra-mediului",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "b950f3e94eaa",
+      "title": "De ultimă oră",
+      "url": "https://anticoruptie.md/rss/latest.xml?lang=ro",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Moldova a introdus o măsură nouă și controversată, care impune identificarea obligatorie pentru utilizatorii de cartele SIM preplătite și eSIM, prezentată ca instrument de combatere a fraudei și a criminalității informatice.\r\n\r\nAm analizat noua decizie legislativă ca o problemă de confidențialitate și securitate, nu doar ca o schimbare de drept.[...]",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "12eccb453112",
+      "title": "Noua regulă de identificare pentru cartele SIM în Moldova: o soluție de securitate sau o depășire a limitelor privind viața privată?",
+      "url": "https://anticoruptie.md/ro/blog/gheorghe-alexandra/noua-regula-de-identificare-pentru-cartele-sim-in-moldova-o-solutie-de-securitate-sau-o-depasire-a-limitelor-privind-viata-privata",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Moldova a introdus o măsură nouă și controversată, care impune identificarea obligatorie pentru utilizatorii de cartele SIM preplătite și eSIM, prezentată ca instrument de combatere a fraudei și a criminalității informatice.",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "7d7260c7cf90",
+      "title": "(ВИДЕО) «Мы не бедные». Почему в Молдове не любят говорить о бедности? / ГОЛОСА",
+      "url": "https://newsmaker.md/ru/video-my-ne-bednye-pochemu-v-moldove-ne-lyubyat-govorit-o-bednosti-golosa",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "DUOMO. Когда качество — не просто слово, это обязательство",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "c3dc0f420fc6",
+      "title": "Референдум в Кошнице: Более 95% участников проголосовали против перевода сельхозземель под добычу полезных ископаемых",
+      "url": "https://newsmaker.md/ru/czik-bolee-95-uchastnikov-referenduma-v-koshnicze-vystupili-protiv-perevoda-selhozzemel-pod-dobychu-poleznyh-iskopaemyh",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "70fed3543b8c",
+      "title": "Министр труда объяснила изменения в расчете отпусков: «Никто не потеряет ни дни отдыха, ни отпускные»",
+      "url": "https://newsmaker.md/ru/ministr-truda-obyasnila-izmeneniya-v-raschete-otpuskov-nikto-ne-poteryaet-ni-dni-otdyha-ni-otpusknye",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "47d2eb3542b8",
+      "title": "(ВИДЕО) В Кишиневе верующие с иконами и святой водой появились на улице Букурешть после ЛГБТ-марша",
+      "url": "https://newsmaker.md/ru/video-v-kishineve-veruyushie-s-ikonami-i-svyatoi-vodoi-poyavilis-na-ulicze-bukuresht-posle-lgbt-marsha",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "d5e3ec896d81",
+      "title": "Reforma concediilor. Din 2027, concediile de odihnă vor fi exprimate în zile lucrătoare, nu calendaristice",
+      "url": "https://mold-street.com/noutate/reforma-concediilor-din-2027-concediile-de-odihna-vor-fi-exprimate-in-zile-lucratoare-nu-calendaristice",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "f2790833bab2",
+      "title": "O țară candidată la aderarea la UE, ajunge pe lista gri FATF, sub monitorizare sporită",
+      "url": "https://mold-street.com/noutate/o-tara-candidata-la-aderarea-la-ue-ajunge-pe-lista-gri-fatf-sub-monitorizare-sporita",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "ce241d57493d",
+      "title": "România a redus de două ori şi ceva decalajul veniturilor faţă de restul UE",
+      "url": "https://mold-street.com/noutate/romania-a-redus-de-oua-ori-si-ceva-decalajul-veniturilor-fata-de-restul-ue",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "dc98c694b8ba",
+      "title": "În timp ce populaţia Republicii Moldova scade în ritm accelerat, numărul angajaţilor din sectorul bugetar este în creştere",
+      "url": "https://mold-street.com/noutate/in-timp-ce-populatia-republicii-moldova-scade-in-ritm-accelerat-numarul-angajatilor-din-sectorul-bugetar-este-in-crestere",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    }
+  ]
+}
