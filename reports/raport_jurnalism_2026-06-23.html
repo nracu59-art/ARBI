@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monitorizare Jurnalism Investigativ Moldova – 23.06.2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; color: #2c3e50; }
+  .header { background: #1b4332; color: #fff; padding: 28px 40px; }
+  .header h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: 0.5px; }
+  .header .subtitle { margin-top: 6px; font-size: 0.9rem; opacity: 0.85; }
+  .stats-bar { background: #2d6a4f; color: #fff; padding: 16px 40px;
+                display: flex; gap: 36px; flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; }
+  .stat .val { font-size: 1.8rem; font-weight: 700; }
+  .stat .lbl { font-size: 0.72rem; opacity: 0.82; text-transform: uppercase; letter-spacing: 0.8px; }
+  .cat-bar { background: #40916c; color: #fff; padding: 12px 40px;
+              display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .cat-chip { background: rgba(255,255,255,0.18); border-radius: 20px;
+               padding: 4px 14px; font-size: 0.78rem; font-weight: 600;
+               white-space: nowrap; }
+  .container { max-width: 1040px; margin: 30px auto; padding: 0 20px 40px; }
+  .section-title { font-size: 0.95rem; font-weight: 700; color: #1b4332;
+                    text-transform: uppercase; letter-spacing: 1px;
+                    margin: 28px 0 14px; border-bottom: 2px solid #1b4332;
+                    padding-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08);
+           padding: 18px 22px; margin-bottom: 14px; border-left: 5px solid #1b4332;
+           transition: box-shadow .15s; }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.13); }
+  .card.investigativ { border-left-color: #d62828; }
+  .card-title { font-size: 1rem; font-weight: 700; color: #1b4332; margin-bottom: 8px; }
+  .card-title a { color: inherit; text-decoration: none; }
+  .card-title a:hover { text-decoration: underline; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;
+           font-size: 0.8rem; color: #555; }
+  .badge { display: inline-block; font-size: 0.68rem; font-weight: 700;
+            padding: 2px 8px; border-radius: 12px; color: #fff;
+            margin-right: 4px; vertical-align: middle; }
+  .badge-inv { background: #d62828; }
+  .source-tag { background: #e8f4ec; color: #1b4332; border-radius: 4px;
+                 padding: 1px 8px; font-size: 0.75rem; font-weight: 600; }
+  .summary { font-size: 0.85rem; color: #444; line-height: 1.55; margin-top: 6px; }
+  .cat-tags { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .cat-tag { font-size: 0.72rem; padding: 2px 10px; border-radius: 10px;
+              font-weight: 600; background: #e8f4ec; color: #1b4332; }
+  .link-btn { display: inline-block; margin-top: 10px; padding: 5px 14px;
+               background: #1b4332; color: #fff; border-radius: 5px;
+               font-size: 0.78rem; text-decoration: none; font-weight: 600; }
+  .link-btn:hover { background: #2d6a4f; }
+  .empty-box { background: #fff; border-radius: 8px; padding: 30px 24px;
+                text-align: center; color: #7f8c8d; font-size: 0.95rem;
+                box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .source-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+  .source-box { background: #fff; border-radius: 8px; padding: 12px 18px;
+                 box-shadow: 0 2px 6px rgba(0,0,0,.07); min-width: 140px;
+                 border-top: 3px solid #1b4332; }
+  .source-box .sname { font-size: 0.78rem; font-weight: 700; color: #1b4332; }
+  .source-box .scount { font-size: 1.4rem; font-weight: 700; color: #2d6a4f; margin-top: 2px; }
+  .footer { text-align: center; font-size: 0.75rem; color: #999;
+             margin-top: 40px; padding-bottom: 20px; }
+  @media (max-width: 600px) {
+    .header, .stats-bar, .cat-bar { padding: 18px 16px; }
+    .stats-bar { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🔍 Monitorizare Jurnalism Investigativ – Moldova</h1>
+  <div class="subtitle">
+    Surse monitorizate: 8 &nbsp;|&nbsp;
+    Ultimele 26 ore &nbsp;|&nbsp;
+    Generat: 2026-06-23 09:43 UTC
+  </div>
+</div>
+<div class="stats-bar">
+  <div class="stat"><span class="val">33</span><span class="lbl">Articole noi</span></div>
+  <div class="stat"><span class="val">6</span><span class="lbl">Investigative</span></div>
+  <div class="stat"><span class="val">8</span><span class="lbl">Surse active</span></div>
+  <div class="stat"><span class="val">23.06.2026</span><span class="lbl">Data raportului</span></div>
+</div>
+<div class="cat-bar">
+  <span style="font-size:.8rem;opacity:.85;margin-right:4px">Categorii:</span>
+  <span class="cat-chip">⚖️ Justiție & Procurori (16)</span><span class="cat-chip">🏛️ Politică & Putere (6)</span><span class="cat-chip">💰 Corupție (1)</span><span class="cat-chip">📰 Media & Libertatea Presei (1)</span><span class="cat-chip">🔐 Securitate & Intelligence (1)</span><span class="cat-chip">👥 Social & Drepturile Omului (1)</span>
+</div>
+<div class="container">
+<div class="section-title">📊 Articole pe surse</div><div class="source-grid"><div class="source-box"><div class="sname">Ziarul de Gardă</div><div class="scount">10</div></div><div class="source-box"><div class="sname">Anticorupție.md</div><div class="scount">10</div></div><div class="source-box"><div class="sname">Mold-Street</div><div class="scount">7</div></div><div class="source-box"><div class="sname">Newsmaker.md</div><div class="scount">4</div></div><div class="source-box"><div class="sname">RISE Moldova</div><div class="scount">1</div></div><div class="source-box"><div class="sname">Agora.md</div><div class="scount">1</div></div></div>
+<div class="section-title">🔍 Articole Investigative (6)</div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/dosare-de-coruptie/dosarul-expulzarii-profesorilor-turci-restituit-la-procuratura-promo-lex-cere-anchetarea-tuturor-persoanelor-implicate" target="_blank">Dosarul expulzării profesorilor turci, restituit la Procuratură. Promo-LEX cere anchetarea tuturor persoanelor implicate</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Judecătoria Chișinău, sediul Buiucani, a admis în parte, la 15 iunie 2026, demersul procurorului în dosarul fostului director al Serviciului de Informații și Securitate, Vasile Botnari, condamnat anterior pentru transferul extralegal al celor cinci profesori de la Liceul Orizont …</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/dosare-de-coruptie/dosarul-expulzarii-profesorilor-turci-restituit-la-procuratura-promo-lex-cere-anchetarea-tuturor-persoanelor-implicate" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/perchezitii-intr-un-dosar-de-evaziune-fiscala-si-spalare-de-bani-la-o-firma-de-constructii-muncitori-fara-contract-depistati-pe-doua-santiere/" target="_blank">Percheziții într-un dosar de evaziune fiscală și spălare de bani la o firmă de construcții: muncitori fără contract, depistați pe două șantiere</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 23.06.2026</span>
+    </div>
+    <div class='summary'>Oamenii legii au efectuat mai multe percheziții în cadrul unei cauze penale inițiate în februarie. Dosarul vizează suspiciuni de evaziune fiscală și spălare de bani, scrie marți, 23 iunie, Inspectoratul General al Poliției (IGP).Potrivit anchetei, în perioada 2024 – prezent, factori de decizie ai unei societăți comerciale sunt bănuiți că ar fi pus în aplicare...</div>
+    <div class='cat-tags'><span class="cat-tag">💰 Corupție</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/perchezitii-intr-un-dosar-de-evaziune-fiscala-si-spalare-de-bani-la-o-firma-de-constructii-muncitori-fara-contract-depistati-pe-doua-santiere/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/dosare-de-coruptie/sinteza-cna-politisti-trimisi-in-arest-perchezitii-la-universitatea-din-comrat-si-sechestre-de-milioane" target="_blank">Sinteza CNA: polițiști trimiși în arest, percheziții la Universitatea din Comrat și sechestre de milioane</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Percheziții în dosare de corupție în educație, inclusiv la Universitatea de Stat din Comrat, sechestre de circa 10 milioane de lei și trei polițiști ai IP Botanica transferați din arest la domiciliu în Penitenciarul nr. 13.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/dosare-de-coruptie/sinteza-cna-politisti-trimisi-in-arest-perchezitii-la-universitatea-din-comrat-si-sechestre-de-milioane" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/dosare-de-coruptie/dosarul-de-coruptie-de-la-ip-botanica-trei-politisti-din-schema-retinuti-pentru-abuz-in-serviciu" target="_blank">Dosarul de corupție de la IP Botanica. Trei polițiști din schemă, reținuți pentru abuz în serviciu</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Trei polițiști de la Inspectoratul de Poliție Botanica, reținuți anterior într-un dosar de corupție , au fost plasați din nou în izolator, într-o cauză de abuz de serviciu. Aceștia sunt bănuiți de comiterea infracțiunii de abuz de serviciu în circumstanțe agravante.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/dosare-de-coruptie/dosarul-de-coruptie-de-la-ip-botanica-trei-politisti-din-schema-retinuti-pentru-abuz-in-serviciu" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/ue-reconfirma-viitorul-european-al-republicii-moldova-chisinaul-ar-putea-accesa-inca-528-de-milioane-de-euro-daca-mentine-ritmul-reformelor" target="_blank">UE reconfirmă viitorul european al Republicii Moldova. Chișinăul ar putea accesa încă 528 de milioane de euro, dacă menține ritmul reformelor</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Uniunea Europeană reconfirmă că viitorul Republicii Moldova este în UE, salută deschiderea negocierilor pe Clusterul 1, „Valori fundamentale”, și anunță că țara noastră ar putea accesa încă 528 de milioane de euro, dacă își menține ritmul reformelor și îndeplinește obiectivele as…</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/ue-reconfirma-viitorul-european-al-republicii-moldova-chisinaul-ar-putea-accesa-inca-528-de-milioane-de-euro-daca-mentine-ritmul-reformelor" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/scoala-de-vara-cijm-cum-documentam-si-investigam-coruptia-electorala" target="_blank">Școala de vară CIJM// Cum documentăm și investigăm corupția electorală</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Centrul de Investigații Jurnalistice din Moldova invită jurnaliștii de investigație să se înscrie pentru participare la Școala de vară „Jurnalismul de investigație. Fortificarea abilităților de a investiga subiecte pe corupție electorală”, destinată jurnaliștilor de investigație …</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/scoala-de-vara-cijm-cum-documentam-si-investigam-coruptia-electorala" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">⚖️ Justiție & Procurori (13)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/medic-anestezist-reanimatolog-trimis-pe-banca-acuzatilor-pentru-malpraxis-comis-la-spitalul-raional-comrat/" target="_blank">Medic anestezist-reanimatolog, trimis pe banca acuzaților pentru malpraxis comis la Spitalul Raional Comrat</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 23.06.2026</span>
+    </div>
+    <div class='summary'>Un medic anestezist-reanimatolog din cadrul Spitalului Raional Comrat, învinuit de încălcarea din neglijenţă a regulilor de acordare a asistenţei medicale, care a cauzat decesul pacientului a fost trimis în judecată, anunță marți, 23 iunie, Procuratura Generală (PG). Potrivit unui comunicat, pe 19 ianuarie 2025, un pacient, în vârstă de 47 de ani, a fost adus la...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/medic-anestezist-reanimatolog-trimis-pe-banca-acuzatilor-pentru-malpraxis-comis-la-spitalul-raional-comrat/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/autorul-alertelor-false-cu-bomba-de-la-aeroportul-international-eugen-doga-chisinau-a-fost-retinut-si-plasat-in-arest-preventiv/" target="_blank">Autorul alertelor false cu bombă de la Aeroportul Internațional „Eugen Doga” – Chișinău a fost reținut și plasat în arest preventiv</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 23.06.2026</span>
+    </div>
+    <div class='summary'>O persoană bănuită că ar fi transmis alerte false privind amplasarea unor obiecte explozive la Aeroportul Internațional „Eugen Doga” – Chișinău au fost identificată și reținută pe 18 iunie, anunță marți, 23 iunie, Poliția de Frontieră. Potrivit informațiilor, un bărbat în vârstă de 50 de ani este bănuit că ar fi comunicat intenționat informații false...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/autorul-alertelor-false-cu-bomba-de-la-aeroportul-international-eugen-doga-chisinau-a-fost-retinut-si-plasat-in-arest-preventiv/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/o-femeie-a-fost-extradata-din-grecia-dupa-ce-ar-fi-traficat-7-tinere-din-r-moldova-fratele-acesteia-a-fost-condamnat-la-64-de-ani-de-inchisoare-in-grecia/" target="_blank">O femeie a fost extrădată din Grecia, după ce ar fi traficat 7 tinere din R. Moldova. Fratele acesteia a fost condamnat la 64 de ani de închisoare în Grecia</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 23.06.2026</span>
+    </div>
+    <div class='summary'>O femeie din Hâncești care ar fi traficat cu fratele acesteia 7 tinere între ani 2015-2018 a fost extrădată în Chișinău, a anunțat marți, 23 iunie, Procuratura pentru Combaterea Criminalității Organizate și Cauze Speciale (PCCOCS). În prezent, aceasta a fost plasată în arest preventiv în Penitenciarul nr. 13 din capitală, iar fratele acesteia, cu rol...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/o-femeie-a-fost-extradata-din-grecia-dupa-ce-ar-fi-traficat-7-tinere-din-r-moldova-fratele-acesteia-a-fost-condamnat-la-64-de-ani-de-inchisoare-in-grecia/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/guvernul-vestea-a-fost-respins-in-parlament-am-acceptat-functia-pentru-ca-tara-are-nevoie-de-stabilitate-care-este-numarul-de-voturi-pe-care-a-reusit-sa-il-stranga/" target="_blank">Guvernul Veștea a fost respins în Parlament: „Am acceptat funcția pentru că țara are nevoie de stabilitate”. Care este numărul de voturi pe care a reușit să îl strângă</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 23.06.2026</span>
+    </div>
+    <div class='summary'>Guvernul propus de Adrian Veştea nu a reuşit să primească voturile necesare pentru învestire. Cabinetul său de miniștri a primit doar 189 de voturi „pentru”, deşi avea nevoie de minimum 233, susține HotNews.ro. Potrivit anunţului oficial din plenul Parlamentului, făcut aproape de miezul nopții de luni spre marți, s-au înregistrat în total 212 voturi, dintre...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/guvernul-vestea-a-fost-respins-in-parlament-am-acceptat-functia-pentru-ca-tara-are-nevoie-de-stabilitate-care-este-numarul-de-voturi-pe-care-a-reusit-sa-il-stranga/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/ziua-suveranitatii-r-moldova-maia-sandu-avem-obligatia-sa-pazim-sa-pastram-suveranitatea-independenta-si-pacea-igor-dodon-nu-a-ramas-mult-sa-i-suportam-la-conducere/" target="_blank">Ziua Suveranității R. Moldova. Maia Sandu: „Avem obligația să păzim, să păstrăm suveranitatea, independența și pacea”. Igor Dodon: „Nu a rămas mult să-i suportăm la conducere, până Moldova se va elibera și poporul își va lua țara înapoi”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 23.06.2026</span>
+    </div>
+    <div class='summary'>R. Moldova sărbătorește marți, 23 iunie Ziua Suveranității. Declaraţia de Suveranitate a fost adoptată acum 36 de ani, pe 23 iunie 1990, de către deputaţii Sovietului Suprem al Republicii Sovietice Socialiste Moldoveneşti. „Acum 36 de ani, moldovenii au luptat pentru suveranitate și pentru dreptul de a-și decide soarta singuri. Peste 36 de ani, Moldova își...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/ziua-suveranitatii-r-moldova-maia-sandu-avem-obligatia-sa-pazim-sa-pastram-suveranitatea-independenta-si-pacea-igor-dodon-nu-a-ramas-mult-sa-i-suportam-la-conducere/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/csm-respinge-raportul-de-evaluare-privind-nepromovarea-judecatorului-corneliu-guzun-si-dispune-reluarea-procedurii/" target="_blank">CSM respinge raportul de evaluare privind nepromovarea judecătorului Corneliu Guzun și dispune reluarea procedurii</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 23.06.2026</span>
+    </div>
+    <div class='summary'>Consiliul Superior al Magistraturii (CSM) a hotărât respingerea raportului de evaluare externă a magistratului de la Judecătoria Chișinău, Corneliu Guzun, în calitate de vicepreședinte al Judecătoriei Chișinău, sediul Rîșcani, și dispune reluarea procedurii de evaluare. Anterior, Comisia de Evaluare a Judecătorilor a concluzionat că judecătorul nu întrunește criteriile de integritate prevăzute de …</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/csm-respinge-raportul-de-evaluare-privind-nepromovarea-judecatorului-corneliu-guzun-si-dispune-reluarea-procedurii/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/guvernul-lanseaza-un-parteneriat-strategic-cu-un-gigant-global-pentru-accelerarea-transformarii-digitale" target="_blank">Guvernul lansează un parteneriat strategic cu un gigant global pentru accelerarea transformării digitale</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/guvernul-lanseaza-un-parteneriat-strategic-cu-un-gigant-global-pentru-accelerarea-transformarii-digitale" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/au-utilizat-in-mod-fraudulos-informatiile-altei-persoane-pentru-a-achizitiona-mai-multe-produse-electrocasnice-suspectii-risca-pana-la-5-ani-de-inchisoare/" target="_blank">Au utilizat în mod fraudulos informațiile altei persoane pentru a achiziționa mai multe produse electrocasnice: Suspecții riscă până la 5 ani de închisoare</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 23.06.2026</span>
+    </div>
+    <div class='summary'>O femeie de 26 de ani și a doi bărbați de 37 și 44 de ani, originari din Chișinău și Ialoveni, sunt suspectați de comiterea unei escrocherii, cu un prejudiciu de peste 20 de mii de lei. Polițiștii sectorului Centru au documentat activitatea infracțională a persoanelor, potrivit Inspectoratului General al Poliției (IGP). Potrivit anchetei, unul...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/au-utilizat-in-mod-fraudulos-informatiile-altei-persoane-pentru-a-achizitiona-mai-multe-produse-electrocasnice-suspectii-risca-pana-la-5-ani-de-inchisoare/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/live-text-un-barbat-de-60-de-ani-a-fost-ranit-in-urma-bombardamentelor-rusesti-iar-o-subunitate-de-pompieri-a-fost-avariata-in-regiunea-dnipropetrovsk-razboi-in-ucraina-ziua-1581/" target="_blank">LIVE TEXT/ Un bărbat de 60 de ani a fost rănit în urma bombardamentelor rusești, iar o subunitate de pompieri a fost avariată în regiunea Dnipropetrovsk. Război în Ucraina, ziua 1581</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 23.06.2026</span>
+    </div>
+    <div class='summary'>UPDATE 11:15 În timpul nopții, forțele ruse au lansat un atac aerian asupra comunității Vasîlkivka. În urma loviturii, a fost avariată clădirea unei subunități de pompieri și salvatori. Din fericire, niciun salvator nu a fost rănit. De asemenea, un incendiu a izbucnit într-o locuință distrusă. În comunitatea Bojedarivka, din raionul Kamianske, a izbucnit un incendiu...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/live-text-un-barbat-de-60-de-ani-a-fost-ranit-in-urma-bombardamentelor-rusesti-iar-o-subunitate-de-pompieri-a-fost-avariata-in-regiunea-dnipropetrovsk-razboi-in-ucraina-ziua-1581/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🏛️ Politică & Putere (6)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/guvernul-vestea-a-fost-respins-in-parlament-am-acceptat-functia-pentru-ca-tara-are-nevoie-de-stabilitate-care-este-numarul-de-voturi-pe-care-a-reusit-sa-il-stranga/" target="_blank">Guvernul Veștea a fost respins în Parlament: „Am acceptat funcția pentru că țara are nevoie de stabilitate”. Care este numărul de voturi pe care a reușit să îl strângă</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 23.06.2026</span>
+    </div>
+    <div class='summary'>Guvernul propus de Adrian Veştea nu a reuşit să primească voturile necesare pentru învestire. Cabinetul său de miniștri a primit doar 189 de voturi „pentru”, deşi avea nevoie de minimum 233, susține HotNews.ro. Potrivit anunţului oficial din plenul Parlamentului, făcut aproape de miezul nopții de luni spre marți, s-au înregistrat în total 212 voturi, dintre...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/guvernul-vestea-a-fost-respins-in-parlament-am-acceptat-functia-pentru-ca-tara-are-nevoie-de-stabilitate-care-este-numarul-de-voturi-pe-care-a-reusit-sa-il-stranga/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/csm-respinge-raportul-de-evaluare-privind-nepromovarea-judecatorului-corneliu-guzun-si-dispune-reluarea-procedurii/" target="_blank">CSM respinge raportul de evaluare privind nepromovarea judecătorului Corneliu Guzun și dispune reluarea procedurii</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 23.06.2026</span>
+    </div>
+    <div class='summary'>Consiliul Superior al Magistraturii (CSM) a hotărât respingerea raportului de evaluare externă a magistratului de la Judecătoria Chișinău, Corneliu Guzun, în calitate de vicepreședinte al Judecătoriei Chișinău, sediul Rîșcani, și dispune reluarea procedurii de evaluare. Anterior, Comisia de Evaluare a Judecătorilor a concluzionat că judecătorul nu întrunește criteriile de integritate prevăzute de …</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/csm-respinge-raportul-de-evaluare-privind-nepromovarea-judecatorului-corneliu-guzun-si-dispune-reluarea-procedurii/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/guvernul-lanseaza-un-parteneriat-strategic-cu-un-gigant-global-pentru-accelerarea-transformarii-digitale" target="_blank">Guvernul lansează un parteneriat strategic cu un gigant global pentru accelerarea transformării digitale</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/guvernul-lanseaza-un-parteneriat-strategic-cu-un-gigant-global-pentru-accelerarea-transformarii-digitale" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/rise-moldova-ce-remunerare-primeste-anastasia-taburceanu-la-moldatsa/" target="_blank">RISE Moldova/ Ce remunerare primește Anastasia Taburceanu la MoldATSA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 23.06.2026</span>
+    </div>
+    <div class='summary'>În mai puţin de un an de activitate în calitate de purtătoare de cuvânt la MoldATSA, întreprindere de stat responsabilă de securitatea traficului aerian din R. Moldova, Anastasia Taburceanu a fost remunerată cu peste un milion de lei. Asta arată datele oficiale colectate și analizate de RISE Moldova. Comunicatoare a fostei prim-ministră Natalia Gavrilița și verișoară cu șefa...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/rise-moldova-ce-remunerare-primeste-anastasia-taburceanu-la-moldatsa/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/guvernul-respinge-modificarile-electorale-propuse-de-adunarea-populara-a-gagauziei" target="_blank">Guvernul respinge modificările electorale propuse de Adunarea Populară a Găgăuziei</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Modificările la Codul electoral al Republicii Moldova propuse de Adunarea Populară a UTA Găgăuzia nu sunt susținute de instituțiile centrale ale statului, pe motiv că generează incertitudini normative, suprapuneri instituționale sau propun un regim juridic diferențiat pentru auto…</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/guvernul-respinge-modificarile-electorale-propuse-de-adunarea-populara-a-gagauziei" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/dosare-de-coruptie/achizitii-publice-trucate-la-taraclia-presedintele-raionului-printre-cei-banuiti" target="_blank">Achiziții publice trucate la Taraclia. Președintele raionului printre cei bănuiți</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Președintele raionului Taraclia, împreună cu președintele Comisiei construcții și un specialist în domeniul achizițiilor publice sunt cercetați de oamenii legii pentru presupuse fapte de abuz comise în organizarea achizițiilor publice. Centrul Național Anticorupție (CNA) și procu…</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/dosare-de-coruptie/achizitii-publice-trucate-la-taraclia-presedintele-raionului-printre-cei-banuiti" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📰 Media & Libertatea Presei (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🔐 Securitate & Intelligence (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/medic-anestezist-reanimatolog-trimis-pe-banca-acuzatilor-pentru-malpraxis-comis-la-spitalul-raional-comrat/" target="_blank">Medic anestezist-reanimatolog, trimis pe banca acuzaților pentru malpraxis comis la Spitalul Raional Comrat</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 23.06.2026</span>
+    </div>
+    <div class='summary'>Un medic anestezist-reanimatolog din cadrul Spitalului Raional Comrat, învinuit de încălcarea din neglijenţă a regulilor de acordare a asistenţei medicale, care a cauzat decesul pacientului a fost trimis în judecată, anunță marți, 23 iunie, Procuratura Generală (PG). Potrivit unui comunicat, pe 19 ianuarie 2025, un pacient, în vârstă de 47 de ani, a fost adus la...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/medic-anestezist-reanimatolog-trimis-pe-banca-acuzatilor-pentru-malpraxis-comis-la-spitalul-raional-comrat/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📌 Alte articole (11)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.rise.md/ce-remunerare-primeste-anastasia-taburceanu-la-moldatsa/" target="_blank">Ce remunerare primește Anastasia Taburceanu la MoldATSA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 RISE Moldova</span>
+      <span>📅 23.06.2026</span>
+    </div>
+    <div class='summary'>În mai puţin de un an de activitate în calitate de purtătoare de cuvânt la MoldATSA, întreprindere de […] The post Ce remunerare primește Anastasia Taburceanu la MoldATSA appeared first on Rise Moldova .</div>
+    
+    <a class="link-btn" href="https://www.rise.md/ce-remunerare-primeste-anastasia-taburceanu-la-moldatsa/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/rss/latest.xml?lang=ro" target="_blank">De ultimă oră</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Moldova a introdus o măsură nouă și controversată, care impune identificarea obligatorie pentru utilizatorii de cartele SIM preplătite și eSIM, prezentată ca instrument de combatere a fraudei și a criminalității informatice.
+
+Am analizat noua decizie legislativă ca o problemă de confidențialitate și securitate, nu doar ca o schimbare de drept.[...]</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/rss/latest.xml?lang=ro" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/blog/gheorghe-alexandra/noua-regula-de-identificare-pentru-cartele-sim-in-moldova-o-solutie-de-securitate-sau-o-depasire-a-limitelor-privind-viata-privata" target="_blank">Noua regulă de identificare pentru cartele SIM în Moldova: o soluție de securitate sau o depășire a limitelor privind viața privată?</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Moldova a introdus o măsură nouă și controversată, care impune identificarea obligatorie pentru utilizatorii de cartele SIM preplătite și eSIM, prezentată ca instrument de combatere a fraudei și a criminalității informatice.</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/blog/gheorghe-alexandra/noua-regula-de-identificare-pentru-cartele-sim-in-moldova-o-solutie-de-securitate-sau-o-depasire-a-limitelor-privind-viata-privata" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/video-my-ne-bednye-pochemu-v-moldove-ne-lyubyat-govorit-o-bednosti-golosa" target="_blank">(ВИДЕО) «Мы не бедные». Почему в Молдове не любят говорить о бедности? / ГОЛОСА</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>DUOMO. Когда качество — не просто слово, это обязательство</div>
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/video-my-ne-bednye-pochemu-v-moldove-ne-lyubyat-govorit-o-bednosti-golosa" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/taburchanu-zarabatyvala-v-moldatsa-bolshe-chem-uvolennyi-vangeli-rassledovanie-rise-moldova" target="_blank">Табурчану зарабатывала в MoldATSA больше, чем уволенный Вангели? Расследование Rise Moldova</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/taburchanu-zarabatyvala-v-moldatsa-bolshe-chem-uvolennyi-vangeli-rassledovanie-rise-moldova" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/fotovideo" target="_blank">(ФОТО/ВИДЕО) Радиоактивные объекты нашли в подвале жилого дома в Кишиневе: На месте работают эксперты ядерной безопасности</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/fotovideo" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/video-kajdyi-vtoroi-trolleibus-v-kishineve-bez-kondiczionera-kak-passajiry-spasayutsya-ot-jary" target="_blank">(ВИДЕО) Каждый второй троллейбус в Кишиневе — без кондиционера. Как пассажиры спасаются от жары</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/video-kajdyi-vtoroi-trolleibus-v-kishineve-bez-kondiczionera-kak-passajiry-spasayutsya-ot-jary" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/marja-comerciala-la-benzina-si-motorina-va-creste-cu-inca-20-de-bani-pentru-un-litru" target="_blank">În scurt timp, evoluţiile de la bursă se vor vedea în preţuri mai mari la pompă</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/marja-comerciala-la-benzina-si-motorina-va-creste-cu-inca-20-de-bani-pentru-un-litru" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/uniformizarea-taxei-pe-valoarea-adaugata" target="_blank">Uniformizarea taxei pe valoarea adăugată</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/uniformizarea-taxei-pe-valoarea-adaugata" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/reforma-concediilor-din-2027-concediile-de-odihna-vor-fi-exprimate-in-zile-lucratoare-nu-calendaristice" target="_blank">Reforma concediilor. Din 2027, concediile de odihnă vor fi exprimate în zile lucrătoare, nu calendaristice</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/reforma-concediilor-din-2027-concediile-de-odihna-vor-fi-exprimate-in-zile-lucratoare-nu-calendaristice" target="_blank">Citește articolul →</a>
+  </div>
+</div>
+<div class="footer">
+  Raport generat automat zilnic &nbsp;·&nbsp; ARBI – Monitorizare Jurnalism Investigativ Moldova
+</div>
+</body>
+</html>
