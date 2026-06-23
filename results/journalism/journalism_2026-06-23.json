@@ -1,0 +1,623 @@
+{
+  "date": "2026-06-23",
+  "generated_at": "2026-06-23T09:42:56Z",
+  "lookback_hours": 26,
+  "sources_checked": 8,
+  "sources_ok": 8,
+  "stats": {
+    "total": 33,
+    "investigative": 6,
+    "by_source": {
+      "rise_md": {
+        "name": "RISE Moldova",
+        "count": 1
+      },
+      "zdg_md": {
+        "name": "Ziarul de Gardă",
+        "count": 10
+      },
+      "anticoruptie_md": {
+        "name": "Anticorupție.md",
+        "count": 10
+      },
+      "newsmaker_md": {
+        "name": "Newsmaker.md",
+        "count": 4
+      },
+      "mold_street": {
+        "name": "Mold-Street",
+        "count": 7
+      },
+      "agora_md": {
+        "name": "Agora.md",
+        "count": 1
+      }
+    },
+    "by_category": {
+      "coruptie": {
+        "label": "Corupție",
+        "emoji": "💰",
+        "count": 1
+      },
+      "justitie": {
+        "label": "Justiție & Procurori",
+        "emoji": "⚖️",
+        "count": 16
+      },
+      "politica": {
+        "label": "Politică & Putere",
+        "emoji": "🏛️",
+        "count": 6
+      },
+      "media": {
+        "label": "Media & Libertatea Presei",
+        "emoji": "📰",
+        "count": 1
+      },
+      "securitate": {
+        "label": "Securitate & Intelligence",
+        "emoji": "🔐",
+        "count": 1
+      },
+      "social": {
+        "label": "Social & Drepturile Omului",
+        "emoji": "👥",
+        "count": 1
+      }
+    }
+  },
+  "articles": [
+    {
+      "id": "bf332ba02855",
+      "title": "Dosarul expulzării profesorilor turci, restituit la Procuratură. Promo-LEX cere anchetarea tuturor persoanelor implicate",
+      "url": "https://anticoruptie.md/ro/dosare-de-coruptie/dosarul-expulzarii-profesorilor-turci-restituit-la-procuratura-promo-lex-cere-anchetarea-tuturor-persoanelor-implicate",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Judecătoria Chișinău, sediul Buiucani, a admis în parte, la 15 iunie 2026, demersul procurorului în dosarul fostului director al Serviciului de Informații și Securitate, Vasile Botnari, condamnat anterior pentru transferul extralegal al celor cinci profesori de la Liceul Orizont …",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 2,
+      "relevance_score": 4
+    },
+    {
+      "id": "28a7ccf4b1f3",
+      "title": "Percheziții într-un dosar de evaziune fiscală și spălare de bani la o firmă de construcții: muncitori fără contract, depistați pe două șantiere",
+      "url": "https://www.zdg.md/stiri/perchezitii-intr-un-dosar-de-evaziune-fiscala-si-spalare-de-bani-la-o-firma-de-constructii-muncitori-fara-contract-depistati-pe-doua-santiere/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-23T07:34:58Z",
+      "published_date": "2026-06-23",
+      "summary": "Oamenii legii au efectuat mai multe percheziții în cadrul unei cauze penale inițiate în februarie. Dosarul vizează suspiciuni de evaziune fiscală și spălare de bani, scrie marți, 23 iunie, Inspectoratul General al Poliției (IGP).Potrivit anchetei, în perioada 2024 – prezent, factori de decizie ai unei societăți comerciale sunt bănuiți că ar fi pus în aplicare...",
+      "categories": [
+        "coruptie",
+        "justitie"
+      ],
+      "category_scores": {
+        "coruptie": 2,
+        "justitie": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 5
+    },
+    {
+      "id": "51e110dd5aea",
+      "title": "Sinteza CNA: polițiști trimiși în arest, percheziții la Universitatea din Comrat și sechestre de milioane",
+      "url": "https://anticoruptie.md/ro/dosare-de-coruptie/sinteza-cna-politisti-trimisi-in-arest-perchezitii-la-universitatea-din-comrat-si-sechestre-de-milioane",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Percheziții în dosare de corupție în educație, inclusiv la Universitatea de Stat din Comrat, sechestre de circa 10 milioane de lei și trei polițiști ai IP Botanica transferați din arest la domiciliu în Penitenciarul nr. 13.",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 2
+      },
+      "investigative_score": 1,
+      "relevance_score": 4
+    },
+    {
+      "id": "5c2761f6e9aa",
+      "title": "Dosarul de corupție de la IP Botanica. Trei polițiști din schemă, reținuți pentru abuz în serviciu",
+      "url": "https://anticoruptie.md/ro/dosare-de-coruptie/dosarul-de-coruptie-de-la-ip-botanica-trei-politisti-din-schema-retinuti-pentru-abuz-in-serviciu",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Trei polițiști de la Inspectoratul de Poliție Botanica, reținuți anterior într-un dosar de corupție , au fost plasați din nou în izolator, într-o cauză de abuz de serviciu. Aceștia sunt bănuiți de comiterea infracțiunii de abuz de serviciu în circumstanțe agravante.",
+      "categories": [
+        "justitie",
+        "social"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "social": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 4
+    },
+    {
+      "id": "874a312685b5",
+      "title": "UE reconfirmă viitorul european al Republicii Moldova. Chișinăul ar putea accesa încă 528 de milioane de euro, dacă menține ritmul reformelor",
+      "url": "https://anticoruptie.md/ro/stiri/ue-reconfirma-viitorul-european-al-republicii-moldova-chisinaul-ar-putea-accesa-inca-528-de-milioane-de-euro-daca-mentine-ritmul-reformelor",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Uniunea Europeană reconfirmă că viitorul Republicii Moldova este în UE, salută deschiderea negocierilor pe Clusterul 1, „Valori fundamentale”, și anunță că țara noastră ar putea accesa încă 528 de milioane de euro, dacă își menține ritmul reformelor și îndeplinește obiectivele as…",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 1,
+      "relevance_score": 2
+    },
+    {
+      "id": "d6c6763c80fa",
+      "title": "Școala de vară CIJM// Cum documentăm și investigăm corupția electorală",
+      "url": "https://anticoruptie.md/ro/stiri/scoala-de-vara-cijm-cum-documentam-si-investigam-coruptia-electorala",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Centrul de Investigații Jurnalistice din Moldova invită jurnaliștii de investigație să se înscrie pentru participare la Școala de vară „Jurnalismul de investigație. Fortificarea abilităților de a investiga subiecte pe corupție electorală”, destinată jurnaliștilor de investigație …",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 1,
+      "relevance_score": 2
+    },
+    {
+      "id": "d2ef39be5124",
+      "title": "Medic anestezist-reanimatolog, trimis pe banca acuzaților pentru malpraxis comis la Spitalul Raional Comrat",
+      "url": "https://www.zdg.md/stiri/medic-anestezist-reanimatolog-trimis-pe-banca-acuzatilor-pentru-malpraxis-comis-la-spitalul-raional-comrat/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-23T08:51:18Z",
+      "published_date": "2026-06-23",
+      "summary": "Un medic anestezist-reanimatolog din cadrul Spitalului Raional Comrat, învinuit de încălcarea din neglijenţă a regulilor de acordare a asistenţei medicale, care a cauzat decesul pacientului a fost trimis în judecată, anunță marți, 23 iunie, Procuratura Generală (PG). Potrivit unui comunicat, pe 19 ianuarie 2025, un pacient, în vârstă de 47 de ani, a fost adus la...",
+      "categories": [
+        "justitie",
+        "securitate"
+      ],
+      "category_scores": {
+        "justitie": 3,
+        "securitate": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 4
+    },
+    {
+      "id": "e163738f1d14",
+      "title": "Autorul alertelor false cu bombă de la Aeroportul Internațional „Eugen Doga” – Chișinău a fost reținut și plasat în arest preventiv",
+      "url": "https://www.zdg.md/stiri/autorul-alertelor-false-cu-bomba-de-la-aeroportul-international-eugen-doga-chisinau-a-fost-retinut-si-plasat-in-arest-preventiv/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-23T07:47:18Z",
+      "published_date": "2026-06-23",
+      "summary": "O persoană bănuită că ar fi transmis alerte false privind amplasarea unor obiecte explozive la Aeroportul Internațional „Eugen Doga” – Chișinău au fost identificată și reținută pe 18 iunie, anunță marți, 23 iunie, Poliția de Frontieră. Potrivit informațiilor, un bărbat în vârstă de 50 de ani este bănuit că ar fi comunicat intenționat informații false...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 4
+      },
+      "investigative_score": 0,
+      "relevance_score": 4
+    },
+    {
+      "id": "86073f2133d4",
+      "title": "O femeie a fost extrădată din Grecia, după ce ar fi traficat 7 tinere din R. Moldova. Fratele acesteia a fost condamnat la 64 de ani de închisoare în Grecia",
+      "url": "https://www.zdg.md/stiri/o-femeie-a-fost-extradata-din-grecia-dupa-ce-ar-fi-traficat-7-tinere-din-r-moldova-fratele-acesteia-a-fost-condamnat-la-64-de-ani-de-inchisoare-in-grecia/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-23T07:16:39Z",
+      "published_date": "2026-06-23",
+      "summary": "O femeie din Hâncești care ar fi traficat cu fratele acesteia 7 tinere între ani 2015-2018 a fost extrădată în Chișinău, a anunțat marți, 23 iunie, Procuratura pentru Combaterea Criminalității Organizate și Cauze Speciale (PCCOCS). În prezent, aceasta a fost plasată în arest preventiv în Penitenciarul nr. 13 din capitală, iar fratele acesteia, cu rol...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 4
+      },
+      "investigative_score": 0,
+      "relevance_score": 4
+    },
+    {
+      "id": "03cb2f1533cc",
+      "title": "Guvernul Veștea a fost respins în Parlament: „Am acceptat funcția pentru că țara are nevoie de stabilitate”. Care este numărul de voturi pe care a reușit să îl strângă",
+      "url": "https://www.zdg.md/stiri/guvernul-vestea-a-fost-respins-in-parlament-am-acceptat-functia-pentru-ca-tara-are-nevoie-de-stabilitate-care-este-numarul-de-voturi-pe-care-a-reusit-sa-il-stranga/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-23T06:00:05Z",
+      "published_date": "2026-06-23",
+      "summary": "Guvernul propus de Adrian Veştea nu a reuşit să primească voturile necesare pentru învestire. Cabinetul său de miniștri a primit doar 189 de voturi „pentru”, deşi avea nevoie de minimum 233, susține HotNews.ro. Potrivit anunţului oficial din plenul Parlamentului, făcut aproape de miezul nopții de luni spre marți, s-au înregistrat în total 212 voturi, dintre...",
+      "categories": [
+        "politica",
+        "justitie"
+      ],
+      "category_scores": {
+        "politica": 3,
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 4
+    },
+    {
+      "id": "8b47d900cb6c",
+      "title": "Ziua Suveranității R. Moldova. Maia Sandu: „Avem obligația să păzim, să păstrăm suveranitatea, independența și pacea”. Igor Dodon: „Nu a rămas mult să-i suportăm la conducere, până Moldova se va elibera și poporul își va lua țara înapoi”",
+      "url": "https://www.zdg.md/stiri/ziua-suveranitatii-r-moldova-maia-sandu-avem-obligatia-sa-pazim-sa-pastram-suveranitatea-independenta-si-pacea-igor-dodon-nu-a-ramas-mult-sa-i-suportam-la-conducere/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-23T09:33:45Z",
+      "published_date": "2026-06-23",
+      "summary": "R. Moldova sărbătorește marți, 23 iunie Ziua Suveranității. Declaraţia de Suveranitate a fost adoptată acum 36 de ani, pe 23 iunie 1990, de către deputaţii Sovietului Suprem al Republicii Sovietice Socialiste Moldoveneşti. „Acum 36 de ani, moldovenii au luptat pentru suveranitate și pentru dreptul de a-și decide soarta singuri. Peste 36 de ani, Moldova își...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "0450c3bbe7a2",
+      "title": "CSM respinge raportul de evaluare privind nepromovarea judecătorului Corneliu Guzun și dispune reluarea procedurii",
+      "url": "https://www.zdg.md/stiri/csm-respinge-raportul-de-evaluare-privind-nepromovarea-judecatorului-corneliu-guzun-si-dispune-reluarea-procedurii/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-23T08:07:29Z",
+      "published_date": "2026-06-23",
+      "summary": "Consiliul Superior al Magistraturii (CSM) a hotărât respingerea raportului de evaluare externă a magistratului de la Judecătoria Chișinău, Corneliu Guzun, în calitate de vicepreședinte al Judecătoriei Chișinău, sediul Rîșcani, și dispune reluarea procedurii de evaluare. Anterior, Comisia de Evaluare a Judecătorilor a concluzionat că judecătorul nu întrunește criteriile de integritate prevăzute de lege. CSM a examinat...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "e883acd113bc",
+      "title": "Guvernul lansează un parteneriat strategic cu un gigant global pentru accelerarea transformării digitale",
+      "url": "https://mold-street.com/noutate/guvernul-lanseaza-un-parteneriat-strategic-cu-un-gigant-global-pentru-accelerarea-transformarii-digitale",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "375cd29e4913",
+      "title": "Comunicăm. Producem. Plasăm.Crești împreună cu AGORA",
+      "url": "https://agora.md/media-kit",
+      "source": "Agora.md",
+      "source_key": "agora_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.",
+      "categories": [
+        "justitie",
+        "media"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "media": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "61599d9101e5",
+      "title": "Au utilizat în mod fraudulos informațiile altei persoane pentru a achiziționa mai multe produse electrocasnice: Suspecții riscă până la 5 ani de închisoare",
+      "url": "https://www.zdg.md/stiri/au-utilizat-in-mod-fraudulos-informatiile-altei-persoane-pentru-a-achizitiona-mai-multe-produse-electrocasnice-suspectii-risca-pana-la-5-ani-de-inchisoare/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-23T08:39:41Z",
+      "published_date": "2026-06-23",
+      "summary": "O femeie de 26 de ani și a doi bărbați de 37 și 44 de ani, originari din Chișinău și Ialoveni, sunt suspectați de comiterea unei escrocherii, cu un prejudiciu de peste 20 de mii de lei. Polițiștii sectorului Centru au documentat activitatea infracțională a persoanelor, potrivit Inspectoratului General al Poliției (IGP). Potrivit anchetei, unul...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "f5d529c5497e",
+      "title": "LIVE TEXT/ Un bărbat de 60 de ani a fost rănit în urma bombardamentelor rusești, iar o subunitate de pompieri a fost avariată în regiunea Dnipropetrovsk. Război în Ucraina, ziua 1581",
+      "url": "https://www.zdg.md/stiri/live-text-un-barbat-de-60-de-ani-a-fost-ranit-in-urma-bombardamentelor-rusesti-iar-o-subunitate-de-pompieri-a-fost-avariata-in-regiunea-dnipropetrovsk-razboi-in-ucraina-ziua-1581/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-23T08:20:00Z",
+      "published_date": "2026-06-23",
+      "summary": "UPDATE 11:15 În timpul nopții, forțele ruse au lansat un atac aerian asupra comunității Vasîlkivka. În urma loviturii, a fost avariată clădirea unei subunități de pompieri și salvatori. Din fericire, niciun salvator nu a fost rănit. De asemenea, un incendiu a izbucnit într-o locuință distrusă. În comunitatea Bojedarivka, din raionul Kamianske, a izbucnit un incendiu...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "a13d923f8c58",
+      "title": "RISE Moldova/ Ce remunerare primește Anastasia Taburceanu la MoldATSA",
+      "url": "https://www.zdg.md/stiri/rise-moldova-ce-remunerare-primeste-anastasia-taburceanu-la-moldatsa/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-23T06:24:21Z",
+      "published_date": "2026-06-23",
+      "summary": "În mai puţin de un an de activitate în calitate de purtătoare de cuvânt la MoldATSA, întreprindere de stat responsabilă de securitatea traficului aerian din R. Moldova, Anastasia Taburceanu a fost remunerată cu peste un milion de lei. Asta arată datele oficiale colectate și analizate de RISE Moldova. Comunicatoare a fostei prim-ministră Natalia Gavrilița și verișoară cu șefa...",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "ee273eaef262",
+      "title": "Guvernul respinge modificările electorale propuse de Adunarea Populară a Găgăuziei",
+      "url": "https://anticoruptie.md/ro/stiri/guvernul-respinge-modificarile-electorale-propuse-de-adunarea-populara-a-gagauziei",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Modificările la Codul electoral al Republicii Moldova propuse de Adunarea Populară a UTA Găgăuzia nu sunt susținute de instituțiile centrale ale statului, pe motiv că generează incertitudini normative, suprapuneri instituționale sau propun un regim juridic diferențiat pentru auto…",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "dd3d199b15ae",
+      "title": "Sinteza ANI: Soții directoarelor, angajați la grădiniță, și bunuri nedeclarate de o primară",
+      "url": "https://anticoruptie.md/ro/dosare-de-coruptie/sinteza-ani-sotii-directoarelor-angajati-la-gradinita-si-bunuri-nedeclarate-de-o-primara",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Autoritatea Națională de Integritate (ANI) a emis, în perioada 15-19 iunie 2026, trei acte de constatare. Două dintre acestea vizează conflicte de interese la grădinițe din raionul Șoldănești, iar al treilea se referă la încălcarea regimului juridic al declarării averii și intere…",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "b2037ea574ad",
+      "title": "Achiziții publice trucate la Taraclia. Președintele raionului printre cei bănuiți",
+      "url": "https://anticoruptie.md/ro/dosare-de-coruptie/achizitii-publice-trucate-la-taraclia-presedintele-raionului-printre-cei-banuiti",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Președintele raionului Taraclia, împreună cu președintele Comisiei construcții și un specialist în domeniul achizițiilor publice sunt cercetați de oamenii legii pentru presupuse fapte de abuz comise în organizarea achizițiilor publice. Centrul Național Anticorupție (CNA) și procu…",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "a264d33a1f00",
+      "title": "În 2025 s-a înregistrat o creștere de 13 ori a valorii lucrărilor de reparație a podurilor",
+      "url": "https://mold-street.com/noutate/in-2025-s-a-inregistrat-o-crestere-de-13-ori-a-valorii-lucrarilor-de-reparatie-a-podurilor",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "aea00eccd8d7",
+      "title": "Care este impactul aerului condiționat asupra mediului?",
+      "url": "https://mold-street.com/noutate/care-este-impactul-aerului-conditionat-asupra-mediului",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "297e809857de",
+      "title": "Ce remunerare primește Anastasia Taburceanu la MoldATSA",
+      "url": "https://www.rise.md/ce-remunerare-primeste-anastasia-taburceanu-la-moldatsa/",
+      "source": "RISE Moldova",
+      "source_key": "rise_md",
+      "published": "2026-06-23T05:41:40Z",
+      "published_date": "2026-06-23",
+      "summary": "În mai puţin de un an de activitate în calitate de purtătoare de cuvânt la MoldATSA, întreprindere de […] The post Ce remunerare primește Anastasia Taburceanu la MoldATSA appeared first on Rise Moldova .",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "b950f3e94eaa",
+      "title": "De ultimă oră",
+      "url": "https://anticoruptie.md/rss/latest.xml?lang=ro",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Moldova a introdus o măsură nouă și controversată, care impune identificarea obligatorie pentru utilizatorii de cartele SIM preplătite și eSIM, prezentată ca instrument de combatere a fraudei și a criminalității informatice.\r\n\r\nAm analizat noua decizie legislativă ca o problemă de confidențialitate și securitate, nu doar ca o schimbare de drept.[...]",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "12eccb453112",
+      "title": "Noua regulă de identificare pentru cartele SIM în Moldova: o soluție de securitate sau o depășire a limitelor privind viața privată?",
+      "url": "https://anticoruptie.md/ro/blog/gheorghe-alexandra/noua-regula-de-identificare-pentru-cartele-sim-in-moldova-o-solutie-de-securitate-sau-o-depasire-a-limitelor-privind-viata-privata",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Moldova a introdus o măsură nouă și controversată, care impune identificarea obligatorie pentru utilizatorii de cartele SIM preplătite și eSIM, prezentată ca instrument de combatere a fraudei și a criminalității informatice.",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "7d7260c7cf90",
+      "title": "(ВИДЕО) «Мы не бедные». Почему в Молдове не любят говорить о бедности? / ГОЛОСА",
+      "url": "https://newsmaker.md/ru/video-my-ne-bednye-pochemu-v-moldove-ne-lyubyat-govorit-o-bednosti-golosa",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "DUOMO. Когда качество — не просто слово, это обязательство",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "a773796f2536",
+      "title": "Табурчану зарабатывала в MoldATSA больше, чем уволенный Вангели? Расследование Rise Moldova",
+      "url": "https://newsmaker.md/ru/taburchanu-zarabatyvala-v-moldatsa-bolshe-chem-uvolennyi-vangeli-rassledovanie-rise-moldova",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "9527d5ea5370",
+      "title": "(ФОТО/ВИДЕО) Радиоактивные объекты нашли в подвале жилого дома в Кишиневе: На месте работают эксперты ядерной безопасности",
+      "url": "https://newsmaker.md/ru/fotovideo",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "2f91ed00884f",
+      "title": "(ВИДЕО) Каждый второй троллейбус в Кишиневе — без кондиционера. Как пассажиры спасаются от жары",
+      "url": "https://newsmaker.md/ru/video-kajdyi-vtoroi-trolleibus-v-kishineve-bez-kondiczionera-kak-passajiry-spasayutsya-ot-jary",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "a5c64b2c7dc9",
+      "title": "În scurt timp, evoluţiile de la bursă se vor vedea în preţuri mai mari la pompă",
+      "url": "https://mold-street.com/noutate/marja-comerciala-la-benzina-si-motorina-va-creste-cu-inca-20-de-bani-pentru-un-litru",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "76a235006eaf",
+      "title": "Uniformizarea taxei pe valoarea adăugată",
+      "url": "https://mold-street.com/noutate/uniformizarea-taxei-pe-valoarea-adaugata",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "d5e3ec896d81",
+      "title": "Reforma concediilor. Din 2027, concediile de odihnă vor fi exprimate în zile lucrătoare, nu calendaristice",
+      "url": "https://mold-street.com/noutate/reforma-concediilor-din-2027-concediile-de-odihna-vor-fi-exprimate-in-zile-lucratoare-nu-calendaristice",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "f2790833bab2",
+      "title": "O țară candidată la aderarea la UE, ajunge pe lista gri FATF, sub monitorizare sporită",
+      "url": "https://mold-street.com/noutate/o-tara-candidata-la-aderarea-la-ue-ajunge-pe-lista-gri-fatf-sub-monitorizare-sporita",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    }
+  ]
+}
