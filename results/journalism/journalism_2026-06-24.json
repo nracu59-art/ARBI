@@ -1,0 +1,664 @@
+{
+  "date": "2026-06-24",
+  "generated_at": "2026-06-24T09:34:06Z",
+  "lookback_hours": 26,
+  "sources_checked": 8,
+  "sources_ok": 8,
+  "stats": {
+    "total": 34,
+    "investigative": 6,
+    "by_source": {
+      "rise_md": {
+        "name": "RISE Moldova",
+        "count": 2
+      },
+      "zdg_md": {
+        "name": "Ziarul de Gardă",
+        "count": 10
+      },
+      "anticoruptie_md": {
+        "name": "Anticorupție.md",
+        "count": 10
+      },
+      "newsmaker_md": {
+        "name": "Newsmaker.md",
+        "count": 4
+      },
+      "mold_street": {
+        "name": "Mold-Street",
+        "count": 7
+      },
+      "agora_md": {
+        "name": "Agora.md",
+        "count": 1
+      }
+    },
+    "by_category": {
+      "coruptie": {
+        "label": "Corupție",
+        "emoji": "💰",
+        "count": 1
+      },
+      "justitie": {
+        "label": "Justiție & Procurori",
+        "emoji": "⚖️",
+        "count": 16
+      },
+      "politica": {
+        "label": "Politică & Putere",
+        "emoji": "🏛️",
+        "count": 10
+      },
+      "media": {
+        "label": "Media & Libertatea Presei",
+        "emoji": "📰",
+        "count": 1
+      },
+      "afaceri": {
+        "label": "Afaceri & Contracte Publice",
+        "emoji": "💼",
+        "count": 1
+      },
+      "securitate": {
+        "label": "Securitate & Intelligence",
+        "emoji": "🔐",
+        "count": 2
+      },
+      "social": {
+        "label": "Social & Drepturile Omului",
+        "emoji": "👥",
+        "count": 2
+      }
+    }
+  },
+  "articles": [
+    {
+      "id": "6cd2b41bc191",
+      "title": "Precizările MoldATSA cu referire la salariile angajaților săi și sursele de finanțare: „Unele opinii sunt tendențioase și manipulatorii”",
+      "url": "https://www.zdg.md/stiri/precizarile-moldatsa-cu-referire-la-salariile-angajatilor-sai-si-sursele-de-finantare-unele-opinii-sunt-tendentioase-si-manipulatorii/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-24T08:24:39Z",
+      "published_date": "2026-06-24",
+      "summary": "În contextul scandalului cu privire la salariile mai multor angajați ai Î. S. MoldATSA, întreprinderea a publicat, pe 24 iunie, un comunicat în care a menționat că nu este finanțată din bugetul de stat și nici din taxele și impozitele cetățenilor. „Sursele de finanțare ale întreprinderii provin exclusiv din taxele de navigație aeriană achitate de...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 2,
+        "politica": 1
+      },
+      "investigative_score": 3,
+      "relevance_score": 9
+    },
+    {
+      "id": "e4258eb84be6",
+      "title": "Percheziții într-un dosar de spălare a 13,5 milioane de lei: schema implică companii imobiliare",
+      "url": "https://www.zdg.md/stiri/stiri-sociale/perchezitii-intr-un-dosar-de-spalare-a-135-milioane-de-lei-schema-implica-companii-imobiliare/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-24T06:54:41Z",
+      "published_date": "2026-06-24",
+      "summary": "Companii din domeniul imobiliar ar fi fost implicate într-o schemă de spălare a aproximativ 13,5 milioane de lei proveniți din evaziune fiscală, contrabandă și activitate ilegală de întreprinzător. Schema a fost documentată de ofițerii Inspectoratului Național de Investigații (INI) și procurorii PCCOCS, care au desfășurat 26 de percheziții. Deocamdată, oamenii legii nu au anunțat despre...",
+      "categories": [
+        "justitie",
+        "coruptie",
+        "afaceri"
+      ],
+      "category_scores": {
+        "justitie": 3,
+        "coruptie": 1,
+        "afaceri": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 7
+    },
+    {
+      "id": "e5be4915d140",
+      "title": "Câte un milion de lei pentru familiile celor doi polițiști decedați în accidentul de la Sîngerei",
+      "url": "https://www.zdg.md/stiri/stiri-sociale/cate-un-milion-de-lei-pentru-familiile-celor-doi-politisti-decedati-in-accidentul-de-la-singerei/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-24T07:43:51Z",
+      "published_date": "2026-06-24",
+      "summary": "Familiile celor doi polițiști care și-au pierdut viața în accidentul de la Sîngerei vor primi câte un milion de lei. Guvernul a aprobat în ședința de miercuri, 24 iunie, acordarea ajutorului financiar în valoare totală de două milioane, la propunerea ministeri Afacerilor Interne, Daniella Misail-Nichitin. La începutul ședinței Guvernului de pe 24 iunie, membrii Cabinetului...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 4
+    },
+    {
+      "id": "ca0e56d5c271",
+      "title": "Scandalul salariilor de la MoldATSA: APP anunță verificări, iar Taburceanu demisionează",
+      "url": "https://www.rise.md/scandalul-salariilor-de-la-moldatsa-app-anunta-verificari-iar-taburceanu-demisioneaza/",
+      "source": "RISE Moldova",
+      "source_key": "rise_md",
+      "published": "2026-06-23T17:58:17Z",
+      "published_date": "2026-06-23",
+      "summary": "Agenția Proprietății Publice (APP), fondatoarea întreprinderii de stat MoldATSA, a dispus efectuarea unui control detaliat privind modul în […] The post Scandalul salariilor de la MoldATSA: APP anunță verificări, iar Taburceanu demisionează appeared first on Rise Moldova .",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 3
+    },
+    {
+      "id": "ee27c448ae22",
+      "title": "30 milioane lei pentru un nou studiu de fezabilitate pentru cel mai mare proiect energetic din Chișinău",
+      "url": "https://mold-street.com/noutate/30-milioane-lei-pentru-un-nou-studiu-de-fezabilitate-pentru-cel-mai-mare-proiect-energetic-din-chisinau",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 1,
+      "relevance_score": 2
+    },
+    {
+      "id": "e8d3d5e34d98",
+      "title": "Ce venituri şi profituri a obţinut în 2025 MoldATSA şi în ce investeşte milioanele din tarifele pentru navigaţie",
+      "url": "https://mold-street.com/noutate/ce-venituri-si-profituri-a-obtinut-in-2025-moldatsa-si-in-ce-investeste-milioanele-din-tarifele-pentru-navigatie",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 1,
+      "relevance_score": 2
+    },
+    {
+      "id": "81e2f82044d2",
+      "title": "Premierul și-a demis Corpul de control: cei doi consilieri aveau salarii de peste 40 de mii de lei lunar și funcții în consiliile de administrație ale mai multor întreprinderi de stat",
+      "url": "https://www.zdg.md/importante/premierul-si-a-demis-corpul-de-control-cei-doi-consilieri-aveau-salarii-de-peste-40-de-mii-de-lei-lunar-si-functii-in-consiliile-de-administratie-ale-mai-multor-intreprinderi-de-stat/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-24T09:15:20Z",
+      "published_date": "2026-06-24",
+      "summary": "Alexandru Munteanu a anunțat demisia membrilor Corpului de control al prim-ministrului. Declarația a fost făcută la începutul ședinței Guvernului din 24 iunie, șeful Executivului afirmând că aceștia „nu mai beneficiază de încrederea necesară pentru exercitarea acestei funcții”. Datele publice consultate de ZdG arată că în cadrul Corpului de control activau doi consilieri – Vasile Bolduratu...",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 4
+      },
+      "investigative_score": 0,
+      "relevance_score": 4
+    },
+    {
+      "id": "47c2aabb6870",
+      "title": "VIDEO/ Ședința Guvernului: Angajații din educație, care activează în instituții reorganizate, vor beneficia de transport",
+      "url": "https://www.zdg.md/stiri/video-sedinta-guvernului-angajatii-din-educatie-care-activeaza-in-institutii-reorganizate-vor-beneficia-de-transport/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-24T08:23:00Z",
+      "published_date": "2026-06-24",
+      "summary": "Guvernul s-a întrunit în ședință miercuri, 24 iunie. Miniștrii au examinat 35 de subiecte. Printre deciziile luate se numără aprobarea proiectului de hotărâre cu privire organizarea și funcționarea ANSA, aprobarea Regulamentului privind modul de acordare a alocației pentru creșterea accesului la studii de calitate, dar și alocarea, din fondul de rezervă, a câte un milion...",
+      "categories": [
+        "politica",
+        "justitie",
+        "social"
+      ],
+      "category_scores": {
+        "politica": 2,
+        "justitie": 1,
+        "social": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 4
+    },
+    {
+      "id": "6babccb594f7",
+      "title": "DOC// Condamnată și dată în căutare, Irina Lozovan nu renunță la banii din Parlament",
+      "url": "https://anticoruptie.md/ro/dosare-de-coruptie/doc-condamnata-si-data-in-cautare-irina-lozovan-nu-renunta-la-banii-din-parlament",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Fosta deputată Irina Lozovan, asociată lui Ilan Șor, a depus recurs împotriva deciziei instnaței de apel, care i-a respins acțiunea în care cere anularea dispoziției Parlamentului de suspendare a achitării drepturilor salariale, indemnizațiilor și compensațiilor. Mai exact, este …",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 3,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 4
+    },
+    {
+      "id": "f336349d45d9",
+      "title": "LIVE TEXT/ O femeie a fost ucisă și alte patru persoane au fost rănite în regiunea Harkiv în urma atacurilor rusești nocturne. Război în Ucraina, ziua 1582",
+      "url": "https://www.zdg.md/stiri/live-text-o-femeie-a-fost-ucisa-si-alte-patru-persoane-au-fost-ranite-in-regiunea-harkiv-in-urma-atacurilor-rusesti-nocturne-razboi-in-ucraina-ziua-1582/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-24T08:52:21Z",
+      "published_date": "2026-06-24",
+      "summary": "UPDATE 11:52 Armata rusă a atacat Harkiv și alte așezări din regiune începând cu seara zilei de 23 iunie și continuând până în noaptea de 24 iunie. O femeie în vârstă de 56 de ani a fost ucisă, iar alte patru au fost rănite. Potrivit Ukrinform, Parchetul Regional Harkiv a raportat acest lucru pe Telegram....",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "0fe64c0bbc64",
+      "title": "O cetățeană străină, condamnată la închisoare pentru escrocherii telefonice",
+      "url": "https://www.zdg.md/stiri/o-cetateana-straina-condamnata-la-inchisoare-pentru-escrocherii-telefonice/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-24T08:00:25Z",
+      "published_date": "2026-06-24",
+      "summary": "O tânără a fost condamnată la 6 ani de închisoare pentru fraude telefonice, prin care au fost sustrase peste 600 mii de lei din conturile bancare ale cetățenilor R. Moldova. Aceasta a fost găsită vinovată de comiterea a 12 episoade de escrocherie. Potrivit unui comunicat al Procuraturii Generale (PG), aceasta are vârsta de 23 de...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "faeb06029b60",
+      "title": "Cum ne protejăm pe vreme caniculară: recomandările ANSP",
+      "url": "https://www.zdg.md/stiri/cum-ne-protejam-pe-vreme-caniculara-recomandarile-ansp/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-24T07:39:39Z",
+      "published_date": "2026-06-24",
+      "summary": "În contextul temperaturilor ridicate și al nivelului crescut de umiditate, Agenția Națională pentru Sănătate Publică (ANSP) a venit cu un șir de măsuri de protecție, recomandate pentru a preveni efectele negative ale căldurii asupra sănătății. Potrivit comunicatului ANSP, atunci când temperaturile ridicate sunt însoțite de o umiditate de 70–80%, organismul resimte căldura mult mai intens....",
+      "categories": [
+        "justitie",
+        "social"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "social": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "8ccb6918a2a1",
+      "title": "VIDEO/ Bunica Maria, octogenara care țese, citește fără ochelari și cucerește TikTok-ul. „Nicio zi să nu treacă fără folos”",
+      "url": "https://www.zdg.md/reporter-special/reportaje/video-bunica-maria-octogenara-care-tese-citeste-fara-ochelari-si-cucereste-tiktok-ul-nicio-zi-sa-nu-treaca-fara-folos/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-24T06:15:00Z",
+      "published_date": "2026-06-24",
+      "summary": "În casa bunicii Maria din Copăceni timpul pare să curgă după alte reguli. În timp ce pe TikTok sute de mii de oameni îi urmăresc recomandările de lectură și reflecțiile despre viață, ea își începe diminețile cu rugăciune, îngrijește gospodăria, citește pe nerăsuflate și țese covorașe pentru nepoții răspândiți prin Europa. La 83 de ani,...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "c60f14491405",
+      "title": "Ministrul Finanțelor nu insistă pe majorarea TVA la medicamente, după criticile venite de la Sănătate",
+      "url": "https://anticoruptie.md/ro/stiri/ministrul-finantelor-nu-insista-pe-majorarea-tva-la-medicamente-dupa-criticile-venite-de-la-sanatate",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Ministrul Finanțelor, Adrian Gavriliță, a declarat că nu va insista asupra propunerii de aplicare a TVA de 20% la medicamente, dacă Ministerul Sănătății nu susține măsura. Reacția vine după ce ministrul Sănătății, Emil Ceban, a criticat dur inițiativa, afirmând că aceasta ar pute…",
+      "categories": [
+        "politica",
+        "securitate"
+      ],
+      "category_scores": {
+        "politica": 1,
+        "securitate": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "f2544ee4b4a6",
+      "title": "„Turistul” cu pașaport rusesc și misiune în Zona de Securitate: ofițer FSB, reținut în Republica Moldova",
+      "url": "https://anticoruptie.md/ro/stiri/turistul-cu-pasaport-rusesc-si-misiune-in-zona-de-securitate-ofiter-fsb-retinut-in-republica-moldova",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Un cetățean al Federației Ruse, identificat de autoritățile de la Chișinău drept ofițer al Serviciului Federal de Securitate, a fost reținut la intrarea în Republica Moldova, fiind suspectat de culegere neautorizată de informații despre regiunea din stânga Nistrului, în special d…",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "e60b0f56d8e9",
+      "title": "Ce este raportarea de sustenabilitate și de ce companiile din Moldova ar trebui să o facă",
+      "url": "https://mold-street.com/noutate/ce-este-raportarea-de-sustenabilitate-si-de-ce-companiile-din-moldova-ar-trebui-sa-o-faca",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "375cd29e4913",
+      "title": "Comunicăm. Producem. Plasăm.Crești împreună cu AGORA",
+      "url": "https://agora.md/media-kit",
+      "source": "Agora.md",
+      "source_key": "agora_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.",
+      "categories": [
+        "justitie",
+        "media"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "media": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "46543352bbc5",
+      "title": "Portofelul lui Șor. Capii rețelei cripto",
+      "url": "https://www.rise.md/articol/portofelul-lui-sor-capii-retelei-cripto/",
+      "source": "RISE Moldova",
+      "source_key": "rise_md",
+      "published": "2026-06-23T14:45:27Z",
+      "published_date": "2026-06-23",
+      "summary": "Un fost deputat și un fost viceprimar urmează să ajungă pe banca acuzațiilor după ce au gestionat și […] The post Portofelul lui Șor. Capii rețelei cripto appeared first on Rise Moldova .",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "b950f3e94eaa",
+      "title": "De ultimă oră",
+      "url": "https://anticoruptie.md/rss/latest.xml?lang=ro",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Să analizăm un pic această situație, mai ales că m-am săturat până la gât de cohorta de „experți” din spațiul public, care la o verificare mai atentă se dovedesc a fi simpli provocatori. Să lăsăm la o parte vorbăria inutilă și să disecăm realitatea din jurul acestei nenorocite drone[...]",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "9f0f5f39ceae",
+      "title": "Premierul Munteanu renunță la doi consilieri. Cât câștigau „suplimentar”",
+      "url": "https://anticoruptie.md/ro/stiri/premierul-munteanu-renunta-la-doi-consilieri-cat-castigau-suplimentar",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Corpul de control al premierului, format din două persoane, cu salarii lunare de peste 40 de mii de lei, nu mai există. Despre demisia celor doi consileri a anunțat premierul Alexandru Munteanu, în debutul ședinței Guvernului.",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "696a0a08f812",
+      "title": "DOC// Fostul director adjunct SIS, Alexandru Balan, rămâne fără cetățenia Republicii Moldova",
+      "url": "https://anticoruptie.md/ro/stiri/doc-fostul-director-adjunct-sis-alexandru-balan-ramane-fara-cetatenia-republicii-moldova",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Fostul director adjunct al Serviciului de Informații și Securitate (SIS), Alexandru Balan, acuzat de trădare de patrie, dar inclus într-un schimb de deținuți cu Federația Rusă, a rămas fără cetățenia Republicii Moldova. Decretul a fost semnat marți de președinta Maia Sandu.",
+      "categories": [
+        "securitate"
+      ],
+      "category_scores": {
+        "securitate": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "e9a03d1a9e39",
+      "title": "CSP a avizat negativ reforma salarizării: Consiliul cere o analiză separată pentru Procuratură",
+      "url": "https://anticoruptie.md/ro/stiri/csp-a-avizat-negativ-reforma-salarizarii-consiliul-cere-o-analiza-separata-pentru-procuratura",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Consiliul Superior al Procurorilor a avizat negativ proiectul de lege privind reforma sistemului unitar de salarizare în sectorul bugetar, în forma propusă de autorități. CSP cere reexaminarea soluțiilor legislative care vizează Procuratura și susține că reforma trebuie să țină c…",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "23bea8e00df5",
+      "title": "Împrumuturile de la rude nu au convins ANI: șefă din Probațiune, cu avere nejustificată de aproape un milion de lei",
+      "url": "https://anticoruptie.md/ro/dosare-de-coruptie/imprumuturile-de-la-rude-nu-au-convins-ani-sefa-din-probatiune-cu-avere-nejustificata-de-aproape-un-milion-de-lei",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Apartament, două locuri de parcare și mai multe automobile. Sunt bunurile care au intrat în vizorul Autorității Naționale de Integritate în cadrul unui control al averii inițiat în privința Tamarei Negrescu, șefă a Serviciului contabilitate al Direcției management operațional din…",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "df32a111a5e0",
+      "title": "Grâul este unul dintre produsele agricole principale de export",
+      "url": "https://mold-street.com/noutate/reforma-fiscala-risca-sa-destabilizeze-sectorul-agricol-si-exporturile-sustine-asociatia-agrocereale",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "7dd51e76a38f",
+      "title": "Premierul Munteanu a dizolvat corpul de control",
+      "url": "https://mold-street.com/noutate/premierul-munteanu-a-dizolvat-corpul-de-control",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "4550be768658",
+      "title": "24 iunie – Ziua Universală a Iei: „Tradițiile autentice nu se pierd odată cu trecerea timpului”",
+      "url": "https://www.zdg.md/stiri/stiri-sociale/24-iunie-ziua-universala-a-iei-traditiile-autentice-nu-se-pierd-odata-cu-trecerea-timpului/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-24T08:10:00Z",
+      "published_date": "2026-06-24",
+      "summary": "La 24 iunie este marcată Ziua Universală a Iei, sărbătoare dedicată promovării frumuseții și valorii cămășii tradiționale românești. Cu această ocazie, președinta Maia Sandu a transmis un mesaj în care a subliniat că „ia ne amintește că tradițiile autentice nu se pierd odată cu trecerea timpului”. În semn de apreciere pentru portul popular românesc, angajații...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "c9f3d44ef480",
+      "title": "Despre drona rusească „Geran-2” prăbușită la Galați",
+      "url": "https://anticoruptie.md/ro/blog/andrei-covrig/despre-drona-ruseasca-geran-2-prabusita-la-galati",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Să analizăm un pic această situație, mai ales că m-am săturat până la gât de cohorta de „experți” din spațiul public, care la o verificare mai atentă se dovedesc a fi simpli provocatori. Să lăsăm la o parte vorbăria inutilă și să disecăm realitatea din jurul acestei nenorocite dr…",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "87ef7f478e38",
+      "title": "Puieți lăsați să se usuce: peste 40.000 de arbori, compromiși la Rezervația „Pădurea Domnească”",
+      "url": "https://anticoruptie.md/ro/stiri/puieti-lasati-sa-se-usuce-peste-40000-de-arbori-compromisi-la-rezervatia-padurea-domneasca",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Peste 40.000 de puieți destinați lucrărilor de extindere a fondului forestier au fost compromiși la Rezervația Naturală „Pădurea Domnească”, după ce un control inopinat a scos la iveală abateri, neglijență și deficiențe în organizarea lucrărilor de regenerare. Materialul săditor …",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "7d7260c7cf90",
+      "title": "(ВИДЕО) «Мы не бедные». Почему в Молдове не любят говорить о бедности? / ГОЛОСА",
+      "url": "https://newsmaker.md/ru/video-my-ne-bednye-pochemu-v-moldove-ne-lyubyat-govorit-o-bednosti-golosa",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "DUOMO. Когда качество — не просто слово, это обязательство",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "ed1301622335",
+      "title": "В MoldATSA объяснили высокие доходы сотрудников: Зарплаты напрямую связаны с ростом воздушного движения",
+      "url": "https://newsmaker.md/ru/v-moldatsa-obyasnili-vysokie-dohody-sotrudnikov-zarplaty-napryamuyu-svyazany-s-rostom-vozdushnogo-dvijeniya",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "0f26360a09da",
+      "title": "Семьи погибших полицейских получат 2 млн леев из резервного фонда. Мунтяну: «Служебный автомобиль можно было припарковать безопаснее»",
+      "url": "https://newsmaker.md/ru/semi-pogibshih-policzeiskih-poluchat-2-mln-leev-iz-rezervnogo-fonda-muntyanu-slujebnyi-avtomobil-mojno-bylo-priparkovat-bezopasnee",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "9627535b8904",
+      "title": "Министр финансов: Зарплаты бюджетников могут вырасти на 10–30%, но не у всех",
+      "url": "https://newsmaker.md/ru/ministr-finansov-zarplaty-byudjetnikov-mogut-vyrasti-na-10-30-no-ne-u-vseh",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "cdac1dec2533",
+      "title": "Portofelul şi reţeaua cripto a lui Ilan Şor",
+      "url": "https://mold-street.com/noutate/portofelul-si-reteaua-cripto-a-lui-ilan-sor",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "76a235006eaf",
+      "title": "Uniformizarea taxei pe valoarea adăugată",
+      "url": "https://mold-street.com/noutate/uniformizarea-taxei-pe-valoarea-adaugata",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    }
+  ]
+}
