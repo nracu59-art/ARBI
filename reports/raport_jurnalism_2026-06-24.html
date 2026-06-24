@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monitorizare Jurnalism Investigativ Moldova – 24.06.2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; color: #2c3e50; }
+  .header { background: #1b4332; color: #fff; padding: 28px 40px; }
+  .header h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: 0.5px; }
+  .header .subtitle { margin-top: 6px; font-size: 0.9rem; opacity: 0.85; }
+  .stats-bar { background: #2d6a4f; color: #fff; padding: 16px 40px;
+                display: flex; gap: 36px; flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; }
+  .stat .val { font-size: 1.8rem; font-weight: 700; }
+  .stat .lbl { font-size: 0.72rem; opacity: 0.82; text-transform: uppercase; letter-spacing: 0.8px; }
+  .cat-bar { background: #40916c; color: #fff; padding: 12px 40px;
+              display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .cat-chip { background: rgba(255,255,255,0.18); border-radius: 20px;
+               padding: 4px 14px; font-size: 0.78rem; font-weight: 600;
+               white-space: nowrap; }
+  .container { max-width: 1040px; margin: 30px auto; padding: 0 20px 40px; }
+  .section-title { font-size: 0.95rem; font-weight: 700; color: #1b4332;
+                    text-transform: uppercase; letter-spacing: 1px;
+                    margin: 28px 0 14px; border-bottom: 2px solid #1b4332;
+                    padding-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08);
+           padding: 18px 22px; margin-bottom: 14px; border-left: 5px solid #1b4332;
+           transition: box-shadow .15s; }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.13); }
+  .card.investigativ { border-left-color: #d62828; }
+  .card-title { font-size: 1rem; font-weight: 700; color: #1b4332; margin-bottom: 8px; }
+  .card-title a { color: inherit; text-decoration: none; }
+  .card-title a:hover { text-decoration: underline; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;
+           font-size: 0.8rem; color: #555; }
+  .badge { display: inline-block; font-size: 0.68rem; font-weight: 700;
+            padding: 2px 8px; border-radius: 12px; color: #fff;
+            margin-right: 4px; vertical-align: middle; }
+  .badge-inv { background: #d62828; }
+  .source-tag { background: #e8f4ec; color: #1b4332; border-radius: 4px;
+                 padding: 1px 8px; font-size: 0.75rem; font-weight: 600; }
+  .summary { font-size: 0.85rem; color: #444; line-height: 1.55; margin-top: 6px; }
+  .cat-tags { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .cat-tag { font-size: 0.72rem; padding: 2px 10px; border-radius: 10px;
+              font-weight: 600; background: #e8f4ec; color: #1b4332; }
+  .link-btn { display: inline-block; margin-top: 10px; padding: 5px 14px;
+               background: #1b4332; color: #fff; border-radius: 5px;
+               font-size: 0.78rem; text-decoration: none; font-weight: 600; }
+  .link-btn:hover { background: #2d6a4f; }
+  .empty-box { background: #fff; border-radius: 8px; padding: 30px 24px;
+                text-align: center; color: #7f8c8d; font-size: 0.95rem;
+                box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .source-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+  .source-box { background: #fff; border-radius: 8px; padding: 12px 18px;
+                 box-shadow: 0 2px 6px rgba(0,0,0,.07); min-width: 140px;
+                 border-top: 3px solid #1b4332; }
+  .source-box .sname { font-size: 0.78rem; font-weight: 700; color: #1b4332; }
+  .source-box .scount { font-size: 1.4rem; font-weight: 700; color: #2d6a4f; margin-top: 2px; }
+  .footer { text-align: center; font-size: 0.75rem; color: #999;
+             margin-top: 40px; padding-bottom: 20px; }
+  @media (max-width: 600px) {
+    .header, .stats-bar, .cat-bar { padding: 18px 16px; }
+    .stats-bar { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🔍 Monitorizare Jurnalism Investigativ – Moldova</h1>
+  <div class="subtitle">
+    Surse monitorizate: 8 &nbsp;|&nbsp;
+    Ultimele 26 ore &nbsp;|&nbsp;
+    Generat: 2026-06-24 09:34 UTC
+  </div>
+</div>
+<div class="stats-bar">
+  <div class="stat"><span class="val">34</span><span class="lbl">Articole noi</span></div>
+  <div class="stat"><span class="val">6</span><span class="lbl">Investigative</span></div>
+  <div class="stat"><span class="val">8</span><span class="lbl">Surse active</span></div>
+  <div class="stat"><span class="val">24.06.2026</span><span class="lbl">Data raportului</span></div>
+</div>
+<div class="cat-bar">
+  <span style="font-size:.8rem;opacity:.85;margin-right:4px">Categorii:</span>
+  <span class="cat-chip">⚖️ Justiție & Procurori (16)</span><span class="cat-chip">🏛️ Politică & Putere (10)</span><span class="cat-chip">🔐 Securitate & Intelligence (2)</span><span class="cat-chip">👥 Social & Drepturile Omului (2)</span><span class="cat-chip">💰 Corupție (1)</span><span class="cat-chip">📰 Media & Libertatea Presei (1)</span><span class="cat-chip">💼 Afaceri & Contracte Publice (1)</span>
+</div>
+<div class="container">
+<div class="section-title">📊 Articole pe surse</div><div class="source-grid"><div class="source-box"><div class="sname">Ziarul de Gardă</div><div class="scount">10</div></div><div class="source-box"><div class="sname">Anticorupție.md</div><div class="scount">10</div></div><div class="source-box"><div class="sname">Mold-Street</div><div class="scount">7</div></div><div class="source-box"><div class="sname">Newsmaker.md</div><div class="scount">4</div></div><div class="source-box"><div class="sname">RISE Moldova</div><div class="scount">2</div></div><div class="source-box"><div class="sname">Agora.md</div><div class="scount">1</div></div></div>
+<div class="section-title">🔍 Articole Investigative (6)</div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/precizarile-moldatsa-cu-referire-la-salariile-angajatilor-sai-si-sursele-de-finantare-unele-opinii-sunt-tendentioase-si-manipulatorii/" target="_blank">Precizările MoldATSA cu referire la salariile angajaților săi și sursele de finanțare: „Unele opinii sunt tendențioase și manipulatorii”</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 24.06.2026</span>
+    </div>
+    <div class='summary'>În contextul scandalului cu privire la salariile mai multor angajați ai Î. S. MoldATSA, întreprinderea a publicat, pe 24 iunie, un comunicat în care a menționat că nu este finanțată din bugetul de stat și nici din taxele și impozitele cetățenilor. „Sursele de finanțare ale întreprinderii provin exclusiv din taxele de navigație aeriană achitate de...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/precizarile-moldatsa-cu-referire-la-salariile-angajatilor-sai-si-sursele-de-finantare-unele-opinii-sunt-tendentioase-si-manipulatorii/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-sociale/perchezitii-intr-un-dosar-de-spalare-a-135-milioane-de-lei-schema-implica-companii-imobiliare/" target="_blank">Percheziții într-un dosar de spălare a 13,5 milioane de lei: schema implică companii imobiliare</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 24.06.2026</span>
+    </div>
+    <div class='summary'>Companii din domeniul imobiliar ar fi fost implicate într-o schemă de spălare a aproximativ 13,5 milioane de lei proveniți din evaziune fiscală, contrabandă și activitate ilegală de întreprinzător. Schema a fost documentată de ofițerii Inspectoratului Național de Investigații (INI) și procurorii PCCOCS, care au desfășurat 26 de percheziții. Deocamdată, oamenii legii nu au anunțat despre...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💰 Corupție</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-sociale/perchezitii-intr-un-dosar-de-spalare-a-135-milioane-de-lei-schema-implica-companii-imobiliare/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-sociale/cate-un-milion-de-lei-pentru-familiile-celor-doi-politisti-decedati-in-accidentul-de-la-singerei/" target="_blank">Câte un milion de lei pentru familiile celor doi polițiști decedați în accidentul de la Sîngerei</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 24.06.2026</span>
+    </div>
+    <div class='summary'>Familiile celor doi polițiști care și-au pierdut viața în accidentul de la Sîngerei vor primi câte un milion de lei. Guvernul a aprobat în ședința de miercuri, 24 iunie, acordarea ajutorului financiar în valoare totală de două milioane, la propunerea ministeri Afacerilor Interne, Daniella Misail-Nichitin. La începutul ședinței Guvernului de pe 24 iunie, membrii Cabinetului...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-sociale/cate-un-milion-de-lei-pentru-familiile-celor-doi-politisti-decedati-in-accidentul-de-la-singerei/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://www.rise.md/scandalul-salariilor-de-la-moldatsa-app-anunta-verificari-iar-taburceanu-demisioneaza/" target="_blank">Scandalul salariilor de la MoldATSA: APP anunță verificări, iar Taburceanu demisionează</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 RISE Moldova</span>
+      <span>📅 23.06.2026</span>
+    </div>
+    <div class='summary'>Agenția Proprietății Publice (APP), fondatoarea întreprinderii de stat MoldATSA, a dispus efectuarea unui control detaliat privind modul în […] The post Scandalul salariilor de la MoldATSA: APP anunță verificări, iar Taburceanu demisionează appeared first on Rise Moldova .</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.rise.md/scandalul-salariilor-de-la-moldatsa-app-anunta-verificari-iar-taburceanu-demisioneaza/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://mold-street.com/noutate/30-milioane-lei-pentru-un-nou-studiu-de-fezabilitate-pentru-cel-mai-mare-proiect-energetic-din-chisinau" target="_blank">30 milioane lei pentru un nou studiu de fezabilitate pentru cel mai mare proiect energetic din Chișinău</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/30-milioane-lei-pentru-un-nou-studiu-de-fezabilitate-pentru-cel-mai-mare-proiect-energetic-din-chisinau" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://mold-street.com/noutate/ce-venituri-si-profituri-a-obtinut-in-2025-moldatsa-si-in-ce-investeste-milioanele-din-tarifele-pentru-navigatie" target="_blank">Ce venituri şi profituri a obţinut în 2025 MoldATSA şi în ce investeşte milioanele din tarifele pentru navigaţie</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/ce-venituri-si-profituri-a-obtinut-in-2025-moldatsa-si-in-ce-investeste-milioanele-din-tarifele-pentru-navigatie" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">⚖️ Justiție & Procurori (13)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/video-sedinta-guvernului-angajatii-din-educatie-care-activeaza-in-institutii-reorganizate-vor-beneficia-de-transport/" target="_blank">VIDEO/ Ședința Guvernului: Angajații din educație, care activează în instituții reorganizate, vor beneficia de transport</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 24.06.2026</span>
+    </div>
+    <div class='summary'>Guvernul s-a întrunit în ședință miercuri, 24 iunie. Miniștrii au examinat 35 de subiecte. Printre deciziile luate se numără aprobarea proiectului de hotărâre cu privire organizarea și funcționarea ANSA, aprobarea Regulamentului privind modul de acordare a alocației pentru creșterea accesului la studii de calitate, dar și alocarea, din fondul de rezervă, a câte un milion...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/video-sedinta-guvernului-angajatii-din-educatie-care-activeaza-in-institutii-reorganizate-vor-beneficia-de-transport/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/dosare-de-coruptie/doc-condamnata-si-data-in-cautare-irina-lozovan-nu-renunta-la-banii-din-parlament" target="_blank">DOC// Condamnată și dată în căutare, Irina Lozovan nu renunță la banii din Parlament</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Fosta deputată Irina Lozovan, asociată lui Ilan Șor, a depus recurs împotriva deciziei instnaței de apel, care i-a respins acțiunea în care cere anularea dispoziției Parlamentului de suspendare a achitării drepturilor salariale, indemnizațiilor și compensațiilor. Mai exact, este …</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/dosare-de-coruptie/doc-condamnata-si-data-in-cautare-irina-lozovan-nu-renunta-la-banii-din-parlament" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/live-text-o-femeie-a-fost-ucisa-si-alte-patru-persoane-au-fost-ranite-in-regiunea-harkiv-in-urma-atacurilor-rusesti-nocturne-razboi-in-ucraina-ziua-1582/" target="_blank">LIVE TEXT/ O femeie a fost ucisă și alte patru persoane au fost rănite în regiunea Harkiv în urma atacurilor rusești nocturne. Război în Ucraina, ziua 1582</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 24.06.2026</span>
+    </div>
+    <div class='summary'>UPDATE 11:52 Armata rusă a atacat Harkiv și alte așezări din regiune începând cu seara zilei de 23 iunie și continuând până în noaptea de 24 iunie. O femeie în vârstă de 56 de ani a fost ucisă, iar alte patru au fost rănite. Potrivit Ukrinform, Parchetul Regional Harkiv a raportat acest lucru pe Telegram....</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/live-text-o-femeie-a-fost-ucisa-si-alte-patru-persoane-au-fost-ranite-in-regiunea-harkiv-in-urma-atacurilor-rusesti-nocturne-razboi-in-ucraina-ziua-1582/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/o-cetateana-straina-condamnata-la-inchisoare-pentru-escrocherii-telefonice/" target="_blank">O cetățeană străină, condamnată la închisoare pentru escrocherii telefonice</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 24.06.2026</span>
+    </div>
+    <div class='summary'>O tânără a fost condamnată la 6 ani de închisoare pentru fraude telefonice, prin care au fost sustrase peste 600 mii de lei din conturile bancare ale cetățenilor R. Moldova. Aceasta a fost găsită vinovată de comiterea a 12 episoade de escrocherie. Potrivit unui comunicat al Procuraturii Generale (PG), aceasta are vârsta de 23 de...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/o-cetateana-straina-condamnata-la-inchisoare-pentru-escrocherii-telefonice/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/cum-ne-protejam-pe-vreme-caniculara-recomandarile-ansp/" target="_blank">Cum ne protejăm pe vreme caniculară: recomandările ANSP</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 24.06.2026</span>
+    </div>
+    <div class='summary'>În contextul temperaturilor ridicate și al nivelului crescut de umiditate, Agenția Națională pentru Sănătate Publică (ANSP) a venit cu un șir de măsuri de protecție, recomandate pentru a preveni efectele negative ale căldurii asupra sănătății. Potrivit comunicatului ANSP, atunci când temperaturile ridicate sunt însoțite de o umiditate de 70–80%, organismul resimte căldura mult mai intens....</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/cum-ne-protejam-pe-vreme-caniculara-recomandarile-ansp/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/reporter-special/reportaje/video-bunica-maria-octogenara-care-tese-citeste-fara-ochelari-si-cucereste-tiktok-ul-nicio-zi-sa-nu-treaca-fara-folos/" target="_blank">VIDEO/ Bunica Maria, octogenara care țese, citește fără ochelari și cucerește TikTok-ul. „Nicio zi să nu treacă fără folos”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 24.06.2026</span>
+    </div>
+    <div class='summary'>În casa bunicii Maria din Copăceni timpul pare să curgă după alte reguli. În timp ce pe TikTok sute de mii de oameni îi urmăresc recomandările de lectură și reflecțiile despre viață, ea își începe diminețile cu rugăciune, îngrijește gospodăria, citește pe nerăsuflate și țese covorașe pentru nepoții răspândiți prin Europa. La 83 de ani,...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/reporter-special/reportaje/video-bunica-maria-octogenara-care-tese-citeste-fara-ochelari-si-cucereste-tiktok-ul-nicio-zi-sa-nu-treaca-fara-folos/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/turistul-cu-pasaport-rusesc-si-misiune-in-zona-de-securitate-ofiter-fsb-retinut-in-republica-moldova" target="_blank">„Turistul” cu pașaport rusesc și misiune în Zona de Securitate: ofițer FSB, reținut în Republica Moldova</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Un cetățean al Federației Ruse, identificat de autoritățile de la Chișinău drept ofițer al Serviciului Federal de Securitate, a fost reținut la intrarea în Republica Moldova, fiind suspectat de culegere neautorizată de informații despre regiunea din stânga Nistrului, în special d…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/turistul-cu-pasaport-rusesc-si-misiune-in-zona-de-securitate-ofiter-fsb-retinut-in-republica-moldova" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/ce-este-raportarea-de-sustenabilitate-si-de-ce-companiile-din-moldova-ar-trebui-sa-o-faca" target="_blank">Ce este raportarea de sustenabilitate și de ce companiile din Moldova ar trebui să o facă</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/ce-este-raportarea-de-sustenabilitate-si-de-ce-companiile-din-moldova-ar-trebui-sa-o-faca" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/rss/latest.xml?lang=ro" target="_blank">De ultimă oră</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Să analizăm un pic această situație, mai ales că m-am săturat până la gât de cohorta de „experți” din spațiul public, care la o verificare mai atentă se dovedesc a fi simpli provocatori. Să lăsăm la o parte vorbăria inutilă și să disecăm realitatea din jurul acestei nenorocite drone[...]</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/rss/latest.xml?lang=ro" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🏛️ Politică & Putere (7)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/importante/premierul-si-a-demis-corpul-de-control-cei-doi-consilieri-aveau-salarii-de-peste-40-de-mii-de-lei-lunar-si-functii-in-consiliile-de-administratie-ale-mai-multor-intreprinderi-de-stat/" target="_blank">Premierul și-a demis Corpul de control: cei doi consilieri aveau salarii de peste 40 de mii de lei lunar și funcții în consiliile de administrație ale mai multor întreprinderi de stat</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 24.06.2026</span>
+    </div>
+    <div class='summary'>Alexandru Munteanu a anunțat demisia membrilor Corpului de control al prim-ministrului. Declarația a fost făcută la începutul ședinței Guvernului din 24 iunie, șeful Executivului afirmând că aceștia „nu mai beneficiază de încrederea necesară pentru exercitarea acestei funcții”. Datele publice consultate de ZdG arată că în cadrul Corpului de control activau doi consilieri – Vasile Bolduratu...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/importante/premierul-si-a-demis-corpul-de-control-cei-doi-consilieri-aveau-salarii-de-peste-40-de-mii-de-lei-lunar-si-functii-in-consiliile-de-administratie-ale-mai-multor-intreprinderi-de-stat/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/video-sedinta-guvernului-angajatii-din-educatie-care-activeaza-in-institutii-reorganizate-vor-beneficia-de-transport/" target="_blank">VIDEO/ Ședința Guvernului: Angajații din educație, care activează în instituții reorganizate, vor beneficia de transport</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 24.06.2026</span>
+    </div>
+    <div class='summary'>Guvernul s-a întrunit în ședință miercuri, 24 iunie. Miniștrii au examinat 35 de subiecte. Printre deciziile luate se numără aprobarea proiectului de hotărâre cu privire organizarea și funcționarea ANSA, aprobarea Regulamentului privind modul de acordare a alocației pentru creșterea accesului la studii de calitate, dar și alocarea, din fondul de rezervă, a câte un milion...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/video-sedinta-guvernului-angajatii-din-educatie-care-activeaza-in-institutii-reorganizate-vor-beneficia-de-transport/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/dosare-de-coruptie/doc-condamnata-si-data-in-cautare-irina-lozovan-nu-renunta-la-banii-din-parlament" target="_blank">DOC// Condamnată și dată în căutare, Irina Lozovan nu renunță la banii din Parlament</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Fosta deputată Irina Lozovan, asociată lui Ilan Șor, a depus recurs împotriva deciziei instnaței de apel, care i-a respins acțiunea în care cere anularea dispoziției Parlamentului de suspendare a achitării drepturilor salariale, indemnizațiilor și compensațiilor. Mai exact, este …</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/dosare-de-coruptie/doc-condamnata-si-data-in-cautare-irina-lozovan-nu-renunta-la-banii-din-parlament" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/ministrul-finantelor-nu-insista-pe-majorarea-tva-la-medicamente-dupa-criticile-venite-de-la-sanatate" target="_blank">Ministrul Finanțelor nu insistă pe majorarea TVA la medicamente, după criticile venite de la Sănătate</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Ministrul Finanțelor, Adrian Gavriliță, a declarat că nu va insista asupra propunerii de aplicare a TVA de 20% la medicamente, dacă Ministerul Sănătății nu susține măsura. Reacția vine după ce ministrul Sănătății, Emil Ceban, a criticat dur inițiativa, afirmând că aceasta ar pute…</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/ministrul-finantelor-nu-insista-pe-majorarea-tva-la-medicamente-dupa-criticile-venite-de-la-sanatate" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.rise.md/articol/portofelul-lui-sor-capii-retelei-cripto/" target="_blank">Portofelul lui Șor. Capii rețelei cripto</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 RISE Moldova</span>
+      <span>📅 23.06.2026</span>
+    </div>
+    <div class='summary'>Un fost deputat și un fost viceprimar urmează să ajungă pe banca acuzațiilor după ce au gestionat și […] The post Portofelul lui Șor. Capii rețelei cripto appeared first on Rise Moldova .</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.rise.md/articol/portofelul-lui-sor-capii-retelei-cripto/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/premierul-munteanu-renunta-la-doi-consilieri-cat-castigau-suplimentar" target="_blank">Premierul Munteanu renunță la doi consilieri. Cât câștigau „suplimentar”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Corpul de control al premierului, format din două persoane, cu salarii lunare de peste 40 de mii de lei, nu mai există. Despre demisia celor doi consileri a anunțat premierul Alexandru Munteanu, în debutul ședinței Guvernului.</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/premierul-munteanu-renunta-la-doi-consilieri-cat-castigau-suplimentar" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/premierul-munteanu-a-dizolvat-corpul-de-control" target="_blank">Premierul Munteanu a dizolvat corpul de control</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/premierul-munteanu-a-dizolvat-corpul-de-control" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🔐 Securitate & Intelligence (2)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/ministrul-finantelor-nu-insista-pe-majorarea-tva-la-medicamente-dupa-criticile-venite-de-la-sanatate" target="_blank">Ministrul Finanțelor nu insistă pe majorarea TVA la medicamente, după criticile venite de la Sănătate</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Ministrul Finanțelor, Adrian Gavriliță, a declarat că nu va insista asupra propunerii de aplicare a TVA de 20% la medicamente, dacă Ministerul Sănătății nu susține măsura. Reacția vine după ce ministrul Sănătății, Emil Ceban, a criticat dur inițiativa, afirmând că aceasta ar pute…</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/ministrul-finantelor-nu-insista-pe-majorarea-tva-la-medicamente-dupa-criticile-venite-de-la-sanatate" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/doc-fostul-director-adjunct-sis-alexandru-balan-ramane-fara-cetatenia-republicii-moldova" target="_blank">DOC// Fostul director adjunct SIS, Alexandru Balan, rămâne fără cetățenia Republicii Moldova</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Fostul director adjunct al Serviciului de Informații și Securitate (SIS), Alexandru Balan, acuzat de trădare de patrie, dar inclus într-un schimb de deținuți cu Federația Rusă, a rămas fără cetățenia Republicii Moldova. Decretul a fost semnat marți de președinta Maia Sandu.</div>
+    <div class='cat-tags'><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/doc-fostul-director-adjunct-sis-alexandru-balan-ramane-fara-cetatenia-republicii-moldova" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">👥 Social & Drepturile Omului (2)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/video-sedinta-guvernului-angajatii-din-educatie-care-activeaza-in-institutii-reorganizate-vor-beneficia-de-transport/" target="_blank">VIDEO/ Ședința Guvernului: Angajații din educație, care activează în instituții reorganizate, vor beneficia de transport</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 24.06.2026</span>
+    </div>
+    <div class='summary'>Guvernul s-a întrunit în ședință miercuri, 24 iunie. Miniștrii au examinat 35 de subiecte. Printre deciziile luate se numără aprobarea proiectului de hotărâre cu privire organizarea și funcționarea ANSA, aprobarea Regulamentului privind modul de acordare a alocației pentru creșterea accesului la studii de calitate, dar și alocarea, din fondul de rezervă, a câte un milion...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/video-sedinta-guvernului-angajatii-din-educatie-care-activeaza-in-institutii-reorganizate-vor-beneficia-de-transport/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/cum-ne-protejam-pe-vreme-caniculara-recomandarile-ansp/" target="_blank">Cum ne protejăm pe vreme caniculară: recomandările ANSP</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 24.06.2026</span>
+    </div>
+    <div class='summary'>În contextul temperaturilor ridicate și al nivelului crescut de umiditate, Agenția Națională pentru Sănătate Publică (ANSP) a venit cu un șir de măsuri de protecție, recomandate pentru a preveni efectele negative ale căldurii asupra sănătății. Potrivit comunicatului ANSP, atunci când temperaturile ridicate sunt însoțite de o umiditate de 70–80%, organismul resimte căldura mult mai intens....</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/cum-ne-protejam-pe-vreme-caniculara-recomandarile-ansp/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📰 Media & Libertatea Presei (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📌 Alte articole (9)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-sociale/24-iunie-ziua-universala-a-iei-traditiile-autentice-nu-se-pierd-odata-cu-trecerea-timpului/" target="_blank">24 iunie – Ziua Universală a Iei: „Tradițiile autentice nu se pierd odată cu trecerea timpului”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 24.06.2026</span>
+    </div>
+    <div class='summary'>La 24 iunie este marcată Ziua Universală a Iei, sărbătoare dedicată promovării frumuseții și valorii cămășii tradiționale românești. Cu această ocazie, președinta Maia Sandu a transmis un mesaj în care a subliniat că „ia ne amintește că tradițiile autentice nu se pierd odată cu trecerea timpului”. În semn de apreciere pentru portul popular românesc, angajații...</div>
+    
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-sociale/24-iunie-ziua-universala-a-iei-traditiile-autentice-nu-se-pierd-odata-cu-trecerea-timpului/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/blog/andrei-covrig/despre-drona-ruseasca-geran-2-prabusita-la-galati" target="_blank">Despre drona rusească „Geran-2” prăbușită la Galați</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Să analizăm un pic această situație, mai ales că m-am săturat până la gât de cohorta de „experți” din spațiul public, care la o verificare mai atentă se dovedesc a fi simpli provocatori. Să lăsăm la o parte vorbăria inutilă și să disecăm realitatea din jurul acestei nenorocite dr…</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/blog/andrei-covrig/despre-drona-ruseasca-geran-2-prabusita-la-galati" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/puieti-lasati-sa-se-usuce-peste-40000-de-arbori-compromisi-la-rezervatia-padurea-domneasca" target="_blank">Puieți lăsați să se usuce: peste 40.000 de arbori, compromiși la Rezervația „Pădurea Domnească”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Peste 40.000 de puieți destinați lucrărilor de extindere a fondului forestier au fost compromiși la Rezervația Naturală „Pădurea Domnească”, după ce un control inopinat a scos la iveală abateri, neglijență și deficiențe în organizarea lucrărilor de regenerare. Materialul săditor …</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/puieti-lasati-sa-se-usuce-peste-40000-de-arbori-compromisi-la-rezervatia-padurea-domneasca" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/video-my-ne-bednye-pochemu-v-moldove-ne-lyubyat-govorit-o-bednosti-golosa" target="_blank">(ВИДЕО) «Мы не бедные». Почему в Молдове не любят говорить о бедности? / ГОЛОСА</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>DUOMO. Когда качество — не просто слово, это обязательство</div>
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/video-my-ne-bednye-pochemu-v-moldove-ne-lyubyat-govorit-o-bednosti-golosa" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/v-moldatsa-obyasnili-vysokie-dohody-sotrudnikov-zarplaty-napryamuyu-svyazany-s-rostom-vozdushnogo-dvijeniya" target="_blank">В MoldATSA объяснили высокие доходы сотрудников: Зарплаты напрямую связаны с ростом воздушного движения</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/v-moldatsa-obyasnili-vysokie-dohody-sotrudnikov-zarplaty-napryamuyu-svyazany-s-rostom-vozdushnogo-dvijeniya" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/semi-pogibshih-policzeiskih-poluchat-2-mln-leev-iz-rezervnogo-fonda-muntyanu-slujebnyi-avtomobil-mojno-bylo-priparkovat-bezopasnee" target="_blank">Семьи погибших полицейских получат 2 млн леев из резервного фонда. Мунтяну: «Служебный автомобиль можно было припарковать безопаснее»</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/semi-pogibshih-policzeiskih-poluchat-2-mln-leev-iz-rezervnogo-fonda-muntyanu-slujebnyi-avtomobil-mojno-bylo-priparkovat-bezopasnee" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/ministr-finansov-zarplaty-byudjetnikov-mogut-vyrasti-na-10-30-no-ne-u-vseh" target="_blank">Министр финансов: Зарплаты бюджетников могут вырасти на 10–30%, но не у всех</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/ministr-finansov-zarplaty-byudjetnikov-mogut-vyrasti-na-10-30-no-ne-u-vseh" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/portofelul-si-reteaua-cripto-a-lui-ilan-sor" target="_blank">Portofelul şi reţeaua cripto a lui Ilan Şor</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/portofelul-si-reteaua-cripto-a-lui-ilan-sor" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/uniformizarea-taxei-pe-valoarea-adaugata" target="_blank">Uniformizarea taxei pe valoarea adăugată</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/uniformizarea-taxei-pe-valoarea-adaugata" target="_blank">Citește articolul →</a>
+  </div>
+</div>
+<div class="footer">
+  Raport generat automat zilnic &nbsp;·&nbsp; ARBI – Monitorizare Jurnalism Investigativ Moldova
+</div>
+</body>
+</html>
