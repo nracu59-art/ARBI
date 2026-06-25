@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monitorizare Jurnalism Investigativ Moldova – 25.06.2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; color: #2c3e50; }
+  .header { background: #1b4332; color: #fff; padding: 28px 40px; }
+  .header h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: 0.5px; }
+  .header .subtitle { margin-top: 6px; font-size: 0.9rem; opacity: 0.85; }
+  .stats-bar { background: #2d6a4f; color: #fff; padding: 16px 40px;
+                display: flex; gap: 36px; flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; }
+  .stat .val { font-size: 1.8rem; font-weight: 700; }
+  .stat .lbl { font-size: 0.72rem; opacity: 0.82; text-transform: uppercase; letter-spacing: 0.8px; }
+  .cat-bar { background: #40916c; color: #fff; padding: 12px 40px;
+              display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .cat-chip { background: rgba(255,255,255,0.18); border-radius: 20px;
+               padding: 4px 14px; font-size: 0.78rem; font-weight: 600;
+               white-space: nowrap; }
+  .container { max-width: 1040px; margin: 30px auto; padding: 0 20px 40px; }
+  .section-title { font-size: 0.95rem; font-weight: 700; color: #1b4332;
+                    text-transform: uppercase; letter-spacing: 1px;
+                    margin: 28px 0 14px; border-bottom: 2px solid #1b4332;
+                    padding-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08);
+           padding: 18px 22px; margin-bottom: 14px; border-left: 5px solid #1b4332;
+           transition: box-shadow .15s; }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.13); }
+  .card.investigativ { border-left-color: #d62828; }
+  .card-title { font-size: 1rem; font-weight: 700; color: #1b4332; margin-bottom: 8px; }
+  .card-title a { color: inherit; text-decoration: none; }
+  .card-title a:hover { text-decoration: underline; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;
+           font-size: 0.8rem; color: #555; }
+  .badge { display: inline-block; font-size: 0.68rem; font-weight: 700;
+            padding: 2px 8px; border-radius: 12px; color: #fff;
+            margin-right: 4px; vertical-align: middle; }
+  .badge-inv { background: #d62828; }
+  .source-tag { background: #e8f4ec; color: #1b4332; border-radius: 4px;
+                 padding: 1px 8px; font-size: 0.75rem; font-weight: 600; }
+  .summary { font-size: 0.85rem; color: #444; line-height: 1.55; margin-top: 6px; }
+  .cat-tags { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .cat-tag { font-size: 0.72rem; padding: 2px 10px; border-radius: 10px;
+              font-weight: 600; background: #e8f4ec; color: #1b4332; }
+  .link-btn { display: inline-block; margin-top: 10px; padding: 5px 14px;
+               background: #1b4332; color: #fff; border-radius: 5px;
+               font-size: 0.78rem; text-decoration: none; font-weight: 600; }
+  .link-btn:hover { background: #2d6a4f; }
+  .empty-box { background: #fff; border-radius: 8px; padding: 30px 24px;
+                text-align: center; color: #7f8c8d; font-size: 0.95rem;
+                box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .source-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+  .source-box { background: #fff; border-radius: 8px; padding: 12px 18px;
+                 box-shadow: 0 2px 6px rgba(0,0,0,.07); min-width: 140px;
+                 border-top: 3px solid #1b4332; }
+  .source-box .sname { font-size: 0.78rem; font-weight: 700; color: #1b4332; }
+  .source-box .scount { font-size: 1.4rem; font-weight: 700; color: #2d6a4f; margin-top: 2px; }
+  .footer { text-align: center; font-size: 0.75rem; color: #999;
+             margin-top: 40px; padding-bottom: 20px; }
+  @media (max-width: 600px) {
+    .header, .stats-bar, .cat-bar { padding: 18px 16px; }
+    .stats-bar { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🔍 Monitorizare Jurnalism Investigativ – Moldova</h1>
+  <div class="subtitle">
+    Surse monitorizate: 8 &nbsp;|&nbsp;
+    Ultimele 26 ore &nbsp;|&nbsp;
+    Generat: 2026-06-25 09:26 UTC
+  </div>
+</div>
+<div class="stats-bar">
+  <div class="stat"><span class="val">33</span><span class="lbl">Articole noi</span></div>
+  <div class="stat"><span class="val">4</span><span class="lbl">Investigative</span></div>
+  <div class="stat"><span class="val">8</span><span class="lbl">Surse active</span></div>
+  <div class="stat"><span class="val">25.06.2026</span><span class="lbl">Data raportului</span></div>
+</div>
+<div class="cat-bar">
+  <span style="font-size:.8rem;opacity:.85;margin-right:4px">Categorii:</span>
+  <span class="cat-chip">⚖️ Justiție & Procurori (13)</span><span class="cat-chip">🏛️ Politică & Putere (12)</span><span class="cat-chip">💼 Afaceri & Contracte Publice (3)</span><span class="cat-chip">💰 Corupție (2)</span><span class="cat-chip">🔐 Securitate & Intelligence (2)</span><span class="cat-chip">📰 Media & Libertatea Presei (1)</span><span class="cat-chip">👥 Social & Drepturile Omului (1)</span>
+</div>
+<div class="container">
+<div class="section-title">📊 Articole pe surse</div><div class="source-grid"><div class="source-box"><div class="sname">Ziarul de Gardă</div><div class="scount">10</div></div><div class="source-box"><div class="sname">Anticorupție.md</div><div class="scount">10</div></div><div class="source-box"><div class="sname">Mold-Street</div><div class="scount">7</div></div><div class="source-box"><div class="sname">Newsmaker.md</div><div class="scount">4</div></div><div class="source-box"><div class="sname">RISE Moldova</div><div class="scount">1</div></div><div class="source-box"><div class="sname">Agora.md</div><div class="scount">1</div></div></div>
+<div class="section-title">🔍 Articole Investigative (4)</div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/galbur-sustine-ca-moldatsa-detine-conturi-in-strainatate-si-ca-s-au-furat-10-milioane-de-dolari-prin-aceasta-schema-intreprinderea-dezminte-informatiile/" target="_blank">Galbur susține că MoldATSA „deține conturi în străinătate și că s-au furat 10 milioane de dolari prin această schemă”. Întreprinderea dezminte informațiile</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 25.06.2026</span>
+    </div>
+    <div class='summary'>MoldATSA dezminte declarațiile făcute public de președintele partidului extraparlamentar, Partidului Național Moldovenesc (PNM), Dragoș Galbur, precum că întreprinderea ar fi deschis conturi în străinătate, iar până în 2012-2013 „s-au furat 10 milioane de dolari din conturile MoldATSA”. Totuși, aceasta susține că „în perioada menționată, directorul întreprinderii, Sorin Stati, a fost vizat de cauz…</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/galbur-sustine-ca-moldatsa-detine-conturi-in-strainatate-si-ca-s-au-furat-10-milioane-de-dolari-prin-aceasta-schema-intreprinderea-dezminte-informatiile/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://www.rise.md/scandalul-moldatsa-agentia-proprietatii-publice-va-fi-reorganizata-din-temelii/" target="_blank">Scandalul MoldATSA: Agenţia Proprietății Publice va fi reorganizată „din temelii”</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 RISE Moldova</span>
+      <span>📅 24.06.2026</span>
+    </div>
+    <div class='summary'>Agenţia Proprietății Publice (APP), instituţie subordonată Guvernului, care asigură administrarea şi deetatizarea proprietăţii publice, va fi reorganizată „din […] The post Scandalul MoldATSA: Agenţia Proprietății Publice va fi reorganizată „din temelii” appeared first on Rise Moldova .</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.rise.md/scandalul-moldatsa-agentia-proprietatii-publice-va-fi-reorganizata-din-temelii/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://www.zdg.md/importante/informatiile-false-in-cv-atrag-eliminarea-candidatului-din-concurs-cine-sunt-cei-care-l-au-ales-pe-dumitru-vangheli-director-la-moldatsa-si-cum-isi-justifica-alegerea/" target="_blank">„Informațiile false în CV (…) atrag eliminarea candidatului din concurs”. Cine sunt cei care l-au ales pe Dumitru Vangheli director la Moldatsa și cum își justifică alegerea</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 25.06.2026</span>
+    </div>
+    <div class='summary'>Dumitru Vangheli, directorul Moldatsa demis ca urmare a investigației ZdG în care am arătat că acesta a inclus în CV date false, inclusiv faptul că a fost pilot la Air Canada, una dintre cele mai mari companii aeriene din lume, a fost selectat pentru ocuparea funcției de către membrii Consiliului de administrație al Moldatsa. Din...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/importante/informatiile-false-in-cv-atrag-eliminarea-candidatului-din-concurs-cine-sunt-cei-care-l-au-ales-pe-dumitru-vangheli-director-la-moldatsa-si-cum-isi-justifica-alegerea/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://mold-street.com/noutate/30-milioane-lei-pentru-un-nou-studiu-de-fezabilitate-pentru-cel-mai-mare-proiect-energetic-din-chisinau" target="_blank">30 milioane lei pentru un nou studiu de fezabilitate pentru cel mai mare proiect energetic din Chișinău</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/30-milioane-lei-pentru-un-nou-studiu-de-fezabilitate-pentru-cel-mai-mare-proiect-energetic-din-chisinau" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">⚖️ Justiție & Procurori (10)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/patru-ani-de-inchisoare-pentru-un-fost-politist-acuzat-de-tortura-si-tentativa-de-musamalizare-acesta-a-fost-anuntat-in-cautare/" target="_blank">Patru ani de închisoare pentru un fost polițist acuzat de tortură și tentativă de mușamalizare. Acesta a fost anunțat în căutare</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 25.06.2026</span>
+    </div>
+    <div class='summary'>Un fost subofițer superior al Batalionului de Patrulare și Reacționare Operativă din cadrul Direcției de Poliție a municipiului Chișinău a fost condamnat la patru ani de închisoare, cu executarea pedepsei într-un penitenciar de tip semiînchis, pentru săvârșirea infracțiunii de tortură, a anunțat joi, 25 iunie, Procuratura Generală (PG). Aceasta a mai fost privat de dreptul de a...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/patru-ani-de-inchisoare-pentru-un-fost-politist-acuzat-de-tortura-si-tentativa-de-musamalizare-acesta-a-fost-anuntat-in-cautare/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/dupa-11-luni-de-verificari-statul-blocheaza-investitiile-fly-one-activitatea-companiei-continua/" target="_blank">După 11 luni de verificări, statul blochează investițiile FLY ONE. Activitatea companiei continuă</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 25.06.2026</span>
+    </div>
+    <div class='summary'>Consiliul pentru Examinarea Investițiilor de Importanță pentru Securitatea Statului (CEIISS) a refuzat, în ședința din 22 iunie 2026, aprobarea investițiilor realizate de compania FLY ONE „într-un domeniu de importanță pentru securitatea statului” și aplicarea clauzei de schimbare a controlului în termen de 90 de zile. În procesul de analiză au fost examinate și informații privind...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/dupa-11-luni-de-verificari-statul-blocheaza-investitiile-fly-one-activitatea-companiei-continua/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/dosare-de-coruptie/doc-condamnata-si-data-in-cautare-irina-lozovan-nu-renunta-la-banii-din-parlament" target="_blank">DOC// Condamnată și dată în căutare, Irina Lozovan nu renunță la banii din Parlament</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Fosta deputată Irina Lozovan, asociată lui Ilan Șor, a depus recurs împotriva deciziei instnaței de apel, care i-a respins acțiunea în care cere anularea dispoziției Parlamentului de suspendare a achitării drepturilor salariale, indemnizațiilor și compensațiilor. Mai exact, este …</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/dosare-de-coruptie/doc-condamnata-si-data-in-cautare-irina-lozovan-nu-renunta-la-banii-din-parlament" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/flyone-compania-fostului-ministru-al-justitiei-cu-aripile-taiate" target="_blank">FlyOne, compania fostului ministru al Justiției, cu aripile tăiate</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Consiliul pentru Examinarea Investițiilor de Importanță pentru Securitatea Statului (CEIISS) a stopat aprobarea investițiilor realizate de compania FLY ONE, fondată de fostul ministru al Justiției, Vladimir Cebotari. Consiliul precizează că nu a dispus suspendarea activității sau…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/flyone-compania-fostului-ministru-al-justitiei-cu-aripile-taiate" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/reporter-special/reportaje/video-daca-il-atingi-poate-exploda-un-trecut-exploziv-sub-picioare-si-un-prezent-amenintat-de-drone/" target="_blank">Video/ „Dacă îl atingi, poate exploda.” Un trecut exploziv sub picioare și un prezent amenințat de drone</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 25.06.2026</span>
+    </div>
+    <div class='summary'>Un aparat de zbor fără pilot a explodat în noaptea de 7 spre 8 iunie pe un teren agricol din satul Lopatna, raionul Orhei. Un localnic a alertat imediat poliția, iar la fața locului s-au deplasat geniștii Armatei Naționale. Anterior, în comuna Gangura, raionul Ialoveni, trei proiectile rămase din perioada celui de-al Doilea Război Mondial...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://www.zdg.md/reporter-special/reportaje/video-daca-il-atingi-poate-exploda-un-trecut-exploziv-sub-picioare-si-un-prezent-amenintat-de-drone/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-sociale/un-mars-indecent-de-decent-de-ce-pride-2026-s-a-desfasurat-aproape-in-liniste/" target="_blank">Un marș „indecent de decent”: de ce Pride 2026 s-a desfășurat (aproape) în liniște?</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 25.06.2026</span>
+    </div>
+    <div class='summary'>Reprezentanți ai comunității LGBTQI+, activiști și susținători ai drepturilor omului și-au dat întâlnire la tradiționalul Marș al Solidarității pe 21 iunie. Ediția din 2026 „a fost indecent de decentă”, consideră una dintre participante. Activiștii spun că liniștea din acest an nu i-a surprins, „mai ales că nu a fost un an electoral”. Potrivit acestora, comunitatea...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-sociale/un-mars-indecent-de-decent-de-ce-pride-2026-s-a-desfasurat-aproape-in-liniste/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/rss/latest.xml?lang=ro" target="_blank">De ultimă oră</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Să analizăm un pic această situație, mai ales că m-am săturat până la gât de cohorta de „experți” din spațiul public, care la o verificare mai atentă se dovedesc a fi simpli provocatori. Să lăsăm la o parte vorbăria inutilă și să disecăm realitatea din jurul acestei nenorocite drone[...]</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/rss/latest.xml?lang=ro" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/dosare-de-coruptie/doc-razboiul-judiciar-ceban-vs-pas-o-alta-batalie-pierduta-de-edil" target="_blank">DOC// Războiul judiciar Ceban vs PAS: o altă bătălie pierdută de edil</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Fără scuze publice din partea PAS. Prima instanță a respins o altă cerere a primarului municipiului Chișinău, Ion Ceban, în care edilul solicită constatarea drept defăimătoare a unor declarații făcute de reprezentanți ai PAS.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/dosare-de-coruptie/doc-razboiul-judiciar-ceban-vs-pas-o-alta-batalie-pierduta-de-edil" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/nelzya-doit-mertvuyu-korovu-moldavski-biznesmeny-o-novoi-nalogovoi-politike-pas" target="_blank">«Нельзя доить мертвую корову». Молдавские бизнесмены о новой налоговой политике PAS</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>DUOMO. Когда качество — не просто слово, это обязательство</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://newsmaker.md/ru/nelzya-doit-mertvuyu-korovu-moldavski-biznesmeny-o-novoi-nalogovoi-politike-pas" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🏛️ Politică & Putere (10)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/dupa-11-luni-de-verificari-statul-blocheaza-investitiile-fly-one-activitatea-companiei-continua/" target="_blank">După 11 luni de verificări, statul blochează investițiile FLY ONE. Activitatea companiei continuă</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 25.06.2026</span>
+    </div>
+    <div class='summary'>Consiliul pentru Examinarea Investițiilor de Importanță pentru Securitatea Statului (CEIISS) a refuzat, în ședința din 22 iunie 2026, aprobarea investițiilor realizate de compania FLY ONE „într-un domeniu de importanță pentru securitatea statului” și aplicarea clauzei de schimbare a controlului în termen de 90 de zile. În procesul de analiză au fost examinate și informații privind...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/dupa-11-luni-de-verificari-statul-blocheaza-investitiile-fly-one-activitatea-companiei-continua/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/dosare-de-coruptie/doc-condamnata-si-data-in-cautare-irina-lozovan-nu-renunta-la-banii-din-parlament" target="_blank">DOC// Condamnată și dată în căutare, Irina Lozovan nu renunță la banii din Parlament</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Fosta deputată Irina Lozovan, asociată lui Ilan Șor, a depus recurs împotriva deciziei instnaței de apel, care i-a respins acțiunea în care cere anularea dispoziției Parlamentului de suspendare a achitării drepturilor salariale, indemnizațiilor și compensațiilor. Mai exact, este …</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/dosare-de-coruptie/doc-condamnata-si-data-in-cautare-irina-lozovan-nu-renunta-la-banii-din-parlament" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/flyone-compania-fostului-ministru-al-justitiei-cu-aripile-taiate" target="_blank">FlyOne, compania fostului ministru al Justiției, cu aripile tăiate</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Consiliul pentru Examinarea Investițiilor de Importanță pentru Securitatea Statului (CEIISS) a stopat aprobarea investițiilor realizate de compania FLY ONE, fondată de fostul ministru al Justiției, Vladimir Cebotari. Consiliul precizează că nu a dispus suspendarea activității sau…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/flyone-compania-fostului-ministru-al-justitiei-cu-aripile-taiate" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-sociale/rezultatele-bac-2026-numar-record-de-absolventi-cu-media-10-si-in-premiera-niciun-candidat-eliminat-pentru-frauda/" target="_blank">Rezultatele BAC 2026: Număr record de absolvenți cu media 10 și, în premieră, niciun candidat eliminat pentru fraudă</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 25.06.2026</span>
+    </div>
+    <div class='summary'>Un număr record de absolvenți – 85 – au obținut media 10 la examenul național de bacalaureat din acest an, iar rata de promovare a crescut pentru al treilea an consecutiv, ajungând la 75,4%. Totodată, pentru prima dată de la introducerea camerelor de supraveghere în sălile de examen, niciun candidat nu a fost eliminat pentru...</div>
+    <div class='cat-tags'><span class="cat-tag">💰 Corupție</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-sociale/rezultatele-bac-2026-numar-record-de-absolventi-cu-media-10-si-in-premiera-niciun-candidat-eliminat-pentru-frauda/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/ministrul-finantelor-nu-insista-pe-majorarea-tva-la-medicamente-dupa-criticile-venite-de-la-sanatate" target="_blank">Ministrul Finanțelor nu insistă pe majorarea TVA la medicamente, după criticile venite de la Sănătate</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Ministrul Finanțelor, Adrian Gavriliță, a declarat că nu va insista asupra propunerii de aplicare a TVA de 20% la medicamente, dacă Ministerul Sănătății nu susține măsura. Reacția vine după ce ministrul Sănătății, Emil Ceban, a criticat dur inițiativa, afirmând că aceasta ar pute…</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/ministrul-finantelor-nu-insista-pe-majorarea-tva-la-medicamente-dupa-criticile-venite-de-la-sanatate" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/moartea-caprioarei-se-amana-sub-presiunea-criticilor-ministrul-mediului-suspenda-propria-decizie" target="_blank">„Moartea căprioarei” se amână. Sub presiunea criticilor, ministrul Mediului suspendă propria decizie</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Ministrul Mediului suspendă decizia privind vânarea a 913 căprioare în sezonul 2026–2027 și anunță consultări publice extinse. Anunțul a fost făcut după o serie de critici apărute în spațiul public.</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/moartea-caprioarei-se-amana-sub-presiunea-criticilor-ministrul-mediului-suspenda-propria-decizie" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/premierul-munteanu-renunta-la-doi-consilieri-cat-castigau-suplimentar" target="_blank">Premierul Munteanu renunță la doi consilieri. Cât câștigau „suplimentar”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Corpul de control al premierului, format din două persoane, cu salarii lunare de peste 40 de mii de lei, nu mai există. Despre demisia celor doi consileri a anunțat premierul Alexandru Munteanu, în debutul ședinței Guvernului.</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/premierul-munteanu-renunta-la-doi-consilieri-cat-castigau-suplimentar" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/moldova-urca-20-de-pozitii-in-topul-statelor-privind-tranzitia-energetica" target="_blank">Moldova urcă 20 de poziții în topul statelor privind tranziţia energetică</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/moldova-urca-20-de-pozitii-in-topul-statelor-privind-tranzitia-energetica" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/expert-economic-cum-poate-guvernul-sa-gaseasca-inca-1-miliard-de-lei-fara-sa-scumpeasca-medicamentele-si-alimentele" target="_blank">Expert economic: Cum poate Guvernul să găsească încă 1 miliard de lei fără să scumpească medicamentele și alimentele?</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/expert-economic-cum-poate-guvernul-sa-gaseasca-inca-1-miliard-de-lei-fara-sa-scumpeasca-medicamentele-si-alimentele" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/premierul-munteanu-a-dizolvat-corpul-de-control" target="_blank">Premierul Munteanu a dizolvat corpul de control</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/premierul-munteanu-a-dizolvat-corpul-de-control" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">💼 Afaceri & Contracte Publice (3)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/patru-ani-de-inchisoare-pentru-un-fost-politist-acuzat-de-tortura-si-tentativa-de-musamalizare-acesta-a-fost-anuntat-in-cautare/" target="_blank">Patru ani de închisoare pentru un fost polițist acuzat de tortură și tentativă de mușamalizare. Acesta a fost anunțat în căutare</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 25.06.2026</span>
+    </div>
+    <div class='summary'>Un fost subofițer superior al Batalionului de Patrulare și Reacționare Operativă din cadrul Direcției de Poliție a municipiului Chișinău a fost condamnat la patru ani de închisoare, cu executarea pedepsei într-un penitenciar de tip semiînchis, pentru săvârșirea infracțiunii de tortură, a anunțat joi, 25 iunie, Procuratura Generală (PG). Aceasta a mai fost privat de dreptul de a...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/patru-ani-de-inchisoare-pentru-un-fost-politist-acuzat-de-tortura-si-tentativa-de-musamalizare-acesta-a-fost-anuntat-in-cautare/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/dupa-11-luni-de-verificari-statul-blocheaza-investitiile-fly-one-activitatea-companiei-continua/" target="_blank">După 11 luni de verificări, statul blochează investițiile FLY ONE. Activitatea companiei continuă</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 25.06.2026</span>
+    </div>
+    <div class='summary'>Consiliul pentru Examinarea Investițiilor de Importanță pentru Securitatea Statului (CEIISS) a refuzat, în ședința din 22 iunie 2026, aprobarea investițiilor realizate de compania FLY ONE „într-un domeniu de importanță pentru securitatea statului” și aplicarea clauzei de schimbare a controlului în termen de 90 de zile. În procesul de analiză au fost examinate și informații privind...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/dupa-11-luni-de-verificari-statul-blocheaza-investitiile-fly-one-activitatea-companiei-continua/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/reporter-special/reportaje/video-daca-il-atingi-poate-exploda-un-trecut-exploziv-sub-picioare-si-un-prezent-amenintat-de-drone/" target="_blank">Video/ „Dacă îl atingi, poate exploda.” Un trecut exploziv sub picioare și un prezent amenințat de drone</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 25.06.2026</span>
+    </div>
+    <div class='summary'>Un aparat de zbor fără pilot a explodat în noaptea de 7 spre 8 iunie pe un teren agricol din satul Lopatna, raionul Orhei. Un localnic a alertat imediat poliția, iar la fața locului s-au deplasat geniștii Armatei Naționale. Anterior, în comuna Gangura, raionul Ialoveni, trei proiectile rămase din perioada celui de-al Doilea Război Mondial...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://www.zdg.md/reporter-special/reportaje/video-daca-il-atingi-poate-exploda-un-trecut-exploziv-sub-picioare-si-un-prezent-amenintat-de-drone/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">💰 Corupție (2)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-sociale/rezultatele-bac-2026-numar-record-de-absolventi-cu-media-10-si-in-premiera-niciun-candidat-eliminat-pentru-frauda/" target="_blank">Rezultatele BAC 2026: Număr record de absolvenți cu media 10 și, în premieră, niciun candidat eliminat pentru fraudă</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 25.06.2026</span>
+    </div>
+    <div class='summary'>Un număr record de absolvenți – 85 – au obținut media 10 la examenul național de bacalaureat din acest an, iar rata de promovare a crescut pentru al treilea an consecutiv, ajungând la 75,4%. Totodată, pentru prima dată de la introducerea camerelor de supraveghere în sălile de examen, niciun candidat nu a fost eliminat pentru...</div>
+    <div class='cat-tags'><span class="cat-tag">💰 Corupție</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-sociale/rezultatele-bac-2026-numar-record-de-absolventi-cu-media-10-si-in-premiera-niciun-candidat-eliminat-pentru-frauda/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/au-fost-anuntate-rezultatele-preliminare-ale-examenelor-de-absolvire-a-gimnaziului-33-candidati-au-fost-eliminati-din-examen-pentru-frauda/" target="_blank">Au fost anunțate rezultatele preliminare ale examenelor de absolvire a gimnaziului. 33 candidați au fost eliminați din examen pentru fraudă</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 25.06.2026</span>
+    </div>
+    <div class='summary'>Rezultatele preliminare ale examenelor naționale de absolvire a gimnaziului au fost afișate joi, 25 iunie 2026, în cele 385 de centre de examene din întreaga țară, a anunțat Ministerul Educației și Cercetării (MEC). La sesiunea de examene au fost admiși peste 34 de mii de candidați, care au scris în total 95.454 de teste de...</div>
+    <div class='cat-tags'><span class="cat-tag">💰 Corupție</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/au-fost-anuntate-rezultatele-preliminare-ale-examenelor-de-absolvire-a-gimnaziului-33-candidati-au-fost-eliminati-din-examen-pentru-frauda/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🔐 Securitate & Intelligence (2)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/ministrul-finantelor-nu-insista-pe-majorarea-tva-la-medicamente-dupa-criticile-venite-de-la-sanatate" target="_blank">Ministrul Finanțelor nu insistă pe majorarea TVA la medicamente, după criticile venite de la Sănătate</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Ministrul Finanțelor, Adrian Gavriliță, a declarat că nu va insista asupra propunerii de aplicare a TVA de 20% la medicamente, dacă Ministerul Sănătății nu susține măsura. Reacția vine după ce ministrul Sănătății, Emil Ceban, a criticat dur inițiativa, afirmând că aceasta ar pute…</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/ministrul-finantelor-nu-insista-pe-majorarea-tva-la-medicamente-dupa-criticile-venite-de-la-sanatate" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/doc-fostul-director-adjunct-sis-alexandru-balan-ramane-fara-cetatenia-republicii-moldova" target="_blank">DOC// Fostul director adjunct SIS, Alexandru Balan, rămâne fără cetățenia Republicii Moldova</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Fostul director adjunct al Serviciului de Informații și Securitate (SIS), Alexandru Balan, acuzat de trădare de patrie, dar inclus într-un schimb de deținuți cu Federația Rusă, a rămas fără cetățenia Republicii Moldova. Decretul a fost semnat marți de președinta Maia Sandu.</div>
+    <div class='cat-tags'><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/doc-fostul-director-adjunct-sis-alexandru-balan-ramane-fara-cetatenia-republicii-moldova" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📰 Media & Libertatea Presei (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">👥 Social & Drepturile Omului (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/au-fost-anuntate-rezultatele-preliminare-ale-examenelor-de-absolvire-a-gimnaziului-33-candidati-au-fost-eliminati-din-examen-pentru-frauda/" target="_blank">Au fost anunțate rezultatele preliminare ale examenelor de absolvire a gimnaziului. 33 candidați au fost eliminați din examen pentru fraudă</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 25.06.2026</span>
+    </div>
+    <div class='summary'>Rezultatele preliminare ale examenelor naționale de absolvire a gimnaziului au fost afișate joi, 25 iunie 2026, în cele 385 de centre de examene din întreaga țară, a anunțat Ministerul Educației și Cercetării (MEC). La sesiunea de examene au fost admiși peste 34 de mii de candidați, care au scris în total 95.454 de teste de...</div>
+    <div class='cat-tags'><span class="cat-tag">💰 Corupție</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/au-fost-anuntate-rezultatele-preliminare-ale-examenelor-de-absolvire-a-gimnaziului-33-candidati-au-fost-eliminati-din-examen-pentru-frauda/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📌 Alte articole (10)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/live-text-trupele-ruse-au-atacat-cinci-raioane-ale-regiunii-dnipropetrovsk-salvatorii-au-lichidat-consecintele-atacurilor-razboi-in-ucraina-ziua-1583/" target="_blank">LIVE TEXT/ Trupele ruse au atacat cinci raioane ale regiunii Dnipropetrovsk: salvatorii au lichidat consecințele atacurilor. Război în Ucraina, ziua 1583</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 25.06.2026</span>
+    </div>
+    <div class='summary'>UPDATE 11:30 Începând din seara zilei precedente, trupele ruse au atacat cinci raioane ale regiunii Dnipropetrovsk, a informat Serviciul pentru Situații de Urgență . În raionul Dnipro a izbucnit un incendiu într-un depozit în care era păstrată tehnică comunală. Aproximativ 10 mijloace de transport au fost avariate. Două comunități din raionul Sinelnikove au fost lovite...</div>
+    
+    <a class="link-btn" href="https://www.zdg.md/stiri/live-text-trupele-ruse-au-atacat-cinci-raioane-ale-regiunii-dnipropetrovsk-salvatorii-au-lichidat-consecintele-atacurilor-razboi-in-ucraina-ziua-1583/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/parteneriat/foto-peste-100-de-familii-vulnerabile-din-r-moldova-isi-construiesc-un-viitor-mai-sigur-prin-solutii-sustenabile-de-autonomie-economica/" target="_blank">FOTO/ Peste 100 de familii vulnerabile din R. Moldova își construiesc un viitor mai sigur prin soluții sustenabile de autonomie economică</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 25.06.2026</span>
+    </div>
+    <div class='summary'>„Pentru prima dată, nu m-am culcat cu grija zilei de mâine”, ne-a spus o mamă, stând în pragul serei sale, cu mâinile încă pătate de pământ după ce și-a plantat primele răsaduri. Pentru ea, sera nu înseamnă doar legume. Înseamnă liniște. Înseamnă demnitate. Înseamnă speranța că își va putea crește copiii acasă. În această primăvară,...</div>
+    
+    <a class="link-btn" href="https://www.zdg.md/parteneriat/foto-peste-100-de-familii-vulnerabile-din-r-moldova-isi-construiesc-un-viitor-mai-sigur-prin-solutii-sustenabile-de-autonomie-economica/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/stiri/forta-fermierilor-invoca-presiuni-ministra-agriculturii-avem-discutii-pe-platforma-ministerului" target="_blank">Forța Fermierilor invocă presiuni. Ministra Agriculturii: „Avem discuții pe platforma ministerului”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Și-au scos tehnica agricolă pe drumurile naționale. Fermierii din mai multe raioane ale țării au organizat un protest, exprimându-și astfel nemulțumirea față de modificările politicii fiscale propuse de Ministerul FInanțelor, care prevede creșterea TVA de la 8 la 20%.</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/stiri/forta-fermierilor-invoca-presiuni-ministra-agriculturii-avem-discutii-pe-platforma-ministerului" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/blog/andrei-covrig/despre-drona-ruseasca-geran-2-prabusita-la-galati" target="_blank">Despre drona rusească „Geran-2” prăbușită la Galați</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Să analizăm un pic această situație, mai ales că m-am săturat până la gât de cohorta de „experți” din spațiul public, care la o verificare mai atentă se dovedesc a fi simpli provocatori. Să lăsăm la o parte vorbăria inutilă și să disecăm realitatea din jurul acestei nenorocite dr…</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/blog/andrei-covrig/despre-drona-ruseasca-geran-2-prabusita-la-galati" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/pravitelstvo-moldovy-ne-odobrilo-investiczii-flyone-i-obyazalo-izmenit-strukturu-kontrolya-v-techenie-90-dnei-chebotar-nas-ne-informirovali" target="_blank">Правительство Молдовы не одобрило инвестиции FlyOne и обязало изменить структуру контроля в течение 90 дней. Чеботарь: «Нас не информировали»</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/pravitelstvo-moldovy-ne-odobrilo-investiczii-flyone-i-obyazalo-izmenit-strukturu-kontrolya-v-techenie-90-dnei-chebotar-nas-ne-informirovali" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/nasha-partiya-inicziiruet-votum-nedoveriya-ministru-finansov-iz-za-povysheniya-nds" target="_blank">«Наша партия» инициирует вотум недоверия министру финансов из-за повышения НДС</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/nasha-partiya-inicziiruet-votum-nedoveriya-ministru-finansov-iz-za-povysheniya-nds" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/pridnestrove-tiraspol-jdet-provokacziiekonomika-regiona-v-upadkeroshka-vernulsya-v-reintegracziyu" target="_blank">(ВИДЕО) Приднестровье: Тирасполь ждет «провокаций»/Экономика региона в упадке?/Рошка вернулся в реинтеграцию</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/pridnestrove-tiraspol-jdet-provokacziiekonomika-regiona-v-upadkeroshka-vernulsya-v-reintegracziyu" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/proprietarii-celui-mai-mare-transportator-avia-de-pasageri-obligati-sa-vanda-afacerea" target="_blank">simbol</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/proprietarii-celui-mai-mare-transportator-avia-de-pasageri-obligati-sa-vanda-afacerea" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/deportarile-imigrantilor-sunt-daunatoare-economiei" target="_blank">Deportările imigranţilor sunt dăunătoare economiei</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/deportarile-imigrantilor-sunt-daunatoare-economiei" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/reforma-fiscala-risca-sa-destabilizeze-sectorul-agricol-si-exporturile-sustine-asociatia-agrocereale" target="_blank">Reforma fiscală riscă să destabilizeze sectorul agricol și exporturile, susţine Asociaţia Agrocereale</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/reforma-fiscala-risca-sa-destabilizeze-sectorul-agricol-si-exporturile-sustine-asociatia-agrocereale" target="_blank">Citește articolul →</a>
+  </div>
+</div>
+<div class="footer">
+  Raport generat automat zilnic &nbsp;·&nbsp; ARBI – Monitorizare Jurnalism Investigativ Moldova
+</div>
+</body>
+</html>
