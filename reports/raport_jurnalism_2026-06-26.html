@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monitorizare Jurnalism Investigativ Moldova – 26.06.2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; color: #2c3e50; }
+  .header { background: #1b4332; color: #fff; padding: 28px 40px; }
+  .header h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: 0.5px; }
+  .header .subtitle { margin-top: 6px; font-size: 0.9rem; opacity: 0.85; }
+  .stats-bar { background: #2d6a4f; color: #fff; padding: 16px 40px;
+                display: flex; gap: 36px; flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; }
+  .stat .val { font-size: 1.8rem; font-weight: 700; }
+  .stat .lbl { font-size: 0.72rem; opacity: 0.82; text-transform: uppercase; letter-spacing: 0.8px; }
+  .cat-bar { background: #40916c; color: #fff; padding: 12px 40px;
+              display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .cat-chip { background: rgba(255,255,255,0.18); border-radius: 20px;
+               padding: 4px 14px; font-size: 0.78rem; font-weight: 600;
+               white-space: nowrap; }
+  .container { max-width: 1040px; margin: 30px auto; padding: 0 20px 40px; }
+  .section-title { font-size: 0.95rem; font-weight: 700; color: #1b4332;
+                    text-transform: uppercase; letter-spacing: 1px;
+                    margin: 28px 0 14px; border-bottom: 2px solid #1b4332;
+                    padding-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08);
+           padding: 18px 22px; margin-bottom: 14px; border-left: 5px solid #1b4332;
+           transition: box-shadow .15s; }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.13); }
+  .card.investigativ { border-left-color: #d62828; }
+  .card-title { font-size: 1rem; font-weight: 700; color: #1b4332; margin-bottom: 8px; }
+  .card-title a { color: inherit; text-decoration: none; }
+  .card-title a:hover { text-decoration: underline; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;
+           font-size: 0.8rem; color: #555; }
+  .badge { display: inline-block; font-size: 0.68rem; font-weight: 700;
+            padding: 2px 8px; border-radius: 12px; color: #fff;
+            margin-right: 4px; vertical-align: middle; }
+  .badge-inv { background: #d62828; }
+  .source-tag { background: #e8f4ec; color: #1b4332; border-radius: 4px;
+                 padding: 1px 8px; font-size: 0.75rem; font-weight: 600; }
+  .summary { font-size: 0.85rem; color: #444; line-height: 1.55; margin-top: 6px; }
+  .cat-tags { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .cat-tag { font-size: 0.72rem; padding: 2px 10px; border-radius: 10px;
+              font-weight: 600; background: #e8f4ec; color: #1b4332; }
+  .link-btn { display: inline-block; margin-top: 10px; padding: 5px 14px;
+               background: #1b4332; color: #fff; border-radius: 5px;
+               font-size: 0.78rem; text-decoration: none; font-weight: 600; }
+  .link-btn:hover { background: #2d6a4f; }
+  .empty-box { background: #fff; border-radius: 8px; padding: 30px 24px;
+                text-align: center; color: #7f8c8d; font-size: 0.95rem;
+                box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .source-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+  .source-box { background: #fff; border-radius: 8px; padding: 12px 18px;
+                 box-shadow: 0 2px 6px rgba(0,0,0,.07); min-width: 140px;
+                 border-top: 3px solid #1b4332; }
+  .source-box .sname { font-size: 0.78rem; font-weight: 700; color: #1b4332; }
+  .source-box .scount { font-size: 1.4rem; font-weight: 700; color: #2d6a4f; margin-top: 2px; }
+  .footer { text-align: center; font-size: 0.75rem; color: #999;
+             margin-top: 40px; padding-bottom: 20px; }
+  @media (max-width: 600px) {
+    .header, .stats-bar, .cat-bar { padding: 18px 16px; }
+    .stats-bar { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🔍 Monitorizare Jurnalism Investigativ – Moldova</h1>
+  <div class="subtitle">
+    Surse monitorizate: 8 &nbsp;|&nbsp;
+    Ultimele 26 ore &nbsp;|&nbsp;
+    Generat: 2026-06-26 09:31 UTC
+  </div>
+</div>
+<div class="stats-bar">
+  <div class="stat"><span class="val">22</span><span class="lbl">Articole noi</span></div>
+  <div class="stat"><span class="val">5</span><span class="lbl">Investigative</span></div>
+  <div class="stat"><span class="val">8</span><span class="lbl">Surse active</span></div>
+  <div class="stat"><span class="val">26.06.2026</span><span class="lbl">Data raportului</span></div>
+</div>
+<div class="cat-bar">
+  <span style="font-size:.8rem;opacity:.85;margin-right:4px">Categorii:</span>
+  <span class="cat-chip">⚖️ Justiție & Procurori (10)</span><span class="cat-chip">🏛️ Politică & Putere (8)</span><span class="cat-chip">📰 Media & Libertatea Presei (3)</span><span class="cat-chip">🔐 Securitate & Intelligence (2)</span><span class="cat-chip">💼 Afaceri & Contracte Publice (1)</span><span class="cat-chip">👥 Social & Drepturile Omului (1)</span>
+</div>
+<div class="container">
+<div class="section-title">📊 Articole pe surse</div><div class="source-grid"><div class="source-box"><div class="sname">Ziarul de Gardă</div><div class="scount">10</div></div><div class="source-box"><div class="sname">Mold-Street</div><div class="scount">7</div></div><div class="source-box"><div class="sname">Newsmaker.md</div><div class="scount">4</div></div><div class="source-box"><div class="sname">Agora.md</div><div class="scount">1</div></div></div>
+<div class="section-title">🔍 Articole Investigative (5)</div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/politic/rolul-lui-radu-marian-in-numirea-lui-dumitru-vangheli-la-sefia-moldatsa-maia-sandu-a-venit-cu-cea-mai-buna-intentie/" target="_blank">Rolul lui Radu Marian în numirea lui Dumitru Vangheli la șefia MoldATSA. Maia Sandu: „A venit cu cea mai bună intenție”</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 26.06.2026</span>
+    </div>
+    <div class='summary'>CV-ul cu informații false al lui Dumitru Vangheli, demis de la șefia Întreprinderii de Stat „MoldATSA” după ancheta ZdG, a fost recomandat de deputatul PAS Radu Marian. Parlamentarul a recunoscut că l-a propus pentru această funcție, informație confirmată și de Maia Sandu la emisiunea În Profunzime de la Pro TV pe 25 iunie: „E un om care...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/politic/rolul-lui-radu-marian-in-numirea-lui-dumitru-vangheli-la-sefia-moldatsa-maia-sandu-a-venit-cu-cea-mai-buna-intentie/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/exporturi-de-21-de-milioane-de-lei-catre-rusia-sis-si-pccocs-au-destructurat-o-schema-de-livrare-ilegala-al-marfurilor-cu-dubla-utilizare-catre-companii-afiliate-complexului-militar-rus/" target="_blank">Exporturi de 21 de milioane de lei către Rusia: SIS și PCCOCS au destructurat o schemă de livrare ilegală al mărfurilor cu dublă utilizare către companii afiliate complexului militar-rus</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 26.06.2026</span>
+    </div>
+    <div class='summary'>În baza informațiilor gestionate de către Serviciul de Informații și Securitate (SIS), sub conducerea procurorilor Procuratura pentru Combaterea Criminalității Organizate și Cauze Speciale (PCCOCS), a fost prevenită și anihilată o tentativă de scoatere a mărfurilor cu dublă utilizare către companii din Federația Rusă, supuse sancțiunilor internaționale și afiliate complexului militar-rus, a inform…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/exporturi-de-21-de-milioane-de-lei-catre-rusia-sis-si-pccocs-au-destructurat-o-schema-de-livrare-ilegala-al-marfurilor-cu-dubla-utilizare-catre-companii-afiliate-complexului-militar-rus/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/imi-este-rusine-de-aceste-insinuari-ion-ceban-reactie-dupa-investigatia-despre-sotia-sa-si-presupusele-legaturi-cu-un-psd-ist-din-iasi/" target="_blank">„Îmi este rușine de aceste insinuări”. Ion Ceban, reacție după investigația despre soția sa și presupusele legături cu un PSD-ist din Iași</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 26.06.2026</span>
+    </div>
+    <div class='summary'>Primarul capitalei Ion Ceban a venit cu o reacție după o investigație care a dezvăluit că soția sa Tatiana are domiciliul în Iași, într-o clădire unde funcționează un centru medical administrat de Claudiu Sauciuc, care s-a reactivat în ultima vreme ca membru al Partidului Social Democrat (PSD). Ceban afirmă că îi este „rușine” de aceste...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/imi-este-rusine-de-aceste-insinuari-ion-ceban-reactie-dupa-investigatia-despre-sotia-sa-si-presupusele-legaturi-cu-un-psd-ist-din-iasi/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://mold-street.com/noutate/guvernul-va-imprumuta-150-de-milioane-de-euro-pentru-livada-moldovei" target="_blank">Guvernul va împrumuta 150 de milioane de euro pentru Livada Moldovei</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/guvernul-va-imprumuta-150-de-milioane-de-euro-pentru-livada-moldovei" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-externe/live-text-ue-va-limita-accesul-la-protectia-temporara-pentru-barbatii-ucraineni-de-varsta-militara-la-solicitarea-kievului-razboi-in-ucraina-ziua-1584/" target="_blank">LIVE TEXT/ UE va limita accesul la protecția temporară pentru bărbații ucraineni de vârstă militară, la solicitarea Kievului. Război în Ucraina, ziua 1584</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 26.06.2026</span>
+    </div>
+    <div class='summary'>UPDATE 12:09 Uniunea Europeană a anunțat, pe 26 iunie, că va prelungi cu încă un an regimul de protecție temporară pentru cei aproximativ 4,4 milioane de ucraineni aflați pe teritoriul blocului comunitar. Totuși, la cererea autorităților de la Kiev, bărbații ucraineni de vârstă militară, cărora legislația ucraineană nu le permite să părăsească țara, nu vor...</div>
+    
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-externe/live-text-ue-va-limita-accesul-la-protectia-temporara-pentru-barbatii-ucraineni-de-varsta-militara-la-solicitarea-kievului-razboi-in-ucraina-ziua-1584/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">⚖️ Justiție & Procurori (7)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/politic/tv8-o-ruda-din-familia-extinsa-a-maiei-sandu-ar-fi-facut-tranzactii-cu-un-om-de-afaceri-sanctionat-reactia-presedintei/" target="_blank">TV8/ O rudă din familia extinsă a Maiei Sandu ar fi făcut tranzacții cu un om de afaceri sancționat. Reacția președintei</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 26.06.2026</span>
+    </div>
+    <div class='summary'>Șeful Zonei Antreprenoriatului Liber „Expo-Business-Chișinău”, Constantin Batin, soțul Tatianei Batin, șefa de cabinet a președintelui Parlamentului, Igor Grosu, și verișoară a președintei Maia Sandu, a făcut afaceri cu omul de afaceri leton Marks Blats, aflat sub sancțiuni internaționale. Cu câteva săptămâni înainte de a fi numit în funcție, Batin a făcut schimb de companii cu...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/politic/tv8-o-ruda-din-familia-extinsa-a-maiei-sandu-ar-fi-facut-tranzactii-cu-un-om-de-afaceri-sanctionat-reactia-presedintei/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/retragerea-autorizatiilor-a-doi-administratori-care-gestionau-peste-80-de-companii-inclusiv-cu-capital-de-stat-detalii-privind-incalcarile-care-ar-fi-fost-admise-de-administratorul-unei-compani/" target="_blank">Retragerea autorizațiilor a doi administratori care gestionau peste 80 de companii, inclusiv cu capital de stat. Detalii privind încălcările care ar fi fost admise de administratorul unei companii care s-a aflat aproape 15 ani în insolvabilitate</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 26.06.2026</span>
+    </div>
+    <div class='summary'>Pentru prima dată în activitatea sa de circa zece ani, Comisia de autorizare și disciplină a administratorilor autorizați (CADAA) a propus retragerea autorizației a doi administratori – cea mai severă formă de sancțiune prevăzută de lege, după ce a constatat abateri disciplinare. Este vorba despre Veaceslav Timotin, care administra 52 de companii aflate în proces...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/retragerea-autorizatiilor-a-doi-administratori-care-gestionau-peste-80-de-companii-inclusiv-cu-capital-de-stat-detalii-privind-incalcarile-care-ar-fi-fost-admise-de-administratorul-unei-compani/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/blog/editoriale/editorial-dar-de-ce-pe-vremea-lui-plahotniuc-acesti-curajosi-jurnalisti-de-investigatii-au-tacut/" target="_blank">Editorial/ „Dar de ce pe vremea lui Plahotniuc acești curajoși jurnaliști de investigații au tăcut?”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 26.06.2026</span>
+    </div>
+    <div class='summary'>Investigația ZdG despre șeful Moldatsa, CV-ul manipulativ și salariile „umflate” continuă să rămână în topul dezbaterilor publice, iar jurnaliștii, pe alocuri, sunt acuzați că au făcut aceste dezvăluiri servind interesul cuiva anume, care o fi dorind să ocupe postul de șef al Moldatsa sau o fi atacând guvernarea de la Chișinău pentru a zădărnici integrarea...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://www.zdg.md/blog/editoriale/editorial-dar-de-ce-pe-vremea-lui-plahotniuc-acesti-curajosi-jurnalisti-de-investigatii-au-tacut/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/live-sedinta-parlamentului-adoptat-r-moldova-va-avea-stocuri-de-urgenta-de-produse-petroliere/" target="_blank">LIVE/ Ședința Parlamentului. Adoptat: R. Moldova va avea stocuri de urgență de produse petroliere</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 26.06.2026</span>
+    </div>
+    <div class='summary'>Parlamentul se întrunește vineri, 26 iunie, în ședință plenară. Pe ordinea de zi au fost incluse peste 17 subiecte, inclusiv audierea Raportul cu privire la activitatea Comisiei Naționale a Pieței Financiare pentru anul 2025. Legislativul urmează să examineze și proiectul privind securitatea aprovizionării cu produse petroliere. UPDATE 12:22 Proiectul a fost aprobat de 56 de deputați....</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/live-sedinta-parlamentului-adoptat-r-moldova-va-avea-stocuri-de-urgenta-de-produse-petroliere/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/reporter-de-iasi-filiera-psd-ion-ceban-sotia-primarului-general-este-gazduita-in-acte-de-un-psd-ist-din-iasi/" target="_blank">Reporter de Iași/ Filiera PSD-Ion Ceban: soția primarului general este găzduită, în acte, de un PSD-ist din Iași</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 26.06.2026</span>
+    </div>
+    <div class='summary'>Soția primarului general Ion Ceban, Tatiana, are domiciliul în Iași, pe strada Iarmaroc, scrie Reporter de Iași. Acolo funcționează Centrul Medical Sf. Nicolae, avându-i ca asociați și administratori pe soții Claudiu și Doina Sauciuc. Potrivit publicației, Claudiu Sauciuc apare ca membru în două Consilii de Administrație la societățile Primăriei și s-a reactivat în ultima vreme...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/reporter-de-iasi-filiera-psd-ion-ceban-sotia-primarului-general-este-gazduita-in-acte-de-un-psd-ist-din-iasi/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/afaceristi-implicati-intr-o-schema-de-livrare-a-bunurilor-cu-dubla-utilizare-catre-rusia-anihilata-de-sis-si-pccocs" target="_blank">Afaceriști implicați într-o schemă de livrare a bunurilor cu dublă utilizare către Rusia, anihilată de SIS și PCCOCS</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/afaceristi-implicati-intr-o-schema-de-livrare-a-bunurilor-cu-dubla-utilizare-catre-rusia-anihilata-de-sis-si-pccocs" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🏛️ Politică & Putere (5)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/politic/tv8-o-ruda-din-familia-extinsa-a-maiei-sandu-ar-fi-facut-tranzactii-cu-un-om-de-afaceri-sanctionat-reactia-presedintei/" target="_blank">TV8/ O rudă din familia extinsă a Maiei Sandu ar fi făcut tranzacții cu un om de afaceri sancționat. Reacția președintei</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 26.06.2026</span>
+    </div>
+    <div class='summary'>Șeful Zonei Antreprenoriatului Liber „Expo-Business-Chișinău”, Constantin Batin, soțul Tatianei Batin, șefa de cabinet a președintelui Parlamentului, Igor Grosu, și verișoară a președintei Maia Sandu, a făcut afaceri cu omul de afaceri leton Marks Blats, aflat sub sancțiuni internaționale. Cu câteva săptămâni înainte de a fi numit în funcție, Batin a făcut schimb de companii cu...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/politic/tv8-o-ruda-din-familia-extinsa-a-maiei-sandu-ar-fi-facut-tranzactii-cu-un-om-de-afaceri-sanctionat-reactia-presedintei/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/retragerea-autorizatiilor-a-doi-administratori-care-gestionau-peste-80-de-companii-inclusiv-cu-capital-de-stat-detalii-privind-incalcarile-care-ar-fi-fost-admise-de-administratorul-unei-compani/" target="_blank">Retragerea autorizațiilor a doi administratori care gestionau peste 80 de companii, inclusiv cu capital de stat. Detalii privind încălcările care ar fi fost admise de administratorul unei companii care s-a aflat aproape 15 ani în insolvabilitate</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 26.06.2026</span>
+    </div>
+    <div class='summary'>Pentru prima dată în activitatea sa de circa zece ani, Comisia de autorizare și disciplină a administratorilor autorizați (CADAA) a propus retragerea autorizației a doi administratori – cea mai severă formă de sancțiune prevăzută de lege, după ce a constatat abateri disciplinare. Este vorba despre Veaceslav Timotin, care administra 52 de companii aflate în proces...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/retragerea-autorizatiilor-a-doi-administratori-care-gestionau-peste-80-de-companii-inclusiv-cu-capital-de-stat-detalii-privind-incalcarile-care-ar-fi-fost-admise-de-administratorul-unei-compani/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/blog/editoriale/editorial-dar-de-ce-pe-vremea-lui-plahotniuc-acesti-curajosi-jurnalisti-de-investigatii-au-tacut/" target="_blank">Editorial/ „Dar de ce pe vremea lui Plahotniuc acești curajoși jurnaliști de investigații au tăcut?”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 26.06.2026</span>
+    </div>
+    <div class='summary'>Investigația ZdG despre șeful Moldatsa, CV-ul manipulativ și salariile „umflate” continuă să rămână în topul dezbaterilor publice, iar jurnaliștii, pe alocuri, sunt acuzați că au făcut aceste dezvăluiri servind interesul cuiva anume, care o fi dorind să ocupe postul de șef al Moldatsa sau o fi atacând guvernarea de la Chișinău pentru a zădărnici integrarea...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://www.zdg.md/blog/editoriale/editorial-dar-de-ce-pe-vremea-lui-plahotniuc-acesti-curajosi-jurnalisti-de-investigatii-au-tacut/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/live-sedinta-parlamentului-adoptat-r-moldova-va-avea-stocuri-de-urgenta-de-produse-petroliere/" target="_blank">LIVE/ Ședința Parlamentului. Adoptat: R. Moldova va avea stocuri de urgență de produse petroliere</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 26.06.2026</span>
+    </div>
+    <div class='summary'>Parlamentul se întrunește vineri, 26 iunie, în ședință plenară. Pe ordinea de zi au fost incluse peste 17 subiecte, inclusiv audierea Raportul cu privire la activitatea Comisiei Naționale a Pieței Financiare pentru anul 2025. Legislativul urmează să examineze și proiectul privind securitatea aprovizionării cu produse petroliere. UPDATE 12:22 Proiectul a fost aprobat de 56 de deputați....</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/live-sedinta-parlamentului-adoptat-r-moldova-va-avea-stocuri-de-urgenta-de-produse-petroliere/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/domeniul-de-importanta-pentru-securitatea-statului-in-care-voia-sa-investeasca-fly-one" target="_blank">Domeniul de importanță pentru securitatea statului în care voia să investească Fly One</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/domeniul-de-importanta-pentru-securitatea-statului-in-care-voia-sa-investeasca-fly-one" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📰 Media & Libertatea Presei (3)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/blog/editoriale/editorial-dar-de-ce-pe-vremea-lui-plahotniuc-acesti-curajosi-jurnalisti-de-investigatii-au-tacut/" target="_blank">Editorial/ „Dar de ce pe vremea lui Plahotniuc acești curajoși jurnaliști de investigații au tăcut?”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 26.06.2026</span>
+    </div>
+    <div class='summary'>Investigația ZdG despre șeful Moldatsa, CV-ul manipulativ și salariile „umflate” continuă să rămână în topul dezbaterilor publice, iar jurnaliștii, pe alocuri, sunt acuzați că au făcut aceste dezvăluiri servind interesul cuiva anume, care o fi dorind să ocupe postul de șef al Moldatsa sau o fi atacând guvernarea de la Chișinău pentru a zădărnici integrarea...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://www.zdg.md/blog/editoriale/editorial-dar-de-ce-pe-vremea-lui-plahotniuc-acesti-curajosi-jurnalisti-de-investigatii-au-tacut/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/reporter-de-iasi-filiera-psd-ion-ceban-sotia-primarului-general-este-gazduita-in-acte-de-un-psd-ist-din-iasi/" target="_blank">Reporter de Iași/ Filiera PSD-Ion Ceban: soția primarului general este găzduită, în acte, de un PSD-ist din Iași</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 26.06.2026</span>
+    </div>
+    <div class='summary'>Soția primarului general Ion Ceban, Tatiana, are domiciliul în Iași, pe strada Iarmaroc, scrie Reporter de Iași. Acolo funcționează Centrul Medical Sf. Nicolae, avându-i ca asociați și administratori pe soții Claudiu și Doina Sauciuc. Potrivit publicației, Claudiu Sauciuc apare ca membru în două Consilii de Administrație la societățile Primăriei și s-a reactivat în ultima vreme...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/reporter-de-iasi-filiera-psd-ion-ceban-sotia-primarului-general-este-gazduita-in-acte-de-un-psd-ist-din-iasi/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🔐 Securitate & Intelligence (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/afaceristi-implicati-intr-o-schema-de-livrare-a-bunurilor-cu-dubla-utilizare-catre-rusia-anihilata-de-sis-si-pccocs" target="_blank">Afaceriști implicați într-o schemă de livrare a bunurilor cu dublă utilizare către Rusia, anihilată de SIS și PCCOCS</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/afaceristi-implicati-intr-o-schema-de-livrare-a-bunurilor-cu-dubla-utilizare-catre-rusia-anihilata-de-sis-si-pccocs" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">💼 Afaceri & Contracte Publice (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/pretul-apartamentelor-din-chisinau-si-a-reluat-cresterea-1" target="_blank">Creșterea salariilor a depășit majorarea preţurilor în imobiliare, în perioada 2017-2023</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/pretul-apartamentelor-din-chisinau-si-a-reluat-cresterea-1" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">👥 Social & Drepturile Omului (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/doi-minori-s-au-inecat-ieri-in-raioanele-drochia-si-nisporeni-igsu-indeamna-la-responsabilitate-maxima-in-perioada-estivala/" target="_blank">Doi minori s-au înecat ieri în raioanele Drochia și Nisporeni. IGSU îndeamnă la responsabilitate maximă în perioada estivală</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 26.06.2026</span>
+    </div>
+    <div class='summary'>Doi minori și-au pierdut viața în bazinele acvatice din țară, în seara zilei de 25 iunie 2026. În acest context, Inspectoratul General pentru Situații de Urgență (IGSU) reamintește că scăldatul minorilor fără supravegherea unui adult este strict interzis și reprezintă un risc major pentru viață. Primul caz s-a produs în iazul din apropierea satului Ochiul...</div>
+    <div class='cat-tags'><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/doi-minori-s-au-inecat-ieri-in-raioanele-drochia-si-nisporeni-igsu-indeamna-la-responsabilitate-maxima-in-perioada-estivala/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📌 Alte articole (7)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/v-blijaishie-gody-servis-budet-besplatnym-zachem-blablacar-prihodit-v-moldovu-intervyu-nm" target="_blank">«В ближайшие годы сервис будет бесплатным». Зачем BlaBlaCar приходит в Молдову. Интервью NM</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>DUOMO. Когда качество — не просто слово, это обязательство</div>
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/v-blijaishie-gody-servis-budet-besplatnym-zachem-blablacar-prihodit-v-moldovu-intervyu-nm" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/glava-kabineta-grosu-podala-v-otstavku-posle-rassledovaniya-o-biznese-muja-ona-toje-prihoditsya-sandu-kuzinoi" target="_blank">Глава кабинета Гросу подала в отставку после расследования о бизнесе мужа? Она тоже приходится Санду кузиной</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/glava-kabineta-grosu-podala-v-otstavku-posle-rassledovaniya-o-biznese-muja-ona-toje-prihoditsya-sandu-kuzinoi" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/sandu-o-sluhah-pro-post-premera-i-preemnikov-u-menya-eshe-dva-s-polovinoi-goda-mandata-i-mnojestvo-del" target="_blank">Санду о слухах про пост премьера и «преемников»: У меня еще два с половиной года мандата и множество дел</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/sandu-o-sluhah-pro-post-premera-i-preemnikov-u-menya-eshe-dva-s-polovinoi-goda-mandata-i-mnojestvo-del" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/posolstvo-rf-v-kishineve-obvinilo-moldavskie-vlasti-v-blokirovanii-dippochty" target="_blank">Посольство РФ в Кишиневе пожаловалось на блокировку диппочты. Что на это ответил МИД</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/posolstvo-rf-v-kishineve-obvinilo-moldavskie-vlasti-v-blokirovanii-dippochty" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/remote-hibrid-sau-oficiu-ce-format-de-munca-prefera-candidatii-experiment-rabotamd" target="_blank">Remote, hibrid sau oficiu: ce format de muncă preferă candidații? Experiment Rabota.md</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/remote-hibrid-sau-oficiu-ce-format-de-munca-prefera-candidatii-experiment-rabotamd" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/necesarul-de-lichiditate-al-bancilor-din-moldova-este-asigurat-in-proportie-de-300-arata-ultimele-testari-la-stres" target="_blank">Necesarul de lichiditate al băncilor din Moldova este asigurat în proporţie de 300%, arată ultimele testări la stres</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/necesarul-de-lichiditate-al-bancilor-din-moldova-este-asigurat-in-proportie-de-300-arata-ultimele-testari-la-stres" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/udalenka-gibrid-ili-ofis-kakoi-format-raboty-predpocitaiut-kandidaty-eksperiment-rabotamd" target="_blank">Удалёнка, гибрид или офис: какой формат работы предпочитают кандидаты? Эксперимент Rabota.md</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/udalenka-gibrid-ili-ofis-kakoi-format-raboty-predpocitaiut-kandidaty-eksperiment-rabotamd" target="_blank">Citește articolul →</a>
+  </div>
+</div>
+<div class="footer">
+  Raport generat automat zilnic &nbsp;·&nbsp; ARBI – Monitorizare Jurnalism Investigativ Moldova
+</div>
+</body>
+</html>
