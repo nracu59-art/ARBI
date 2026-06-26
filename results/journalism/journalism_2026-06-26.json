@@ -1,0 +1,449 @@
+{
+  "date": "2026-06-26",
+  "generated_at": "2026-06-26T09:31:10Z",
+  "lookback_hours": 26,
+  "sources_checked": 8,
+  "sources_ok": 8,
+  "stats": {
+    "total": 22,
+    "investigative": 5,
+    "by_source": {
+      "zdg_md": {
+        "name": "Ziarul de Gardă",
+        "count": 10
+      },
+      "newsmaker_md": {
+        "name": "Newsmaker.md",
+        "count": 4
+      },
+      "mold_street": {
+        "name": "Mold-Street",
+        "count": 7
+      },
+      "agora_md": {
+        "name": "Agora.md",
+        "count": 1
+      }
+    },
+    "by_category": {
+      "justitie": {
+        "label": "Justiție & Procurori",
+        "emoji": "⚖️",
+        "count": 10
+      },
+      "politica": {
+        "label": "Politică & Putere",
+        "emoji": "🏛️",
+        "count": 8
+      },
+      "media": {
+        "label": "Media & Libertatea Presei",
+        "emoji": "📰",
+        "count": 3
+      },
+      "afaceri": {
+        "label": "Afaceri & Contracte Publice",
+        "emoji": "💼",
+        "count": 1
+      },
+      "securitate": {
+        "label": "Securitate & Intelligence",
+        "emoji": "🔐",
+        "count": 2
+      },
+      "social": {
+        "label": "Social & Drepturile Omului",
+        "emoji": "👥",
+        "count": 1
+      }
+    }
+  },
+  "articles": [
+    {
+      "id": "fc4ecf85af2f",
+      "title": "Rolul lui Radu Marian în numirea lui Dumitru Vangheli la șefia MoldATSA. Maia Sandu: „A venit cu cea mai bună intenție”",
+      "url": "https://www.zdg.md/stiri/politic/rolul-lui-radu-marian-in-numirea-lui-dumitru-vangheli-la-sefia-moldatsa-maia-sandu-a-venit-cu-cea-mai-buna-intentie/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-26T08:35:46Z",
+      "published_date": "2026-06-26",
+      "summary": "CV-ul cu informații false al lui Dumitru Vangheli, demis de la șefia Întreprinderii de Stat „MoldATSA” după ancheta ZdG, a fost recomandat de deputatul PAS Radu Marian. Parlamentarul a recunoscut că l-a propus pentru această funcție, informație confirmată și de Maia Sandu la emisiunea În Profunzime de la Pro TV pe 25 iunie: „E un om care...",
+      "categories": [
+        "politica",
+        "justitie"
+      ],
+      "category_scores": {
+        "politica": 3,
+        "justitie": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 6
+    },
+    {
+      "id": "a975c6016e64",
+      "title": "Exporturi de 21 de milioane de lei către Rusia: SIS și PCCOCS au destructurat o schemă de livrare ilegală al mărfurilor cu dublă utilizare către companii afiliate complexului militar-rus",
+      "url": "https://www.zdg.md/stiri/exporturi-de-21-de-milioane-de-lei-catre-rusia-sis-si-pccocs-au-destructurat-o-schema-de-livrare-ilegala-al-marfurilor-cu-dubla-utilizare-catre-companii-afiliate-complexului-militar-rus/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-26T07:40:00Z",
+      "published_date": "2026-06-26",
+      "summary": "În baza informațiilor gestionate de către Serviciul de Informații și Securitate (SIS), sub conducerea procurorilor Procuratura pentru Combaterea Criminalității Organizate și Cauze Speciale (PCCOCS), a fost prevenită și anihilată o tentativă de scoatere a mărfurilor cu dublă utilizare către companii din Federația Rusă, supuse sancțiunilor internaționale și afiliate complexului militar-rus, a informat vineri, 26 iunie,...",
+      "categories": [
+        "justitie",
+        "securitate"
+      ],
+      "category_scores": {
+        "justitie": 3,
+        "securitate": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 6
+    },
+    {
+      "id": "d56878020958",
+      "title": "„Îmi este rușine de aceste insinuări”. Ion Ceban, reacție după investigația despre soția sa și presupusele legături cu un PSD-ist din Iași",
+      "url": "https://www.zdg.md/stiri/imi-este-rusine-de-aceste-insinuari-ion-ceban-reactie-dupa-investigatia-despre-sotia-sa-si-presupusele-legaturi-cu-un-psd-ist-din-iasi/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-26T09:22:16Z",
+      "published_date": "2026-06-26",
+      "summary": "Primarul capitalei Ion Ceban a venit cu o reacție după o investigație care a dezvăluit că soția sa Tatiana are domiciliul în Iași, într-o clădire unde funcționează un centru medical administrat de Claudiu Sauciuc, care s-a reactivat în ultima vreme ca membru al Partidului Social Democrat (PSD). Ceban afirmă că îi este „rușine” de aceste...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 4
+    },
+    {
+      "id": "cc93e33b5730",
+      "title": "Guvernul va împrumuta 150 de milioane de euro pentru Livada Moldovei",
+      "url": "https://mold-street.com/noutate/guvernul-va-imprumuta-150-de-milioane-de-euro-pentru-livada-moldovei",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 3
+    },
+    {
+      "id": "8051b2078ec5",
+      "title": "LIVE TEXT/ UE va limita accesul la protecția temporară pentru bărbații ucraineni de vârstă militară, la solicitarea Kievului. Război în Ucraina, ziua 1584",
+      "url": "https://www.zdg.md/stiri/stiri-externe/live-text-ue-va-limita-accesul-la-protectia-temporara-pentru-barbatii-ucraineni-de-varsta-militara-la-solicitarea-kievului-razboi-in-ucraina-ziua-1584/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-26T09:10:19Z",
+      "published_date": "2026-06-26",
+      "summary": "UPDATE 12:09 Uniunea Europeană a anunțat, pe 26 iunie, că va prelungi cu încă un an regimul de protecție temporară pentru cei aproximativ 4,4 milioane de ucraineni aflați pe teritoriul blocului comunitar. Totuși, la cererea autorităților de la Kiev, bărbații ucraineni de vârstă militară, cărora legislația ucraineană nu le permite să părăsească țara, nu vor...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 1,
+      "relevance_score": 2
+    },
+    {
+      "id": "275108b5b168",
+      "title": "TV8/ O rudă din familia extinsă a Maiei Sandu ar fi făcut tranzacții cu un om de afaceri sancționat. Reacția președintei",
+      "url": "https://www.zdg.md/stiri/politic/tv8-o-ruda-din-familia-extinsa-a-maiei-sandu-ar-fi-facut-tranzactii-cu-un-om-de-afaceri-sanctionat-reactia-presedintei/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-26T07:19:23Z",
+      "published_date": "2026-06-26",
+      "summary": "Șeful Zonei Antreprenoriatului Liber „Expo-Business-Chișinău”, Constantin Batin, soțul Tatianei Batin, șefa de cabinet a președintelui Parlamentului, Igor Grosu, și verișoară a președintei Maia Sandu, a făcut afaceri cu omul de afaceri leton Marks Blats, aflat sub sancțiuni internaționale. Cu câteva săptămâni înainte de a fi numit în funcție, Batin a făcut schimb de companii cu...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 2,
+        "politica": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 4
+    },
+    {
+      "id": "65466c9aeccb",
+      "title": "Retragerea autorizațiilor a doi administratori care gestionau peste 80 de companii, inclusiv cu capital de stat. Detalii privind încălcările care ar fi fost admise de administratorul unei companii care s-a aflat aproape 15 ani în insolvabilitate",
+      "url": "https://www.zdg.md/stiri/retragerea-autorizatiilor-a-doi-administratori-care-gestionau-peste-80-de-companii-inclusiv-cu-capital-de-stat-detalii-privind-incalcarile-care-ar-fi-fost-admise-de-administratorul-unei-compani/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-26T07:30:00Z",
+      "published_date": "2026-06-26",
+      "summary": "Pentru prima dată în activitatea sa de circa zece ani, Comisia de autorizare și disciplină a administratorilor autorizați (CADAA) a propus retragerea autorizației a doi administratori – cea mai severă formă de sancțiune prevăzută de lege, după ce a constatat abateri disciplinare. Este vorba despre Veaceslav Timotin, care administra 52 de companii aflate în proces...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 2,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "31c26af80547",
+      "title": "Editorial/ „Dar de ce pe vremea lui Plahotniuc acești curajoși jurnaliști de investigații au tăcut?”",
+      "url": "https://www.zdg.md/blog/editoriale/editorial-dar-de-ce-pe-vremea-lui-plahotniuc-acesti-curajosi-jurnalisti-de-investigatii-au-tacut/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-26T07:00:00Z",
+      "published_date": "2026-06-26",
+      "summary": "Investigația ZdG despre șeful Moldatsa, CV-ul manipulativ și salariile „umflate” continuă să rămână în topul dezbaterilor publice, iar jurnaliștii, pe alocuri, sunt acuzați că au făcut aceste dezvăluiri servind interesul cuiva anume, care o fi dorind să ocupe postul de șef al Moldatsa sau o fi atacând guvernarea de la Chișinău pentru a zădărnici integrarea...",
+      "categories": [
+        "justitie",
+        "politica",
+        "media"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1,
+        "media": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "983493903191",
+      "title": "LIVE/ Ședința Parlamentului. Adoptat: R. Moldova va avea stocuri de urgență de produse petroliere",
+      "url": "https://www.zdg.md/stiri/live-sedinta-parlamentului-adoptat-r-moldova-va-avea-stocuri-de-urgenta-de-produse-petroliere/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-26T09:27:00Z",
+      "published_date": "2026-06-26",
+      "summary": "Parlamentul se întrunește vineri, 26 iunie, în ședință plenară. Pe ordinea de zi au fost incluse peste 17 subiecte, inclusiv audierea Raportul cu privire la activitatea Comisiei Naționale a Pieței Financiare pentru anul 2025. Legislativul urmează să examineze și proiectul privind securitatea aprovizionării cu produse petroliere. UPDATE 12:22 Proiectul a fost aprobat de 56 de deputați....",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "c9c225683e9f",
+      "title": "Reporter de Iași/ Filiera PSD-Ion Ceban: soția primarului general este găzduită, în acte, de un PSD-ist din Iași",
+      "url": "https://www.zdg.md/stiri/reporter-de-iasi-filiera-psd-ion-ceban-sotia-primarului-general-este-gazduita-in-acte-de-un-psd-ist-din-iasi/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-26T08:09:04Z",
+      "published_date": "2026-06-26",
+      "summary": "Soția primarului general Ion Ceban, Tatiana, are domiciliul în Iași, pe strada Iarmaroc, scrie Reporter de Iași. Acolo funcționează Centrul Medical Sf. Nicolae, avându-i ca asociați și administratori pe soții Claudiu și Doina Sauciuc. Potrivit publicației, Claudiu Sauciuc apare ca membru în două Consilii de Administrație la societățile Primăriei și s-a reactivat în ultima vreme...",
+      "categories": [
+        "justitie",
+        "media"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "media": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "721a706832ec",
+      "title": "Afaceriști implicați într-o schemă de livrare a bunurilor cu dublă utilizare către Rusia, anihilată de SIS și PCCOCS",
+      "url": "https://mold-street.com/noutate/afaceristi-implicati-intr-o-schema-de-livrare-a-bunurilor-cu-dubla-utilizare-catre-rusia-anihilata-de-sis-si-pccocs",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "justitie",
+        "securitate"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "securitate": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "375cd29e4913",
+      "title": "Comunicăm. Producem. Plasăm.Crești împreună cu AGORA",
+      "url": "https://agora.md/media-kit",
+      "source": "Agora.md",
+      "source_key": "agora_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.",
+      "categories": [
+        "justitie",
+        "media"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "media": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "d493c4de6061",
+      "title": "Doi minori s-au înecat ieri în raioanele Drochia și Nisporeni. IGSU îndeamnă la responsabilitate maximă în perioada estivală",
+      "url": "https://www.zdg.md/stiri/doi-minori-s-au-inecat-ieri-in-raioanele-drochia-si-nisporeni-igsu-indeamna-la-responsabilitate-maxima-in-perioada-estivala/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-26T08:46:01Z",
+      "published_date": "2026-06-26",
+      "summary": "Doi minori și-au pierdut viața în bazinele acvatice din țară, în seara zilei de 25 iunie 2026. În acest context, Inspectoratul General pentru Situații de Urgență (IGSU) reamintește că scăldatul minorilor fără supravegherea unui adult este strict interzis și reprezintă un risc major pentru viață. Primul caz s-a produs în iazul din apropierea satului Ochiul...",
+      "categories": [
+        "social"
+      ],
+      "category_scores": {
+        "social": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "040228a32660",
+      "title": "Creșterea salariilor a depășit majorarea preţurilor în imobiliare, în perioada 2017-2023",
+      "url": "https://mold-street.com/noutate/pretul-apartamentelor-din-chisinau-si-a-reluat-cresterea-1",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "afaceri"
+      ],
+      "category_scores": {
+        "afaceri": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "4e18edb402da",
+      "title": "Domeniul de importanță pentru securitatea statului în care voia să investească Fly One",
+      "url": "https://mold-street.com/noutate/domeniul-de-importanta-pentru-securitatea-statului-in-care-voia-sa-investeasca-fly-one",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "b137751ef7b1",
+      "title": "«В ближайшие годы сервис будет бесплатным». Зачем BlaBlaCar приходит в Молдову. Интервью NM",
+      "url": "https://newsmaker.md/ru/v-blijaishie-gody-servis-budet-besplatnym-zachem-blablacar-prihodit-v-moldovu-intervyu-nm",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "DUOMO. Когда качество — не просто слово, это обязательство",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "ef4a93796966",
+      "title": "Глава кабинета Гросу подала в отставку после расследования о бизнесе мужа? Она тоже приходится Санду кузиной",
+      "url": "https://newsmaker.md/ru/glava-kabineta-grosu-podala-v-otstavku-posle-rassledovaniya-o-biznese-muja-ona-toje-prihoditsya-sandu-kuzinoi",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "f3048310b490",
+      "title": "Санду о слухах про пост премьера и «преемников»: У меня еще два с половиной года мандата и множество дел",
+      "url": "https://newsmaker.md/ru/sandu-o-sluhah-pro-post-premera-i-preemnikov-u-menya-eshe-dva-s-polovinoi-goda-mandata-i-mnojestvo-del",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "4840cc4bdf20",
+      "title": "Посольство РФ в Кишиневе пожаловалось на блокировку диппочты. Что на это ответил МИД",
+      "url": "https://newsmaker.md/ru/posolstvo-rf-v-kishineve-obvinilo-moldavskie-vlasti-v-blokirovanii-dippochty",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "7c8230fe341b",
+      "title": "Remote, hibrid sau oficiu: ce format de muncă preferă candidații? Experiment Rabota.md",
+      "url": "https://mold-street.com/noutate/remote-hibrid-sau-oficiu-ce-format-de-munca-prefera-candidatii-experiment-rabotamd",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "622edd616eaa",
+      "title": "Necesarul de lichiditate al băncilor din Moldova este asigurat în proporţie de 300%, arată ultimele testări la stres",
+      "url": "https://mold-street.com/noutate/necesarul-de-lichiditate-al-bancilor-din-moldova-este-asigurat-in-proportie-de-300-arata-ultimele-testari-la-stres",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "a4c7cde7cd47",
+      "title": "Удалёнка, гибрид или офис: какой формат работы предпочитают кандидаты? Эксперимент Rabota.md",
+      "url": "https://mold-street.com/noutate/udalenka-gibrid-ili-ofis-kakoi-format-raboty-predpocitaiut-kandidaty-eksperiment-rabotamd",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    }
+  ]
+}
