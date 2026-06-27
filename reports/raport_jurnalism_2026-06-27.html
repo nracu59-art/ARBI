@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monitorizare Jurnalism Investigativ Moldova – 27.06.2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; color: #2c3e50; }
+  .header { background: #1b4332; color: #fff; padding: 28px 40px; }
+  .header h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: 0.5px; }
+  .header .subtitle { margin-top: 6px; font-size: 0.9rem; opacity: 0.85; }
+  .stats-bar { background: #2d6a4f; color: #fff; padding: 16px 40px;
+                display: flex; gap: 36px; flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; }
+  .stat .val { font-size: 1.8rem; font-weight: 700; }
+  .stat .lbl { font-size: 0.72rem; opacity: 0.82; text-transform: uppercase; letter-spacing: 0.8px; }
+  .cat-bar { background: #40916c; color: #fff; padding: 12px 40px;
+              display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .cat-chip { background: rgba(255,255,255,0.18); border-radius: 20px;
+               padding: 4px 14px; font-size: 0.78rem; font-weight: 600;
+               white-space: nowrap; }
+  .container { max-width: 1040px; margin: 30px auto; padding: 0 20px 40px; }
+  .section-title { font-size: 0.95rem; font-weight: 700; color: #1b4332;
+                    text-transform: uppercase; letter-spacing: 1px;
+                    margin: 28px 0 14px; border-bottom: 2px solid #1b4332;
+                    padding-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08);
+           padding: 18px 22px; margin-bottom: 14px; border-left: 5px solid #1b4332;
+           transition: box-shadow .15s; }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.13); }
+  .card.investigativ { border-left-color: #d62828; }
+  .card-title { font-size: 1rem; font-weight: 700; color: #1b4332; margin-bottom: 8px; }
+  .card-title a { color: inherit; text-decoration: none; }
+  .card-title a:hover { text-decoration: underline; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;
+           font-size: 0.8rem; color: #555; }
+  .badge { display: inline-block; font-size: 0.68rem; font-weight: 700;
+            padding: 2px 8px; border-radius: 12px; color: #fff;
+            margin-right: 4px; vertical-align: middle; }
+  .badge-inv { background: #d62828; }
+  .source-tag { background: #e8f4ec; color: #1b4332; border-radius: 4px;
+                 padding: 1px 8px; font-size: 0.75rem; font-weight: 600; }
+  .summary { font-size: 0.85rem; color: #444; line-height: 1.55; margin-top: 6px; }
+  .cat-tags { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .cat-tag { font-size: 0.72rem; padding: 2px 10px; border-radius: 10px;
+              font-weight: 600; background: #e8f4ec; color: #1b4332; }
+  .link-btn { display: inline-block; margin-top: 10px; padding: 5px 14px;
+               background: #1b4332; color: #fff; border-radius: 5px;
+               font-size: 0.78rem; text-decoration: none; font-weight: 600; }
+  .link-btn:hover { background: #2d6a4f; }
+  .empty-box { background: #fff; border-radius: 8px; padding: 30px 24px;
+                text-align: center; color: #7f8c8d; font-size: 0.95rem;
+                box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .source-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+  .source-box { background: #fff; border-radius: 8px; padding: 12px 18px;
+                 box-shadow: 0 2px 6px rgba(0,0,0,.07); min-width: 140px;
+                 border-top: 3px solid #1b4332; }
+  .source-box .sname { font-size: 0.78rem; font-weight: 700; color: #1b4332; }
+  .source-box .scount { font-size: 1.4rem; font-weight: 700; color: #2d6a4f; margin-top: 2px; }
+  .footer { text-align: center; font-size: 0.75rem; color: #999;
+             margin-top: 40px; padding-bottom: 20px; }
+  @media (max-width: 600px) {
+    .header, .stats-bar, .cat-bar { padding: 18px 16px; }
+    .stats-bar { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🔍 Monitorizare Jurnalism Investigativ – Moldova</h1>
+  <div class="subtitle">
+    Surse monitorizate: 8 &nbsp;|&nbsp;
+    Ultimele 26 ore &nbsp;|&nbsp;
+    Generat: 2026-06-27 08:39 UTC
+  </div>
+</div>
+<div class="stats-bar">
+  <div class="stat"><span class="val">23</span><span class="lbl">Articole noi</span></div>
+  <div class="stat"><span class="val">4</span><span class="lbl">Investigative</span></div>
+  <div class="stat"><span class="val">8</span><span class="lbl">Surse active</span></div>
+  <div class="stat"><span class="val">27.06.2026</span><span class="lbl">Data raportului</span></div>
+</div>
+<div class="cat-bar">
+  <span style="font-size:.8rem;opacity:.85;margin-right:4px">Categorii:</span>
+  <span class="cat-chip">⚖️ Justiție & Procurori (11)</span><span class="cat-chip">🏛️ Politică & Putere (3)</span><span class="cat-chip">🔐 Securitate & Intelligence (3)</span><span class="cat-chip">💰 Corupție (1)</span><span class="cat-chip">📰 Media & Libertatea Presei (1)</span>
+</div>
+<div class="container">
+<div class="section-title">📊 Articole pe surse</div><div class="source-grid"><div class="source-box"><div class="sname">Ziarul de Gardă</div><div class="scount">10</div></div><div class="source-box"><div class="sname">Mold-Street</div><div class="scount">7</div></div><div class="source-box"><div class="sname">Newsmaker.md</div><div class="scount">4</div></div><div class="source-box"><div class="sname">RISE Moldova</div><div class="scount">1</div></div><div class="source-box"><div class="sname">Agora.md</div><div class="scount">1</div></div></div>
+<div class="section-title">🔍 Articole Investigative (4)</div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://www.zdg.md/video/video-reactii-dupa-scandalul-de-la-moldatsa-intalnirea-lui-balan-cu-spioni-kgb-din-belarus-spion-rus-retinut-in-r-moldova-detalii-noi-despre-dosarul-expulzarii-profesorilor-turci-saptamana-d/" target="_blank">VIDEO/ Reacții după scandalul de la MoldATSA | Întâlnirea lui Balan cu ofițeri KGB din Belarus | Spion rus reținut în R. Moldova | Detalii noi despre dosarul expulzării profesorilor turci | SĂPTĂMÂNA DE GARDĂ</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 27.06.2026</span>
+    </div>
+    <div class='summary'>Un spion rus a fost reținut la intrare în R. Moldova. Ce acuzații i se aduc și care era adevărata lui destinație, camuflată sub pretextul unor vizite la mănăstiri, aflați în această ediție a Săptămânii de Gardă. Vă oferim și detalii de la întâlnirile fostului director adjunct al Serviciului de Informații și Securitate (SIS), Alexandru...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://www.zdg.md/video/video-reactii-dupa-scandalul-de-la-moldatsa-intalnirea-lui-balan-cu-spioni-kgb-din-belarus-spion-rus-retinut-in-r-moldova-detalii-noi-despre-dosarul-expulzarii-profesorilor-turci-saptamana-d/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/video-un-cetatean-al-r-moldova-documentat-pentru-implicare-in-organizarea-migratiei-ilegale-a-cetatenilor-ucraineni/" target="_blank">VIDEO/ Un cetățean al R. Moldova, documentat pentru implicare în organizarea migrației ilegale a cetățenilor ucraineni</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 27.06.2026</span>
+    </div>
+    <div class='summary'>Activitatea unei grupări criminale organizate specializate în organizarea migrației ilegale a cetățenilor ucraineni a fost documentată de ofițerii IGPF din nordul țării, în cooperare cu ofițerii Serviciului Grăniceresc de Stat al Ucrainei, informează Poliția de Frontieră. În cadrul măsurilor speciale de investigație și al activităților operative întreprinse, a fost obținută informația privind impl…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/video-un-cetatean-al-r-moldova-documentat-pentru-implicare-in-organizarea-migratiei-ilegale-a-cetatenilor-ucraineni/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://www.rise.md/maia-sandu-despre-salariul-verisoarei-arata-a-bani-nemeritati/" target="_blank">Maia Sandu, despre salariul verişoarei: „Arată a bani nemeritați”</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 RISE Moldova</span>
+      <span>📅 26.06.2026</span>
+    </div>
+    <div class='summary'>În prima sa reacţie după scandalul legat de remunerarea verişoarei sale la MoldATSA, lucru dezvăluit de RISE Moldova, […] The post Maia Sandu, despre salariul verişoarei: „Arată a bani nemeritați” appeared first on Rise Moldova .</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.rise.md/maia-sandu-despre-salariul-verisoarei-arata-a-bani-nemeritati/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/zboruri-charter-contractate-de-moldatsa-raspunsul-institutiei-la-solicitarea-zdg/" target="_blank">Zboruri charter contractate de MOLDATSA? Răspunsul instituției la solicitarea ZdG</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 27.06.2026</span>
+    </div>
+    <div class='summary'>„În perioada 1 ianuarie 2022-prezent, Î.S. MOLDATSA nu a contractat, direct sau indirect, servicii de transport aerian charter, pentru angajați, conducere, membri ai organelor de administrare sau alte persoane”, se arată în răspunsul oferit de MOLDATSA la solicitarea ZdG. După publicarea investigației ZdG Zborul spre șefia Moldatsa, pe aripile unui CV cu informații false: „misiunile...</div>
+    
+    <a class="link-btn" href="https://www.zdg.md/stiri/zboruri-charter-contractate-de-moldatsa-raspunsul-institutiei-la-solicitarea-zdg/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">⚖️ Justiție & Procurori (8)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-externe/live-text-zelenski-ucraina-este-pregatita-pentru-discutii-dar-rusia-trebuie-sa-faca-primul-pas-catre-pace-razboi-in-ucraina-ziua-1584/" target="_blank">LIVE TEXT/ Zelenski: Ucraina este pregătită pentru discuții, dar Rusia trebuie să facă primul pas către pace. Război în Ucraina, ziua 1584</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 26.06.2026</span>
+    </div>
+    <div class='summary'>UPDATE 22:15 Ucraina și-a reiterat disponibilitatea pentru potențiale întâlniri la nivel de conducere și discuții privind încheierea războiului, dar Rusia trebuie să facă și ea un pas către pace. Președintele Volodimir Zelenski a făcut declarația în discursul său video de seară, potrivit Ukrinform. „Războinicii ucraineni dovedesc în fiecare zi puterea preciziei Ucrainei. Sancțiunile pe termen...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-externe/live-text-zelenski-ucraina-este-pregatita-pentru-discutii-dar-rusia-trebuie-sa-faca-primul-pas-catre-pace-razboi-in-ucraina-ziua-1584/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/europa-in-alerta-maxima-temperaturi-record-au-fost-inregistrate-in-franta-si-germania/" target="_blank">Europa în alertă maximă: Temperaturi record au fost înregistrate în Franța și Germania</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 26.06.2026</span>
+    </div>
+    <div class='summary'>Autoritățile de sănătate din Europa au fost în alertă maximă vineri, 26 iunie, pe măsură ce un val de căldură maximă se răspândea pe continent, ducând la interdicții privind alcoolul și anularea adunărilor în masă în Franța, topirea drumurilor în Germania și deformarea liniilor de cale ferată în Suedia, transmite Reuters. Oamenii de știință au...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/europa-in-alerta-maxima-temperaturi-record-au-fost-inregistrate-in-franta-si-germania/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/afaceristi-implicati-intr-o-schema-de-livrare-a-bunurilor-cu-dubla-utilizare-catre-rusia-anihilata-de-sis-si-pccocs" target="_blank">Afaceriști implicați într-o schemă de livrare a bunurilor cu dublă utilizare către Rusia, anihilați de SIS și PCCOCS</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/afaceristi-implicati-intr-o-schema-de-livrare-a-bunurilor-cu-dubla-utilizare-catre-rusia-anihilata-de-sis-si-pccocs" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/meteorologii-anunta-maxime-de-pana-la-34c-sambata-27-iunie/" target="_blank">Meteorologii anunță maxime de până la 34°C sâmbătă, 27 iunie</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 27.06.2026</span>
+    </div>
+    <div class='summary'>Sâmbătă, 27 iunie, Autoritatea de Meteorologie și Monitoring de Mediu (AMM) anunță temperaturi ridicate. Maximele în termometre vor ajunge până la +34 de grade Celsius. În sudul țării, se așteaptă maxime de până la 34°C ziua. În regiunea de centru, valorile termice vor urca până la 32°C pe parcursul zilei. În nord, temperaturile vor fi...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/meteorologii-anunta-maxime-de-pana-la-34c-sambata-27-iunie/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/benzina-si-motorina-tot-mai-ieftine-cat-vor-costa-carburantii-in-weekend/" target="_blank">Benzina și motorina, tot mai ieftine: Cât vor costa carburanții în weekend?</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 27.06.2026</span>
+    </div>
+    <div class='summary'>Prețurile de comercializare cu amănuntul ale produselor petroliere principale au continuat să se reducă și pe parcursul acestei săptămânii, informează vineri, 26 iunie, Agenția Națională pentru Reglementare în Energetică (ANRE). În aceste condiții, pentru perioada 27 iunie – 29 iunie, ANRE a stabilit următoarele prețuri maximale de comercializare cu amănuntul pentru principale produse petroliere d…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/benzina-si-motorina-tot-mai-ieftine-cat-vor-costa-carburantii-in-weekend/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/peste-doua-mii-de-marinari-si-115-nave-au-iesit-din-golful-persic-prin-stramtoarea-ormuz/" target="_blank">Peste două mii de marinari și 115 nave au ieșit din Golful Persic prin Strâmtoarea Ormuz</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 26.06.2026</span>
+    </div>
+    <div class='summary'>Planul de evacuare elaborat de Organizația Maritimă Internațională (OMI) a permis ca 115 nave și circa 2500 de marinari să părăsească Golful Persic prin Strâmtoarea Ormuz începând din 23 iunie, conform unui bilanț publicat vineri, 26 iunie, de această organizație din cadrul ONU responsabilă cu securitatea navigației maritime, relatează AFP, citat de Agerpres. Planul OMI...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/peste-doua-mii-de-marinari-si-115-nave-au-iesit-din-golful-persic-prin-stramtoarea-ormuz/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/pretul-apartamentelor-din-chisinau-si-a-reluat-cresterea-1" target="_blank">Preţul apartamentelor din Moldova şi-a reluat creşterea</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/pretul-apartamentelor-din-chisinau-si-a-reluat-cresterea-1" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🏛️ Politică & Putere (2)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-externe/live-text-zelenski-ucraina-este-pregatita-pentru-discutii-dar-rusia-trebuie-sa-faca-primul-pas-catre-pace-razboi-in-ucraina-ziua-1584/" target="_blank">LIVE TEXT/ Zelenski: Ucraina este pregătită pentru discuții, dar Rusia trebuie să facă primul pas către pace. Război în Ucraina, ziua 1584</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 26.06.2026</span>
+    </div>
+    <div class='summary'>UPDATE 22:15 Ucraina și-a reiterat disponibilitatea pentru potențiale întâlniri la nivel de conducere și discuții privind încheierea războiului, dar Rusia trebuie să facă și ea un pas către pace. Președintele Volodimir Zelenski a făcut declarația în discursul său video de seară, potrivit Ukrinform. „Războinicii ucraineni dovedesc în fiecare zi puterea preciziei Ucrainei. Sancțiunile pe termen...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-externe/live-text-zelenski-ucraina-este-pregatita-pentru-discutii-dar-rusia-trebuie-sa-faca-primul-pas-catre-pace-razboi-in-ucraina-ziua-1584/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/live-text-rachetele-flamingo-ale-ucrainei-au-lovit-cu-succes-o-baza-militara-importanta-a-rusiei-din-volgograd-a-declarat-zelenski-razboi-in-ucraina-ziua-1584/" target="_blank">LIVE TEXT/ Rachetele Flamingo ale Ucrainei au „lovit cu succes” o bază militară importantă a Rusiei din Volgograd, a declarat Zelenski. Război în Ucraina, ziua 1584</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 27.06.2026</span>
+    </div>
+    <div class='summary'>UPDATE 11:05 Rachetele Flamingo FP-5 cu rază lungă de acțiune, fabricate în Ucraina, au „lovit cu succes” o instalație militar-industrială rusească cheie din orașul Volgograd în noaptea de 27 iunie, a declarat președintele Volodimir Zelenski, potrivit Kyiv Independent. Atacul a vizat Centrul Federal de Cercetare și Producție din Rusia, Titan-Barrikady, o importantă întreprindere de apărare...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/live-text-rachetele-flamingo-ale-ucrainei-au-lovit-cu-succes-o-baza-militara-importanta-a-rusiei-din-volgograd-a-declarat-zelenski-razboi-in-ucraina-ziua-1584/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🔐 Securitate & Intelligence (2)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/afaceristi-implicati-intr-o-schema-de-livrare-a-bunurilor-cu-dubla-utilizare-catre-rusia-anihilata-de-sis-si-pccocs" target="_blank">Afaceriști implicați într-o schemă de livrare a bunurilor cu dublă utilizare către Rusia, anihilați de SIS și PCCOCS</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/afaceristi-implicati-intr-o-schema-de-livrare-a-bunurilor-cu-dubla-utilizare-catre-rusia-anihilata-de-sis-si-pccocs" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/de-la-proiect-pilot-la-instrument-national-midia-isi-consolideaza-rolul-in-ecosistemul-digital-al-republicii-moldova" target="_blank">De la proiect pilot la instrument național: MIDIA își consolidează rolul în ecosistemul digital al Republicii Moldova</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/de-la-proiect-pilot-la-instrument-national-midia-isi-consolideaza-rolul-in-ecosistemul-digital-al-republicii-moldova" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">💰 Corupție (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/a-fost-semnat-contractul-pentru-constructia-lea-400-kv-balti-suceava-numita-linia-rezilientei" target="_blank">A fost semnat contractul pentru construcția LEA 400 kV Bălți–Suceava, numită Linia rezilienței</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">💰 Corupție</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/a-fost-semnat-contractul-pentru-constructia-lea-400-kv-balti-suceava-numita-linia-rezilientei" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📰 Media & Libertatea Presei (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📌 Alte articole (8)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/reporter-special/oameni/oameni-simion-duja-artistul-clarinetului-format-in-detentia-sovietica/" target="_blank">Oameni/ Simion Duja – artistul clarinetului format în detenția sovietică</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 27.06.2026</span>
+    </div>
+    <div class='summary'>Discipolii săi ar forma mai multe orchestre de instrumente aerofone în R. Moldova și în România. Sunt foarte mulți și foarte buni, muzicanți neîntrecuți în măiestria lor interpretativă. Școala sa este atât de valoroasă încât după deces, locul pe care îl deținea în scenă și în aulele studențești rămâne liber. Nu am reușit, deși am...</div>
+    
+    <a class="link-btn" href="https://www.zdg.md/reporter-special/oameni/oameni-simion-duja-artistul-clarinetului-format-in-detentia-sovietica/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/video-sluchainaya-unirya-nalogovaya-burya-i-mega-skandal-s-rodnei-maii-sandurazborka-s-ekaterinoi-dubasovoi" target="_blank">(ВИДЕО) Случайная униря, налоговая буря и мега-скандал с родней Майи Санду/«Разборка» с Екатериной Дубасовой</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>DUOMO. Когда качество — не просто слово, это обязательство</div>
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/video-sluchainaya-unirya-nalogovaya-burya-i-mega-skandal-s-rodnei-maii-sandurazborka-s-ekaterinoi-dubasovoi" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/video-gagauziya-v-vulkaneshtah-vodu-dayut-cherez-den-sandu-obsudila-situacziyu-v-gagauzii-s-komissarom-obse" target="_blank">(ВИДЕО) Гагаузия: В Вулканештах воду дают через день/ Санду обсудила ситуацию в Гагаузии с комиссаром ОБСЕ</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/video-gagauziya-v-vulkaneshtah-vodu-dayut-cherez-den-sandu-obsudila-situacziyu-v-gagauzii-s-komissarom-obse" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/v-czentre-kishineva-sostoitsya-nochnoi-zabeg-kakie-uliczy-perekroyut" target="_blank">В центре Кишинева состоится ночной забег. Какие улицы перекроют?</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/v-czentre-kishineva-sostoitsya-nochnoi-zabeg-kakie-uliczy-perekroyut" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/ne-nado-schitat-lyudei-glupymi-vyacheslav-ionicze-o-skandalnoi-nalogovoi-reforme-jizni-ne-po-sredstvam-i-karmanah-partii-vlasti-intervyu-nm" target="_blank">«Не надо считать людей глупыми». Вячеслав Ионицэ о скандальной налоговой реформе, жизни не по средствам и «карманах» партии власти. Интервью NM</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/ne-nado-schitat-lyudei-glupymi-vyacheslav-ionicze-o-skandalnoi-nalogovoi-reforme-jizni-ne-po-sredstvam-i-karmanah-partii-vlasti-intervyu-nm" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/guvernul-scoate-la-mezat-o-intreprindere-fara-activitate-economica" target="_blank">Profil investiţional Izomer</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/guvernul-scoate-la-mezat-o-intreprindere-fara-activitate-economica" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/remote-hibrid-sau-oficiu-ce-format-de-munca-prefera-candidatii-experiment-rabotamd" target="_blank">Remote, hibrid sau oficiu: ce format de muncă preferă candidații? Experiment Rabota.md</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/remote-hibrid-sau-oficiu-ce-format-de-munca-prefera-candidatii-experiment-rabotamd" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/necesarul-de-lichiditate-al-bancilor-din-moldova-este-asigurat-in-proportie-de-300-arata-ultimele-testari-la-stres" target="_blank">Necesarul de lichiditate al băncilor din Moldova este asigurat în proporţie de 300%, arată ultimele testări la stres</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/necesarul-de-lichiditate-al-bancilor-din-moldova-este-asigurat-in-proportie-de-300-arata-ultimele-testari-la-stres" target="_blank">Citește articolul →</a>
+  </div>
+</div>
+<div class="footer">
+  Raport generat automat zilnic &nbsp;·&nbsp; ARBI – Monitorizare Jurnalism Investigativ Moldova
+</div>
+</body>
+</html>
