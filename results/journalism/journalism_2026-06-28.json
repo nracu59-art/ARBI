@@ -1,0 +1,431 @@
+{
+  "date": "2026-06-28",
+  "generated_at": "2026-06-28T08:55:10Z",
+  "lookback_hours": 26,
+  "sources_checked": 8,
+  "sources_ok": 8,
+  "stats": {
+    "total": 22,
+    "investigative": 0,
+    "by_source": {
+      "zdg_md": {
+        "name": "Ziarul de Gardă",
+        "count": 10
+      },
+      "newsmaker_md": {
+        "name": "Newsmaker.md",
+        "count": 4
+      },
+      "mold_street": {
+        "name": "Mold-Street",
+        "count": 7
+      },
+      "agora_md": {
+        "name": "Agora.md",
+        "count": 1
+      }
+    },
+    "by_category": {
+      "justitie": {
+        "label": "Justiție & Procurori",
+        "emoji": "⚖️",
+        "count": 13
+      },
+      "politica": {
+        "label": "Politică & Putere",
+        "emoji": "🏛️",
+        "count": 4
+      },
+      "media": {
+        "label": "Media & Libertatea Presei",
+        "emoji": "📰",
+        "count": 2
+      },
+      "securitate": {
+        "label": "Securitate & Intelligence",
+        "emoji": "🔐",
+        "count": 1
+      }
+    }
+  },
+  "articles": [
+    {
+      "id": "dc86d52fcc30",
+      "title": "LIVE TEXT/ Ucraina lovește nodul rusesc de petrol care aprovizionează Moscova pentru a doua oară în această lună, spune armata. Război în Ucraina, ziua 1585",
+      "url": "https://www.zdg.md/stiri/live-text-ucraina-loveste-nodul-rusesc-de-petrol-care-aprovizioneaza-moscova-pentru-a-doua-oara-in-aceasta-luna-spune-armata-razboi-in-ucraina-ziua-1585/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-27T15:00:56Z",
+      "published_date": "2026-06-27",
+      "summary": "UPDATE 18:00 Forțele ucrainene au atacat stația de pompare a petrolului Vtorovo din regiunea Vladimir a Rusiei pentru a doua oară în această lună, a anunțat Serviciul de Securitate al Ucrainei (SBU) pe 27 iunie, potrivit Kyiv Independent. Atacul face parte dintr-o campanie de 40 de zile aprobată de președintele Volodimir Zelenski pe 25 iunie,...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 2,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "a688e287a1aa",
+      "title": "Ucraina a lovit rafinăriile de petrol din regiunile Krasnodar și Iaroslavl din Rusia, afirmă Zelenski",
+      "url": "https://www.zdg.md/stiri/stiri-externe/ucraina-a-lovit-rafinariile-de-petrol-din-regiunile-krasnodar-si-iaroslavl-din-rusia-afirma-zelenski/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-28T08:33:01Z",
+      "published_date": "2026-06-28",
+      "summary": "Ucraina a lovit rafinăriile de petrol din regiunea Krasnodar și din Iaroslavl din Rusia în noaptea de 28 iunie, a declarat președintele Volodimir Zelenski, scrie presa ucraineană. „Soldații noștri au început Ziua Constituției Ucrainei într-un mod foarte eficient (…). Vom continua operațiunile noastre care slăbesc capacitatea Rusiei de a duce acest război. Fiecare lovitură de...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "164dc41594f3",
+      "title": "Conflict încheiat cu împușcături: un bărbat a fost reținut pentru că ar fi tras dintr-o armă deținută ilegal, rănind o persoană",
+      "url": "https://www.zdg.md/stiri/stiri-sociale/conflict-incheiat-cu-impuscaturi-un-barbat-a-fost-retinut-pentru-ca-ar-fi-tras-dintr-o-arma-detinuta-ilegal-ranind-o-persoana/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-28T07:52:58Z",
+      "published_date": "2026-06-28",
+      "summary": "Un bărbat din raionul Strășeni a fost reținut în capitală după ce ar fi împușcat o persoană cu o armă pe care o deținea ilegal, a anunțat Inspectoratul General al Poliției (IGP). Conform unui comunicat de presă, în seara zilei de sâmbătă, în jurul orei 22:00, polițiștii au intervenit la un incident produs în sectorul...",
+      "categories": [
+        "justitie",
+        "media"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "media": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "21d384c0e3cf",
+      "title": "LIVE/ Ediția a II-a a Congresului Național al Memoriei: 80 de ani de la foametea organizată din 1946-1947 și 85 de ani de la primul val al deportărilor sovietice din 1941",
+      "url": "https://www.zdg.md/stiri/stiri-sociale/live-editia-a-ii-a-a-congresului-national-al-memoriei-80-de-ani-de-la-foametea-organizata-din-1946-1947-si-85-de-ani-de-la-primul-val-al-deportarilor-sovietice-din-1941/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-28T07:13:53Z",
+      "published_date": "2026-06-28",
+      "summary": "Congresul Național al Memoriei, ediția a II-a, are loc la Palatul Republicii duminică, 28 iunie. Potrivit organizatorilor, ediția din acest an se desfășoară într-un context „cu o profundă semnificație istorică”, marcând 80 de ani de la foametea organizată din 1946-1947 și 85 de ani de la primul val al deportărilor sovietice din 1941. Congresul își...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "8d612236bb99",
+      "title": "„Să-ți cunoști dușmanul în față”: cum a fost torturat un militar din Mariupol în centrul de detenție preventivă din Kamîșin",
+      "url": "https://www.zdg.md/stiri/sa-ti-cunosti-dusmanul-in-fata-cum-a-fost-torturat-un-militar-din-mariupol-in-centrul-de-detentie-preventiva-din-kamisin/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-28T06:45:00Z",
+      "published_date": "2026-06-28",
+      "summary": "Ivan Sviridov, participant la operațiunea antiteroristă din Mariupol, a supraviețuit unor torturi oribile în cel mai brutal centru de detenție preventivă din Rusia – în Kamîșin. A fost mutilat fizic și bătut aproape până la moarte, dar spiritul său a rămas neclintit. După patru ani de captivitate, s-a întors în Ucraina și a început procesul...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "3f7ffa356a71",
+      "title": "Restricții de circulație în centrul capitalei pe 27 iunie, în contextul unui maraton nocturn de alergare",
+      "url": "https://www.zdg.md/stiri/restrictii-de-circulatie-in-centrul-capitalei-pe-27-iunie-in-contextul-unui-maraton-nocturn-de-alergare/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-27T13:16:47Z",
+      "published_date": "2026-06-27",
+      "summary": "Traficul rutier va fi sistat de sâmbătă, 27 iunie, ora 17:00, până duminică, 28 iunie, ora 02:00, pe bd. Ștefan cel Mare și Sfânt, tronsonul cuprins între str. Mitropolit G. Bănulescu-Bodoni și str. A. Pușkin, cu redirecționarea transportului pe străzile adiacente, în legătură cu desfășurarea unui evenimentului sportiv, anunță Primăria Municipiului Chișinău. Pe data de 27.06.2026,...",
+      "categories": [
+        "politica",
+        "securitate"
+      ],
+      "category_scores": {
+        "politica": 1,
+        "securitate": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "375cd29e4913",
+      "title": "Comunicăm. Producem. Plasăm.Crești împreună cu AGORA",
+      "url": "https://agora.md/media-kit",
+      "source": "Agora.md",
+      "source_key": "agora_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.",
+      "categories": [
+        "justitie",
+        "media"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "media": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "5a6a61506cc3",
+      "title": "LIVE TEXT/ Partea explozivă și fragmentele unei rachete, recuperate de geniști în Kiev. Război în Ucraina, ziua 1586",
+      "url": "https://www.zdg.md/stiri/stiri-externe/live-text-partea-exploziva-si-fragmentele-unei-rachete-recuperate-de-genisti-in-kiev-razboi-in-ucraina-ziua-1586/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-28T08:44:07Z",
+      "published_date": "2026-06-28",
+      "summary": "UPDATE 11:40 În urma bombardamentului rusesc din timpul nopții asupra capitalei, angajații Serviciului Național de Situații de Urgență din Kiev au fost mobilizați pentru a remedia consecințele în cartierul Darnițki al orașului. Au luat foc un garaj și mai multe autoturisme aflate în spațiu deschis. La o altă adresă a fost mobilizată unitatea pirotehnică a...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "3a15ee0ef18a",
+      "title": "Codurile galben și portocaliu de caniculă intră în vigoare astăzi. Ce temperaturi se vor înregistra duminică",
+      "url": "https://www.zdg.md/stiri/codurile-galben-si-portocaliu-de-canicula-intra-in-vigoare-astazi-ce-temperaturi-se-vor-inregistra-duminica/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-28T05:30:00Z",
+      "published_date": "2026-06-28",
+      "summary": "Începând de duminică, 28 iunie și până luni, 29 iunie se anunță cod galben de caniculă, în nordul și centrul țării, în timp ce la sud va fi valabil codul portocaliu, potrivit Autorității de Meteorologie și Monitoring de Mediu (AMM). În sudul țării, se așteaptă maxime de până la 38°C ziua. În regiunea de centru, valorile termice vor urca până la 36°C pe...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "8ccbc54af0a9",
+      "title": "Atenție la scăldat! IGSU îndeamnă cetățenii să respecte regulile de siguranță",
+      "url": "https://www.zdg.md/stiri/atentie-la-scaldat-igsu-indeamna-cetatenii-sa-respecte-regulile-de-siguranta/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-27T12:27:09Z",
+      "published_date": "2026-06-27",
+      "summary": "În contextul temperaturilor ridicate și al numărului mare de persoane care aleg să-și petreacă timpul de weekend la aer liber în apropierea bazinelor acvatice, Inspectoratul General pentru Situații de Urgență (IGSU) îndeamnă cetățenii să manifeste responsabilitate și să respecte regulile de siguranță pentru prevenirea înecurilor. „Pentru a evita tragediile, salvatorii recomandă populației să se scalde...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "71b7f8d7c668",
+      "title": "Restricții de circulație pentru mijloacele de transport de mare tonaj, în contextul codurilor portocaliu și roșu de caniculă",
+      "url": "https://www.zdg.md/stiri/restrictii-de-circulatie-pentru-mijloacele-de-transport-de-mare-tonaj-in-contextul-codurilor-portocaliu-si-rosu-de-canicula/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-06-27T10:52:05Z",
+      "published_date": "2026-06-27",
+      "summary": "În contextul avertizărilor meteorologice de cod galben, portocaliu și roșu de caniculă, valabile în perioada 28 iunie – 1 iulie, Administrația Națională a Drumurilor (AND) anunță instituirea restricțiilor temporare de circulație pentru mijloacele de transport de mare tonaj, cu masa totală maximă autorizată de peste 12 tone, pe drumurile publice naționale din R. Moldova. Inspectoratul...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "e4710051032d",
+      "title": "LIVE Протест в Кишиневе против политики PAS и роста налогов: Прямая трансляция NM",
+      "url": "https://newsmaker.md/ru/live-protest-v-kishineve-protiv-politiki-pas-i-rosta-nalogov-pryamaya-translyacziya-nm",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "099921035418",
+      "title": "10 ani de la Brexit: Marea Britanie a avut creşteri economice mai mari decât Germania, Franţa sau Italia",
+      "url": "https://mold-street.com/noutate/10-ani-de-la-brexit-marea-britanie-a-avut-cresteri-economice-mai-mari-decat-germania-franta-sau-italia",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "99b64223ec42",
+      "title": "„Este prea cald pentru a munci”: Cum valurile de căldură afectează productivitatea în Europa",
+      "url": "https://mold-street.com/noutate/este-prea-cald-pentru-a-munci-cum-valurile-de-caldura-afecteaza-productivitatea-in-europa",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "3bfe8731f3b8",
+      "title": "Guvernul scoate la mezat o întreprindere fără activitate economică",
+      "url": "https://mold-street.com/noutate/guvernul-scoate-la-mezat-o-intreprindere-fara-activitate-economica",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "d71b4de5c986",
+      "title": "(ВИДЕО) Случайная униря, налоговая буря и мега-скандал с родней Майи Санду/«Разборка» с Екатериной Дубасовой",
+      "url": "https://newsmaker.md/ru/video-sluchainaya-unirya-nalogovaya-burya-i-mega-skandal-s-rodnei-maii-sandurazborka-s-ekaterinoi-dubasovoi",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "DUOMO. Когда качество — не просто слово, это обязательство",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "f413bdbcbde9",
+      "title": "Топливо из кофе и загадка вымирания неандертальцев. Наука от NM по воскресеньям",
+      "url": "https://newsmaker.md/ru/toplivo-iz-kofe-i-zagadka-vymiraniya-neandertalczev-nauka-ot-nm-po-voskresenyam",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "7d98a20dbee0",
+      "title": "Жара в Молдове: 28 июня начинают действовать желтый и оранжевый коды метеоопасности",
+      "url": "https://newsmaker.md/ru/jara-v-moldove-28-iyunya-nachinayut-deistvovat-jeltyi-i-oranjevyi-kody-meteoopasnosti",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "7706be81b5e0",
+      "title": "simbol",
+      "url": "https://mold-street.com/noutate/se-atesta-o-relaxare-usoara-a-standardelor-de-creditare-in-sistemul-bancar",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "f715070863e3",
+      "title": "Refugiaţii ucraineni au contribuit cu circa 1,6 miliarde lei la bugetul Moldovei",
+      "url": "https://mold-street.com/noutate/refugiatii-ucraineni-au-contribuit-cu-circa-16-miliarde-lei-la-bugetul-moldovei",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "ffc7580a795a",
+      "title": "Retrospectiva economică Mold-Street.com pentru perioada 21 – 27 iunie 2026",
+      "url": "https://mold-street.com/noutate/retrospectiva-economica-mold-streetcom-pentru-perioada-21-27-iunie-2026",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "ca4d29104fdf",
+      "title": "Peste 50% din piața gazelor este liberă",
+      "url": "https://mold-street.com/noutate/peste-50-din-piata-gazelor-este-libera",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    }
+  ]
+}
