@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monitorizare Jurnalism Investigativ Moldova – 29.06.2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; color: #2c3e50; }
+  .header { background: #1b4332; color: #fff; padding: 28px 40px; }
+  .header h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: 0.5px; }
+  .header .subtitle { margin-top: 6px; font-size: 0.9rem; opacity: 0.85; }
+  .stats-bar { background: #2d6a4f; color: #fff; padding: 16px 40px;
+                display: flex; gap: 36px; flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; }
+  .stat .val { font-size: 1.8rem; font-weight: 700; }
+  .stat .lbl { font-size: 0.72rem; opacity: 0.82; text-transform: uppercase; letter-spacing: 0.8px; }
+  .cat-bar { background: #40916c; color: #fff; padding: 12px 40px;
+              display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .cat-chip { background: rgba(255,255,255,0.18); border-radius: 20px;
+               padding: 4px 14px; font-size: 0.78rem; font-weight: 600;
+               white-space: nowrap; }
+  .container { max-width: 1040px; margin: 30px auto; padding: 0 20px 40px; }
+  .section-title { font-size: 0.95rem; font-weight: 700; color: #1b4332;
+                    text-transform: uppercase; letter-spacing: 1px;
+                    margin: 28px 0 14px; border-bottom: 2px solid #1b4332;
+                    padding-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08);
+           padding: 18px 22px; margin-bottom: 14px; border-left: 5px solid #1b4332;
+           transition: box-shadow .15s; }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.13); }
+  .card.investigativ { border-left-color: #d62828; }
+  .card-title { font-size: 1rem; font-weight: 700; color: #1b4332; margin-bottom: 8px; }
+  .card-title a { color: inherit; text-decoration: none; }
+  .card-title a:hover { text-decoration: underline; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;
+           font-size: 0.8rem; color: #555; }
+  .badge { display: inline-block; font-size: 0.68rem; font-weight: 700;
+            padding: 2px 8px; border-radius: 12px; color: #fff;
+            margin-right: 4px; vertical-align: middle; }
+  .badge-inv { background: #d62828; }
+  .source-tag { background: #e8f4ec; color: #1b4332; border-radius: 4px;
+                 padding: 1px 8px; font-size: 0.75rem; font-weight: 600; }
+  .summary { font-size: 0.85rem; color: #444; line-height: 1.55; margin-top: 6px; }
+  .cat-tags { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .cat-tag { font-size: 0.72rem; padding: 2px 10px; border-radius: 10px;
+              font-weight: 600; background: #e8f4ec; color: #1b4332; }
+  .link-btn { display: inline-block; margin-top: 10px; padding: 5px 14px;
+               background: #1b4332; color: #fff; border-radius: 5px;
+               font-size: 0.78rem; text-decoration: none; font-weight: 600; }
+  .link-btn:hover { background: #2d6a4f; }
+  .empty-box { background: #fff; border-radius: 8px; padding: 30px 24px;
+                text-align: center; color: #7f8c8d; font-size: 0.95rem;
+                box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .source-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+  .source-box { background: #fff; border-radius: 8px; padding: 12px 18px;
+                 box-shadow: 0 2px 6px rgba(0,0,0,.07); min-width: 140px;
+                 border-top: 3px solid #1b4332; }
+  .source-box .sname { font-size: 0.78rem; font-weight: 700; color: #1b4332; }
+  .source-box .scount { font-size: 1.4rem; font-weight: 700; color: #2d6a4f; margin-top: 2px; }
+  .footer { text-align: center; font-size: 0.75rem; color: #999;
+             margin-top: 40px; padding-bottom: 20px; }
+  @media (max-width: 600px) {
+    .header, .stats-bar, .cat-bar { padding: 18px 16px; }
+    .stats-bar { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🔍 Monitorizare Jurnalism Investigativ – Moldova</h1>
+  <div class="subtitle">
+    Surse monitorizate: 8 &nbsp;|&nbsp;
+    Ultimele 26 ore &nbsp;|&nbsp;
+    Generat: 2026-06-29 11:03 UTC
+  </div>
+</div>
+<div class="stats-bar">
+  <div class="stat"><span class="val">22</span><span class="lbl">Articole noi</span></div>
+  <div class="stat"><span class="val">2</span><span class="lbl">Investigative</span></div>
+  <div class="stat"><span class="val">8</span><span class="lbl">Surse active</span></div>
+  <div class="stat"><span class="val">29.06.2026</span><span class="lbl">Data raportului</span></div>
+</div>
+<div class="cat-bar">
+  <span style="font-size:.8rem;opacity:.85;margin-right:4px">Categorii:</span>
+  <span class="cat-chip">⚖️ Justiție & Procurori (10)</span><span class="cat-chip">🏛️ Politică & Putere (4)</span><span class="cat-chip">💰 Corupție (2)</span><span class="cat-chip">🔐 Securitate & Intelligence (2)</span><span class="cat-chip">👥 Social & Drepturile Omului (2)</span><span class="cat-chip">📰 Media & Libertatea Presei (1)</span><span class="cat-chip">💼 Afaceri & Contracte Publice (1)</span>
+</div>
+<div class="container">
+<div class="section-title">📊 Articole pe surse</div><div class="source-grid"><div class="source-box"><div class="sname">Ziarul de Gardă</div><div class="scount">10</div></div><div class="source-box"><div class="sname">Mold-Street</div><div class="scount">7</div></div><div class="source-box"><div class="sname">Newsmaker.md</div><div class="scount">4</div></div><div class="source-box"><div class="sname">Agora.md</div><div class="scount">1</div></div></div>
+<div class="section-title">🔍 Articole Investigative (2)</div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/la-tiraspol-a-fost-intocmita-o-pretinsa-lista-a-presei-distructive-au-fost-incluse-mai-multe-canale-de-telegram-si-institutii-media-printre-care-zona-de-securitate-care-scrie-desp/" target="_blank">La Tiraspol a fost întocmită o pretinsă listă a presei „distructive”. Au fost incluse mai multe canale de Telegram și instituții media, printre care Zona de Securitate, care scrie despre încălcările drepturilor omului și detențiile ilegale din stânga Nistrului</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 29.06.2026</span>
+    </div>
+    <div class='summary'>Așa-numitul Minister al Securității de Stat (MGB) din regiunea transnistreană a publicat o listă a resurselor informaționale pe care le-a catalogat drept „distructive”. Pe această listă au fost incluse peste 20 de canale de Telegram și instituții media, printre care și redacția Zona de Securitate. Potrivit jurnaliștilor de la Zona de Securitate, așa-numitul MGB susține...</div>
+    <div class='cat-tags'><span class="cat-tag">💰 Corupție</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/la-tiraspol-a-fost-intocmita-o-pretinsa-lista-a-presei-distructive-au-fost-incluse-mai-multe-canale-de-telegram-si-institutii-media-printre-care-zona-de-securitate-care-scrie-desp/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://mold-street.com/noutate/scandalul-moldatsa-mai-provoaca-o-demisie-radu-marian-pleaca-de-la-sefia-comisiei-parlamentare" target="_blank">Scandalul MoldATSA mai provoacă o demisie. Radu Marian pleacă de la șefia comisiei parlamentare</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/scandalul-moldatsa-mai-provoaca-o-demisie-radu-marian-pleaca-de-la-sefia-comisiei-parlamentare" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">⚖️ Justiție & Procurori (9)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-justitie/video-doi-barbati-care-ar-fi-fost-recrutati-intr-o-retea-de-trafic-de-droguri-plasati-in-arest-au-inchiriat-un-apartament-pe-care-il-foloseau-ca-punct-de-ambalare-a-substantelor-narcotice/" target="_blank">VIDEO/ Doi bărbați, care ar fi fost recrutați într-o rețea de trafic de droguri, plasați în arest: „Au închiriat un apartament pe care îl foloseau ca punct de ambalare a substanțelor narcotice”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 29.06.2026</span>
+    </div>
+    <div class='summary'>Doi tineri, de 20 și 23 de ani, au fost plasați în arest preventiv pentru 30 de zile într-un dosar de distribuire a drogurilor pe teritoriul capitalei și în suburbii, anunță Inspectoratul General al Poliției (IGP) printr-un comunicat.Timp de aproximativ o lună, oamenii legii au monitorizat activitatea a doi tineri, de 20 și 23 de...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-justitie/video-doi-barbati-care-ar-fi-fost-recrutati-intr-o-retea-de-trafic-de-droguri-plasati-in-arest-au-inchiriat-un-apartament-pe-care-il-foloseau-ca-punct-de-ambalare-a-substantelor-narcotice/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/ar-fi-pretins-4500-de-euro-pentru-transportarea-ilegala-catre-ue-a-trei-cetateni-din-tadjikistan-trei-barbati-trimisi-in-judecata/" target="_blank">Ar fi pretins 4500 de euro pentru transportarea ilegală către UE a trei cetățeni din Tadjikistan. Trei bărbați, trimiși în judecată</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 29.06.2026</span>
+    </div>
+    <div class='summary'>Trei bărbați, cu vârste cuprinse între 30 și 39 de ani, învinuiți de organizarea migrației ilegale a unor cetățeni străini, au fost trimiși în judecată, potrivit unui comunicat al Procuraturii Generale. Aceștia ar fi cerut 1500 de euro pentru transportul ilegal al fiecărui migrant. Doi dintre învinuiți și-au recunoscut vina, iar al treilea și-a recunoscut vina parțial....</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/ar-fi-pretins-4500-de-euro-pentru-transportarea-ilegala-catre-ue-a-trei-cetateni-din-tadjikistan-trei-barbati-trimisi-in-judecata/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/trei-persoane-inclusiv-doi-minori-si-au-pierdut-viata-in-timpul-scaldatului-igsu-indeamna-cetatenii-sa-manifeste-maxima-prudenta-in-timpul-aflarii-in-preajma-bazinelor-acvatice/" target="_blank">Trei persoane, inclusiv doi minori, și-au pierdut viața în timpul scăldatului. IGSU îndeamnă cetățenii să manifeste „maximă prudență în timpul aflării în preajma bazinelor acvatice”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 29.06.2026</span>
+    </div>
+    <div class='summary'>În ultimele zile, trei persoane, inclusiv doi minori, și-au pierdut viața în urma unor incidente produse în timpul scăldatului în raioanele Ungheni, Cantemir și Fălești, anunță luni, 29 iunie, Inspectoratul General pentru Situații de Urgență (IGSU). Primul caz a fost înregistrat în extravilanul satului Măcărești, raionul Ungheni. Potrivit unui comunicat al IGSU, un minor în...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/trei-persoane-inclusiv-doi-minori-si-au-pierdut-viata-in-timpul-scaldatului-igsu-indeamna-cetatenii-sa-manifeste-maxima-prudenta-in-timpul-aflarii-in-preajma-bazinelor-acvatice/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/a-fost-desemnata-compania-ce-ar-urma-sa-elaboreze-un-nou-master-plan-pentru-aeroport" target="_blank">A fost desemnată compania care ar urma să elaboreze un nou master-plan pentru aeroport</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/a-fost-desemnata-compania-ce-ar-urma-sa-elaboreze-un-nou-master-plan-pentru-aeroport" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/cod-rosu-de-canicula-in-sudul-tarii-se-vor-inregistra-pana-la-41c-centru-si-nordul-tarii-sub-cod-portocaliu-si-galben/" target="_blank">Cod ROȘU de caniculă în sudul țării: se vor înregistra până la + 41°C. Centru și nordul țării, sub cod portocaliu și galben</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 29.06.2026</span>
+    </div>
+    <div class='summary'>Cod galben, portocaliu și roșu de caniculă în R. Moldova, valabil pentru marți, 30 iunie, anunță Autoritatea de Meteorologie și Monitoring de Mediu (AMM). Totodată, AMM avertizează că pe 1 iulie, în toată țara, este prognozat cod galben de caniculă. „Temperaturile minime nu vor coborî sub 20°C, caracteristică specifică nopților tropicale”, atenționează meteorologii. Conform AMM,...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/cod-rosu-de-canicula-in-sudul-tarii-se-vor-inregistra-pana-la-41c-centru-si-nordul-tarii-sub-cod-portocaliu-si-galben/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/incident-la-cahul-doua-persoane-au-fost-retinute-pentru-72-de-ore-dupa-agresarea-fizica-a-unui-politist-si-deteriorarea-unei-autospeciale/" target="_blank">Incident la Cahul: Două persoane au fost reținute pentru 72 de ore, după agresarea fizică a unui polițist și deteriorarea unei autospeciale</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 29.06.2026</span>
+    </div>
+    <div class='summary'>Oamenii legii documentează un caz înregistrat în weekend, în localitatea Tartaul de Salcie, după ce un motociclist a ignorat somațiile legale de oprire, iar ulterior incidentul a escaladat, soldându-se cu agresarea unui polițist și deteriorarea unei autospeciale, anunță luni, 29 iunie, Inspectoratul General al Poliției (IGP) printr-un comunicat. Potrivit informațiilor preliminare, sâmbătă, 27 iuni…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/incident-la-cahul-doua-persoane-au-fost-retinute-pentru-72-de-ore-dupa-agresarea-fizica-a-unui-politist-si-deteriorarea-unei-autospeciale/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/do-pyati-let-tyurmy-za-otriczanie-stalinskih-deportaczii-i-goloda-pas-zaregistrirovala-zakonoproekt" target="_blank">До пяти лет тюрьмы за отрицание сталинских депортаций и голода? PAS зарегистрировала законопроект</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://newsmaker.md/ru/do-pyati-let-tyurmy-za-otriczanie-stalinskih-deportaczii-i-goloda-pas-zaregistrirovala-zakonoproekt" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/10-ani-de-la-brexit-marea-britanie-a-avut-cresteri-economice-mai-mari-decat-germania-franta-sau-italia" target="_blank">10 ani de la Brexit: Marea Britanie a avut creşteri economice mai mari decât Germania, Franţa sau Italia</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/10-ani-de-la-brexit-marea-britanie-a-avut-cresteri-economice-mai-mari-decat-germania-franta-sau-italia" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🏛️ Politică & Putere (2)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-sociale/escrocii-se-prezinta-drept-reprezentanti-ai-intreprinderii-moldelectrica-avertismentul-institutiei-scopul-acestor-actiuni-este-obtinerea-frauduloasa-a-datelor-cu-caracter-personal/" target="_blank">Escrocii se prezintă drept reprezentanți ai întreprinderii Moldelectrica. Avertismentul instituției: „Scopul acestor acțiuni este obținerea frauduloasă a datelor cu caracter personal”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 29.06.2026</span>
+    </div>
+    <div class='summary'>Întreprinderea de Stat „Moldelectrica” informează cetățenii că, în ultima perioadă, au fost semnalate noi tentative de fraudă în care persoane necunoscute utilizează apeluri telefonice, mesaje SMS, aplicații de mesagerie, rețele de socializare sau e-mailuri și se prezintă în mod fals drept reprezentanți ai instituției. Scopul acestor acțiuni este obținerea frauduloasă a datelor cu caracter persona…</div>
+    <div class='cat-tags'><span class="cat-tag">💰 Corupție</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-sociale/escrocii-se-prezinta-drept-reprezentanti-ai-intreprinderii-moldelectrica-avertismentul-institutiei-scopul-acestor-actiuni-este-obtinerea-frauduloasa-a-datelor-cu-caracter-personal/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/ministrul-finantelor-pune-piciorul-in-prag-fara-reforma-fiscala-nu-pot-fi-majorate-salariile" target="_blank">Andrian Gavriliţă, ministrul Finanţelor, explicând reforma fiscală</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/ministrul-finantelor-pune-piciorul-in-prag-fara-reforma-fiscala-nu-pot-fi-majorate-salariile" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">💰 Corupție (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-sociale/escrocii-se-prezinta-drept-reprezentanti-ai-intreprinderii-moldelectrica-avertismentul-institutiei-scopul-acestor-actiuni-este-obtinerea-frauduloasa-a-datelor-cu-caracter-personal/" target="_blank">Escrocii se prezintă drept reprezentanți ai întreprinderii Moldelectrica. Avertismentul instituției: „Scopul acestor acțiuni este obținerea frauduloasă a datelor cu caracter personal”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 29.06.2026</span>
+    </div>
+    <div class='summary'>Întreprinderea de Stat „Moldelectrica” informează cetățenii că, în ultima perioadă, au fost semnalate noi tentative de fraudă în care persoane necunoscute utilizează apeluri telefonice, mesaje SMS, aplicații de mesagerie, rețele de socializare sau e-mailuri și se prezintă în mod fals drept reprezentanți ai instituției. Scopul acestor acțiuni este obținerea frauduloasă a datelor cu caracter persona…</div>
+    <div class='cat-tags'><span class="cat-tag">💰 Corupție</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-sociale/escrocii-se-prezinta-drept-reprezentanti-ai-intreprinderii-moldelectrica-avertismentul-institutiei-scopul-acestor-actiuni-este-obtinerea-frauduloasa-a-datelor-cu-caracter-personal/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🔐 Securitate & Intelligence (2)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/parintii-vor-putea-oferi-recenzii-scolilor-si-gradinitelor-din-capitala-pe-platforma-edumap/" target="_blank">Părinții vor putea oferi recenzii școlilor și grădinițelor din capitală pe platforma „EduMap”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 29.06.2026</span>
+    </div>
+    <div class='summary'>Direcția Generală Educație, Tineret și Sport (DGETS) a lansat platforma digitală „EduMap”, un instrument care oferă informații actualizate despre sistemul educațional din municipiul Chișinău. Potrivit Primăriei Chișinău, platforma este menită să consolideze dialogul dintre părinți și instituțiile de învățământ și să ofere acces la informații verificate despre instituțiile de învățământ din capital…</div>
+    <div class='cat-tags'><span class="cat-tag">🔐 Securitate & Intelligence</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/parintii-vor-putea-oferi-recenzii-scolilor-si-gradinitelor-din-capitala-pe-platforma-edumap/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/se-atesta-o-relaxare-usoara-a-standardelor-de-creditare-in-sistemul-bancar" target="_blank">Se atestă o relaxare ușoară a standardelor de creditare în sistemul bancar</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/se-atesta-o-relaxare-usoara-a-standardelor-de-creditare-in-sistemul-bancar" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">👥 Social & Drepturile Omului (2)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/parintii-vor-putea-oferi-recenzii-scolilor-si-gradinitelor-din-capitala-pe-platforma-edumap/" target="_blank">Părinții vor putea oferi recenzii școlilor și grădinițelor din capitală pe platforma „EduMap”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 29.06.2026</span>
+    </div>
+    <div class='summary'>Direcția Generală Educație, Tineret și Sport (DGETS) a lansat platforma digitală „EduMap”, un instrument care oferă informații actualizate despre sistemul educațional din municipiul Chișinău. Potrivit Primăriei Chișinău, platforma este menită să consolideze dialogul dintre părinți și instituțiile de învățământ și să ofere acces la informații verificate despre instituțiile de învățământ din capital…</div>
+    <div class='cat-tags'><span class="cat-tag">🔐 Securitate & Intelligence</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/parintii-vor-putea-oferi-recenzii-scolilor-si-gradinitelor-din-capitala-pe-platforma-edumap/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/trei-persoane-inclusiv-doi-minori-si-au-pierdut-viata-in-timpul-scaldatului-igsu-indeamna-cetatenii-sa-manifeste-maxima-prudenta-in-timpul-aflarii-in-preajma-bazinelor-acvatice/" target="_blank">Trei persoane, inclusiv doi minori, și-au pierdut viața în timpul scăldatului. IGSU îndeamnă cetățenii să manifeste „maximă prudență în timpul aflării în preajma bazinelor acvatice”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 29.06.2026</span>
+    </div>
+    <div class='summary'>În ultimele zile, trei persoane, inclusiv doi minori, și-au pierdut viața în urma unor incidente produse în timpul scăldatului în raioanele Ungheni, Cantemir și Fălești, anunță luni, 29 iunie, Inspectoratul General pentru Situații de Urgență (IGSU). Primul caz a fost înregistrat în extravilanul satului Măcărești, raionul Ungheni. Potrivit unui comunicat al IGSU, un minor în...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/trei-persoane-inclusiv-doi-minori-si-au-pierdut-viata-in-timpul-scaldatului-igsu-indeamna-cetatenii-sa-manifeste-maxima-prudenta-in-timpul-aflarii-in-preajma-bazinelor-acvatice/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📰 Media & Libertatea Presei (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">💼 Afaceri & Contracte Publice (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/ar-fi-pretins-4500-de-euro-pentru-transportarea-ilegala-catre-ue-a-trei-cetateni-din-tadjikistan-trei-barbati-trimisi-in-judecata/" target="_blank">Ar fi pretins 4500 de euro pentru transportarea ilegală către UE a trei cetățeni din Tadjikistan. Trei bărbați, trimiși în judecată</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 29.06.2026</span>
+    </div>
+    <div class='summary'>Trei bărbați, cu vârste cuprinse între 30 și 39 de ani, învinuiți de organizarea migrației ilegale a unor cetățeni străini, au fost trimiși în judecată, potrivit unui comunicat al Procuraturii Generale. Aceștia ar fi cerut 1500 de euro pentru transportul ilegal al fiecărui migrant. Doi dintre învinuiți și-au recunoscut vina, iar al treilea și-a recunoscut vina parțial....</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/ar-fi-pretins-4500-de-euro-pentru-transportarea-ilegala-catre-ue-a-trei-cetateni-din-tadjikistan-trei-barbati-trimisi-in-judecata/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📌 Alte articole (7)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/live-text-armata-rusa-a-atacat-un-microbuz-in-zaporijjea-ucigand-doua-persoane-si-ranind-cel-putin-sase-razboi-in-ucraina-ziua-1587/" target="_blank">LIVE TEXT/ Armata rusă a atacat un microbuz în Zaporijjea, ucigând două persoane și rănind cel puțin șase. Război în Ucraina, ziua 1587</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 29.06.2026</span>
+    </div>
+    <div class='summary'>UPDATE 13:58 Pe 29 iunie, armata rusă a atacat un microbuz într-un district din Zaporijjea. Două persoane au fost ucise. Acest lucru a fost raportat de Ivan Fedorov, șeful Forțelor de Operațiuni Speciale din Zaporijjea, potrivit Hromadske. Potrivit acestuia, rușii au lovit microbuzul cu o dronă. Cel puțin șase persoane, inclusiv un copil, au fost...</div>
+    
+    <a class="link-btn" href="https://www.zdg.md/stiri/live-text-armata-rusa-a-atacat-un-microbuz-in-zaporijjea-ucigand-doua-persoane-si-ranind-cel-putin-sase-razboi-in-ucraina-ziua-1587/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/importante/cv-ul-neretusat-al-lui-dumitru-vangheli-relatat-de-un-fost-prieten-din-canada-pilot-in-jocuri-video-faliment-si-datorii-familia-mea-a-avut-foarte-mult-de-suferit-din-cau/" target="_blank">CV-ul neretușat al lui Dumitru Vangheli, relatat de un fost prieten din Canada: „pilot” în jocuri video, faliment și datorii. „Familia mea a avut foarte mult de suferit din cauza lui, în plan financiar”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 29.06.2026</span>
+    </div>
+    <div class='summary'>În timp ce, potrivit CV-ului său oficial, Dumitru Vangheli „făcea cursuri de pilotaj” sau „zbura” pe aeronave de linie ale Air Canada, în realitate livra mâncare, acumula datorii și experiență de „pilotaj” în… jocuri video. Și-a declarat falimentul, având mai multe datorii, ulterior ar fi activat ca șofer de taxi și a administrat o fermă...</div>
+    
+    <a class="link-btn" href="https://www.zdg.md/importante/cv-ul-neretusat-al-lui-dumitru-vangheli-relatat-de-un-fost-prieten-din-canada-pilot-in-jocuri-video-faliment-si-datorii-familia-mea-a-avut-foarte-mult-de-suferit-din-cau/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/video-sluchainaya-unirya-nalogovaya-burya-i-mega-skandal-s-rodnei-maii-sandurazborka-s-ekaterinoi-dubasovoi" target="_blank">(ВИДЕО) Случайная униря, налоговая буря и мега-скандал с родней Майи Санду/«Разборка» с Екатериной Дубасовой</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>DUOMO. Когда качество — не просто слово, это обязательство</div>
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/video-sluchainaya-unirya-nalogovaya-burya-i-mega-skandal-s-rodnei-maii-sandurazborka-s-ekaterinoi-dubasovoi" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/manole-otvetila-na-obvineniya-iz-za-proigrysha-moldovy-v-espch-sut-dela-inaya" target="_blank">Маноле ответила на обвинения из-за проигрыша Молдовы в ЕСПЧ: Суть дела иная</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/manole-otvetila-na-obvineniya-iz-za-proigrysha-moldovy-v-espch-sut-dela-inaya" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/eto-nichego-ne-izmenit-v-sluchae-voiny-nujna-li-moldove-obyazatelnaya-voennaya-podgotovka" target="_blank">(ВИДЕО) «Это ничего не изменит в случае войны». Нужна ли Молдове обязательная военная подготовка?</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/eto-nichego-ne-izmenit-v-sluchae-voiny-nujna-li-moldove-obyazatelnaya-voennaya-podgotovka" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/refugiatii-ucraineni-au-contribuit-cu-circa-16-miliarde-lei-la-bugetul-moldovei" target="_blank">Refugiaţii ucraineni au contribuit cu circa 1,6 miliarde lei la bugetul Moldovei</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/refugiatii-ucraineni-au-contribuit-cu-circa-16-miliarde-lei-la-bugetul-moldovei" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/retrospectiva-economica-mold-streetcom-pentru-perioada-21-27-iunie-2026" target="_blank">Retrospectiva economică Mold-Street.com pentru perioada 21 – 27 iunie 2026</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/retrospectiva-economica-mold-streetcom-pentru-perioada-21-27-iunie-2026" target="_blank">Citește articolul →</a>
+  </div>
+</div>
+<div class="footer">
+  Raport generat automat zilnic &nbsp;·&nbsp; ARBI – Monitorizare Jurnalism Investigativ Moldova
+</div>
+</body>
+</html>
