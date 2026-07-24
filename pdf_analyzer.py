@@ -165,6 +165,121 @@ def find_keyword_excerpts(text: str) -> list[dict]:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
+# Per-case API (folosit de main.py)
+# ─────────────────────────────────────────────────────────────────────────────
+
+def load_keywords() -> dict:
+    """Încarcă toate categoriile de keywords din config/keywords.json."""
+    default = {
+        "case_filter": KEYWORDS,
+        "asset_keywords": [
+            "autoturism", "automobil", "vehicul",
+            "imobil", "apartament", "casă", "teren", "lot",
+            "mijloace bănești", "numerar", "cont bancar", "depozit",
+            "lei", "MDL", "euro", "EUR", "dolari", "USD",
+            "valori mobiliare", "acțiuni",
+        ],
+        "decision_keywords": [
+            "dispune", "hotărăște", "declară",
+            "condamnat", "achitat", "încetat",
+            "pedeapsă", "amendă", "privațiune de libertate",
+            "termen de probă", "muncă neremunerată",
+        ],
+    }
+    try:
+        with open(_CONFIG_PATH, encoding="utf-8") as f:
+            cfg = json.load(f)
+        result = {key: cfg.get(key) or default[key] for key in default}
+        logger.info(f"Keywords încărcate din {_CONFIG_PATH}: {len(result['case_filter'])} cuvinte filtrare")
+        return result
+    except Exception as exc:
+        logger.warning(f"Nu s-a putut citi config/keywords.json: {exc} — se folosesc keywords implicite")
+        return default
+
+
+def case_matches_filter(d: dict, filter_kws: list[str]) -> bool:
+    """Filtru rapid pe metadate (fără descărcare PDF) înainte de analiza completă."""
+    haystack = f"{d.get('tematica_dosarului', '')} {d.get('denumirea_dosarului', '')}".lower()
+    return any(kw.lower() in haystack for kw in filter_kws)
+
+
+def _find_excerpts(text: str, kws: list[str], max_excerpts: int = 12) -> tuple[list[str], list[str]]:
+    """Caută `kws` în `text` și returnează (cuvinte găsite, excerpte de context)."""
+    text_lower = text.lower()
+    found_keywords: list[str] = []
+    excerpts: list[str] = []
+    seen_positions: set[int] = set()
+
+    for kw in kws:
+        kw_lower = kw.lower()
+        start = 0
+        while True:
+            pos = text_lower.find(kw_lower, start)
+            if pos == -1:
+                break
+            bucket = pos // (CONTEXT_CHARS // 2)
+            if bucket not in seen_positions:
+                seen_positions.add(bucket)
+                excerpt_start = max(0, pos - CONTEXT_CHARS // 2)
+                excerpt_end = min(len(text), pos + len(kw) + CONTEXT_CHARS // 2)
+                excerpts.append(" ".join(text[excerpt_start:excerpt_end].split()))
+                if kw not in found_keywords:
+                    found_keywords.append(kw)
+            start = pos + 1
+
+    return found_keywords[:max_excerpts], excerpts[:max_excerpts]
+
+
+async def analyze_case(d: dict, keywords: dict) -> dict:
+    """Descarcă și analizează PDF-ul unui dosar; returnează structura cerută de generate_court_report."""
+    url = d.get("act_judecatoresc_url", "")
+    result = {
+        "dosar": d,
+        "pdf_url": url,
+        "pdf_disponibil": False,
+        "text_extras": False,
+        "pagini": 0,
+        "keywords_gasite": [],
+        "sectiuni_confiscare": [],
+        "sectiuni_bunuri": [],
+        "sectiuni_decizie": [],
+        "eroare": "",
+    }
+
+    if not url:
+        result["eroare"] = "Link PDF indisponibil"
+        return result
+
+    pdf_bytes = await download_pdf(url)
+    if pdf_bytes is None:
+        result["eroare"] = "PDF indisponibil"
+        return result
+    result["pdf_disponibil"] = True
+
+    try:
+        with pdfplumber.open(io.BytesIO(pdf_bytes)) as pdf:
+            result["pagini"] = len(pdf.pages)
+    except Exception as exc:
+        logger.warning(f"Nu s-a putut determina numărul de pagini: {exc}")
+
+    text = extract_text(pdf_bytes)
+    if not text:
+        result["eroare"] = "Text neextras din PDF"
+        return result
+    result["text_extras"] = True
+
+    kw_confiscare, exc_confiscare = _find_excerpts(text, keywords.get("case_filter", []))
+    _, exc_bunuri = _find_excerpts(text, keywords.get("asset_keywords", []))
+    _, exc_decizie = _find_excerpts(text, keywords.get("decision_keywords", []))
+
+    result["keywords_gasite"] = kw_confiscare
+    result["sectiuni_confiscare"] = exc_confiscare
+    result["sectiuni_bunuri"] = exc_bunuri
+    result["sectiuni_decizie"] = exc_decizie
+    return result
+
+
+# ─────────────────────────────────────────────────────────────────────────────
 # Main analysis
 # ─────────────────────────────────────────────────────────────────────────────
 
