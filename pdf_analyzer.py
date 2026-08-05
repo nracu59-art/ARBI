@@ -34,7 +34,7 @@ TELEGRAM_API_DOC = "https://api.telegram.org/bot{token}/sendDocument"
 _CONFIG_PATH = Path(__file__).parent / "config" / "keywords.json"
 
 
-def _load_keywords() -> list[str]:
+def load_keywords() -> list[str]:
     """Încarcă keywords din config/keywords.json. Fallback la lista hardcodată."""
     try:
         with open(_CONFIG_PATH, encoding="utf-8") as f:
@@ -53,7 +53,7 @@ def _load_keywords() -> list[str]:
     ]
 
 
-KEYWORDS = _load_keywords()
+KEYWORDS = load_keywords()
 
 
 CONTEXT_CHARS = 400  # caractere extrase în jurul cuvântului cheie
