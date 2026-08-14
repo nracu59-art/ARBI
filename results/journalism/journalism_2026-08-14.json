@@ -1,0 +1,406 @@
+{
+  "date": "2026-08-14",
+  "generated_at": "2026-08-14T07:25:55Z",
+  "lookback_hours": 26,
+  "sources_checked": 8,
+  "sources_ok": 8,
+  "stats": {
+    "total": 21,
+    "investigative": 1,
+    "by_source": {
+      "zdg_md": {
+        "name": "Ziarul de Gardă",
+        "count": 10
+      },
+      "newsmaker_md": {
+        "name": "Newsmaker.md",
+        "count": 4
+      },
+      "mold_street": {
+        "name": "Mold-Street",
+        "count": 6
+      },
+      "agora_md": {
+        "name": "Agora.md",
+        "count": 1
+      }
+    },
+    "by_category": {
+      "coruptie": {
+        "label": "Corupție",
+        "emoji": "💰",
+        "count": 3
+      },
+      "justitie": {
+        "label": "Justiție & Procurori",
+        "emoji": "⚖️",
+        "count": 9
+      },
+      "politica": {
+        "label": "Politică & Putere",
+        "emoji": "🏛️",
+        "count": 2
+      },
+      "media": {
+        "label": "Media & Libertatea Presei",
+        "emoji": "📰",
+        "count": 1
+      },
+      "social": {
+        "label": "Social & Drepturile Omului",
+        "emoji": "👥",
+        "count": 1
+      }
+    }
+  },
+  "articles": [
+    {
+      "id": "f4e55962771e",
+      "title": "Investiții private de 150 de milioane de euro în baterii de stocare a energiei, până la finele 2026",
+      "url": "https://mold-street.com/noutate/investitii-private-de-150-de-milioane-de-euro-in-baterii-de-stocare-a-energiei-pana-la-finele-2026",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 1,
+      "relevance_score": 2
+    },
+    {
+      "id": "2328f414f75e",
+      "title": "VIDEO/ Cine controlează piața metalelor. Luptele subterane dintre concurenți. Un fost deputat PAS, vizat într-o plângere penală și acuzat că a luat mită pentru o modificare legislativă. „Metalferos”, în pierdere patru ani la rând. Uzina de la Rîbnița – cu autorizații de mediu",
+      "url": "https://www.zdg.md/investigatii/ancheta/video-cine-controleaza-piata-metalelor-luptele-subterane-dintre-concurenti-un-fost-deputat-pas-vizat-intr-o-plangere-penalasi-acuzat-ca-a-luat-mita-pentru-o-modificare-legislativa-metalf/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-14T07:08:33Z",
+      "published_date": "2026-08-14",
+      "summary": "La șapte ani de la demonopolizarea pieței deșeurilor de metale, întreprinderea cu capital de stat „Metalferos” activează în pierdere de patru ani la rând, iar piața liberă a ajuns să fie împărțită între câteva grupuri private, care încearcă să se extindă, inclusiv utilizând atacuri și acuzații reciproce. La sfârșitul lunii iulie a fost deschis un...",
+      "categories": [
+        "justitie",
+        "politica",
+        "coruptie"
+      ],
+      "category_scores": {
+        "justitie": 2,
+        "politica": 2,
+        "coruptie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 5
+    },
+    {
+      "id": "8bd40ebe592f",
+      "title": "Concursul pentru privatizarea hotelului „Zarea” a fost prelungit. Tofan: „Privatizarea unui obiect de o asemenea importanță nu trebuie să se desfășoare în plin sezon estival”",
+      "url": "https://www.zdg.md/stiri/concursul-pentru-privatizarea-hotelului-zarea-a-fost-prelungit-tofan-privatizarea-unui-obiect-de-o-asemenea-importanta-nu-trebuie-sa-se-desfasoare-in-plin-sezon-estival/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-14T06:40:16Z",
+      "published_date": "2026-08-14",
+      "summary": "Concursul pentru privatizarea hotelului „Zarea”, al cărui termen-limită fusese stabilit inițial pentru 19 august, a fost prelungit până la 20 octombrie, a anunțat purtătorul de cuvânt al Guvernului, Dumitru Ciorici. Prelungirea concursului a fost solicitată de premierul Vasile Tofan. Potrivit premierului, privatizarea unui obiect de o asemenea importanță nu trebuie să se desfășoare în plin...",
+      "categories": [
+        "politica",
+        "coruptie"
+      ],
+      "category_scores": {
+        "politica": 2,
+        "coruptie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "3a0842e3dda6",
+      "title": "Linia Bălți–Dnestrovsk, „grav avariată” în urma „calamităților naturale” din 6 august, a fost reabilitată",
+      "url": "https://www.zdg.md/stiri/linia-balti-dnestrovsk-grav-avariata-in-urma-calamitatilor-naturale-din-6-august-a-fost-reabilitata/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-14T06:00:09Z",
+      "published_date": "2026-08-14",
+      "summary": "Î.S. Moldelectrica anunță finalizarea cu succes a lucrărilor de reparație și punerea sub tensiune a liniei electrice aeriene (LEA) 330 kV Bălți – Dnestrovsk, afectată de furtuna din 6 august. Fenomenele meteorologice severe au deteriorat mai multe elemente constructive ale liniei, a anunțat vineri, 14 august, Ministerul Energiei. Pentru remedierea rapidă a avariilor, echipele de...",
+      "categories": [
+        "coruptie",
+        "justitie"
+      ],
+      "category_scores": {
+        "coruptie": 1,
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "abc4ae215d34",
+      "title": "LIVE TEXT/ Patru persoane au fost rănite în urma atacurilor forțelor ruse în regiunea Dnipropetrovsk. Război în Ucraina, ziua 1632",
+      "url": "https://www.zdg.md/stiri/live-text-patru-persoane-au-fost-ranite-in-urma-atacurilor-fortelor-ruse-in-regiunea-dnipropetrovsk-razboi-in-ucraina-ziua-1632/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-13T19:05:00Z",
+      "published_date": "2026-08-13",
+      "summary": "UPDATE 22:00 Forțele rusești au atacat patru districte din regiunea Dnipropetrovsk de aproape 60 de ori joi, 13 august, rănind patru persoane, a scris Ukrinform. Armata rusă a folosit drone, bombe aeriene și artilerie în atacuri. În Pavlohrad, o instalație a unei companii de logistică a fost avariată. Doi bărbați, în vârstă de 37 și...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "51352efafe9d",
+      "title": "Exerciții tactice ale Brigăzii „Fulger”, într-un centru comercial din Chișinău, aproape de miezul nopții: IGP: „Vă îndemnăm nu răspândiți informații eronate”",
+      "url": "https://www.zdg.md/stiri/exercitii-tactice-ale-brigazii-fulger-intr-un-centru-comercial-din-chisinau-aproape-de-miezul-noptii-igp-va-indemnam-nu-raspanditi-informatii-eronate/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-13T18:50:00Z",
+      "published_date": "2026-08-13",
+      "summary": "Aproape de miezul nopții, Brigada de poliție cu destinație specială „Fulger” vor desfășura exerciții tactice într-un centru comercial din Chișinău, a anunțat în seara zilei de joi, 13 august, Inspectoratul General al Poliției (IGP). Potrivit IGP, aceste instruiri fac parte din planul de acțiuni al instituției și sunt organizate periodic în vederea perfecționării abilitaților de intervenție...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "6a2dcc4f8278",
+      "title": "Moldova HiTech Park intră în etapa de planificare: a fost prezentat masterplanul viitorului campus tehnologic de la Stăuceni",
+      "url": "https://mold-street.com/noutate/moldova-hitech-park-intra-in-etapa-de-planificare-a-fost-prezentat-masterplanul-viitorului-campus-tehnologic-de-la-stauceni",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "375cd29e4913",
+      "title": "Comunicăm. Producem. Plasăm.Crești împreună cu AGORA",
+      "url": "https://agora.md/media-kit",
+      "source": "Agora.md",
+      "source_key": "agora_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.",
+      "categories": [
+        "justitie",
+        "media"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "media": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "e98b5f7f04ce",
+      "title": "CSP a admis rapoartele de evaluare a integrității etice și financiare emis în privința a doi procurori",
+      "url": "https://www.zdg.md/stiri/csp-a-admis-rapoartele-de-evaluare-a-integritatii-etice-si-financiare-emis-in-privinta-a-doi-procurori/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-14T07:17:56Z",
+      "published_date": "2026-08-14",
+      "summary": "Membrii Consiliului Superior al Procuraturii (CSP) au admis în ședință vineri, 14 august, rapoartele Comisiei de evaluare a procurorilor emis în privința a doi procurori, Alexandr Corețchii, procuror în Procuratura Soroca, și Grigore Potoran, adjunct interimar al procurorului-șef al Procuraturii municipiului Chișinău. CSP a admis rapoarte de evaluare după ce Completul de evaluare B a concluzionat,...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "cf8322d934ef",
+      "title": "Moment decisiv pentru extinderea UE: Muntenegru și Albania se apropie de aderare, iar R. Moldova și Ucraina avansează",
+      "url": "https://www.zdg.md/stiri/moment-decisiv-pentru-extinderea-ue-muntenegru-si-albania-se-apropie-de-aderare-iar-r-moldova-si-ucraina-avanseaza/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-14T07:06:34Z",
+      "published_date": "2026-08-14",
+      "summary": "Extinderea Uniunii Europene intră într-o etapă decisivă, în condițiile în care Muntenegru și Albania se apropie de aderare, iar R. Moldova și Ucraina fac progrese în procesul de integrare, notează Euronews. În următoarele luni, Bruxelles-ul va trebui să decidă nu doar cine poate adera la Uniune, ci și cum va funcționa aceasta după extindere, în...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "1ef494c5223c",
+      "title": "LIVE TEXT/ În urma unui atac rusesc, un incediu a izbucnit în Kirovohrad, victime nu au fost raportate. Război în Ucraina, ziua 1633",
+      "url": "https://www.zdg.md/stiri/live-text-in-urma-unui-atac-rusesc-un-incediu-a-izbucnit-in-kirovohrad-victime-nu-au-fost-raportate-razboi-in-ucraina-ziua-1633/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-14T05:36:28Z",
+      "published_date": "2026-08-14",
+      "summary": "UPDATE 8:30 Un incendiu a izbucnit în urma unui atac rusesc asupra unui obiectiv de infrastructură din raionul Kropivnițki, regiunea Kirovohrad, a anunțat Serviciul pentru Situații de Urgență. De asemenea, au fost cuprinse de flăcări o casă de locuit și vegetație uscată. În prezent, pompierii au lichidat toate incendiile. Potrivit informațiilor preliminare, nu au fost...",
+      "categories": [
+        "social"
+      ],
+      "category_scores": {
+        "social": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "0db0fe3fe8ad",
+      "title": "La ce preț pot cumpăra moldovenii benzina și motorina pe 14 august?",
+      "url": "https://www.zdg.md/stiri/la-ce-pret-pot-cumpara-moldovenii-benzina-si-motorina-pe-14-august/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-14T05:00:00Z",
+      "published_date": "2026-08-14",
+      "summary": "Pe 14 august 2026, atât benzina, cât și motorina vor înregistra o micșorare a tarifului, conform noilor prețuri maxime de referință, stabilite de Agenția Națională pentru Reglementare în Energetică (ANRE). Astfel, benzina 95 va avea un preț maxim de comercializare de 29,98 lei/litru, înregistrând o scădere de 0,2 bani față de ziua precedentă. În același timp, motorina standard va fi comercializată la un preț maxim de 31,97 lei/litru, ceea...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "6bbedf18b0e7",
+      "title": "Ce temperaturi prognozează meteorologii pentru vineri, 14 august",
+      "url": "https://www.zdg.md/stiri/ce-temperaturi-prognozeaza-meteorologii-pentru-vineri-14-august/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-14T05:20:00Z",
+      "published_date": "2026-08-14",
+      "summary": "Pentru ziua de vineri, 14 august, meteorologii prognozează maxime de până la 28 de grade Celsius și cer variabil pe întreg teritoriul țării. Vântul va sufla din nord, slab până la moderat. Conform informațiilor publicate de Autoritatea de Meteorologie și Monitoring de Mediu (AMM), în centrul țării vor fi înregistrate temperaturi de până la 28...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "0c31273eef46",
+      "title": "(ВИДЕО) Без воды: что происходит в Гагаузии? #рилток",
+      "url": "https://newsmaker.md/ru/video-bez-vody-chto-proishodit-v-gagauzii-riltok",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "DUOMO. Когда качество — не просто слово, это обязательство",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "1551237e3789",
+      "title": "(DOC) Табурчану вернула MoldATSA более 1,1 млн леев",
+      "url": "https://newsmaker.md/ru/doc-taburchanu-vernula-moldatsa-bolee-11-mln-leev",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "44acef5d954b",
+      "title": "В Бельцах День независимости Молдовы отметят военным парадом",
+      "url": "https://newsmaker.md/ru/v-belczah-den-nezavisimosti-moldovy-otmetyat-voennym-paradom",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "a473206ae0ce",
+      "title": "На севере Молдовы восстановили ЛЭП Бельцы-Днестровск, поврежденную во время непогоды",
+      "url": "https://newsmaker.md/ru/v-moldove-vosstanovili-lep-belczy-dnestrovsk-povrejdennuyu-vo-vremya-nepogody",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "1118640536cd",
+      "title": "Victoriabank reduce costul finanțării pentru IMM-uri",
+      "url": "https://mold-street.com/noutate/victoriabank-reduce-costul-finantarii-pentru-imm-uri",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "0ee774d19e7b",
+      "title": "Îngrijorările exportatorilor: Tranzitul masiv de cereale ucrainene riscă să blocheze calea ferată",
+      "url": "https://mold-street.com/noutate/ingrijorarile-exportatorilor-tranzitul-masiv-de-cereale-ucrainene-risca-sa-blocheze-calea-ferata",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "153da2cf5803",
+      "title": "Moștenirile primite de cetățenii Republicii Moldova, inclusiv de cei aflați în diaspora, nu vor fi impozitate, susţine Ministerul Finanțelor",
+      "url": "https://mold-street.com/noutate/mostenirile-primite-de-cetatenii-republicii-moldova-inclusiv-de-cei-aflati-in-diaspora-nu-vor-fi-impozitate-sustine-ministerul-finantelor",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "3efb0dc631cd",
+      "title": "Energocom a achiziţionat gaze pentru iarnă în valoare de câteva miliarde",
+      "url": "https://mold-street.com/noutate/energocom-a-achizitionat-gaze-in-valoare-de-cateva-miliarde",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    }
+  ]
+}
