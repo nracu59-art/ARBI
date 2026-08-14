@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monitorizare Jurnalism Investigativ Moldova – 14.08.2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; color: #2c3e50; }
+  .header { background: #1b4332; color: #fff; padding: 28px 40px; }
+  .header h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: 0.5px; }
+  .header .subtitle { margin-top: 6px; font-size: 0.9rem; opacity: 0.85; }
+  .stats-bar { background: #2d6a4f; color: #fff; padding: 16px 40px;
+                display: flex; gap: 36px; flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; }
+  .stat .val { font-size: 1.8rem; font-weight: 700; }
+  .stat .lbl { font-size: 0.72rem; opacity: 0.82; text-transform: uppercase; letter-spacing: 0.8px; }
+  .cat-bar { background: #40916c; color: #fff; padding: 12px 40px;
+              display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .cat-chip { background: rgba(255,255,255,0.18); border-radius: 20px;
+               padding: 4px 14px; font-size: 0.78rem; font-weight: 600;
+               white-space: nowrap; }
+  .container { max-width: 1040px; margin: 30px auto; padding: 0 20px 40px; }
+  .section-title { font-size: 0.95rem; font-weight: 700; color: #1b4332;
+                    text-transform: uppercase; letter-spacing: 1px;
+                    margin: 28px 0 14px; border-bottom: 2px solid #1b4332;
+                    padding-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08);
+           padding: 18px 22px; margin-bottom: 14px; border-left: 5px solid #1b4332;
+           transition: box-shadow .15s; }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.13); }
+  .card.investigativ { border-left-color: #d62828; }
+  .card-title { font-size: 1rem; font-weight: 700; color: #1b4332; margin-bottom: 8px; }
+  .card-title a { color: inherit; text-decoration: none; }
+  .card-title a:hover { text-decoration: underline; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;
+           font-size: 0.8rem; color: #555; }
+  .badge { display: inline-block; font-size: 0.68rem; font-weight: 700;
+            padding: 2px 8px; border-radius: 12px; color: #fff;
+            margin-right: 4px; vertical-align: middle; }
+  .badge-inv { background: #d62828; }
+  .source-tag { background: #e8f4ec; color: #1b4332; border-radius: 4px;
+                 padding: 1px 8px; font-size: 0.75rem; font-weight: 600; }
+  .summary { font-size: 0.85rem; color: #444; line-height: 1.55; margin-top: 6px; }
+  .cat-tags { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .cat-tag { font-size: 0.72rem; padding: 2px 10px; border-radius: 10px;
+              font-weight: 600; background: #e8f4ec; color: #1b4332; }
+  .link-btn { display: inline-block; margin-top: 10px; padding: 5px 14px;
+               background: #1b4332; color: #fff; border-radius: 5px;
+               font-size: 0.78rem; text-decoration: none; font-weight: 600; }
+  .link-btn:hover { background: #2d6a4f; }
+  .empty-box { background: #fff; border-radius: 8px; padding: 30px 24px;
+                text-align: center; color: #7f8c8d; font-size: 0.95rem;
+                box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .source-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+  .source-box { background: #fff; border-radius: 8px; padding: 12px 18px;
+                 box-shadow: 0 2px 6px rgba(0,0,0,.07); min-width: 140px;
+                 border-top: 3px solid #1b4332; }
+  .source-box .sname { font-size: 0.78rem; font-weight: 700; color: #1b4332; }
+  .source-box .scount { font-size: 1.4rem; font-weight: 700; color: #2d6a4f; margin-top: 2px; }
+  .footer { text-align: center; font-size: 0.75rem; color: #999;
+             margin-top: 40px; padding-bottom: 20px; }
+  @media (max-width: 600px) {
+    .header, .stats-bar, .cat-bar { padding: 18px 16px; }
+    .stats-bar { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🔍 Monitorizare Jurnalism Investigativ – Moldova</h1>
+  <div class="subtitle">
+    Surse monitorizate: 8 &nbsp;|&nbsp;
+    Ultimele 26 ore &nbsp;|&nbsp;
+    Generat: 2026-08-14 07:26 UTC
+  </div>
+</div>
+<div class="stats-bar">
+  <div class="stat"><span class="val">21</span><span class="lbl">Articole noi</span></div>
+  <div class="stat"><span class="val">1</span><span class="lbl">Investigative</span></div>
+  <div class="stat"><span class="val">8</span><span class="lbl">Surse active</span></div>
+  <div class="stat"><span class="val">14.08.2026</span><span class="lbl">Data raportului</span></div>
+</div>
+<div class="cat-bar">
+  <span style="font-size:.8rem;opacity:.85;margin-right:4px">Categorii:</span>
+  <span class="cat-chip">⚖️ Justiție & Procurori (9)</span><span class="cat-chip">💰 Corupție (3)</span><span class="cat-chip">🏛️ Politică & Putere (2)</span><span class="cat-chip">📰 Media & Libertatea Presei (1)</span><span class="cat-chip">👥 Social & Drepturile Omului (1)</span>
+</div>
+<div class="container">
+<div class="section-title">📊 Articole pe surse</div><div class="source-grid"><div class="source-box"><div class="sname">Ziarul de Gardă</div><div class="scount">10</div></div><div class="source-box"><div class="sname">Mold-Street</div><div class="scount">6</div></div><div class="source-box"><div class="sname">Newsmaker.md</div><div class="scount">4</div></div><div class="source-box"><div class="sname">Agora.md</div><div class="scount">1</div></div></div>
+<div class="section-title">🔍 Articole Investigative (1)</div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://mold-street.com/noutate/investitii-private-de-150-de-milioane-de-euro-in-baterii-de-stocare-a-energiei-pana-la-finele-2026" target="_blank">Investiții private de 150 de milioane de euro în baterii de stocare a energiei, până la finele 2026</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/investitii-private-de-150-de-milioane-de-euro-in-baterii-de-stocare-a-energiei-pana-la-finele-2026" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">⚖️ Justiție & Procurori (9)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/investigatii/ancheta/video-cine-controleaza-piata-metalelor-luptele-subterane-dintre-concurenti-un-fost-deputat-pas-vizat-intr-o-plangere-penalasi-acuzat-ca-a-luat-mita-pentru-o-modificare-legislativa-metalf/" target="_blank">VIDEO/ Cine controlează piața metalelor. Luptele subterane dintre concurenți. Un fost deputat PAS, vizat într-o plângere penală și acuzat că a luat mită pentru o modificare legislativă. „Metalferos”, în pierdere patru ani la rând. Uzina de la Rîbnița – cu autorizații de mediu</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.08.2026</span>
+    </div>
+    <div class='summary'>La șapte ani de la demonopolizarea pieței deșeurilor de metale, întreprinderea cu capital de stat „Metalferos” activează în pierdere de patru ani la rând, iar piața liberă a ajuns să fie împărțită între câteva grupuri private, care încearcă să se extindă, inclusiv utilizând atacuri și acuzații reciproce. La sfârșitul lunii iulie a fost deschis un...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">💰 Corupție</span></div>
+    <a class="link-btn" href="https://www.zdg.md/investigatii/ancheta/video-cine-controleaza-piata-metalelor-luptele-subterane-dintre-concurenti-un-fost-deputat-pas-vizat-intr-o-plangere-penalasi-acuzat-ca-a-luat-mita-pentru-o-modificare-legislativa-metalf/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/linia-balti-dnestrovsk-grav-avariata-in-urma-calamitatilor-naturale-din-6-august-a-fost-reabilitata/" target="_blank">Linia Bălți–Dnestrovsk, „grav avariată” în urma „calamităților naturale” din 6 august, a fost reabilitată</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.08.2026</span>
+    </div>
+    <div class='summary'>Î.S. Moldelectrica anunță finalizarea cu succes a lucrărilor de reparație și punerea sub tensiune a liniei electrice aeriene (LEA) 330 kV Bălți – Dnestrovsk, afectată de furtuna din 6 august. Fenomenele meteorologice severe au deteriorat mai multe elemente constructive ale liniei, a anunțat vineri, 14 august, Ministerul Energiei. Pentru remedierea rapidă a avariilor, echipele de...</div>
+    <div class='cat-tags'><span class="cat-tag">💰 Corupție</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/linia-balti-dnestrovsk-grav-avariata-in-urma-calamitatilor-naturale-din-6-august-a-fost-reabilitata/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/live-text-patru-persoane-au-fost-ranite-in-urma-atacurilor-fortelor-ruse-in-regiunea-dnipropetrovsk-razboi-in-ucraina-ziua-1632/" target="_blank">LIVE TEXT/ Patru persoane au fost rănite în urma atacurilor forțelor ruse în regiunea Dnipropetrovsk. Război în Ucraina, ziua 1632</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 13.08.2026</span>
+    </div>
+    <div class='summary'>UPDATE 22:00 Forțele rusești au atacat patru districte din regiunea Dnipropetrovsk de aproape 60 de ori joi, 13 august, rănind patru persoane, a scris Ukrinform. Armata rusă a folosit drone, bombe aeriene și artilerie în atacuri. În Pavlohrad, o instalație a unei companii de logistică a fost avariată. Doi bărbați, în vârstă de 37 și...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/live-text-patru-persoane-au-fost-ranite-in-urma-atacurilor-fortelor-ruse-in-regiunea-dnipropetrovsk-razboi-in-ucraina-ziua-1632/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/exercitii-tactice-ale-brigazii-fulger-intr-un-centru-comercial-din-chisinau-aproape-de-miezul-noptii-igp-va-indemnam-nu-raspanditi-informatii-eronate/" target="_blank">Exerciții tactice ale Brigăzii „Fulger”, într-un centru comercial din Chișinău, aproape de miezul nopții: IGP: „Vă îndemnăm nu răspândiți informații eronate”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 13.08.2026</span>
+    </div>
+    <div class='summary'>Aproape de miezul nopții, Brigada de poliție cu destinație specială „Fulger” vor desfășura exerciții tactice într-un centru comercial din Chișinău, a anunțat în seara zilei de joi, 13 august, Inspectoratul General al Poliției (IGP). Potrivit IGP, aceste instruiri fac parte din planul de acțiuni al instituției și sunt organizate periodic în vederea perfecționării abilitaților de intervenție...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/exercitii-tactice-ale-brigazii-fulger-intr-un-centru-comercial-din-chisinau-aproape-de-miezul-noptii-igp-va-indemnam-nu-raspanditi-informatii-eronate/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/moldova-hitech-park-intra-in-etapa-de-planificare-a-fost-prezentat-masterplanul-viitorului-campus-tehnologic-de-la-stauceni" target="_blank">Moldova HiTech Park intră în etapa de planificare: a fost prezentat masterplanul viitorului campus tehnologic de la Stăuceni</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/moldova-hitech-park-intra-in-etapa-de-planificare-a-fost-prezentat-masterplanul-viitorului-campus-tehnologic-de-la-stauceni" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/csp-a-admis-rapoartele-de-evaluare-a-integritatii-etice-si-financiare-emis-in-privinta-a-doi-procurori/" target="_blank">CSP a admis rapoartele de evaluare a integrității etice și financiare emis în privința a doi procurori</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.08.2026</span>
+    </div>
+    <div class='summary'>Membrii Consiliului Superior al Procuraturii (CSP) au admis în ședință vineri, 14 august, rapoartele Comisiei de evaluare a procurorilor emis în privința a doi procurori, Alexandr Corețchii, procuror în Procuratura Soroca, și Grigore Potoran, adjunct interimar al procurorului-șef al Procuraturii municipiului Chișinău. CSP a admis rapoarte de evaluare după ce Completul de evaluare B a concluzionat,…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/csp-a-admis-rapoartele-de-evaluare-a-integritatii-etice-si-financiare-emis-in-privinta-a-doi-procurori/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/moment-decisiv-pentru-extinderea-ue-muntenegru-si-albania-se-apropie-de-aderare-iar-r-moldova-si-ucraina-avanseaza/" target="_blank">Moment decisiv pentru extinderea UE: Muntenegru și Albania se apropie de aderare, iar R. Moldova și Ucraina avansează</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.08.2026</span>
+    </div>
+    <div class='summary'>Extinderea Uniunii Europene intră într-o etapă decisivă, în condițiile în care Muntenegru și Albania se apropie de aderare, iar R. Moldova și Ucraina fac progrese în procesul de integrare, notează Euronews. În următoarele luni, Bruxelles-ul va trebui să decidă nu doar cine poate adera la Uniune, ci și cum va funcționa aceasta după extindere, în...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/moment-decisiv-pentru-extinderea-ue-muntenegru-si-albania-se-apropie-de-aderare-iar-r-moldova-si-ucraina-avanseaza/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/la-ce-pret-pot-cumpara-moldovenii-benzina-si-motorina-pe-14-august/" target="_blank">La ce preț pot cumpăra moldovenii benzina și motorina pe 14 august?</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.08.2026</span>
+    </div>
+    <div class='summary'>Pe 14 august 2026, atât benzina, cât și motorina vor înregistra o micșorare a tarifului, conform noilor prețuri maxime de referință, stabilite de Agenția Națională pentru Reglementare în Energetică (ANRE). Astfel, benzina 95 va avea un preț maxim de comercializare de 29,98 lei/litru, înregistrând o scădere de 0,2 bani față de ziua precedentă. În același timp, motorina standard va fi comercializată…</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/la-ce-pret-pot-cumpara-moldovenii-benzina-si-motorina-pe-14-august/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">💰 Corupție (3)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/investigatii/ancheta/video-cine-controleaza-piata-metalelor-luptele-subterane-dintre-concurenti-un-fost-deputat-pas-vizat-intr-o-plangere-penalasi-acuzat-ca-a-luat-mita-pentru-o-modificare-legislativa-metalf/" target="_blank">VIDEO/ Cine controlează piața metalelor. Luptele subterane dintre concurenți. Un fost deputat PAS, vizat într-o plângere penală și acuzat că a luat mită pentru o modificare legislativă. „Metalferos”, în pierdere patru ani la rând. Uzina de la Rîbnița – cu autorizații de mediu</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.08.2026</span>
+    </div>
+    <div class='summary'>La șapte ani de la demonopolizarea pieței deșeurilor de metale, întreprinderea cu capital de stat „Metalferos” activează în pierdere de patru ani la rând, iar piața liberă a ajuns să fie împărțită între câteva grupuri private, care încearcă să se extindă, inclusiv utilizând atacuri și acuzații reciproce. La sfârșitul lunii iulie a fost deschis un...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">💰 Corupție</span></div>
+    <a class="link-btn" href="https://www.zdg.md/investigatii/ancheta/video-cine-controleaza-piata-metalelor-luptele-subterane-dintre-concurenti-un-fost-deputat-pas-vizat-intr-o-plangere-penalasi-acuzat-ca-a-luat-mita-pentru-o-modificare-legislativa-metalf/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/concursul-pentru-privatizarea-hotelului-zarea-a-fost-prelungit-tofan-privatizarea-unui-obiect-de-o-asemenea-importanta-nu-trebuie-sa-se-desfasoare-in-plin-sezon-estival/" target="_blank">Concursul pentru privatizarea hotelului „Zarea” a fost prelungit. Tofan: „Privatizarea unui obiect de o asemenea importanță nu trebuie să se desfășoare în plin sezon estival”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.08.2026</span>
+    </div>
+    <div class='summary'>Concursul pentru privatizarea hotelului „Zarea”, al cărui termen-limită fusese stabilit inițial pentru 19 august, a fost prelungit până la 20 octombrie, a anunțat purtătorul de cuvânt al Guvernului, Dumitru Ciorici. Prelungirea concursului a fost solicitată de premierul Vasile Tofan. Potrivit premierului, privatizarea unui obiect de o asemenea importanță nu trebuie să se desfășoare în plin...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">💰 Corupție</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/concursul-pentru-privatizarea-hotelului-zarea-a-fost-prelungit-tofan-privatizarea-unui-obiect-de-o-asemenea-importanta-nu-trebuie-sa-se-desfasoare-in-plin-sezon-estival/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/linia-balti-dnestrovsk-grav-avariata-in-urma-calamitatilor-naturale-din-6-august-a-fost-reabilitata/" target="_blank">Linia Bălți–Dnestrovsk, „grav avariată” în urma „calamităților naturale” din 6 august, a fost reabilitată</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.08.2026</span>
+    </div>
+    <div class='summary'>Î.S. Moldelectrica anunță finalizarea cu succes a lucrărilor de reparație și punerea sub tensiune a liniei electrice aeriene (LEA) 330 kV Bălți – Dnestrovsk, afectată de furtuna din 6 august. Fenomenele meteorologice severe au deteriorat mai multe elemente constructive ale liniei, a anunțat vineri, 14 august, Ministerul Energiei. Pentru remedierea rapidă a avariilor, echipele de...</div>
+    <div class='cat-tags'><span class="cat-tag">💰 Corupție</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/linia-balti-dnestrovsk-grav-avariata-in-urma-calamitatilor-naturale-din-6-august-a-fost-reabilitata/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🏛️ Politică & Putere (2)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/investigatii/ancheta/video-cine-controleaza-piata-metalelor-luptele-subterane-dintre-concurenti-un-fost-deputat-pas-vizat-intr-o-plangere-penalasi-acuzat-ca-a-luat-mita-pentru-o-modificare-legislativa-metalf/" target="_blank">VIDEO/ Cine controlează piața metalelor. Luptele subterane dintre concurenți. Un fost deputat PAS, vizat într-o plângere penală și acuzat că a luat mită pentru o modificare legislativă. „Metalferos”, în pierdere patru ani la rând. Uzina de la Rîbnița – cu autorizații de mediu</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.08.2026</span>
+    </div>
+    <div class='summary'>La șapte ani de la demonopolizarea pieței deșeurilor de metale, întreprinderea cu capital de stat „Metalferos” activează în pierdere de patru ani la rând, iar piața liberă a ajuns să fie împărțită între câteva grupuri private, care încearcă să se extindă, inclusiv utilizând atacuri și acuzații reciproce. La sfârșitul lunii iulie a fost deschis un...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">💰 Corupție</span></div>
+    <a class="link-btn" href="https://www.zdg.md/investigatii/ancheta/video-cine-controleaza-piata-metalelor-luptele-subterane-dintre-concurenti-un-fost-deputat-pas-vizat-intr-o-plangere-penalasi-acuzat-ca-a-luat-mita-pentru-o-modificare-legislativa-metalf/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/concursul-pentru-privatizarea-hotelului-zarea-a-fost-prelungit-tofan-privatizarea-unui-obiect-de-o-asemenea-importanta-nu-trebuie-sa-se-desfasoare-in-plin-sezon-estival/" target="_blank">Concursul pentru privatizarea hotelului „Zarea” a fost prelungit. Tofan: „Privatizarea unui obiect de o asemenea importanță nu trebuie să se desfășoare în plin sezon estival”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.08.2026</span>
+    </div>
+    <div class='summary'>Concursul pentru privatizarea hotelului „Zarea”, al cărui termen-limită fusese stabilit inițial pentru 19 august, a fost prelungit până la 20 octombrie, a anunțat purtătorul de cuvânt al Guvernului, Dumitru Ciorici. Prelungirea concursului a fost solicitată de premierul Vasile Tofan. Potrivit premierului, privatizarea unui obiect de o asemenea importanță nu trebuie să se desfășoare în plin...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">💰 Corupție</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/concursul-pentru-privatizarea-hotelului-zarea-a-fost-prelungit-tofan-privatizarea-unui-obiect-de-o-asemenea-importanta-nu-trebuie-sa-se-desfasoare-in-plin-sezon-estival/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📰 Media & Libertatea Presei (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">👥 Social & Drepturile Omului (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/live-text-in-urma-unui-atac-rusesc-un-incediu-a-izbucnit-in-kirovohrad-victime-nu-au-fost-raportate-razboi-in-ucraina-ziua-1633/" target="_blank">LIVE TEXT/ În urma unui atac rusesc, un incediu a izbucnit în Kirovohrad, victime nu au fost raportate. Război în Ucraina, ziua 1633</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.08.2026</span>
+    </div>
+    <div class='summary'>UPDATE 8:30 Un incendiu a izbucnit în urma unui atac rusesc asupra unui obiectiv de infrastructură din raionul Kropivnițki, regiunea Kirovohrad, a anunțat Serviciul pentru Situații de Urgență. De asemenea, au fost cuprinse de flăcări o casă de locuit și vegetație uscată. În prezent, pompierii au lichidat toate incendiile. Potrivit informațiilor preliminare, nu au fost...</div>
+    <div class='cat-tags'><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/live-text-in-urma-unui-atac-rusesc-un-incediu-a-izbucnit-in-kirovohrad-victime-nu-au-fost-raportate-razboi-in-ucraina-ziua-1633/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📌 Alte articole (9)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/ce-temperaturi-prognozeaza-meteorologii-pentru-vineri-14-august/" target="_blank">Ce temperaturi prognozează meteorologii pentru vineri, 14 august</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.08.2026</span>
+    </div>
+    <div class='summary'>Pentru ziua de vineri, 14 august, meteorologii prognozează maxime de până la 28 de grade Celsius și cer variabil pe întreg teritoriul țării. Vântul va sufla din nord, slab până la moderat. Conform informațiilor publicate de Autoritatea de Meteorologie și Monitoring de Mediu (AMM), în centrul țării vor fi înregistrate temperaturi de până la 28...</div>
+    
+    <a class="link-btn" href="https://www.zdg.md/stiri/ce-temperaturi-prognozeaza-meteorologii-pentru-vineri-14-august/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/video-bez-vody-chto-proishodit-v-gagauzii-riltok" target="_blank">(ВИДЕО) Без воды: что происходит в Гагаузии? #рилток</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>DUOMO. Когда качество — не просто слово, это обязательство</div>
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/video-bez-vody-chto-proishodit-v-gagauzii-riltok" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/doc-taburchanu-vernula-moldatsa-bolee-11-mln-leev" target="_blank">(DOC) Табурчану вернула MoldATSA более 1,1 млн леев</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/doc-taburchanu-vernula-moldatsa-bolee-11-mln-leev" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/v-belczah-den-nezavisimosti-moldovy-otmetyat-voennym-paradom" target="_blank">В Бельцах День независимости Молдовы отметят военным парадом</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/v-belczah-den-nezavisimosti-moldovy-otmetyat-voennym-paradom" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/v-moldove-vosstanovili-lep-belczy-dnestrovsk-povrejdennuyu-vo-vremya-nepogody" target="_blank">На севере Молдовы восстановили ЛЭП Бельцы-Днестровск, поврежденную во время непогоды</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/v-moldove-vosstanovili-lep-belczy-dnestrovsk-povrejdennuyu-vo-vremya-nepogody" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/victoriabank-reduce-costul-finantarii-pentru-imm-uri" target="_blank">Victoriabank reduce costul finanțării pentru IMM-uri</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/victoriabank-reduce-costul-finantarii-pentru-imm-uri" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/ingrijorarile-exportatorilor-tranzitul-masiv-de-cereale-ucrainene-risca-sa-blocheze-calea-ferata" target="_blank">Îngrijorările exportatorilor: Tranzitul masiv de cereale ucrainene riscă să blocheze calea ferată</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/ingrijorarile-exportatorilor-tranzitul-masiv-de-cereale-ucrainene-risca-sa-blocheze-calea-ferata" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/mostenirile-primite-de-cetatenii-republicii-moldova-inclusiv-de-cei-aflati-in-diaspora-nu-vor-fi-impozitate-sustine-ministerul-finantelor" target="_blank">Moștenirile primite de cetățenii Republicii Moldova, inclusiv de cei aflați în diaspora, nu vor fi impozitate, susţine Ministerul Finanțelor</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/mostenirile-primite-de-cetatenii-republicii-moldova-inclusiv-de-cei-aflati-in-diaspora-nu-vor-fi-impozitate-sustine-ministerul-finantelor" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/energocom-a-achizitionat-gaze-in-valoare-de-cateva-miliarde" target="_blank">Energocom a achiziţionat gaze pentru iarnă în valoare de câteva miliarde</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/energocom-a-achizitionat-gaze-in-valoare-de-cateva-miliarde" target="_blank">Citește articolul →</a>
+  </div>
+</div>
+<div class="footer">
+  Raport generat automat zilnic &nbsp;·&nbsp; ARBI – Monitorizare Jurnalism Investigativ Moldova
+</div>
+</body>
+</html>
