@@ -1,0 +1,457 @@
+{
+  "date": "2026-08-15",
+  "generated_at": "2026-08-15T06:39:30Z",
+  "lookback_hours": 26,
+  "sources_checked": 8,
+  "sources_ok": 8,
+  "stats": {
+    "total": 23,
+    "investigative": 1,
+    "by_source": {
+      "rise_md": {
+        "name": "RISE Moldova",
+        "count": 1
+      },
+      "zdg_md": {
+        "name": "Ziarul de Gardă",
+        "count": 10
+      },
+      "newsmaker_md": {
+        "name": "Newsmaker.md",
+        "count": 4
+      },
+      "mold_street": {
+        "name": "Mold-Street",
+        "count": 7
+      },
+      "agora_md": {
+        "name": "Agora.md",
+        "count": 1
+      }
+    },
+    "by_category": {
+      "justitie": {
+        "label": "Justiție & Procurori",
+        "emoji": "⚖️",
+        "count": 11
+      },
+      "politica": {
+        "label": "Politică & Putere",
+        "emoji": "🏛️",
+        "count": 8
+      },
+      "media": {
+        "label": "Media & Libertatea Presei",
+        "emoji": "📰",
+        "count": 1
+      },
+      "afaceri": {
+        "label": "Afaceri & Contracte Publice",
+        "emoji": "💼",
+        "count": 2
+      }
+    }
+  },
+  "articles": [
+    {
+      "id": "b245f9d9c217",
+      "title": "The New York Times, articol despre importanța R. Moldova pentru Rusia. Publicația americană a făcut referire și la investigațiile ZdG",
+      "url": "https://www.zdg.md/stiri/the-new-york-times-articol-despre-importanta-r-moldova-pentru-rusia-publicatia-americana-a-facut-referire-si-la-investigatiile-zdg/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-14T16:41:14Z",
+      "published_date": "2026-08-14",
+      "summary": "The New York Times a publicat o investigație despre motivele pentru care R. Moldova este esențială pentru obiectivul lui Putin de a distruge NATO. Publicația americană a relatat despre cum Moscova, în încercarea de a deraia guvernarea orientată spre Occident, a plătit preoți ortodocși, a înființat tabere de instruire pentru interferența electorală și a desfășurat...",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 3
+    },
+    {
+      "id": "e9ba4aac6bf1",
+      "title": "Victoria Belous, „sceptică” față de cauza penală pornită în privința companiei „Sofilarex Plus”, pe baza unui denunț în care e vizat Alexandr Trubca. „Din unele canale de Telegram, mai ieri, erau suspiciuni și la mine”",
+      "url": "https://www.zdg.md/stiri/victoria-belous-sceptica-fata-de-cauza-penala-pornita-in-privinta-companiei-sofilarex-plus-pe-baza-unui-denunt-in-care-e-vizat-alexandr-trubca-din-unele-canale-de-telegram-mai-ieri-erau-suspiciuni-si/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-14T16:11:27Z",
+      "published_date": "2026-08-14",
+      "summary": "Ministra Finanțelor, Victoria Belous, se declară „sceptică” și consideră că ar existat „semne de întrebare” față de modul cum a fost pornită cauza penală în care este vizată compania „Sofilarex Plus” SRL de către Direcția urmărire penală a Serviciului Vamal, aflat în subordinea Ministerului Finanțelor, ca urmare a unui denunț în care este vizat și...",
+      "categories": [
+        "justitie",
+        "politica",
+        "afaceri"
+      ],
+      "category_scores": {
+        "justitie": 3,
+        "politica": 1,
+        "afaceri": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 5
+    },
+    {
+      "id": "43bad31efdd3",
+      "title": "Consiliul Constituțional al Franței a declarat ilegală interdicția privind rețelele sociale pentru copiii cu vârsta sub 15 ani",
+      "url": "https://www.zdg.md/stiri/consiliul-constitutional-al-frantei-a-declarat-ilegala-interdictia-privind-retelele-sociale-pentru-copiii-cu-varsta-sub-15-ani/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-14T17:15:41Z",
+      "published_date": "2026-08-14",
+      "summary": "Consiliul constituțional al Franței a declarat neconstituțională legea care interzice accesul copiilor sub 15 ani la rețelele sociale. Parlamentul francez a adoptat legea în iulie, iar președintele Emmanuel Macron promisese să o pună în aplicare încă din septembrie, relatează BBC. Consiliul Constituțional a ajuns la concluzia că noua lege restrânge într-o asemenea măsură libertatea de...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 2,
+        "politica": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 4
+    },
+    {
+      "id": "0817876429e3",
+      "title": "Patru grupuri de companii, desemnate câștigătoare în cadrul licitației pentru producerea energiei regenerabile",
+      "url": "https://mold-street.com/noutate/patru-grupuri-de-companii-desemnate-castigatoare-in-cadrul-licitatiei-pentru-producerea-energiei-regenerabile",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "justitie",
+        "afaceri"
+      ],
+      "category_scores": {
+        "justitie": 2,
+        "afaceri": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "6a2dcc4f8278",
+      "title": "Moldova HiTech Park intră în etapa de planificare: a fost prezentat masterplanul viitorului campus tehnologic de la Stăuceni",
+      "url": "https://mold-street.com/noutate/moldova-hitech-park-intra-in-etapa-de-planificare-a-fost-prezentat-masterplanul-viitorului-campus-tehnologic-de-la-stauceni",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "375cd29e4913",
+      "title": "Comunicăm. Producem. Plasăm.Crești împreună cu AGORA",
+      "url": "https://agora.md/media-kit",
+      "source": "Agora.md",
+      "source_key": "agora_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.",
+      "categories": [
+        "justitie",
+        "media"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "media": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "c170f92dfdc8",
+      "title": "Efectul Meșteșug: Copiii vor fi protejați de contactul cu persoanele care au comis infracțiuni împotriva lor",
+      "url": "https://www.rise.md/efectul-mestesug-copiii-vor-fi-protejati-de-contactul-cu-persoanele-care-au-comis-infractiuni-impotriva-lor/",
+      "source": "RISE Moldova",
+      "source_key": "rise_md",
+      "published": "2026-08-14T07:32:54Z",
+      "published_date": "2026-08-14",
+      "summary": "Persoanele cercetate penal și cele condamnate definitiv pentru infracțiuni intenționate împotriva copiilor nu vor mai putea lucra cu […] The post Efectul Meșteșug: Copiii vor fi protejați de contactul cu persoanele care au comis infracțiuni împotriva lor appeared first on Rise Moldova .",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "ba5163193c2b",
+      "title": "LIVE TEXT/ Un băiețel de trei luni a murit în urma atacului nocturn rusesc asupra regiunii Dnipropetrovsk. Război în Ucraina, ziua 1634",
+      "url": "https://www.zdg.md/stiri/live-text-un-baietel-de-trei-luni-a-murit-in-urma-atacului-nocturn-rusesc-asupra-regiunii-dnipropetrovsk-razboi-in-ucraina-ziua-1634/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-15T06:19:34Z",
+      "published_date": "2026-08-15",
+      "summary": "9:19 Forțele ruse au lovit cu drone un bloc de locuințe din orașul Marhaneț, regiunea Dnipropetrovsk, a raportat administrația militară regională Dnipropetrovsk. În urma atacului, 11 persoane au fost rănite, dintre care șapte au fost spitalizate în stare gravă. Printre răniți se numără doi copii — un băiat de 5 ani și o fată de...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "948c58fe658f",
+      "title": "VIDEO/ Impozit de 12% pe moșteniri? | Dronă-rachetă la Crocmaz | Refuzul unui ministru de a vorbi în rusă | Cine controlează piața metalelor din R. Moldova | Noutăți din justiție | SĂPTĂMÂNA DE GARDĂ",
+      "url": "https://www.zdg.md/stiri/video-impozit-de-12-pe-mosteniri-drona-racheta-la-crocmaz-refuzul-unui-ministru-de-a-vorbi-in-rusa-cine-controleaza-piata-metalelor-din-r-moldova-noutati-din-justitie-saptamana-de-garda/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-15T06:00:00Z",
+      "published_date": "2026-08-15",
+      "summary": "Un nou tip de dronă folosită de Rusia în Ucraina a explodat în raionul Ștefan Vodă. Cum au reacționat autoritățile de la Chișinău, aflați în această ediție a Săptămânii de Gardă. Tot astăzi vorbim despre cine controlează piața deșeurilor de metale din R. Moldova și vă spunem de ce un fost director trebuie să restituie...",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "ca4be5cd2f85",
+      "title": "Prețurile la carburanți pentru weekendul 15–17 august",
+      "url": "https://www.zdg.md/stiri/preturile-la-carburanti-pentru-weekendul-15-17-august/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-15T05:50:00Z",
+      "published_date": "2026-08-15",
+      "summary": "În weekend, motorina va rămâne mai scumpă decât benzina. Agenția Națională pentru Reglementare în Energetică (ANRE) a afișat prețurile maxime de comercializare pentru principalele produse petroliere standard, vor fi valabile în perioada 15–17 august. Astfel, un litru de benzină 95 va putea fi comercializat la un preț de cel mult 30,01 lei, în creștere cu...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "a3d3e26eaa4d",
+      "title": "Zi senină, caldă și fără precipitații: ce temparaturi ne așteaptă sâmbătă, 15 august",
+      "url": "https://www.zdg.md/stiri/zi-senina-calda-si-fara-precipitatii-ce-temparaturi-ne-asteapta-sambata-15-august/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-15T05:00:00Z",
+      "published_date": "2026-08-15",
+      "summary": "Sâmbătă, 15 august, vremea va fi predominant caldă în R. Moldova, cu cer senin pe întreg teritoriul țării. Totodată, în această zi intră în vigoare codul galben de pericol de incendiu. În centrul țării, potrivit prognozei emise de Autoritatea de Meteorologie și Monitoring de Mediu (AMM), temperaturile vor urca până la +28°C, Vântul va sufla...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "c8aa82461b19",
+      "title": "LIVE TEXT/ Regiunea Herson: un bărbat a fost rănit în urma unui atac rusesc. Război în Ucraina, ziua 1633",
+      "url": "https://www.zdg.md/stiri/live-text-regiunea-herson-un-barbat-a-fost-ranit-in-urma-unui-atac-rusesc-razboi-in-ucraina-ziua-1633/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-14T19:03:19Z",
+      "published_date": "2026-08-14",
+      "summary": "UPDATE 22:00 În regiunea Herson, un bărbat a fost rănit în urma unui atac cu o dronă rusă, informează Serviciul de Stat pentru Situații de Urgență al Ucrainei. O clădire agricolă a luat foc în localitatea Novovorontsovka, din raionul Berislav, în urma lovirii de către o dronă. „În ciuda riscului unor noi atacuri, echipele de...",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "bebb0299b4e4",
+      "title": "Încă o dronă, descoperită în Tulcea: este al doilea aparat identificat astăzi în România",
+      "url": "https://www.zdg.md/stiri/inca-o-drona-descoperita-in-tulcea-este-al-doilea-aparat-identificat-astazi-in-romania/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-14T18:05:35Z",
+      "published_date": "2026-08-14",
+      "summary": "Încă o dronă a fost descoperită în județul Tulcea vineri, 14 august, anunță Ministerul Apărării Naționale al României (MApN). Anterior, în dimineața aceleiași zile, o altă dronă s-a prăbușit în regiune. „Ministerul Apărării Naționale a fost informat în cursul zilei de vineri, 14 august, despre o dronă descoperită în zona localității Plauru, județul Tulcea. O...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "8070ec78cc33",
+      "title": "(ВИДЕО) Экс-депутата PAS обвинили во взятке/ Кишиневцы останутся без газа?/ Тирасполю «не нужно разрешение»",
+      "url": "https://newsmaker.md/ru/video-eks-deputata-pas-obvinili-vo-vzyatke-kishinevczy-ostanutsya-bez-gaza-tiraspolyu-ne-nujno-razreshenie",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "b321850df388",
+      "title": "Cerere mare de valori mobiliare de stat",
+      "url": "https://mold-street.com/noutate/bancile-din-moldova-investesc-masiv-in-titluri-de-stat-cererea-a-depasit-oferta-ministerului-finantelor",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "799fb375e82e",
+      "title": "Cât ar costa de fapt energia de la Cuciurgan cumpărată la preț de piață? Calculele prezentate de ministrul Energiei",
+      "url": "https://mold-street.com/noutate/cat-ar-costa-de-fapt-energia-de-la-cuciurgan-cumparata-la-pret-de-piata-calculele-prezentate-de-ministrul-energiei",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "971b0dbe36ef",
+      "title": "Nicio cerere pentru privatizarea hotelului Zarea şi a altor active ale statului",
+      "url": "https://mold-street.com/noutate/nicio-cerere-pentru-privatizarea-hotelului-zarea-si-altor-active-ale-statului",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "ce721e31af58",
+      "title": "Trafic intens la vama Sculeni. Poliția de Frontieră recomandă șoferilor să aleagă puncte alternative",
+      "url": "https://www.zdg.md/stiri/trafic-intens-la-vama-sculeni-politia-de-frontiera-recomanda-soferilor-sa-aleaga-puncte-alternative/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-15T06:34:37Z",
+      "published_date": "2026-08-15",
+      "summary": "Trafic intens se înregistrează, astăzi, 15 august, la Punctul de Trecere a Frontierei Sculeni, pe sensul de ieșire din Republica Moldova. Potrivit Poliției de Frontieră, este aglomerată atât zona pentru călători, cât și cea destinată mijloacelor de transport. Autoritățile de control au deschis toate pistele disponibile și aplică procedura „REVERS”, pentru a fluidiza traficul transfrontalier....",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "0c31273eef46",
+      "title": "(ВИДЕО) Без воды: что происходит в Гагаузии? #рилток",
+      "url": "https://newsmaker.md/ru/video-bez-vody-chto-proishodit-v-gagauzii-riltok",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "DUOMO. Когда качество — не просто слово, это обязательство",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "a0047d36aa03",
+      "title": "NM Espresso: об «уроке стойкости» от Санду, отключении газа тысячам кишиневцев и о Гагаузии «без воды»",
+      "url": "https://newsmaker.md/ru/nmespresso-kogda-izmenyat-tarif-na-gaz-kak-kishinevczy-ekonomyat-vodu-i-chto-tofan-obsudil-s-agrariyami",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "6a2f422814db",
+      "title": "В вузы Молдовы после основной приемной компании поступили более 18 тыс. человек. Это на 16% больше, чем год назад",
+      "url": "https://newsmaker.md/ru/v-vuzy-moldovy-posle-osnovnoi-priemnoi-kompanii-postupili-bolee-18-tys-chelovek-eto-na-16-bolshe-chem-god-nazad",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "1118640536cd",
+      "title": "Victoriabank reduce costul finanțării pentru IMM-uri",
+      "url": "https://mold-street.com/noutate/victoriabank-reduce-costul-finantarii-pentru-imm-uri",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "7ee44367bfcb",
+      "title": "Profilul milionarilor din Republica Moldova: Numărul lor a depășit 9.600 în 2025, în creștere cu 20%",
+      "url": "https://mold-street.com/noutate/profilul-milionarilor-din-republica-moldova-numarul-lor-a-depasit-9600-in-2025-in-crestere-cu-20",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    }
+  ]
+}
