@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monitorizare Jurnalism Investigativ Moldova – 15.08.2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; color: #2c3e50; }
+  .header { background: #1b4332; color: #fff; padding: 28px 40px; }
+  .header h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: 0.5px; }
+  .header .subtitle { margin-top: 6px; font-size: 0.9rem; opacity: 0.85; }
+  .stats-bar { background: #2d6a4f; color: #fff; padding: 16px 40px;
+                display: flex; gap: 36px; flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; }
+  .stat .val { font-size: 1.8rem; font-weight: 700; }
+  .stat .lbl { font-size: 0.72rem; opacity: 0.82; text-transform: uppercase; letter-spacing: 0.8px; }
+  .cat-bar { background: #40916c; color: #fff; padding: 12px 40px;
+              display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .cat-chip { background: rgba(255,255,255,0.18); border-radius: 20px;
+               padding: 4px 14px; font-size: 0.78rem; font-weight: 600;
+               white-space: nowrap; }
+  .container { max-width: 1040px; margin: 30px auto; padding: 0 20px 40px; }
+  .section-title { font-size: 0.95rem; font-weight: 700; color: #1b4332;
+                    text-transform: uppercase; letter-spacing: 1px;
+                    margin: 28px 0 14px; border-bottom: 2px solid #1b4332;
+                    padding-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08);
+           padding: 18px 22px; margin-bottom: 14px; border-left: 5px solid #1b4332;
+           transition: box-shadow .15s; }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.13); }
+  .card.investigativ { border-left-color: #d62828; }
+  .card-title { font-size: 1rem; font-weight: 700; color: #1b4332; margin-bottom: 8px; }
+  .card-title a { color: inherit; text-decoration: none; }
+  .card-title a:hover { text-decoration: underline; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;
+           font-size: 0.8rem; color: #555; }
+  .badge { display: inline-block; font-size: 0.68rem; font-weight: 700;
+            padding: 2px 8px; border-radius: 12px; color: #fff;
+            margin-right: 4px; vertical-align: middle; }
+  .badge-inv { background: #d62828; }
+  .source-tag { background: #e8f4ec; color: #1b4332; border-radius: 4px;
+                 padding: 1px 8px; font-size: 0.75rem; font-weight: 600; }
+  .summary { font-size: 0.85rem; color: #444; line-height: 1.55; margin-top: 6px; }
+  .cat-tags { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .cat-tag { font-size: 0.72rem; padding: 2px 10px; border-radius: 10px;
+              font-weight: 600; background: #e8f4ec; color: #1b4332; }
+  .link-btn { display: inline-block; margin-top: 10px; padding: 5px 14px;
+               background: #1b4332; color: #fff; border-radius: 5px;
+               font-size: 0.78rem; text-decoration: none; font-weight: 600; }
+  .link-btn:hover { background: #2d6a4f; }
+  .empty-box { background: #fff; border-radius: 8px; padding: 30px 24px;
+                text-align: center; color: #7f8c8d; font-size: 0.95rem;
+                box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .source-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+  .source-box { background: #fff; border-radius: 8px; padding: 12px 18px;
+                 box-shadow: 0 2px 6px rgba(0,0,0,.07); min-width: 140px;
+                 border-top: 3px solid #1b4332; }
+  .source-box .sname { font-size: 0.78rem; font-weight: 700; color: #1b4332; }
+  .source-box .scount { font-size: 1.4rem; font-weight: 700; color: #2d6a4f; margin-top: 2px; }
+  .footer { text-align: center; font-size: 0.75rem; color: #999;
+             margin-top: 40px; padding-bottom: 20px; }
+  @media (max-width: 600px) {
+    .header, .stats-bar, .cat-bar { padding: 18px 16px; }
+    .stats-bar { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🔍 Monitorizare Jurnalism Investigativ – Moldova</h1>
+  <div class="subtitle">
+    Surse monitorizate: 8 &nbsp;|&nbsp;
+    Ultimele 26 ore &nbsp;|&nbsp;
+    Generat: 2026-08-15 06:39 UTC
+  </div>
+</div>
+<div class="stats-bar">
+  <div class="stat"><span class="val">23</span><span class="lbl">Articole noi</span></div>
+  <div class="stat"><span class="val">1</span><span class="lbl">Investigative</span></div>
+  <div class="stat"><span class="val">8</span><span class="lbl">Surse active</span></div>
+  <div class="stat"><span class="val">15.08.2026</span><span class="lbl">Data raportului</span></div>
+</div>
+<div class="cat-bar">
+  <span style="font-size:.8rem;opacity:.85;margin-right:4px">Categorii:</span>
+  <span class="cat-chip">⚖️ Justiție & Procurori (11)</span><span class="cat-chip">🏛️ Politică & Putere (8)</span><span class="cat-chip">💼 Afaceri & Contracte Publice (2)</span><span class="cat-chip">📰 Media & Libertatea Presei (1)</span>
+</div>
+<div class="container">
+<div class="section-title">📊 Articole pe surse</div><div class="source-grid"><div class="source-box"><div class="sname">Ziarul de Gardă</div><div class="scount">10</div></div><div class="source-box"><div class="sname">Mold-Street</div><div class="scount">7</div></div><div class="source-box"><div class="sname">Newsmaker.md</div><div class="scount">4</div></div><div class="source-box"><div class="sname">RISE Moldova</div><div class="scount">1</div></div><div class="source-box"><div class="sname">Agora.md</div><div class="scount">1</div></div></div>
+<div class="section-title">🔍 Articole Investigative (1)</div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/the-new-york-times-articol-despre-importanta-r-moldova-pentru-rusia-publicatia-americana-a-facut-referire-si-la-investigatiile-zdg/" target="_blank">The New York Times, articol despre importanța R. Moldova pentru Rusia. Publicația americană a făcut referire și la investigațiile ZdG</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.08.2026</span>
+    </div>
+    <div class='summary'>The New York Times a publicat o investigație despre motivele pentru care R. Moldova este esențială pentru obiectivul lui Putin de a distruge NATO. Publicația americană a relatat despre cum Moscova, în încercarea de a deraia guvernarea orientată spre Occident, a plătit preoți ortodocși, a înființat tabere de instruire pentru interferența electorală și a desfășurat...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/the-new-york-times-articol-despre-importanta-r-moldova-pentru-rusia-publicatia-americana-a-facut-referire-si-la-investigatiile-zdg/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">⚖️ Justiție & Procurori (11)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/victoria-belous-sceptica-fata-de-cauza-penala-pornita-in-privinta-companiei-sofilarex-plus-pe-baza-unui-denunt-in-care-e-vizat-alexandr-trubca-din-unele-canale-de-telegram-mai-ieri-erau-suspiciuni-si/" target="_blank">Victoria Belous, „sceptică” față de cauza penală pornită în privința companiei „Sofilarex Plus”, pe baza unui denunț în care e vizat Alexandr Trubca. „Din unele canale de Telegram, mai ieri, erau suspiciuni și la mine”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.08.2026</span>
+    </div>
+    <div class='summary'>Ministra Finanțelor, Victoria Belous, se declară „sceptică” și consideră că ar existat „semne de întrebare” față de modul cum a fost pornită cauza penală în care este vizată compania „Sofilarex Plus” SRL de către Direcția urmărire penală a Serviciului Vamal, aflat în subordinea Ministerului Finanțelor, ca urmare a unui denunț în care este vizat și...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/victoria-belous-sceptica-fata-de-cauza-penala-pornita-in-privinta-companiei-sofilarex-plus-pe-baza-unui-denunt-in-care-e-vizat-alexandr-trubca-din-unele-canale-de-telegram-mai-ieri-erau-suspiciuni-si/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/consiliul-constitutional-al-frantei-a-declarat-ilegala-interdictia-privind-retelele-sociale-pentru-copiii-cu-varsta-sub-15-ani/" target="_blank">Consiliul Constituțional al Franței a declarat ilegală interdicția privind rețelele sociale pentru copiii cu vârsta sub 15 ani</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.08.2026</span>
+    </div>
+    <div class='summary'>Consiliul constituțional al Franței a declarat neconstituțională legea care interzice accesul copiilor sub 15 ani la rețelele sociale. Parlamentul francez a adoptat legea în iulie, iar președintele Emmanuel Macron promisese să o pună în aplicare încă din septembrie, relatează BBC. Consiliul Constituțional a ajuns la concluzia că noua lege restrânge într-o asemenea măsură libertatea de...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/consiliul-constitutional-al-frantei-a-declarat-ilegala-interdictia-privind-retelele-sociale-pentru-copiii-cu-varsta-sub-15-ani/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/patru-grupuri-de-companii-desemnate-castigatoare-in-cadrul-licitatiei-pentru-producerea-energiei-regenerabile" target="_blank">Patru grupuri de companii, desemnate câștigătoare în cadrul licitației pentru producerea energiei regenerabile</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/patru-grupuri-de-companii-desemnate-castigatoare-in-cadrul-licitatiei-pentru-producerea-energiei-regenerabile" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/moldova-hitech-park-intra-in-etapa-de-planificare-a-fost-prezentat-masterplanul-viitorului-campus-tehnologic-de-la-stauceni" target="_blank">Moldova HiTech Park intră în etapa de planificare: a fost prezentat masterplanul viitorului campus tehnologic de la Stăuceni</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/moldova-hitech-park-intra-in-etapa-de-planificare-a-fost-prezentat-masterplanul-viitorului-campus-tehnologic-de-la-stauceni" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.rise.md/efectul-mestesug-copiii-vor-fi-protejati-de-contactul-cu-persoanele-care-au-comis-infractiuni-impotriva-lor/" target="_blank">Efectul Meșteșug: Copiii vor fi protejați de contactul cu persoanele care au comis infracțiuni împotriva lor</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 RISE Moldova</span>
+      <span>📅 14.08.2026</span>
+    </div>
+    <div class='summary'>Persoanele cercetate penal și cele condamnate definitiv pentru infracțiuni intenționate împotriva copiilor nu vor mai putea lucra cu […] The post Efectul Meșteșug: Copiii vor fi protejați de contactul cu persoanele care au comis infracțiuni împotriva lor appeared first on Rise Moldova .</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.rise.md/efectul-mestesug-copiii-vor-fi-protejati-de-contactul-cu-persoanele-care-au-comis-infractiuni-impotriva-lor/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/live-text-un-baietel-de-trei-luni-a-murit-in-urma-atacului-nocturn-rusesc-asupra-regiunii-dnipropetrovsk-razboi-in-ucraina-ziua-1634/" target="_blank">LIVE TEXT/ Un băiețel de trei luni a murit în urma atacului nocturn rusesc asupra regiunii Dnipropetrovsk. Război în Ucraina, ziua 1634</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 15.08.2026</span>
+    </div>
+    <div class='summary'>9:19 Forțele ruse au lovit cu drone un bloc de locuințe din orașul Marhaneț, regiunea Dnipropetrovsk, a raportat administrația militară regională Dnipropetrovsk. În urma atacului, 11 persoane au fost rănite, dintre care șapte au fost spitalizate în stare gravă. Printre răniți se numără doi copii — un băiat de 5 ani și o fată de...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/live-text-un-baietel-de-trei-luni-a-murit-in-urma-atacului-nocturn-rusesc-asupra-regiunii-dnipropetrovsk-razboi-in-ucraina-ziua-1634/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/preturile-la-carburanti-pentru-weekendul-15-17-august/" target="_blank">Prețurile la carburanți pentru weekendul 15–17 august</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 15.08.2026</span>
+    </div>
+    <div class='summary'>În weekend, motorina va rămâne mai scumpă decât benzina. Agenția Națională pentru Reglementare în Energetică (ANRE) a afișat prețurile maxime de comercializare pentru principalele produse petroliere standard, vor fi valabile în perioada 15–17 august. Astfel, un litru de benzină 95 va putea fi comercializat la un preț de cel mult 30,01 lei, în creștere cu...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/preturile-la-carburanti-pentru-weekendul-15-17-august/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/zi-senina-calda-si-fara-precipitatii-ce-temparaturi-ne-asteapta-sambata-15-august/" target="_blank">Zi senină, caldă și fără precipitații: ce temparaturi ne așteaptă sâmbătă, 15 august</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 15.08.2026</span>
+    </div>
+    <div class='summary'>Sâmbătă, 15 august, vremea va fi predominant caldă în R. Moldova, cu cer senin pe întreg teritoriul țării. Totodată, în această zi intră în vigoare codul galben de pericol de incendiu. În centrul țării, potrivit prognozei emise de Autoritatea de Meteorologie și Monitoring de Mediu (AMM), temperaturile vor urca până la +28°C, Vântul va sufla...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/zi-senina-calda-si-fara-precipitatii-ce-temparaturi-ne-asteapta-sambata-15-august/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/inca-o-drona-descoperita-in-tulcea-este-al-doilea-aparat-identificat-astazi-in-romania/" target="_blank">Încă o dronă, descoperită în Tulcea: este al doilea aparat identificat astăzi în România</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.08.2026</span>
+    </div>
+    <div class='summary'>Încă o dronă a fost descoperită în județul Tulcea vineri, 14 august, anunță Ministerul Apărării Naționale al României (MApN). Anterior, în dimineața aceleiași zile, o altă dronă s-a prăbușit în regiune. „Ministerul Apărării Naționale a fost informat în cursul zilei de vineri, 14 august, despre o dronă descoperită în zona localității Plauru, județul Tulcea. O...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/inca-o-drona-descoperita-in-tulcea-este-al-doilea-aparat-identificat-astazi-in-romania/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🏛️ Politică & Putere (7)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/victoria-belous-sceptica-fata-de-cauza-penala-pornita-in-privinta-companiei-sofilarex-plus-pe-baza-unui-denunt-in-care-e-vizat-alexandr-trubca-din-unele-canale-de-telegram-mai-ieri-erau-suspiciuni-si/" target="_blank">Victoria Belous, „sceptică” față de cauza penală pornită în privința companiei „Sofilarex Plus”, pe baza unui denunț în care e vizat Alexandr Trubca. „Din unele canale de Telegram, mai ieri, erau suspiciuni și la mine”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.08.2026</span>
+    </div>
+    <div class='summary'>Ministra Finanțelor, Victoria Belous, se declară „sceptică” și consideră că ar existat „semne de întrebare” față de modul cum a fost pornită cauza penală în care este vizată compania „Sofilarex Plus” SRL de către Direcția urmărire penală a Serviciului Vamal, aflat în subordinea Ministerului Finanțelor, ca urmare a unui denunț în care este vizat și...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/victoria-belous-sceptica-fata-de-cauza-penala-pornita-in-privinta-companiei-sofilarex-plus-pe-baza-unui-denunt-in-care-e-vizat-alexandr-trubca-din-unele-canale-de-telegram-mai-ieri-erau-suspiciuni-si/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/consiliul-constitutional-al-frantei-a-declarat-ilegala-interdictia-privind-retelele-sociale-pentru-copiii-cu-varsta-sub-15-ani/" target="_blank">Consiliul Constituțional al Franței a declarat ilegală interdicția privind rețelele sociale pentru copiii cu vârsta sub 15 ani</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.08.2026</span>
+    </div>
+    <div class='summary'>Consiliul constituțional al Franței a declarat neconstituțională legea care interzice accesul copiilor sub 15 ani la rețelele sociale. Parlamentul francez a adoptat legea în iulie, iar președintele Emmanuel Macron promisese să o pună în aplicare încă din septembrie, relatează BBC. Consiliul Constituțional a ajuns la concluzia că noua lege restrânge într-o asemenea măsură libertatea de...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/consiliul-constitutional-al-frantei-a-declarat-ilegala-interdictia-privind-retelele-sociale-pentru-copiii-cu-varsta-sub-15-ani/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/video-impozit-de-12-pe-mosteniri-drona-racheta-la-crocmaz-refuzul-unui-ministru-de-a-vorbi-in-rusa-cine-controleaza-piata-metalelor-din-r-moldova-noutati-din-justitie-saptamana-de-garda/" target="_blank">VIDEO/ Impozit de 12% pe moșteniri? | Dronă-rachetă la Crocmaz | Refuzul unui ministru de a vorbi în rusă | Cine controlează piața metalelor din R. Moldova | Noutăți din justiție | SĂPTĂMÂNA DE GARDĂ</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 15.08.2026</span>
+    </div>
+    <div class='summary'>Un nou tip de dronă folosită de Rusia în Ucraina a explodat în raionul Ștefan Vodă. Cum au reacționat autoritățile de la Chișinău, aflați în această ediție a Săptămânii de Gardă. Tot astăzi vorbim despre cine controlează piața deșeurilor de metale din R. Moldova și vă spunem de ce un fost director trebuie să restituie...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/video-impozit-de-12-pe-mosteniri-drona-racheta-la-crocmaz-refuzul-unui-ministru-de-a-vorbi-in-rusa-cine-controleaza-piata-metalelor-din-r-moldova-noutati-din-justitie-saptamana-de-garda/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/live-text-regiunea-herson-un-barbat-a-fost-ranit-in-urma-unui-atac-rusesc-razboi-in-ucraina-ziua-1633/" target="_blank">LIVE TEXT/ Regiunea Herson: un bărbat a fost rănit în urma unui atac rusesc. Război în Ucraina, ziua 1633</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.08.2026</span>
+    </div>
+    <div class='summary'>UPDATE 22:00 În regiunea Herson, un bărbat a fost rănit în urma unui atac cu o dronă rusă, informează Serviciul de Stat pentru Situații de Urgență al Ucrainei. O clădire agricolă a luat foc în localitatea Novovorontsovka, din raionul Berislav, în urma lovirii de către o dronă. „În ciuda riscului unor noi atacuri, echipele de...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/live-text-regiunea-herson-un-barbat-a-fost-ranit-in-urma-unui-atac-rusesc-razboi-in-ucraina-ziua-1633/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/bancile-din-moldova-investesc-masiv-in-titluri-de-stat-cererea-a-depasit-oferta-ministerului-finantelor" target="_blank">Cerere mare de valori mobiliare de stat</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/bancile-din-moldova-investesc-masiv-in-titluri-de-stat-cererea-a-depasit-oferta-ministerului-finantelor" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/cat-ar-costa-de-fapt-energia-de-la-cuciurgan-cumparata-la-pret-de-piata-calculele-prezentate-de-ministrul-energiei" target="_blank">Cât ar costa de fapt energia de la Cuciurgan cumpărată la preț de piață? Calculele prezentate de ministrul Energiei</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/cat-ar-costa-de-fapt-energia-de-la-cuciurgan-cumparata-la-pret-de-piata-calculele-prezentate-de-ministrul-energiei" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/nicio-cerere-pentru-privatizarea-hotelului-zarea-si-altor-active-ale-statului" target="_blank">Nicio cerere pentru privatizarea hotelului Zarea şi a altor active ale statului</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/nicio-cerere-pentru-privatizarea-hotelului-zarea-si-altor-active-ale-statului" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">💼 Afaceri & Contracte Publice (2)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/victoria-belous-sceptica-fata-de-cauza-penala-pornita-in-privinta-companiei-sofilarex-plus-pe-baza-unui-denunt-in-care-e-vizat-alexandr-trubca-din-unele-canale-de-telegram-mai-ieri-erau-suspiciuni-si/" target="_blank">Victoria Belous, „sceptică” față de cauza penală pornită în privința companiei „Sofilarex Plus”, pe baza unui denunț în care e vizat Alexandr Trubca. „Din unele canale de Telegram, mai ieri, erau suspiciuni și la mine”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 14.08.2026</span>
+    </div>
+    <div class='summary'>Ministra Finanțelor, Victoria Belous, se declară „sceptică” și consideră că ar existat „semne de întrebare” față de modul cum a fost pornită cauza penală în care este vizată compania „Sofilarex Plus” SRL de către Direcția urmărire penală a Serviciului Vamal, aflat în subordinea Ministerului Finanțelor, ca urmare a unui denunț în care este vizat și...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/victoria-belous-sceptica-fata-de-cauza-penala-pornita-in-privinta-companiei-sofilarex-plus-pe-baza-unui-denunt-in-care-e-vizat-alexandr-trubca-din-unele-canale-de-telegram-mai-ieri-erau-suspiciuni-si/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/patru-grupuri-de-companii-desemnate-castigatoare-in-cadrul-licitatiei-pentru-producerea-energiei-regenerabile" target="_blank">Patru grupuri de companii, desemnate câștigătoare în cadrul licitației pentru producerea energiei regenerabile</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/patru-grupuri-de-companii-desemnate-castigatoare-in-cadrul-licitatiei-pentru-producerea-energiei-regenerabile" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📰 Media & Libertatea Presei (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📌 Alte articole (6)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/trafic-intens-la-vama-sculeni-politia-de-frontiera-recomanda-soferilor-sa-aleaga-puncte-alternative/" target="_blank">Trafic intens la vama Sculeni. Poliția de Frontieră recomandă șoferilor să aleagă puncte alternative</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 15.08.2026</span>
+    </div>
+    <div class='summary'>Trafic intens se înregistrează, astăzi, 15 august, la Punctul de Trecere a Frontierei Sculeni, pe sensul de ieșire din Republica Moldova. Potrivit Poliției de Frontieră, este aglomerată atât zona pentru călători, cât și cea destinată mijloacelor de transport. Autoritățile de control au deschis toate pistele disponibile și aplică procedura „REVERS”, pentru a fluidiza traficul transfrontalier....</div>
+    
+    <a class="link-btn" href="https://www.zdg.md/stiri/trafic-intens-la-vama-sculeni-politia-de-frontiera-recomanda-soferilor-sa-aleaga-puncte-alternative/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/video-bez-vody-chto-proishodit-v-gagauzii-riltok" target="_blank">(ВИДЕО) Без воды: что происходит в Гагаузии? #рилток</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>DUOMO. Когда качество — не просто слово, это обязательство</div>
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/video-bez-vody-chto-proishodit-v-gagauzii-riltok" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/nmespresso-kogda-izmenyat-tarif-na-gaz-kak-kishinevczy-ekonomyat-vodu-i-chto-tofan-obsudil-s-agrariyami" target="_blank">NM Espresso: об «уроке стойкости» от Санду, отключении газа тысячам кишиневцев и о Гагаузии «без воды»</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/nmespresso-kogda-izmenyat-tarif-na-gaz-kak-kishinevczy-ekonomyat-vodu-i-chto-tofan-obsudil-s-agrariyami" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/v-vuzy-moldovy-posle-osnovnoi-priemnoi-kompanii-postupili-bolee-18-tys-chelovek-eto-na-16-bolshe-chem-god-nazad" target="_blank">В вузы Молдовы после основной приемной компании поступили более 18 тыс. человек. Это на 16% больше, чем год назад</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/v-vuzy-moldovy-posle-osnovnoi-priemnoi-kompanii-postupili-bolee-18-tys-chelovek-eto-na-16-bolshe-chem-god-nazad" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/victoriabank-reduce-costul-finantarii-pentru-imm-uri" target="_blank">Victoriabank reduce costul finanțării pentru IMM-uri</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/victoriabank-reduce-costul-finantarii-pentru-imm-uri" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/profilul-milionarilor-din-republica-moldova-numarul-lor-a-depasit-9600-in-2025-in-crestere-cu-20" target="_blank">Profilul milionarilor din Republica Moldova: Numărul lor a depășit 9.600 în 2025, în creștere cu 20%</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/profilul-milionarilor-din-republica-moldova-numarul-lor-a-depasit-9600-in-2025-in-crestere-cu-20" target="_blank">Citește articolul →</a>
+  </div>
+</div>
+<div class="footer">
+  Raport generat automat zilnic &nbsp;·&nbsp; ARBI – Monitorizare Jurnalism Investigativ Moldova
+</div>
+</body>
+</html>
