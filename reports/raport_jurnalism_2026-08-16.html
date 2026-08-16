@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monitorizare Jurnalism Investigativ Moldova – 16.08.2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; color: #2c3e50; }
+  .header { background: #1b4332; color: #fff; padding: 28px 40px; }
+  .header h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: 0.5px; }
+  .header .subtitle { margin-top: 6px; font-size: 0.9rem; opacity: 0.85; }
+  .stats-bar { background: #2d6a4f; color: #fff; padding: 16px 40px;
+                display: flex; gap: 36px; flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; }
+  .stat .val { font-size: 1.8rem; font-weight: 700; }
+  .stat .lbl { font-size: 0.72rem; opacity: 0.82; text-transform: uppercase; letter-spacing: 0.8px; }
+  .cat-bar { background: #40916c; color: #fff; padding: 12px 40px;
+              display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .cat-chip { background: rgba(255,255,255,0.18); border-radius: 20px;
+               padding: 4px 14px; font-size: 0.78rem; font-weight: 600;
+               white-space: nowrap; }
+  .container { max-width: 1040px; margin: 30px auto; padding: 0 20px 40px; }
+  .section-title { font-size: 0.95rem; font-weight: 700; color: #1b4332;
+                    text-transform: uppercase; letter-spacing: 1px;
+                    margin: 28px 0 14px; border-bottom: 2px solid #1b4332;
+                    padding-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08);
+           padding: 18px 22px; margin-bottom: 14px; border-left: 5px solid #1b4332;
+           transition: box-shadow .15s; }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.13); }
+  .card.investigativ { border-left-color: #d62828; }
+  .card-title { font-size: 1rem; font-weight: 700; color: #1b4332; margin-bottom: 8px; }
+  .card-title a { color: inherit; text-decoration: none; }
+  .card-title a:hover { text-decoration: underline; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;
+           font-size: 0.8rem; color: #555; }
+  .badge { display: inline-block; font-size: 0.68rem; font-weight: 700;
+            padding: 2px 8px; border-radius: 12px; color: #fff;
+            margin-right: 4px; vertical-align: middle; }
+  .badge-inv { background: #d62828; }
+  .source-tag { background: #e8f4ec; color: #1b4332; border-radius: 4px;
+                 padding: 1px 8px; font-size: 0.75rem; font-weight: 600; }
+  .summary { font-size: 0.85rem; color: #444; line-height: 1.55; margin-top: 6px; }
+  .cat-tags { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .cat-tag { font-size: 0.72rem; padding: 2px 10px; border-radius: 10px;
+              font-weight: 600; background: #e8f4ec; color: #1b4332; }
+  .link-btn { display: inline-block; margin-top: 10px; padding: 5px 14px;
+               background: #1b4332; color: #fff; border-radius: 5px;
+               font-size: 0.78rem; text-decoration: none; font-weight: 600; }
+  .link-btn:hover { background: #2d6a4f; }
+  .empty-box { background: #fff; border-radius: 8px; padding: 30px 24px;
+                text-align: center; color: #7f8c8d; font-size: 0.95rem;
+                box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .source-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+  .source-box { background: #fff; border-radius: 8px; padding: 12px 18px;
+                 box-shadow: 0 2px 6px rgba(0,0,0,.07); min-width: 140px;
+                 border-top: 3px solid #1b4332; }
+  .source-box .sname { font-size: 0.78rem; font-weight: 700; color: #1b4332; }
+  .source-box .scount { font-size: 1.4rem; font-weight: 700; color: #2d6a4f; margin-top: 2px; }
+  .footer { text-align: center; font-size: 0.75rem; color: #999;
+             margin-top: 40px; padding-bottom: 20px; }
+  @media (max-width: 600px) {
+    .header, .stats-bar, .cat-bar { padding: 18px 16px; }
+    .stats-bar { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🔍 Monitorizare Jurnalism Investigativ – Moldova</h1>
+  <div class="subtitle">
+    Surse monitorizate: 8 &nbsp;|&nbsp;
+    Ultimele 26 ore &nbsp;|&nbsp;
+    Generat: 2026-08-16 06:41 UTC
+  </div>
+</div>
+<div class="stats-bar">
+  <div class="stat"><span class="val">22</span><span class="lbl">Articole noi</span></div>
+  <div class="stat"><span class="val">1</span><span class="lbl">Investigative</span></div>
+  <div class="stat"><span class="val">8</span><span class="lbl">Surse active</span></div>
+  <div class="stat"><span class="val">16.08.2026</span><span class="lbl">Data raportului</span></div>
+</div>
+<div class="cat-bar">
+  <span style="font-size:.8rem;opacity:.85;margin-right:4px">Categorii:</span>
+  <span class="cat-chip">⚖️ Justiție & Procurori (11)</span><span class="cat-chip">🏛️ Politică & Putere (6)</span><span class="cat-chip">💼 Afaceri & Contracte Publice (2)</span><span class="cat-chip">🔐 Securitate & Intelligence (2)</span><span class="cat-chip">📰 Media & Libertatea Presei (1)</span><span class="cat-chip">👥 Social & Drepturile Omului (1)</span>
+</div>
+<div class="container">
+<div class="section-title">📊 Articole pe surse</div><div class="source-grid"><div class="source-box"><div class="sname">Ziarul de Gardă</div><div class="scount">10</div></div><div class="source-box"><div class="sname">Mold-Street</div><div class="scount">7</div></div><div class="source-box"><div class="sname">Newsmaker.md</div><div class="scount">4</div></div><div class="source-box"><div class="sname">Agora.md</div><div class="scount">1</div></div></div>
+<div class="section-title">🔍 Articole Investigative (1)</div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/necesarul-de-energie-al-moldovei-pentru-15-august-este-acoperit-integral-energocom-preturile-pe-pietele-externe-raman-ridicate/" target="_blank">Necesarul de energie al Moldovei pentru 15 august este acoperit integral. Energocom: Prețurile pe piețele externe rămân ridicate</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 15.08.2026</span>
+    </div>
+    <div class='summary'>Necesarul de energie electrică al Republicii Moldova pentru sâmbătă, 15 august, este acoperit integral prin achiziții comerciale, anunță Energocom. Pentru consumul din această zi au fost procurate 9392 MWh de energie electrică. Cea mai mare parte a energiei, 68,08%, provine din contracte bilaterale de import. Alte 28,56% sunt asigurate din surse regenerabile locale și eligibile,...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/necesarul-de-energie-al-moldovei-pentru-15-august-este-acoperit-integral-energocom-preturile-pe-pietele-externe-raman-ridicate/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">⚖️ Justiție & Procurori (10)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-externe/un-deputat-rus-anti-razboi-a-fost-exclus-din-cursa-electorala-pentru-un-nou-mandat-din-cauza-folosirii-unor-srifturi-microsoft/" target="_blank">Un deputat rus anti-război a fost exclus din cursa electorală pentru un nou mandat din cauza folosirii unor șrifturi Microsoft</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 15.08.2026</span>
+    </div>
+    <div class='summary'>Deputatul Dumei de Stat Mihail Matveev, care s-a pronunțat în trecut pentru încetarea războiului împotriva Ucrainei, a fost exclus din cursa electorală pentru un nou mandat în Duma de Stat. Decizia a fost luată vineri, 14 august, de Tribunalul Regional Samara, scrie The Moscow Times. Matveev, membru al Partidului Comunist din Federația Rusă (KPRF) și...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-externe/un-deputat-rus-anti-razboi-a-fost-exclus-din-cursa-electorala-pentru-un-nou-mandat-din-cauza-folosirii-unor-srifturi-microsoft/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-economice/politica-fiscala-2027-ce-probleme-rezolva-si-ce-probleme-raman/" target="_blank">Politica fiscală 2027: ce probleme rezolvă și ce probleme rămân?</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 15.08.2026</span>
+    </div>
+    <div class='summary'>Guvernul a propus, pe 6 august, un pachet de modificări fiscale pentru anul 2027, care prevede reducerea impozitării muncii, stimularea investițiilor, majorarea taxelor pentru bănci și produsele considerate nocive, precum și ajustarea cotelor de TVA. Potrivit premierului Vasile Tofan, obiectivul autorităților este crearea unui sistem fiscal „mai simplu, mai corect și mai greu de ocolit”....</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-economice/politica-fiscala-2027-ce-probleme-rezolva-si-ce-probleme-raman/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/live-text-un-barbat-a-murit-dupa-ce-o-drona-ruseasca-a-lovit-o-combina-in-timp-ce-recolta-graul-in-regiunea-zaporijia-razboi-in-ucraina-ziua-1634/" target="_blank">LIVE TEXT/ Un bărbat a murit după ce o dronă rusească a lovit o combină în timp ce recolta grâul, în regiunea Zaporijia. Război în Ucraina, ziua 1634</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 15.08.2026</span>
+    </div>
+    <div class='summary'>UPDATE 16:01 Un bărbat de 32 de ani a murit, iar o altă persoană a fost rănită după ce o dronă rusească a lovit, în după-amiaza zilei de 15 august, o combină agricolă care participa la recoltarea grâului în regiunea Zaporijia, anunță Serviciul de Stat pentru Situații de Urgență al Ucrainei. În urma atacului, combina...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/live-text-un-barbat-a-murit-dupa-ce-o-drona-ruseasca-a-lovit-o-combina-in-timp-ce-recolta-graul-in-regiunea-zaporijia-razboi-in-ucraina-ziua-1634/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-externe/presedintele-coreei-de-sud-propune-reluarea-dialogului-cu-phenianul-si-inlocuirea-armistitiului-cu-un-acord-de-pace/" target="_blank">Președintele Coreei de Sud propune reluarea dialogului cu Phenianul și înlocuirea armistițiului cu un acord de pace</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 15.08.2026</span>
+    </div>
+    <div class='summary'>Președintele Coreei de Sud, Lee Jae Myung, a propus reluarea dialogului cu Coreea de Nord pentru instituirea unei relații de coexistență pașnică și înlocuirea armistițiului care a pus capăt luptelor din Războiul Coreean cu un acord de pace, transmite Reuters. Într-un discurs susținut astăzi, 15 august, cu ocazia aniversării eliberării Coreei de sub dominația colonială...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-externe/presedintele-coreei-de-sud-propune-reluarea-dialogului-cu-phenianul-si-inlocuirea-armistitiului-cu-un-acord-de-pace/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/companie-controlata-de-un-om-de-afaceri-american-al-doilea-furnizor-de-gaze-in-moldova" target="_blank">Companie controlată de un om de afaceri american, al doilea furnizor de gaze în Moldova</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/companie-controlata-de-un-om-de-afaceri-american-al-doilea-furnizor-de-gaze-in-moldova" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/patru-grupuri-de-companii-desemnate-castigatoare-in-cadrul-licitatiei-pentru-producerea-energiei-regenerabile" target="_blank">Patru grupuri de companii, desemnate câștigătoare în cadrul licitației pentru producerea energiei regenerabile</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/patru-grupuri-de-companii-desemnate-castigatoare-in-cadrul-licitatiei-pentru-producerea-energiei-regenerabile" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/o-drona-de-tip-shahed-a-survolat-spatiul-aerian-al-r-moldova-prin-satul-etulia-gagauzia/" target="_blank">O dronă de tip Shahed a survolat spațiul aerian al R. Moldova prin satul Etulia, Găgăuzia</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 16.08.2026</span>
+    </div>
+    <div class='summary'>Sistemele de supraveghere ale spațiului aerian din dotarea Armatei Naționale au detectat duminică, 16 august, ora 04.31, un obiect zburător de tip Shahed 138 (Geran 2), informează Ministerul Apărării. Drona venea din localitatea ucraineană Cotlovina, regiunea Reni și a survolat spațiul aerian al R. Moldova, prin satul Etulia din Unitatea Teritorială Administrativă Găgăuzia. La ora...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/o-drona-de-tip-shahed-a-survolat-spatiul-aerian-al-r-moldova-prin-satul-etulia-gagauzia/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-externe/atacuri-israeliene-in-sudul-libanului-noua-persoane-inclusiv-copii-au-fost-ucise/" target="_blank">Atacuri israeliene în sudul Libanului: nouă persoane, inclusiv copii, au fost ucise</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 15.08.2026</span>
+    </div>
+    <div class='summary'>Cel puțin nouă persoane, inclusiv femei și copii, au fost ucise sâmbătă în urma unor atacuri aeriene israeliene asupra sudului Libanului. Este cel mai grav bilanț raportat de la acordul de încetare a focului din iunie, care a contribuit la reducerea ostilităților dintre Israel și gruparea proiraniană Hezbollah, relatează AFP, citată France24. Armata israeliană a...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-externe/atacuri-israeliene-in-sudul-libanului-noua-persoane-inclusiv-copii-au-fost-ucise/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-sociale/elevii-din-toate-institutiile-de-invatamant-din-tara-vor-incepe-noul-an-de-studii-cu-lectia-independenta-care-ne-uneste-detalii-de-la-mec/" target="_blank">Elevii din toate instituțiile de învățământ din țară vor începe noul an de studii cu lecția „Independența care ne unește”. Detalii de la MEC</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 15.08.2026</span>
+    </div>
+    <div class='summary'>Anul de studii 2026–2027 va începe în toate instituțiile de învățământ general din Republica Moldova cu o lecție tematică dedicată celor 35 de ani de la proclamarea Independenței. Lecția, intitulată „Independența care ne unește”, va avea loc pe 1 septembrie, în clasele I–XII, anunță Ministerul Educației și Cercetării. Potrivit ministerului, elevii vor avea ocazia să...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-sociale/elevii-din-toate-institutiile-de-invatamant-din-tara-vor-incepe-noul-an-de-studii-cu-lectia-independenta-care-ne-uneste-detalii-de-la-mec/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🏛️ Politică & Putere (6)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-externe/un-deputat-rus-anti-razboi-a-fost-exclus-din-cursa-electorala-pentru-un-nou-mandat-din-cauza-folosirii-unor-srifturi-microsoft/" target="_blank">Un deputat rus anti-război a fost exclus din cursa electorală pentru un nou mandat din cauza folosirii unor șrifturi Microsoft</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 15.08.2026</span>
+    </div>
+    <div class='summary'>Deputatul Dumei de Stat Mihail Matveev, care s-a pronunțat în trecut pentru încetarea războiului împotriva Ucrainei, a fost exclus din cursa electorală pentru un nou mandat în Duma de Stat. Decizia a fost luată vineri, 14 august, de Tribunalul Regional Samara, scrie The Moscow Times. Matveev, membru al Partidului Comunist din Federația Rusă (KPRF) și...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-externe/un-deputat-rus-anti-razboi-a-fost-exclus-din-cursa-electorala-pentru-un-nou-mandat-din-cauza-folosirii-unor-srifturi-microsoft/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-economice/politica-fiscala-2027-ce-probleme-rezolva-si-ce-probleme-raman/" target="_blank">Politica fiscală 2027: ce probleme rezolvă și ce probleme rămân?</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 15.08.2026</span>
+    </div>
+    <div class='summary'>Guvernul a propus, pe 6 august, un pachet de modificări fiscale pentru anul 2027, care prevede reducerea impozitării muncii, stimularea investițiilor, majorarea taxelor pentru bănci și produsele considerate nocive, precum și ajustarea cotelor de TVA. Potrivit premierului Vasile Tofan, obiectivul autorităților este crearea unui sistem fiscal „mai simplu, mai corect și mai greu de ocolit”....</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-economice/politica-fiscala-2027-ce-probleme-rezolva-si-ce-probleme-raman/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/live-text-un-barbat-a-murit-dupa-ce-o-drona-ruseasca-a-lovit-o-combina-in-timp-ce-recolta-graul-in-regiunea-zaporijia-razboi-in-ucraina-ziua-1634/" target="_blank">LIVE TEXT/ Un bărbat a murit după ce o dronă rusească a lovit o combină în timp ce recolta grâul, în regiunea Zaporijia. Război în Ucraina, ziua 1634</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 15.08.2026</span>
+    </div>
+    <div class='summary'>UPDATE 16:01 Un bărbat de 32 de ani a murit, iar o altă persoană a fost rănită după ce o dronă rusească a lovit, în după-amiaza zilei de 15 august, o combină agricolă care participa la recoltarea grâului în regiunea Zaporijia, anunță Serviciul de Stat pentru Situații de Urgență al Ucrainei. În urma atacului, combina...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/live-text-un-barbat-a-murit-dupa-ce-o-drona-ruseasca-a-lovit-o-combina-in-timp-ce-recolta-graul-in-regiunea-zaporijia-razboi-in-ucraina-ziua-1634/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-externe/presedintele-coreei-de-sud-propune-reluarea-dialogului-cu-phenianul-si-inlocuirea-armistitiului-cu-un-acord-de-pace/" target="_blank">Președintele Coreei de Sud propune reluarea dialogului cu Phenianul și înlocuirea armistițiului cu un acord de pace</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 15.08.2026</span>
+    </div>
+    <div class='summary'>Președintele Coreei de Sud, Lee Jae Myung, a propus reluarea dialogului cu Coreea de Nord pentru instituirea unei relații de coexistență pașnică și înlocuirea armistițiului care a pus capăt luptelor din Războiul Coreean cu un acord de pace, transmite Reuters. Într-un discurs susținut astăzi, 15 august, cu ocazia aniversării eliberării Coreei de sub dominația colonială...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-externe/presedintele-coreei-de-sud-propune-reluarea-dialogului-cu-phenianul-si-inlocuirea-armistitiului-cu-un-acord-de-pace/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/bancile-din-moldova-investesc-masiv-in-titluri-de-stat-cererea-a-depasit-oferta-ministerului-finantelor" target="_blank">Băncile din Moldova investesc masiv în titluri de stat: Cererea a depășit oferta Ministerului Finanțelor</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/bancile-din-moldova-investesc-masiv-in-titluri-de-stat-cererea-a-depasit-oferta-ministerului-finantelor" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/nicio-cerere-pentru-privatizarea-hotelului-zarea-si-altor-active-ale-statului" target="_blank">Nicio cerere pentru privatizarea hotelului Zarea şi a altor active ale statului</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/nicio-cerere-pentru-privatizarea-hotelului-zarea-si-altor-active-ale-statului" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">💼 Afaceri & Contracte Publice (2)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/companie-controlata-de-un-om-de-afaceri-american-al-doilea-furnizor-de-gaze-in-moldova" target="_blank">Companie controlată de un om de afaceri american, al doilea furnizor de gaze în Moldova</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/companie-controlata-de-un-om-de-afaceri-american-al-doilea-furnizor-de-gaze-in-moldova" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/patru-grupuri-de-companii-desemnate-castigatoare-in-cadrul-licitatiei-pentru-producerea-energiei-regenerabile" target="_blank">Patru grupuri de companii, desemnate câștigătoare în cadrul licitației pentru producerea energiei regenerabile</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/patru-grupuri-de-companii-desemnate-castigatoare-in-cadrul-licitatiei-pentru-producerea-energiei-regenerabile" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🔐 Securitate & Intelligence (2)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-economice/politica-fiscala-2027-ce-probleme-rezolva-si-ce-probleme-raman/" target="_blank">Politica fiscală 2027: ce probleme rezolvă și ce probleme rămân?</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 15.08.2026</span>
+    </div>
+    <div class='summary'>Guvernul a propus, pe 6 august, un pachet de modificări fiscale pentru anul 2027, care prevede reducerea impozitării muncii, stimularea investițiilor, majorarea taxelor pentru bănci și produsele considerate nocive, precum și ajustarea cotelor de TVA. Potrivit premierului Vasile Tofan, obiectivul autorităților este crearea unui sistem fiscal „mai simplu, mai corect și mai greu de ocolit”....</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-economice/politica-fiscala-2027-ce-probleme-rezolva-si-ce-probleme-raman/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/o-drona-de-tip-shahed-a-survolat-spatiul-aerian-al-r-moldova-prin-satul-etulia-gagauzia/" target="_blank">O dronă de tip Shahed a survolat spațiul aerian al R. Moldova prin satul Etulia, Găgăuzia</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 16.08.2026</span>
+    </div>
+    <div class='summary'>Sistemele de supraveghere ale spațiului aerian din dotarea Armatei Naționale au detectat duminică, 16 august, ora 04.31, un obiect zburător de tip Shahed 138 (Geran 2), informează Ministerul Apărării. Drona venea din localitatea ucraineană Cotlovina, regiunea Reni și a survolat spațiul aerian al R. Moldova, prin satul Etulia din Unitatea Teritorială Administrativă Găgăuzia. La ora...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/o-drona-de-tip-shahed-a-survolat-spatiul-aerian-al-r-moldova-prin-satul-etulia-gagauzia/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📰 Media & Libertatea Presei (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">👥 Social & Drepturile Omului (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-sociale/elevii-din-toate-institutiile-de-invatamant-din-tara-vor-incepe-noul-an-de-studii-cu-lectia-independenta-care-ne-uneste-detalii-de-la-mec/" target="_blank">Elevii din toate instituțiile de învățământ din țară vor începe noul an de studii cu lecția „Independența care ne unește”. Detalii de la MEC</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 15.08.2026</span>
+    </div>
+    <div class='summary'>Anul de studii 2026–2027 va începe în toate instituțiile de învățământ general din Republica Moldova cu o lecție tematică dedicată celor 35 de ani de la proclamarea Independenței. Lecția, intitulată „Independența care ne unește”, va avea loc pe 1 septembrie, în clasele I–XII, anunță Ministerul Educației și Cercetării. Potrivit ministerului, elevii vor avea ocazia să...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-sociale/elevii-din-toate-institutiile-de-invatamant-din-tara-vor-incepe-noul-an-de-studii-cu-lectia-independenta-care-ne-uneste-detalii-de-la-mec/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📌 Alte articole (9)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/politic/ion-ceban-anunta-ca-revine-de-urgenta-in-tara-si-va-fi-supus-unei-interventii-chirurgicale-la-picioare/" target="_blank">Ion Ceban anunță că revine „de urgență” în țară și va fi supus unei intervenții chirurgicale la picioare</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 15.08.2026</span>
+    </div>
+    <div class='summary'>Primarul municipiului Chișinău, Ion Ceban, a anunțat că își întrerupe vacanța petrecută cu familia și revine de urgență în Republica Moldova, după ce a suferit un incident în urma căruia va avea nevoie de o intervenție chirurgicală la picioare. Ceban a făcut anunțul într-o postare pe rețelele sociale, precizând că va reveni în țară cu...</div>
+    
+    <a class="link-btn" href="https://www.zdg.md/stiri/politic/ion-ceban-anunta-ca-revine-de-urgenta-in-tara-si-va-fi-supus-unei-interventii-chirurgicale-la-picioare/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-externe/cutremur-cu-magnitudinea-de-77-in-estul-indoneziei-cel-putin-20-de-morti-si-zeci-de-replici/" target="_blank">Cutremur cu magnitudinea de 7,7 în estul Indoneziei: cel puțin 20 de morți și zeci de replici</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 15.08.2026</span>
+    </div>
+    <div class='summary'>Cel puțin 20 de persoane au murit în urma unui cutremur cu magnitudinea 7,7 care a lovit sâmbătă estul Indoneziei. Seismul a fost urmat de zeci de replici și a provocat valuri tsunami cu înălțimea de până la un metru în mai multe zone ale țării, transmite Reuters. Avertizarea de tsunami a fost ridicată la...</div>
+    
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-externe/cutremur-cu-magnitudinea-de-77-in-estul-indoneziei-cel-putin-20-de-morti-si-zeci-de-replici/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/video-borba-s-korrupcziei-idi-borba-klanov-chto-proishodit-v-mid-moldovy-nm_explains-it-all" target="_blank">(ВИДЕО) Борьба с коррупцией или борьба кланов? Что происходит в МИД Молдовы? #NM_explains it all</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>DUOMO. Когда качество — не просто слово, это обязательство</div>
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/video-borba-s-korrupcziei-idi-borba-klanov-chto-proishodit-v-mid-moldovy-nm_explains-it-all" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/v-shkolah-moldovy-pervyi-urok-1-sentyabrya-posvyatyat-35-letiyu-provozglasheniya-nezavisimosti" target="_blank">В школах Молдовы первый урок 1 сентября посвятят 35-летию провозглашения независимости</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/v-shkolah-moldovy-pervyi-urok-1-sentyabrya-posvyatyat-35-letiyu-provozglasheniya-nezavisimosti" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/v-kishineve-na-den-perekroyut-chast-uliczy-kalya-eshilor-tam-proidet-chempionat-po-triatlonu" target="_blank">В Кишиневе на день перекроют часть улицы Каля Ешилор. Там пройдут соревнования по триатлону</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/v-kishineve-na-den-perekroyut-chast-uliczy-kalya-eshilor-tam-proidet-chempionat-po-triatlonu" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/postradavshuyu-v-avarii-v-greczii-semiletnyuyu-devochku-dostavili-v-moldovu-chto-govoryat-vrachi" target="_blank">Пострадавшую в аварии в Греции семилетнюю девочку доставили в Молдову. Что говорят врачи</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/postradavshuyu-v-avarii-v-greczii-semiletnyuyu-devochku-dostavili-v-moldovu-chto-govoryat-vrachi" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/cat-ar-costa-de-fapt-energia-de-la-cuciurgan-cumparata-la-pret-de-piata-calculele-prezentate-de-ministrul-energiei" target="_blank">Centrala de la Cuciurgan este controlată de grupul rus Inter RAO EES</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/cat-ar-costa-de-fapt-energia-de-la-cuciurgan-cumparata-la-pret-de-piata-calculele-prezentate-de-ministrul-energiei" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/retrospectiva-economica-mold-streetcom-pentru-perioada-9-15-august-2026" target="_blank">Retrospectiva economică Mold-Street.com pentru perioada 9 – 15 august 2026</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/retrospectiva-economica-mold-streetcom-pentru-perioada-9-15-august-2026" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/de-ce-cel-mai-popular-sport-in-randul-tinerilor-nu-mai-este-fotbalul-ci-fitnessul" target="_blank">De ce "cel mai popular sport” în rândul tinerilor nu mai este fotbalul, ci fitnessul</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://mold-street.com/noutate/de-ce-cel-mai-popular-sport-in-randul-tinerilor-nu-mai-este-fotbalul-ci-fitnessul" target="_blank">Citește articolul →</a>
+  </div>
+</div>
+<div class="footer">
+  Raport generat automat zilnic &nbsp;·&nbsp; ARBI – Monitorizare Jurnalism Investigativ Moldova
+</div>
+</body>
+</html>
