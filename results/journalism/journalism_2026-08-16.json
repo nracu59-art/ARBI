@@ -1,0 +1,443 @@
+{
+  "date": "2026-08-16",
+  "generated_at": "2026-08-16T06:41:20Z",
+  "lookback_hours": 26,
+  "sources_checked": 8,
+  "sources_ok": 8,
+  "stats": {
+    "total": 22,
+    "investigative": 1,
+    "by_source": {
+      "zdg_md": {
+        "name": "Ziarul de Gardă",
+        "count": 10
+      },
+      "newsmaker_md": {
+        "name": "Newsmaker.md",
+        "count": 4
+      },
+      "mold_street": {
+        "name": "Mold-Street",
+        "count": 7
+      },
+      "agora_md": {
+        "name": "Agora.md",
+        "count": 1
+      }
+    },
+    "by_category": {
+      "justitie": {
+        "label": "Justiție & Procurori",
+        "emoji": "⚖️",
+        "count": 11
+      },
+      "politica": {
+        "label": "Politică & Putere",
+        "emoji": "🏛️",
+        "count": 6
+      },
+      "media": {
+        "label": "Media & Libertatea Presei",
+        "emoji": "📰",
+        "count": 1
+      },
+      "afaceri": {
+        "label": "Afaceri & Contracte Publice",
+        "emoji": "💼",
+        "count": 2
+      },
+      "securitate": {
+        "label": "Securitate & Intelligence",
+        "emoji": "🔐",
+        "count": 2
+      },
+      "social": {
+        "label": "Social & Drepturile Omului",
+        "emoji": "👥",
+        "count": 1
+      }
+    }
+  },
+  "articles": [
+    {
+      "id": "ab3dd8eb78c6",
+      "title": "Necesarul de energie al Moldovei pentru 15 august este acoperit integral. Energocom: Prețurile pe piețele externe rămân ridicate",
+      "url": "https://www.zdg.md/stiri/necesarul-de-energie-al-moldovei-pentru-15-august-este-acoperit-integral-energocom-preturile-pe-pietele-externe-raman-ridicate/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-15T09:26:46Z",
+      "published_date": "2026-08-15",
+      "summary": "Necesarul de energie electrică al Republicii Moldova pentru sâmbătă, 15 august, este acoperit integral prin achiziții comerciale, anunță Energocom. Pentru consumul din această zi au fost procurate 9392 MWh de energie electrică. Cea mai mare parte a energiei, 68,08%, provine din contracte bilaterale de import. Alte 28,56% sunt asigurate din surse regenerabile locale și eligibile,...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 3
+    },
+    {
+      "id": "7c36907baca3",
+      "title": "Un deputat rus anti-război a fost exclus din cursa electorală pentru un nou mandat din cauza folosirii unor șrifturi Microsoft",
+      "url": "https://www.zdg.md/stiri/stiri-externe/un-deputat-rus-anti-razboi-a-fost-exclus-din-cursa-electorala-pentru-un-nou-mandat-din-cauza-folosirii-unor-srifturi-microsoft/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-15T13:49:06Z",
+      "published_date": "2026-08-15",
+      "summary": "Deputatul Dumei de Stat Mihail Matveev, care s-a pronunțat în trecut pentru încetarea războiului împotriva Ucrainei, a fost exclus din cursa electorală pentru un nou mandat în Duma de Stat. Decizia a fost luată vineri, 14 august, de Tribunalul Regional Samara, scrie The Moscow Times. Matveev, membru al Partidului Comunist din Federația Rusă (KPRF) și...",
+      "categories": [
+        "politica",
+        "justitie"
+      ],
+      "category_scores": {
+        "politica": 3,
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 5
+    },
+    {
+      "id": "fe4327388441",
+      "title": "Politica fiscală 2027: ce probleme rezolvă și ce probleme rămân?",
+      "url": "https://www.zdg.md/stiri/stiri-economice/politica-fiscala-2027-ce-probleme-rezolva-si-ce-probleme-raman/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-15T08:30:00Z",
+      "published_date": "2026-08-15",
+      "summary": "Guvernul a propus, pe 6 august, un pachet de modificări fiscale pentru anul 2027, care prevede reducerea impozitării muncii, stimularea investițiilor, majorarea taxelor pentru bănci și produsele considerate nocive, precum și ajustarea cotelor de TVA. Potrivit premierului Vasile Tofan, obiectivul autorităților este crearea unui sistem fiscal „mai simplu, mai corect și mai greu de ocolit”....",
+      "categories": [
+        "politica",
+        "justitie",
+        "securitate"
+      ],
+      "category_scores": {
+        "politica": 2,
+        "justitie": 1,
+        "securitate": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 4
+    },
+    {
+      "id": "b1a0f968c902",
+      "title": "LIVE TEXT/ Un bărbat a murit după ce o dronă rusească a lovit o combină în timp ce recolta grâul, în regiunea Zaporijia. Război în Ucraina, ziua 1634",
+      "url": "https://www.zdg.md/stiri/live-text-un-barbat-a-murit-dupa-ce-o-drona-ruseasca-a-lovit-o-combina-in-timp-ce-recolta-graul-in-regiunea-zaporijia-razboi-in-ucraina-ziua-1634/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-15T13:01:56Z",
+      "published_date": "2026-08-15",
+      "summary": "UPDATE 16:01 Un bărbat de 32 de ani a murit, iar o altă persoană a fost rănită după ce o dronă rusească a lovit, în după-amiaza zilei de 15 august, o combină agricolă care participa la recoltarea grâului în regiunea Zaporijia, anunță Serviciul de Stat pentru Situații de Urgență al Ucrainei. În urma atacului, combina...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 2,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "5cf2fa20644d",
+      "title": "Președintele Coreei de Sud propune reluarea dialogului cu Phenianul și înlocuirea armistițiului cu un acord de pace",
+      "url": "https://www.zdg.md/stiri/stiri-externe/presedintele-coreei-de-sud-propune-reluarea-dialogului-cu-phenianul-si-inlocuirea-armistitiului-cu-un-acord-de-pace/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-15T12:25:17Z",
+      "published_date": "2026-08-15",
+      "summary": "Președintele Coreei de Sud, Lee Jae Myung, a propus reluarea dialogului cu Coreea de Nord pentru instituirea unei relații de coexistență pașnică și înlocuirea armistițiului care a pus capăt luptelor din Războiul Coreean cu un acord de pace, transmite Reuters. Într-un discurs susținut astăzi, 15 august, cu ocazia aniversării eliberării Coreei de sub dominația colonială...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 2,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "010402e4e33b",
+      "title": "Companie controlată de un om de afaceri american, al doilea furnizor de gaze în Moldova",
+      "url": "https://mold-street.com/noutate/companie-controlata-de-un-om-de-afaceri-american-al-doilea-furnizor-de-gaze-in-moldova",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "justitie",
+        "afaceri"
+      ],
+      "category_scores": {
+        "justitie": 2,
+        "afaceri": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "0817876429e3",
+      "title": "Patru grupuri de companii, desemnate câștigătoare în cadrul licitației pentru producerea energiei regenerabile",
+      "url": "https://mold-street.com/noutate/patru-grupuri-de-companii-desemnate-castigatoare-in-cadrul-licitatiei-pentru-producerea-energiei-regenerabile",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "justitie",
+        "afaceri"
+      ],
+      "category_scores": {
+        "justitie": 2,
+        "afaceri": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "61d486c453f8",
+      "title": "O dronă de tip Shahed a survolat spațiul aerian al R. Moldova prin satul Etulia, Găgăuzia",
+      "url": "https://www.zdg.md/stiri/o-drona-de-tip-shahed-a-survolat-spatiul-aerian-al-r-moldova-prin-satul-etulia-gagauzia/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-16T05:55:33Z",
+      "published_date": "2026-08-16",
+      "summary": "Sistemele de supraveghere ale spațiului aerian din dotarea Armatei Naționale au detectat duminică, 16 august, ora 04.31, un obiect zburător de tip Shahed 138 (Geran 2), informează Ministerul Apărării. Drona venea din localitatea ucraineană Cotlovina, regiunea Reni și a survolat spațiul aerian al R. Moldova, prin satul Etulia din Unitatea Teritorială Administrativă Găgăuzia. La ora...",
+      "categories": [
+        "justitie",
+        "securitate"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "securitate": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "3ab2f0ce2c77",
+      "title": "Atacuri israeliene în sudul Libanului: nouă persoane, inclusiv copii, au fost ucise",
+      "url": "https://www.zdg.md/stiri/stiri-externe/atacuri-israeliene-in-sudul-libanului-noua-persoane-inclusiv-copii-au-fost-ucise/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-15T14:47:24Z",
+      "published_date": "2026-08-15",
+      "summary": "Cel puțin nouă persoane, inclusiv femei și copii, au fost ucise sâmbătă în urma unor atacuri aeriene israeliene asupra sudului Libanului. Este cel mai grav bilanț raportat de la acordul de încetare a focului din iunie, care a contribuit la reducerea ostilităților dintre Israel și gruparea proiraniană Hezbollah, relatează AFP, citată France24. Armata israeliană a...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "10ab43c9eff5",
+      "title": "Elevii din toate instituțiile de învățământ din țară vor începe noul an de studii cu lecția „Independența care ne unește”. Detalii de la MEC",
+      "url": "https://www.zdg.md/stiri/stiri-sociale/elevii-din-toate-institutiile-de-invatamant-din-tara-vor-incepe-noul-an-de-studii-cu-lectia-independenta-care-ne-uneste-detalii-de-la-mec/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-15T10:55:37Z",
+      "published_date": "2026-08-15",
+      "summary": "Anul de studii 2026–2027 va începe în toate instituțiile de învățământ general din Republica Moldova cu o lecție tematică dedicată celor 35 de ani de la proclamarea Independenței. Lecția, intitulată „Independența care ne unește”, va avea loc pe 1 septembrie, în clasele I–XII, anunță Ministerul Educației și Cercetării. Potrivit ministerului, elevii vor avea ocazia să...",
+      "categories": [
+        "justitie",
+        "social"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "social": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "375cd29e4913",
+      "title": "Comunicăm. Producem. Plasăm.Crești împreună cu AGORA",
+      "url": "https://agora.md/media-kit",
+      "source": "Agora.md",
+      "source_key": "agora_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.",
+      "categories": [
+        "justitie",
+        "media"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "media": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "b321850df388",
+      "title": "Băncile din Moldova investesc masiv în titluri de stat: Cererea a depășit oferta Ministerului Finanțelor",
+      "url": "https://mold-street.com/noutate/bancile-din-moldova-investesc-masiv-in-titluri-de-stat-cererea-a-depasit-oferta-ministerului-finantelor",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "971b0dbe36ef",
+      "title": "Nicio cerere pentru privatizarea hotelului Zarea şi a altor active ale statului",
+      "url": "https://mold-street.com/noutate/nicio-cerere-pentru-privatizarea-hotelului-zarea-si-altor-active-ale-statului",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "8a8eeed784e2",
+      "title": "Ion Ceban anunță că revine „de urgență” în țară și va fi supus unei intervenții chirurgicale la picioare",
+      "url": "https://www.zdg.md/stiri/politic/ion-ceban-anunta-ca-revine-de-urgenta-in-tara-si-va-fi-supus-unei-interventii-chirurgicale-la-picioare/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-15T11:25:06Z",
+      "published_date": "2026-08-15",
+      "summary": "Primarul municipiului Chișinău, Ion Ceban, a anunțat că își întrerupe vacanța petrecută cu familia și revine de urgență în Republica Moldova, după ce a suferit un incident în urma căruia va avea nevoie de o intervenție chirurgicală la picioare. Ceban a făcut anunțul într-o postare pe rețelele sociale, precizând că va reveni în țară cu...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "90a39fc741e6",
+      "title": "Cutremur cu magnitudinea de 7,7 în estul Indoneziei: cel puțin 20 de morți și zeci de replici",
+      "url": "https://www.zdg.md/stiri/stiri-externe/cutremur-cu-magnitudinea-de-77-in-estul-indoneziei-cel-putin-20-de-morti-si-zeci-de-replici/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-15T08:48:21Z",
+      "published_date": "2026-08-15",
+      "summary": "Cel puțin 20 de persoane au murit în urma unui cutremur cu magnitudinea 7,7 care a lovit sâmbătă estul Indoneziei. Seismul a fost urmat de zeci de replici și a provocat valuri tsunami cu înălțimea de până la un metru în mai multe zone ale țării, transmite Reuters. Avertizarea de tsunami a fost ridicată la...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "16a54493327f",
+      "title": "(ВИДЕО) Борьба с коррупцией или борьба кланов? Что происходит в МИД Молдовы? #NM_explains it all",
+      "url": "https://newsmaker.md/ru/video-borba-s-korrupcziei-idi-borba-klanov-chto-proishodit-v-mid-moldovy-nm_explains-it-all",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "DUOMO. Когда качество — не просто слово, это обязательство",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "5ee9a86d44b7",
+      "title": "В школах Молдовы первый урок 1 сентября посвятят 35-летию провозглашения независимости",
+      "url": "https://newsmaker.md/ru/v-shkolah-moldovy-pervyi-urok-1-sentyabrya-posvyatyat-35-letiyu-provozglasheniya-nezavisimosti",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "4ce51d088606",
+      "title": "В Кишиневе на день перекроют часть улицы Каля Ешилор. Там пройдут соревнования по триатлону",
+      "url": "https://newsmaker.md/ru/v-kishineve-na-den-perekroyut-chast-uliczy-kalya-eshilor-tam-proidet-chempionat-po-triatlonu",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "fd536c678c19",
+      "title": "Пострадавшую в аварии в Греции семилетнюю девочку доставили в Молдову. Что говорят врачи",
+      "url": "https://newsmaker.md/ru/postradavshuyu-v-avarii-v-greczii-semiletnyuyu-devochku-dostavili-v-moldovu-chto-govoryat-vrachi",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "799fb375e82e",
+      "title": "Centrala de la Cuciurgan este controlată de grupul rus Inter RAO EES",
+      "url": "https://mold-street.com/noutate/cat-ar-costa-de-fapt-energia-de-la-cuciurgan-cumparata-la-pret-de-piata-calculele-prezentate-de-ministrul-energiei",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "e7b15ac6dd8e",
+      "title": "Retrospectiva economică Mold-Street.com pentru perioada 9 – 15 august 2026",
+      "url": "https://mold-street.com/noutate/retrospectiva-economica-mold-streetcom-pentru-perioada-9-15-august-2026",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "702e39c4d6fa",
+      "title": "De ce \"cel mai popular sport” în rândul tinerilor nu mai este fotbalul, ci fitnessul",
+      "url": "https://mold-street.com/noutate/de-ce-cel-mai-popular-sport-in-randul-tinerilor-nu-mai-este-fotbalul-ci-fitnessul",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    }
+  ]
+}
