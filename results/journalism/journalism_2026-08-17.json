@@ -1,0 +1,437 @@
+{
+  "date": "2026-08-17",
+  "generated_at": "2026-08-17T06:57:41Z",
+  "lookback_hours": 26,
+  "sources_checked": 8,
+  "sources_ok": 8,
+  "stats": {
+    "total": 22,
+    "investigative": 0,
+    "by_source": {
+      "zdg_md": {
+        "name": "Ziarul de Gardă",
+        "count": 10
+      },
+      "newsmaker_md": {
+        "name": "Newsmaker.md",
+        "count": 4
+      },
+      "mold_street": {
+        "name": "Mold-Street",
+        "count": 7
+      },
+      "agora_md": {
+        "name": "Agora.md",
+        "count": 1
+      }
+    },
+    "by_category": {
+      "justitie": {
+        "label": "Justiție & Procurori",
+        "emoji": "⚖️",
+        "count": 9
+      },
+      "politica": {
+        "label": "Politică & Putere",
+        "emoji": "🏛️",
+        "count": 6
+      },
+      "media": {
+        "label": "Media & Libertatea Presei",
+        "emoji": "📰",
+        "count": 1
+      },
+      "afaceri": {
+        "label": "Afaceri & Contracte Publice",
+        "emoji": "💼",
+        "count": 1
+      },
+      "securitate": {
+        "label": "Securitate & Intelligence",
+        "emoji": "🔐",
+        "count": 1
+      },
+      "social": {
+        "label": "Social & Drepturile Omului",
+        "emoji": "👥",
+        "count": 2
+      }
+    }
+  },
+  "articles": [
+    {
+      "id": "4e0ff732edbf",
+      "title": "Apa din România trece Prutul: 250 de mii de moldoveni ar putea fi conectați la sistemul ApaVital",
+      "url": "https://www.zdg.md/stiri/apa-din-romania-trece-prutul-250-de-mii-de-moldoveni-ar-putea-fi-conectati-la-sistemul-apavital/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-17T06:08:45Z",
+      "published_date": "2026-08-17",
+      "summary": "Apa potabilă din sistemul ieșean a trecut deja Prutul și ajunge în R. Moldova prin punctul Măcărești. În următorii ani, proiectul urmează să fie extins, astfel încât tot mai multe localități din raioanele de vest ale țării să poată fi conectate la sistemul de alimentare cu apă din România, transmite Ziarul de Iași. O nouă...",
+      "categories": [
+        "justitie",
+        "securitate"
+      ],
+      "category_scores": {
+        "justitie": 2,
+        "securitate": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "010402e4e33b",
+      "title": "Companie controlată de un om de afaceri american – al doilea furnizor de gaze în Moldova",
+      "url": "https://mold-street.com/noutate/companie-controlata-de-un-om-de-afaceri-american-al-doilea-furnizor-de-gaze-in-moldova",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "justitie",
+        "afaceri"
+      ],
+      "category_scores": {
+        "justitie": 2,
+        "afaceri": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "e566b1b18e86",
+      "title": "Industria tutunului la masa deciziilor Guvernului: cum Philip Morris încearcă să deschidă piața pentru un produs interzis în R. Moldova",
+      "url": "https://www.zdg.md/investigatii/ancheta/industria-tutunului-la-masa-deciziilor-guvernului-cum-philip-morris-incearca-sa-deschida-piata-pentru-un-produs-interzis-in-r-moldova/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-17T06:30:00Z",
+      "published_date": "2026-08-17",
+      "summary": "Pliculețele cu nicotină au fost interzise în R. Moldova începând cu 24 iunie 2026. Cu doar câteva săptămâni înainte ca interdicția să intre în vigoare, gigantul din industria tutunului „Philip Morris” a lansat produsul pe piață și a prezentat legislația în propria manieră, susținând că ar fi permisă comercializarea acestora până în iunie 2027. Deși...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "d56487dc7284",
+      "title": "Peste 12 mii de locuri de muncă vacante în R. Moldova. Unde sunt cele mai multe oferte și ce specialiști sunt cei mai căutați",
+      "url": "https://www.zdg.md/stiri/stiri-sociale/peste-12-mii-de-locuri-de-munca-vacante-in-r-moldova-unde-sunt-cele-mai-multe-oferte-si-ce-specialisti-sunt-cei-mai-cautati/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-17T05:54:23Z",
+      "published_date": "2026-08-17",
+      "summary": "Peste 12 mii de locuri de muncă vacante sunt propuse cetățenilor din întreaga țară de către Agenția Națională pentru Ocuparea Forței de Muncă (ANOFM). Circa 93% din posturi sunt în orașe, iar 7% – în sate, a declarat insituția pentru Agenția Informațioanlă de Stat. Din cele 12 017 locuri de muncă, 1 892 sunt destinate...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "a48431619e27",
+      "title": "LIVE TEXT/ Rusia și Coreea de Nord își întăresc cooperarea militară în contextul războiului din Ucraina. Război în Ucraina, ziua 1635",
+      "url": "https://www.zdg.md/stiri/stiri-externe/live-text-rusia-si-coreea-de-nord-isi-intaresc-cooperarea-militara-in-contextul-razboiului-din-ucraina-razboi-in-ucraina-ziua-1635/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-17T05:35:31Z",
+      "published_date": "2026-08-17",
+      "summary": "UPDATE 08:35 Președintele rus Vladimir Putin și liderul nord-coreean Kim Jong Un au făcut schimb de mesaje cu ocazia celei de-a 81-a aniversări a eliberării Coreei de sub dominația colonială japoneză, la 16 august, reafirmând relațiile tot mai strânse dintre cele două țări, transmite The Kyiv Independent. Cooperarea dintre Rusia și Coreea de Nord va...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "15621e8caf73",
+      "title": "UPDATE/ Ultimul vagon cu cereale, din cele șapte care au deraiat la Chircani, a fost repus pe șine",
+      "url": "https://www.zdg.md/stiri/update-ultimul-vagon-cu-cereale-din-cele-sapte-care-au-deraiat-la-chircani-a-fost-repus-pe-sine/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-16T13:11:32Z",
+      "published_date": "2026-08-16",
+      "summary": "În seara zilei de 15 august 2026, șapte vagoane de marfă încărcate cu cereale, din componența unui tren care se deplasa spre Giurgiulești, au deraiat în apropierea satului Chircani, informează Calea Ferată din Moldova (CFM). Nu sunt raportate victime. UPDATE 16:10 Potrivit CFM, cele 7 vagoane, deraiate în urma incidentului, produs în seara zilei de...",
+      "categories": [
+        "justitie",
+        "social"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "social": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "375cd29e4913",
+      "title": "Comunicăm. Producem. Plasăm.Crești împreună cu AGORA",
+      "url": "https://agora.md/media-kit",
+      "source": "Agora.md",
+      "source_key": "agora_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.",
+      "categories": [
+        "justitie",
+        "media"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "media": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "e0c3bd97e487",
+      "title": "Cât costă benzina și motorina luni, 17 august",
+      "url": "https://www.zdg.md/stiri/cat-costa-benzina-si-motorina-luni-17-august/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-17T05:20:00Z",
+      "published_date": "2026-08-17",
+      "summary": "Luni, 17 august, motorina va rămâne mai scumpă decât benzina. Agenția Națională pentru Reglementare în Energetică (ANRE) a afișat prețurile maxime de comercializare pentru principalele produse petroliere standard, valabile în perioada 15–17 august. Astfel, un litru de benzină 95 va putea fi comercializat la un preț de cel mult 30,01 lei, în creștere cu 3...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "31f5c444e98c",
+      "title": "Ucraina a lansat unul dintre cele mai mari atacuri cu drone asupra regiunii Moscova, avariind cel mai mare depozit Wildberries",
+      "url": "https://www.zdg.md/stiri/ucraina-a-lansat-unul-dintre-cele-mai-mari-atacuri-cu-drone-asupra-regiunii-moscova-avariind-cel-mai-mare-depozit-wildberries/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-16T13:55:32Z",
+      "published_date": "2026-08-16",
+      "summary": "Forțele ucrainene au atacat orașe din regiunea Moscova din Rusia într-un atac major cu drone, pe 16 august, care a avariat un depozit al importantului retailer online rus Wildberries, a declarat guvernatorul regiunii Moscova, Andrey Vorobyov. Ministerul Apărării din Ucraina a confirmat atacul asupra depozitului Wildberries, menționând că este cea mai mare instalație de acest...",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "1c699055e8f7",
+      "title": "Medalie de argint și bronz la Olimpiada Internațională de Informatică pentru elevii din R. Moldova",
+      "url": "https://www.zdg.md/stiri/medalie-de-argint-si-bronz-la-olimpiada-internationala-de-informatica-pentru-elevii-din-r-moldova/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-16T11:48:58Z",
+      "published_date": "2026-08-16",
+      "summary": "Lotul olimpic al R. Moldova a obținut o medalie de argint și o medalie de bronz la Olimpiada Internațională de Informatică, desfășurată în orașul Tașkent, Republica Uzbekistan, în perioada 09-16 august 2026, informează Ministerul Educației și Cercetării (MEC). Medalia de argint a fost cucerită de Popescu Alin, elev în clasa a XII-a la Instituția Privată...",
+      "categories": [
+        "social"
+      ],
+      "category_scores": {
+        "social": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "c5281c6a5837",
+      "title": "Cinci moldoveni, arestați în Italia pentru furtul a trei picturi de Renoir, Cézanne și Matisse",
+      "url": "https://mold-street.com/noutate/cinci-moldoveni-arestati-in-italia-pentru-furtul-a-trei-picturi-de-renoir-cezanne-si-matisse",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "799fb375e82e",
+      "title": "Cât ar costa de fapt energia de la Cuciurgan cumpărată la preț de piață? Calculele prezentate de ministrul Energiei",
+      "url": "https://mold-street.com/noutate/cat-ar-costa-de-fapt-energia-de-la-cuciurgan-cumparata-la-pret-de-piata-calculele-prezentate-de-ministrul-energiei",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "b321850df388",
+      "title": "Băncile din Moldova investesc masiv în titluri de stat: Cererea a depășit oferta Ministerului Finanțelor",
+      "url": "https://mold-street.com/noutate/bancile-din-moldova-investesc-masiv-in-titluri-de-stat-cererea-a-depasit-oferta-ministerului-finantelor",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "e408c2a60b2d",
+      "title": "Săptămâna începe cu temperaturi ridicate. Cum va fi vremea în R. Moldova luni",
+      "url": "https://www.zdg.md/stiri/saptamana-incepe-cu-temperaturi-ridicate-cum-va-fi-vremea-in-r-moldova-luni/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-17T05:00:00Z",
+      "published_date": "2026-08-17",
+      "summary": "Luni, 17 august, vremea va fi predominant caldă în R. Moldova, potrivit prognozei emise de Autoritatea de Meteorologie și Monitoring de Mediu (AMM). Temperatura maximă va ajunge la +33 de grade Celsius. În centrul țării, temperaturile vor urca până la +32°C, Vântul va sufla din sud-est cu viteze de până la 9 km/h, iar umiditatea...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "fdb117378a51",
+      "title": "LIVE TEXT/ Atacurile rusești din Ucraina au ucis 7 persoane și au rănit alte 51 peste noapte. Război în Ucraina, ziua 1635",
+      "url": "https://www.zdg.md/stiri/live-text-atacurile-rusesti-din-ucraina-au-ucis-7-persoane-si-au-ranit-alte-51-peste-noapte-razboi-in-ucraina-ziua-1635/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-16T14:59:15Z",
+      "published_date": "2026-08-16",
+      "summary": "UPDATE 18:00 Atacurile rusești din Ucraina au ucis cel puțin șapte civili și au rănit alți 51 în ultima zi, au raportat autoritățile regionale pe 16 august, conform Kyiv Independent. Apărarea ucraineană a interceptat trei rachete X-59/69 și 85 dintre cele 106 drone lansate de Rusia peste noapte. Dronele și rachetele rusești au lovit 13...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "16a54493327f",
+      "title": "(ВИДЕО) Борьба с коррупцией или борьба кланов? Что происходит в МИД Молдовы? #NM_explains it all",
+      "url": "https://newsmaker.md/ru/video-borba-s-korrupcziei-idi-borba-klanov-chto-proishodit-v-mid-moldovy-nm_explains-it-all",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "DUOMO. Когда качество — не просто слово, это обязательство",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "f4d71cf1b575",
+      "title": "В Молдове доступно более 12 тыс. вакансий. Где больше всего предложений?",
+      "url": "https://newsmaker.md/ru/v-moldove-dostupno-bolee-12-tys-vakansii-gde-bolshe-vsego-predlojenii",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "3b9495cb9e6d",
+      "title": "До +34°C и дожди с грозами: прогноз погоды в Молдове на неделю",
+      "url": "https://newsmaker.md/ru/do-34c-i-dojdi-s-grozami-prognoz-pogody-v-moldove-na-nedelyu",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "98bf173f3aa9",
+      "title": "Школьники из Молдовы завоевали серебро и бронзу на международной олимпиаде по информатике в Ташкенте",
+      "url": "https://newsmaker.md/ru/shkolniki-iz-moldovy-zavoevali-serebro-i-bronzu-na-mejdunarodnoi-olimpiade-po-informatike-v-tashkente",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "6e4fa01bc449",
+      "title": "În ultimul an, Moldova a făcut un adevărat „salt digital” în dezvoltarea plăților fără numerar",
+      "url": "https://mold-street.com/noutate/record-pe-piata-bancara-numarul-cardurilor-de-plata-din-republica-moldova-a-depasit-42-milioane-in-2025",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "e7b15ac6dd8e",
+      "title": "Retrospectiva economică Mold-Street.com pentru perioada 9 – 15 august 2026",
+      "url": "https://mold-street.com/noutate/retrospectiva-economica-mold-streetcom-pentru-perioada-9-15-august-2026",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "702e39c4d6fa",
+      "title": "De ce „cel mai popular sport” în rândul tinerilor nu mai este fotbalul, ci fitnessul",
+      "url": "https://mold-street.com/noutate/de-ce-cel-mai-popular-sport-in-randul-tinerilor-nu-mai-este-fotbalul-ci-fitnessul",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    }
+  ]
+}
