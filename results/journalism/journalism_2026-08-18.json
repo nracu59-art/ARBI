@@ -1,0 +1,425 @@
+{
+  "date": "2026-08-18",
+  "generated_at": "2026-08-18T06:44:32Z",
+  "lookback_hours": 26,
+  "sources_checked": 8,
+  "sources_ok": 8,
+  "stats": {
+    "total": 22,
+    "investigative": 2,
+    "by_source": {
+      "zdg_md": {
+        "name": "Ziarul de Gardă",
+        "count": 10
+      },
+      "newsmaker_md": {
+        "name": "Newsmaker.md",
+        "count": 4
+      },
+      "mold_street": {
+        "name": "Mold-Street",
+        "count": 7
+      },
+      "agora_md": {
+        "name": "Agora.md",
+        "count": 1
+      }
+    },
+    "by_category": {
+      "coruptie": {
+        "label": "Corupție",
+        "emoji": "💰",
+        "count": 1
+      },
+      "justitie": {
+        "label": "Justiție & Procurori",
+        "emoji": "⚖️",
+        "count": 10
+      },
+      "politica": {
+        "label": "Politică & Putere",
+        "emoji": "🏛️",
+        "count": 4
+      },
+      "media": {
+        "label": "Media & Libertatea Presei",
+        "emoji": "📰",
+        "count": 2
+      },
+      "social": {
+        "label": "Social & Drepturile Omului",
+        "emoji": "👥",
+        "count": 1
+      }
+    }
+  },
+  "articles": [
+    {
+      "id": "f810ac5c1d9f",
+      "title": "Percheziții la o companie de construcții din Chișinău, suspectată de evaziune fiscală de circa 3 milioane de lei",
+      "url": "https://www.zdg.md/stiri/perchezitii-la-o-companie-de-constructii-din-chisinau-suspectata-de-evaziune-fiscala-de-circa-3-milioane-de-lei/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-18T06:40:36Z",
+      "published_date": "2026-08-18",
+      "summary": "O schemă de evaziune comisă de o companie de construcție, de circa 3 milioane de lei, a fost deconspirată de Procuratura pentru Combaterea Criminalității Organizate și Cauze Speciale (PCCOCS) și de Serviciul Fiscal de Stat (SFS). Astfel, pe parcursul anului 2025, compania din Chișinău a efectuat încasări de la diferite persoane și alte companii, fără...",
+      "categories": [
+        "justitie",
+        "coruptie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 2,
+        "coruptie": 1,
+        "politica": 1,
+        "afaceri": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 7
+    },
+    {
+      "id": "6e4fa01bc449",
+      "title": "Record pe piața bancară: Numărul cardurilor de plată din Republica Moldova a depășit 4,2 milioane în 2025",
+      "url": "https://mold-street.com/noutate/record-pe-piata-bancara-numarul-cardurilor-de-plata-din-republica-moldova-a-depasit-42-milioane-in-2025",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 1,
+      "relevance_score": 2
+    },
+    {
+      "id": "014890e5f650",
+      "title": "„Hai să trecem un detector de minciuni.” Povestea unei familii prinse între dosare penale, acuzații de corupție și mandate de arestare",
+      "url": "https://www.zdg.md/investigatii/ancheta/hai-sa-trecem-un-detector-de-minciuni-povestea-unei-familii-prinse-intre-dosare-penale-acuzatii-de-coruptie-si-mandate-de-arestare/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-18T06:30:00Z",
+      "published_date": "2026-08-18",
+      "summary": "O familie din nordul țării susține că a ajuns prinsă într-un lanț de dosare penale după ce fiica lor, minoră la momentul faptelor, ar fi fost abuzată sexual, iar ulterior bătută de un grup de tineri. Tatăl fetei acuză mai mulți polițiști și procurori că i-ar fi cerut bani pentru a interveni în dosare, acuzații...",
+      "categories": [
+        "justitie",
+        "social"
+      ],
+      "category_scores": {
+        "justitie": 3,
+        "social": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 4
+    },
+    {
+      "id": "678f578c07ce",
+      "title": "Statele Unite elimină definitiv raportarea beneficiarilor reali pentru companiile americane",
+      "url": "https://mold-street.com/noutate/statele-unite-elimina-definitiv-raportarea-beneficiarilor-reali-pentru-companiile-americane",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 2,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "6b9d2dbebd6c",
+      "title": "LIVE TEXT/ Atac masiv asupra Moscovei: peste 600 de drone au fost lansate, iar un depozit Wildberries a fost lovit. Război în Ucraina, ziua 1637",
+      "url": "https://www.zdg.md/stiri/stiri-externe/live-text-atac-masiv-asupra-moscovei-peste-600-de-drone-au-fost-lansate-iar-un-depozit-wildberries-a-fost-lovit-razboi-in-ucraina-ziua-1637/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-18T05:45:30Z",
+      "published_date": "2026-08-18",
+      "summary": "UPDATE 08:45 Forțele ucrainene au lansat, în noaptea de 18 august, un atac de amploare cu drone asupra Moscovei și regiunea înconjurătoare, au relatat canale media rusești de pe Telegram, transmite The Kyiv Independent. Un depozit Wildberries din apropierea Moscovei ar fi fost avariat, potrivit publicației de stat ruse Moscow 24, în timp ce Ucraina...",
+      "categories": [
+        "politica",
+        "media"
+      ],
+      "category_scores": {
+        "politica": 1,
+        "media": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "3fff82720d21",
+      "title": "Un procuror Anticorupție nu a promovat pentru a doua oară evaluarea externă: „Comisia a constatat necorespunderea criteriului de integritate financiară”",
+      "url": "https://www.zdg.md/stiri/un-procuror-anticoruptie-nu-a-promovat-pentru-a-doua-oara-evaluarea-externa-comisia-a-constatat-necorespunderea-criteriului-de-integritate-financiara/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-17T18:41:11Z",
+      "published_date": "2026-08-17",
+      "summary": "Comisia de evaluare a procurorilor a finalizat reevaluarea procurorului Victor Cazacu din Procuratura Anticorupție. În urma evaluării, Comisia a constatat necorespunderea acestuia cu criteriul de integritate financiară prevăzut de Legea nr. 252/2023 și a propus ca procurorul să nu promoveze evaluarea, potrivit comunicatului Comisiei. Raportul de reevaluare a fost transmis subiectului evaluat și Consiliului Superior...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "989b77af5f1c",
+      "title": "MAE condamnă încălcarea spațiului aerian al R. Moldova: „Acest incident reprezintă un risc direct pentru securitatea cetățenilor noștri”",
+      "url": "https://www.zdg.md/stiri/mae-condamna-incalcarea-spatiului-aerian-al-r-moldova-acest-incident-reprezinta-un-risc-direct-pentru-securitatea-cetatenilor-nostri/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-17T17:33:41Z",
+      "published_date": "2026-08-17",
+      "summary": "Ministerul Afacerilor Externe (MAE) a scris luni, 17 august că „condamnă ferm încălcarea spațiului aerian al R. Moldova” și explozia produsă în regiunea localității Talmaza, raionul Ștefan Vodă, care a provocat incendii de vegetație în zonă. „Acest incident constituie o încălcare gravă a suveranității R. Moldova și reprezintă un risc direct pentru securitatea cetățenilor noștri....",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "375cd29e4913",
+      "title": "Comunicăm. Producem. Plasăm.Crești împreună cu AGORA",
+      "url": "https://agora.md/media-kit",
+      "source": "Agora.md",
+      "source_key": "agora_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.",
+      "categories": [
+        "justitie",
+        "media"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "media": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "482799d488cc",
+      "title": "La ce preț pot cumpăra moldovenii benzina și motorina pe 18 august?",
+      "url": "https://www.zdg.md/stiri/la-ce-pret-pot-cumpara-moldovenii-benzina-si-motorina-pe-18-august/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-18T05:30:00Z",
+      "published_date": "2026-08-18",
+      "summary": "Pe 18 august, șoferii vor plăti mai mult pentru benzină și mai puțin motorină, față de ziua precedentă, conform noilor prețuri stabilite de Agenția Națională pentru Reglementare în Energetică (ANRE). Pentru ziua de marți, prețurile maximale de comercializare cu amănuntul pentru produsele petroliere principale de tip standard vor fi:",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "5aa1a2240f2e",
+      "title": "UPDATE/ IGP: Fragmente ale unei drone-rachetă, identificate în urma exploziei din Talmaza. „Poliția continuă investigațiile”",
+      "url": "https://www.zdg.md/stiri/update-igp-fragmente-ale-unei-drone-racheta-identificate-in-urma-exploziei-din-talmaza-politia-continua-investigatiile/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-17T19:14:00Z",
+      "published_date": "2026-08-17",
+      "summary": "UPDATE 22:10 Specialiștii Secției tehnico-explozive a Poliției au examinat aparatul de zbor fără pilot identificat în extravilanul satului Talmaza, raionul Ștefan Vodă, unde a avut loc o explozie. Potrivit IGP, aparatul a căzut pe un lan agricol cultivat cu porumb. La fața locului a fost identificat un crater cu un diametru de aproximativ doi metri...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "a935c2ea1ed2",
+      "title": "LIVE TEXT/ Un nou atac asupra regiunii Odesa: patru persoane au fost rănite, inclusiv doi copii. Război în Ucraina, ziua 1636",
+      "url": "https://www.zdg.md/stiri/stiri-externe/live-text-un-nou-atac-asupra-regiunii-odesa-patru-persoane-au-fost-ranite-inclusiv-doi-copii-razboi-in-ucraina-ziua-1636/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-17T19:05:00Z",
+      "published_date": "2026-08-17",
+      "summary": "UPDATE 22:05 În urma atacului rusesc, în raionul Odesa s-a produs o distrugere parțială, urmată de izbucnirea unui incendiu la acoperișul unei case de locuit și la iarba uscată din apropiere. Suflul exploziei a avariat și casele din vecinătate. Incendiile au fost lichidate, iar persoanele rănite primesc îngrijirile medicale necesare. UPDATE 20:00 Pe parcursul zilei,...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "c5281c6a5837",
+      "title": "Cinci moldoveni, arestați în Italia pentru furtul a trei picturi de Renoir, Cézanne și Matisse",
+      "url": "https://mold-street.com/noutate/cinci-moldoveni-arestati-in-italia-pentru-furtul-a-trei-picturi-de-renoir-cezanne-si-matisse",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "9b0b3b343cd8",
+      "title": "Ion Ceban, noi precizări despre accidentul suferit în vacanță. Ce spune despre „vacanța de lux” și presupusa petrecere",
+      "url": "https://www.zdg.md/stiri/politic/ion-ceban-noi-precizari-despre-accidentul-suferit-in-vacanta-ce-spune-despre-vacanta-de-lux-si-presupusa-petrecere/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-18T06:10:22Z",
+      "published_date": "2026-08-18",
+      "summary": "Primarul mun. Chișinău, Ion Ceban, a venit cu noi precizări după ce a anunțat sâmbătă, 15 august, că a suferit un accident în timp ce se afla în vacanță cu familia și că, în urma incidentului, urma să fie supus unor „intervenții chirurgicale” la picioare. Edilul afirmă că este internat în spital și se află...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "ccf35ca620df",
+      "title": "Ce temperaturi prognozează meteorologii pentru marți, 18 august",
+      "url": "https://www.zdg.md/stiri/ce-temperaturi-prognozeaza-meteorologii-pentru-marti-18-august/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-08-18T05:00:00Z",
+      "published_date": "2026-08-18",
+      "summary": "Pentru ziua de marți, 18 august, meteorologii prognozează maxime de până la 33 de grade Celsius și cer variabil pe întreg teritoriul țării. Vântul va sufla din nord spre vest, slab până la moderat. Conform informațiilor publicate de Autoritatea de Meteorologie și Monitoring de Mediu (AMM), în centrul țării vor fi înregistrate temperaturi de până...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "72386d529492",
+      "title": "Власти ухудшили прогноз роста экономики Молдовы. Что пошло не так?",
+      "url": "https://newsmaker.md/ru/minekonomiki-snizilo-prognoz-rosta-vvp-chto-proishodit-s-ekonomikoi-moldovy",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "DUOMO. Когда качество — не просто слово, это обязательство",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "9ab714616900",
+      "title": "Санду о транзите украинских грузов через Молдову: Другие государства помогают Украине гораздо больше",
+      "url": "https://newsmaker.md/ru/sandu-o-tranzite-ukrainskih-gruzov-cherez-moldovu-drugie-gosudarstva-pomogayut-ukraine-gorazdo-bolshe",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "e0b0d3c6ecfa",
+      "title": "Возле села Талмаза взорвалась ракета? На месте ее падения обнаружили воронку диаметром два метра",
+      "url": "https://newsmaker.md/ru/vozle-sela-talmaza-vzorvalas-raketa-na-meste-ee-padeniya-obnarujili-voronku-diametrom-dva-metra",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "67cc205e9db1",
+      "title": "NM Espresso: фермеры дали Тофану пять дней, Гуцул больше не башкан, в Молдову прилетела ракета?",
+      "url": "https://newsmaker.md/ru/nm-espresso-fermery-dali-tofanu-pyat-dnei-guczul-bolshe-ne-bashkan",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "499be4f1ffe8",
+      "title": "Caricatură",
+      "url": "https://mold-street.com/noutate/unde-poate-economisi-statul-25-miliarde-de-lei-identificate-la-sanatate-si-protectia-sociala",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "cd7ea6b85b51",
+      "title": "Volum record de subvenții agricole, alocate în prima jumătate a acestui an",
+      "url": "https://mold-street.com/noutate/volum-record-de-subventii-agricole-alocate-in-prima-jumatate-a-acestui-an",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "eac43bdd28ea",
+      "title": "Motorină este pentru șase zile, iar benzină - pentru 15 zile",
+      "url": "https://mold-street.com/noutate/motorina-este-pentru-sase-zile-iar-benzina-pentru-15-zile",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "d1d34cacf663",
+      "title": "Dumping ucrainean pe piaţa cimentului din Moldova",
+      "url": "https://mold-street.com/noutate/dumping-ucrainean-pe-piata-cimentului-din-moldova",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    }
+  ]
+}
