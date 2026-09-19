@@ -1,0 +1,2288 @@
+{
+  "date": "2026-09-19",
+  "generated_at": "2026-09-19T10:28:20Z",
+  "lookback_hours": 26,
+  "sources_checked": 8,
+  "sources_ok": 8,
+  "stats": {
+    "total": 122,
+    "investigative": 21,
+    "by_source": {
+      "zdg_md": {
+        "name": "Ziarul de Gardă",
+        "count": 10
+      },
+      "anticoruptie_md": {
+        "name": "Anticorupție.md",
+        "count": 100
+      },
+      "newsmaker_md": {
+        "name": "Newsmaker.md",
+        "count": 4
+      },
+      "mold_street": {
+        "name": "Mold-Street",
+        "count": 7
+      },
+      "agora_md": {
+        "name": "Agora.md",
+        "count": 1
+      }
+    },
+    "by_category": {
+      "coruptie": {
+        "label": "Corupție",
+        "emoji": "💰",
+        "count": 6
+      },
+      "justitie": {
+        "label": "Justiție & Procurori",
+        "emoji": "⚖️",
+        "count": 70
+      },
+      "politica": {
+        "label": "Politică & Putere",
+        "emoji": "🏛️",
+        "count": 54
+      },
+      "media": {
+        "label": "Media & Libertatea Presei",
+        "emoji": "📰",
+        "count": 8
+      },
+      "afaceri": {
+        "label": "Afaceri & Contracte Publice",
+        "emoji": "💼",
+        "count": 4
+      },
+      "securitate": {
+        "label": "Securitate & Intelligence",
+        "emoji": "🔐",
+        "count": 9
+      },
+      "social": {
+        "label": "Social & Drepturile Omului",
+        "emoji": "👥",
+        "count": 8
+      }
+    }
+  },
+  "articles": [
+    {
+      "id": "ad48f8f96c5f",
+      "title": "Investigație: Peste 200 milioane de televizoare smart ar putea să asculte și să scaneze locuințele utilizatorilor",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/investigatie-peste-200-milioane-de-televizoare-smart-ar-putea-sa-asculte-si-sa-scaneze-locuintele-utilizatorilor",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:47Z",
+      "published_date": "2026-09-19",
+      "summary": "Până la 216 milioane de televizoare smart LG ar putea colecta comenzi vocale, date de localizare și pot scana rețelele locale după alte dispozitive conectate, potrivit unei investigații majore privind platforma webOS, publicată de Cybernews. Amploare...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 2,
+      "relevance_score": 4
+    },
+    {
+      "id": "769ef7bb1c3f",
+      "title": "Un fost funcționar rămâne fără o avere de aproape 10 milioane de lei. CNA anunță o premieră",
+      "url": "https://anticoruptie.md/ro/post_show/dosare/un-fost-functionar-ramane-fara-o-avere-de-aproape-10-milioane-de-lei-cna-anunta-o-premiera",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:59Z",
+      "published_date": "2026-09-19",
+      "summary": "Opt bunuri imobile, în valoare totală de peste 9,6 milioane de lei, au fost confiscate definitiv în beneficiul statului, anunță Centrul Național Anticorupție (CNA) și Procuratura Anticorupție (PA). Printre acestea se numără terenuri pentru construcți...",
+      "categories": [
+        "politica",
+        "justitie",
+        "afaceri"
+      ],
+      "category_scores": {
+        "politica": 3,
+        "justitie": 2,
+        "afaceri": 2
+      },
+      "investigative_score": 1,
+      "relevance_score": 9
+    },
+    {
+      "id": "0998d2f1acd1",
+      "title": "Dinu Plîngău: Sute de întreprinderi de stat nu sunt gestionate de nimeni. Proprietăți de miliarde, în paragină",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/dinu-plingau-sute-de-intreprinderi-de-stat-nu-sunt-gestionate-de-nimeni-proprietati-de-miliarde-in-paragina",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:50Z",
+      "published_date": "2026-09-19",
+      "summary": "Președintele Comisiei parlamentare de anchetă privind activitatea întreprinderilor de stat, deputatul Dinu Plîngău, afirmă că dincolo de scandalul salariilor a descoperit un haos mult mai mare - sute de companii de stat abandonate, cu clădiri și tere...",
+      "categories": [
+        "politica",
+        "justitie"
+      ],
+      "category_scores": {
+        "politica": 4,
+        "justitie": 2
+      },
+      "investigative_score": 1,
+      "relevance_score": 8
+    },
+    {
+      "id": "d3411f32d40c",
+      "title": "Confiscări record de bunuri în folosul statului, într-o săptămână",
+      "url": "https://anticoruptie.md/ro/post_show/dosare/confiscari-record-de-bunuri-in-folosul-statului-intr-o-saptamana",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:53Z",
+      "published_date": "2026-09-19",
+      "summary": "Opt bunuri imobile, estimate la peste 9,6 milioane de lei, au fost confiscate definitiv în beneficiul statului de la un funcționar condamnat pentru abuz de serviciu. Averea și beneficiarul real al bunurilor au fost identificate în colaborare de Centr...",
+      "categories": [
+        "politica",
+        "coruptie",
+        "justitie"
+      ],
+      "category_scores": {
+        "politica": 2,
+        "coruptie": 1,
+        "justitie": 1,
+        "afaceri": 1,
+        "social": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 8
+    },
+    {
+      "id": "d37d7b7b567f",
+      "title": "Dosarul „Baba Galea”: din TikTok - în judecată",
+      "url": "https://anticoruptie.md/ro/post_show/investigatii/dosarul-baba-galea-din-tiktok-in-judecata",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:56Z",
+      "published_date": "2026-09-19",
+      "summary": "După aproape două luni de la reținere, în iunie curent, dosarul lui Vadim Țăruș, cunoscut pe TikTok sub numele „Baba Galea, Nu vreau să tac”, a ajuns în instanță. Bărbatul a fost acuzat de propagandă a războiului, după ce a publicat pe contul său mai...",
+      "categories": [
+        "justitie",
+        "media"
+      ],
+      "category_scores": {
+        "justitie": 4,
+        "media": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 7
+    },
+    {
+      "id": "eee618089d17",
+      "title": "Șase luni de la moartea Ludmilei Vartic: Avocata familiei denunță blocaj procedural și tratament „inadmisibil” din partea anchetatorilor",
+      "url": "https://anticoruptie.md/ro/post_show/dosare/sase-luni-de-la-moartea-ludmilei-vartic-avocata-familiei-denunta-blocaj-procedural-si-tratament-inadmisibil-din-partea-anchetatorilor",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:07Z",
+      "published_date": "2026-09-19",
+      "summary": "La șase luni de la moartea Ludmilei Vartic, avocata care reprezintă succesoarele victimei, Violeta Gașițoi, a oferit o declarație pentru Anticoruptie.md, denunță un blocaj procedural din partea organului de urmărire penală și acuză procuratura de com...",
+      "categories": [
+        "justitie",
+        "coruptie",
+        "social"
+      ],
+      "category_scores": {
+        "justitie": 2,
+        "coruptie": 1,
+        "social": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 6
+    },
+    {
+      "id": "5181aecd309a",
+      "title": "VIDEO/ Mesaj de susținere de la Bruxelles pentru R. Moldova și Ucraina | Oameni mobilizați la un așa-numit protest la Tighina | Pedeapsa cerută de procurori pentru fostul premier Iurie Leancă | Cazul celor cinci păsări protejate, găsite împușcate la Rîșcani | SĂPTĂMÂNA DE GARDĂ",
+      "url": "https://www.zdg.md/stiri/stiri-sociale/video-mesaj-de-sustinere-de-la-bruxelles-pentru-r-moldova-si-ucraina-oameni-mobilizati-la-un-asa-numit-protest-la-tighina-pedeapsa-ceruta-de-procurori-pentru-fostul-premier-iurie-leanca-cazul-celor-ci/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-09-19T06:00:00Z",
+      "published_date": "2026-09-19",
+      "summary": "Președinta Comisiei Europene a transmis un semnal puternic de susținere pentru R. Moldova și Ucraina. Detalii, în această ediție a Săptămânii de Gardă. Tot astăzi, vorbim despre reacția autorităților de la Chișinău la protestele organizate la Tighina și vă spunem ce pedeapsă riscă fostul premier Iurie Leancă în dosarul concesionării Aeroportului. Săptămâna de Gardă poate...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 2,
+        "politica": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 5
+    },
+    {
+      "id": "dbc633e9a9d5",
+      "title": "23 de ani: vârsta la care statul presupune că studentul nu mai are nevoie de ajutor",
+      "url": "https://anticoruptie.md/ro/post_show/blog/23-de-ani-varsta-la-care-statul-presupune-ca-studentul-nu-mai-are-nevoie-de-ajutor",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:50Z",
+      "published_date": "2026-09-19",
+      "summary": "Acum câțiva ani, la un training pentru jurnaliști de investigație, cunoscutul jurnalist și mentor ucrainean Oleg Homenok ne-a povestit istoria unui cuplu de jurnaliști din Ucraina care, după ce au conceput un copil, nu mai aveau nevoie să caute subie...",
+      "categories": [
+        "justitie",
+        "politica",
+        "media"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1,
+        "media": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 5
+    },
+    {
+      "id": "6a937ec006be",
+      "title": "LIVE TEXT/ SUA au aprobat o posibilă vânzare către Ucraina de echipamente de apărare aeriană în valoare de aproximativ 2,6 miliarde de dolari. Război în Ucraina, ziua 1669",
+      "url": "https://www.zdg.md/stiri/live-text-sua-au-aprobat-o-posibila-vanzare-catre-ucraina-de-echipamente-de-aparare-aeriana-in-valoare-de-aproximativ-26-miliarde-de-dolari-razboi-in-ucraina-ziua-1669/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-09-19T06:21:20Z",
+      "published_date": "2026-09-19",
+      "summary": "UPDATE 13:25 Președintele SUA, Donald Trump, a semnat legea fostului senator Lindsey Graham, care conferă dreptul de a impune taxe vamale împotriva țărilor care achiziționează resurse energetice rusești, a anunțat Casa Albă. Legea lui Lindsey Graham îi conferă președintelui SUA dreptul de a impune taxe vamale de până la 100% împotriva țărilor care achiziționează resurse...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 4
+    },
+    {
+      "id": "a6c4a92c3060",
+      "title": "Protest al jurnaliștilor la Bruxelles în solidaritate cu Malta: „Tăcerea nu este o opțiune\"",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/protest-al-jurnalistilor-la-bruxelles-in-solidaritate-cu-malta-tacerea-nu-este-o-optiune",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:46Z",
+      "published_date": "2026-09-19",
+      "summary": "Jurnaliști și organizații internaționale de apărare a libertății presei au organizat miercuri, 16 septembriem, un miting de protest la Bruxelles, în solidaritate cu poporul maltez și familia cunoscutei jurnaliste de investigație Daphne Caruana Galizi...",
+      "categories": [
+        "justitie",
+        "media"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "media": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 4
+    },
+    {
+      "id": "55250d3c8bc7",
+      "title": "Sistemele sovietice de distribuție a căldurii ajung la gunoi. Ministrul Junghietu anunță costurile",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/sistemele-sovietice-de-distributie-a-caldurii-ajung-la-gunoi-ministrul-junghietu-anunta-costurile",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:48Z",
+      "published_date": "2026-09-19",
+      "summary": "Ministerul Energiei a lansat un program de modernizare a sistemelor de încălzire din blocurile locative din Chișinău și Bălți. În municipiul Chișinău, investițiile se ridică la 326 de milioane de euro, iar pentru municipiul Bălți este prevăzut un pro...",
+      "categories": [
+        "politica",
+        "securitate"
+      ],
+      "category_scores": {
+        "politica": 1,
+        "securitate": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 4
+    },
+    {
+      "id": "9cc75051e29b",
+      "title": "DOC// Dosarul trădării de patrie. Cererea de recuzare a judecătorului Cernalev, respinsă",
+      "url": "https://anticoruptie.md/ro/post_show/dosare/doc-dosarul-tradarii-de-patrie-cererea-de-recuzare-a-judecatorului-cernalev-respinsa",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:57Z",
+      "published_date": "2026-09-19",
+      "summary": "Judecătorul Veaceslav Cernalev va examina în continuare dosarul în care fostul șef al Direcției juridice a Parlamentului, Ion Creangă, este învinuit de trădare de patrie. Marți, cererea de recuzare a magistratului a fost respinsă, iar părțile sunt aș...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 4
+    },
+    {
+      "id": "548d14258575",
+      "title": "Sechestre de peste 12 milioane de lei și 27 de percheziții. Bilanțul CNA pentru săptămâna trecută",
+      "url": "https://anticoruptie.md/ro/post_show/dosare/sechestre-de-peste-12-milioane-de-lei-si-27-de-perchezitii-bilantul-cna-pentru-saptamana-trecuta",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:02Z",
+      "published_date": "2026-09-19",
+      "summary": "Sechestre pe bunuri în valoare de peste 12,2 milioane de lei au fost aplicate de Agenția de Recuperare a Bunurilor Infracționale (ARBI) pe parcursul săptămânii trecute. Totodată, sechestre în valoare de circa 3 milioane de lei, aplicate anterior, au ...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 2
+      },
+      "investigative_score": 1,
+      "relevance_score": 4
+    },
+    {
+      "id": "14d6678cc87b",
+      "title": "Danemarca susține Moldova cu proiecte de peste 60 de milioane de euro. Sprijin pentru energie, justiție și securitate cibernetică",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/danemarca-sustine-moldova-cu-proiecte-de-peste-60-de-milioane-de-euro-sprijin-pentru-energie-justitie-si-securitate-cibernetica",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:05Z",
+      "published_date": "2026-09-19",
+      "summary": "Portofoliul proiectelor susținute de Danemarca în Republica Moldova depășește 60 de milioane de euro, anunță Guvernul de la Chișinău după întrevederea prim-ministrului Vasile Tofan cu Ambasadorul Regatului Danemarcei, Søren Jensen. Sprijinul vizează ...",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 2
+      },
+      "investigative_score": 1,
+      "relevance_score": 4
+    },
+    {
+      "id": "5f69a6cb3aaa",
+      "title": "Guvernul rectifică bugetul de stat. Un miliard de lei, în Fondul Național pentru Dezvoltare Regională și Locală",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/guvernul-rectifica-bugetul-de-stat-un-miliard-de-lei-in-fondul-national-pentru-dezvoltare-regionala-si-locala",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:12Z",
+      "published_date": "2026-09-19",
+      "summary": "Un miliard de lei va ajunge în Fondul Național pentru Dezvoltare Regională și Locală, iar alte 560 de milioane de lei vor fi utilizate pentru acordarea unor plăți unice pentru angajații din sectorul bugetar. Sunt doar două dintre rectificările la bu...",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 2
+      },
+      "investigative_score": 1,
+      "relevance_score": 4
+    },
+    {
+      "id": "83f879f0fbe2",
+      "title": "SUA poate impune taxe vamale împotriva țărilor care achiziționează resurse energetice rusești: legea, semnată de Trump",
+      "url": "https://www.zdg.md/stiri/sua-poate-impune-taxe-vamale-impotriva-tarilor-care-achizitioneaza-resurse-energetice-rusesti-legea-semnata-de-trump/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-09-19T10:01:00Z",
+      "published_date": "2026-09-19",
+      "summary": "Președintele SUA, Donald Trump, a semnat legea fostului senator Lindsey Graham, care conferă dreptul de a impune taxe vamale împotriva țărilor care achiziționează resurse energetice rusești, a anunțat Casa Albă. Legea lui Lindsey Graham îi conferă președintelui SUA dreptul de a impune taxe vamale de până la 100% împotriva țărilor care achiziționează resurse energetice rusești...",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 3
+    },
+    {
+      "id": "60ed812992b5",
+      "title": "Holodomorul din Ucraina, recunoscut drept genocid de 34 de state. Valul de condamnări după invazia Rusiei",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/holodomorul-din-ucraina-recunoscut-drept-genocid-de-34-de-state-valul-de-condamnari-dupa-invazia-rusiei",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:13Z",
+      "published_date": "2026-09-19",
+      "summary": "Foametea artificială din Ucraina din 1932-1933, cunoscută sub numele de Holodomor, a ajuns să fie recunoscută oficial drept genocid de 34 de țări, la începutul anului 2026. Tragedia, care a provocat moartea a 3,5 - 5 milioane de ucraineni ca urmare a...",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 3
+    },
+    {
+      "id": "fc43d7e2ac72",
+      "title": "Creditor nebancar cu capital bulgar, sancţionat cu amendă de 1,44 milioane lei",
+      "url": "https://mold-street.com/noutate/creditor-nebancar-cu-capital-bulgar-sanctionat-cu-o-amenda-de-144-milioane-lei",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "media"
+      ],
+      "category_scores": {
+        "media": 1
+      },
+      "investigative_score": 1,
+      "relevance_score": 3
+    },
+    {
+      "id": "0af81b07f749",
+      "title": "Uganda, Lesotho și GC27 și alte discuții la Comitetul ONU pentru Drepturile Copilului",
+      "url": "https://anticoruptie.md/ro/post_show/blog/uganda-lesotho-si-gc27-si-alte-discutii-la-comitetul-onu-pentru-drepturile-copilului",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:44Z",
+      "published_date": "2026-09-19",
+      "summary": "Dimineața, în ziua a 6-a, am finalizat dialogul cu Uganda. Un detaliu care spune mult despre amploarea provocărilor de acolo: în această țară se nasc aproximativ 1,4 milioane de copii pe an, iar înregistrarea nașterii rămâne esențială pentru identita...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 1,
+      "relevance_score": 2
+    },
+    {
+      "id": "b73899728cde",
+      "title": "Tergiversarea dosarului Vartic nu protejează pe nimeni. Doar adâncește neîncrederea",
+      "url": "https://anticoruptie.md/ro/post_show/blog/tergiversarea-dosarului-vartic-nu-protejeaza-pe-nimeni-doar-adanceste-neincrederea",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:07Z",
+      "published_date": "2026-09-19",
+      "summary": "Cazul Ludmilei Vartic, femeia care și-ar fi pus capăt zilelor ca urmare a violenței în familie, la șase luni de la producere, este blocat în proceduri și în lipsa de deschidere a reprezentanților organelor de drept pentru colaborarea cu avocatele fam...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 1,
+      "relevance_score": 2
+    },
+    {
+      "id": "f886fcbb279b",
+      "title": "Finanţare de sute de milioane de euro de la BERD și UE pentru modernizarea coridoarele rutiere strategice ale Moldovei",
+      "url": "https://mold-street.com/noutate/finantare-de-sute-de-milioane-de-euro-de-la-berd-si-ue-pentru-modernizarea-coridoarele-rutiere-strategice-ale-moldovei",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 1,
+      "relevance_score": 2
+    },
+    {
+      "id": "01f1bc58d0b8",
+      "title": "Trei polițiști de la IP Botanica, trimiși în judecată după ce ar fi sustras mii de dolari și euro de la o persoană reținută",
+      "url": "https://anticoruptie.md/ro/post_show/dosare/trei-politisti-de-la-ip-botanica-trimisi-in-judecata-dupa-ce-ar-fi-sustras-mii-de-dolari-si-euro-de-la-o-persoana-retinuta",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:35Z",
+      "published_date": "2026-09-19",
+      "summary": "Trei angajați ai Inspectoratului de Poliție Botanica, reținuți la sfârșitul lunii aprilie 2026 într-un dosar de corupție, au fost trimiși în judecată pentru abuz de serviciu, anunță Procuratura Anticorupție. Potrivit procurorilor, în timpul contro...",
+      "categories": [
+        "justitie",
+        "coruptie",
+        "social"
+      ],
+      "category_scores": {
+        "justitie": 4,
+        "coruptie": 1,
+        "social": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 6
+    },
+    {
+      "id": "aab7e70a33e7",
+      "title": "De la Parlament la Comrat: Stoianoglo își anunță candidatura la bașcănie",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/de-la-parlament-la-comrat-stoianoglo-isi-anunta-candidatura-la-bascanie",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:03Z",
+      "published_date": "2026-09-19",
+      "summary": "Deputatul Blocului „Alternativa”, Alexandr Stoianoglo, și-a anunțat luni, 7 septembrie, candidatura la funcția de bașcan al Găgăuziei. Anunțul a fost făcut în cadrul unui briefing de presă organizat la Parlament, unde fostul procuror general a preciz...",
+      "categories": [
+        "justitie",
+        "politica",
+        "media"
+      ],
+      "category_scores": {
+        "justitie": 3,
+        "politica": 2,
+        "media": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 6
+    },
+    {
+      "id": "33e502a9a1d0",
+      "title": "„Încalcă suveranitatea și integritatea teritorială a R. Moldova”: MAE al României condamnă deschiderea neautorizată în regiunea transnistreană a secțiilor de votare de către Rusia",
+      "url": "https://www.zdg.md/stiri/incalca-suveranitatea-si-integritatea-teritoriala-a-r-moldova-mae-al-romaniei-condamna-deschiderea-neautorizata-in-regiunea-transnistreana-a-sectiilor-de-votare-de-catre-rusia/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-09-19T06:41:04Z",
+      "published_date": "2026-09-19",
+      "summary": "Ministerul Afacerilor Externe a României a emis o declarație în care condamnă deschiderea unor secții de votare în regiunea transnistreană în cadrul alegerilor pentru Duma de Stat a Federației Ruse, precum și desfășurarea ilegală a scrutinului în teritoriile temporar ocupate ale Ucrainei. „Ministerul Afacerilor Externe condamnă desfășurarea ilegală, în perioada 18-20 septembrie 2026, în teritoriile...",
+      "categories": [
+        "politica",
+        "justitie"
+      ],
+      "category_scores": {
+        "politica": 3,
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 5
+    },
+    {
+      "id": "b7fce58048f3",
+      "title": "Prietenul Moldovei la Bruxelles, Siegfried Mureșan, la un pas de funcția de premier al României",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/prietenul-moldovei-la-bruxelles-siegfried-muresan-la-un-pas-de-functia-de-premier-al-romaniei",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:55Z",
+      "published_date": "2026-09-19",
+      "summary": "Europarlamentarul Siegfried Mureșan, unul dintre politicienii români care au susținut constant parcursul european al Republicii Moldova, a fost desemnat de președintele României, Nicușor Dan, pentru funcția de prim-ministru. Mureșan a acceptat propun...",
+      "categories": [
+        "politica",
+        "justitie"
+      ],
+      "category_scores": {
+        "politica": 4,
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 5
+    },
+    {
+      "id": "a7c4f0d3857e",
+      "title": "Rotație de cadre la Guvern. Mai multe funcții-cheie au fost ocupate de noi conducători",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/rotatie-de-cadre-la-guvern-mai-multe-functii-cheie-au-fost-ocupate-de-noi-conducatori",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:48Z",
+      "published_date": "2026-09-19",
+      "summary": "Cabinetul de miniștri a numit noi conducători la cel puțin patru instituții. Este vorba despre Serviciul Fiscal de Stat (SFS), Agenția Proprietății Publice (APP), Compania Națională de Asigurări în Medicină (CNAM) și Agenția de Intervenție și Plăți p...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 3,
+        "politica": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 5
+    },
+    {
+      "id": "50ff02b0a3e0",
+      "title": "Statul vrea să-i unească pe producătorii agricoli. Ce beneficii vor obține după consolidare",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/statul-vrea-sa-i-uneasca-pe-producatorii-agricoli-ce-beneficii-vor-obtine-dupa-consolidare",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:08Z",
+      "published_date": "2026-09-19",
+      "summary": "Fermierii se vor putea asocia conform unui cadru normativ armonizat cu standardele Uniunii Europene. Un proiect de lege care prevede acest lucru a fost votat în prima lectură de Parlament. Astfel, organizațiile de producători recunoscute vor avea acc...",
+      "categories": [
+        "politica",
+        "justitie"
+      ],
+      "category_scores": {
+        "politica": 3,
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 5
+    },
+    {
+      "id": "970dc005058d",
+      "title": "Alegeri în UTA Găgăuzia. Câți bani au voie să cheltuiască partidele și candidații independenți",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/alegeri-in-uta-gagauzia-cati-bani-au-voie-sa-cheltuiasca-partidele-si-candidatii-independenti",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:49Z",
+      "published_date": "2026-09-19",
+      "summary": "Comisia Electorală Centrală (CEC) a aprobat mai multe hotărâri cu privire la alegerile regionale din 15 noiembrie 2026. Astfel, a fost constituit Consiliul Electoral Central al Găgăuziei (CECG), dar și aspecte ce vizează finanțarea campaniei. Comi...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 2,
+        "politica": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 4
+    },
+    {
+      "id": "791ab2221d4f",
+      "title": "Editorial// Republica Moldova, România și necesitatea unui scut regional anti-dronă",
+      "url": "https://anticoruptie.md/ro/post_show/special/editorial-republica-moldova-romania-si-necesitatea-unui-scut-regional-anti-drona",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:01Z",
+      "published_date": "2026-09-19",
+      "summary": "Editorial de Mihai Isac, analist politic și jurnalist TVR pentru Buletinul de politică externă al FES/APE Republica Moldova nu mai este doar un stat aflat lângă frontul deschis de Rusia împotriva Ucrainei. A devenit parte a acestui front, un spați...",
+      "categories": [
+        "media",
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "media": 2,
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 4
+    },
+    {
+      "id": "ec38d5113576",
+      "title": "Regim provizoriu de licențiere a importului de cereale și oleaginoase",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/regim-provizoriu-de-licentiere-a-importului-de-cereale-si-oleaginoase",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:08Z",
+      "published_date": "2026-09-19",
+      "summary": "Parlamentul a instituit un mecanism provizoriu de licențiere a importului de culturi cerealiere și oleaginoase. Un proiect de lege care prevede acest lucru a fost votat în a doua lectură de Parlament. Regimul de licențiere va fi aplicat până la 31 oc...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 2,
+        "politica": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 4
+    },
+    {
+      "id": "212306ffc6f3",
+      "title": "Găgăuzia riscă blocaj instituțional și contestarea alegerilor din 15 noiembrie, avertizează un ONG din autonomie",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/gagauzia-risca-blocaj-institutional-si-contestarea-alegerilor-din-15-noiembrie-avertizeaza-un-ong-din-autonomie",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:09Z",
+      "published_date": "2026-09-19",
+      "summary": "Conflict instituțional între Chișinău și Comrat, colaps organizatoric din cauza desfășurării simultane a două scrutine, presiune politică asupra candidaților și amenințarea unui boicot sau a contestării rezultatelor în instanță – sunt principalele ri...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 3,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 4
+    },
+    {
+      "id": "9349e0665415",
+      "title": "CSM a aprobat Regulamentul anti-hărțuire în instanțe. Problemele care au fost, în sfârșit, puse pe hârtie",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/csm-a-aprobat-regulamentul-anti-hartuire-in-instante-problemele-care-au-fost-in-sfarsit-puse-pe-hartie",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:10Z",
+      "published_date": "2026-09-19",
+      "summary": "Hărțuire, hărțuire sexuală, discriminare, violență psihologică și digitală - inclusiv prin e-mail, rețele sociale și aplicații de mesagerie, repartizare abuzivă a sarcinilor, evaluare și salarizare discriminatorie. Sunt problemele cu care se confrunt...",
+      "categories": [
+        "social",
+        "justitie"
+      ],
+      "category_scores": {
+        "social": 3,
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 4
+    },
+    {
+      "id": "5e18286b32ed",
+      "title": "Speakerul Grosu îl laudă pe premierul Tofan: „Deficitul bugetar este gesionabil”. Ce spune opoziția",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/speakerul-grosu-il-lauda-pe-premierul-tofan-deficitul-bugetar-este-gesionabil-ce-spune-opozitia",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:10Z",
+      "published_date": "2026-09-19",
+      "summary": "Parlamentul va examina vineri, în prima lectură, rectificările cerute de Guvernul. Chiar dacă noile cheltuieli vor apropia deficitul bugetar de 6 la sută din PIB, speakerul Igor Grosu spune că situația poate fi gestionată. Unii reprezentanți ai opozi...",
+      "categories": [
+        "politica",
+        "justitie"
+      ],
+      "category_scores": {
+        "politica": 3,
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 4
+    },
+    {
+      "id": "418bd8b8dc24",
+      "title": "„Rezultatele PISA nu sunt un motiv de panică, ci o ocazie de a vedea unde trebuie schimbate accentele”. Lecția Estoniei, rolul profesorilor și nevoia de curaj în educație",
+      "url": "https://www.zdg.md/stiri/rezultatele-pisa-nu-sunt-un-motiv-de-panica-ci-o-ocazie-de-a-vedea-unde-trebuie-schimbate-accentele-lectia-estoniei-rolul-profesorilor-si-nevoia-de-curaj-in-educatie/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-09-19T09:00:00Z",
+      "published_date": "2026-09-19",
+      "summary": "Rezultatele PISA, care demonstrează că în 2025 elevii au fost mai buni la știință, dar mai slabi la matematică și lectură, nu sunt un verdict asupra calității studiilor din R. Moldova. Sunt, mai degrabă, un semnal despre felul în care elevii reușesc să folosească în viața reală ceea ce învață la școală. Așa consideră Ana...",
+      "categories": [
+        "justitie",
+        "social"
+      ],
+      "category_scores": {
+        "justitie": 2,
+        "social": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "d61d8dfd9c7b",
+      "title": "Explozia de la Colonița: „Orice pătrundere neautorizată în spațiul aerian al R. Moldova este inacceptabilă”, subliniază MAE",
+      "url": "https://www.zdg.md/stiri/explozia-de-la-colonita-orice-patrundere-neautorizata-in-spatiul-aerian-al-r-moldova-este-inacceptabila-subliniaza-mae/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-09-19T07:45:59Z",
+      "published_date": "2026-09-19",
+      "summary": "Ministerul Afacerilor Externe (MAE) condamnă ferm, într-un comunicat, incidentul produs în apropierea localității Colonița, unde, pe 18 septembrie, în urma unei deflagrații, au fost depistate componente asemănătoare celor ale unei drone fără pilot, dotată cu sistem de propulsie turboreactiv. Potrivit MAE, acest incident reprezintă o nouă consecință gravă a războiului de agresiune al Federației Ruse...",
+      "categories": [
+        "justitie",
+        "politica",
+        "securitate"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1,
+        "securitate": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "7bec74b17ce6",
+      "title": "Grosu infirmă că Ungaria s-ar opune aderării Moldovei la UE: „Ne-au asigurat de toată susținerea”",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/grosu-infirma-ca-ungaria-s-ar-opune-aderarii-moldovei-la-ue-ne-au-asigurat-de-toata-sustinerea",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:40Z",
+      "published_date": "2026-09-19",
+      "summary": "Președintele Parlamentului, Igor Grosu, infirmă informațiile potrivit cărora Ungaria nu ar susține aderarea Republicii Moldova la Uniunea Europeană. Speakerul spune că este vorba despre anumite rezerve în cazul deschiderii a două clastere. Concluziil...",
+      "categories": [
+        "politica",
+        "justitie"
+      ],
+      "category_scores": {
+        "politica": 2,
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "8ecdf707d456",
+      "title": "În premieră, o armată de aproape 80 de observatori va monitoriza scrutinul din UTA Găgăuzia",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/in-premiera-o-armata-de-aproape-80-de-observatori-va-monitoriza-scrutinul-din-uta-gagauzia",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:42Z",
+      "published_date": "2026-09-19",
+      "summary": "În premieră, alegerile regionale din UTA Găgăuzia vor fi monitorizate pe termen lung de Asociația Promo-LEX. Pentru ziua scrutinului din 15 noiembrie, organizația anunță mobilizarea a 76 de observatori pe termen scurt, care vor urmări procesul electo...",
+      "categories": [
+        "politica",
+        "justitie"
+      ],
+      "category_scores": {
+        "politica": 2,
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "0f7a902daf03",
+      "title": "DOC// „Calul” lui Nicolai Dudoglo rămâne în afara cursei electorale",
+      "url": "https://anticoruptie.md/ro/post_show/dosare/doc-calul-lui-nicolai-dudoglo-ramane-in-afara-cursei-electorale",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:49Z",
+      "published_date": "2026-09-19",
+      "summary": "Cererea împotriva Comisiei Electorale Centrale (CEC), depusă de partidul fostului deputat și primar de Comrat, Nicolai Dudoglo, a fost respinsă. Partidul Popular Găgăuz, fondat în martie 2025, a cerut anularea hotărârii prin care nu a fost inclus în...",
+      "categories": [
+        "politica",
+        "justitie"
+      ],
+      "category_scores": {
+        "politica": 2,
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "e59f8bd44a54",
+      "title": "DOC// Lideră regională a lui Șor, ultima încercare de a scăpa de condamnare",
+      "url": "https://anticoruptie.md/ro/post_show/dosare/doc-lidera-regionala-a-lui-sor-ultima-incercare-de-a-scapa-de-condamnare",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:49Z",
+      "published_date": "2026-09-19",
+      "summary": "Șefa oficiului teritorial Glodeni al fostului partid Șor, Irina Dvorjanscaia, care a părăsit Republica Moldova înainte de a-și afla sentința, a contestat în instanța supremă condamnarea. O cerere în acest sens a fost depusă de avocații femeii, în dat...",
+      "categories": [
+        "politica",
+        "justitie"
+      ],
+      "category_scores": {
+        "politica": 2,
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "94fbe4d750fd",
+      "title": "Mită de până la 5000 de euro pentru înmatricularea ilegală a vehiculelor cu numere neutre",
+      "url": "https://anticoruptie.md/ro/post_show/dosare/mita-de-pana-la-5000-de-euro-pentru-inmatricularea-ilegala-a-vehiculelor-cu-numere-neutre",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:50Z",
+      "published_date": "2026-09-19",
+      "summary": "Mai mulți angajați ai Agenției Servicii Publice (ASP), inclusiv un șef al Secției înmatriculare a vehiculelor din municipiul Tiraspol, în complicitate cu un angajat al Postului vamal Hârbovăț și alți funcționari vamali sunt cercetați că ar fi organiz...",
+      "categories": [
+        "coruptie",
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "coruptie": 1,
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "f6894f64a9dc",
+      "title": "Germania expulzează peste 150 de diplomați ruși și membri ai familiilor. Termen limită: 18 septembrie",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/germania-expulzeaza-peste-150-de-diplomati-rusi-si-membri-ai-familiilor-termen-limita-18-septembrie",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:25:50Z",
+      "published_date": "2026-09-19",
+      "summary": "Peste 150 de diplomati si membri ai familiilor lor sunt obligati sa plece din Germania pana pe 18 septembrie, in cea mai ampla masura de expulzare luata de Berlin impotriva Moscovei de la inceputul razboiului din Ucraina. Germania a dispus ca apro...",
+      "categories": [
+        "justitie",
+        "coruptie"
+      ],
+      "category_scores": {
+        "justitie": 2,
+        "coruptie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "00bd78aa0732",
+      "title": "Maia Sandu, după atacul de la Starokazacie: „La numai 1 kilometru de Republica Moldova”",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/maia-sandu-dupa-atacul-de-la-starokazacie-la-numai-1-kilometru-de-republica-moldova",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:58Z",
+      "published_date": "2026-09-19",
+      "summary": "Președinta Republicii Moldova, Maia Sandu, a condamnat atacul de la punctul de trecere Tudora-Starokazacie, în urma căruia două personae și-au pierdut viața. Șefa statului susține că încălcarea spațiului aerian menține sporit riscul pentru siguranța ...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 2,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "3164556215ae",
+      "title": "Premieră la Budapesta: 10 diplomați ruși, expulzați din Ungaria",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/premiera-la-budapesta-10-diplomati-rusi-expulzati-din-ungaria",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:00Z",
+      "published_date": "2026-09-19",
+      "summary": "Ungaria a expulzat marți, 8 septembrie, zece diplomați ruși, despre care autoritățile de la Budapesta susțin că au desfășurat activități incompatibile cu statutul lor diplomatic. Decizia marchează o schimbare importantă în politica Ungariei față de R...",
+      "categories": [
+        "politica",
+        "justitie"
+      ],
+      "category_scores": {
+        "politica": 2,
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "be2e4cf2b1a1",
+      "title": "Premierul Vasile Tofan anunță 5 măsuri urgente după tragedia de la Măgdăcești: „Siguranța și viața voastră sunt prioritare”",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/premierul-vasile-tofan-anunta-5-masuri-urgente-dupa-tragedia-de-la-magdacesti-siguranta-si-viata-voastra-sunt-prioritare",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:11Z",
+      "published_date": "2026-09-19",
+      "summary": "Cazul tragic de la Măgdăcești ne-a zguduit pe toți. O crimă comisă de un agresor care avea ordonanță de protecție cu monitorizare electronică este gravă și necesită acțiuni urgente din partea statului. Nimic nu va repara tragedia acestei familii. Î...",
+      "categories": [
+        "politica",
+        "justitie"
+      ],
+      "category_scores": {
+        "politica": 2,
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "d3333980496c",
+      "title": "Plătiți pentru a nu efectua controale. Doi funcționari, cercetați într-un dosar de corupție",
+      "url": "https://anticoruptie.md/ro/post_show/dosare/platiti-pentru-a-nu-efectua-controale-doi-functionari-cercetati-intr-un-dosar-de-coruptie",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:11Z",
+      "published_date": "2026-09-19",
+      "summary": "Doi funcționari din cadrul Inspectoratului de Stat pentru Supravegherea Produselor Nealimentare și Protecția Consumatorilor, cu statut de bănuiți într-un dosar de corupere pasivă și activă. Domiciliile și cabinetele de serviciu ale acestora au fost p...",
+      "categories": [
+        "politica",
+        "justitie"
+      ],
+      "category_scores": {
+        "politica": 2,
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "bdb4a2013662",
+      "title": "Succesorul condamnatei Evghenia Guțul, ales pe 15 noiembrie. CEC clarifică situația",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/succesorul-condamnatei-evghenia-gutul-ales-pe-15-noiembrie-cec-clarifica-situatia",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:13Z",
+      "published_date": "2026-09-19",
+      "summary": "Comisia Electorală Centrală (CEC) a stabilit data de 15 noiembrie 2026 pentru desfășurarea alegerilor pentru funcția de bașcan al Găgăuziei. Decizia vine în contextul în care Adunarea Populară a Găgăuziei, prin hotărârea din 17 august 2026, a constat...",
+      "categories": [
+        "politica",
+        "justitie"
+      ],
+      "category_scores": {
+        "politica": 2,
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 3
+    },
+    {
+      "id": "aa25d65bb7d4",
+      "title": "Ce poate și ce trebuie să învețe R. Moldova din lecția României?",
+      "url": "https://www.zdg.md/stiri/stiri-justitie/ce-poate-si-ce-trebuie-sa-invete-r-moldova-din-lectia-romaniei/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-09-19T07:30:00Z",
+      "published_date": "2026-09-19",
+      "summary": "În trecut, România era un exemplu pentru R. Moldova la capitolul justiție, iar scandarea „DNA, treceți Prutul!” devenise aproape un slogan. Astăzi însă, sistemul de justiție românesc este ținta unor acuzații privind influența politică și „capturarea” statului, iar unele decizii ale instanțelor provoacă nedumerire și alimentează neîncrederea publică. Alexandru Bot, avocat, expert în domeniul justiției...",
+      "categories": [
+        "politica",
+        "securitate"
+      ],
+      "category_scores": {
+        "politica": 1,
+        "securitate": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "8b07a9c87d8f",
+      "title": "Lipsa de coloană vertebrală se plătește",
+      "url": "https://anticoruptie.md/ro/post_show/blog/lipsa-de-coloana-vertebrala-se-plateste",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:36Z",
+      "published_date": "2026-09-19",
+      "summary": "Auchan, Nestle și Leroy Merlin, care au refuzat să plece din Rusia după 2022, s-au trezit cu un nou ukaz de-al lui Putin prin care activele le sunt preluate în administrare de companiile controlate de un general de la ministerul de interne al Rusiei....",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "e60e73122ff6",
+      "title": "Un bun analist economic, un bun propagandist în Rusia",
+      "url": "https://anticoruptie.md/ro/post_show/blog/un-bun-analist-economic-un-bun-propagandist-in-rusia",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:37Z",
+      "published_date": "2026-09-19",
+      "summary": "Mai țineți minte că vă povesteam acum câteva luni despre fostul economist pe Rusia de la Bloomberg Alexander Isakov? Care plecase din Rusia în iulie 2022, s-a angajat la Bloomberg, apoi a plecat în 2025 înapoi in Rusia, iar în ăștia 3 ani tot Occiden...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "86430eff6bed",
+      "title": "Licitație relansată pentru 1 km de drum la vama Leușeni. Autoritățile caută un antreprenor",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/licitatie-relansata-pentru-1-km-de-drum-la-vama-leuseni-autoritatile-cauta-un-antreprenor",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:23:57Z",
+      "published_date": "2026-09-19",
+      "summary": "Administrația Națională a Drumurilor anunță relansarea licitației pentru execuția lucrărilor de reabilitare a unui sector cu lungimea de 1 km al drumului M1, situat în zona punctului de trecere a frontierei Leușeni. Termenul limită pentru depunerea o...",
+      "categories": [
+        "coruptie",
+        "afaceri"
+      ],
+      "category_scores": {
+        "coruptie": 1,
+        "afaceri": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "47a90cdf7141",
+      "title": "Explozia de la Colonița. Fragmente care ar proveni de la o dronă, depistate în extravilanul localității",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/explozia-de-la-colonita-fragmente-care-ar-proveni-de-la-o-drona-depistate-in-extravilanul-localitatii",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:37Z",
+      "published_date": "2026-09-19",
+      "summary": "Bubuiturile auzite la Colonița ar putea proveni de la explozia unei drone. Poliția informează că, în urma verificărilor efectuate, pe un teren din apropierea localității au fost depistate unele fragmente care ar putea proveni de la o dronă. Asta, în ...",
+      "categories": [
+        "politica",
+        "afaceri"
+      ],
+      "category_scores": {
+        "politica": 1,
+        "afaceri": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "4b60217a943a",
+      "title": "„Harta Foametei” – un nou proiect dedicat memoriei victimelor foametei organizate din 1946-1947",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/harta-foametei-un-nou-proiect-dedicat-memoriei-victimelor-foametei-organizate-din-1946-1947",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:23:25Z",
+      "published_date": "2026-09-19",
+      "summary": "Asociația Foștilor Deportați și Deținuți Politici din Republica Moldova, împreună cu creatorul Mihai Focșa, lansează public conceptul „Harta Foametei” – o inițiativă dedicată documentării și păstrării memoriei victimelor foametei organizate din anii ...",
+      "categories": [
+        "justitie",
+        "social"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "social": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "2db6cba52b5e",
+      "title": "Zilele 4 și 5 a Sesiunii 101 a Comitetului ONU pentru Drepturile Copilului",
+      "url": "https://anticoruptie.md/ro/post_show/blog/zilele-4-si-5-a-sesiunii-101-a-comitetului-onu-pentru-drepturile-copilului",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:41Z",
+      "published_date": "2026-09-19",
+      "summary": "Dimineața am continuat dialogul cu Republica Unită Tanzania. La final, șeful delegației a ținut să ne lase cu un detaliu care mi-a atras atenția: Tanzania, ne-a spus Excelența Sa, este „singura republică unită din lume”. Și numele chiar spune o parte...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "0e511483e15a",
+      "title": "Companiile din Moldova au un nou instrument digital care depistează diferențele salariale dintre femei și bărbați",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/companiile-din-moldova-au-un-nou-instrument-digital-care-depisteaza-diferentele-salariale-dintre-femei-si-barbati",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:41Z",
+      "published_date": "2026-09-19",
+      "summary": "Companiile din Republica Moldova au acum la dispoziție un instrument digital nou, care le permite să vadă imediat dacă există diferențe salariale nejustificate între femei și bărbați în cadrul organizației. Datele oficiale arată o diferență salarial...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "b8e90d059c35",
+      "title": "Premii oferite în condiții de netransparență și proiecte de eficiență energetică lăsate paragină",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/premii-oferite-in-conditii-de-netransparenta-si-proiecte-de-eficienta-energetica-lasate-paragina",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:44Z",
+      "published_date": "2026-09-19",
+      "summary": "Criterii neclare la oferirea premiilor și sporurilor salariale în cadrul Agenției Naționaleă pentru Soluționarea Contestațiilor (ANSC) și ritm lent de absorbție a finanțării pentru eficientizarea energetică a clădirilor publice. Sunt două dintre obs...",
+      "categories": [
+        "justitie",
+        "social"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "social": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "c0a40c50f56a",
+      "title": "Ziua 11 la Comitetul ONU pentru Drepturile Copilului: Kazakhstan și Tanzania",
+      "url": "https://anticoruptie.md/ro/post_show/blog/ziua-11-la-comitetul-onu-pentru-drepturile-copilului-kazakhstan-si-tanzania",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:45Z",
+      "published_date": "2026-09-19",
+      "summary": "Dimineața am finalizat dialogul cu Kazakhstan. Pentru noi, moldovenii, Kazakhstanul este o țară îndepărtată geografic, dar deloc străină memoriei noastre colective. Și această memorie are pagini foarte diferite. Una dintre cele mai dureroase ne...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "12f5e637de82",
+      "title": "Podul care ne leagă. România și Republica Moldova, gata pentru a doua etapă a lucrărilor de reconstrucție",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/podul-care-ne-leaga-romania-si-republica-moldova-gata-pentru-a-doua-etapa-a-lucrarilor-de-reconstructie",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:22:54Z",
+      "published_date": "2026-09-19",
+      "summary": "Guvernul a aprobat proiectul de lege pentru ratificarea Acordului care stabilește cadrul pentru dezvoltarea infrastructurii de transport dintre Republica Moldova și România, inclusiv pentru construcția și exploatarea podului rutier peste râul Prut, î...",
+      "categories": [
+        "politica",
+        "social"
+      ],
+      "category_scores": {
+        "politica": 1,
+        "social": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "6271164e95d6",
+      "title": "Chiveri, despre numărul real al cetățenilor ruși în stânga Nistrului: „Sunt cifre utilizate în scopuri propagandistice”",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/chiveri-despre-numarul-real-al-cetatenilor-rusi-in-stanga-nistrului-sunt-cifre-utilizate-in-scopuri-propagandistice",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:47Z",
+      "published_date": "2026-09-19",
+      "summary": "Exponenții Kremlinului utilizează trucuri propagandistice pentru a crea impesia unui număr mare de ruși care ar locui în stânga Nistrului. Vicepremierul pentru Reintegrare, Valeriu Chiveri, a comentat declarațiile purtătoarei de cuvânt a diplomației ...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "b27139ab29b4",
+      "title": "Protecția copilului - superioară audienței și numărului de vizualizări",
+      "url": "https://anticoruptie.md/ro/post_show/blog/protectia-copilului-superioara-audientei-si-numarului-de-vizualizari",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:48Z",
+      "published_date": "2026-09-19",
+      "summary": "Mi-a apărut un material video în care un blogger Manoli Grigore discută cu o doamnă despre cazul unei fetițe de numai șase ani, presupusă victimă a unui abuz sexual. Mama copilului a vorbit public despre caz. Dar am observat că, în declarațiile sa...",
+      "categories": [
+        "justitie",
+        "social"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "social": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "b80d6d651107",
+      "title": "Două lansatoare de grenade, descoperite într-o gospodărie din Cocieri",
+      "url": "https://anticoruptie.md/ro/post_show/dosare/doua-lansatoare-de-grenade-descoperite-intr-o-gospodarie-din-cocieri",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:47Z",
+      "published_date": "2026-09-19",
+      "summary": "Un bărbat de 54 de ani din Cocieri este cercetat penal pentru păstrarea ilegală a armamentului, pe care ar fi intenționat să îl comercializeze pe piața neagră. Potrivit Inspectoratului General al Poliției, în urma percheziției efectuate la domicil...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "d28229ed10fa",
+      "title": "Incident feroviar la granița Ucraina-Polonia: trenul cu Boris Johnson și consilieri ai cancelarului Merz, evacuat după un atac cu dronă",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/incident-feroviar-la-granita-ucraina-polonia-trenul-cu-boris-johnson-si-consilieri-ai-cancelarului-merz-evacuat-dupa-un-atac-cu-drona",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:54Z",
+      "published_date": "2026-09-19",
+      "summary": "Un tren charter cu fostul premier britanic Boris Johnson și consilierul cancelarului german Merz la bord a fost oprit duminică dimineață la granița Ucraina-Polonia din cauza atacurilor cu drone rusești, anunță Der Spiegel. Incidentul vine la doar cât...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "184d807a9892",
+      "title": "Spatiul aerian al Moldovei, din nou inchis temporar dupa ce o drona a patruns neautorizat dinspre Ucraina",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/spatiul-aerian-al-moldovei-din-nou-inchis-temporar-dupa-ce-o-drona-a-patruns-neautorizat-dinspre-ucraina",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:55Z",
+      "published_date": "2026-09-19",
+      "summary": "O dronă a pătruns neautorizat în spațiul aerian al Republicii Moldova, sâmbătă, 12 septembrie, fiind detectată în nordul țării, în apropierea localităților Vasilcău și Băxani din raionul Soroca, iar ulterior în zona localității Cuconeștii Noi din rai...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "fc0d6ea720aa",
+      "title": "Guvernul pregătește sania pentru iarnă. 52 de scenarii pentru sezonul rece",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/guvernul-pregateste-sania-pentru-iarna-52-de-scenarii-pentru-sezonul-rece",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:57Z",
+      "published_date": "2026-09-19",
+      "summary": "Autoritățile nu exclud o eventuală ajustare în creștere a tarifului la gaz, în contextul majorării prețului pe piețele internaționale. În același timp, Guvernul propune 52 de măsuri și scenarii menite să asigure continuitatea și siguranța aprovizionă...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "8ec677c247a2",
+      "title": "Control mai aspru pentru achizițiile publice. Noi reguli la raportare",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/control-mai-aspru-pentru-achizitiile-publice-noi-reguli-la-raportare",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:58Z",
+      "published_date": "2026-09-19",
+      "summary": "Guvernul a aprobat noi măsuri prin care intenționează să crească transparența în domeniul achizițiilor publice. Autoritățile contractante vor publica planurile de achiziții și rapoartele privind executarea contractelor pe platforma electronică a achi...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "1840ec6920ab",
+      "title": "Un crater imens și bile metalice peste tot. Detalii despre drona care s-a prăbușt la Mihăilenii Vechi",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/un-crater-imens-si-bile-metalice-peste-tot-detalii-despre-drona-care-s-a-prabust-la-mihailenii-vechi",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:59Z",
+      "published_date": "2026-09-19",
+      "summary": "Drona care a explodat în extravilanul satului Mihăilenii Vechii avea un sistem de propulsie turbo-reactiv, care prezintă caracteristici similare aparatelor de zbor de tip Gheran. Informația a fost făcută publică de Inspectoratul General al Poliției (...",
+      "categories": [
+        "justitie",
+        "securitate"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "securitate": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "3b71b4a15ae6",
+      "title": "BREAKING - Dronă Shahed a traversat Republica Moldova și s-a prăbușit la Rîșcani. Spațiul aerian a fost închis temporar",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/breaking-drona-shahed-a-traversat-republica-moldova-si-s-a-prabusit-la-riscani-spatiul-aerian-a-fost-inchis-temporar",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:00Z",
+      "published_date": "2026-09-19",
+      "summary": "O dronă de tip Shahed a pătruns neautorizat astăzi, 8 septembrie, în spațiul aerian al Republicii Moldova și ulterior s-a prăbușit în nordul țării. Autoritățile confirmă oficial o parte din traseu și căderea aparatului, în timp ce alte informații des...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 2
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "038b3d4591d3",
+      "title": "Taxe mai mici pe muncă și mai mari pe vicii. Ce prevede politica fiscală pentru 2027",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/taxe-mai-mici-pe-munca-si-mai-mari-pe-vicii-ce-prevede-politica-fiscala-pentru-2027",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:01Z",
+      "published_date": "2026-09-19",
+      "summary": "O povară fiscală redusă asupra muncii și investițiilor, alături de majorarea taxelor pentru unele vicii și simplificarea sistemului fiscal sunt obiectivele noii politici fiscale pentru anul 2027, aprobate, marți, în ședința Guvernului. Potrivit premi...",
+      "categories": [
+        "politica",
+        "securitate"
+      ],
+      "category_scores": {
+        "politica": 1,
+        "securitate": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "c0c57f4d6157",
+      "title": "Vitalie Marinuța: „Săgețile roșii îndreptate spre Republica Moldova nu au dispărut de pe hărțile militare rusești”",
+      "url": "https://anticoruptie.md/ro/post_show/interviuri/vitalie-marinuta-sagetile-rosii-indreptate-spre-republica-moldova-nu-au-disparut-de-pe-hartile-militare-rusesti",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:19:29Z",
+      "published_date": "2026-09-19",
+      "summary": "Fostul ministru al Apărării și generalul în rezervă Vitalie Marinuța a oferit un interviu pentru Buletinul de politică externă al FES/APE, în care a vorbit despre principalele amenințări de securitate cu care se confruntă în prezent Republica Moldova...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "56c27959c234",
+      "title": "De la 1 septembrie, firmele din Transnistria plătesc TVA și accize la bugetul de stat. Prima etapă de eliminare a scutirilor fiscale a intrat în vigoare",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/de-la-1-septembrie-firmele-din-transnistria-platesc-tva-si-accize-la-bugetul-de-stat-prima-etapa-de-eliminare-a-scutirilor-fiscale-a-intrat-in-vigoare",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:07Z",
+      "published_date": "2026-09-19",
+      "summary": "Agenții economici din regiunea transnistreană achită, începând cu 1 septembrie, TVA și accize pentru mai multe categorii de mărfuri importate în Republica Moldova. Măsura marchează o nouă etapă de aliniere la sistemul fiscal național și eliminarea tr...",
+      "categories": [
+        "politica",
+        "securitate"
+      ],
+      "category_scores": {
+        "politica": 1,
+        "securitate": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "e45d015c570d",
+      "title": "Misiunea lui Dorin Recean la MoldATSA s-a încheiat. APP îl revocă din funcție",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/misiunea-lui-dorin-recean-la-moldatsa-s-a-incheiat-app-il-revoca-din-functie",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:09Z",
+      "published_date": "2026-09-19",
+      "summary": "Misiunea fostului premier Dorin Recean în calitate de membru al Consiliului de administrație al MoldATSA s-a încheiat. Informația se regăsește într-un răspuns oferit redacției Telegraph, la o solicitare de acces la informații de interes public. Re...",
+      "categories": [
+        "politica",
+        "media"
+      ],
+      "category_scores": {
+        "politica": 1,
+        "media": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "4997991e5854",
+      "title": "Lanțul eșecurilor pe care nimeni nu și-l asumă",
+      "url": "https://anticoruptie.md/ro/post_show/blog/lantul-esecurilor-pe-care-nimeni-nu-si-l-asuma",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:09Z",
+      "published_date": "2026-09-19",
+      "summary": "Apreciez mesajul premierului Vasile Tofan legat de tragedia de la Măgdăcești. E un mesaj cu empatie. Cred că e primul demnitar care spune lucruri clare și trasează sarcini concrete de îndeplinit pentru a diminua fenomenul violenței. Nu pot să nu f...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "e3eed8a5e33f",
+      "title": "Explozii nocturne, auzite la Tudora și Crocmaz. Orașul Odesa, ținta unui atac masiv",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/explozii-nocturne-auzite-la-tudora-si-crocmaz-orasul-odesa-tinta-unui-atac-masiv",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:13Z",
+      "published_date": "2026-09-19",
+      "summary": "Zgomot puternic de explozii în zona de frontieră, terenuri pârjolite și fragmente ale unor eventuale aparate de zbor. Patrula Sectorului Poliției de Frontieră Tudora a raportat că a auzit, în noapte de marți spre miercuri, un zgomot asemănător celui ...",
+      "categories": [
+        "justitie",
+        "afaceri"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "afaceri": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "96b0b78e442e",
+      "title": "Foametea din 1946-1947 va fi recunoscută oficial drept crimă împotriva umanității",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/foametea-din-1946-1947-va-fi-recunoscuta-oficial-drept-crima-impotriva-umanitatii",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:14Z",
+      "published_date": "2026-09-19",
+      "summary": "Foametea provocată în anii 1946–1947 pe teritoriul Republicii Moldova urmează să fie recunoscută oficial drept crimă împotriva umanității, comisă de regimul totalitar sovietic. Guvernul de la Chișinău a aprobat, în ședința de miercuri, 19 august, ...",
+      "categories": [
+        "justitie",
+        "politica"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "375cd29e4913",
+      "title": "Comunicăm. Producem. Plasăm.Crești împreună cu AGORA",
+      "url": "https://agora.md/media-kit",
+      "source": "Agora.md",
+      "source_key": "agora_md",
+      "published": "",
+      "published_date": "",
+      "summary": "Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.",
+      "categories": [
+        "justitie",
+        "media"
+      ],
+      "category_scores": {
+        "justitie": 1,
+        "media": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 2
+    },
+    {
+      "id": "de33ba6890af",
+      "title": "Mai multe aparate de zbor necunoscute au survolat spațiul aerian al R. Moldova noaptea trecută",
+      "url": "https://www.zdg.md/stiri/mai-multe-aparate-de-zbor-necunoscute-au-survolat-spatiul-aerian-al-r-moldova-noaptea-trecuta/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-09-19T08:01:55Z",
+      "published_date": "2026-09-19",
+      "summary": "În dimineața zilei de 19 septembrie 2026, mai multe aparate de zbor necunoscute au survolat spațiul aerian al R. Moldova, în zona de responsabilitate a Direcției regionale Est, informează Poliția de Frontieră într-un comunicat. În urma verificărilor desfășurate în regiunea localității Troitcoe de autoritățile de frontieră ale R. Moldova și Ucrainei, pe teritoriul R. Moldova...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "a36350cef2f1",
+      "title": "Vreme caldă în weekend: Termometrele vor indica până la 28°C sâmbătă",
+      "url": "https://www.zdg.md/stiri/vreme-calda-in-weekend-termometrele-vor-indica-pana-la-28c-sambata/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-09-19T05:20:00Z",
+      "published_date": "2026-09-19",
+      "summary": "Sâmbătă, 19 septembrie, vremea va fi caldă în cea mai mare parte a țării, cu cer variabil și temperaturi maxime de +28 de grade Celsius, conform prognozei emise de Autoritatea de Meteorologie și Monitoring de Mediu (AMM). În nord se prevede cer variabil, iar temperaturile vor ajunge la 24°C. Vântul va sufla din nord-vest cu...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "20b64bd1057f",
+      "title": "Schimb internațional de date ADN. Miza - investigarea infracțiunilor grave",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/schimb-international-de-date-adn-miza-investigarea-infractiunilor-grave",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:19:14Z",
+      "published_date": "2026-09-19",
+      "summary": "Republica Moldova va putea face schimb de rezultate ale analizelor ADN cu alte state pentru a preveni, descoperi și investiga infracțiuni grave, în special în cazurile transfrontaliere. Prevederile se regăsesc în modificări la Legea cu privire la înr...",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "299bf096a062",
+      "title": "Dialog cu Lesotho și Timorul de Est în cadrul Sesiunii 101 a Comitetului ONU pentru Drepturile Copilului",
+      "url": "https://anticoruptie.md/ro/post_show/blog/dialog-cu-lesotho-si-timorul-de-est-in-cadrul-sesiunii-101-a-comitetului-onu-pentru-drepturile-copilului",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:40Z",
+      "published_date": "2026-09-19",
+      "summary": "Când discutăm cu statele despre violența împotriva copiilor, indiferent cât de diferite sunt țările, ajungem aproape întotdeauna la aceleași întrebări: cine vede că un copil este în pericol, cine evaluează riscul, cine intervine și cine se asigură că...",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "3c8aa566b42c",
+      "title": "Dronă, 2 minute de-asupra Moldovei. Chișinăul denunță la OSCE încălcarea spațiului aerian",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/drona-2-minute-de-asupra-moldovei-chisinaul-denunta-la-osce-incalcarea-spatiului-aerian",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:41Z",
+      "published_date": "2026-09-19",
+      "summary": "O altă dronă a traversat neregulamentar spațiul aerian al Republicii Moldova. Conform Ministerului Apărării, aparatul de zbor a fost localizat în această dimineață, în perimetrul localității Palanca. Recent, ambasadoarea Victoria Roșa a denunțat în c...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "9c563a1d7802",
+      "title": "Electrocasnice, ceasuri și chiar îmbrăcăminte. Moldoveni au dat de „gustul” bunurilor confiscate",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/electrocasnice-ceasuri-si-chiar-imbracaminte-moldoveni-au-dat-de-gustul-bunurilor-confiscate",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:42Z",
+      "published_date": "2026-09-19",
+      "summary": "În perioada 1 – 31 august 2026, Serviciul Fiscal de Stat (SFS) a comercializat bunuri confiscate în valoare totală de 363,5 mii de lei, în cadrul activităților desfășurate conform atribuțiilor legale privind administrarea și valorificarea bunurilor c...",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "cda4c269ab10",
+      "title": "Ședințe și discuții la Comitetul ONU pentru Drepturile Copilului",
+      "url": "https://anticoruptie.md/ro/post_show/blog/sedinte-si-discutii-la-comitetul-onu-pentru-drepturile-copilului",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:44Z",
+      "published_date": "2026-09-19",
+      "summary": "Ziua a opta la Comitetul ONU pentru Drepturile Copilului a fost o zi întreagă în ședințe cu ușile închise. Vineri am lucrat toată ziua în ședințe închise publicului. Fără dialoguri cu statele, fără transmisiuni, dar cu o agendă deloc mai ușoară. ...",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "8ed227f89a2e",
+      "title": "Ziua 10 la Comitetul ONU pentru Drepturile Copilului: de la Slovenia la Kazakhstan",
+      "url": "https://anticoruptie.md/ro/post_show/blog/ziua-10-la-comitetul-onu-pentru-drepturile-copilului-de-la-slovenia-la-kazakhstan",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:45Z",
+      "published_date": "2026-09-19",
+      "summary": "Ieri dimineață am finalizat dialogul cu Slovenia. Multe întrebări, dar și răspunsuri despre cum funcționează în practică sistemul de protecție a drepturilor copilului. Două lucruri din seria „Știați că?” care mi-au atras atenția: Slovenia a fost p...",
+      "categories": [
+        "securitate"
+      ],
+      "category_scores": {
+        "securitate": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "27abd24f9a17",
+      "title": "Ce înseamnă pentru Republica Moldova foaia de parcurs propusă de UE. Gherasimov explică",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/ce-inseamna-pentru-republica-moldova-foaia-de-parcurs-propusa-de-ue-gherasimov-explica",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:45Z",
+      "published_date": "2026-09-19",
+      "summary": "Foaia de parcurs, anunțată de președinta Comisiei Europene, Ursula von der Leyen, ar urma să stabilească priorități clare, termene și rezultate concrete în implementarea reformelor. Explicația a fost oferită de viceprim-ministra pentru Integrare Euro...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "95cfe67f91a7",
+      "title": "Avertisment de la Kiev: David Petraeus spune că Republica Moldova, nu țările baltice, ar fi următoarea țintă a Rusiei",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/avertisment-de-la-kiev-david-petraeus-spune-ca-republica-moldova-nu-tarile-baltice-ar-fi-urmatoarea-tinta-a-rusiei",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:47Z",
+      "published_date": "2026-09-19",
+      "summary": "Fostul director al CIA, David Petraeus, a avertizat în cadrul unei conferințe de securitate de la Kiev că Republica Moldova ar putea fi următoarea țintă a lui Vladimir Putin, considerând-o mult mai vulnerabilă decât statele baltice. La doar o zi după...",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "cebbd8924645",
+      "title": "Problema fraudelor bancare din Moldova este o problemă de sistem",
+      "url": "https://anticoruptie.md/ro/post_show/blog/problema-fraudelor-bancare-din-moldova-este-o-problema-de-sistem",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:51Z",
+      "published_date": "2026-09-19",
+      "summary": "Când mi-am deschis contul bancar în Belgia, în 2017, banca mi-a dat un dispozitiv mic care arăta ca un calculator de buzunar. De fiecare dată când mă autentificam, genera un cod secret. Dacă îl pierdeam, banca mi-a spus să îi contactez imediat. Co...",
+      "categories": [
+        "securitate"
+      ],
+      "category_scores": {
+        "securitate": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "d895f6b86bd3",
+      "title": "Coridoarele de presiune - Marea Neagră, Dunărea și frontiera externă a Uniunii Europene/NATO",
+      "url": "https://anticoruptie.md/ro/post_show/blog/coridoarele-de-presiune-marea-neagra-dunarea-si-frontiera-externa-a-uniunii-europenenato",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:52Z",
+      "published_date": "2026-09-19",
+      "summary": "Azi vreau să împărtășesc opinia mea despre atacurile rusești asupra infrastructurii de frontieră și conectivității Ucrainei și despre ce înseamnă ele, concret, pentru Republica Moldova și România. De aproape cinci ani, războiul din Ucraina a schim...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "18c89d12b23b",
+      "title": "Spațiul aerian al Republicii Moldova, încălcat din nou. Două drone au pătruns neautorizat, una a ajuns în zona transnistreană",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/spatiul-aerian-al-republicii-moldova-incalcat-din-nou-doua-drone-au-patruns-neautorizat-una-a-ajuns-in-zona-transnistreana",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:52Z",
+      "published_date": "2026-09-19",
+      "summary": "Două drone au pătruns neautorizat luni, 14 septembrie, în spațiul aerian al Republicii Moldova. Potrivit Ministerului Apărării al Republicii Moldova, una dintre aparate s-a prăbușit, iar resturile au fost găsite pe un câmp, lângă un drum. Imagin...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "f49f05e203be",
+      "title": "Copiii din regiunea transnistreană învață patriotismul după programe rusești",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/copiii-din-regiunea-transnistreana-invata-patriotismul-dupa-programe-rusesti",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:53Z",
+      "published_date": "2026-09-19",
+      "summary": "Zeci de elevi din regiunea transnistreană au fost implicați, pe parcursul verii trecute, în mai multe programe de instruire desfășurate în Federația Rusă și în Crimeea, care promovează „patriotismul” și narațiuni istorice rusești. Informația a fost f...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "9b1a5aceeb70",
+      "title": "ISW: Atacul asupra trenului cu oficiali europeni și incidentele din România și de la Chișinău ar trebui să determine NATO să-și schimbe politica de interceptare",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/isw-atacul-asupra-trenului-cu-oficiali-europeni-si-incidentele-din-romania-si-de-la-chisinau-ar-trebui-sa-determine-nato-sa-si-schimbe-politica-de-interceptare",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:53Z",
+      "published_date": "2026-09-19",
+      "summary": "Institutul pentru Studiul Războiului (ISW), care analizează războiul din Ucraina zi de zi din 2022, consideră că activitatea tot mai agresivă a Rusiei împotriva statelor membre NATO ar trebui să determine Alianța să-și reevalueze politica actuală de ...",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "e0dacee3da55",
+      "title": "Atacuri masive cu drone asupra Odesei trei nopți la rând. Bloc de 25 de etaje lovit, porturile de la Dunăre - din nou țintă",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/atacuri-masive-cu-drone-asupra-odesei-trei-nopti-la-rand-bloc-de-25-de-etaje-lovit-porturile-de-la-dunare-din-nou-tinta",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:54Z",
+      "published_date": "2026-09-19",
+      "summary": "Orașul Odesa și toată regiunea au fost ținta unor atacuri rusești cu drone în noaptea de 12 spre 13 septembrie. Au fost avariate blocuri de locuințe, case particulare, depozite, spații de producție, garaje, automobile și obiective de infrastructură c...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "3b235f93f0b0",
+      "title": "Punctul de trecere Tudora-Starokazacie, atacat cu drone. Sunt morți și răniți",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/punctul-de-trecere-tudora-starokazacie-atacat-cu-drone-sunt-morti-si-raniti",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:59Z",
+      "published_date": "2026-09-19",
+      "summary": "Atac cu drone în imediata apropiere a frontierei Republicii Moldova. Două persoane au decedat, iar alte două au fost rănite, după ce punctul Tudora-Starokazacie a fost atacat, noaptea trecută, cu o dronă, pe partea urcraineană. Alte două aparate de z...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "c9dd71347fe0",
+      "title": "Cristian Barna: „Republica Moldova și România ar trebui să fie mult mai asertive și să înțeleagă că această tehnologie a dronelor este în continuă evoluție”",
+      "url": "https://anticoruptie.md/ro/post_show/interviuri/cristian-barna-republica-moldova-si-romania-ar-trebui-sa-fie-mult-mai-asertive-si-sa-inteleaga-ca-aceasta-tehnologie-a-dronelor-este-in-continua-evolutie",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:22:22Z",
+      "published_date": "2026-09-19",
+      "summary": "Cristian Barna, expert în securitate, a oferit un interviu pentru Buletinul de Politică Externă FES/APE, în care am discutat despre provocările regionale de securitate generate de dronele rusești care pătrund neautorizat în spațiile aeriene ale Repub...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "2e4056b706cf",
+      "title": "Ruta Trump: coridorul care ocolește Rusia și leagă Asia Centrală de porturile Georgiei, pe ruta vitală pentru Moldova",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/ruta-trump-coridorul-care-ocoleste-rusia-si-leaga-asia-centrala-de-porturile-georgiei-pe-ruta-vitala-pentru-moldova",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:04Z",
+      "published_date": "2026-09-19",
+      "summary": "Armenia încearcă să atragă Kazahstanul și Kârgâzstanul într-un proiect comercial ambițios botezat după președintele american Donald Trump - Trump Route for International Peace and Prosperity, pe scurt TRIPP. Această rută contează și pentru Georgia, d...",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "66fe05eb2d3e",
+      "title": "Deșeurile devin energie: Reguli noi pentru biocarburanți, aprobate de Guvern",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/deseurile-devin-energie-reguli-noi-pentru-biocarburanti-aprobate-de-guvern",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:05Z",
+      "published_date": "2026-09-19",
+      "summary": "Producătorii moldoveni de biocarburanți, biolichide și combustibili din biomasă vor putea obține direct certificare recunoscută în UE, fără proceduri suplimentare de validare în Republica Moldova, și vor putea valorifica deșeurile și reziduurile ca m...",
+      "categories": [
+        "politica"
+      ],
+      "category_scores": {
+        "politica": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "1ff4380062fb",
+      "title": "De la excepție la regulă. Cum intră Transnistria în bugetul Moldovei",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/de-la-exceptie-la-regula-cum-intra-transnistria-in-bugetul-moldovei",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:06Z",
+      "published_date": "2026-09-19",
+      "summary": "Republica Moldova închide pe etape regimul de scutiri fiscale de care au beneficiat agenții economici din stânga Nistrului. cu integrare completă în spațiul fiscal unic până în 2030. De la 1 ianuarie 2024, odată cu noul Cod vamal, firmele din Tran...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "9802da05dae5",
+      "title": "Criza de cadre în justiție. Opt funcții așteaptă profesioniști doar la Curtea Supremă",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/criza-de-cadre-in-justitie-opt-functii-asteapta-profesionisti-doar-la-curtea-suprema",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:11Z",
+      "published_date": "2026-09-19",
+      "summary": "Consiliuul Superior al Magistraturii (𝐂𝐒𝐌) 𝐚𝐧𝐮𝐧ță 𝐜𝐨𝐧𝐜𝐮𝐫𝐬𝐮𝐫𝐢 𝐩𝐞𝐧𝐭𝐫𝐮 𝐬𝐮𝐩𝐥𝐢𝐧𝐢𝐫𝐞𝐚 𝐟𝐮𝐧𝐜ț𝐢𝐢𝐥𝐨𝐫 𝐯𝐚𝐜𝐚𝐧𝐭𝐞 𝐝𝐞 𝐣𝐮𝐝𝐞𝐜ă𝐭𝐨𝐫 𝐥𝐚 Curtea Supremă de Justiție (𝐂𝐒𝐉) ș𝐢 𝐜𝐮𝐫ț𝐢𝐥𝐞 𝐝𝐞 𝐚𝐩𝐞𝐥. Totodată, membrii CSM au prelungit 𝐜𝐨𝐧𝐜𝐮𝐫𝐬𝐮𝐫𝐢𝐥𝐞 𝐩𝐞𝐧𝐭𝐫𝐮 𝐟𝐮𝐧𝐜ț𝐢𝐢𝐥𝐞 𝐬𝐩𝐞𝐜𝐢𝐚𝐥𝐢𝐳𝐚𝐭𝐞 𝐚𝐧𝐭𝐢𝐜...",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "b0e4c96c8096",
+      "title": "Молдова рвет пакет с Украиной, «Шериф» и Кремль делят Приднестровье, Додон затмит PAS? / «Разборка»",
+      "url": "https://newsmaker.md/ru/moldova-rvet-paket-s-ukrainoi-sherif-i-kreml-delyat-pridnestrove-dodon-zatmit-pas-razborka",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "DUOMO. Когда качество — не просто слово, это обязательство",
+      "categories": [
+        "justitie"
+      ],
+      "category_scores": {
+        "justitie": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "6561935cf7ce",
+      "title": "Care ar trebui să fie direcţiile şi proiectele prioritare de dezvoltare a sistemului energetic al Moldovei",
+      "url": "https://mold-street.com/noutate/care-ar-trebui-sa-fie-directiile-si-proiectele-prioritare-de-dezvoltare-a-sistemului-energetic-al-moldovei",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [
+        "securitate"
+      ],
+      "category_scores": {
+        "securitate": 1
+      },
+      "investigative_score": 0,
+      "relevance_score": 1
+    },
+    {
+      "id": "3a124d6fdea9",
+      "title": "Motorina trece de 36 de lei, iar benzina se apropie de 34. Cât vor costa carburanții în weekend",
+      "url": "https://www.zdg.md/stiri/motorina-trece-de-36-de-lei-iar-benzina-se-apropie-de-34-cat-vor-costa-carburantii-in-weekend/",
+      "source": "Ziarul de Gardă",
+      "source_key": "zdg_md",
+      "published": "2026-09-19T05:40:00Z",
+      "published_date": "2026-09-19",
+      "summary": "Agenția Națională pentru Reglementare în Energetică (ANRE) a stabilit prețurile maxime de referință pentru carburanți, valabile pentru perioada 19-21 septembrie 2026. Mai exact, prețurile pentru ziua de sâmbătă, 19 septembrie și până luni, 21 septembrie sunt: Potrivit ANRE, situația tot mai alarmantă din Orientul Mijlociu și intensificarea riscurilor privind aprovizionarea globală cu produse petroliere au...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "1d918bf2cfba",
+      "title": "Colonița. Ce a explodat în această dimineață?",
+      "url": "https://anticoruptie.md/ro/post_show/blog/colonita-ce-a-explodat-in-aceasta-dimineata",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:36Z",
+      "published_date": "2026-09-19",
+      "summary": "Voi începe cu contextul operațional din regiunea Odesa. În noaptea de 17 spre 18 septembrie, Командування Повітряних Сил ЗСУ / Air Force Command of UA Armed Forces din Ucraina a raportat un atac cu 93 de UAV-uri, dintre care 46 Shahed cu propulsie...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "e94d62d28276",
+      "title": "Incidentul de la Colonița. Primara localității oferă noi detalii",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/incidentul-de-la-colonita-primara-localitatii-ofera-noi-detalii",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:26:28Z",
+      "published_date": "2026-09-19",
+      "summary": "Primara comunei Colonița, municipiul Chișinău, Angela Zaporojan, a venit cu o reacție după ce poliția a anunțat despre bubuitură care a fost auzită de locuitori. Edilul menționează că explozia nu a avut loc pe teritoriul localității, iar martorii ocu...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "e8c97ba961d0",
+      "title": "VIDEO// Bubuituri nocturne la Colonița. Poliția încearcă să dezlege misterul",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/video-bubuituri-nocturne-la-colonita-politia-incearca-sa-dezlege-misterul",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:21:21Z",
+      "published_date": "2026-09-19",
+      "summary": "O bubuitură puternică a fost auzită în zona de sud-vest a satului Colonița, municipiul Chișinău, în direcția localității Tohatin. Zgomotul, care a trezit mai mulți locuitori în jurul orei 04:20, a provocat mai multe apeluri la Serviciul 112. Poliția ...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "470d7d2786f1",
+      "title": "1 septembrie – zi specială pentru toți",
+      "url": "https://anticoruptie.md/ro/post_show/blog/1-septembrie-zi-speciala-pentru-toti",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:39Z",
+      "published_date": "2026-09-19",
+      "summary": "De dimineață mă tot gândesc că 1 septembrie este una dintre acele zile pe care aproape nimeni nu le trăiește chiar neutru. Pentru unii copii este prima zi de școală din viață - cu ghiozdanul poate prea mare, haine pregătite de cu seară și multe între...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "d7368a558a67",
+      "title": "O nouă platformă pentru combaterea consumului și distribuirii drogurilor",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/o-noua-platforma-pentru-combaterea-consumului-si-distribuirii-drogurilor",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:51Z",
+      "published_date": "2026-09-19",
+      "summary": "Cetățenii Republicii Moldova vor putea semnala cazuri de utilizare sau distribuire a drogurilor prin intermediul platformei online „Stop Drog”, elaborată de Inspectoratul General de Poliție. Platforma, lansată, marți, la Chișinău, este un instrument ...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "7645650ca113",
+      "title": "Breșă majoră descoperită în ChatGPT: date din contul Gmail al unei persoane, furate printr-un canal ascuns",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/bresa-majora-descoperita-in-chatgpt-date-din-contul-gmail-al-unei-persoane-furate-printr-un-canal-ascuns",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:54Z",
+      "published_date": "2026-09-19",
+      "summary": "Cercetătorii de la Check Point Research au descoperit o vulnerabilitate critică în arhitectura ChatGPT, care permitea scurgerea de date între conturi complet diferite. Breșa a fost botezată „The Shared Clipboard Inside the Sandbox”. Cercetătorul ...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "bb1c49b82a3c",
+      "title": "UE schimbă regulile jocului la achiziții. Ce înseamnă pentru Moldova",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/ue-schimba-regulile-jocului-la-achizitii-ce-inseamna-pentru-moldova",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:55Z",
+      "published_date": "2026-09-19",
+      "summary": "UE își europenizează achizițiile publice de 2,6 trilioane euro: reguli simplificate radical, o singură platformă și criteriul „Buy European”. Pentru Republica Moldova, ca țară candidată cu acces reciproc garantat prin Acordul de Asociere, asta înseam...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "eaade7a58624",
+      "title": "HARTĂ// Experții Institutului pentru Studiul Războiului au reconstituit traseul dronei de la Mihăilenii Noi",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/harta-expertii-institutului-pentru-studiul-razboiului-au-reconstituit-traseul-dronei-de-la-mihailenii-noi",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:56Z",
+      "published_date": "2026-09-19",
+      "summary": "Institutul pentru Studiul Războiului (ISW) consideră că utilizarea dronelor de tip Gheran, similare celei care s-a prăbușit la Mihăilenii Noi, ridică mai multe dificultăți pentru apărarea antiaeriană din Ucraina și Republica Moldova. Experții mențion...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "c1bd97c4d8ad",
+      "title": "Un conațional, rănit în urma atacului de la frontieră. Tofan și Zelenski fac front comun",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/un-conational-ranit-in-urma-atacului-de-la-frontiera-tofan-si-zelenski-fac-front-comun",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:17:58Z",
+      "published_date": "2026-09-19",
+      "summary": "Un cetățean al Republicii Moldova a fost rănit ușor în urma atacului cu drone de la punctul de trecere Tudora-Starokazacie. Informațiile au fost confirmate de Ministerul Afacerilor Externe, care mai menționează că bărbatul a refuzat spitalizarea și ș...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "69ccbfd9c95f",
+      "title": "Expertă// Securitatea regională între drone și cereale",
+      "url": "https://anticoruptie.md/ro/post_show/special/experta-securitatea-regionala-intre-drone-si-cereale",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:21:17Z",
+      "published_date": "2026-09-19",
+      "summary": "Analiză de Angela Grămadă, directoarea think tank-ului Experts for Security and Global Affairs (ESGA) pentru Buletinul de politică externă al FES/APE Exportul de cereale ucrainene este una din cele mai sensibile teme ale războiului rus împotriva U...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "b22659584361",
+      "title": "„Munca nu acoperă nici drumul până la piață”: Deznădejdea producătorilor agricoli",
+      "url": "https://anticoruptie.md/ro/post_show/blog/munca-nu-acopera-nici-drumul-pana-la-piata-deznadejdea-producatorilor-agricoli",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:02Z",
+      "published_date": "2026-09-19",
+      "summary": "Dacă mergi azi la țară sau prin piețele agricole, vezi aceeași imagine - o mare deznădejde printre producătorii agricoli. Legumele în acest an sunt extrem de ieftine. Atât de ieftine, încât nu acoperă nici costurile reale. Producătorii de ardei, r...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "f8fbab2d3e46",
+      "title": "Exporturile spre UE au sărit de 1 miliard de euro în 6 luni. Ce cumpără europenii cel mai mult din Moldova",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/exporturile-spre-ue-au-sarit-de-1-miliard-de-euro-in-6-luni-ce-cumpara-europenii-cel-mai-mult-din-moldova",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:03Z",
+      "published_date": "2026-09-19",
+      "summary": "Livrările de produse moldovenești spre Uniunea Europeană au urcat la 1,06 miliarde de euro în ianuarie-iunie 2026. Motorul creșterii de 12,7% sunt cerealele, uleiurile vegetale și mașinile electrice, care domină topul exporturilor. Comerțul exteri...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "cd83b9602f62",
+      "title": "Când un algoritm ne spune să ne fie frică de un musulman",
+      "url": "https://anticoruptie.md/ro/post_show/blog/cand-un-algoritm-ne-spune-sa-ne-fie-frica-de-un-musulman",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:04Z",
+      "published_date": "2026-09-19",
+      "summary": "La sfârșitul lunii august am primit răspunsul la solicitarea de informații trimisă Inspectoratului General al Poliției în legătură cu cazul descris de mine în articolul „Un utilizator din Moldova, implicat în promovarea mesajelor de ură pe TikTok. Vi...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "99feccd8d1a3",
+      "title": "Primar din Ucraina, căutat pentru corupție, prins în România. Va fi extrădat",
+      "url": "https://anticoruptie.md/ro/post_show/dosare/primar-din-ucraina-cautat-pentru-coruptie-prins-in-romania-va-fi-extradat",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:05Z",
+      "published_date": "2026-09-19",
+      "summary": "Un primar din Ucraina, dat în urmărire internațională pentru corupție, a fost prins în România și va fi extrădat în țara sa, după ce Înalta Curte de Casație și Justiție a decis definitiv, la 1 septembrie, predarea sa către autoritățile de la Kiev. Es...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "381a0f577c13",
+      "title": "CEDO a refuzat să mai examineze 879 de plângeri împotriva Rusiei, depuse înainte de excluderea Moscovei din Consiliul Europei",
+      "url": "https://anticoruptie.md/ro/post_show/dosare/cedo-a-refuzat-sa-mai-examineze-879-de-plangeri-impotriva-rusiei-depuse-inainte-de-excluderea-moscovei-din-consiliul-europei",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:08Z",
+      "published_date": "2026-09-19",
+      "summary": "Curtea Europeană a Drepturilor Omului (CEDO) a decis să nu mai examineze restul de 879 de plângeri depuse împotriva Rusiei pentru încălcări comise până la 16 septembrie 2022, informează Radio Svoboda. Plângerile vizau condiții de detenție, încălcarea...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "6284c6cb40b9",
+      "title": "Mai puțin de 300 de primării, în 2027. Buzu anunță bilanțul amalgamării voluntare",
+      "url": "https://anticoruptie.md/ro/post_show/stiri/mai-putin-de-300-de-primarii-in-2027-buzu-anunta-bilantul-amalgamarii-voluntare",
+      "source": "Anticorupție.md",
+      "source_key": "anticoruptie_md",
+      "published": "2026-09-19T10:18:12Z",
+      "published_date": "2026-09-19",
+      "summary": "Până la sfârșitul anului 2027, în Republica Moldova vor exista mai puțin de 300 de primării. Astfel, fiecare a treia adminsitrație locală va dispărea în urma reformei administrației publice locale. Până în prezent, peste 560 de primării s-au alăturat...",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "83b889a235b0",
+      "title": "(ВИДЕО) Приднестровье: Тирасполь заговорил о референдуме/ 218 млн леев на цели «Фонда конвергенции»",
+      "url": "https://newsmaker.md/ru/video-pridnestrove-tiraspol-zagovoril-o-referendume-218-mln-leev-na-czeli-fonda-konvergenczii",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "967ecf21b02d",
+      "title": "Жунгиету отверг план Moldovagaz использовать резервный газ для снижения тарифов: Рост цен — это не ЧС",
+      "url": "https://newsmaker.md/ru/jungietu-otverg-plan-moldovagaz-ispolzovat-rezervnyi-gaz-dlya-snijeniya-tarifov-rost-czen-eto-ne-chs",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "853664dd4bc3",
+      "title": "Дроны в Штефан-Водском районе: пограничники сообщили о нарушении воздушного пространства Молдовы",
+      "url": "https://newsmaker.md/ru/drony-v-shtefan-vodskom-raione-pogranichniki-soobshili-o-narushenii-vozdushnogo-prostranstva-moldovy",
+      "source": "Newsmaker.md",
+      "source_key": "newsmaker_md",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "5a2c7294a7d8",
+      "title": "În scurt timp, evoluţiile de la bursă se vor vedea în preţuri mai mari la pompă",
+      "url": "https://mold-street.com/noutate/pretul-motorinei-scapa-de-sub-control-un-importator-a-ajuns-sa-domine-piata",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "5594d7c1ef7a",
+      "title": "Investițiile străine directe în România au scăzut cu 77% în primele șapte luni din 2026",
+      "url": "https://mold-street.com/noutate/investitiile-straine-directe-in-romania-au-scazut-cu-77-in-primele-sapte-luni-din-2026",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "befe9485c5bd",
+      "title": "Măsuri pentru deblocarea fluxurilor logistice la Dunăre",
+      "url": "https://mold-street.com/noutate/masuri-pentru-deblocarea-fluxurilor-logistice-la-dunare",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    },
+    {
+      "id": "ef31b4241f05",
+      "title": "De ce este importantă privatizarea hotelului Zarea",
+      "url": "https://mold-street.com/noutate/de-ce-este-importanta-privatizarea-hotelului-zarea",
+      "source": "Mold-Street",
+      "source_key": "mold_street",
+      "published": "",
+      "published_date": "",
+      "summary": "",
+      "categories": [],
+      "category_scores": {},
+      "investigative_score": 0,
+      "relevance_score": 0
+    }
+  ]
+}
