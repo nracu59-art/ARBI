@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monitorizare Jurnalism Investigativ Moldova – 20.09.2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; color: #2c3e50; }
+  .header { background: #1b4332; color: #fff; padding: 28px 40px; }
+  .header h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: 0.5px; }
+  .header .subtitle { margin-top: 6px; font-size: 0.9rem; opacity: 0.85; }
+  .stats-bar { background: #2d6a4f; color: #fff; padding: 16px 40px;
+                display: flex; gap: 36px; flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; }
+  .stat .val { font-size: 1.8rem; font-weight: 700; }
+  .stat .lbl { font-size: 0.72rem; opacity: 0.82; text-transform: uppercase; letter-spacing: 0.8px; }
+  .cat-bar { background: #40916c; color: #fff; padding: 12px 40px;
+              display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .cat-chip { background: rgba(255,255,255,0.18); border-radius: 20px;
+               padding: 4px 14px; font-size: 0.78rem; font-weight: 600;
+               white-space: nowrap; }
+  .container { max-width: 1040px; margin: 30px auto; padding: 0 20px 40px; }
+  .section-title { font-size: 0.95rem; font-weight: 700; color: #1b4332;
+                    text-transform: uppercase; letter-spacing: 1px;
+                    margin: 28px 0 14px; border-bottom: 2px solid #1b4332;
+                    padding-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08);
+           padding: 18px 22px; margin-bottom: 14px; border-left: 5px solid #1b4332;
+           transition: box-shadow .15s; }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.13); }
+  .card.investigativ { border-left-color: #d62828; }
+  .card-title { font-size: 1rem; font-weight: 700; color: #1b4332; margin-bottom: 8px; }
+  .card-title a { color: inherit; text-decoration: none; }
+  .card-title a:hover { text-decoration: underline; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;
+           font-size: 0.8rem; color: #555; }
+  .badge { display: inline-block; font-size: 0.68rem; font-weight: 700;
+            padding: 2px 8px; border-radius: 12px; color: #fff;
+            margin-right: 4px; vertical-align: middle; }
+  .badge-inv { background: #d62828; }
+  .source-tag { background: #e8f4ec; color: #1b4332; border-radius: 4px;
+                 padding: 1px 8px; font-size: 0.75rem; font-weight: 600; }
+  .summary { font-size: 0.85rem; color: #444; line-height: 1.55; margin-top: 6px; }
+  .cat-tags { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .cat-tag { font-size: 0.72rem; padding: 2px 10px; border-radius: 10px;
+              font-weight: 600; background: #e8f4ec; color: #1b4332; }
+  .link-btn { display: inline-block; margin-top: 10px; padding: 5px 14px;
+               background: #1b4332; color: #fff; border-radius: 5px;
+               font-size: 0.78rem; text-decoration: none; font-weight: 600; }
+  .link-btn:hover { background: #2d6a4f; }
+  .empty-box { background: #fff; border-radius: 8px; padding: 30px 24px;
+                text-align: center; color: #7f8c8d; font-size: 0.95rem;
+                box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .source-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+  .source-box { background: #fff; border-radius: 8px; padding: 12px 18px;
+                 box-shadow: 0 2px 6px rgba(0,0,0,.07); min-width: 140px;
+                 border-top: 3px solid #1b4332; }
+  .source-box .sname { font-size: 0.78rem; font-weight: 700; color: #1b4332; }
+  .source-box .scount { font-size: 1.4rem; font-weight: 700; color: #2d6a4f; margin-top: 2px; }
+  .footer { text-align: center; font-size: 0.75rem; color: #999;
+             margin-top: 40px; padding-bottom: 20px; }
+  @media (max-width: 600px) {
+    .header, .stats-bar, .cat-bar { padding: 18px 16px; }
+    .stats-bar { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🔍 Monitorizare Jurnalism Investigativ – Moldova</h1>
+  <div class="subtitle">
+    Surse monitorizate: 8 &nbsp;|&nbsp;
+    Ultimele 26 ore &nbsp;|&nbsp;
+    Generat: 2026-09-20 10:50 UTC
+  </div>
+</div>
+<div class="stats-bar">
+  <div class="stat"><span class="val">15</span><span class="lbl">Articole noi</span></div>
+  <div class="stat"><span class="val">0</span><span class="lbl">Investigative</span></div>
+  <div class="stat"><span class="val">8</span><span class="lbl">Surse active</span></div>
+  <div class="stat"><span class="val">20.09.2026</span><span class="lbl">Data raportului</span></div>
+</div>
+<div class="cat-bar">
+  <span style="font-size:.8rem;opacity:.85;margin-right:4px">Categorii:</span>
+  <span class="cat-chip">⚖️ Justiție & Procurori (10)</span><span class="cat-chip">🏛️ Politică & Putere (3)</span><span class="cat-chip">📰 Media & Libertatea Presei (2)</span><span class="cat-chip">🔐 Securitate & Intelligence (1)</span>
+</div>
+<div class="container">
+<div class="section-title">📊 Articole pe surse</div><div class="source-grid"><div class="source-box"><div class="sname">Ziarul de Gardă</div><div class="scount">10</div></div><div class="source-box"><div class="sname">Newsmaker.md</div><div class="scount">4</div></div><div class="source-box"><div class="sname">Agora.md</div><div class="scount">1</div></div></div>
+<div class="section-title">⚖️ Justiție & Procurori (10)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/concluziile-unui-raport-despre-indicatori-democratici-folosite-pentru-a-manipula-despre-prabusirea-democratiei-in-r-moldova/" target="_blank">Concluziile unui raport despre indicatori democratici, folosite pentru a manipula despre „prăbușirea democrației” în R. Moldova</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 20.09.2026</span>
+    </div>
+    <div class='summary'>Concluziile raportului Global State of Democracy 2026 al International IDEA cu privire la R. Moldova au fost prezentate, de unele site-uri și conturi de social media, ca „faliment democratic” sau o degradare a drepturilor și libertăților. Datele raportului nu susțin însă o asemenea concluzie, potrivit StopFals.md. În comparație cu anii precedenți, R. Moldova se menține,...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/concluziile-unui-raport-despre-indicatori-democratici-folosite-pentru-a-manipula-despre-prabusirea-democratiei-in-r-moldova/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/video/video-trebuie-de-stimat-toate-natiile-vs-ar-trebui-distruse-pentru-ca-acest-regim-atatea-pacate-are-ca-nu-mai-merita-sa-mai-stea-aici-ridicate-monumentele-sovi/" target="_blank">VIDEO/ „Trebuie de stimat toate națiile” vs. „Ar trebui distruse, pentru că acest regim atâtea păcate are, că nu mai merită să mai stea aici ridicate”. Monumentele sovietice de pe străzi, între memorie și propagandă</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 20.09.2026</span>
+    </div>
+    <div class='summary'>După 35 de ani de la declarația de independență față de URSS și în timp ce R. Moldova avansează pe calea integrării europene, în localitățile din țară încă mai există numeroase monumente ridicate în memoria regimului totalitar sovietic și a exponenților acestuia. 10 monumente sunt incluse în Registrul Național al Monumentelor de For Public, cinci...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://www.zdg.md/video/video-trebuie-de-stimat-toate-natiile-vs-ar-trebui-distruse-pentru-ca-acest-regim-atatea-pacate-are-ca-nu-mai-merita-sa-mai-stea-aici-ridicate-monumentele-sovi/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/dw-o-rusie-obosita-de-razboi-si-anxioasa-alege-un-nou-parlament/" target="_blank">DW/ O Rusie obosită de război și anxioasă alege un nou Parlament</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 19.09.2026</span>
+    </div>
+    <div class='summary'>Penurie de combustibil, atacuri cu drone și zvonuri privind mobilizarea sporesc anxietatea și oboseala de război în Rusia. Sprijinul pentru negocieri de pace crește, Kremlinul urmărește situația înainte de parlamentare, relatează Deutsche Welle. Rușii sunt tot mai îngrijorați. Aproape jumătate dintre cei chestionați de institutul de sondare de stat FOM spun că starea de neliniște...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/dw-o-rusie-obosita-de-razboi-si-anxioasa-alege-un-nou-parlament/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/blog/cititorul/fara-el-nu-ma-descurc-o-refugiata-de-88-de-ani-din-ucraina-oarba-si-ramasa-fara-casa-despartita-de-fiul-care-ii-poarta-de-grija/" target="_blank">„Fără el nu mă descurc.” O refugiată de 88 de ani din Ucraina, oarbă și rămasă fără casă, despărțită de fiul care îi poartă de grijă</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 20.09.2026</span>
+    </div>
+    <div class='summary'>Are 88 de ani. Războiul a prins-o în Patria sa, Ucraina, la Dnipro, acolo unde lucrase o viață întreagă la o uzină constructoare de mașini, în secția antiincendiară. Când a început războiul, nu a mai putut rămâne acasă, iar acum, chiar dacă ar vrea, nu ar mai putea reveni, deoarece casa în care și-a trăit...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/blog/cititorul/fara-el-nu-ma-descurc-o-refugiata-de-88-de-ani-din-ucraina-oarba-si-ramasa-fara-casa-despartita-de-fiul-care-ii-poarta-de-grija/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/live-text-sua-au-extins-sanctiunile-pentru-participarea-la-deportarea-copiilor-ucraineni-razboi-in-ucraina-ziua-1669/" target="_blank">LIVE TEXT/ SUA au extins sancțiunile pentru participarea la deportarea copiilor ucraineni. Război în Ucraina, ziua 1669</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 19.09.2026</span>
+    </div>
+    <div class='summary'>UPDATE 17:50 Legea privind sancțiunile, inițiată de regretatul senator Lindsey Graham, pe care Trump a semnat-o pe 18 septembrie, extinde sancțiunile pentru deportarea forțată a copiilor ucraineni. Sub incidența restricțiilor ar putea intra nu doar persoanele care au scos copiii din Ucraina, ci și oficialii, instituțiile și intermediarii care au organizat sau au facilitat aceste...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/live-text-sua-au-extins-sanctiunile-pentru-participarea-la-deportarea-copiilor-ucraineni-razboi-in-ucraina-ziua-1669/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/nato-este-pregatita-pentru-un-potential-atac-sub-steag-fals-al-rusiei-declara-generalul-de-rang-inalt-al-aliantei/" target="_blank">NATO este „pregătită” pentru un potențial atac sub steag fals al Rusiei, declară generalul de rang înalt al alianței</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 20.09.2026</span>
+    </div>
+    <div class='summary'>NATO este pregătită să răspundă la o potențială escaladare rusească pe flancul estic al Europei, a declarat sâmbătă generalul-șef al alianței, amiralul Giuseppe Cavo Dragone, pe fondul avertismentelor tot mai numeroase cu privire la un posibil atac înscenat din partea Moscovei, relatează POLITICO. „Alianța este pregătită, structura este pregătită, soldații… armele sunt pregătite”, a declarat...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/nato-este-pregatita-pentru-un-potential-atac-sub-steag-fals-al-rusiei-declara-generalul-de-rang-inalt-al-aliantei/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/nu-au-fost-inregistrate-survolari-neautorizate-ale-spatiului-aerian-anunta-ministerul-apararii-dupa-ce-mai-multi-cetateni-au-raportat-observarea-unor-obiecte-zburatoare/" target="_blank">„Nu au fost înregistrate survolări neautorizate ale spațiului aerian”, anunță Ministerul Apărării după ce mai mulți cetățeni au raportat observarea unor obiecte zburătoare</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 20.09.2026</span>
+    </div>
+    <div class='summary'>Ministerul Apărării anunță că nu au fost înregistrate survolări neautorizate ale spațiului aerian al R. Moldova în noaptea de 20 septembrie, după ce locuitori din Orhei și Călărași au raportat poliției că ar fi observat un obiect zburător și o explozie în timpul nopții. În contextul informațiilor apărute în spațiul public privind presupuse survolări neautorizate...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/nu-au-fost-inregistrate-survolari-neautorizate-ale-spatiului-aerian-anunta-ministerul-apararii-dupa-ce-mai-multi-cetateni-au-raportat-observarea-unor-obiecte-zburatoare/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/live-text-patru-persoane-au-murit-inclusiv-trei-copii-in-atacurile-rusesti-asupra-regiunii-kiev-razboi-in-ucraina-ziua-1670/" target="_blank">LIVE TEXT/ Patru persoane au murit, inclusiv trei copii, în atacurile rusești asupra regiunii Kiev. Război în Ucraina, ziua 1670</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 20.09.2026</span>
+    </div>
+    <div class='summary'>UPDATE 11:20 Numărul morților în regiunea Kiev, care se află sub atacul rusesc de mai bine de 24 de ore, a crescut la patru după ce un copil rănit în districtul Vâșhorod a murit în spital. Acest lucru a fost raportat de șeful Administrației Militare Regionale Kiev, Tymur Tkachenko, pe Telegram, potrivit Ukrinform. „Din păcate,...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/live-text-patru-persoane-au-murit-inclusiv-trei-copii-in-atacurile-rusesti-asupra-regiunii-kiev-razboi-in-ucraina-ziua-1670/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/moldova-rvet-paket-s-ukrainoi-sherif-i-kreml-delyat-pridnestrove-dodon-zatmit-pas-razborka" target="_blank">Молдова рвет пакет с Украиной, «Шериф» и Кремль делят Приднестровье, Додон затмит PAS? / «Разборка»</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>DUOMO. Когда качество — не просто слово, это обязательство</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://newsmaker.md/ru/moldova-rvet-paket-s-ukrainoi-sherif-i-kreml-delyat-pridnestrove-dodon-zatmit-pas-razborka" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🏛️ Politică & Putere (3)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/concluziile-unui-raport-despre-indicatori-democratici-folosite-pentru-a-manipula-despre-prabusirea-democratiei-in-r-moldova/" target="_blank">Concluziile unui raport despre indicatori democratici, folosite pentru a manipula despre „prăbușirea democrației” în R. Moldova</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 20.09.2026</span>
+    </div>
+    <div class='summary'>Concluziile raportului Global State of Democracy 2026 al International IDEA cu privire la R. Moldova au fost prezentate, de unele site-uri și conturi de social media, ca „faliment democratic” sau o degradare a drepturilor și libertăților. Datele raportului nu susțin însă o asemenea concluzie, potrivit StopFals.md. În comparație cu anii precedenți, R. Moldova se menține,...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/concluziile-unui-raport-despre-indicatori-democratici-folosite-pentru-a-manipula-despre-prabusirea-democratiei-in-r-moldova/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/dw-o-rusie-obosita-de-razboi-si-anxioasa-alege-un-nou-parlament/" target="_blank">DW/ O Rusie obosită de război și anxioasă alege un nou Parlament</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 19.09.2026</span>
+    </div>
+    <div class='summary'>Penurie de combustibil, atacuri cu drone și zvonuri privind mobilizarea sporesc anxietatea și oboseala de război în Rusia. Sprijinul pentru negocieri de pace crește, Kremlinul urmărește situația înainte de parlamentare, relatează Deutsche Welle. Rușii sunt tot mai îngrijorați. Aproape jumătate dintre cei chestionați de institutul de sondare de stat FOM spun că starea de neliniște...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/dw-o-rusie-obosita-de-razboi-si-anxioasa-alege-un-nou-parlament/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/circulatia-transportului-sistata-in-centrul-capitalei-in-acest-weekend-cum-vor-circula-troleibuzele-si-autobuzele/" target="_blank">Circulația transportului, sistată în centrul capitalei în acest weekend. Cum vor circula troleibuzele și autobuzele</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 19.09.2026</span>
+    </div>
+    <div class='summary'>În perioada 19 septembrie, ora 13:00 – 20 septembrie, ora 22:00, va fi sistată circulația transportului pe bd. Ștefan cel Mare și Sfânt, pe tronsonul cuprins între str. Mitropolit G. Bănulescu-Bodoni și str. Sfatul Țării, inclusiv intersecțiile cu str-la Teatrală, str. Tricolorului și str. Maria Cebotari, cu redirecționarea transportului pe străzile adiacente. Potrivit unui comunicat...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/circulatia-transportului-sistata-in-centrul-capitalei-in-acest-weekend-cum-vor-circula-troleibuzele-si-autobuzele/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📰 Media & Libertatea Presei (2)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/video/video-trebuie-de-stimat-toate-natiile-vs-ar-trebui-distruse-pentru-ca-acest-regim-atatea-pacate-are-ca-nu-mai-merita-sa-mai-stea-aici-ridicate-monumentele-sovi/" target="_blank">VIDEO/ „Trebuie de stimat toate națiile” vs. „Ar trebui distruse, pentru că acest regim atâtea păcate are, că nu mai merită să mai stea aici ridicate”. Monumentele sovietice de pe străzi, între memorie și propagandă</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 20.09.2026</span>
+    </div>
+    <div class='summary'>După 35 de ani de la declarația de independență față de URSS și în timp ce R. Moldova avansează pe calea integrării europene, în localitățile din țară încă mai există numeroase monumente ridicate în memoria regimului totalitar sovietic și a exponenților acestuia. 10 monumente sunt incluse în Registrul Național al Monumentelor de For Public, cinci...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://www.zdg.md/video/video-trebuie-de-stimat-toate-natiile-vs-ar-trebui-distruse-pentru-ca-acest-regim-atatea-pacate-are-ca-nu-mai-merita-sa-mai-stea-aici-ridicate-monumentele-sovi/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🔐 Securitate & Intelligence (1)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/circulatia-transportului-sistata-in-centrul-capitalei-in-acest-weekend-cum-vor-circula-troleibuzele-si-autobuzele/" target="_blank">Circulația transportului, sistată în centrul capitalei în acest weekend. Cum vor circula troleibuzele și autobuzele</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 19.09.2026</span>
+    </div>
+    <div class='summary'>În perioada 19 septembrie, ora 13:00 – 20 septembrie, ora 22:00, va fi sistată circulația transportului pe bd. Ștefan cel Mare și Sfânt, pe tronsonul cuprins între str. Mitropolit G. Bănulescu-Bodoni și str. Sfatul Țării, inclusiv intersecțiile cu str-la Teatrală, str. Tricolorului și str. Maria Cebotari, cu redirecționarea transportului pe străzile adiacente. Potrivit unui comunicat...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/circulatia-transportului-sistata-in-centrul-capitalei-in-acest-weekend-cum-vor-circula-troleibuzele-si-autobuzele/" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📌 Alte articole (4)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/doua-drone-au-fost-observate-deasupra-r-moldova-un-locuitor-din-dereneu-a-sesizat-politia-in-legatura-cu-o-explozie/" target="_blank">Două drone au fost observate deasupra R. Moldova. Un locuitor din Dereneu a sesizat poliția în legătură cu o explozie</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 20.09.2026</span>
+    </div>
+    <div class='summary'>În noaptea de 20 septembrie, în jurul orei 01:50, Poliția din Orhei a fost sesizată de un locuitor al satului Berezlogi, care a comunicat că a observat pe cer un obiect zburător asemănător unei drone. Ulterior, în jurul orei 02:00, Poliția din Călărași a fost sesizată de un locuitor al satului Dereneu, care a comunicat...</div>
+    
+    <a class="link-btn" href="https://www.zdg.md/stiri/doua-drone-au-fost-observate-deasupra-r-moldova-un-locuitor-din-dereneu-a-sesizat-politia-in-legatura-cu-o-explozie/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/minoborony-narushenii-vozdushnogo-prostranstva-moldovy-vo-vremya-soobshenii-o-drone-i-vzryve-ne-zafiksirovali" target="_blank">Минобороны: нарушений воздушного пространства Молдовы во время сообщений о дроне и взрыве не зафиксировали</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/minoborony-narushenii-vozdushnogo-prostranstva-moldovy-vo-vremya-soobshenii-o-drone-i-vzryve-ne-zafiksirovali" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/tri-moldavskih-borcza-zavoevali-zoloto-na-studencheskom-chempionate-mira-po-plyajnoi-borbe" target="_blank">Три молдавских спортсмена завоевали золото на студенческом чемпионате мира по пляжной борьбе в Португалии</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/tri-moldavskih-borcza-zavoevali-zoloto-na-studencheskom-chempionate-mira-po-plyajnoi-borbe" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/moskva-i-podmoskove-podverglis-massirovannoi-atake-dronov-pod-udar-popali-npz-i-tecz-dva-cheloveka-pogibli-zelenskii-podtverdil-udary" target="_blank">Москва и Подмосковье подверглись массированной атаке дронов. Зеленский подтвердил удары</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/moskva-i-podmoskove-podverglis-massirovannoi-atake-dronov-pod-udar-popali-npz-i-tecz-dva-cheloveka-pogibli-zelenskii-podtverdil-udary" target="_blank">Citește articolul →</a>
+  </div>
+</div>
+<div class="footer">
+  Raport generat automat zilnic &nbsp;·&nbsp; ARBI – Monitorizare Jurnalism Investigativ Moldova
+</div>
+</body>
+</html>
