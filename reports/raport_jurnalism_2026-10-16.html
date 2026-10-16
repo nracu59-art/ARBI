@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monitorizare Jurnalism Investigativ Moldova – 16.10.2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; color: #2c3e50; }
+  .header { background: #1b4332; color: #fff; padding: 28px 40px; }
+  .header h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: 0.5px; }
+  .header .subtitle { margin-top: 6px; font-size: 0.9rem; opacity: 0.85; }
+  .stats-bar { background: #2d6a4f; color: #fff; padding: 16px 40px;
+                display: flex; gap: 36px; flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; }
+  .stat .val { font-size: 1.8rem; font-weight: 700; }
+  .stat .lbl { font-size: 0.72rem; opacity: 0.82; text-transform: uppercase; letter-spacing: 0.8px; }
+  .cat-bar { background: #40916c; color: #fff; padding: 12px 40px;
+              display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .cat-chip { background: rgba(255,255,255,0.18); border-radius: 20px;
+               padding: 4px 14px; font-size: 0.78rem; font-weight: 600;
+               white-space: nowrap; }
+  .container { max-width: 1040px; margin: 30px auto; padding: 0 20px 40px; }
+  .section-title { font-size: 0.95rem; font-weight: 700; color: #1b4332;
+                    text-transform: uppercase; letter-spacing: 1px;
+                    margin: 28px 0 14px; border-bottom: 2px solid #1b4332;
+                    padding-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08);
+           padding: 18px 22px; margin-bottom: 14px; border-left: 5px solid #1b4332;
+           transition: box-shadow .15s; }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.13); }
+  .card.investigativ { border-left-color: #d62828; }
+  .card-title { font-size: 1rem; font-weight: 700; color: #1b4332; margin-bottom: 8px; }
+  .card-title a { color: inherit; text-decoration: none; }
+  .card-title a:hover { text-decoration: underline; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;
+           font-size: 0.8rem; color: #555; }
+  .badge { display: inline-block; font-size: 0.68rem; font-weight: 700;
+            padding: 2px 8px; border-radius: 12px; color: #fff;
+            margin-right: 4px; vertical-align: middle; }
+  .badge-inv { background: #d62828; }
+  .source-tag { background: #e8f4ec; color: #1b4332; border-radius: 4px;
+                 padding: 1px 8px; font-size: 0.75rem; font-weight: 600; }
+  .summary { font-size: 0.85rem; color: #444; line-height: 1.55; margin-top: 6px; }
+  .cat-tags { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .cat-tag { font-size: 0.72rem; padding: 2px 10px; border-radius: 10px;
+              font-weight: 600; background: #e8f4ec; color: #1b4332; }
+  .link-btn { display: inline-block; margin-top: 10px; padding: 5px 14px;
+               background: #1b4332; color: #fff; border-radius: 5px;
+               font-size: 0.78rem; text-decoration: none; font-weight: 600; }
+  .link-btn:hover { background: #2d6a4f; }
+  .empty-box { background: #fff; border-radius: 8px; padding: 30px 24px;
+                text-align: center; color: #7f8c8d; font-size: 0.95rem;
+                box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .source-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+  .source-box { background: #fff; border-radius: 8px; padding: 12px 18px;
+                 box-shadow: 0 2px 6px rgba(0,0,0,.07); min-width: 140px;
+                 border-top: 3px solid #1b4332; }
+  .source-box .sname { font-size: 0.78rem; font-weight: 700; color: #1b4332; }
+  .source-box .scount { font-size: 1.4rem; font-weight: 700; color: #2d6a4f; margin-top: 2px; }
+  .footer { text-align: center; font-size: 0.75rem; color: #999;
+             margin-top: 40px; padding-bottom: 20px; }
+  @media (max-width: 600px) {
+    .header, .stats-bar, .cat-bar { padding: 18px 16px; }
+    .stats-bar { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🔍 Monitorizare Jurnalism Investigativ – Moldova</h1>
+  <div class="subtitle">
+    Surse monitorizate: 8 &nbsp;|&nbsp;
+    Ultimele 26 ore &nbsp;|&nbsp;
+    Generat: 2026-10-16 10:54 UTC
+  </div>
+</div>
+<div class="stats-bar">
+  <div class="stat"><span class="val">122</span><span class="lbl">Articole noi</span></div>
+  <div class="stat"><span class="val">25</span><span class="lbl">Investigative</span></div>
+  <div class="stat"><span class="val">8</span><span class="lbl">Surse active</span></div>
+  <div class="stat"><span class="val">16.10.2026</span><span class="lbl">Data raportului</span></div>
+</div>
+<div class="cat-bar">
+  <span style="font-size:.8rem;opacity:.85;margin-right:4px">Categorii:</span>
+  <span class="cat-chip">⚖️ Justiție & Procurori (85)</span><span class="cat-chip">🏛️ Politică & Putere (55)</span><span class="cat-chip">💰 Corupție (10)</span><span class="cat-chip">📰 Media & Libertatea Presei (8)</span><span class="cat-chip">🔐 Securitate & Intelligence (8)</span><span class="cat-chip">💼 Afaceri & Contracte Publice (6)</span><span class="cat-chip">👥 Social & Drepturile Omului (4)</span>
+</div>
+<div class="container">
+<div class="section-title">📊 Articole pe surse</div><div class="source-grid"><div class="source-box"><div class="sname">Anticorupție.md</div><div class="scount">100</div></div><div class="source-box"><div class="sname">Ziarul de Gardă</div><div class="scount">10</div></div><div class="source-box"><div class="sname">Mold-Street</div><div class="scount">7</div></div><div class="source-box"><div class="sname">Newsmaker.md</div><div class="scount">4</div></div><div class="source-box"><div class="sname">Agora.md</div><div class="scount">1</div></div></div>
+<div class="section-title">🔍 Articole Investigative (25)</div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/investigatie-nyt-reteaua-oligarhului-fugar-ilan-sor-a-spalat-100-de-milioane-de-dolari-prin-bancile-din-kargazstan-pentru-dronele-rusiei" target="_blank">Investigație NYT: Rețeaua oligarhului fugar Ilan Șor a spălat 100 de milioane de dolari prin băncile din Kârgâzstan pentru dronele Rusiei</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>O companie rusească legată de oligarhul moldovean fugar Ilan Șor a derulat tranzacții de 500 de milioane de dolari în doar patru luni ale anului 2025, dintre care 100 de milioane au trecut prin bănci din Kârgâzstan. Banii au fost folosiți pentru a oc...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/investigatie-nyt-reteaua-oligarhului-fugar-ilan-sor-a-spalat-100-de-milioane-de-dolari-prin-bancile-din-kargazstan-pentru-dronele-rusiei" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/energocom-isi-muta-sediul-dupa-scandalul-chiriei-de-milioane" target="_blank">Energocom își mută sediul, după scandalul chiriei de milioane</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Energocom urmează să-și mute din nou sediul, după scandalul izbucnit în jurul chiriei de peste jumătate de milion de lei pe lună. Banii ajung în contul unei companii asociată partenerei de viață a controversatului om de afaceri Arcadie Topalo, au dez...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/energocom-isi-muta-sediul-dupa-scandalul-chiriei-de-milioane" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/stiri-economice/ceiiss-demareaza-o-evaluare-aprofundata-a-activitatii-yandex-in-r-moldova-ce-a-raspuns-guvernul-inca-acum-un-an-cand-zdg-a-intrebat-de-ce-statul-nu-a-verificat-compania/" target="_blank">CEIISS demarează „o evaluare aprofundată” a activității Yandex în R. Moldova. Ce a răspuns Guvernul încă acum un an, când ZdG a întrebat de ce statul nu a verificat compania</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Consiliul pentru Examinarea Investițiilor de Importanță pentru Securitatea Statului (CEIISS) a demarat „o evaluare aprofundată” a activității Yandex Go în Republica Moldova, a anunțat purtătorul de cuvânt al Guvernului, Dumitru Ciorici. Acesta a comunicat că, în 2025, în bugetul de stat au fost achitate circa 12,5 milioane de lei din TVA-ul aplicat comisionului care ajunge...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/stiri-economice/ceiiss-demareaza-o-evaluare-aprofundata-a-activitatii-yandex-in-r-moldova-ce-a-raspuns-guvernul-inca-acum-un-an-cand-zdg-a-intrebat-de-ce-statul-nu-a-verificat-compania/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/blog/despre-impactul-unei-investigatii-cazul-flyone-10-ani-mai-tarziu" target="_blank">Despre impactul unei investigații. Cazul FlyOne - 10 ani mai târziu</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>De ce contează o investigație jurnalistică? Pentru că adevărul rămâne, chiar dacă justiția întârzie 10 ani. În aprilie 2016, când Vladimir Cebotari era ministru al Justiției, promovat de Partidul Democrat, echipa noastră, a Centrului de Investigaț...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/blog/despre-impactul-unei-investigatii-cazul-flyone-10-ani-mai-tarziu" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/dosare/flyone-percehzitii" target="_blank">Perchezițiile la FlyOne: evaziune fiscală de peste 40 de milioane de lei. Cebotari acuză presiuni</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Fondarea unei companii avia, în baza a peste 40 milioane de lei, provenite din evaziune fiscală și spălare de bani. Oamenii legii au efectuat percheziții la sediul companiei aeriene FlyOne, precum și în mai multe locații care au legătură cu asociații...</div>
+    <div class='cat-tags'><span class="cat-tag">💰 Corupție</span><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/dosare/flyone-percehzitii" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/vitalii-neagu-a-depus-actele-pentru-a-participa-la-asa-numitele-alegeri-prezidentiale-din-regiunea-transnistreana/" target="_blank">Vitalii Neagu a depus actele pentru a participa la așa-numitele alegeri prezidențiale din regiunea transnistreană</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Așa-numitul vicepremier al regiunii transnistrene Vitalii Neagu a depus actele la așa-numita CEC vineri, 16 octombrie, pentru înaintarea sa la funcția de așa-numit președinte al regiunii. Acum, la fel ca ceilalți pretendenți, el trebuie să colecteze semnături în susținerea sa, scrie Zona de Securitate. Potrivit sursei citate, cu o zi înainte, Forumul popular transnistrean i-a...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/vitalii-neagu-a-depus-actele-pentru-a-participa-la-asa-numitele-alegeri-prezidentiale-din-regiunea-transnistreana/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/blog/de-la-surse-si-documente-la-comunitate-si-generozitate-ce-am-adus-acasa-de-la-riga" target="_blank">De la surse și documente la comunitate și generozitate: ce am adus acasă de la Riga</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Cum orice poveste frumoasă are un sfârșit, s-a încheiat și trainingul de cinci luni organizat de Stockholm School of Economics la Riga. Am participat la el ca jurnalistă a platformei anticoruptie.md și, pentru o vreme, am redevenit studentă. Au fo...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💰 Corupție</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/blog/de-la-surse-si-documente-la-comunitate-si-generozitate-ce-am-adus-acasa-de-la-riga" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/investitii-in-irigare" target="_blank">130 de milioane de lei pentru două sisteme de irigare. Guvernul ia primele decizii mari contra secetei</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Două sisteme centralizate de irigare din țară vor fi reabilitate și modernizate, iar aproximativ 7000 de hectare de terenuri agricole vor avea acces la infrastructură de irigare. Lucrările vor fi realizate în cadrul proiectului „Moldova – Proiect de ...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/investitii-in-irigare" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/dosare/fost-angajat-asp-in-catuse" target="_blank">AUDIO// „Vă duceți fără emoții, totu-i bine!”. Fost angajat ASP, reținut în dosarul permiselor auto</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Un fost angajat al Agenției Servicii Publice (ASP), care a activat anterior în calitate de examinator auto, a fost reținut de procurorii anticorupție și ofițerii Centrului Național Anticorupție (CNA). Măsura a fost dispusă în continuarea investigații...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/dosare/fost-angajat-asp-in-catuse" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://mold-street.com/noutate/cine-sunt-drumarii-sanctionati-cu-95-de-milioane-de-lei-printre-cele-27-de-firme-se-numara-companii-de-stat-si-mari-constructori-doc" target="_blank">Drumari sancționați cu 95 de milioane de lei: printre cele 27 de firme, se numără companii de stat și mari constructori (DOC)</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/cine-sunt-drumarii-sanctionati-cu-95-de-milioane-de-lei-printre-cele-27-de-firme-se-numara-companii-de-stat-si-mari-constructori-doc" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/dosare/sase-membri-ai-unui-grup-criminal-organizat-in-judecata-pentru-talharie" target="_blank">Șase membri ai unui grup criminal organizat - în judecată pentru tâlhărie</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Dosarul a șase persoane, membri ai unui grup criminal organizat, acuzate de tâlhărie a fost trimis în instanța de judecată. Bărbații, cu vârste între 45 și 20 de ani, sunt acuzați că au organizat atacuri tâlhărești asupra comercianților de fructe și ...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/dosare/sase-membri-ai-unui-grup-criminal-organizat-in-judecata-pentru-talharie" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/dosare/ce-se-intampla-cu-dosarele-de-coruptie-electorala-dupa-alegeri-platforma-care-pastreaza-memoria-publica" target="_blank">Ce se întâmplă cu dosarele de corupție electorală după alegeri? Platforma care păstrează memoria publică</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Dosarele de corupție electorală din Republica Moldova pot fi monitorizate pe o platformă publică dedicată - anticoruptie.crjm.org. Platforma a fost lansată în iunie 2026 de Centrul de Resurse Juridice din Moldova (CRJM) cu sprijinul PNUD și Uniunea E...</div>
+    <div class='cat-tags'><span class="cat-tag">💰 Corupție</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/dosare/ce-se-intampla-cu-dosarele-de-coruptie-electorala-dupa-alegeri-platforma-care-pastreaza-memoria-publica" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/peste-33-milioane-de-alegatori-inscrisi-in-registrul-de-stat-cati-sunt-arondati-in-raioane-si-municipii" target="_blank">Peste 3,3 milioane de alegători înscriși în Registrul de Stat. Câți sunt arondați în raioane și municipii</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Comisia Electorală Centrală a publicat datele actualizate din Registrul de Stat al Alegătorilor. Potrivit CEC, în registru sunt înscriși în total 3.306.682 de alegători. Dintre aceștia, 2.763.709 cetățeni cu drept de vot sunt atribuiți pe unități ...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/peste-33-milioane-de-alegatori-inscrisi-in-registrul-de-stat-cati-sunt-arondati-in-raioane-si-municipii" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/dosare/republica-moldova-a-castigat-arbitrajul-de-peste-471-de-milioane-de-lei-initiat-de-rotalin-gaz-la-icsid" target="_blank">Republica Moldova a câștigat arbitrajul de peste 471 de milioane de lei inițiat de Rotalin Gaz la ICSID</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Republica Moldova a obținut câștig de cauză în arbitrajul de la Centrul Internațional pentru Soluționarea Diferendelor Investiționale (ICSID), intentat de companiile RTI Rotalin Gas Trading AG și Rotalin Gaz Trading SRL. Potrivit Ministerului Ener...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/dosare/republica-moldova-a-castigat-arbitrajul-de-peste-471-de-milioane-de-lei-initiat-de-rotalin-gaz-la-icsid" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/achizitii-publice/interese-de-cartel-la-reparatia-drumurilor-oferte-trucate-de-175-miliarde-de-lei" target="_blank">Interese de cartel la reparația drumurilor: oferte trucate de 1,75 miliarde de lei</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Consiliul Concurenței a sancționat 27 de întreprinderi cu amenzi totale de aproximativ 95 de milioane de lei pentru participarea la acorduri anticoncurențiale și/sau practici concertate în cadrul achizițiilor publice organizate de Administrația de St...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/achizitii-publice/interese-de-cartel-la-reparatia-drumurilor-oferte-trucate-de-175-miliarde-de-lei" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/dosare/sechestrele-de-peste-14-milioane-de-lei-anuntate-de-cna" target="_blank">Sechestrele de peste 14 milioane de lei, anunțate de CNA</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Bunuri în valoare de peste 6,3 milioane de lei au fost puse sub sechestru de Agenția de Recuperare a Bunurilor Infracționale (ARBI) a Centrului Național Anticorupție (CNA), pe parcursul săptămânii precedente. Alte 500 de mii de lei au fost preluate î...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/dosare/sechestrele-de-peste-14-milioane-de-lei-anuntate-de-cna" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/dosare/corneliu-ghimpu" target="_blank">DOC// Cine este fostul prim-vicepreședinte Victoriabank, trimis în judecată. Lista lungă a „păcatelor”</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Fostul prim-vicepreședinte al Comitetului de Direcție al Victoriabank, Corneliu Ghimpu, a fost trimis în judecată în dosarul „Frauda bancară”. Procuratura Anticorupție anunță că urmărirea penală în privința acestuia a fost finalizată, iar cauza a fos...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/dosare/corneliu-ghimpu" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/dosare/doi-ofiteri-de-politie-retinuti-intr-un-dosar-de-coruptie" target="_blank">Doi subofițeri de poliție, reținuți într-un dosar de corupție</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Procuratura Bălți informează că va cere aplicarea măsurii preventive sub formă de arest preventiv în dosarul celor doi subofițeri superiori ai Inspectoratului Național de Securitate Publică Nord al IGP al MAI, reținuți două zile în urmă. Aceștia sunt...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/dosare/doi-ofiteri-de-politie-retinuti-intr-un-dosar-de-coruptie" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/guvernul-vrea-sa-taie-factura-pentru-energie-cu-20-la-suta" target="_blank">Guvernul vrea să taie factura pentru energie cu 20 la sută. 52 de mln de dolari, investite în clădirile publice</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Clădirile publice din Republica Moldova vor beneficia de investiții de 52 de milioane de dolari pentru renovare și eficientizare energetică. Lucrările vor contribui la reducerea consumului de energie, a cheltuielilor pentru încălzire și electricitate...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/guvernul-vrea-sa-taie-factura-pentru-energie-cu-20-la-suta" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card investigativ">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/curtea-constitutionala-arbitru-in-scandalul-legii-von-hebel-sesizarea-deputatilor-examinata-de-magistrati" target="_blank">Curtea Constituțională, arbitru în scandalul „legii von Hebel”. Sesizarea unor deputați, examinată de magistrați</a> <span class="badge badge-inv">🔍 Investigativ</span></div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Curtea Constituțională a Republicii Moldova examinează sesizarea unui grup de deputați privind constituționalitatea prevederilor așa-numitei legi „von Hebel”, prin care a fost redus de la 61 la 51 numărul de voturi necesare pentru numirea membrilor p...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/curtea-constitutionala-arbitru-in-scandalul-legii-von-hebel-sesizarea-deputatilor-examinata-de-magistrati" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">⚖️ Justiție & Procurori (68)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/consiliul-onu-pentru-drepturile-omului-condamna-actiunile-rusiei-in-teritoriile-ocupate-ale-georgiei" target="_blank">Consiliul ONU pentru Drepturile Omului condamnă acțiunile Rusiei în teritoriile ocupate ale Georgiei</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Consiliul ONU pentru Drepturile Omului constată discriminare sistemică și încălcări grave ale drepturilor omului împotriva populației etnice georgiene din Abhazia și regiunea Tskhinvali / Osetia de Sud ocupate de Rusia și condamnă acțiunile Moscovei ...</div>
+    <div class='cat-tags'><span class="cat-tag">👥 Social & Drepturile Omului</span><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/consiliul-onu-pentru-drepturile-omului-condamna-actiunile-rusiei-in-teritoriile-ocupate-ale-georgiei" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/calea-ferata-din-intreprindere-de-stat-in-societate-pe-actiuni" target="_blank">Calea Ferată: din întreprindere de stat în societate pe acțiuni</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Întreprinderea de Stat „Calea Ferată din Moldova” va fi reorganizată până la 31 decembrie 2026. Un proiect de lege care prevede acest lucru a fost votat în lectura a doua de Parlament. O anchetă amplă a reporterilor Centrului de Investigații Jurnalis...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/calea-ferata-din-intreprindere-de-stat-in-societate-pe-actiuni" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/diplomatul-luca-niculescu-desemnat-premier-al-romaniei-a-patra-incercare-de-a-debloca-criza-de-la-bucuresti" target="_blank">Diplomatul Luca Niculescu, desemnat premier al României. A patra încercare de a debloca criza de la București</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Președintele României, Nicușor Dan, l-a desemnat luni seara, 5 octombrie, pe diplomatul Luca Niculescu drept candidat pentru funcția de prim-ministru. Este a patra nominalizare de premier, după ce Guvernul Ilie Bolojan a fost demis prin moțiune de ce...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/diplomatul-luca-niculescu-desemnat-premier-al-romaniei-a-patra-incercare-de-a-debloca-criza-de-la-bucuresti" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/moldova-proiect" target="_blank">Oficiul „Moldova Proiect”: statul vrea să gestioneze mai bine investițiile, opoziția nu crede</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Guvernul creează o structură unică pentru implementarea proiectelor strategice de infrastructură națională, denumită „Moldova Proiect”. Decizia de constituire a noului oficiu a fost aprobată de Guvern, pe fundalul unor acuzații din partea opoziției p...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">💰 Corupție</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/moldova-proiect" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/opozitia-cere-suspendarea-presedintei-maia-sandu" target="_blank">Opoziția cere suspendarea președintei Maia Sandu</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Opoziția parlamentară cere suspendarea din funcție a președintei Maia Sandu pentru „uzurparea puterii de stat și subminarea suveranității și independenței naționale”. Proiectul hotărârii a fost înregistrat, marți, în Parlament, iar anunțul a fost făc...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/opozitia-cere-suspendarea-presedintei-maia-sandu" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/incepe-campania-electorala-in-gagauzia-cati-aspiranti-la-functii-s-au-inscris-in-cursa" target="_blank">Începe campania electorală în Găgăuzia. Câți aspiranți la funcții s-au înscris în cursă</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>A fost dat startul campaniei electorale pentru alegerile deputaților în Adunarea Populară a Găgăuziei și pentru funcția de Guvernator (Bașcan) al Găgăuziei din 15 noiembrie 2026. Campania electorală începe concomitent pentru toți candidații înregistr...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/incepe-campania-electorala-in-gagauzia-cati-aspiranti-la-functii-s-au-inscris-in-cursa" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/amendamentul-von-hebel-declarat-neconstitutional" target="_blank">„Amendamentul von Hebel”, declarat neconstituțional</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Curtea Constituțională a Republicii Moldova a declarat neconstituționale prevederile legislative care au permis numirea lui Herman von Hebel în Comisia de evaluare a procurorilor cu un număr redus de voturi în Parlament. Decizia a fost pronunțată pe ...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/amendamentul-von-hebel-declarat-neconstitutional" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/dosare/perchezitii" target="_blank">Șapte persoane, reținute într-o schemă de corupție la Giurgiulești. 24 de percheziții, în șapte cauze penale</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Un șef de post și cinci inspectori ai Agenției Naționale pentru Siguranța Alimentelor (ANSA), alături de administratorul unei companii, au fost reținuți pentru 72 de ore, într-un dosar de corupție sistemică la postul de inspecție la frontieră Giurgiu...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/dosare/perchezitii" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/premierul-desemnat-luca-niculescu-primul-test-in-fata-parlamentarilor-cine-sunt-candidatii-care-au-esuat-inaintea-sa" target="_blank">Premierul desemnat Luca Niculescu, primul test în fața parlamentarilor. Cine sunt candidații care au eșuat înaintea sa</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Premierul desemnat al României, Luca Niculescu, urmează să depună, joi, în Parlamentul României programul de guvernare și lista miniștrilor. Este o nouă încercare de a forma un executiv după demiterea Guvernului condus de Ilie Bolojan, alte trei cand...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/premierul-desemnat-luca-niculescu-primul-test-in-fata-parlamentarilor-cine-sunt-candidatii-care-au-esuat-inaintea-sa" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/blog/35-de-ani-de-la-independenta-de-urss-kgb-ismul-e-la-el-acasa" target="_blank">35 de ani de la independența de URSS. KGB-ismul e la el acasă</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Pe 7 octombrie, la Chișinău, a avut loc marșul de solidaritate cu Palestina. Am asistat la un circ și la o lipsă totală de cunoaștere a legii, sau, cel puțin, asta a vrut să arate carabinierul superior, sub marca INSP, Inspectoratul Național de Secur...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/blog/35-de-ani-de-la-independenta-de-urss-kgb-ismul-e-la-el-acasa" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🏛️ Politică & Putere (42)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/consiliul-onu-pentru-drepturile-omului-condamna-actiunile-rusiei-in-teritoriile-ocupate-ale-georgiei" target="_blank">Consiliul ONU pentru Drepturile Omului condamnă acțiunile Rusiei în teritoriile ocupate ale Georgiei</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Consiliul ONU pentru Drepturile Omului constată discriminare sistemică și încălcări grave ale drepturilor omului împotriva populației etnice georgiene din Abhazia și regiunea Tskhinvali / Osetia de Sud ocupate de Rusia și condamnă acțiunile Moscovei ...</div>
+    <div class='cat-tags'><span class="cat-tag">👥 Social & Drepturile Omului</span><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/consiliul-onu-pentru-drepturile-omului-condamna-actiunile-rusiei-in-teritoriile-ocupate-ale-georgiei" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/calea-ferata-din-intreprindere-de-stat-in-societate-pe-actiuni" target="_blank">Calea Ferată: din întreprindere de stat în societate pe acțiuni</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Întreprinderea de Stat „Calea Ferată din Moldova” va fi reorganizată până la 31 decembrie 2026. Un proiect de lege care prevede acest lucru a fost votat în lectura a doua de Parlament. O anchetă amplă a reporterilor Centrului de Investigații Jurnalis...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/calea-ferata-din-intreprindere-de-stat-in-societate-pe-actiuni" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/diplomatul-luca-niculescu-desemnat-premier-al-romaniei-a-patra-incercare-de-a-debloca-criza-de-la-bucuresti" target="_blank">Diplomatul Luca Niculescu, desemnat premier al României. A patra încercare de a debloca criza de la București</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Președintele României, Nicușor Dan, l-a desemnat luni seara, 5 octombrie, pe diplomatul Luca Niculescu drept candidat pentru funcția de prim-ministru. Este a patra nominalizare de premier, după ce Guvernul Ilie Bolojan a fost demis prin moțiune de ce...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/diplomatul-luca-niculescu-desemnat-premier-al-romaniei-a-patra-incercare-de-a-debloca-criza-de-la-bucuresti" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/moldova-proiect" target="_blank">Oficiul „Moldova Proiect”: statul vrea să gestioneze mai bine investițiile, opoziția nu crede</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Guvernul creează o structură unică pentru implementarea proiectelor strategice de infrastructură națională, denumită „Moldova Proiect”. Decizia de constituire a noului oficiu a fost aprobată de Guvern, pe fundalul unor acuzații din partea opoziției p...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">💰 Corupție</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/moldova-proiect" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/opozitia-cere-suspendarea-presedintei-maia-sandu" target="_blank">Opoziția cere suspendarea președintei Maia Sandu</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Opoziția parlamentară cere suspendarea din funcție a președintei Maia Sandu pentru „uzurparea puterii de stat și subminarea suveranității și independenței naționale”. Proiectul hotărârii a fost înregistrat, marți, în Parlament, iar anunțul a fost făc...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/opozitia-cere-suspendarea-presedintei-maia-sandu" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/incepe-campania-electorala-in-gagauzia-cati-aspiranti-la-functii-s-au-inscris-in-cursa" target="_blank">Începe campania electorală în Găgăuzia. Câți aspiranți la funcții s-au înscris în cursă</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>A fost dat startul campaniei electorale pentru alegerile deputaților în Adunarea Populară a Găgăuziei și pentru funcția de Guvernator (Bașcan) al Găgăuziei din 15 noiembrie 2026. Campania electorală începe concomitent pentru toți candidații înregistr...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/incepe-campania-electorala-in-gagauzia-cati-aspiranti-la-functii-s-au-inscris-in-cursa" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/amendamentul-von-hebel-declarat-neconstitutional" target="_blank">„Amendamentul von Hebel”, declarat neconstituțional</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Curtea Constituțională a Republicii Moldova a declarat neconstituționale prevederile legislative care au permis numirea lui Herman von Hebel în Comisia de evaluare a procurorilor cu un număr redus de voturi în Parlament. Decizia a fost pronunțată pe ...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/amendamentul-von-hebel-declarat-neconstitutional" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/premierul-desemnat-luca-niculescu-primul-test-in-fata-parlamentarilor-cine-sunt-candidatii-care-au-esuat-inaintea-sa" target="_blank">Premierul desemnat Luca Niculescu, primul test în fața parlamentarilor. Cine sunt candidații care au eșuat înaintea sa</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Premierul desemnat al României, Luca Niculescu, urmează să depună, joi, în Parlamentul României programul de guvernare și lista miniștrilor. Este o nouă încercare de a forma un executiv după demiterea Guvernului condus de Ilie Bolojan, alte trei cand...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/premierul-desemnat-luca-niculescu-primul-test-in-fata-parlamentarilor-cine-sunt-candidatii-care-au-esuat-inaintea-sa" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/cursa-pentru-putere-in-uta-gagauzia-vor-fi-deschise-67-de-sectii-de-votare" target="_blank">Cursa pentru putere în UTA Găgăuzia. Vor fi deschise 67 secții de votare</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Pentru alegerile la funcția de deputat în Adunarea Populară a Găgăuziei și Guvernator (Bașcan) al Găgăuziei din 15 noiembrie 2026, au fost constituite 67 de secții de votare. Cele mai multe secții de votare vor fi deschise în municipiul Comrat - 1...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/cursa-pentru-putere-in-uta-gagauzia-vor-fi-deschise-67-de-sectii-de-votare" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/blog/35-de-ani-de-la-independenta-de-urss-kgb-ismul-e-la-el-acasa" target="_blank">35 de ani de la independența de URSS. KGB-ismul e la el acasă</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Pe 7 octombrie, la Chișinău, a avut loc marșul de solidaritate cu Palestina. Am asistat la un circ și la o lipsă totală de cunoaștere a legii, sau, cel puțin, asta a vrut să arate carabinierul superior, sub marca INSP, Inspectoratul Național de Secur...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/blog/35-de-ani-de-la-independenta-de-urss-kgb-ismul-e-la-el-acasa" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">💰 Corupție (7)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/moldova-proiect" target="_blank">Oficiul „Moldova Proiect”: statul vrea să gestioneze mai bine investițiile, opoziția nu crede</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Guvernul creează o structură unică pentru implementarea proiectelor strategice de infrastructură națională, denumită „Moldova Proiect”. Decizia de constituire a noului oficiu a fost aprobată de Guvern, pe fundalul unor acuzații din partea opoziției p...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">💰 Corupție</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/moldova-proiect" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/campanie-de-malware-care-imita-donatori-europeni-a-vizat-presa-si-societatea-civila-din-moldova" target="_blank">Campanie de malware care imită donatori europeni a vizat presa și societatea civilă din Moldova</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>O campanie de atacuri cibernetice a vizat în luna septembrie organizații media și ONG-uri din Republica Moldova, folosind invitații false la evenimente și oferte de granturi în numele unor fundații europene. Atacatorii au impersonat trei organizații ...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💰 Corupție</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/campanie-de-malware-care-imita-donatori-europeni-a-vizat-presa-si-societatea-civila-din-moldova" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/dosare/30-de-mii-de-euro-mita-pentru-eliberarea-din-puscarie" target="_blank">30 de mii de euro, mită pentru eliberarea din pușcărie</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Procuratura Anticorupție (PA) anunță finalizarea urmăririi penale și trimiterea în instanța de judecată, pentru examinare în fond, a cauzei penale în care un bărbat este învinuit de comiterea infracțiunii de trafic de influență. Învinuitul a pretins ...</div>
+    <div class='cat-tags'><span class="cat-tag">💰 Corupție</span><span class="cat-tag">⚖️ Justiție & Procurori</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/dosare/30-de-mii-de-euro-mita-pentru-eliberarea-din-puscarie" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/ministra-finantelor-cunosc-problemele-din-sectorul-taxi-si-am-cerut-sa-fie-verificate/" target="_blank">Ministra Finanțelor: „Cunosc problemele din sectorul taxi și am cerut să fie verificate”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>„Nu am ignorat problema și nu am așteptat ca lucrurile să se schimbe singure. În sectorul taxi există evaziune fiscală. Nu se declară toate veniturile și toți șoferii care lucrează”, spune ministra Finanțelor, Victoria Belous, care și-a petrecut aproape întreaga carieră în Serviciul Fiscal de Stat (SFS), pe care l-a și condus pentru doi ani....</div>
+    <div class='cat-tags'><span class="cat-tag">💰 Corupție</span><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://www.zdg.md/stiri/ministra-finantelor-cunosc-problemele-din-sectorul-taxi-si-am-cerut-sa-fie-verificate/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/blog/cititorul/de-la-sacrificiile-pentru-copil-la-singuratatea-din-azil-povestea-unei-femei-de-75-de-ani-ajunsa-intr-un-scaun-cu-rotile/" target="_blank">De la sacrificiile pentru copil la singurătatea din azil: povestea unei femei de 75 de ani, ajunsă într-un scaun cu rotile</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>După o viață de muncă și sacrificii pentru a-și crește copilul, o femeie de 75 de ani se află într-un centru de plasament, imobilizată într-un scaun cu rotile și fără sprijinul familiei. Nemulțumită de condițiile de trai și de modul în care îi sunt soluționate sesizările, femeia reclamă presupuse nereguli și lipsa de reacție a...</div>
+    <div class='cat-tags'><span class="cat-tag">💰 Corupție</span><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://www.zdg.md/blog/cititorul/de-la-sacrificiile-pentru-copil-la-singuratatea-din-azil-povestea-unei-femei-de-75-de-ani-ajunsa-intr-un-scaun-cu-rotile/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/dosare/cinci-call-centre-implicate-in-escocherii-au-fost-destructurate-in-chisinau" target="_blank">Cinci call-centre implicate în escrocherii au fost destructurate în Chișinău</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Activitatea a cinci call-centre a fost deconspirată la Chișinău, în cadrul acțiunilor de urmărire penală în cadrul unei cauze penale ce vizează presupuse infracțiuni de escrocherie și spălare de bani. Opt persoane, implicate în activitatea call-centr...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💰 Corupție</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/dosare/cinci-call-centre-implicate-in-escocherii-au-fost-destructurate-in-chisinau" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/dosare/pana-la-800-euro-mita-pentru-a-scapa-de-control-schema-de-coruptie-sistemica-la-postul-de-inspectie-la-frontiera-leuseni" target="_blank">Până la 800 euro mită pentru a scăpa de control. Schemă de corupție sistemică la Postul de Inspecție la Frontieră Leușeni</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Doi angajați ai Agenției Naționale pentru Siguranța Alimentelor (ANSA) de la Postul de Inspecție la Frontieră (PIF) Leușeni–Albița și trei reprezentanți ai agenților economici sunt cercetați într-o cauză penală privind fapte de corupere pasivă, corup...</div>
+    <div class='cat-tags'><span class="cat-tag">💰 Corupție</span><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/dosare/pana-la-800-euro-mita-pentru-a-scapa-de-control-schema-de-coruptie-sistemica-la-postul-de-inspectie-la-frontiera-leuseni" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📰 Media & Libertatea Presei (6)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/blog/putin-a-ucis-mai-intai-presa-apoi-a-ucis-rusia" target="_blank">Putin a ucis mai întâi presa. Apoi a ucis Rusia</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Jurnalista Ana Politkovskaia a înțeles prima ce înseamnă cu adevărat formula lui Putin. Nu doar că a ucis presa independentă din Rusia - a ucis, prin asta, însăși Rusia. Astăzi se împlinesc 20 de ani de la asasinarea Anei Politkovskaia. Pe 7 octom...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/blog/putin-a-ucis-mai-intai-presa-apoi-a-ucis-rusia" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/o-transa-de-157-mln-de-euro-pentru-moldova-alocati-de-ue" target="_blank">O tranșă de 157 mln de euro pentru Moldova, alocați de UE</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Republica Moldova a făcut pași importanți în sensul aderării la Uniunea Europeană (UE) și va primi o nouă tranșă de 157 mln de euro din Planul de Creștere al UE. Anunțul a fost făcut, luni, în cadrul conferinței de presă susținute la încheierea celui...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/o-transa-de-157-mln-de-euro-pentru-moldova-alocati-de-ue" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/blog/o-cifra-reala-o-manipulare-cat-se-poate-de-falsa" target="_blank">O cifră reală. O manipulare cât se poate de falsă</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Văd că unii au descoperit cifra de „92 de cazuri de traversare sau de contrabandă cu armament” și s-au grăbit să o transforme într-un „dezastru de securitate”. Ca să fie clar. Da, cifra este reală. Ministra afacerilor interne Daniella Misail-Nichi...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/blog/o-cifra-reala-o-manipulare-cat-se-poate-de-falsa" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://agora.md/media-kit" target="_blank">Comunicăm. Producem. Plasăm.Crești împreună cu AGORA</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Agora.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>Dezvoltăm istorii care ajung natural la oameni — prin parteneriate editoriale, conținut sponsorizat nativ, video, evenimente și acoperire multiplatformă.</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://agora.md/media-kit" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/blog/editoriale/editorial-de-care-drone-nu-se-teme-ceban/" target="_blank">Editorial/ De care drone (nu) se teme Ceban?</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>„Am pus o întrebare firească: de ce Moldova are nevoie de drone, producție, astăzi? […] Toate problemele am terminat în țara asta? Gata, agricultorii îs bine-mersi? Pensionarii îs bine-mersi? Pedagogii îs bine-mersi? Agenții economici, gazul, s-a soluționat întrebarea? Tot ce ține nemijlocit de energie electrică, benzină, motorină, căldură, proiecte de infrastructură, suport pentru perioada rece a…</div>
+    <div class='cat-tags'><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://www.zdg.md/blog/editoriale/editorial-de-care-drone-nu-se-teme-ceban/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/special/editorial-tactica-rusiei-de-raspuns-extern-la-masurile-fiscal-juridice-de-reintegrare-a-republicii-moldova" target="_blank">Editorial// Tactica Rusiei de răspuns extern la măsurile fiscal-juridice de reintegrare a Republicii Moldova</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Editorial de Natalia Stercul, directoarea executivă a Asociației pentru Politică Externă (APE) pentru Buletinul de politică externă al FES/APE În septembrie 2026, în procesul de reglementare transnistreană a avut loc o tranziție de la politica com...</div>
+    <div class='cat-tags'><span class="cat-tag">📰 Media & Libertatea Presei</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/special/editorial-tactica-rusiei-de-raspuns-extern-la-masurile-fiscal-juridice-de-reintegrare-a-republicii-moldova" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">🔐 Securitate & Intelligence (7)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/dosare/perchezitii" target="_blank">Șapte persoane, reținute într-o schemă de corupție la Giurgiulești. 24 de percheziții, în șapte cauze penale</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Un șef de post și cinci inspectori ai Agenției Naționale pentru Siguranța Alimentelor (ANSA), alături de administratorul unei companii, au fost reținuți pentru 72 de ore, într-un dosar de corupție sistemică la postul de inspecție la frontieră Giurgiu...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/dosare/perchezitii" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/blog/35-de-ani-de-la-independenta-de-urss-kgb-ismul-e-la-el-acasa" target="_blank">35 de ani de la independența de URSS. KGB-ismul e la el acasă</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Pe 7 octombrie, la Chișinău, a avut loc marșul de solidaritate cu Palestina. Am asistat la un circ și la o lipsă totală de cunoaștere a legii, sau, cel puțin, asta a vrut să arate carabinierul superior, sub marca INSP, Inspectoratul Național de Secur...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/blog/35-de-ani-de-la-independenta-de-urss-kgb-ismul-e-la-el-acasa" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/dosare/pirlog-dragalin" target="_blank">DOC// „Notificările roșii” în instanță între Pîrlog și Dragalin revin în prim-plan</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Cererea fostului ministru al Justiției și ex-șefului Serviciului de Informații și Securitate (SIS), Vitalie Pîrlog, împotriva fostei șefe a Procuraturii Anticorupțe, Veronica Dragalin, a ajuns în instanța de apel. Apărătorii lui Pîrlog au depus o cer...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/dosare/pirlog-dragalin" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/dosare/pana-la-800-euro-mita-pentru-a-scapa-de-control-schema-de-coruptie-sistemica-la-postul-de-inspectie-la-frontiera-leuseni" target="_blank">Până la 800 euro mită pentru a scăpa de control. Schemă de corupție sistemică la Postul de Inspecție la Frontieră Leușeni</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Doi angajați ai Agenției Naționale pentru Siguranța Alimentelor (ANSA) de la Postul de Inspecție la Frontieră (PIF) Leușeni–Albița și trei reprezentanți ai agenților economici sunt cercetați într-o cauză penală privind fapte de corupere pasivă, corup...</div>
+    <div class='cat-tags'><span class="cat-tag">💰 Corupție</span><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/dosare/pana-la-800-euro-mita-pentru-a-scapa-de-control-schema-de-coruptie-sistemica-la-postul-de-inspectie-la-frontiera-leuseni" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/dosare/doc-omul-din-umbra-lui-plahotniuc-serghei-iaralov-ramane-in-lista-neagra-sis-2" target="_blank">DOC// Omul din umbra lui Plahotniuc, Serghei Iaralov, rămâne în „lista neagră” SIS</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Curtea de Apel Centru a menținut hotărârea instanței de fond în procesul ex-vicepreședintelui democrat și mâna dreaptă a lui Vladimir Plahotniuc, Serghei Iaralov, împotriva Serviciului de Informații și Securitate (SIS). O decizie în acest sens a fost...</div>
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/dosare/doc-omul-din-umbra-lui-plahotniuc-serghei-iaralov-ramane-in-lista-neagra-sis-2" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/singurul-centru-de-zi-pentru-adulti-cu-autism-din-chisinau-refuza-un-tanar-de-18-ani-mama-face-apel-public-unde-sa-merg-cu-copilul-meu" target="_blank">Singurul centru de zi pentru adulți cu autism din Chișinău refuză un tânăr de 18 ani. Mama face apel public: "Unde să merg cu copilul meu?"</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Un tânăr de 18 ani cu autism și necesități speciale a fost refuzat de Centrul de zi ADIR - serviciul prezentat oficial de Direcția Generală Asistență Medicală și Socială ca fiind unicul destinat persoanelor adulte cu dizabilități și tulburări din spe...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/singurul-centru-de-zi-pentru-adulti-cu-autism-din-chisinau-refuza-un-tanar-de-18-ani-mama-face-apel-public-unde-sa-merg-cu-copilul-meu" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/blog/cat-ar-costa-un-sistem-anti-drone" target="_blank">Cât ar costa un sistem anti-drone</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Am fost întrebat cât ar costa pentru Republica Moldova un sistem care să poată neutraliza dronele care pătrund în spațiul nostru aerian. Cred că mai mulți se întreabă. În opinia mea, răspunsul nu trebuie să înceapă cu o sumă. Pentru că nu avem nev...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🔐 Securitate & Intelligence</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/blog/cat-ar-costa-un-sistem-anti-drone" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">💼 Afaceri & Contracte Publice (3)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/campanie-de-malware-care-imita-donatori-europeni-a-vizat-presa-si-societatea-civila-din-moldova" target="_blank">Campanie de malware care imită donatori europeni a vizat presa și societatea civilă din Moldova</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>O campanie de atacuri cibernetice a vizat în luna septembrie organizații media și ONG-uri din Republica Moldova, folosind invitații false la evenimente și oferte de granturi în numele unor fundații europene. Atacatorii au impersonat trei organizații ...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💰 Corupție</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/campanie-de-malware-care-imita-donatori-europeni-a-vizat-presa-si-societatea-civila-din-moldova" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/blog/cititorul/de-la-sacrificiile-pentru-copil-la-singuratatea-din-azil-povestea-unei-femei-de-75-de-ani-ajunsa-intr-un-scaun-cu-rotile/" target="_blank">De la sacrificiile pentru copil la singurătatea din azil: povestea unei femei de 75 de ani, ajunsă într-un scaun cu rotile</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>După o viață de muncă și sacrificii pentru a-și crește copilul, o femeie de 75 de ani se află într-un centru de plasament, imobilizată într-un scaun cu rotile și fără sprijinul familiei. Nemulțumită de condițiile de trai și de modul în care îi sunt soluționate sesizările, femeia reclamă presupuse nereguli și lipsa de reacție a...</div>
+    <div class='cat-tags'><span class="cat-tag">💰 Corupție</span><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://www.zdg.md/blog/cititorul/de-la-sacrificiile-pentru-copil-la-singuratatea-din-azil-povestea-unei-femei-de-75-de-ani-ajunsa-intr-un-scaun-cu-rotile/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://mold-street.com/noutate/guvernul-ivestigheaza-activitatea-yandex-in-moldova-sunt-verificate-securitatea-datelor-si-structura-de-proprietate" target="_blank">Guvernul investighează activitatea Yandex în Moldova: Sunt verificate securitatea datelor și structura de proprietate</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Mold-Street</span>
+      <span>📅 –</span>
+    </div>
+    
+    <div class='cat-tags'><span class="cat-tag">🏛️ Politică & Putere</span><span class="cat-tag">💼 Afaceri & Contracte Publice</span></div>
+    <a class="link-btn" href="https://mold-street.com/noutate/guvernul-ivestigheaza-activitatea-yandex-in-moldova-sunt-verificate-securitatea-datelor-si-structura-de-proprietate" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">👥 Social & Drepturile Omului (4)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/consiliul-onu-pentru-drepturile-omului-condamna-actiunile-rusiei-in-teritoriile-ocupate-ale-georgiei" target="_blank">Consiliul ONU pentru Drepturile Omului condamnă acțiunile Rusiei în teritoriile ocupate ale Georgiei</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Consiliul ONU pentru Drepturile Omului constată discriminare sistemică și încălcări grave ale drepturilor omului împotriva populației etnice georgiene din Abhazia și regiunea Tskhinvali / Osetia de Sud ocupate de Rusia și condamnă acțiunile Moscovei ...</div>
+    <div class='cat-tags'><span class="cat-tag">👥 Social & Drepturile Omului</span><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">🏛️ Politică & Putere</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/consiliul-onu-pentru-drepturile-omului-condamna-actiunile-rusiei-in-teritoriile-ocupate-ale-georgiei" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/premiul-nobel-pentru-pace-2026-acordat-fostei-judecatoare-navi-pillay-care-a-vizitat-republica-moldova" target="_blank">Premiul Nobel pentru Pace 2026, acordat fostei judecătoare Navi Pillay, care a vizitat Republica Moldova</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Navi Pillay, fostă judecătoare din Africa de Sud și fost Înalt Comisar al ONU pentru Drepturile Omului, a câștigat Premiul Nobel pentru Pace 2026. Comitetul norvegian pentru Nobel a recompensat-o pentru eforturile de promovare a păcii și a dreptului ...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/premiul-nobel-pentru-pace-2026-acordat-fostei-judecatoare-navi-pillay-care-a-vizitat-republica-moldova" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/ciuma-ruseasca" target="_blank">„Ciuma rusească”, riscuri minore să ajungă în Republica Moldova</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Agenția Națională pentru Sănătate Publică (ANSP) dă asigurări că riscul de apariție a cazurilor de ciumă pe teritoriul Republicii Moldova este foarte scăzut. Comentariul a fost făcut în contextul cazului de pestă (ciumă) înregistrat în Federația Rusă...</div>
+    <div class='cat-tags'><span class="cat-tag">⚖️ Justiție & Procurori</span><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/ciuma-ruseasca" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/kievul-din-nou-in-bezna-atacurile-rusesti-au-lovit-infrastructura-energetica-a-capitalei-ucrainei" target="_blank">Kievul, din nou în beznă. Atacurile rusești au lovit infrastructura energetică a capitalei Ucrainei</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Kievul se confruntă cu noi întreruperi de curent, după ce armata rusă a atacat, în noaptea de 13 spre 14 octombrie, mai multe obiective energetice din capitala Ucrainei. Atacurile cu rachete balistice au provocat victime, au avariat clădiri rezidenți...</div>
+    <div class='cat-tags'><span class="cat-tag">👥 Social & Drepturile Omului</span></div>
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/kievul-din-nou-in-bezna-atacurile-rusesti-au-lovit-infrastructura-energetica-a-capitalei-ucrainei" target="_blank">Citește articolul →</a>
+  </div>
+<div class="section-title">📌 Alte articole (16)</div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://www.zdg.md/stiri/alti-trei-magistrati-din-completele-specializate-anticoruptie-urmeaza-a-fi-audiati-de-comisia-de-evaluare-detalii-din-cariera-judecatorilor/" target="_blank">Alți trei magistrați din completele specializate anticorupție urmează a fi audiați de Comisia de Evaluare. Detalii din cariera judecătorilor</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Ziarul de Gardă</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>În zilele de 20 și 22 octombrie, Comisia de Evaluare a Judecătorilor va desfășura noi audieri publice în cadrul evaluării externe a judecătorilor din completele specializate anticorupție. Astfel, vor fi audiate magistratele Tatiana Bivol, Liliana Cușcă și Veaceslav Cernalev de la Judecătoria Chișinău. „Audierile se vor desfășura în fața completelor de evaluare E, F și...</div>
+    
+    <a class="link-btn" href="https://www.zdg.md/stiri/alti-trei-magistrati-din-completele-specializate-anticoruptie-urmeaza-a-fi-audiati-de-comisia-de-evaluare-detalii-din-cariera-judecatorilor/" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/bruxelles-ul-elimina-termenul-cat-mai-curand-posibil-scurtatura-sau-un-nou-angajament-pentru-aderarea-la-ue" target="_blank">Bruxelles-ul elimină termenul „cât mai curând posibil”. Scurtătură sau un nou angajament pentru aderarea la UE?</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Uniunea Europeană a eliminat formularea „cât mai curând posibil” din proiectul de concluzii al summitului Consiliului European din 15–16 octombrie, referitoare la deschiderea grupurilor de negociere rămase pentru aderarea Republicii Moldova și a Ucra...</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/bruxelles-ul-elimina-termenul-cat-mai-curand-posibil-scurtatura-sau-un-nou-angajament-pentru-aderarea-la-ue" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/nato-a-prezentat-planul-de-raspuns-in-cazul-unui-atac-al-rusiei-tinte-vizate-kaliningrad-belarus-si-zona-sankt-petersburg" target="_blank">NATO pregătește o „zonă autonomă" cu drone și roboți pentru a opri o ofensivă rusă. Planul prevede lovituri în Kaliningrad, Belarus și lângă Sankt-Petersburg</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>NATO mizează pe roboți în loc de soldați pentru a opri o eventuală ofensivă rusă - Alianța anunță crearea unei vaste „zone autonome” pe flancul estic, unde dronele și roboții tereștri ar urma să blocheze invazia, fără pierderi semnificative în rândul...</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/nato-a-prezentat-planul-de-raspuns-in-cazul-unui-atac-al-rusiei-tinte-vizate-kaliningrad-belarus-si-zona-sankt-petersburg" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/special/studiu-transnistria-la-portile-uniunii-europene-trei-scenarii-pentru-viitorul-republicii-moldova" target="_blank">Studiu// Transnistria la porțile Uniunii Europene: trei scenarii pentru viitorul Republicii Moldova</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Studiu realizat de experții politici, Denis Cenușă și Alexandru Flenchea. Sumar pentru Buletinul de Politică Externă FES/APE Studiul „Dilema strategică a Republicii Moldova: aderarea la Uniunea Europeană, reintegrarea teritorială și lecțiile din c...</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/special/studiu-transnistria-la-portile-uniunii-europene-trei-scenarii-pentru-viitorul-republicii-moldova" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/maia-sandu-la-moldova-security-forum" target="_blank">Maia Sandu, la Security Forum: „Rusia a vrut ca Moldova să devină a doua Belarus”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Republica Moldova poate contribui la securitatea Europei, în pofida dimensiunii sale, iar războiul din Ucraina a demonstrat cât de importantă este securitatea țării pentru întreaga regiune. Declarația a fost făcută de președinta Maia Sandu la Moldova...</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/maia-sandu-la-moldova-security-forum" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/gherasimov-anunta-vesti-bune-de-la-bruxelles" target="_blank">Viceprim-ministra Cristina Gherasimov anunță vești bune de la Bruxelles</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Republica Moldova va prezenta pozițiile de negociere pentru alte două clustere, 2 și 3, în cadrul negocierilor de aderare la Uniunea Europeană. Viceprim-ministra pentru integrare europeană, Cristina Gherasimov, a anunțat că autoritățile de la Chișină...</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/gherasimov-anunta-vesti-bune-de-la-bruxelles" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/interviuri/ahmet-sozen-ue-ar-trebui-sa-invete-din-experienta-ciprului-si-sa-evite-repetarea-aceleiasi-greseli" target="_blank">Ahmet Sözen: „UE ar trebui să învețe din experiența Ciprului și să evite repetarea aceleiași greșeli”</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Într-un interviu acordat Buletinului de Politică Externă FES/APE, Ahmet Sözen, profesor de științe politice și relații internaționale și director fondator al Cyprus Policy Center, explică de ce conflictele din Cipru și din regiunea transnistreană dif...</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/interviuri/ahmet-sozen-ue-ar-trebui-sa-invete-din-experienta-ciprului-si-sa-evite-repetarea-aceleiasi-greseli" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/special/republica-moldova-intre-aderare-si-reintegrare-lectiile-ciprului" target="_blank">Republica Moldova între aderare și reintegrare: lecțiile Ciprului</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>Sinteză a discuțiilor din cadrul conferinței „Aderarea Republicii Moldova la UE și reintegrarea teritorială: Scenarii, riscuri și lecții din cazul Ciprului” de Mădălin Necșuțu, pentru Buletinul de politică externă al FES/APE Republica Moldova se a...</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/special/republica-moldova-intre-aderare-si-reintegrare-lectiile-ciprului" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://anticoruptie.md/ro/post_show/stiri/kaja-kallas-transnistria-nu-va-bloca-drumul-european-al-republicii-moldova" target="_blank">Kaja Kallas: Transnistria nu va bloca drumul european al Republicii Moldova</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Anticorupție.md</span>
+      <span>📅 16.10.2026</span>
+    </div>
+    <div class='summary'>„Transnistria nu va deveni un obstacol în calea europeană a Republicii Moldova”, a declarat luni, la Bruxelles, Înaltă Reprezentantă a UE pentru afaceri externe și politica de securitate, Kaja Kallas, după reuniunea Consiliului de Asociere Republica ...</div>
+    
+    <a class="link-btn" href="https://anticoruptie.md/ro/post_show/stiri/kaja-kallas-transnistria-nu-va-bloca-drumul-european-al-republicii-moldova" target="_blank">Citește articolul →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><a href="https://newsmaker.md/ru/energetika-moldovy-k-2050-godu-kak-postroit-sistemu-ustoichivuyu-k-krizisam-op-ed-ministra-energetiki-dorina-jungietu" target="_blank">Энергетика Молдовы к 2050 году: как построить систему, устойчивую к кризисам. Op-Ed министра энергетики Дорина Жунгиету</a> </div>
+    <div class="meta">
+      <span class="source-tag">📰 Newsmaker.md</span>
+      <span>📅 –</span>
+    </div>
+    <div class='summary'>DUOMO. Когда качество — не просто слово, это обязательство</div>
+    
+    <a class="link-btn" href="https://newsmaker.md/ru/energetika-moldovy-k-2050-godu-kak-postroit-sistemu-ustoichivuyu-k-krizisam-op-ed-ministra-energetiki-dorina-jungietu" target="_blank">Citește articolul →</a>
+  </div>
+</div>
+<div class="footer">
+  Raport generat automat zilnic &nbsp;·&nbsp; ARBI – Monitorizare Jurnalism Investigativ Moldova
+</div>
+</body>
+</html>
