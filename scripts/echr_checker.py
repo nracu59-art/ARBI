@@ -178,7 +178,13 @@ def main() -> None:
     query = build_query()
     print(f"Query: {query}", flush=True)
 
-    api_response = fetch_hudoc(session, query)
+    try:
+        api_response = fetch_hudoc(session, query)
+    except requests.RequestException as exc:
+        # HUDOC (Cloudflare) blochează intermitent IP-urile GitHub cu 403;
+        # nu scriem rezultate goale, raportul folosește ultimele date valide.
+        print(f"::warning::HUDOC indisponibil, verificare omisă: {exc}", flush=True)
+        return
     total_api = api_response.get("resultcount", 0)
     judgments = parse_judgments(api_response, cutoff)
 
