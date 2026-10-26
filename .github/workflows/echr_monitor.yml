@@ -35,7 +35,10 @@ jobs:
           cache: 'pip'
 
       - name: Install dependencies
-        run: pip install -r scripts/requirements.txt
+        run: |
+          pip install -r scripts/requirements.txt
+          pip install "playwright>=1.44"
+          playwright install chromium --with-deps
 
       - name: Run HUDOC checker
         run: python scripts/echr_checker.py

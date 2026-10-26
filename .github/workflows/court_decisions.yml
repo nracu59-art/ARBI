@@ -39,8 +39,18 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add reports/
-          git diff --cached --quiet || git commit -m "Add court decisions PDF report $(date +'%Y-%m-%d')"
-          git push
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Add court decisions PDF report $(date +'%Y-%m-%d')"
+          # Alte workflow-uri (CEDO, jurnalism) rulează în aceeași oră și împing pe main
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase -X theirs origin main && git push origin HEAD:main && exit 0
+            echo "Push attempt $attempt failed, retrying..."
+            sleep $((attempt * 5))
+          done
+          exit 1
 
       - name: Upload debug screenshot (on failure)
         if: failure()

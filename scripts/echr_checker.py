@@ -101,6 +101,41 @@ def fetch_hudoc(session: requests.Session, query: str, start: int = 0, length: i
     return {}
 
 
+def fetch_hudoc_browser(query: str, length: int = 500) -> dict:
+    """Fallback când Cloudflare blochează requests: interoghează API-ul din contextul unui browser real."""
+    from playwright.sync_api import sync_playwright
+
+    params = {
+        "query": query,
+        "select": (
+            "itemid,docname,docdate,judgementdate,kpdate,importance,"
+            "respondent,respondentOrderEng,applicability,"
+            "conclusion,violation,nonviolation,scl,article"
+        ),
+        "sort": "kpdate Descending",
+        "start": "0",
+        "length": str(length),
+        "rankingModelId": "BasicRank",
+    }
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        try:
+            page = browser.new_page(locale="en-US")
+            page.goto(f"{HUDOC_BASE}/eng", wait_until="networkidle", timeout=60000)
+            response = page.request.get(
+                HUDOC_API,
+                params=params,
+                headers={"Accept": "application/json", "Referer": f"{HUDOC_BASE}/eng"},
+                timeout=60000,
+            )
+            print(f"  Browser HTTP {response.status}", flush=True)
+            if not response.ok:
+                raise requests.HTTPError(f"Browser fallback failed: HTTP {response.status}")
+            return response.json()
+        finally:
+            browser.close()
+
+
 def parse_judgments(api_response: dict, cutoff: datetime) -> list[dict]:
     seen: set[str] = set()
     judgments = []
@@ -178,7 +213,13 @@ def main() -> None:
     query = build_query()
     print(f"Query: {query}", flush=True)
 
-    api_response = fetch_hudoc(session, query)
+    try:
+        api_response = fetch_hudoc(session, query)
+    except requests.HTTPError as exc:
+        if exc.response is None or exc.response.status_code != 403:
+            raise
+        print("  Blocat (403) — încerc prin browser (Playwright)...", flush=True)
+        api_response = fetch_hudoc_browser(query)
     total_api = api_response.get("resultcount", 0)
     judgments = parse_judgments(api_response, cutoff)
 
